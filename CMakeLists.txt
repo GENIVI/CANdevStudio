@@ -1,0 +1,1 @@
+project(CanDevStudio CXX)
