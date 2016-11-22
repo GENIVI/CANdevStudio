@@ -3,5 +3,6 @@
 source /opt/qt56/bin/qt56-env.sh
 mkdir build
 cd build
-cmake .. -DCMAKE_BUILD_TYPE=Debug
+cmake .. -DWITH_COVERAGE=ON
 make -j4 
+ctest -V

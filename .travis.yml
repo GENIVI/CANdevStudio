@@ -21,10 +21,10 @@ before_install:
   - curl https://cmake.org/files/v3.4/cmake-3.4.0-Linux-x86_64.tar.gz -o cmake-3.4.0-Linux-x86_64.tar.gz
   - tar xf cmake-3.4.0-Linux-x86_64.tar.gz
   - export PATH=$PWD/cmake-3.4.0-Linux-x86_64/bin/:$PATH
-  - ls -lah /opt/
-  - ls -lah /opt/qt56/
-  - ls -lah /opt/qt56/bin/
+  - pip install --user cpp-coveralls
 install:
   - if [ "$CXX" = "g++" ]; then export CXX="g++-5" CC="gcc-5"; fi
 script:
   - travis/build.sh
+after_success:
+  - coveralls --exclude lib --exclude tests --gcov-options '\-lp'

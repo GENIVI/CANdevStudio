@@ -1,0 +1,6 @@
+[submodule "3rdParty/fakeit"]
+	path = 3rdParty/fakeit
+	url = https://github.com/eranpeer/FakeIt.git
+[submodule "3rdParty/catch"]
+	path = 3rdParty/catch
+	url = https://github.com/philsquared/Catch.git
