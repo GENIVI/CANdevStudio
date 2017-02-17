@@ -7,9 +7,12 @@ set(CMAKE_AUTOMOC ON)
 
 option(WITH_COVERAGE OFF)
 
-find_package(Qt5Core REQUIRED)
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/Modules/")
 
-add_definitions(-Wall -Wextra)
+find_package(Qt5Core REQUIRED)
+find_package(Libnl REQUIRED)
+
+add_definitions(-Wall -Wextra -std=c++1z)
 
 if(WITH_COVERAGE)
     set(CMAKE_CXX_FLAGS "-g -O0 -Wwrite-strings -fprofile-arcs -ftest-coverage")
@@ -17,8 +20,10 @@ if(WITH_COVERAGE)
     set(CMAKE_EXE_LINKER_FLAGS="-fprofile-arcs -ftest-coverage")
 endif()
 
-set(CMAKE_CXX_STANDARD 14)
+include_directories(${CMAKE_SOURCE_DIR}/src)
+
 add_subdirectory(src/gui)
+add_subdirectory(src/components)
 
 enable_testing()
 add_subdirectory(3rdParty/fakeit)
