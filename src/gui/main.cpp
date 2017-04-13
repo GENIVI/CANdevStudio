@@ -1,7 +1,15 @@
+#include "mainwindow.h"
+#include <QApplication>
 
-#include <QtWidgets/QApplication>
-
-int main(int , char *[])
+int main(int argc, char *argv[])
 {
-    return 0;
+    QApplication a(argc, argv);
+//    QCoreApplication::setApplicationName("MDI Example");
+//    QCoreApplication::setOrganizationName("QtProject");
+//    QCoreApplication::setApplicationVersion(QT_VERSION_STR);
+
+    MainWindow w;
+    w.show();
+
+    return a.exec();
 }
