@@ -1,6 +1,3 @@
+add_subdirectory(candevice)
+add_subdirectory(canrawview)
 
-set(SRC
-    socketcan.cpp
-)
-
-add_library(components STATIC ${SRC})

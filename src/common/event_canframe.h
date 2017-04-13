@@ -12,12 +12,12 @@ struct CanFrame {
     bool error;
 };
 
-typedef std::function<bool(const CanFrame&)> CanFrameInterface;
+typedef std::function<void(const CanFrame&)> CanFrameClbk;
 
-class CanFrameSink : public Sink<EventType::CanFrame, CanFrameInterface> {
+class CanFrameSink : public Sink<EventType::CanFrame, CanFrameClbk> {
 };
 
-struct CanFrameSource : public Source<EventType::CanFrame, CanFrameInterface> {
+struct CanFrameSource : public Source<EventType::CanFrame, CanFrameClbk> {
 };
 
 #endif /* !__CANFRAME_H */

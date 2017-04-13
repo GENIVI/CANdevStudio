@@ -7,10 +7,14 @@ set(CMAKE_AUTOMOC ON)
 
 option(WITH_COVERAGE OFF)
 
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/Modules/")
-
 find_package(Qt5Core REQUIRED)
-find_package(Libnl REQUIRED)
+find_package(Qt5SerialBus REQUIRED)
+find_package(Qt5Widgets REQUIRED)
+
+set_property(TARGET Qt5::SerialBus PROPERTY INTERFACE_COMPILE_FEATURES "")
+set_property(TARGET Qt5::Core PROPERTY INTERFACE_COMPILE_FEATURES "")
+
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/Modules/")
 
 add_definitions(-Wall -Wextra -std=c++1z)
 

@@ -19,7 +19,7 @@ struct Component {
     virtual ~Component() {}
 
     template <typename F>
-    bool connect(EventType src, F& func)
+    bool connect(EventType src, F &&func)
     {
         return connect(src, mElements, func);
     }
