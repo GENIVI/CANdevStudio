@@ -5,6 +5,7 @@
 #include <memory>
 
 class QMdiArea;
+class CanDevice;
 class CanRawView;
 
 class MainWindow : public QMainWindow
@@ -17,6 +18,7 @@ public:
 
 private:
     std::unique_ptr<QMdiArea> mdi;
+    std::unique_ptr<CanDevice> canDevice;
     std::unique_ptr<CanRawView> canRawView;
 };
 
