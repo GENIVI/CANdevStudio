@@ -7,6 +7,7 @@
 class QMdiArea;
 class CanDevice;
 class CanRawView;
+class CanSignalCoder;
 
 class MainWindow : public QMainWindow
 {
@@ -20,6 +21,7 @@ private:
     std::unique_ptr<QMdiArea> mdi;
     std::unique_ptr<CanDevice> canDevice;
     std::unique_ptr<CanRawView> canRawView;
+    std::unique_ptr<CanSignalCoder> canSignalCoder;
 };
 
 #endif // MAINWINDOW_H

@@ -8,12 +8,14 @@
 #include "mainwindow.h"
 #include "candevice/candevice.h"
 #include "canrawview/canrawview.h"
+#include "cansignalcoder/cansignalcoder.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     mdi(std::make_unique<QMdiArea>()),
     canDevice(std::make_unique<CanDevice>()),
-    canRawView(std::make_unique<CanRawView>())
+    canRawView(std::make_unique<CanRawView>()),
+    canSignalCoder(std::make_unique<CanSignalCoder>())
 {
     mdi->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     mdi->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
