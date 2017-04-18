@@ -3,7 +3,7 @@
 
 CanSignalSender::CanSignalSender(QWidget *parent) :
     QWidget(parent),
-    d_ptr(new CanSignalSenderPrivate)
+    d_ptr(new CanSignalSenderPrivate(this))
 {
     Q_D(CanSignalSender);
 

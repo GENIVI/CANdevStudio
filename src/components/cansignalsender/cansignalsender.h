@@ -17,6 +17,7 @@ public:
     ~CanSignalSender();
 
 signals:
+    void sendSignal(const QString &name, const QByteArray &value);
 
 public slots:
 
