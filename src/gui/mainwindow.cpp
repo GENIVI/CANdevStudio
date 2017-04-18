@@ -24,6 +24,12 @@ MainWindow::MainWindow(QWidget *parent) :
 
     mdi->addSubWindow(canRawView.get());
     mdi->tileSubWindows();
+
+    connect(canDevice.get(), &CanDevice::frameReceived, canRawView.get(), &CanRawView::frameReceived);
+    connect(canDevice.get(), &CanDevice::frameSent, canRawView.get(), &CanRawView::frameSent);
+
+    canDevice->init("socketcan", "can0");
+    canDevice->start();
 }
 
 MainWindow::~MainWindow()

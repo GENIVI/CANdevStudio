@@ -16,9 +16,14 @@ class CanRawViewPrivate : public QObject
 public:
     void setupUi()
     {
-        tvModel->setHorizontalHeaderLabels({tr("time"), tr("id"), tr("direction"), tr("dlc"), tr("data")});
+        tvModel->setHorizontalHeaderLabels({tr("time"), tr("id"), tr("dir"), tr("dlc"), tr("data")});
         tv->setModel(tvModel.get());
         tv->verticalHeader()->hideSection(0);
+        tv->setColumnWidth(0, 36);
+        tv->setColumnWidth(1, 92);
+        tv->setColumnWidth(2, 27);
+        tv->setColumnWidth(3, 25);
+        tv->setColumnWidth(4, 178);
 
         toolbar->addWidget(pbClear.get());
 

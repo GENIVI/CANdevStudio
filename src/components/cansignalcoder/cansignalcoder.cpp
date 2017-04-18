@@ -8,6 +8,7 @@ CanSignalCoder::CanSignalCoder(QWidget* parent)
 {
     Q_D(CanSignalCoder);
 
+    // Hardcode signals for now. Later they should come from DBC
     d->addMessage(0x123, 8, { { "VehicleSpeed", 0x1ff, 0 },
                                 { "SteeringWheelAngle", 0x7fe00, 9 } });
 }
@@ -65,6 +66,7 @@ void CanSignalCoder::signalReceived(const QString& name, const QByteArray& value
         QCanBusFrame frame;
         frame.setPayload(d->rawValue[id]);
         frame.setFrameId(id);
+
         emit sendFrame(frame);
     } else {
         //TODO: ERROR
