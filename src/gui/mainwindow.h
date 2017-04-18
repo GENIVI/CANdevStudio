@@ -9,6 +9,8 @@ class CanDevice;
 class CanRawView;
 class CanSignalCoder;
 class CanSignalView;
+class CanRawSender;
+class CanSignalSender;
 
 class MainWindow : public QMainWindow
 {
@@ -24,6 +26,8 @@ private:
     std::unique_ptr<CanRawView> canRawView;
     std::unique_ptr<CanSignalCoder> canSignalCoder;
     std::unique_ptr<CanSignalView> canSignalView;
+    std::unique_ptr<CanRawSender> canRawSender;
+    std::unique_ptr<CanSignalSender> canSignalSender;
 };
 
 #endif // MAINWINDOW_H

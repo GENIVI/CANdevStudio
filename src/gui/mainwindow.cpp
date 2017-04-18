@@ -10,6 +10,8 @@
 #include "canrawview/canrawview.h"
 #include "cansignalcoder/cansignalcoder.h"
 #include "cansignalview/cansignalview.h"
+#include "canrawsender/canrawsender.h"
+#include "cansignalsender/cansignalsender.cpp"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -17,7 +19,9 @@ MainWindow::MainWindow(QWidget *parent) :
     canDevice(std::make_unique<CanDevice>()),
     canRawView(std::make_unique<CanRawView>()),
     canSignalCoder(std::make_unique<CanSignalCoder>()),
-    canSignalView(std::make_unique<CanSignalView>())
+    canSignalView(std::make_unique<CanSignalView>()),
+    canRawSender(std::make_unique<CanRawSender>()),
+    canSignalSender(std::make_unique<CanSignalSender>())
 {
     mdi->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     mdi->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
@@ -26,6 +30,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     mdi->addSubWindow(canRawView.get());
     mdi->addSubWindow(canSignalView.get());
+    mdi->addSubWindow(canSignalSender.get());
     mdi->tileSubWindows();
 
     connect(canDevice.get(), &CanDevice::frameReceived, canRawView.get(), &CanRawView::frameReceived);

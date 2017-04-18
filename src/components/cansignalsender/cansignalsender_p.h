@@ -1,5 +1,5 @@
-#ifndef CANSIGNALVIEW_P_H
-#define CANSIGNALVIEW_P_H
+#ifndef CANSIGNALSENDER_P_H
+#define CANSIGNALSENDER_P_H
 
 #include <memory>
 #include <QVBoxLayout>
@@ -9,19 +9,16 @@
 #include <QPushButton>
 #include <QHeaderView>
 
-class CanSignalViewPrivate : public QObject
+class CanSignalSenderPrivate : public QObject
 {
     Q_OBJECT
 
 public:
     void setupUi()
     {
-        tvModel->setHorizontalHeaderLabels({tr("time"), tr("name"), tr("value")});
+        tvModel->setHorizontalHeaderLabels({tr("id"), tr("dlc"), tr("data")});
         tv->setModel(tvModel.get());
         tv->verticalHeader()->hideSection(0);
-        tv->setColumnWidth(0, 36);
-        tv->setColumnWidth(1, 170);
-        tv->setColumnWidth(2, 92);
 
         toolbar->addWidget(pbClear.get());
 
@@ -36,5 +33,4 @@ public:
     std::unique_ptr<QPushButton> pbClear { std::make_unique<QPushButton>("Clear") };
 };
 
-#endif // CANSIGNALVIEW_P_H
-
+#endif // CANSIGNALSENDER_P_H
