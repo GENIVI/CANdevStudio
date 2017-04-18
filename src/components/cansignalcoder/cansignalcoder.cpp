@@ -1,6 +1,7 @@
 #include "cansignalcoder.h"
 #include "cansignalcoder_p.h"
 #include <QCanBusFrame>
+#include <QVariant>
 
 CanSignalCoder::CanSignalCoder(QWidget* parent)
     : QWidget(parent)
@@ -58,16 +59,18 @@ void CanSignalCoder::signalReceived(const QString& name, const QByteArray& value
         auto& shift = std::get<CanSignalCoderPrivate::TupleId::SIGNAL_SHIFT>(s);
 
         auto canVal = d->ba2val(d->rawValue[id]);
-        auto sigVal = d->ba2val(value);
+        auto sigVal = value.toUInt();
+
         canVal &= ~mask;
-        canVal |= (sigVal & mask) << shift;
+        canVal |= (sigVal << shift) & mask;
         d->val2ba(canVal, d->rawValue[id]);
 
         QCanBusFrame frame;
         frame.setPayload(d->rawValue[id]);
         frame.setFrameId(id);
 
-        emit sendFrame(frame);
+        QVariant ctx = 0;
+        emit sendFrame(frame, ctx);
     } else {
         //TODO: ERROR
     }

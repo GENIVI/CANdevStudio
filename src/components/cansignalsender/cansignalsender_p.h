@@ -26,8 +26,8 @@ public:
         tvModel->setHorizontalHeaderLabels({tr("name"), tr("value")});
         tv->setModel(tvModel.get());
         tv->verticalHeader()->hideSection(0);
-        tv->setColumnWidth(0, 170);
-        tv->setColumnWidth(1, 92);
+        tv->setColumnWidth(0, 180);
+        tv->setColumnWidth(1, 50);
 
         toolbar->addWidget(pbAdd.get());
 
@@ -35,7 +35,7 @@ public:
         layout->addWidget(tv.get());
 
         connect(pbAdd.get(), &QPushButton::pressed, [this] () {
-                    QStandardItem *name = new QStandardItem("aaaaa");
+                    QStandardItem *name = new QStandardItem();
                     QStandardItem *value = new QStandardItem();
                     QList<QStandardItem*> list {name, value};
                     tvModel->appendRow(list);
@@ -57,6 +57,14 @@ public:
                                 }
                             });
                 });
+
+        // Testing code start
+        // TODO: remove
+        pbAdd->click();
+        pbAdd->click();
+        tvModel->item(0, 0)->setText("VehicleSpeed");
+        tvModel->item(1, 0)->setText("SteeringWheelAngle");
+        // Testing code end
     }
 
     std::unique_ptr<QVBoxLayout> layout { std::make_unique<QVBoxLayout>() };

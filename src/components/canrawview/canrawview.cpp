@@ -50,7 +50,7 @@ void CanRawView::frameSent(bool status, const QCanBusFrame &frame, const QVarian
 
         QList<QStandardItem*> list;
         list.append(new QStandardItem("0"));
-        list.append(new QStandardItem(QString::number(frame.frameId())));
+        list.append(new QStandardItem("0x" + QString::number(frame.frameId(), 16)));
         list.append(new QStandardItem("TX"));
         list.append(new QStandardItem(QString::number(frame.payload().size())));
         list.append(new QStandardItem(QString::fromUtf8(payHex.data(), payHex.size())));

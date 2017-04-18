@@ -14,11 +14,9 @@ public:
     {
         for (auto& i : sigVec) {
             raw2SigMap[id].push_back(i);
-
-            auto& s = raw2SigMap[id].back();
-            auto& name = std::get<SIGNAL_NAME>(s);
-            sig2RawMap.insert({ name, { id, s } });
-            rawValue[id].resize(dlc);
+            auto& name = std::get<SIGNAL_NAME>(i);
+            sig2RawMap.insert({ name, { id, i } });
+            rawValue[id].fill(0, dlc);
         }
     }
 
@@ -47,7 +45,7 @@ public:
     };
 
     std::map<quint32, std::vector<SignalDesc> > raw2SigMap;
-    std::map<QString, std::pair<quint32, SignalDesc&> > sig2RawMap;
+    std::map<QString, std::pair<quint32, SignalDesc> > sig2RawMap;
     std::map<quint32, QByteArray> rawValue;
 };
 

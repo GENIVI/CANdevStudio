@@ -21,7 +21,7 @@ public Q_SLOTS:
     void signalReceived(const QString &name, const QByteArray &value);
 
 Q_SIGNALS:
-    void sendFrame(const QCanBusFrame &frame);
+    void sendFrame(const QCanBusFrame &frame, const QVariant &context);
     void sendSignal(const QString &name, const QByteArray &value);
 
 private:
