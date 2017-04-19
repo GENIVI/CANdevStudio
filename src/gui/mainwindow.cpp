@@ -28,9 +28,13 @@ MainWindow::MainWindow(QWidget *parent) :
 
     setCentralWidget(mdi.get());
 
+    canRawView->setWindowTitle("Can Raw View");
     mdi->addSubWindow(canRawView.get());
+    canSignalView->setWindowTitle("Can Signal View");
     mdi->addSubWindow(canSignalView.get());
+    canSignalSender->setWindowTitle("Can Signal Sender");
     mdi->addSubWindow(canSignalSender.get());
+    canRawSender->setWindowTitle("Can Raw Sender");
     mdi->addSubWindow(canRawSender.get());
     mdi->tileSubWindows();
 

@@ -23,7 +23,7 @@ public:
 
     void setupUi()
     {
-        tvModel->setHorizontalHeaderLabels({tr("name"), tr("value")});
+        tvModel->setHorizontalHeaderLabels({tr("name"), tr("value"), ""});
         tv->setModel(tvModel.get());
         tv->verticalHeader()->hideSection(0);
         tv->setColumnWidth(0, 180);
