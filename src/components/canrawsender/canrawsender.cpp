@@ -4,7 +4,7 @@
 
 CanRawSender::CanRawSender(QWidget *parent) :
     QWidget(parent),
-    d_ptr(new CanRawSenderPrivate)
+    d_ptr(new CanRawSenderPrivate(this))
 {
     Q_D(CanRawSender);
 
