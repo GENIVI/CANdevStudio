@@ -5,47 +5,21 @@
 #include <map>
 #include <tuple>
 #include <vector>
+#include <can-signals/can_signals.h>
 
 class CanSignalCoderPrivate {
 public:
-    typedef std::tuple<QString, quint64, quint64> SignalDesc;
-
-    void addMessage(quint32 id, quint8 dlc, const std::vector<SignalDesc> sigVec)
+    void addSignalDescriptors(const CanSignal *sig, uint32_t cnt)
     {
-        for (auto& i : sigVec) {
-            raw2SigMap[id].push_back(i);
-            auto& name = std::get<SIGNAL_NAME>(i);
-            sig2RawMap.insert({ name, { id, i } });
-            rawValue[id].fill(0, dlc);
+        for(uint32_t i = 0; i < cnt; ++i) {
+            raw2Sig[sig[i].canId].push_back(&sig[i]);
+            sig2Raw[sig[i].sigName] = &sig[i];
+            rawValue[sig[i].canId].fill(0, sig[i].end/8 + 1);
         }
     }
 
-    quint64 ba2val(const QByteArray& ba)
-    {
-        quint64 ret = 0;
-
-        for (int i = 0; i < ba.size(); ++i) {
-            ret |= ba.data()[i] << (8 * i);
-        }
-
-        return ret;
-    }
-
-    void val2ba(const quint64 number, QByteArray& ba)
-    {
-        for (int i = 0; i < ba.size(); ++i) {
-            ba[i] = (number >> 8 * i) & 0xff;
-        }
-    }
-
-    enum TupleId {
-        SIGNAL_NAME = 0,
-        SIGNAL_MASK,
-        SIGNAL_SHIFT
-    };
-
-    std::map<quint32, std::vector<SignalDesc> > raw2SigMap;
-    std::map<QString, std::pair<quint32, SignalDesc> > sig2RawMap;
+    std::map<quint32, std::vector<const CanSignal*>> raw2Sig;
+    std::map<QString, const CanSignal*> sig2Raw;
     std::map<quint32, QByteArray> rawValue;
 };
 

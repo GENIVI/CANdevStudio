@@ -1,0 +1,28 @@
+{
+    "timer1" :
+        [
+            "vehicle.ignition" : {
+                "pre-delay" : 100,
+                "value" : 1
+            },
+            "vehicle.ignition" : {
+                "value" : 2,
+                "post-delay" : 100
+            },
+            "vehicle.fuel" : {
+                "value-start" : 0,
+                "value-top" : 100,
+                "value-step" : 1,
+                "duration" : 1000
+            }
+        ],
+    "timer2" :
+        [
+            "vehicle.speed" : {
+                "value-start" : 0,
+                "value-top" : 200,
+                "value-step" : 1,
+                "duration" : 1000
+            }
+        ]
+}

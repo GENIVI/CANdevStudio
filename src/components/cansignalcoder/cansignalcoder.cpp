@@ -2,6 +2,29 @@
 #include "cansignalcoder_p.h"
 #include <QCanBusFrame>
 #include <QVariant>
+#include <syslog.h>
+
+extern CanSignal geniviDemoSignals[];
+extern uint32_t geniviDemoSignals_cnt;
+
+static uint32_t bitMask[] = {
+    0x00000001,
+    0x00000003,
+    0x00000007,
+    0x0000000f,
+    0x0000001f,
+    0x0000003f,
+    0x0000007f,
+    0x000000ff,
+    0x000001ff,
+    0x000003ff,
+    0x000007ff,
+    0x00000fff,
+    0x00001fff,
+    0x00003fff,
+    0x00007fff,
+    0x0000ffff,
+};
 
 CanSignalCoder::CanSignalCoder(QWidget* parent)
     : QWidget(parent)
@@ -9,9 +32,7 @@ CanSignalCoder::CanSignalCoder(QWidget* parent)
 {
     Q_D(CanSignalCoder);
 
-    // Hardcode signals for now. Later they should come from DBC
-    d->addMessage(0x123, 8, { { "VehicleSpeed", 0x1ff, 0 },
-                                { "SteeringWheelAngle", 0x7fe00, 9 } });
+    d->addSignalDescriptors(geniviDemoSignals, geniviDemoSignals_cnt);
 }
 
 CanSignalCoder::~CanSignalCoder()
@@ -24,54 +45,59 @@ void CanSignalCoder::frameReceived(const QCanBusFrame& frame)
 
     const auto& id = frame.frameId();
 
-    if (d->raw2SigMap.find(id) != d->raw2SigMap.end()) {
-        const auto& payload = frame.payload();
+    if (d->raw2Sig.find(id) != d->raw2Sig.end()) {
+        for (auto& s : d->raw2Sig[id]) {
+            if(frame.payload().size() * 8 > s->end) {
+                uint8_t byteNum = s->start / 8;
+                uint8_t valShift = s->start % 8;
+                uint32_t mask = bitMask[s->end - s->start];
 
-        if (d->rawValue[id].size() == payload.size()) {
-            d->rawValue[id] = payload;
+                // for now uint8 will be enough
+                uint8_t val = frame.payload().at(byteNum);
+                val >>= valShift;
+                val = val & mask;
 
-            for (auto& s : d->raw2SigMap[id]) {
-                auto& name = std::get<CanSignalCoderPrivate::TupleId::SIGNAL_NAME>(s);
-                auto& mask = std::get<CanSignalCoderPrivate::TupleId::SIGNAL_MASK>(s);
-                auto& shift = std::get<CanSignalCoderPrivate::TupleId::SIGNAL_SHIFT>(s);
-
-                quint64 val = d->ba2val(payload);
-
-                emit sendSignal(name, QByteArray::number((val & mask) >> shift));
+                emit sendSignal(s->sigName, QByteArray::number(val));
+            } else {
+                //TODO: error
             }
-        } else {
-            //TODO: ERROR
+
         }
     } else {
-        //TODO: No such message in DB
+        //TODO: error
     }
+
 }
 
 void CanSignalCoder::signalReceived(const QString& name, const QByteArray& value)
 {
     Q_D(CanSignalCoder);
 
-    auto iter = d->sig2RawMap.find(name);
-    if (iter != d->sig2RawMap.end()) {
-        auto& id = iter->second.first;
-        auto& s = iter->second.second;
-        auto& mask = std::get<CanSignalCoderPrivate::TupleId::SIGNAL_MASK>(s);
-        auto& shift = std::get<CanSignalCoderPrivate::TupleId::SIGNAL_SHIFT>(s);
+    if(d->sig2Raw.find(name) != d->sig2Raw.end()) {
+        const CanSignal *s = d->sig2Raw[name];
+        uint8_t val = value.toUShort();
 
-        auto canVal = d->ba2val(d->rawValue[id]);
-        auto sigVal = value.toUInt();
+        if((val >= s->min) && (val <= s->max)) {
+            uint8_t byteNum = s->start / 8;
+            uint8_t valShift = s->start % 8;
+            uint32_t mask = bitMask[s->end - s->start];
 
-        canVal &= ~mask;
-        canVal |= (sigVal << shift) & mask;
-        d->val2ba(canVal, d->rawValue[id]);
+            // for now uint8 will be enough
+            uint8_t tmp = d->rawValue[s->canId].at(byteNum);
+            tmp &= ~(mask << valShift);
+            tmp |= val << valShift;
+            d->rawValue[s->canId].replace(byteNum, 1, (const char *)&tmp, 1);
 
-        QCanBusFrame frame;
-        frame.setPayload(d->rawValue[id]);
-        frame.setFrameId(id);
+            QCanBusFrame frame;
+            frame.setPayload(d->rawValue[s->canId]);
+            frame.setFrameId(s->canId);
 
-        QVariant ctx = 0;
-        emit sendFrame(frame, ctx);
+            QVariant ctx = 0;
+            emit sendFrame(frame, ctx);
+        } else {
+            //TODO: error
+        }
     } else {
-        //TODO: ERROR
+        //TODO: error
     }
 }
