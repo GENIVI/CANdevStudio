@@ -21,18 +21,24 @@ public:
     {
     }
 
-    void setupUi()
+    void setupUi(QWidget *w)
     {
+        QVBoxLayout *layout = new QVBoxLayout();
+        QToolBar *toolbar = new QToolBar();
+        QTableView *tv = new QTableView();
+        QStandardItemModel *tvModel = new QStandardItemModel(0,3);
+        QPushButton *pbAdd  = new QPushButton("Add");
+
         tvModel->setHorizontalHeaderLabels({tr("id"), tr("data"), ""});
-        tv->setModel(tvModel.get());
+        tv->setModel(tvModel);
         tv->verticalHeader()->hideSection(0);
 
-        toolbar->addWidget(pbAdd.get());
+        toolbar->addWidget(pbAdd);
 
-        layout->addWidget(toolbar.get());
-        layout->addWidget(tv.get());
+        layout->addWidget(toolbar);
+        layout->addWidget(tv);
 
-        connect(pbAdd.get(), &QPushButton::pressed, [this] () {
+        connect(pbAdd, &QPushButton::pressed, [this, layout, tv, tvModel] () {
                     QStandardItem *id = new QStandardItem();
                     QStandardItem *value = new QStandardItem();
                     QList<QStandardItem*> list {id, value};
@@ -58,13 +64,9 @@ public:
                                 }
                             });
                 });
-    }
 
-    std::unique_ptr<QVBoxLayout> layout { std::make_unique<QVBoxLayout>() };
-    std::unique_ptr<QToolBar> toolbar { std::make_unique<QToolBar>() };
-    std::unique_ptr<QTableView> tv { std::make_unique<QTableView>() };
-    std::unique_ptr<QStandardItemModel> tvModel { std::make_unique<QStandardItemModel>(0, 3) };
-    std::unique_ptr<QPushButton> pbAdd { std::make_unique<QPushButton>("Add") };
+        w->setLayout(layout);
+    }
 
 private:
     CanRawSender *q_ptr;

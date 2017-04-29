@@ -8,8 +8,8 @@
 #include <QJsonObject>
 #include <QVariant>
 
-CanScripter::CanScripter(const QString& scriptFile, QWidget* parent)
-    : QWidget(parent)
+CanScripter::CanScripter(const QString& scriptFile, QObject* parent)
+    : QObject(parent)
     , d_ptr(new CanScripterPrivate())
 {
     Q_D(CanScripter);

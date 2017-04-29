@@ -8,8 +8,7 @@ CanRawSender::CanRawSender(QWidget *parent) :
 {
     Q_D(CanRawSender);
 
-    d->setupUi();
-    setLayout(d->layout.get());
+    d->setupUi(this);
 }
 
 CanRawSender::~CanRawSender()

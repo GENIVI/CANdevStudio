@@ -2,17 +2,17 @@
 #define CANSRIPTER_H
 
 #include <QScopedPointer>
-#include <QWidget>
+#include <QObject>
 
 class QCanBusFrame;
 class CanScripterPrivate;
 
-class CanScripter : public QWidget {
+class CanScripter : public QObject {
     Q_OBJECT
     Q_DECLARE_PRIVATE(CanScripter)
 
 public:
-    explicit CanScripter(const QString& scriptFile, QWidget* parent = 0);
+    explicit CanScripter(const QString& scriptFile, QObject* parent = 0);
     ~CanScripter();
 
 Q_SIGNALS:
