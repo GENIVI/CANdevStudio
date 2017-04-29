@@ -12,6 +12,7 @@
 #include "cansignalview/cansignalview.h"
 #include "canrawsender/canrawsender.h"
 #include "cansignalsender/cansignalsender.cpp"
+#include "canscripter/canscripter.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -21,7 +22,8 @@ MainWindow::MainWindow(QWidget *parent) :
     canSignalCoder(std::make_unique<CanSignalCoder>()),
     canSignalView(std::make_unique<CanSignalView>()),
     canRawSender(std::make_unique<CanRawSender>()),
-    canSignalSender(std::make_unique<CanSignalSender>())
+    canSignalSender(std::make_unique<CanSignalSender>()),
+    canScripter(std::make_unique<CanScripter>())
 {
     mdi->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     mdi->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);

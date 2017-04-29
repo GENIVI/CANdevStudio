@@ -11,6 +11,7 @@ class CanSignalCoder;
 class CanSignalView;
 class CanRawSender;
 class CanSignalSender;
+class CanScripter;
 
 class MainWindow : public QMainWindow
 {
@@ -28,6 +29,7 @@ private:
     std::unique_ptr<CanSignalView> canSignalView;
     std::unique_ptr<CanRawSender> canRawSender;
     std::unique_ptr<CanSignalSender> canSignalSender;
+    std::unique_ptr<CanScripter> canScripter;
 };
 
 #endif // MAINWINDOW_H
