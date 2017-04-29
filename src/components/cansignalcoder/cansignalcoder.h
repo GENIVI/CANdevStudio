@@ -7,13 +7,13 @@
 class QCanBusFrame;
 class CanSignalCoderPrivate;
 
-class CanSignalCoder : public QWidget
+class CanSignalCoder : public QObject
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(CanSignalCoder)
 
 public:
-    explicit CanSignalCoder(QWidget *parent = 0);
+    explicit CanSignalCoder(QObject *parent = 0);
     ~CanSignalCoder();
 
 public Q_SLOTS:

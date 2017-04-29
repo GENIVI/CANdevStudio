@@ -26,8 +26,8 @@ static uint32_t bitMask[] = {
     0x0000ffff,
 };
 
-CanSignalCoder::CanSignalCoder(QWidget* parent)
-    : QWidget(parent)
+CanSignalCoder::CanSignalCoder(QObject* parent)
+    : QObject(parent)
     , d_ptr(new CanSignalCoderPrivate())
 {
     Q_D(CanSignalCoder);
