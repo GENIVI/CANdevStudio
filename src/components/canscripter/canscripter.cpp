@@ -1,36 +1,54 @@
 #include "canscripter.h"
 #include "canscripter_p.h"
 #include <QCanBusFrame>
-#include <QVariant>
+#include <QDebug>
+#include <QFile>
+#include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
-#include <QJsonArray>
-#include <QFile>
-#include <QDebug>
+#include <QVariant>
 
-CanScripter::CanScripter(QWidget* parent)
+CanScripter::CanScripter(const QString& scriptFile, QWidget* parent)
     : QWidget(parent)
     , d_ptr(new CanScripterPrivate())
 {
     Q_D(CanScripter);
-
-    QFile file("/home/remol/Projects/CanDevStudio/genivi-script2.json");
-    if(!file.open(QIODevice::ReadOnly | QIODevice::Text))
-    {
-        qDebug() << "Failed to open file '" << file.fileName() << "'";
-    }
-
-    QString script = file.readAll();
-    QJsonDocument jf = QJsonDocument::fromJson(script.toUtf8());
-
-    if(jf.isObject()) {
-        d->parseScriptObject(jf.object());
-    } else {
-        qDebug() << "ERROR: Root object shall be JsonObject";
-    }
-
+    d->scriptName = scriptFile;
 }
 
 CanScripter::~CanScripter()
 {
+}
+
+void CanScripter::start()
+{
+    Q_D(CanScripter);
+
+    QFile file(d->scriptName);
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        qDebug() << "Failed to open file '" << file.fileName() << "'";
+        return;
+    }
+
+    QString script = file.readAll();
+    QJsonDocument jf = QJsonDocument::fromJson(script.toUtf8());
+    file.close();
+
+    if (jf.isObject()) {
+        if (!d->parseScriptObject(jf.object())) {
+            return;
+        }
+    } else {
+        qDebug() << "ERROR: Root object shall be JsonObject";
+    }
+
+    int cnt = 1;
+    for (auto& vec : d->timersActions) {
+        qDebug() << "\n***************** TIMER " << cnt++ << " *****************\n";
+
+        for (auto& el : vec) {
+            qDebug() << "name: " << el.name << ", val: " << el.value << ", pre-delay: " << el.preDelay
+                     << ", post-delay: " << el.postDelay;
+        }
+    }
 }

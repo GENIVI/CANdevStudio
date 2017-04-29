@@ -22,10 +22,10 @@ const QString cJsonDurationTag = "duration";
 }
 
 struct TimerStep {
-    QString name {""};
-    uint32_t value {0};
-    uint32_t preDelay {0};
-    uint32_t postDelay {0};
+    QString name{ "" };
+    uint32_t value{ 0 };
+    uint32_t preDelay{ 0 };
+    uint32_t postDelay{ 0 };
 };
 
 class CanScripterPrivate {
@@ -34,37 +34,40 @@ public:
     {
         for (const auto& timer : obj) {
             if (timer.isArray()) {
-                processTimerSteps(timer.toArray());
+                auto timerSteps = processTimerSteps(timer.toArray());
+
+                if (timerSteps.empty()) {
+                    return false;
+                } else {
+                    timersActions.push_back(timerSteps);
+                }
             } else {
                 qDebug() << "ERROR: Timer should contain Array!";
                 qDebug() << timer;
                 return false;
             }
         }
+
+        return true;
     }
 
 private:
     inline bool isMultiStep(const QJsonObject& obj)
     {
-        return (tagExists(obj, cJsonNameTag) &&
-                tagExists(obj, cJsonValueStartTag) &&
-                tagExists(obj, cJsonValueStopTag) &&
-                tagExists(obj, cJsonValueStepTag) &&
-                tagExists(obj, cJsonDurationTag));
+        return (tagExists(obj, cJsonNameTag) && tagExists(obj, cJsonValueStartTag) && tagExists(obj, cJsonValueStopTag) && tagExists(obj, cJsonValueStepTag) && tagExists(obj, cJsonDurationTag));
     }
 
     inline bool isSingleStep(const QJsonObject& obj)
     {
-        return (tagExists(obj, cJsonNameTag) &&
-                tagExists(obj, cJsonValueTag));
+        return (tagExists(obj, cJsonNameTag) && tagExists(obj, cJsonValueTag));
     }
 
     inline bool isDelayStep(const QJsonObject& obj)
     {
-        return (tagExists(obj, cJsonPreDelayTag) ||  tagExists(obj, cJsonPostDelayTag));
+        return (tagExists(obj, cJsonPreDelayTag) || tagExists(obj, cJsonPostDelayTag));
     }
 
-    inline bool tagExists(const QJsonObject &obj, const QString &tag)
+    inline bool tagExists(const QJsonObject& obj, const QString& tag)
     {
         return !obj[tag].isNull() && !obj[tag].isUndefined();
     }
@@ -74,13 +77,10 @@ private:
         std::vector<TimerStep> timerSteps;
 
         for (const auto& timerStep : timer) {
-
-            qDebug() << "timerStep" << timerStep;
-
             if (timerStep.isObject()) {
                 const auto& stepObj = timerStep.toObject();
 
-                if(isMultiStep(stepObj)) {
+                if (isMultiStep(stepObj)) {
                     QString name = stepObj[cJsonNameTag].toString();
                     uint32_t valueStart = stepObj[cJsonValueStartTag].toInt();
                     uint32_t valueStop = stepObj[cJsonValueStopTag].toInt();
@@ -89,12 +89,12 @@ private:
                     uint32_t stepDuration = duration / (valueStop - valueStart) / valueStep;
                     uint32_t val;
 
-                    for(val = valueStart; val <= valueStop; val+=valueStep) {
-                        timerSteps.push_back({name, val, 0, stepDuration});
+                    for (val = valueStart; val <= valueStop; val += valueStep) {
+                        timerSteps.push_back({ name, val, 0, stepDuration });
                     }
 
-                    if(val < valueStop) {
-                        timerSteps.push_back({name, valueStop, 0, stepDuration});
+                    if (val < valueStop) {
+                        timerSteps.push_back({ name, valueStop, 0, stepDuration });
                     }
 
                 } else if (isSingleStep(stepObj)) {
@@ -103,19 +103,18 @@ private:
                     uint32_t preDelay = stepObj[cJsonPreDelayTag].toInt();
                     uint32_t postDelay = stepObj[cJsonPostDelayTag].toInt();
 
-                    if(preDelay && postDelay) {
-                        timerSteps.push_back({name, value, preDelay, 0});
-                        timerSteps.push_back({"", value, 0, postDelay});
-                    } else 
-                    {
-                        timerSteps.push_back({name, value, preDelay, postDelay});
+                    if (preDelay && postDelay) {
+                        timerSteps.push_back({ name, value, preDelay, 0 });
+                        timerSteps.push_back({ "", value, 0, postDelay });
+                    } else {
+                        timerSteps.push_back({ name, value, preDelay, postDelay });
                     }
 
                 } else if (isDelayStep(stepObj)) {
                     uint32_t preDelay = stepObj[cJsonPreDelayTag].toInt();
                     uint32_t postDelay = stepObj[cJsonPostDelayTag].toInt();
 
-                    timerSteps.push_back({"", 0, preDelay + postDelay, 0});
+                    timerSteps.push_back({ "", 0, preDelay + postDelay, 0 });
 
                 } else {
                     qDebug() << "ERROR: unkown step type";
@@ -126,22 +125,18 @@ private:
 
             } else {
                 qDebug() << "ERROR: TimerStep should contain object!";
-                qDebug() << "ERROR: " <<  timerStep;
+                qDebug() << "ERROR: " << timerStep;
                 timerSteps.clear();
                 break;
             }
         }
 
-        for(auto &el : timerSteps) {
-            qDebug() << "name: " << el.name << ", val: " << el.value << ", pre-delay: " << el.preDelay
-                     << ", post-delay: " << el.postDelay;
-        }
-
         return timerSteps;
     }
 
-
+public:
     std::vector<std::vector<TimerStep> > timersActions;
+    QString scriptName;
 };
 
 #endif // CANSCRIPTER_P_H
