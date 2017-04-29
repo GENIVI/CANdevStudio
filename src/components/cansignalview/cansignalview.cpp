@@ -10,8 +10,7 @@ CanSignalView::CanSignalView(QWidget *parent) :
 {
     Q_D(CanSignalView);
 
-    d->setupUi();
-    setLayout(d->layout.get());
+    d->setupUi(this);
 }
 
 CanSignalView::~CanSignalView()

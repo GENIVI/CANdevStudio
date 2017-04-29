@@ -34,13 +34,13 @@ MainWindow::MainWindow(QWidget* parent)
     rowLayout->addWidget(tb);
 
     colLayout = new QHBoxLayout();
-    colLayout->QLayout::addWidget(canRawSender);
-    colLayout->QLayout::addWidget(canSignalSender);
+    colLayout->QLayout::addWidget(canRawView);
+    colLayout->QLayout::addWidget(canSignalView);
     rowLayout->addLayout(colLayout);
 
     colLayout = new QHBoxLayout();
-    colLayout->QLayout::addWidget(canRawView);
-    colLayout->QLayout::addWidget(canSignalView);
+    colLayout->QLayout::addWidget(canRawSender);
+    colLayout->QLayout::addWidget(canSignalSender);
     rowLayout->addLayout(colLayout);
 
     QWidget *window = new QWidget();

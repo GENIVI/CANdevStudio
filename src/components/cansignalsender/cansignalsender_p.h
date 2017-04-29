@@ -21,20 +21,26 @@ public:
     {
     }
 
-    void setupUi()
+    void setupUi(QWidget *w)
     {
+        QVBoxLayout *layout = new QVBoxLayout();
+        QToolBar *toolbar = new QToolBar();
+        QTableView *tv = new QTableView();
+        QStandardItemModel *tvModel = new QStandardItemModel(0,3);
+        QPushButton *pbAdd  = new QPushButton("Add");
+
         tvModel->setHorizontalHeaderLabels({tr("name"), tr("value"), ""});
-        tv->setModel(tvModel.get());
+        tv->setModel(tvModel);
         tv->verticalHeader()->hideSection(0);
         tv->setColumnWidth(0, 180);
         tv->setColumnWidth(1, 50);
 
-        toolbar->addWidget(pbAdd.get());
+        toolbar->addWidget(pbAdd);
 
-        layout->addWidget(toolbar.get());
-        layout->addWidget(tv.get());
+        layout->addWidget(toolbar);
+        layout->addWidget(tv);
 
-        connect(pbAdd.get(), &QPushButton::pressed, [this] () {
+        connect(pbAdd, &QPushButton::pressed, [this, tv, tvModel] () {
                     QStandardItem *name = new QStandardItem();
                     QStandardItem *value = new QStandardItem();
                     QList<QStandardItem*> list {name, value};
@@ -65,13 +71,9 @@ public:
         tvModel->item(0, 0)->setText("VehicleSpeed");
         tvModel->item(1, 0)->setText("SteeringWheelAngle");
         // Testing code end
+    
+        w->setLayout(layout);    
     }
-
-    std::unique_ptr<QVBoxLayout> layout { std::make_unique<QVBoxLayout>() };
-    std::unique_ptr<QToolBar> toolbar { std::make_unique<QToolBar>() };
-    std::unique_ptr<QTableView> tv { std::make_unique<QTableView>() };
-    std::unique_ptr<QStandardItemModel> tvModel { std::make_unique<QStandardItemModel>(0, 3) };
-    std::unique_ptr<QPushButton> pbAdd { std::make_unique<QPushButton>("Add") };
 
 private:
     CanSignalSender *q_ptr;

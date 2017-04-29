@@ -14,10 +14,13 @@ class CanRawViewPrivate : public QObject
     Q_OBJECT
 
 public:
-    void setupUi()
+    void setupUi(QWidget *w)
     {
+        QVBoxLayout *layout = new QVBoxLayout();
+        QTableView *tv = new QTableView();
+
         tvModel->setHorizontalHeaderLabels({tr("time"), tr("id"), tr("dir"), tr("dlc"), tr("data")});
-        tv->setModel(tvModel.get());
+        tv->setModel(tvModel);
         tv->verticalHeader()->hideSection(0);
         tv->setColumnWidth(0, 36);
         tv->setColumnWidth(1, 92);
@@ -25,17 +28,11 @@ public:
         tv->setColumnWidth(3, 25);
         tv->setColumnWidth(4, 178);
 
-        toolbar->addWidget(pbClear.get());
-
-        layout->addWidget(toolbar.get());
-        layout->addWidget(tv.get());
+        layout->addWidget(tv);
+        w->setLayout(layout);
     }
-
-    std::unique_ptr<QVBoxLayout> layout { std::make_unique<QVBoxLayout>() };
-    std::unique_ptr<QToolBar> toolbar { std::make_unique<QToolBar>() };
-    std::unique_ptr<QTableView> tv { std::make_unique<QTableView>() };
-    std::unique_ptr<QStandardItemModel> tvModel { std::make_unique<QStandardItemModel>(0, 5) };
-    std::unique_ptr<QPushButton> pbClear { std::make_unique<QPushButton>("Clear") };
+    
+    QStandardItemModel *tvModel { new QStandardItemModel(0,5) };
 };
 
 #endif // CANRAWVIEW_P_H
