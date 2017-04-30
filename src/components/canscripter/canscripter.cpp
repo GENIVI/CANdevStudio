@@ -10,7 +10,7 @@
 
 CanScripter::CanScripter(const QString& scriptFile, QObject* parent)
     : QObject(parent)
-    , d_ptr(new CanScripterPrivate())
+    , d_ptr(new CanScripterPrivate(this))
 {
     Q_D(CanScripter);
     d->scriptName = scriptFile;
@@ -35,20 +35,21 @@ void CanScripter::start()
     file.close();
 
     if (jf.isObject()) {
-        if (!d->parseScriptObject(jf.object())) {
+        if (d->parseScriptObject(jf.object())) {
+            d->start();
+        } else {
+            qDebug() << "ERROR: Failed to start script";
             return;
         }
     } else {
         qDebug() << "ERROR: Root object shall be JsonObject";
     }
 
-    int cnt = 1;
-    for (auto& vec : d->timersActions) {
-        qDebug() << "\n***************** TIMER " << cnt++ << " *****************\n";
+}
 
-        for (auto& el : vec) {
-            qDebug() << "name: " << el.name << ", val: " << el.value << ", pre-delay: " << el.preDelay
-                     << ", post-delay: " << el.postDelay;
-        }
-    }
+void CanScripter::stop()
+{
+    Q_D(CanScripter);
+
+    d->stop();
 }

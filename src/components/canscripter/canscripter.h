@@ -21,6 +21,7 @@ Q_SIGNALS:
 
 public Q_SLOTS:
     void start();
+    void stop();
 
 private:
     QScopedPointer<CanScripterPrivate> d_ptr;
