@@ -101,3 +101,10 @@ void CanSignalCoder::signalReceived(const QString& name, const QByteArray& value
         //TODO: error
     }
 }
+
+void CanSignalCoder::clearFrameCache()
+{
+    Q_D(CanSignalCoder);
+
+    d->clearFrameCache();
+}

@@ -19,6 +19,7 @@ public:
 public Q_SLOTS:
     void frameReceived(const QCanBusFrame &frame);
     void signalReceived(const QString &name, const QByteArray &value);
+    void clearFrameCache();
 
 Q_SIGNALS:
     void sendFrame(const QCanBusFrame &frame, const QVariant &context);

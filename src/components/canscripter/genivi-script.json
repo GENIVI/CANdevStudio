@@ -3,13 +3,14 @@
         [
             {
                 "name" : "vehicle.ignition",
-                "pre-delay" : 100,
+                "pre-delay" : 1000,
                 "value" : 1
             },
             {
                 "name" : "vehicle.ignition",
+                "pre-delay" : 1000,
                 "value" : 2,
-                "post-delay" : 100
+                "post-delay" : 1000
             },
             {
                 "name" : "vehicle.fuel",
@@ -22,11 +23,12 @@
     "timer2" :
         [
             {
+                "pre-delay" : 6000,
                 "name": "vehicle.speed",
                 "value-start" : 0,
                 "value-stop" : 200,
                 "value-step" : 1,
-                "duration" : 1000
+                "duration" : 10000
             }
         ]
 }

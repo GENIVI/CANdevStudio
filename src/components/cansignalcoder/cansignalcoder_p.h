@@ -18,6 +18,13 @@ public:
         }
     }
 
+    void clearFrameCache()
+    {
+        for(auto &ba : rawValue) {
+            ba.second.fill(0, ba.second.size());
+        }
+    }
+
     std::map<quint32, std::vector<const CanSignal*>> raw2Sig;
     std::map<QString, const CanSignal*> sig2Raw;
     std::map<quint32, QByteArray> rawValue;

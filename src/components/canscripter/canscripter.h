@@ -16,7 +16,6 @@ public:
     ~CanScripter();
 
 Q_SIGNALS:
-    void sendFrame(const QCanBusFrame& frame, const QVariant& context);
     void sendSignal(const QString& name, const QByteArray& value);
 
 public Q_SLOTS:

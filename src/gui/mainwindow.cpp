@@ -59,6 +59,7 @@ MainWindow::MainWindow(QWidget* parent)
     connect(canRawSender, &CanRawSender::sendFrame, canDevice.get(), &CanDevice::sendFrame);
 
     connect(pbStart, &QPushButton::pressed, canScripter.get(), &CanScripter::start);
+    connect(pbStart, &QPushButton::pressed, canSignalCoder.get(), &CanSignalCoder::clearFrameCache);
     connect(pbStop, &QPushButton::pressed, canScripter.get(), &CanScripter::stop);
 
     canDevice.get()->init("socketcan", "can0");
