@@ -1,32 +1,31 @@
 #ifndef __CANDEVICE_H
 #define __CANDEVICE_H
 
+#include <QCanBusDevice>
+#include <QScopedPointer>
 #include <QtCore/qobject.h>
 #include <QtSerialBus/qcanbusframe.h>
-#include <QCanBusDevice>
 #include <memory>
-#include <QScopedPointer>
 
 class CanDevicePrivate;
 
-class CanDevice : public QObject
-{
+class CanDevice : public QObject {
     Q_OBJECT
     Q_DECLARE_PRIVATE(CanDevice)
 
 public:
     CanDevice();
     ~CanDevice();
-    bool init(const QString &backend, const QString &interface);
+    bool init(const QString& backend, const QString& interface);
 
 Q_SIGNALS:
-    void frameReceived(const QCanBusFrame &frame);
-    void frameSent(bool status, const QCanBusFrame &frame, const QVariant &context);
+    void frameReceived(const QCanBusFrame& frame);
+    void frameSent(bool status, const QCanBusFrame& frame, const QVariant& context);
 
 public Q_SLOTS:
     bool start();
     void stop();
-    void sendFrame(const QCanBusFrame &frame, const QVariant &context);
+    void sendFrame(const QCanBusFrame& frame, const QVariant& context);
 
 private Q_SLOTS:
     void errorOccurred(QCanBusDevice::CanBusError error);

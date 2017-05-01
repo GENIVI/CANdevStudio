@@ -8,12 +8,11 @@ class CanDevice;
 class CanSignalCoder;
 class CanScripter;
 
-class MainWindow : public QMainWindow
-{
+class MainWindow : public QMainWindow {
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
+    explicit MainWindow(QWidget* parent = 0);
     ~MainWindow();
 
 private:

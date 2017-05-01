@@ -1,10 +1,10 @@
-#include <memory>
 #include "canrawsender.h"
 #include "canrawsender_p.h"
+#include <memory>
 
-CanRawSender::CanRawSender(QWidget *parent) :
-    QWidget(parent),
-    d_ptr(new CanRawSenderPrivate(this))
+CanRawSender::CanRawSender(QWidget* parent)
+    : QWidget(parent)
+    , d_ptr(new CanRawSenderPrivate(this))
 {
     Q_D(CanRawSender);
 
@@ -13,7 +13,6 @@ CanRawSender::CanRawSender(QWidget *parent) :
 
 CanRawSender::~CanRawSender()
 {
-
 }
 
 void CanRawSender::start()

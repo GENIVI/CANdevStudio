@@ -1,23 +1,22 @@
 #ifndef CANRAWVIEW_P_H
 #define CANRAWVIEW_P_H
 
-#include <memory>
-#include <QVBoxLayout>
-#include <QToolBar>
-#include <QTableView>
-#include <QStandardItemModel>
-#include <QPushButton>
 #include <QHeaderView>
+#include <QPushButton>
+#include <QStandardItemModel>
+#include <QTableView>
 #include <QTime>
+#include <QToolBar>
+#include <QVBoxLayout>
+#include <memory>
 
-class CanRawViewPrivate : public QObject
-{
+class CanRawViewPrivate : public QObject {
     Q_OBJECT
 
 public:
-    void setupUi(QWidget *w)
+    void setupUi(QWidget* w)
     {
-        QVBoxLayout *layout = new QVBoxLayout();
+        QVBoxLayout* layout = new QVBoxLayout();
 
         tv->setModel(tvModel);
         initTv();
@@ -25,7 +24,7 @@ public:
         layout->addWidget(tv);
         w->setLayout(layout);
     }
-    
+
     void startTimer()
     {
         timer.restart();
@@ -33,7 +32,7 @@ public:
 
     QString elapsedTime()
     {
-        return QString::number((float)timer.elapsed()/1000, 'f', 2);
+        return QString::number((float)timer.elapsed() / 1000, 'f', 2);
     }
 
     void clear()
@@ -42,19 +41,19 @@ public:
         initTv();
     }
 
-    void instertRow(const QString &dir, uint32_t id, uint8_t dlc, const QByteArray &data)
+    void instertRow(const QString& dir, uint32_t id, uint8_t dlc, const QByteArray& data)
     {
-        if(tvModel->rowCount() >= cMaxListSize) {
+        if (tvModel->rowCount() >= cMaxListSize) {
             clear();
         }
-        
+
         auto payHex = data;
-        for(int i = payHex.size(); i >= 2; i-=2) {
+        for (int i = payHex.size(); i >= 2; i -= 2) {
             payHex.insert(i, ' ');
         }
 
         QList<QStandardItem*> list;
-        QStandardItem *item;
+        QStandardItem* item;
 
         item = new QStandardItem(elapsedTime());
         item->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
@@ -63,7 +62,7 @@ public:
         item = new QStandardItem(dir);
         item->setTextAlignment(Qt::AlignCenter);
         list.append(item);
-        
+
         item = new QStandardItem("0x" + QString::number(id, 16));
         item->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
         list.append(item);
@@ -76,13 +75,12 @@ public:
 
         tvModel->appendRow(list);
         tv->scrollToBottom();
-
     }
 
- private:
+private:
     void initTv()
     {
-        tvModel->setHorizontalHeaderLabels({tr("time [s]"), tr("dir"), tr("id"), tr("dlc"), tr("data")});
+        tvModel->setHorizontalHeaderLabels({ tr("time [s]"), tr("dir"), tr("id"), tr("dlc"), tr("data") });
         tv->verticalHeader()->hideSection(0);
         tv->setColumnWidth(0, 70);
         tv->setColumnWidth(1, 40);
@@ -95,10 +93,9 @@ public:
     }
 
     QTime timer;
-    QStandardItemModel *tvModel { new QStandardItemModel(0,5) };
-    QTableView *tv { new QTableView() };
-    const int cMaxListSize { 1000 };
-
+    QStandardItemModel* tvModel{ new QStandardItemModel(0, 5) };
+    QTableView* tv{ new QTableView() };
+    const int cMaxListSize{ 1000 };
 };
 
 #endif // CANRAWVIEW_P_H

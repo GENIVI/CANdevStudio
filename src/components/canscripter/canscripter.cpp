@@ -42,7 +42,6 @@ void CanScripter::start()
     } else {
         qDebug() << "ERROR: Root object shall be JsonObject";
     }
-
 }
 
 void CanScripter::stop()
@@ -65,4 +64,3 @@ void CanScripter::setScriptRepeat(bool repeat)
 
     d->repeat = repeat;
 }
-

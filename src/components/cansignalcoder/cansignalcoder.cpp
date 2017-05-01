@@ -1,9 +1,9 @@
 #include "cansignalcoder.h"
 #include "cansignalcoder_p.h"
 #include <QCanBusFrame>
+#include <QDebug>
 #include <QVariant>
 #include <syslog.h>
-#include <QDebug>
 
 extern CanSignal geniviDemoSignals[];
 extern uint32_t geniviDemoSignals_cnt;
@@ -48,7 +48,7 @@ void CanSignalCoder::frameReceived(const QCanBusFrame& frame)
 
     if (d->raw2Sig.find(id) != d->raw2Sig.end()) {
         for (auto& s : d->raw2Sig[id]) {
-            if(frame.payload().size() * 8 > s->end) {
+            if (frame.payload().size() * 8 > s->end) {
                 uint8_t byteNum = s->start / 8;
                 uint8_t valShift = s->start % 8;
                 uint32_t mask = bitMask[s->end - s->start];
@@ -66,18 +66,17 @@ void CanSignalCoder::frameReceived(const QCanBusFrame& frame)
     } else {
         qDebug() << "ERROR: Frame id ('" << id << "') not found in database";
     }
-
 }
 
 void CanSignalCoder::signalReceived(const QString& name, const QByteArray& value)
 {
     Q_D(CanSignalCoder);
 
-    if(d->sig2Raw.find(name) != d->sig2Raw.end()) {
-        const CanSignal *s = d->sig2Raw[name];
+    if (d->sig2Raw.find(name) != d->sig2Raw.end()) {
+        const CanSignal* s = d->sig2Raw[name];
         uint8_t val = value.toUShort();
 
-        if((val >= s->min) && (val <= s->max)) {
+        if ((val >= s->min) && (val <= s->max)) {
             uint8_t byteNum = s->start / 8;
             uint8_t valShift = s->start % 8;
             uint32_t mask = bitMask[s->end - s->start];
@@ -86,7 +85,7 @@ void CanSignalCoder::signalReceived(const QString& name, const QByteArray& value
             uint8_t tmp = d->rawValue[s->canId].at(byteNum);
             tmp &= ~(mask << valShift);
             tmp |= val << valShift;
-            d->rawValue[s->canId].replace(byteNum, 1, (const char *)&tmp, 1);
+            d->rawValue[s->canId].replace(byteNum, 1, (const char*)&tmp, 1);
 
             QCanBusFrame frame;
             frame.setPayload(d->rawValue[s->canId]);

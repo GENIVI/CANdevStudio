@@ -1,8 +1,8 @@
 #ifndef CANSRIPTER_H
 #define CANSRIPTER_H
 
-#include <QScopedPointer>
 #include <QObject>
+#include <QScopedPointer>
 
 class QCanBusFrame;
 class CanScripterPrivate;

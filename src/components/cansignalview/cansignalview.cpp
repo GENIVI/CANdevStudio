@@ -1,12 +1,12 @@
+#include "cansignalview.h"
+#include "cansignalview_p.h"
 #include <QList>
 #include <QStandardItem>
 #include <QString>
-#include "cansignalview.h"
-#include "cansignalview_p.h"
 
-CanSignalView::CanSignalView(QWidget *parent) :
-    QWidget(parent),
-    d_ptr(new CanSignalViewPrivate())
+CanSignalView::CanSignalView(QWidget* parent)
+    : QWidget(parent)
+    , d_ptr(new CanSignalViewPrivate())
 {
     Q_D(CanSignalView);
 
@@ -17,14 +17,14 @@ CanSignalView::~CanSignalView()
 {
 }
 
-void CanSignalView::signalReceived(const QString &name, const QByteArray &val)
+void CanSignalView::signalReceived(const QString& name, const QByteArray& val)
 {
     Q_D(CanSignalView);
 
     d->insertRow("RX", name, QString::number(val.toUInt()));
 }
 
-void CanSignalView::signalSent(const QString &name, const QByteArray &val)
+void CanSignalView::signalSent(const QString& name, const QByteArray& val)
 {
     Q_D(CanSignalView);
 

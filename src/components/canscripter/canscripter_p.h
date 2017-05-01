@@ -5,12 +5,12 @@
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QString>
+#include <QTimer>
 #include <cstdint>
 #include <map>
+#include <memory>
 #include <tuple>
 #include <vector>
-#include <QTimer>
-#include <memory>
 
 namespace {
 const QString cJsonNameTag = "name";
@@ -29,14 +29,13 @@ struct TimerStep {
     uint32_t delay{ 0 };
 };
 
-class CanScripterTimer : public QTimer
-{
+class CanScripterTimer : public QTimer {
     Q_OBJECT
 
 public:
-    CanScripterTimer(const std::vector<TimerStep> &steps) : 
-        QTimer(nullptr),
-        timerSteps(steps)
+    CanScripterTimer(const std::vector<TimerStep>& steps)
+        : QTimer(nullptr)
+        , timerSteps(steps)
     {
         connect(this, &CanScripterTimer::timeout, this, &CanScripterTimer::step);
         setSingleShot(true);
@@ -61,39 +60,38 @@ Q_SIGNALS:
 private Q_SLOTS:
     void step()
     {
-       if(timerSteps[ndx].name.length() > 0) {
-           emit sendSignal(timerSteps[ndx].name, QByteArray::number(timerSteps[ndx].value));
-       }
+        if (timerSteps[ndx].name.length() > 0) {
+            emit sendSignal(timerSteps[ndx].name, QByteArray::number(timerSteps[ndx].value));
+        }
 
-       setInterval(timerSteps[ndx].delay);
-       ndx++;
-       
-       if(ndx < timerSteps.size()) {
-           start();
-       } else {
-           emit finished();
-       }
+        setInterval(timerSteps[ndx].delay);
+        ndx++;
+
+        if (ndx < timerSteps.size()) {
+            start();
+        } else {
+            emit finished();
+        }
     }
 
 private:
     const std::vector<TimerStep> timerSteps;
-    uint32_t ndx {0};
+    uint32_t ndx{ 0 };
     bool finish;
 };
-
 
 class CanScripterPrivate : public QObject {
     Q_OBJECT
 
 public:
-    CanScripterPrivate(CanScripter *q) :
-        q_ptr(q)
+    CanScripterPrivate(CanScripter* q)
+        : q_ptr(q)
     {
     }
 
     bool parseScriptObject(const QJsonObject& obj)
     {
-        for(auto &timer : timers) {
+        for (auto& timer : timers) {
             timer->stop();
         }
 
@@ -101,12 +99,12 @@ public:
 
         for (const auto& timer : obj) {
             if (timer.isArray()) {
-                auto &&timerSteps = processTimerSteps(timer.toArray());
+                auto&& timerSteps = processTimerSteps(timer.toArray());
 
                 if (timerSteps.empty()) {
                     return false;
                 } else {
-                    auto &&timer = std::make_shared<CanScripterTimer>(timerSteps);
+                    auto&& timer = std::make_shared<CanScripterTimer>(timerSteps);
                     connect(timer.get(), &CanScripterTimer::sendSignal, q_ptr, &CanScripter::sendSignal);
                     connect(timer.get(), &CanScripterTimer::finished, this, &CanScripterPrivate::restart);
                     timer->setInterval(0);
@@ -129,38 +127,38 @@ public:
     }
 
 public Q_SLOTS:
-    void restart() 
+    void restart()
     {
-        if(!repeat) {
+        if (!repeat) {
             qDebug() << "Script repetition disabled";
             return;
         }
 
         // wait for all timers
-        for(auto &timer : timers) {
-            if(!timer->hasFinished()) {
+        for (auto& timer : timers) {
+            if (!timer->hasFinished()) {
                 qDebug() << "Some timers are still running";
                 return;
             }
         }
 
-        for(auto &timer : timers) {
+        for (auto& timer : timers) {
             qDebug() << "Restarting timer";
             timer->restart();
         }
     }
-    
+
 public:
     void start()
     {
-        for(auto &timer : timers) {
+        for (auto& timer : timers) {
             timer->start();
         }
     }
 
     void stop()
     {
-        for(auto &timer : timers) {
+        for (auto& timer : timers) {
             timer->stop();
         }
 
@@ -168,7 +166,7 @@ public:
     }
 
     QString scriptName;
-    bool repeat { true };
+    bool repeat{ true };
 
 private:
     inline bool isMultiStep(const QJsonObject& obj)
@@ -210,7 +208,7 @@ private:
                     uint32_t postDelay = stepObj[cJsonPostDelayTag].toInt();
                     uint32_t val;
 
-                    if(preDelay) {
+                    if (preDelay) {
                         timerSteps.push_back({ "", 0, preDelay });
                     }
 
@@ -231,10 +229,10 @@ private:
                     uint32_t preDelay = stepObj[cJsonPreDelayTag].toInt();
                     uint32_t postDelay = stepObj[cJsonPostDelayTag].toInt();
 
-                    if(preDelay) {
+                    if (preDelay) {
                         timerSteps.push_back({ "", 0, preDelay });
                     }
-                    
+
                     timerSteps.push_back({ name, value, postDelay });
 
                 } else if (isDelayStep(stepObj)) {
@@ -261,8 +259,8 @@ private:
         return timerSteps;
     }
 
-    std::vector<std::shared_ptr<CanScripterTimer>> timers;
-    CanScripter *q_ptr;
+    std::vector<std::shared_ptr<CanScripterTimer> > timers;
+    CanScripter* q_ptr;
 };
 
 #endif // CANSCRIPTER_P_H

@@ -1,23 +1,22 @@
 #ifndef CANRAWSENDER_H
 #define CANRAWSENDER_H
 
-#include <QWidget>
 #include <QScopedPointer>
+#include <QWidget>
 
 class QCanBusFrame;
 class CanRawSenderPrivate;
 
-class CanRawSender : public QWidget
-{
+class CanRawSender : public QWidget {
     Q_OBJECT
     Q_DECLARE_PRIVATE(CanRawSender)
 
 public:
-    explicit CanRawSender(QWidget *parent = 0);
+    explicit CanRawSender(QWidget* parent = 0);
     ~CanRawSender();
 
 signals:
-    void sendFrame(const QCanBusFrame &frame, const QVariant &context);
+    void sendFrame(const QCanBusFrame& frame, const QVariant& context);
 
 public slots:
     void start();

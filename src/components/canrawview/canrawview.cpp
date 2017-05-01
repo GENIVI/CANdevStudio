@@ -1,13 +1,13 @@
-#include <QStandardItem>
-#include <QCanBusFrame>
-#include <QStringList>
-#include <QList>
 #include "canrawview.h"
 #include "canrawview_p.h"
+#include <QCanBusFrame>
+#include <QList>
+#include <QStandardItem>
+#include <QStringList>
 
-CanRawView::CanRawView(QWidget *parent) :
-    QWidget(parent),
-    d_ptr(new CanRawViewPrivate())
+CanRawView::CanRawView(QWidget* parent)
+    : QWidget(parent)
+    , d_ptr(new CanRawViewPrivate())
 {
     Q_D(CanRawView);
 
@@ -18,19 +18,18 @@ CanRawView::~CanRawView()
 {
 }
 
-void CanRawView::frameReceived(const QCanBusFrame &frame)
+void CanRawView::frameReceived(const QCanBusFrame& frame)
 {
     Q_D(CanRawView);
 
     d->instertRow("RX", frame.frameId(), frame.payload().size(), frame.payload().toHex());
-
 }
 
-void CanRawView::frameSent(bool status, const QCanBusFrame &frame, const QVariant &)
+void CanRawView::frameSent(bool status, const QCanBusFrame& frame, const QVariant&)
 {
     Q_D(CanRawView);
 
-    if(status) {
+    if (status) {
         d->instertRow("TX", frame.frameId(), frame.payload().size(), frame.payload().toHex());
     }
 }

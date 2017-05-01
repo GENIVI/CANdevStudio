@@ -6,14 +6,14 @@
 #include "cansignalcoder/cansignalcoder.h"
 #include "cansignalsender/cansignalsender.cpp"
 #include "cansignalview/cansignalview.h"
-#include <QPushButton>
-#include <QToolBar>
-#include <QHBoxLayout>
-#include <QVBoxLayout>
-#include <QLabel>
-#include <QLineEdit>
 #include <QCheckBox>
 #include <QFileDialog>
+#include <QHBoxLayout>
+#include <QLabel>
+#include <QLineEdit>
+#include <QPushButton>
+#include <QToolBar>
+#include <QVBoxLayout>
 
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent)
@@ -21,21 +21,21 @@ MainWindow::MainWindow(QWidget* parent)
     , canSignalCoder(std::make_unique<CanSignalCoder>())
     , canScripter(std::make_unique<CanScripter>())
 {
-    CanRawView *canRawView = new CanRawView();
-    CanSignalView *canSignalView = new CanSignalView();
-    CanRawSender *canRawSender = new CanRawSender();
-    CanSignalSender *canSignalSender = new CanSignalSender();
-    QVBoxLayout *rowLayout = new QVBoxLayout();
-    QHBoxLayout *colLayout;
-    QToolBar *tb = new QToolBar();
-    QPushButton *pbStart = new QPushButton("Start");
-    QPushButton *pbStop = new QPushButton("Stop");
-    QPushButton *pbClear = new QPushButton("Clear");
-    QPushButton *pbOpen = new QPushButton("Open");
-    QLineEdit *canIf = new QLineEdit();
-    QLineEdit *scriptPath = new QLineEdit();
-    QCheckBox *scriptCB = new QCheckBox(" Script: ");
-    QCheckBox *scriptRepeat = new QCheckBox(" Repeat: ");
+    CanRawView* canRawView = new CanRawView();
+    CanSignalView* canSignalView = new CanSignalView();
+    CanRawSender* canRawSender = new CanRawSender();
+    CanSignalSender* canSignalSender = new CanSignalSender();
+    QVBoxLayout* rowLayout = new QVBoxLayout();
+    QHBoxLayout* colLayout;
+    QToolBar* tb = new QToolBar();
+    QPushButton* pbStart = new QPushButton("Start");
+    QPushButton* pbStop = new QPushButton("Stop");
+    QPushButton* pbClear = new QPushButton("Clear");
+    QPushButton* pbOpen = new QPushButton("Open");
+    QLineEdit* canIf = new QLineEdit();
+    QLineEdit* scriptPath = new QLineEdit();
+    QCheckBox* scriptCB = new QCheckBox(" Script: ");
+    QCheckBox* scriptRepeat = new QCheckBox(" Repeat: ");
 
     canIf->setFixedWidth(50);
     pbStop->setEnabled(false);
@@ -63,7 +63,7 @@ MainWindow::MainWindow(QWidget* parent)
     colLayout->QLayout::addWidget(canSignalSender);
     rowLayout->addLayout(colLayout);
 
-    QWidget *window = new QWidget();
+    QWidget* window = new QWidget();
     window->setLayout(rowLayout);
     setCentralWidget(window);
 
@@ -79,11 +79,11 @@ MainWindow::MainWindow(QWidget* parent)
     connect(canScripter.get(), &CanScripter::sendSignal, canSignalCoder.get(), &CanSignalCoder::signalReceived);
     connect(canRawSender, &CanRawSender::sendFrame, canDevice.get(), &CanDevice::sendFrame);
 
-    connect(pbStart, &QPushButton::pressed, [this, scriptCB] () {
-                if(scriptCB->isChecked()) {
-                    canScripter->start();
-                }
-            });
+    connect(pbStart, &QPushButton::pressed, [this, scriptCB]() {
+        if (scriptCB->isChecked()) {
+            canScripter->start();
+        }
+    });
     connect(pbStart, &QPushButton::pressed, canSignalCoder.get(), &CanSignalCoder::clearFrameCache);
     connect(pbStart, &QPushButton::pressed, canDevice.get(), &CanDevice::start);
     connect(pbStart, &QPushButton::pressed, canRawView, &CanRawView::start);
@@ -97,14 +97,14 @@ MainWindow::MainWindow(QWidget* parent)
     connect(pbClear, &QPushButton::pressed, canSignalView, &CanSignalView::clear);
     connect(pbClear, &QPushButton::pressed, canRawView, &CanRawView::clear);
 
-    connect(canIf, &QLineEdit::textChanged, [this] (const QString &str) {
-                canDevice->init("socketcan", str);
-            });
+    connect(canIf, &QLineEdit::textChanged, [this](const QString& str) {
+        canDevice->init("socketcan", str);
+    });
     canIf->setText("can0");
 
-    connect(pbOpen, &QPushButton::pressed, [this, scriptPath] () {
-                scriptPath->setText(QFileDialog::getOpenFileName(this, tr("Open Script"), ".", tr("JSON file (*.json)")));
-            });
+    connect(pbOpen, &QPushButton::pressed, [this, scriptPath]() {
+        scriptPath->setText(QFileDialog::getOpenFileName(this, tr("Open Script"), ".", tr("JSON file (*.json)")));
+    });
     connect(scriptPath, &QLineEdit::textChanged, canScripter.get(), &CanScripter::setScriptFilename);
 
     // Disabling, enabling
@@ -120,13 +120,13 @@ MainWindow::MainWindow(QWidget* parent)
     connect(pbStop, &QPushButton::clicked, pbStop, &QPushButton::setEnabled);
     connect(pbStop, &QPushButton::clicked, canIf, &QLineEdit::setDisabled);
     connect(pbStop, &QPushButton::clicked, scriptCB, &QCheckBox::setDisabled);
-    connect(pbStop, &QPushButton::pressed, [scriptCB, pbOpen, scriptPath, scriptRepeat] () {
-                if(scriptCB->isChecked()) {
-                    pbOpen->setEnabled(true);
-                    scriptPath->setEnabled(true);
-                    scriptRepeat->setEnabled(true);
-                }
-            });
+    connect(pbStop, &QPushButton::pressed, [scriptCB, pbOpen, scriptPath, scriptRepeat]() {
+        if (scriptCB->isChecked()) {
+            pbOpen->setEnabled(true);
+            scriptPath->setEnabled(true);
+            scriptRepeat->setEnabled(true);
+        }
+    });
 
     connect(scriptCB, &QCheckBox::clicked, pbOpen, &QPushButton::setEnabled);
     connect(scriptCB, &QCheckBox::clicked, scriptPath, &QLineEdit::setEnabled);
