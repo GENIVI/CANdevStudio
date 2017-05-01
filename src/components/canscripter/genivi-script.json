@@ -1,6 +1,11 @@
 {
     "timer1" :
         [
+            
+            {
+                "name" : "vehicle.battery",
+                "value" : 10
+            },
             {
                 "name" : "vehicle.ignition",
                 "pre-delay" : 1000,

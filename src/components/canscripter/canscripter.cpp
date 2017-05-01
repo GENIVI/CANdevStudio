@@ -8,12 +8,10 @@
 #include <QJsonObject>
 #include <QVariant>
 
-CanScripter::CanScripter(const QString& scriptFile, QObject* parent)
+CanScripter::CanScripter(QObject* parent)
     : QObject(parent)
     , d_ptr(new CanScripterPrivate(this))
 {
-    Q_D(CanScripter);
-    d->scriptName = scriptFile;
 }
 
 CanScripter::~CanScripter()
@@ -53,3 +51,11 @@ void CanScripter::stop()
 
     d->stop();
 }
+
+void CanScripter::setScriptFilename(const QString& scriptFile)
+{
+    Q_D(CanScripter);
+
+    d->scriptName = scriptFile;
+}
+

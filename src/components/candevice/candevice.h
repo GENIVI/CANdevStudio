@@ -18,13 +18,14 @@ public:
     CanDevice();
     ~CanDevice();
     bool init(const QString &backend, const QString &interface);
-    bool start();
 
 Q_SIGNALS:
     void frameReceived(const QCanBusFrame &frame);
     void frameSent(bool status, const QCanBusFrame &frame, const QVariant &context);
 
 public Q_SLOTS:
+    bool start();
+    void stop();
     void sendFrame(const QCanBusFrame &frame, const QVariant &context);
 
 private Q_SLOTS:

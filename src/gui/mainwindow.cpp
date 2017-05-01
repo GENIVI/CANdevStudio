@@ -10,12 +10,16 @@
 #include <QToolBar>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
+#include <QLabel>
+#include <QLineEdit>
+#include <QCheckBox>
+#include <QFileDialog>
 
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent)
     , canDevice(std::make_unique<CanDevice>())
     , canSignalCoder(std::make_unique<CanSignalCoder>())
-    , canScripter(std::make_unique<CanScripter>("src/components/canscripter/genivi-script.json"))
+    , canScripter(std::make_unique<CanScripter>())
 {
     CanRawView *canRawView = new CanRawView();
     CanSignalView *canSignalView = new CanSignalView();
@@ -27,10 +31,24 @@ MainWindow::MainWindow(QWidget* parent)
     QPushButton *pbStart = new QPushButton("Start");
     QPushButton *pbStop = new QPushButton("Stop");
     QPushButton *pbClear = new QPushButton("Clear");
+    QPushButton *pbOpen = new QPushButton("Open");
+    QLineEdit *canIf = new QLineEdit();
+    QLineEdit *scriptPath = new QLineEdit();
+    QCheckBox *scriptCB = new QCheckBox(" Script: ");
+
+    canIf->setFixedWidth(50);
+    pbStop->setEnabled(false);
 
     tb->addWidget(pbStart);
     tb->addWidget(pbStop);
     tb->addWidget(pbClear);
+    tb->addSeparator();
+    tb->addWidget(new QLabel(" CAN: "));
+    tb->addWidget(canIf);
+    tb->addSeparator();
+    tb->addWidget(scriptCB);
+    tb->addWidget(scriptPath);
+    tb->addWidget(pbOpen);
     rowLayout->addWidget(tb);
 
     colLayout = new QHBoxLayout();
@@ -58,12 +76,41 @@ MainWindow::MainWindow(QWidget* parent)
     connect(canScripter.get(), &CanScripter::sendSignal, canSignalCoder.get(), &CanSignalCoder::signalReceived);
     connect(canRawSender, &CanRawSender::sendFrame, canDevice.get(), &CanDevice::sendFrame);
 
-    connect(pbStart, &QPushButton::pressed, canScripter.get(), &CanScripter::start);
+    connect(pbStart, &QPushButton::pressed, [this, scriptCB] () {
+                if(scriptCB->isChecked()) {
+                    canScripter->start();
+                }
+            });
     connect(pbStart, &QPushButton::pressed, canSignalCoder.get(), &CanSignalCoder::clearFrameCache);
+    connect(pbStart, &QPushButton::pressed, canDevice.get(), &CanDevice::start);
     connect(pbStop, &QPushButton::pressed, canScripter.get(), &CanScripter::stop);
+    connect(pbStop, &QPushButton::pressed, canDevice.get(), &CanDevice::stop);
 
-    canDevice.get()->init("socketcan", "can0");
-    canDevice.get()->start();
+    connect(canIf, &QLineEdit::textChanged, [this] (const QString &str) {
+                canDevice->init("socketcan", str);
+            });
+    canIf->setText("can0");
+
+    connect(pbOpen, &QPushButton::pressed, [this, scriptPath] () {
+                scriptPath->setText(QFileDialog::getOpenFileName(this, tr("Open Image"), ".", tr("JSON file (*.json)")));
+            });
+    connect(scriptPath, &QLineEdit::textChanged, canScripter.get(), &CanScripter::setScriptFilename);
+
+    // Disabling, enabling
+    connect(pbStart, &QPushButton::clicked, pbStop, &QPushButton::setDisabled);
+    connect(pbStart, &QPushButton::clicked, pbStart, &QPushButton::setEnabled);
+    connect(pbStart, &QPushButton::clicked, canIf, &QLineEdit::setEnabled);
+    connect(pbStart, &QPushButton::clicked, scriptCB, &QCheckBox::setEnabled);
+
+    connect(pbStop, &QPushButton::clicked, pbStart, &QPushButton::setDisabled);
+    connect(pbStop, &QPushButton::clicked, pbStop, &QPushButton::setEnabled);
+    connect(pbStop, &QPushButton::clicked, canIf, &QLineEdit::setDisabled);
+    connect(pbStop, &QPushButton::clicked, scriptCB, &QCheckBox::setDisabled);
+
+    connect(scriptCB, &QCheckBox::clicked, pbOpen, &QPushButton::setEnabled);
+    connect(scriptCB, &QCheckBox::clicked, scriptPath, &QLineEdit::setEnabled);
+    scriptCB->setChecked(true);
+    scriptPath->setText("src/components/canscripter/genivi-script.json");
 }
 
 MainWindow::~MainWindow()

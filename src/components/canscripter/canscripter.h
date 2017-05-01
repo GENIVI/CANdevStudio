@@ -12,13 +12,14 @@ class CanScripter : public QObject {
     Q_DECLARE_PRIVATE(CanScripter)
 
 public:
-    explicit CanScripter(const QString& scriptFile, QObject* parent = 0);
+    explicit CanScripter(QObject* parent = 0);
     ~CanScripter();
 
 Q_SIGNALS:
     void sendSignal(const QString& name, const QByteArray& value);
 
 public Q_SLOTS:
+    void setScriptFilename(const QString& scriptFile);
     void start();
     void stop();
 

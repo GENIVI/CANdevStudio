@@ -63,6 +63,15 @@ bool CanDevice::start()
     }
 }
 
+void CanDevice::stop()
+{
+    Q_D(CanDevice);
+
+    if(d->mDevice) {
+        d->mDevice->disconnectDevice();
+    }
+}
+
 void CanDevice::framesReceived()
 {
     Q_D(CanDevice);
