@@ -34,6 +34,7 @@ public:
         tv->verticalHeader()->hideSection(0);
         tv->setColumnWidth(0, 180);
         tv->setColumnWidth(1, 50);
+        tv->setAutoScroll(true);
 
         toolbar->addWidget(pbAdd);
 
@@ -45,6 +46,7 @@ public:
                     QStandardItem *value = new QStandardItem();
                     QList<QStandardItem*> list {name, value};
                     tvModel->appendRow(list);
+                    tv->scrollToBottom();
                     QPushButton *pbSend = new QPushButton("Send");
                     tv->setIndexWidget(tvModel->index(tvModel->rowCount()-1,2), pbSend);
 

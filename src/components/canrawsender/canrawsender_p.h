@@ -32,6 +32,9 @@ public:
         tvModel->setHorizontalHeaderLabels({tr("id"), tr("data"), ""});
         tv->setModel(tvModel);
         tv->verticalHeader()->hideSection(0);
+        tv->setColumnWidth(0, 92);
+        tv->setColumnWidth(1, 178);
+        tv->setAutoScroll(true);
 
         toolbar->addWidget(pbAdd);
 
@@ -43,6 +46,7 @@ public:
                     QStandardItem *value = new QStandardItem();
                     QList<QStandardItem*> list {id, value};
                     tvModel->appendRow(list);
+                    tv->scrollToBottom();
                     QPushButton *pbSend = new QPushButton("Send");
                     tv->setIndexWidget(tvModel->index(tvModel->rowCount()-1,2), pbSend);
 

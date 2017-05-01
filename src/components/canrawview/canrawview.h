@@ -17,6 +17,8 @@ public:
     ~CanRawView();
 
 public Q_SLOTS:
+    void start();
+    void clear();
     void frameReceived(const QCanBusFrame &frame);
     void frameSent(bool status, const QCanBusFrame &frame, const QVariant &context);
 

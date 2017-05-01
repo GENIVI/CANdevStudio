@@ -8,6 +8,7 @@
 #include <QStandardItemModel>
 #include <QPushButton>
 #include <QHeaderView>
+#include <QTime>
 
 class CanSignalViewPrivate : public QObject
 {
@@ -17,20 +18,46 @@ public:
     void setupUi(QWidget *w)
     {
         QVBoxLayout *layout = new QVBoxLayout();
-        QTableView *tv = new QTableView();
-
-        tvModel->setHorizontalHeaderLabels({tr("time"), tr("name"), tr("value")});
+        
         tv->setModel(tvModel);
-        tv->verticalHeader()->hideSection(0);
-        tv->setColumnWidth(0, 36);
-        tv->setColumnWidth(1, 170);
-        tv->setColumnWidth(2, 92);
+        initTv();
 
         layout->addWidget(tv);
         w->setLayout(layout);
     }
 
-    QStandardItemModel *tvModel { new QStandardItemModel(0,3) };
+    void startTimer()
+    {
+        timer.restart();
+    }
+
+    QString elapsedTime()
+    {
+        return QString::number((float)timer.elapsed()/1000, 'f', 2);
+    }
+
+    void clear()
+    {
+        tvModel->clear();
+        initTv();
+    }
+
+    QStandardItemModel *tvModel { new QStandardItemModel(0,4) };
+    QTableView *tv { new QTableView() };
+    const int cMaxListSize { 1000 };
+
+ private:
+    void initTv()
+    {
+        tvModel->setHorizontalHeaderLabels({tr("time [s]"), tr("dir"),  tr("name"), tr("value")});
+        tv->verticalHeader()->hideSection(0);
+        tv->setColumnWidth(0, 70);
+        tv->setColumnWidth(1, 27);
+        tv->setColumnWidth(2, 170);
+        tv->setColumnWidth(3, 92);
+    }
+
+    QTime timer;
 };
 
 #endif // CANSIGNALVIEW_P_H

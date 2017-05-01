@@ -17,7 +17,10 @@ public:
     ~CanSignalView();
 
 public Q_SLOTS:
+    void start();
+    void clear();
     void signalReceived(const QString &name, const QByteArray &val);
+    void signalSent(const QString &name, const QByteArray &val);
 
 private:
     QScopedPointer<CanSignalViewPrivate> d_ptr;

@@ -38,6 +38,10 @@ MainWindow::MainWindow(QWidget* parent)
 
     canIf->setFixedWidth(50);
     pbStop->setEnabled(false);
+    //canRawView->setEnabled(false);
+    //canSignalView->setEnabled(false);
+    //canRawSender->setEnabled(false);
+    //canSignalSender->setEnabled(false);
 
     tb->addWidget(pbStart);
     tb->addWidget(pbStop);
@@ -73,6 +77,8 @@ MainWindow::MainWindow(QWidget* parent)
     connect(canSignalCoder.get(), &CanSignalCoder::sendSignal, canSignalView, &CanSignalView::signalReceived);
 
     connect(canSignalSender, &CanSignalSender::sendSignal, canSignalCoder.get(), &CanSignalCoder::signalReceived);
+    connect(canSignalSender, &CanSignalSender::sendSignal, canSignalView, &CanSignalView::signalSent);
+    connect(canScripter.get(), &CanScripter::sendSignal, canSignalView, &CanSignalView::signalSent);
     connect(canScripter.get(), &CanScripter::sendSignal, canSignalCoder.get(), &CanSignalCoder::signalReceived);
     connect(canRawSender, &CanRawSender::sendFrame, canDevice.get(), &CanDevice::sendFrame);
 
@@ -83,8 +89,12 @@ MainWindow::MainWindow(QWidget* parent)
             });
     connect(pbStart, &QPushButton::pressed, canSignalCoder.get(), &CanSignalCoder::clearFrameCache);
     connect(pbStart, &QPushButton::pressed, canDevice.get(), &CanDevice::start);
+    connect(pbStart, &QPushButton::pressed, canRawView, &CanRawView::start);
+    connect(pbStart, &QPushButton::pressed, canSignalView, &CanSignalView::start);
     connect(pbStop, &QPushButton::pressed, canScripter.get(), &CanScripter::stop);
     connect(pbStop, &QPushButton::pressed, canDevice.get(), &CanDevice::stop);
+    connect(pbClear, &QPushButton::pressed, canSignalView, &CanSignalView::clear);
+    connect(pbClear, &QPushButton::pressed, canRawView, &CanRawView::clear);
 
     connect(canIf, &QLineEdit::textChanged, [this] (const QString &str) {
                 canDevice->init("socketcan", str);
@@ -92,7 +102,7 @@ MainWindow::MainWindow(QWidget* parent)
     canIf->setText("can0");
 
     connect(pbOpen, &QPushButton::pressed, [this, scriptPath] () {
-                scriptPath->setText(QFileDialog::getOpenFileName(this, tr("Open Image"), ".", tr("JSON file (*.json)")));
+                scriptPath->setText(QFileDialog::getOpenFileName(this, tr("Open Script"), ".", tr("JSON file (*.json)")));
             });
     connect(scriptPath, &QLineEdit::textChanged, canScripter.get(), &CanScripter::setScriptFilename);
 
@@ -101,11 +111,19 @@ MainWindow::MainWindow(QWidget* parent)
     connect(pbStart, &QPushButton::clicked, pbStart, &QPushButton::setEnabled);
     connect(pbStart, &QPushButton::clicked, canIf, &QLineEdit::setEnabled);
     connect(pbStart, &QPushButton::clicked, scriptCB, &QCheckBox::setEnabled);
+    //connect(pbStart, &QPushButton::clicked, canRawView, &QWidget::setDisabled);
+    //connect(pbStart, &QPushButton::clicked, canSignalView, &QWidget::setDisabled);
+    //connect(pbStart, &QPushButton::clicked, canRawSender, &QWidget::setDisabled);
+    //connect(pbStart, &QPushButton::clicked, canSignalSender, &QWidget::setDisabled);
 
     connect(pbStop, &QPushButton::clicked, pbStart, &QPushButton::setDisabled);
     connect(pbStop, &QPushButton::clicked, pbStop, &QPushButton::setEnabled);
     connect(pbStop, &QPushButton::clicked, canIf, &QLineEdit::setDisabled);
     connect(pbStop, &QPushButton::clicked, scriptCB, &QCheckBox::setDisabled);
+    //connect(pbStop, &QPushButton::clicked, canRawView, &QWidget::setEnabled);
+    //connect(pbStop, &QPushButton::clicked, canSignalView, &QWidget::setEnabled);
+    //connect(pbStop, &QPushButton::clicked, canRawSender, &QWidget::setEnabled);
+    //connect(pbStop, &QPushButton::clicked, canSignalSender, &QWidget::setEnabled);
 
     connect(scriptCB, &QCheckBox::clicked, pbOpen, &QPushButton::setEnabled);
     connect(scriptCB, &QCheckBox::clicked, scriptPath, &QLineEdit::setEnabled);

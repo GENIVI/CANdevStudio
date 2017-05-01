@@ -21,11 +21,48 @@ void CanSignalView::signalReceived(const QString &name, const QByteArray &val)
 {
     Q_D(CanSignalView);
 
+    if(d->tvModel->rowCount() >= d->cMaxListSize) {
+        clear();
+    }
+
     QList<QStandardItem*> list;
-    list.append(new QStandardItem("0"));
+    list.append(new QStandardItem(d->elapsedTime()));
+    list.append(new QStandardItem("RX"));
     list.append(new QStandardItem(name));
     list.append(new QStandardItem(QString::number(val.toUInt())));
     
     d->tvModel->appendRow(list);
+    d->tv->scrollToBottom();
 }
 
+void CanSignalView::signalSent(const QString &name, const QByteArray &val)
+{
+    Q_D(CanSignalView);
+
+    if(d->tvModel->rowCount() >= d->cMaxListSize) {
+        clear();
+    }
+
+    QList<QStandardItem*> list;
+    list.append(new QStandardItem(d->elapsedTime()));
+    list.append(new QStandardItem("TX"));
+    list.append(new QStandardItem(name));
+    list.append(new QStandardItem(QString::number(val.toUInt())));
+    
+    d->tvModel->appendRow(list);
+    d->tv->scrollToBottom();
+}
+
+void CanSignalView::clear()
+{
+    Q_D(CanSignalView);
+
+    d->clear();
+}
+
+void CanSignalView::start()
+{
+    Q_D(CanSignalView);
+
+    d->startTimer();
+}
