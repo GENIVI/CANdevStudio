@@ -38,10 +38,6 @@ MainWindow::MainWindow(QWidget* parent)
 
     canIf->setFixedWidth(50);
     pbStop->setEnabled(false);
-    //canRawView->setEnabled(false);
-    //canSignalView->setEnabled(false);
-    //canRawSender->setEnabled(false);
-    //canSignalSender->setEnabled(false);
 
     tb->addWidget(pbStart);
     tb->addWidget(pbStop);
@@ -111,19 +107,11 @@ MainWindow::MainWindow(QWidget* parent)
     connect(pbStart, &QPushButton::clicked, pbStart, &QPushButton::setEnabled);
     connect(pbStart, &QPushButton::clicked, canIf, &QLineEdit::setEnabled);
     connect(pbStart, &QPushButton::clicked, scriptCB, &QCheckBox::setEnabled);
-    //connect(pbStart, &QPushButton::clicked, canRawView, &QWidget::setDisabled);
-    //connect(pbStart, &QPushButton::clicked, canSignalView, &QWidget::setDisabled);
-    //connect(pbStart, &QPushButton::clicked, canRawSender, &QWidget::setDisabled);
-    //connect(pbStart, &QPushButton::clicked, canSignalSender, &QWidget::setDisabled);
 
     connect(pbStop, &QPushButton::clicked, pbStart, &QPushButton::setDisabled);
     connect(pbStop, &QPushButton::clicked, pbStop, &QPushButton::setEnabled);
     connect(pbStop, &QPushButton::clicked, canIf, &QLineEdit::setDisabled);
     connect(pbStop, &QPushButton::clicked, scriptCB, &QCheckBox::setDisabled);
-    //connect(pbStop, &QPushButton::clicked, canRawView, &QWidget::setEnabled);
-    //connect(pbStop, &QPushButton::clicked, canSignalView, &QWidget::setEnabled);
-    //connect(pbStop, &QPushButton::clicked, canRawSender, &QWidget::setEnabled);
-    //connect(pbStop, &QPushButton::clicked, canSignalSender, &QWidget::setEnabled);
 
     connect(scriptCB, &QCheckBox::clicked, pbOpen, &QPushButton::setEnabled);
     connect(scriptCB, &QCheckBox::clicked, scriptPath, &QLineEdit::setEnabled);

@@ -34,7 +34,6 @@ public:
         tv->verticalHeader()->hideSection(0);
         tv->setColumnWidth(0, 92);
         tv->setColumnWidth(1, 178);
-        tv->setAutoScroll(true);
 
         toolbar->addWidget(pbAdd);
 

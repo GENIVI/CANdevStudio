@@ -42,9 +42,42 @@ public:
         initTv();
     }
 
-    QStandardItemModel *tvModel { new QStandardItemModel(0,5) };
-    QTableView *tv { new QTableView() };
-    const int cMaxListSize { 1000 };
+    void instertRow(const QString &dir, uint32_t id, uint8_t dlc, const QByteArray &data)
+    {
+        if(tvModel->rowCount() >= cMaxListSize) {
+            clear();
+        }
+        
+        auto payHex = data;
+        for(int i = payHex.size(); i >= 2; i-=2) {
+            payHex.insert(i, ' ');
+        }
+
+        QList<QStandardItem*> list;
+        QStandardItem *item;
+
+        item = new QStandardItem(elapsedTime());
+        item->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
+        list.append(item);
+
+        item = new QStandardItem(dir);
+        item->setTextAlignment(Qt::AlignCenter);
+        list.append(item);
+        
+        item = new QStandardItem("0x" + QString::number(id, 16));
+        item->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
+        list.append(item);
+
+        item = new QStandardItem(QString::number(dlc));
+        item->setTextAlignment(Qt::AlignCenter);
+        list.append(item);
+
+        list.append(new QStandardItem(QString::fromUtf8(payHex.data(), payHex.size())));
+
+        tvModel->appendRow(list);
+        tv->scrollToBottom();
+
+    }
 
  private:
     void initTv()
@@ -52,13 +85,20 @@ public:
         tvModel->setHorizontalHeaderLabels({tr("time [s]"), tr("dir"), tr("id"), tr("dlc"), tr("data")});
         tv->verticalHeader()->hideSection(0);
         tv->setColumnWidth(0, 70);
-        tv->setColumnWidth(1, 27);
+        tv->setColumnWidth(1, 40);
         tv->setColumnWidth(2, 92);
         tv->setColumnWidth(3, 25);
         tv->setColumnWidth(4, 178);
+        tv->setShowGrid(false);
+        tv->verticalHeader()->setVisible(false);
+        tv->horizontalHeader()->setStretchLastSection(true);
     }
 
     QTime timer;
+    QStandardItemModel *tvModel { new QStandardItemModel(0,5) };
+    QTableView *tv { new QTableView() };
+    const int cMaxListSize { 1000 };
+
 };
 
 #endif // CANRAWVIEW_P_H
