@@ -35,6 +35,7 @@ MainWindow::MainWindow(QWidget* parent)
     QLineEdit *canIf = new QLineEdit();
     QLineEdit *scriptPath = new QLineEdit();
     QCheckBox *scriptCB = new QCheckBox(" Script: ");
+    QCheckBox *scriptRepeat = new QCheckBox(" Repeat: ");
 
     canIf->setFixedWidth(50);
     pbStop->setEnabled(false);
@@ -47,6 +48,7 @@ MainWindow::MainWindow(QWidget* parent)
     tb->addWidget(canIf);
     tb->addSeparator();
     tb->addWidget(scriptCB);
+    tb->addWidget(scriptRepeat);
     tb->addWidget(scriptPath);
     tb->addWidget(pbOpen);
     rowLayout->addWidget(tb);
@@ -74,7 +76,6 @@ MainWindow::MainWindow(QWidget* parent)
     connect(canSignalCoder.get(), &CanSignalCoder::signalEncoded, canSignalView, &CanSignalView::signalSent);
 
     connect(canSignalSender, &CanSignalSender::sendSignal, canSignalCoder.get(), &CanSignalCoder::signalReceived);
-    connect(canScripter.get(), &CanScripter::sendSignal, canSignalView, &CanSignalView::signalSent);
     connect(canScripter.get(), &CanScripter::sendSignal, canSignalCoder.get(), &CanSignalCoder::signalReceived);
     connect(canRawSender, &CanRawSender::sendFrame, canDevice.get(), &CanDevice::sendFrame);
 
@@ -111,15 +112,29 @@ MainWindow::MainWindow(QWidget* parent)
     connect(pbStart, &QPushButton::clicked, pbStart, &QPushButton::setEnabled);
     connect(pbStart, &QPushButton::clicked, canIf, &QLineEdit::setEnabled);
     connect(pbStart, &QPushButton::clicked, scriptCB, &QCheckBox::setEnabled);
+    connect(pbStart, &QPushButton::clicked, scriptPath, &QWidget::setEnabled);
+    connect(pbStart, &QPushButton::clicked, scriptRepeat, &QWidget::setEnabled);
+    connect(pbStart, &QPushButton::clicked, pbOpen, &QWidget::setEnabled);
 
     connect(pbStop, &QPushButton::clicked, pbStart, &QPushButton::setDisabled);
     connect(pbStop, &QPushButton::clicked, pbStop, &QPushButton::setEnabled);
     connect(pbStop, &QPushButton::clicked, canIf, &QLineEdit::setDisabled);
     connect(pbStop, &QPushButton::clicked, scriptCB, &QCheckBox::setDisabled);
+    connect(pbStop, &QPushButton::pressed, [scriptCB, pbOpen, scriptPath, scriptRepeat] () {
+                if(scriptCB->isChecked()) {
+                    pbOpen->setEnabled(true);
+                    scriptPath->setEnabled(true);
+                    scriptRepeat->setEnabled(true);
+                }
+            });
 
     connect(scriptCB, &QCheckBox::clicked, pbOpen, &QPushButton::setEnabled);
     connect(scriptCB, &QCheckBox::clicked, scriptPath, &QLineEdit::setEnabled);
+    connect(scriptCB, &QCheckBox::clicked, scriptRepeat, &QCheckBox::setEnabled);
+    connect(scriptRepeat, &QCheckBox::clicked, canScripter.get(), &CanScripter::setScriptRepeat);
+
     scriptCB->setChecked(true);
+    scriptRepeat->setChecked(true);
     scriptPath->setText("src/components/canscripter/genivi-script.json");
 }
 

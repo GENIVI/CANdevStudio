@@ -20,6 +20,7 @@ Q_SIGNALS:
 
 public Q_SLOTS:
     void setScriptFilename(const QString& scriptFile);
+    void setScriptRepeat(bool repeat);
     void start();
     void stop();
 

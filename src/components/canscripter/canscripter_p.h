@@ -42,8 +42,21 @@ public:
         setSingleShot(true);
     }
 
+    bool hasFinished()
+    {
+        return ndx == timerSteps.size();
+    }
+
+    void restart()
+    {
+        ndx = 0;
+        setInterval(0);
+        start();
+    }
+
 Q_SIGNALS:
     void sendSignal(const QString& name, const QByteArray& value);
+    void finished();
 
 private Q_SLOTS:
     void step()
@@ -57,12 +70,15 @@ private Q_SLOTS:
        
        if(ndx < timerSteps.size()) {
            start();
+       } else {
+           emit finished();
        }
     }
 
 private:
     const std::vector<TimerStep> timerSteps;
     uint32_t ndx {0};
+    bool finish;
 };
 
 
@@ -92,6 +108,7 @@ public:
                 } else {
                     auto &&timer = std::make_shared<CanScripterTimer>(timerSteps);
                     connect(timer.get(), &CanScripterTimer::sendSignal, q_ptr, &CanScripter::sendSignal);
+                    connect(timer.get(), &CanScripterTimer::finished, this, &CanScripterPrivate::restart);
                     timer->setInterval(0);
                     timers.push_back(timer);
                 }
@@ -111,6 +128,29 @@ public:
         return true;
     }
 
+public Q_SLOTS:
+    void restart() 
+    {
+        if(!repeat) {
+            qDebug() << "Script repetition disabled";
+            return;
+        }
+
+        // wait for all timers
+        for(auto &timer : timers) {
+            if(!timer->hasFinished()) {
+                qDebug() << "Some timers are still running";
+                return;
+            }
+        }
+
+        for(auto &timer : timers) {
+            qDebug() << "Restarting timer";
+            timer->restart();
+        }
+    }
+    
+public:
     void start()
     {
         for(auto &timer : timers) {
@@ -128,6 +168,7 @@ public:
     }
 
     QString scriptName;
+    bool repeat { true };
 
 private:
     inline bool isMultiStep(const QJsonObject& obj)

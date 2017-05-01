@@ -59,3 +59,10 @@ void CanScripter::setScriptFilename(const QString& scriptFile)
     d->scriptName = scriptFile;
 }
 
+void CanScripter::setScriptRepeat(bool repeat)
+{
+    Q_D(CanScripter);
+
+    d->repeat = repeat;
+}
+
