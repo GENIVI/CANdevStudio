@@ -20,6 +20,8 @@ signals:
     void sendSignal(const QString &name, const QByteArray &value);
 
 public slots:
+    void start();
+    void stop();
 
 private:
     QScopedPointer<CanSignalSenderPrivate> d_ptr;

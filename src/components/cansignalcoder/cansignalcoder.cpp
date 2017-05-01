@@ -3,6 +3,7 @@
 #include <QCanBusFrame>
 #include <QVariant>
 #include <syslog.h>
+#include <QDebug>
 
 extern CanSignal geniviDemoSignals[];
 extern uint32_t geniviDemoSignals_cnt;
@@ -59,12 +60,11 @@ void CanSignalCoder::frameReceived(const QCanBusFrame& frame)
 
                 emit sendSignal(s->sigName, QByteArray::number(val));
             } else {
-                //TODO: error
+                qDebug() << "ERROR: Frame id ('" << id << "') is to small. Current size: " << frame.payload().size() * 8 << ", expected: " << s->end + 1;
             }
-
         }
     } else {
-        //TODO: error
+        qDebug() << "ERROR: Frame id ('" << id << "') not found in database";
     }
 
 }
@@ -94,11 +94,14 @@ void CanSignalCoder::signalReceived(const QString& name, const QByteArray& value
 
             QVariant ctx = 0;
             emit sendFrame(frame, ctx);
+
+            // emit signal to indicate that signal has been successful encoded
+            emit signalEncoded(name, value);
         } else {
-            //TODO: error
+            qDebug() << "ERROR: Signal ('" << name << "') wrong value (" << val << "). Min: " << s->min << ", max: " << s->max;
         }
     } else {
-        //TODO: error
+        qDebug() << "ERROR: Signal ('" << name << "') not found in database";
     }
 }
 

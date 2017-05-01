@@ -15,3 +15,17 @@ CanRawSender::~CanRawSender()
 {
 
 }
+
+void CanRawSender::start()
+{
+    Q_D(CanRawSender);
+
+    d->started = true;
+}
+
+void CanRawSender::stop()
+{
+    Q_D(CanRawSender);
+
+    d->started = false;
+}

@@ -20,6 +20,8 @@ signals:
     void sendFrame(const QCanBusFrame &frame, const QVariant &context);
 
 public slots:
+    void start();
+    void stop();
 
 private:
     QScopedPointer<CanRawSenderPrivate> d_ptr;

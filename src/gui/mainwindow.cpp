@@ -71,9 +71,9 @@ MainWindow::MainWindow(QWidget* parent)
 
     connect(canSignalCoder.get(), &CanSignalCoder::sendFrame, canDevice.get(), &CanDevice::sendFrame);
     connect(canSignalCoder.get(), &CanSignalCoder::sendSignal, canSignalView, &CanSignalView::signalReceived);
+    connect(canSignalCoder.get(), &CanSignalCoder::signalEncoded, canSignalView, &CanSignalView::signalSent);
 
     connect(canSignalSender, &CanSignalSender::sendSignal, canSignalCoder.get(), &CanSignalCoder::signalReceived);
-    connect(canSignalSender, &CanSignalSender::sendSignal, canSignalView, &CanSignalView::signalSent);
     connect(canScripter.get(), &CanScripter::sendSignal, canSignalView, &CanSignalView::signalSent);
     connect(canScripter.get(), &CanScripter::sendSignal, canSignalCoder.get(), &CanSignalCoder::signalReceived);
     connect(canRawSender, &CanRawSender::sendFrame, canDevice.get(), &CanDevice::sendFrame);
@@ -87,8 +87,12 @@ MainWindow::MainWindow(QWidget* parent)
     connect(pbStart, &QPushButton::pressed, canDevice.get(), &CanDevice::start);
     connect(pbStart, &QPushButton::pressed, canRawView, &CanRawView::start);
     connect(pbStart, &QPushButton::pressed, canSignalView, &CanSignalView::start);
+    connect(pbStart, &QPushButton::pressed, canSignalSender, &CanSignalSender::start);
+    connect(pbStart, &QPushButton::pressed, canRawSender, &CanRawSender::start);
     connect(pbStop, &QPushButton::pressed, canScripter.get(), &CanScripter::stop);
     connect(pbStop, &QPushButton::pressed, canDevice.get(), &CanDevice::stop);
+    connect(pbStop, &QPushButton::pressed, canSignalSender, &CanSignalSender::stop);
+    connect(pbStop, &QPushButton::pressed, canRawSender, &CanRawSender::stop);
     connect(pbClear, &QPushButton::pressed, canSignalView, &CanSignalView::clear);
     connect(pbClear, &QPushButton::pressed, canRawView, &CanRawView::clear);
 

@@ -9,6 +9,7 @@
 #include <QPushButton>
 #include <QHeaderView>
 #include <QCanBusFrame>
+#include <QDebug>
 
 class CanRawSenderPrivate : public QObject
 {
@@ -52,7 +53,12 @@ public:
                     connect(pbSend, &QPushButton::pressed, [this, id, value] () {
                                 Q_Q(CanRawSender);
 
-                                if(id->text().size() && value->text().size()) {
+                                if(!started) {
+                                    qDebug() << "CanDevice not activated";
+                                    return;
+                                }
+
+                                if(id->text().size()) {
                                     quint32 val;
                                     if(id->text().startsWith("0x"))
                                         val = id->text().toUInt(nullptr, 16);
@@ -68,8 +74,23 @@ public:
                             });
                 });
 
+        // Testing code start
+        // TODO: remove
+        pbAdd->click();
+        pbAdd->click();
+        pbAdd->click();
+        tvModel->item(0, 0)->setText("0x111");
+        tvModel->item(0, 1)->setText("23 02 03 03 0a 48 11 22");
+        tvModel->item(1, 0)->setText("0x12345678");
+        tvModel->item(1, 1)->setText("12345678");
+        tvModel->item(2, 0)->setText("0x666");
+        tvModel->item(2, 1)->setText("");
+        // Testing code end
+
         w->setLayout(layout);
     }
+
+    bool started { false };
 
 private:
     CanRawSender *q_ptr;

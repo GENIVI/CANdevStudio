@@ -9,6 +9,7 @@
 #include <QPushButton>
 #include <QHeaderView>
 #include "cansignalsender.h"
+#include <QDebug>
 
 class CanSignalSenderPrivate : public QObject
 {
@@ -52,6 +53,12 @@ public:
                     connect(pbSend, &QPushButton::pressed, [this, name, value] () {
                                 Q_Q(CanSignalSender);
 
+                                if(!started) {
+                                    qDebug() << "CanDevice not activated";
+                                    return;
+                                    return;
+                                }
+
                                 if(name->text().size() && value->text().size()) {
                                     quint32 val;
                                     if(value->text().startsWith("0x"))
@@ -69,12 +76,30 @@ public:
         // TODO: remove
         pbAdd->click();
         pbAdd->click();
-        tvModel->item(0, 0)->setText("VehicleSpeed");
-        tvModel->item(1, 0)->setText("SteeringWheelAngle");
+        pbAdd->click();
+        pbAdd->click();
+        pbAdd->click();
+        pbAdd->click();
+        pbAdd->click();
+        pbAdd->click();
+        pbAdd->click();
+        pbAdd->click();
+        tvModel->item(0, 0)->setText("vehicle.engine.oilpressure");
+        tvModel->item(1, 0)->setText("vehicle.engine.rpm");
+        tvModel->item(2, 0)->setText("vehicle.engine.temperature");
+        tvModel->item(3, 0)->setText("vehicle.turnsignal.right");
+        tvModel->item(4, 0)->setText("vehicle.turnsignal.left");
+        tvModel->item(5, 0)->setText("vehicle.battery");
+        tvModel->item(6, 0)->setText("vehicle.transmission.gear");
+        tvModel->item(7, 0)->setText("vehicle.ignition");
+        tvModel->item(8, 0)->setText("vehicle.fuel");
+        tvModel->item(9, 0)->setText("vehicle.speed");
         // Testing code end
     
         w->setLayout(layout);    
     }
+
+    bool started { false };
 
 private:
     CanSignalSender *q_ptr;

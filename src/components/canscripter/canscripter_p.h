@@ -48,7 +48,6 @@ Q_SIGNALS:
 private Q_SLOTS:
     void step()
     {
-       qDebug() << "Step! " << timerSteps[ndx].name;
        if(timerSteps[ndx].name.length() > 0) {
            emit sendSignal(timerSteps[ndx].name, QByteArray::number(timerSteps[ndx].value));
        }

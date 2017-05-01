@@ -24,6 +24,7 @@ public Q_SLOTS:
 Q_SIGNALS:
     void sendFrame(const QCanBusFrame &frame, const QVariant &context);
     void sendSignal(const QString &name, const QByteArray &value);
+    void signalEncoded(const QString &name, const QByteArray &value);
 
 private:
     QScopedPointer<CanSignalCoderPrivate> d_ptr;

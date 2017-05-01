@@ -14,3 +14,17 @@ CanSignalSender::~CanSignalSender()
 {
 
 }
+
+void CanSignalSender::start()
+{
+    Q_D(CanSignalSender);
+
+    d->started = true;
+}
+
+void CanSignalSender::stop()
+{
+    Q_D(CanSignalSender);
+
+    d->started = false;
+}
