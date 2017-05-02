@@ -23,12 +23,19 @@
                 "value-stop" : 100,
                 "value-step" : 1,
                 "duration" : 1000
+            },
+            {
+                "name" : "vehicle.fuel",
+                "value-start" : 99,
+                "value-stop" : 50,
+                "value-step" : 1,
+                "duration" : 10000
             }
         ],
     "timer2" :
         [
             {
-                "pre-delay" : 6000,
+                "pre-delay" : 4000,
                 "name": "vehicle.speed",
                 "value-start" : 0,
                 "value-stop" : 200,

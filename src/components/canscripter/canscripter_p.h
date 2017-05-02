@@ -203,7 +203,6 @@ private:
                     uint32_t valueStop = stepObj[cJsonValueStopTag].toInt();
                     uint32_t valueStep = stepObj[cJsonValueStepTag].toInt();
                     uint32_t duration = stepObj[cJsonDurationTag].toInt();
-                    uint32_t stepDuration = duration / (valueStop - valueStart) / valueStep;
                     uint32_t preDelay = stepObj[cJsonPreDelayTag].toInt();
                     uint32_t postDelay = stepObj[cJsonPostDelayTag].toInt();
                     uint32_t val;
@@ -212,12 +211,18 @@ private:
                         timerSteps.push_back({ "", 0, preDelay });
                     }
 
-                    for (val = valueStart; val <= valueStop; val += valueStep) {
-                        timerSteps.push_back({ name, val, stepDuration });
-                    }
+                    if(valueStart <= valueStop) {
+                        uint32_t stepDuration = duration / (valueStop - valueStart) / valueStep;
 
-                    if (val < valueStop) {
-                        timerSteps.push_back({ name, valueStop, stepDuration });
+                        for (val = valueStart; val <= valueStop; val += valueStep) {
+                            timerSteps.push_back({ name, val, stepDuration });
+                        }
+                    } else {
+                        uint32_t stepDuration = duration / (valueStart - valueStop) / valueStep;
+
+                        for (val = valueStart; val >= valueStop && val <= valueStart; val -= valueStep) {
+                            timerSteps.push_back({ name, val, stepDuration });
+                        }
                     }
 
                     // set delay after last step to postDelay
