@@ -14,7 +14,8 @@ CanDevStudio is using JSON format to automate signals sending.
                 * duration: 1000 
             * pre-dalay - wait period before sending a signal
             * post-delay - wait period after sending signal
-
+## Timers
+Each timer forms separate, independent instance. Timers are working in parallel.
 ## Timer steps types
 ### Delay step
 #### Required elements (one of):
@@ -69,6 +70,7 @@ CanDevStudio is using JSON format to automate signals sending.
 #### Optional elements:
 * pre-delay
 * post-delay
+**NOTE:** delays will be executed before/after sending set of signals.
 #### Examples
 ```
 {
@@ -79,6 +81,20 @@ CanDevStudio is using JSON format to automate signals sending.
     "duration" : 1000
 }
 ```
+
+## Example
+Timer1:
+* sends vehicle.battery(10)
+* waits 1000 ms
+* sends vehicle.ignition(1)
+* waits 1000 ms
+* sends vehicle.ignition(2)
+* waits 1000 ms
+* send 100 signals vehicle.fuel from 1-100 with delay 10 ms inbetween.
+
+Timer2:
+* waits 6000 ms
+* sends 200 signals vehicle.speed from 1-200 with dealy 50 ms inbetween.
 ```
 {
     "timer1" :
@@ -100,7 +116,7 @@ CanDevStudio is using JSON format to automate signals sending.
             },
             {
                 "name" : "vehicle.fuel",
-                "value-start" : 0,
+                "value-start" : 1,
                 "value-stop" : 100,
                 "value-step" : 1,
                 "duration" : 1000
@@ -111,7 +127,7 @@ CanDevStudio is using JSON format to automate signals sending.
             {
                 "pre-delay" : 6000,
                 "name": "vehicle.speed",
-                "value-start" : 0,
+                "value-start" : 1,
                 "value-stop" : 200,
                 "value-step" : 1,
                 "duration" : 10000
