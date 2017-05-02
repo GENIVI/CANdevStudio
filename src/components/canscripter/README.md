@@ -1,0 +1,41 @@
+
+
+{
+    "timer1" :
+        [
+            
+            {
+                "name" : "vehicle.battery",
+                "value" : 10
+            },
+            {
+                "name" : "vehicle.ignition",
+                "pre-delay" : 1000,
+                "value" : 1
+            },
+            {
+                "name" : "vehicle.ignition",
+                "pre-delay" : 1000,
+                "value" : 2,
+                "post-delay" : 1000
+            },
+            {
+                "name" : "vehicle.fuel",
+                "value-start" : 0,
+                "value-stop" : 100,
+                "value-step" : 1,
+                "duration" : 1000
+            }
+        ],
+    "timer2" :
+        [
+            {
+                "pre-delay" : 6000,
+                "name": "vehicle.speed",
+                "value-start" : 0,
+                "value-stop" : 200,
+                "value-step" : 1,
+                "duration" : 10000
+            }
+        ]
+}
