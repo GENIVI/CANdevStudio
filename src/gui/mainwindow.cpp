@@ -14,6 +14,7 @@
 #include <QPushButton>
 #include <QToolBar>
 #include <QVBoxLayout>
+#include <QImage>
 
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent)
@@ -26,7 +27,7 @@ MainWindow::MainWindow(QWidget* parent)
     CanRawSender* canRawSender = new CanRawSender();
     CanSignalSender* canSignalSender = new CanSignalSender();
     QVBoxLayout* rowLayout = new QVBoxLayout();
-    QHBoxLayout* colLayout;
+    QVBoxLayout* colLayout;
     QToolBar* tb = new QToolBar();
     QPushButton* pbStart = new QPushButton("Start");
     QPushButton* pbStop = new QPushButton("Stop");
@@ -53,17 +54,30 @@ MainWindow::MainWindow(QWidget* parent)
     tb->addWidget(pbOpen);
     rowLayout->addWidget(tb);
 
-    colLayout = new QHBoxLayout();
+    QHBoxLayout *mainScr = new QHBoxLayout();
+        
+
+    colLayout = new QVBoxLayout();
     colLayout->QLayout::addWidget(canRawView);
     colLayout->QLayout::addWidget(canSignalView);
-    rowLayout->addLayout(colLayout);
+    mainScr->addLayout(colLayout);
 
-    colLayout = new QHBoxLayout();
+    QImage *image = new QImage("/home/remol/Documents/test.png");
+    QLabel *imgLabel = new QLabel("");
+    //imgLabel->setMinimumSize({600, 800});
+    imgLabel->setFixedSize({800, 1000});
+    //imgLabel->setPixmap(QPixmap::fromImage(*image));
+    imgLabel->setAutoFillBackground(true);
+    imgLabel->setPalette({QPalette::Background, Qt::black});
+    mainScr->addWidget(imgLabel);
+
+    colLayout = new QVBoxLayout();
     colLayout->QLayout::addWidget(canRawSender);
     colLayout->QLayout::addWidget(canSignalSender);
-    rowLayout->addLayout(colLayout);
+    mainScr->addLayout(colLayout);
 
     QWidget* window = new QWidget();
+    rowLayout->addLayout(mainScr);
     window->setLayout(rowLayout);
     setCentralWidget(window);
 
