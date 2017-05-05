@@ -211,7 +211,7 @@ private:
                         timerSteps.push_back({ "", 0, preDelay });
                     }
 
-                    if(valueStart <= valueStop) {
+                    if (valueStart <= valueStop) {
                         uint32_t stepDuration = duration / (valueStop - valueStart) / valueStep;
 
                         for (val = valueStart; val <= valueStop; val += valueStep) {

@@ -9,12 +9,12 @@
 #include <QCheckBox>
 #include <QFileDialog>
 #include <QHBoxLayout>
+#include <QImage>
 #include <QLabel>
 #include <QLineEdit>
 #include <QPushButton>
 #include <QToolBar>
 #include <QVBoxLayout>
-#include <QImage>
 
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent)
@@ -54,17 +54,17 @@ MainWindow::MainWindow(QWidget* parent)
     tb->addWidget(pbOpen);
     rowLayout->addWidget(tb);
 
-    QHBoxLayout *mainScr = new QHBoxLayout();
-        
+    QHBoxLayout* mainScr = new QHBoxLayout();
+
     colLayout = new QVBoxLayout();
     colLayout->QLayout::addWidget(canSignalView);
     colLayout->QLayout::addWidget(canSignalSender);
     mainScr->addLayout(colLayout);
 
-    QImage *image = new QImage("test.png");
-    QLabel *imgLabel = new QLabel("");
-    imgLabel->setMinimumSize({800, 1000});
-    imgLabel->setPixmap(QPixmap::fromImage(*image));
+    QImage image("test.png");
+    QLabel* imgLabel = new QLabel("");
+    imgLabel->setMinimumSize({ 800, 1000 });
+    imgLabel->setPixmap(QPixmap::fromImage(image));
     mainScr->addWidget(imgLabel);
 
     colLayout = new QVBoxLayout();
@@ -146,6 +146,13 @@ MainWindow::MainWindow(QWidget* parent)
     scriptCB->setChecked(true);
     scriptRepeat->setChecked(true);
     scriptPath->setText("src/components/canscripter/genivi-script.json");
+
+    logosTimer.setInterval(logoIntervalMs);
+    connect(&logosTimer, &QTimer::timeout, [imgLabel, this]() {
+        QImage image(logosFiles[logoNdx++ % logosFiles.size()]);
+        imgLabel->setPixmap(QPixmap::fromImage(image));
+    });
+    logosTimer.start(logoIntervalMs);
 }
 
 MainWindow::~MainWindow()
