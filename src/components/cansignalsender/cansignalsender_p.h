@@ -32,8 +32,9 @@ public:
         tvModel->setHorizontalHeaderLabels({ tr("name"), tr("value"), "" });
         tv->setModel(tvModel);
         tv->verticalHeader()->hideSection(0);
-        tv->setColumnWidth(0, 190);
-        tv->setColumnWidth(1, 50);
+        tv->setColumnWidth(0, 260);
+        tv->setColumnWidth(1, 120);
+        tv->horizontalHeader()->setStretchLastSection(true);
 
         toolbar->addWidget(pbAdd);
 

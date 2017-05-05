@@ -56,24 +56,20 @@ MainWindow::MainWindow(QWidget* parent)
 
     QHBoxLayout *mainScr = new QHBoxLayout();
         
-
     colLayout = new QVBoxLayout();
-    colLayout->QLayout::addWidget(canRawView);
     colLayout->QLayout::addWidget(canSignalView);
+    colLayout->QLayout::addWidget(canSignalSender);
     mainScr->addLayout(colLayout);
 
-    QImage *image = new QImage("/home/remol/Documents/test.png");
+    QImage *image = new QImage("test.png");
     QLabel *imgLabel = new QLabel("");
-    //imgLabel->setMinimumSize({600, 800});
-    imgLabel->setFixedSize({800, 1000});
-    //imgLabel->setPixmap(QPixmap::fromImage(*image));
-    imgLabel->setAutoFillBackground(true);
-    imgLabel->setPalette({QPalette::Background, Qt::black});
+    imgLabel->setMinimumSize({800, 1000});
+    imgLabel->setPixmap(QPixmap::fromImage(*image));
     mainScr->addWidget(imgLabel);
 
     colLayout = new QVBoxLayout();
+    colLayout->QLayout::addWidget(canRawView);
     colLayout->QLayout::addWidget(canRawSender);
-    colLayout->QLayout::addWidget(canSignalSender);
     mainScr->addLayout(colLayout);
 
     QWidget* window = new QWidget();
