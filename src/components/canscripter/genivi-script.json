@@ -49,10 +49,6 @@
                 "value" : 114
             },
             {
-                "name" : "vehicle.engine.oilpressure",
-                "value" : 50
-            },
-            {
                 "post-delay" : 2000,
                 "comment" : "wait in start for a while..."
             },
@@ -70,8 +66,30 @@
                 "value" : 11
             },
             {
+                "name" : "vehicle.engine.oilpressure",
+                "value" : 50
+            },
+            {
                 "post-delay" : 2000,
                 "comment" : "wait in start for a while..."
+            },
+            {
+                "name" : "vehicle.transmission.gear",
+                "value" : 2,
+                "post-delay" : 1000,
+                "comment" : "gear to neutral"
+            },
+            {
+                "name" : "vehicle.transmission.gear",
+                "value" : 3,
+                "post-delay" : 1000,
+                "comment" : "gear to neutral"
+            },
+            {
+                "name" : "vehicle.transmission.gear",
+                "value" : 4,
+                "post-delay" : 1000,
+                "comment" : "gear to drive"
             }
         ]
 }
