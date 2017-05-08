@@ -90,6 +90,42 @@
                 "value" : 4,
                 "post-delay" : 1000,
                 "comment" : "gear to drive"
+            },
+            {
+                "post-delay" : 2000,
+                "comment" : "READY TO DRIVE!"
+            },
+
+
+            {
+                "name" : "vehicle.speed",
+                "value" : 30
+            },
+            {
+                "name" : "vehicle.engine.rpm",
+                "value" : 43,
+                "post-delay" : 500
+            },
+
+            {
+                "name" : "vehicle.speed",
+                "value" : 44
+            },
+            {
+
+                "name" : "vehicle.engine.rpm",
+                "value" : 21,
+                "post-delay" : 500
+            },
+
+            {
+                "name" : "vehicle.speed",
+                "value" : 73
+            },
+            {
+                "name" : "vehicle.engine.rpm",
+                "value" : 52,
+                "post-delay" : 500
             }
         ]
 }

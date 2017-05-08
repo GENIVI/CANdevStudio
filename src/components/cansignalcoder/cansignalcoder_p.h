@@ -34,7 +34,7 @@ public:
     std::map<quint32, QByteArray> rawValue;
     std::map<quint32, bool> valueUpdated;
     std::vector<std::unique_ptr<QTimer>> signalTimer;
-    const uint32_t frameIntervalMs {1000};
+    const uint32_t frameIntervalMs {500};
     QTimer frameTimer;
 };
 
