@@ -17,8 +17,8 @@ public:
     ~MainWindow();
 
 private:
-    uint32_t logoNdx{ 0 };
-    int logoIntervalMs{ 5000 };
+    uint32_t logoNdx{ 1 };
+    int logoIntervalMs{ 10000 };
     std::vector<QString> logosFiles{ "genivi_1.png", "genivi_2.png" };
     QTimer logosTimer;
     std::unique_ptr<CanDevice> canDevice;
