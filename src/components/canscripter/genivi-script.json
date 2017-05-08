@@ -4,22 +4,74 @@
             {
                 "name" : "vehicle.ignition",
                 "value" : 0,
-                "post-delay" : 1000
+                "post-delay" : 1000,
+                "comment" : "make sure we are in off"
             },
             {
                 "name" : "vehicle.ignition",
                 "value" : 1,
-                "post-delay" : 5000
+                "post-delay" : 5000,
+                "comment" : "cluster to acc wiat for completion of predrive check"
             },
             {
                 "name" : "vehicle.ignition",
                 "value" : 2,
-                "post-delay" : 500
+                "comment" : "cluster to on"
             },
             {
                 "name" : "vehicle.transmission.gear",
                 "value" : 1,
-                "post-delay" : 500
+                "comment" : "gear to park"
+            },
+            {
+                "name" : "vehicle.battery",
+                "value" : 123
+            },
+            {
+                "name" : "vehicle.engine.temperature",
+                "value" : 30
+            },
+            {
+                "name" : "vehicle.fuel",
+                "value" : 100
+            },
+            {
+                "post-delay" : 3000,
+                "comment" : "wait in on for a while..."
+            },
+            {
+                "name" : "vehicle.ignition",
+                "value" : 3,
+                "comment" : "cluster to start. Engine ignition"
+            },
+            {
+                "name" : "vehicle.battery",
+                "value" : 114
+            },
+            {
+                "name" : "vehicle.engine.oilpressure",
+                "value" : 50
+            },
+            {
+                "post-delay" : 2000,
+                "comment" : "wait in start for a while..."
+            },
+            {
+                "name" : "vehicle.ignition",
+                "value" : 2,
+                "comment" : "cluster to on again."
+            },
+            {
+                "name" : "vehicle.battery",
+                "value" : 124
+            },
+            {
+                "name" : "vehicle.engine.rpm",
+                "value" : 11
+            },
+            {
+                "post-delay" : 2000,
+                "comment" : "wait in start for a while..."
             }
         ]
 }
