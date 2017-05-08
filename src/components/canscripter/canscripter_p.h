@@ -212,13 +212,13 @@ private:
                     }
 
                     if (valueStart <= valueStop) {
-                        uint32_t stepDuration = duration / (valueStop - valueStart) / valueStep;
+                        uint32_t stepDuration = duration / ((valueStop - valueStart) / valueStep);
 
                         for (val = valueStart; val <= valueStop; val += valueStep) {
                             timerSteps.push_back({ name, val, stepDuration });
                         }
                     } else {
-                        uint32_t stepDuration = duration / (valueStart - valueStop) / valueStep;
+                        uint32_t stepDuration = duration / ((valueStart - valueStop) / valueStep);
 
                         for (val = valueStart; val >= valueStop && val <= valueStart; val -= valueStep) {
                             timerSteps.push_back({ name, val, stepDuration });

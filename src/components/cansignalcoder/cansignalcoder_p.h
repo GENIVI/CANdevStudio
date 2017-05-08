@@ -6,6 +6,8 @@
 #include <map>
 #include <tuple>
 #include <vector>
+#include <QTimer>
+#include <memory>
 
 class CanSignalCoderPrivate {
 public:
@@ -15,7 +17,9 @@ public:
             raw2Sig[sig[i].canId].push_back(&sig[i]);
             sig2Raw[sig[i].sigName] = &sig[i];
             rawValue[sig[i].canId].fill(0, sig[i].end / 8 + 1);
+            valueUpdated[sig[i].canId] = true;
         }
+
     }
 
     void clearFrameCache()
@@ -28,6 +32,10 @@ public:
     std::map<quint32, std::vector<const CanSignal*> > raw2Sig;
     std::map<QString, const CanSignal*> sig2Raw;
     std::map<quint32, QByteArray> rawValue;
+    std::map<quint32, bool> valueUpdated;
+    std::vector<std::unique_ptr<QTimer>> signalTimer;
+    const uint32_t frameIntervalMs {1000};
+    QTimer frameTimer;
 };
 
 #endif // CANSIGNALCODERPRIVATE_P_H

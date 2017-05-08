@@ -34,6 +34,21 @@ CanSignalCoder::CanSignalCoder(QObject* parent)
     Q_D(CanSignalCoder);
 
     d->addSignalDescriptors(geniviDemoSignals, geniviDemoSignals_cnt);
+
+    connect(&d->frameTimer, &QTimer::timeout, [this, d]() {
+                for(auto &val : d->rawValue) {
+                    if(d->valueUpdated[val.first]) {
+                        d->valueUpdated[val.first] = false;    
+
+                        QCanBusFrame frame;
+                        frame.setPayload(val.second);
+                        frame.setFrameId(val.first);
+
+                        QVariant ctx = 0;
+                        emit sendFrame(frame, ctx);
+                    }
+                }
+            });
 }
 
 CanSignalCoder::~CanSignalCoder()
@@ -86,13 +101,14 @@ void CanSignalCoder::signalReceived(const QString& name, const QByteArray& value
             tmp &= ~(mask << valShift);
             tmp |= val << valShift;
             d->rawValue[s->canId].replace(byteNum, 1, (const char*)&tmp, 1);
+            d->valueUpdated[s->canId] = true;    
 
-            QCanBusFrame frame;
-            frame.setPayload(d->rawValue[s->canId]);
-            frame.setFrameId(s->canId);
+            //QCanBusFrame frame;
+            //frame.setPayload(d->rawValue[s->canId]);
+            //frame.setFrameId(s->canId);
 
-            QVariant ctx = 0;
-            emit sendFrame(frame, ctx);
+            //QVariant ctx = 0;
+            //emit sendFrame(frame, ctx);
 
             // emit signal to indicate that signal has been successful encoded
             emit signalEncoded(name, value);
@@ -109,4 +125,19 @@ void CanSignalCoder::clearFrameCache()
     Q_D(CanSignalCoder);
 
     d->clearFrameCache();
+}
+
+void CanSignalCoder::start()
+{
+    Q_D(CanSignalCoder);
+
+    d->frameTimer.setInterval(1000);
+    d->frameTimer.start();
+}
+
+void CanSignalCoder::stop()
+{
+    Q_D(CanSignalCoder);
+
+    d->frameTimer.stop();
 }

@@ -1,46 +1,25 @@
 {
     "timer1" :
         [
-            
-            {
-                "name" : "vehicle.battery",
-                "value" : 120
-            },
             {
                 "name" : "vehicle.ignition",
-                "pre-delay" : 1000,
-                "value" : 1
-            },
-            {
-                "name" : "vehicle.ignition",
-                "pre-delay" : 1000,
-                "value" : 2,
+                "value" : 0,
                 "post-delay" : 1000
             },
             {
-                "name" : "vehicle.fuel",
-                "value-start" : 0,
-                "value-stop" : 100,
-                "value-step" : 1,
-                "duration" : 1000
+                "name" : "vehicle.ignition",
+                "value" : 1,
+                "post-delay" : 5000
             },
             {
-                "name" : "vehicle.fuel",
-                "value-start" : 99,
-                "value-stop" : 50,
-                "value-step" : 1,
-                "duration" : 10000
-            }
-        ],
-    "timer2" :
-        [
+                "name" : "vehicle.ignition",
+                "value" : 2,
+                "post-delay" : 500
+            },
             {
-                "pre-delay" : 4000,
-                "name": "vehicle.speed",
-                "value-start" : 0,
-                "value-stop" : 200,
-                "value-step" : 1,
-                "duration" : 10000
+                "name" : "vehicle.transmission.gear",
+                "value" : 1,
+                "post-delay" : 500
             }
         ]
 }

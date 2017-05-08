@@ -61,11 +61,11 @@ MainWindow::MainWindow(QWidget* parent)
     colLayout->QLayout::addWidget(canSignalSender);
     mainScr->addLayout(colLayout);
 
-    QImage image("test.png");
-    QLabel* imgLabel = new QLabel("");
-    imgLabel->setMinimumSize({ 800, 1000 });
-    imgLabel->setPixmap(QPixmap::fromImage(image));
-    mainScr->addWidget(imgLabel);
+    //QImage image("test.png");
+    //QLabel* imgLabel = new QLabel("");
+    //imgLabel->setMinimumSize({ 800, 1000 });
+    //imgLabel->setPixmap(QPixmap::fromImage(image));
+    //mainScr->addWidget(imgLabel);
 
     colLayout = new QVBoxLayout();
     colLayout->QLayout::addWidget(canRawView);
@@ -100,10 +100,12 @@ MainWindow::MainWindow(QWidget* parent)
     connect(pbStart, &QPushButton::pressed, canSignalView, &CanSignalView::start);
     connect(pbStart, &QPushButton::pressed, canSignalSender, &CanSignalSender::start);
     connect(pbStart, &QPushButton::pressed, canRawSender, &CanRawSender::start);
+    connect(pbStart, &QPushButton::pressed, canSignalCoder.get(), &CanSignalCoder::start);
     connect(pbStop, &QPushButton::pressed, canScripter.get(), &CanScripter::stop);
     connect(pbStop, &QPushButton::pressed, canDevice.get(), &CanDevice::stop);
     connect(pbStop, &QPushButton::pressed, canSignalSender, &CanSignalSender::stop);
     connect(pbStop, &QPushButton::pressed, canRawSender, &CanRawSender::stop);
+    connect(pbStop, &QPushButton::pressed, canSignalCoder.get(), &CanSignalCoder::stop);
     connect(pbClear, &QPushButton::pressed, canSignalView, &CanSignalView::clear);
     connect(pbClear, &QPushButton::pressed, canRawView, &CanRawView::clear);
 
@@ -147,12 +149,12 @@ MainWindow::MainWindow(QWidget* parent)
     scriptRepeat->setChecked(true);
     scriptPath->setText("src/components/canscripter/genivi-script.json");
 
-    logosTimer.setInterval(logoIntervalMs);
-    connect(&logosTimer, &QTimer::timeout, [imgLabel, this]() {
-        QImage image(logosFiles[logoNdx++ % logosFiles.size()]);
-        imgLabel->setPixmap(QPixmap::fromImage(image));
-    });
-    logosTimer.start(logoIntervalMs);
+    //logosTimer.setInterval(logoIntervalMs);
+    //connect(&logosTimer, &QTimer::timeout, [imgLabel, this]() {
+        //QImage image(logosFiles[logoNdx++ % logosFiles.size()]);
+        //imgLabel->setPixmap(QPixmap::fromImage(image));
+    //});
+    //logosTimer.start(logoIntervalMs);
 }
 
 MainWindow::~MainWindow()
