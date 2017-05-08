@@ -131,7 +131,7 @@ void CanSignalCoder::start()
 {
     Q_D(CanSignalCoder);
 
-    d->frameTimer.setInterval(1000);
+    d->frameTimer.setInterval(d->frameIntervalMs);
     d->frameTimer.start();
 }
 
