@@ -2,6 +2,30 @@
     "prepareToDrive" :
         [
             {
+                "name" : "vehicle.battery",
+                "value" : 0
+            },
+            {
+                "name" : "vehicle.engine.rpm",
+                "value" : 0
+            },
+            {
+                "name" : "vehicle.engine.oilpressure",
+                "value" : 0
+            },
+            {
+                "name" : "vehicle.engine.temperature",
+                "value" : 0
+            },
+            {
+                "name" : "vehicle.speed",
+                "value" : 0
+            },
+            {
+                "name" : "vehicle.fuel",
+                "value" : 0
+            },
+            {
                 "name" : "vehicle.ignition",
                 "value" : 0,
                 "post-delay" : 1000,
@@ -77,7 +101,7 @@
                 "name" : "vehicle.transmission.gear",
                 "value" : 2,
                 "post-delay" : 1000,
-                "comment" : "gear to neutral"
+                "comment" : "gear to reverse"
             },
             {
                 "name" : "vehicle.transmission.gear",
@@ -124,8 +148,18 @@
                 "duration" : 8000
             },
             {
-                "post-delay" : 10000,
-                "comment" : "Wait until car is ready to drive"
+                "name" : "vehicle.speed",
+                "value-start" : 204,
+                "value-stop" : 166,
+                "value-step" : 1,
+                "duration" : 8000
+            },
+            {
+                "name" : "vehicle.speed",
+                "value-start" : 165,
+                "value-stop" : 0,
+                "value-step" : 1,
+                "duration" : 8000
             }
         ],
     "rpm" :
@@ -154,6 +188,76 @@
                 "value-stop" : 83,
                 "value-step" : 1,
                 "duration" : 8000
+            },
+            {
+                "name" : "vehicle.engine.rpm",
+                "value-start" : 82,
+                "value-stop" : 55,
+                "value-step" : 1,
+                "duration" : 8000
+            },
+            {
+                "name" : "vehicle.engine.rpm",
+                "value-start" : 54,
+                "value-stop" : 15,
+                "value-step" : 1,
+                "duration" : 3000
+            },
+            {
+                "name" : "vehicle.engine.rpm",
+                "value-start" : 44,
+                "value-stop" : 15,
+                "value-step" : 1,
+                "duration" : 3000
+            },
+            {
+                "name" : "vehicle.engine.rpm",
+                "value-start" : 33,
+                "value-stop" : 11,
+                "value-step" : 1,
+                "duration" : 2000
+            }
+        ],
+    "coolant" :
+        [
+            {
+                "post-delay" : 16000,
+                "comment" : "Wait until car is ready to drive"
+            },
+            {
+                "name" : "vehicle.engine.temperature",
+                "value-start" : 31,
+                "value-stop" : 90,
+                "value-step" : 1,
+                "duration" : 20000
+            }
+        ],
+    "fuel" :
+        [
+            {
+                "post-delay" : 16000,
+                "comment" : "Wait until car is ready to drive"
+            },
+            {
+                "name" : "vehicle.fuel",
+                "value-start" : 100,
+                "value-stop" : 54,
+                "value-step" : 1,
+                "duration" : 40000
+            }
+        ],
+    "oil" :
+        [
+            {
+                "post-delay" : 16000,
+                "comment" : "Wait until car is ready to drive"
+            },
+            {
+                "name" : "vehicle.engine.oilpressure",
+                "value-start" : 51,
+                "value-stop" : 99,
+                "value-step" : 1,
+                "duration" : 10000
             }
         ]
 }

@@ -60,6 +60,11 @@ Q_SIGNALS:
 private Q_SLOTS:
     void step()
     {
+        if(ndx >= timerSteps.size()) {
+            emit finished();
+            return;
+        }
+
         if (timerSteps[ndx].name.length() > 0) {
             emit sendSignal(timerSteps[ndx].name, QByteArray::number(timerSteps[ndx].value));
         }
@@ -67,11 +72,7 @@ private Q_SLOTS:
         setInterval(timerSteps[ndx].delay);
         ndx++;
 
-        if (ndx < timerSteps.size()) {
-            start();
-        } else {
-            emit finished();
-        }
+        start();
     }
 
 private:
