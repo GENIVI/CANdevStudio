@@ -26,6 +26,10 @@
                 "value" : 0
             },
             {
+                "name" : "vehicle.transmission.gear",
+                "value" : 0
+            },
+            {
                 "name" : "vehicle.ignition",
                 "value" : 0,
                 "post-delay" : 1000,
@@ -261,6 +265,45 @@
                 "value-stop" : 11,
                 "value-step" : 1,
                 "duration" : 1000
+            },
+            {
+                "pre-delay" : 1000,
+                "name" : "vehicle.transmission.gear",
+                "value" : 1
+            },
+            {
+                "pre-delay" : 1000,
+                "name" : "vehicle.transmission.gear",
+                "value" : 0
+            },
+            {
+                "name" : "vehicle.battery",
+                "value" : 0
+            },
+            {
+                "name" : "vehicle.engine.rpm",
+                "value" : 0
+            },
+            {
+                "name" : "vehicle.engine.oilpressure",
+                "value" : 0
+            },
+            {
+                "name" : "vehicle.engine.temperature",
+                "value" : 0
+            },
+            {
+                "name" : "vehicle.speed",
+                "value" : 0
+            },
+            {
+                "name" : "vehicle.ignition",
+                "value" : 0
+            },
+            {
+                "name" : "vehicle.fuel",
+                "value" : 0,
+                "post-delay" : 2000
             }
             
         ],
