@@ -160,6 +160,19 @@
                 "value-stop" : 0,
                 "value-step" : 1,
                 "duration" : 8000
+            },
+            {
+                "pre-delay" : 2000,
+                "name" : "vehicle.transmission.gear",
+                "value" : 3,
+                "post-delay" : 1000,
+                "comment" : "gear to neutral"
+            },
+            {
+                "name" : "vehicle.transmission.gear",
+                "value" : 2,
+                "post-delay" : 1000,
+                "comment" : "gear to reverse"
             }
         ],
     "rpm" :
@@ -216,7 +229,40 @@
                 "value-stop" : 11,
                 "value-step" : 1,
                 "duration" : 2000
+            },
+            {
+                "post-delay" : 4500,
+                "comment" : "Wait for reverse gear"
+            },
+            {
+                "name" : "vehicle.engine.rpm",
+                "value-start" : 11,
+                "value-stop" : 33,
+                "value-step" : 1,
+                "duration" : 4000
+            },
+            {
+                "name" : "vehicle.engine.rpm",
+                "value-start" : 33,
+                "value-stop" : 25,
+                "value-step" : 1,
+                "duration" : 3000
+            },
+            {
+                "name" : "vehicle.engine.rpm",
+                "value-start" : 26,
+                "value-stop" : 30,
+                "value-step" : 1,
+                "duration" : 3000
+            },
+            {
+                "name" : "vehicle.engine.rpm",
+                "value-start" : 29,
+                "value-stop" : 11,
+                "value-step" : 1,
+                "duration" : 1000
             }
+            
         ],
     "coolant" :
         [
@@ -258,6 +304,113 @@
                 "value-stop" : 99,
                 "value-step" : 1,
                 "duration" : 10000
+            }
+        ],
+    "turn" :
+        [
+            {
+                "post-delay" : 59000,
+                "comment" : "Wait for reverse"
+            },
+            {
+                "name" : "vehicle.turnsignal.left",
+                "value" : 1,
+                "post-delay" : 500
+            },
+            {
+                "name" : "vehicle.turnsignal.left",
+                "value" : 0,
+                "post-delay" : 500
+            },
+            {
+                "name" : "vehicle.turnsignal.left",
+                "value" : 1,
+                "post-delay" : 500
+            },
+            {
+                "name" : "vehicle.turnsignal.left",
+                "value" : 0,
+                "post-delay" : 500
+            },
+            {
+                "name" : "vehicle.turnsignal.left",
+                "value" : 1,
+                "post-delay" : 500
+            },
+            {
+                "name" : "vehicle.turnsignal.left",
+                "value" : 0,
+                "post-delay" : 500
+            },
+            {
+                "name" : "vehicle.turnsignal.left",
+                "value" : 1,
+                "post-delay" : 500
+            },
+            {
+                "name" : "vehicle.turnsignal.left",
+                "value" : 0,
+                "post-delay" : 500
+            },
+            {
+                "name" : "vehicle.turnsignal.left",
+                "value" : 1,
+                "post-delay" : 500
+            },
+            {
+                "name" : "vehicle.turnsignal.left",
+                "value" : 0,
+                "post-delay" : 500
+            },
+            {
+                "name" : "vehicle.turnsignal.left",
+                "value" : 1,
+                "post-delay" : 500
+            },
+            {
+                "name" : "vehicle.turnsignal.left",
+                "value" : 0,
+                "post-delay" : 500
+            },
+            {
+                "name" : "vehicle.turnsignal.left",
+                "value" : 1,
+                "post-delay" : 500
+            },
+            {
+                "name" : "vehicle.turnsignal.left",
+                "value" : 0,
+                "post-delay" : 500
+            },
+            {
+                "name" : "vehicle.turnsignal.left",
+                "value" : 1,
+                "post-delay" : 500
+            },
+            {
+                "name" : "vehicle.turnsignal.left",
+                "value" : 0,
+                "post-delay" : 500
+            },
+            {
+                "name" : "vehicle.turnsignal.left",
+                "value" : 1,
+                "post-delay" : 500
+            },
+            {
+                "name" : "vehicle.turnsignal.left",
+                "value" : 0,
+                "post-delay" : 500
+            },
+            {
+                "name" : "vehicle.turnsignal.left",
+                "value" : 1,
+                "post-delay" : 500
+            },
+            {
+                "name" : "vehicle.turnsignal.left",
+                "value" : 0,
+                "post-delay" : 500
             }
         ]
 }
