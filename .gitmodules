@@ -6,4 +6,4 @@
 	url = https://github.com/philsquared/Catch.git
 [submodule "src/components/cansignalcoder/can-signals"]
 	path = src/components/cansignalcoder/can-signals
-	url = git@github.com:rkollataj/can-signals.git
+	url = https://github.com/rkollataj/can-signals.git
