@@ -3,7 +3,7 @@
 ## Build instructions
 Proven to work with GCC 6.3.1 and Qt5.8
 ```
-git clone https://github.com/CanDevStudio/CanDevStudio.git
+git clone https://github.com/GENIVI/CANdevStudio.git
 cd CanDevStudio
 git checkout amm17
 git submodule update --init
