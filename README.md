@@ -4,7 +4,7 @@
 Proven to work with GCC 6.3.1 and Qt5.8
 ```
 git clone https://github.com/GENIVI/CANdevStudio.git
-cd CanDevStudio
+cd CANdevStudio
 git checkout amm17
 git submodule update --init
 mkdir build
