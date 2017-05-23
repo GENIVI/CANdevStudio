@@ -5,7 +5,7 @@ Proven to work with GCC 6.3.1 and Qt5.8
 ```
 git clone https://github.com/CanDevStudio/CanDevStudio.git
 cd CanDevStudio
-git checkout amm
+git checkout amm17
 git submodule update --init
 mkdir build
 cd build
