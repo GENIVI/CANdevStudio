@@ -4,7 +4,7 @@
 
 TEST_CASE("Simple test", "[example]") {
     CanDevice canDevice;
-    canDevice.init("socketcan", "can0");
+    canDevice.init("peakcan", "can0");
     canDevice.start();
 }
 
