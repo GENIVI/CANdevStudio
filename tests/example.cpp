@@ -1,6 +1,7 @@
+#include <candevice/candevice.h>
+// Keep fakeit as a last include. Otherwise it may cause compilation errors on Windows. 
 #define CATCH_CONFIG_RUNNER
 #include <fakeit.hpp>
-#include "candevice/candevice.h"
 
 TEST_CASE("Simple test", "[example]") {
     CanDevice canDevice;
