@@ -1,0 +1,38 @@
+version: 1.0.{build}
+image: Visual Studio 2015
+environment:
+  matrix:
+  - GENERATOR: '"MinGW Makefiles"'
+    BUILD_TYPE: Debug
+    QT_PATH: C:\Qt\5.8\mingw53_32
+  - GENERATOR: '"MinGW Makefiles"'
+    BUILD_TYPE: Release
+    QT_PATH: C:\Qt\5.8\mingw53_32
+  - GENERATOR: '"Visual Studio 14 2015"'
+    BUILD_TYPE: Debug
+    QT_PATH: C:\Qt\5.8\msvc2015
+  - GENERATOR: '"Visual Studio 14 2015"'
+    BUILD_TYPE: Release
+    QT_PATH: C:\Qt\5.8\msvc2015
+  - GENERATOR: '"Visual Studio 14 2015 Win64"'
+    BUILD_TYPE: Debug
+    QT_PATH: C:\Qt\5.8\msvc2015_64
+  - GENERATOR: '"Visual Studio 14 2015 Win64"'
+    BUILD_TYPE: Release
+    QT_PATH: C:\Qt\5.8\msvc2015_64
+install:
+- cmd: git submodule update --init
+build_script:
+- cmd: >-
+    mkdir build
+
+    cd build
+
+    set PATH=%PATH:C:\Program Files\Git\usr\bin;=%
+
+    set PATH=C:\MinGW\bin;%PATH%
+
+    cmake .. -G %GENERATOR% -DCMAKE_PREFIX_PATH=%QT_PATH% -DCMAKE_BUILD_TYPE=%BUILD_TYPE%
+
+    cmake --build . --config %BUILD_TYPE%
+test: off

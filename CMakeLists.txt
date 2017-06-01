@@ -5,7 +5,8 @@ project(CanDevStudio CXX)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
 
-option(WITH_COVERAGE OFF)
+option(WITH_COVERAGE "Build with coverage" OFF)
+option(WITH_TESTS "Build with test" ON)
 
 find_package(Qt5Core REQUIRED)
 find_package(Qt5SerialBus REQUIRED)
@@ -14,9 +15,11 @@ find_package(Qt5Widgets REQUIRED)
 set_property(TARGET Qt5::SerialBus PROPERTY INTERFACE_COMPILE_FEATURES "")
 set_property(TARGET Qt5::Core PROPERTY INTERFACE_COMPILE_FEATURES "")
 
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/Modules/")
+if(NOT MSVC)
+    add_definitions(-Wall -Wextra -std=c++1z)
+endif()
 
-add_definitions(-Wall -Wextra -std=c++1z)
+include_directories(${CMAKE_SOURCE_DIR}/src)
 
 if(WITH_COVERAGE)
     set(CMAKE_CXX_FLAGS "-g -O0 -Wwrite-strings -fprofile-arcs -ftest-coverage")
@@ -24,11 +27,11 @@ if(WITH_COVERAGE)
     set(CMAKE_EXE_LINKER_FLAGS="-fprofile-arcs -ftest-coverage")
 endif()
 
-include_directories(${CMAKE_SOURCE_DIR}/src)
-
 add_subdirectory(src/gui)
 add_subdirectory(src/components)
 
-enable_testing()
-add_subdirectory(3rdParty/fakeit)
-add_subdirectory(tests)
+if(WITH_TESTS OR WITH_COVERAGE)
+    enable_testing()
+    add_subdirectory(3rdParty/fakeit)
+    add_subdirectory(tests)
+endif()
