@@ -6,6 +6,7 @@
 #include <QCanBusDevice>
 #include <memory>
 #include <QScopedPointer>
+#include <QString>
 
 class CanDevicePrivate;
 
