@@ -18,7 +18,7 @@ class CanDevice : public QObject
 public:
     CanDevice();
     ~CanDevice();
-    bool init(const QString &backend, const QString &interface);
+    bool init(const QString &backend, const QString &iface);
     bool start();
 
 Q_SIGNALS:
