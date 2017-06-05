@@ -3,57 +3,32 @@ language: cpp
 dist: trusty
 
 notifications:
-      email: false
+  email: false
 
-addons:
-  apt:
-    sources:
-      - ubuntu-toolchain-r-test
-    packages:
-      - g++-5
-      - g++-6
-      - lcov
+services:
+  docker
+
+compiler: 
+  - gcc-6
+  - gcc-53
+  - clang-3.8
+  - clang-3.5
+
+env: 
+  - CMAKE_BUILD_TYPE=Release
+  - CMAKE_BUILD_TYPE=Debug
+
+matrix: 
+  fast_finish: true
+  include: 
+  - compiler: gcc-6
+    env: CMAKE_BUILD_TYPE=Debug
+    env: WITH_COVERAGE=ON
 
 before_install:
-  - echo "PR $TRAVIS_PULL_REQUEST"
-  - if [ $TRAVIS_PULL_REQUEST == "false" ]; then echo HEAD~ HEAD refs/heads/$TRAVIS_BRANCH | ./.trigger_appveyor.rb; fi
-  - sudo add-apt-repository --yes ppa:beineri/opt-qt58-trusty
-  - sudo apt-get update -q
-  - travis_wait 30 sudo apt-get install qt58-meta-full
+  #- echo "PR $TRAVIS_PULL_REQUEST"
+  #- if [ $TRAVIS_PULL_REQUEST == "false" ]; then echo HEAD~ HEAD refs/heads/$TRAVIS_BRANCH | ./.trigger_appveyor.rb; fi
+  - docker pull bartekt/can_dev_base_image
 
 script:
-  - source /opt/qt58/bin/qt58-env.sh
-  - mkdir build-g64 build-g64d build-c64 build-c64d build-coverage
-# GCC x64 Release
-  - cd build-g64
-  - export CC=gcc-5
-  - export CXX=g++-5
-  - cmake .. -DCMAKE_BUILD_TYPE=Release
-  - make -j4
-# Clang x64 Debug
-  - cd ../build-g64d
-  - export CC=gcc-5
-  - export CXX=g++-5
-  - cmake .. -DCMAKE_BUILD_TYPE=Debug
-  - make -j4
-# Clang x64 Release
-  - cd ../build-c64
-  - export CC=clang
-  - export CXX=clang++
-  - cmake .. -DCMAKE_BUILD_TYPE=Release
-  - make -j4
-# Clang x64 Debug
-  - cd ../build-c64d
-  - export CC=clang
-  - export CXX=clang++
-  - cmake .. -DCMAKE_BUILD_TYPE=Debug
-  - make -j4
-# GCC x64 codecoverage
-  - cd ../build-coverage
-  - export CC=gcc-6
-  - export CXX=g++-6
-  - cmake .. -DWITH_COVERAGE=ON
-  - make -j4
-  - ctest -V
-  - bash <(curl -s https://codecov.io/bash) -x gcov-6 || echo "Codecov did not collect coverage reports"
-  
+  - ./.travis.sh
