@@ -8,7 +8,7 @@ fi
 
 echo "CMake: $cmake_command"
 docker run -e WITH_COVERAGE=$WITH_COVERAGE -e CXX=$CXX -v `pwd`:/root/sources bartekt/can_dev_base_image /bin/bash -c \
-     "rm -rf /root/build && mkdir -p /root/build && cd /root/build && source /opt/qt58/bin/qt58-env.sh &&
+     "mkdir -p build && cd build && source /opt/qt58/bin/qt58-env.sh &&
       $cmake_command && 
       make -j5 &&
       make test && 
