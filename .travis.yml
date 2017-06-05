@@ -1,30 +1,28 @@
 sudo: required
 language: cpp
-
-branches:
-  except:
-    - dev
+dist: trusty
 
 notifications:
-      email: false
-addons:
-  apt:
-    sources:
-      - ubuntu-toolchain-r-test
-    packages:
-      - g++-5
+  email: false
+
+services:
+  docker
+
 before_install:
-  - sudo add-apt-repository --yes ppa:beineri/opt-qt562
-  - sudo apt-get update -q
-  - sudo apt-cache search qt56
-  - sudo apt-get install -qq g++-6 qt56-meta-minimal
-  - curl https://cmake.org/files/v3.4/cmake-3.4.0-Linux-x86_64.tar.gz -o cmake-3.4.0-Linux-x86_64.tar.gz
-  - tar xf cmake-3.4.0-Linux-x86_64.tar.gz
-  - export PATH=$PWD/cmake-3.4.0-Linux-x86_64/bin/:$PATH
-  - pip install --user cpp-coveralls
-install:
-  - if [ "$CXX" = "g++" ]; then export CXX="g++-5" CC="gcc-5"; fi
+  - echo "PR $TRAVIS_PULL_REQUEST"
+  - if [ $TRAVIS_PULL_REQUEST == "false" ]; then echo HEAD~ HEAD refs/heads/$TRAVIS_BRANCH | ./.trigger_appveyor.rb || true; fi
+  - docker pull bartekt/can_dev_base_image
+  - export ci_env=`bash <(curl -s https://codecov.io/env)`
+
 script:
-  - travis/build.sh
-after_success:
-  - coveralls --exclude lib --exclude tests --gcov-options '\-lp'
+  - export CC=gcc-53 CXX=g++-53 CMAKE_BUILD_TYPE=Release
+  - ./.travis.sh
+  - export CC=gcc-53 CXX=g++-53 CMAKE_BUILD_TYPE=Debug 
+  - ./.travis.sh
+  - export CC=clang-3.5 CXX=clang++-3.5 CMAKE_BUILD_TYPE=Release
+  - ./.travis.sh
+  - export CC=clang-3.5 CXX=clang++-3.5 CMAKE_BUILD_TYPE=Debug
+  - ./.travis.sh
+  - export CC=gcc-6 CXX=g++-6 CMAKE_BUILD_TYPE=Debug WITH_COVERAGE=ON
+  - ./.travis.sh
+    
