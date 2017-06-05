@@ -8,26 +8,20 @@ notifications:
 services:
   docker
 
-env:
-  - CC=gcc-53 CXX=g++-53 CMAKE_BUILD_TYPE=Release
-  - CC=gcc-53 CXX=g++-53 CMAKE_BUILD_TYPE=Debug 
-  - CC=clang-3.5 CXX=clang++-3.5 CMAKE_BUILD_TYPE=Release
-  - CC=clang-3.5 CXX=clang++-3.5 CMAKE_BUILD_TYPE=Debug
-  - CC=gcc-6 CXX=g++-6 CMAKE_BUILD_TYPE=Debug WITH_COVERAGE=ON
-  - CMAKE_BUILD_TYPE=Release
-  - CMAKE_BUILD_TYPE=Debug
-
-matrix: 
-  fast_finish: true
-  include: 
-  - compiler: gcc-6
-    env: CMAKE_BUILD_TYPE=Debug
-    env: WITH_COVERAGE=ON
-
 before_install:
   - echo "PR $TRAVIS_PULL_REQUEST"
   - if [ $TRAVIS_PULL_REQUEST == "false" ]; then echo HEAD~ HEAD refs/heads/$TRAVIS_BRANCH | ./.trigger_appveyor.rb || true; fi
   - docker pull bartekt/can_dev_base_image
 
 script:
+  - export CC=gcc-53 CXX=g++-53 CMAKE_BUILD_TYPE=Release
   - ./.travis.sh
+  - export CC=gcc-53 CXX=g++-53 CMAKE_BUILD_TYPE=Debug 
+  - ./.travis.sh
+  - export CC=clang-3.5 CXX=clang++-3.5 CMAKE_BUILD_TYPE=Release
+  - ./.travis.sh
+  - export CC=clang-3.5 CXX=clang++-3.5 CMAKE_BUILD_TYPE=Debug
+  - ./.travis.sh
+  - export CC=gcc-6 CXX=g++-6 CMAKE_BUILD_TYPE=Debug WITH_COVERAGE=ON
+  - ./.travis.sh
+    
