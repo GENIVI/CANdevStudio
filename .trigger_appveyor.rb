@@ -80,7 +80,7 @@ webhook_url = ENV["APPVEYOR_WEBHOOK"]
 #puts "Webhook URL: #{webhook_url}"
 
 comments_end = SecureRandom.hex
-log_format = "--date=rfc --format=%H%n%an%n%ae%n%ad%n%B#{comments_end}"
+log_format = "--date=rfc --format=%H%n%an%n%ae%n%ad%n%B%n#{comments_end}"
 commits = []
 
 if start_commit_id == "0000000000000000000000000000000000000000"
