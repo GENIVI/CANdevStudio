@@ -12,6 +12,7 @@ before_install:
   - echo "PR $TRAVIS_PULL_REQUEST"
   - if [ $TRAVIS_PULL_REQUEST == "false" ]; then echo HEAD~ HEAD refs/heads/$TRAVIS_BRANCH | ./.trigger_appveyor.rb || true; fi
   - docker pull bartekt/can_dev_base_image
+  - ci_env=`bash <(curl -s https://codecov.io/env)`
 
 script:
   - export CC=gcc-53 CXX=g++-53 CMAKE_BUILD_TYPE=Release

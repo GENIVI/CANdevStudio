@@ -8,7 +8,7 @@ fi
 
 echo "CMake: $cmake_command"
 docker run \
-     -e CODECOV_TOKEN=$CODECOV_TOKEN \
+     $ci_env \
      -e WITH_COVERAGE=$WITH_COVERAGE \
      -e CC=$CC -e CXX=$CXX \
      -v `pwd`:/root/sources bartekt/can_dev_base_image /bin/bash \
