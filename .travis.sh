@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cmake_command="cmake /root/sources -DCMAKE_BUILD_TYPE=$CMAKE_BUILD_TYPE"
+cmake_command="cmake .. -DCMAKE_BUILD_TYPE=$CMAKE_BUILD_TYPE"
 
 if [ "$WITH_COVERAGE" == "ON" ]; then
     cmake_command="$cmake_command -DWITH_COVERAGE=ON"
@@ -8,7 +8,7 @@ fi
 
 echo "CMake: $cmake_command"
 docker run -e WITH_COVERAGE=$WITH_COVERAGE -e CXX=$CXX -v `pwd`:/root/sources bartekt/can_dev_base_image /bin/bash -c \
-     "mkdir -p build && cd build && source /opt/qt58/bin/qt58-env.sh &&
+     "cd /root/sources && mkdir -p build && cd build && source /opt/qt58/bin/qt58-env.sh &&
       $cmake_command && 
       make -j5 &&
       make test && 
