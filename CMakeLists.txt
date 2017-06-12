@@ -5,6 +5,8 @@ project(CanDevStudio CXX)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
 
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/Modules)
+
 option(WITH_COVERAGE "Build with coverage" OFF)
 option(WITH_TESTS "Build with test" ON)
 
@@ -19,7 +21,7 @@ if(NOT MSVC)
     add_definitions(-Wall -Wextra -std=c++1z)
 endif()
 
-include_directories(${CMAKE_SOURCE_DIR}/src)
+include(CompilerVersion)
 
 if(WITH_COVERAGE)
     set(CMAKE_CXX_FLAGS "-g -O0 -Wwrite-strings -fprofile-arcs -ftest-coverage")
