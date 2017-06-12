@@ -1,5 +1,3 @@
-include_directories(${CMAKE_SOURCE_DIR}/src/components)
-
 set(srcs
     main.cpp
     mainwindow.cpp
