@@ -4,6 +4,7 @@ project(CanDevStudio CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
+set(CMAKE_CXX_STANDARD 14)
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/Modules)
 
@@ -18,7 +19,7 @@ set_property(TARGET Qt5::SerialBus PROPERTY INTERFACE_COMPILE_FEATURES "")
 set_property(TARGET Qt5::Core PROPERTY INTERFACE_COMPILE_FEATURES "")
 
 if(NOT MSVC)
-    add_definitions(-Wall -Wextra -std=c++1z)
+    add_definitions(-Wall -Wextra)
 endif()
 
 include(CompilerVersion)
