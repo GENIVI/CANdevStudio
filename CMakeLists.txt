@@ -19,8 +19,6 @@ if(NOT MSVC)
     add_definitions(-Wall -Wextra -std=c++1z)
 endif()
 
-include_directories(${CMAKE_SOURCE_DIR}/src)
-
 if(WITH_COVERAGE)
     set(CMAKE_CXX_FLAGS "-g -O0 -Wwrite-strings -fprofile-arcs -ftest-coverage")
     set(CMAKE_C_FLAGS="-g -O0 -Wall -W -fprofile-arcs -ftest-coverage")
