@@ -13,5 +13,5 @@ elseif(CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
 endif()
 
 if(${CMAKE_CXX_COMPILER_VERSION} VERSION_LESS "${selected_compiler_version}")
-    message(WARNING "Insufficient compiler version")
+    message(WARNING "\nWARNING: Compiler version may be too low. Minimal version of ${CMAKE_CXX_COMPILER_ID} is ${selected_compiler_version}\n")
 endif()
