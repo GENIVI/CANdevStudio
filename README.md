@@ -1,4 +1,5 @@
-[![Build Status](https://travis-ci.org/CanDevStudio/CanDevStudio.svg?branch=master)](https://travis-ci.org/CanDevStudio/CanDevStudio)
+# Notice
+This branch contains code that has been used during GENIVI AMM 17 demo. It is kept as a reference and will not be developed further.
 
 ## Build instructions
 Proven to work with GCC 6.3.1 and Qt5.8
