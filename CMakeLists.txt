@@ -9,7 +9,7 @@ set(CMAKE_CXX_STANDARD 14)
 option(WITH_COVERAGE "Build with coverage" OFF)
 option(WITH_TESTS "Build with test" ON)
 
-find_package(Qt5Core REQUIRED)
+find_package(Qt5Core 5.8 REQUIRED)
 find_package(Qt5SerialBus REQUIRED)
 find_package(Qt5Widgets REQUIRED)
 
