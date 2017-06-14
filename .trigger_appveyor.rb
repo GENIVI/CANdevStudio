@@ -17,14 +17,14 @@ def get_git_config(setting_name)
 end
 
 def get_git_blob_contents(ref, fileName)
-    pr_number = ENV["TRAVIS_PULL_REQUEST"]
+	pr_number = ENV["TRAVIS_PULL_REQUEST"]
 
-    if pr_number == "false"
-	    contents = `git show #{ref}:#{fileName}`
-    else
-        # sed is so so evil... but it works ;)
+	if pr_number == "false"
+		contents = `git show #{ref}:#{fileName}`
+	else
+	# sed is so so evil... but it works ;)
 		contents = `git show HEAD:#{fileName} | sed 's/#&& git fetch origin pull\\/XXX/\\&\\& git fetch origin pull\\/#{pr_number}/g'`
-    end
+	end
 
 	if $?.success?
 		contents
@@ -95,7 +95,7 @@ commits = []
 if pr_number != "false"
 	result = `git log #{ENV["TRAVIS_PULL_REQUEST_SHA"]} -1 #{log_format}`.split("\n")
 	commits += parse_commits(result, comments_end)
-    commits[0][:message] = "Pull Request ##{pr_number}: #{commits[0][:message]}"
+	commits[0][:message] = "Pull Request ##{pr_number}: #{commits[0][:message]}"
 elsif start_commit_id == "0000000000000000000000000000000000000000"
 	# tag
 	result = `git log #{end_commit_id} -1 #{log_format}`.split("\n")
@@ -136,8 +136,8 @@ req = Net::HTTP::Post.new(uri.request_uri, initheader = {'Content-Type' =>'appli
 req.body = payload.to_json
 
 response = Net::HTTP.start(uri.host, uri.port, :use_ssl => uri.scheme == "https") do |http|
-    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-    http.request req
+	http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+	http.request req
 end
 
 if response.code != "200" and response.code != "204"
