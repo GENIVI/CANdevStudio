@@ -85,7 +85,7 @@ repo_name = Pathname.new(repo_path).basename
 
 # get git config
 webhook_url = ENV["APPVEYOR_WEBHOOK"] 
-#puts "Webhook URL: #{webhook_url}"
+puts "Webhook URL: #{webhook_url}"
 pr_number = ENV["TRAVIS_PULL_REQUEST"]
 
 comments_end = SecureRandom.hex
@@ -114,7 +114,6 @@ end
 
 # get blob contents
 appveyor_yml = get_git_blob_contents(end_commit_id, ".appveyor.yml")
-puts appveyor_yml
 
 payload = {
 	:ref => ref,
