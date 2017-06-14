@@ -114,6 +114,7 @@ end
 
 # get blob contents
 appveyor_yml = get_git_blob_contents(end_commit_id, ".appveyor.yml")
+puts appveyor_yml
 
 payload = {
 	:ref => ref,
