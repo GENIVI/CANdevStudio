@@ -86,12 +86,17 @@ repo_name = Pathname.new(repo_path).basename
 # get git config
 webhook_url = ENV["APPVEYOR_WEBHOOK"] 
 #puts "Webhook URL: #{webhook_url}"
+pr_number = ENV["TRAVIS_PULL_REQUEST"]
 
 comments_end = SecureRandom.hex
 log_format = "--date=rfc --format=%H%n%an%n%ae%n%ad%n%B%n#{comments_end}"
 commits = []
 
-if start_commit_id == "0000000000000000000000000000000000000000"
+if pr_number != "false"
+	result = `git log #{ENV["TRAVIS_PULL_REQUEST_SHA"]} -1 #{log_format}`.split("\n")
+	commits += parse_commits(result, comments_end)
+    puts commits[0][:message] = "Pull Request ##{pr_number}: #{commits[0][:message]}"
+elsif start_commit_id == "0000000000000000000000000000000000000000"
 	# tag
 	result = `git log #{end_commit_id} -1 #{log_format}`.split("\n")
 	commits += parse_commits(result, comments_end)
