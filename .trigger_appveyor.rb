@@ -23,7 +23,7 @@ def get_git_blob_contents(ref, fileName)
 	    contents = `git show #{ref}:#{fileName}`
     else
         # sed is so so evil... but it works ;)
-		contents = `git show #{ref}:#{fileName} | sed 's/#&& git fetch origin pull\\/XXX/\\&\\& git fetch origin pull\\/#{pr_number}/g'`
+		contents = `git show HEAD:#{fileName} | sed 's/#&& git fetch origin pull\\/XXX/\\&\\& git fetch origin pull\\/#{pr_number}/g'`
     end
 
 	if $?.success?
@@ -95,7 +95,7 @@ commits = []
 if pr_number != "false"
 	result = `git log #{ENV["TRAVIS_PULL_REQUEST_SHA"]} -1 #{log_format}`.split("\n")
 	commits += parse_commits(result, comments_end)
-    puts commits[0][:message] = "Pull Request ##{pr_number}: #{commits[0][:message]}"
+    commits[0][:message] = "Pull Request ##{pr_number}: #{commits[0][:message]}"
 elsif start_commit_id == "0000000000000000000000000000000000000000"
 	# tag
 	result = `git log #{end_commit_id} -1 #{log_format}`.split("\n")
