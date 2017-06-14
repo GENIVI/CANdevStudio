@@ -21,7 +21,8 @@ environment:
     BUILD_TYPE: Release
     QT_PATH: C:\Qt\5.8\msvc2015_64
 install:
-- cmd: git submodule update --init
+# Dirty hack for pull requests. .trigger_appveyor.sh script will replace comment if needed
+- cmd: git submodule update --init #&& git fetch origin pull/XXX/head && git checkout FETCH_HEAD
 build_script:
 - cmd: >-
     set

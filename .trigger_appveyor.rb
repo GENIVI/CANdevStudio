@@ -17,7 +17,15 @@ def get_git_config(setting_name)
 end
 
 def get_git_blob_contents(ref, fileName)
-	contents = `git show #{ref}:#{fileName}`
+    pr_number = ENV["TRAVIS_PULL_REQUEST"]
+
+    if pr_number == "false"
+	    contents = `git show #{ref}:#{fileName}`
+    else
+        # sed is so so evil... but it works ;)
+		contents = `git show #{ref}:#{fileName} | sed 's/#&& git fetch origin pull\\/XXX/\\&\\& git fetch origin pull\\/#{pr_number}/g'`
+    end
+
 	if $?.success?
 		contents
 	else
@@ -122,8 +130,8 @@ req = Net::HTTP::Post.new(uri.request_uri, initheader = {'Content-Type' =>'appli
 req.body = payload.to_json
 
 response = Net::HTTP.start(uri.host, uri.port, :use_ssl => uri.scheme == "https") do |http|
-	http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-	http.request req
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    http.request req
 end
 
 if response.code != "200" and response.code != "204"
