@@ -17,7 +17,15 @@ def get_git_config(setting_name)
 end
 
 def get_git_blob_contents(ref, fileName)
-	contents = `git show #{ref}:#{fileName}`
+	pr_number = ENV["TRAVIS_PULL_REQUEST"]
+
+	if pr_number == "false"
+		contents = `git show #{ref}:#{fileName}`
+	else
+	# sed is so so evil... but it works ;)
+		contents = `git show HEAD:#{fileName} | sed 's/rem git fetch origin pull\\/XXX/git fetch origin pull\\/#{pr_number}/g' | sed 's/rem git checkout FETCH_HEAD/git checkout FETCH_HEAD/g'`
+	end
+
 	if $?.success?
 		contents
 	else
@@ -78,12 +86,17 @@ repo_name = Pathname.new(repo_path).basename
 # get git config
 webhook_url = ENV["APPVEYOR_WEBHOOK"] 
 #puts "Webhook URL: #{webhook_url}"
+pr_number = ENV["TRAVIS_PULL_REQUEST"]
 
 comments_end = SecureRandom.hex
 log_format = "--date=rfc --format=%H%n%an%n%ae%n%ad%n%B%n#{comments_end}"
 commits = []
 
-if start_commit_id == "0000000000000000000000000000000000000000"
+if pr_number != "false"
+	result = `git log #{ENV["TRAVIS_COMMIT"]} -1 #{log_format}`.split("\n")
+	commits += parse_commits(result, comments_end)
+	commits[0][:message] = "Pull Request ##{pr_number}: #{commits[0][:message]}"
+elsif start_commit_id == "0000000000000000000000000000000000000000"
 	# tag
 	result = `git log #{end_commit_id} -1 #{log_format}`.split("\n")
 	commits += parse_commits(result, comments_end)
