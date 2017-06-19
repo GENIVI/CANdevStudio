@@ -23,7 +23,7 @@ def get_git_blob_contents(ref, fileName)
 		contents = `git show #{ref}:#{fileName}`
 	else
 	# sed is so so evil... but it works ;)
-		contents = `git show HEAD:#{fileName} | sed 's/rem git fetch origin pull\\/XXX/git fetch origin pull\\/#{pr_number}/g'`
+		contents = `git show HEAD:#{fileName} | sed 's/rem git fetch origin pull\\/XXX/git fetch origin pull\\/#{pr_number}/g' | sed 's/rem git checkout FETCH_HEAD/git checkout FETCH_HEAD/g'`
 	end
 
 	if $?.success?
