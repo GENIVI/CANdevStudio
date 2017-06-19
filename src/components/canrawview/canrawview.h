@@ -1,8 +1,8 @@
 #ifndef CANRAWVIEW_H
 #define CANRAWVIEW_H
 
-#include <QWidget>
-#include <QScopedPointer>
+#include <QtWidgets/QWidget>
+#include <QtCore/QScopedPointer>
 
 class QCanBusFrame;
 class CanRawViewPrivate;
@@ -13,7 +13,7 @@ class CanRawView : public QWidget
     Q_DECLARE_PRIVATE(CanRawView)
 
 public:
-    explicit CanRawView(QWidget *parent = 0);
+    explicit CanRawView(QWidget *parent = nullptr);
     ~CanRawView();
 
 public Q_SLOTS:

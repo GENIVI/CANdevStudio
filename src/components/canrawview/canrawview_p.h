@@ -2,12 +2,12 @@
 #define CANRAWVIEW_P_H
 
 #include <memory>
-#include <QVBoxLayout>
-#include <QToolBar>
-#include <QTableView>
-#include <QStandardItemModel>
-#include <QPushButton>
-#include <QHeaderView>
+#include <QtWidgets/QVBoxLayout>
+#include <QtWidgets/QToolBar>
+#include <QtWidgets/QTableView>
+#include <QtGui/QStandardItemModel>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QHeaderView>
 
 class CanRawViewPrivate : public QObject
 {

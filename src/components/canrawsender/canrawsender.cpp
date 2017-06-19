@@ -1,4 +1,3 @@
-#include <memory>
 #include "canrawsender.h"
 #include "canrawsender_p.h"
 

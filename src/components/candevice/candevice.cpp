@@ -1,5 +1,4 @@
-#include <utility>
-#include <QQueue>
+#include <QtCore/QQueue>
 #include "candevice.h"
 #include "candevice_p.h"
 

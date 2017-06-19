@@ -1,10 +1,11 @@
-#include <QMdiArea>
-#include <QTableView>
-#include <QStandardItemModel>
-#include <QHeaderView>
-#include <QHBoxLayout>
-#include <QToolBar>
-#include <QPushButton>
+#include <QtWidgets/QMdiArea>
+#include <QtWidgets/QTableView>
+#include <QtGui/QStandardItemModel>
+#include <QtWidgets/QHeaderView>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QToolBar>
+#include <QtWidgets/QPushButton>
+
 #include "mainwindow.h"
 #include "candevice/candevice.h"
 #include "canrawview/canrawview.h"

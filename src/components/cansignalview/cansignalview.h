@@ -1,8 +1,8 @@
 #ifndef CANSIGNALVIEW_H
 #define CANSIGNALVIEW_H
 
-#include <QWidget>
-#include <QScopedPointer>
+#include <QtWidgets/QWidget>
+#include <QtCore/QScopedPointer>
 
 class QCanBusFrame;
 class CanSignalViewPrivate;
