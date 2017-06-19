@@ -3,7 +3,9 @@ clone_script:
 - cmd: >-
     git clone -q --branch=%APPVEYOR_REPO_BRANCH% %APPVEYOR_REPO_NAME% %APPVEYOR_BUILD_FOLDER%
 
-    git submodule update --init #&& git fetch origin pull/XXX/merge && git checkout FETCH_HEAD
+    git submodule update --init
+
+    rem git fetch origin pull/XXX/merge && git checkout FETCH_HEAD
 
     git --no-pager log --pretty=oneline -1
 image: Visual Studio 2015
