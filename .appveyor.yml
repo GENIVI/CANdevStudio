@@ -1,7 +1,11 @@
 version: 1.0.{build}
 clone_script:
 - cmd: >-
-    git clone -q --branch=%APPVEYOR_REPO_BRANCH% %APPVEYOR_REPO_NAME% %APPVEYOR_BUILD_FOLDER%
+    set REPO_PATH=%APPVEYOR_REPO_NAME%
+
+    IF NOT "%REPO_PATH:~0,8%"=="https://" set REPO_PATH=https://github.com/%APPVEYOR_REPO_NAME%.git
+
+    git clone -q --branch=%APPVEYOR_REPO_BRANCH% %REPO_PATH% %APPVEYOR_BUILD_FOLDER%
 
     git submodule update --init
 

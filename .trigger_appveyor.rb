@@ -93,7 +93,7 @@ log_format = "--date=rfc --format=%H%n%an%n%ae%n%ad%n%B%n#{comments_end}"
 commits = []
 
 if pr_number != "false"
-	result = `git log #{ENV["TRAVIS_COMMIT"]}~ -1 #{log_format}`.split("\n")
+	result = `git log #{ENV["TRAVIS_COMMIT"]} -1 #{log_format}`.split("\n")
 	commits += parse_commits(result, comments_end)
 	commits[0][:message] = "Pull Request ##{pr_number}: #{commits[0][:message]}"
 elsif start_commit_id == "0000000000000000000000000000000000000000"
