@@ -1,4 +1,11 @@
 version: 1.0.{build}
+clone_script:
+- cmd: >-
+    git clone -q --branch=%APPVEYOR_REPO_BRANCH% %APPVEYOR_REPO_NAME% %APPVEYOR_BUILD_FOLDER%
+
+    git submodule update --init #&& git fetch origin pull/XXX/merge && git checkout FETCH_HEAD
+
+    git --no-pager log --pretty=oneline -1
 image: Visual Studio 2015
 environment:
   matrix:
@@ -20,9 +27,6 @@ environment:
   - GENERATOR: '"Visual Studio 14 2015 Win64"'
     BUILD_TYPE: Release
     QT_PATH: C:\Qt\5.8\msvc2015_64
-install:
-# Dirty hack for pull requests. .trigger_appveyor.sh script will replace comment if needed
-- cmd: git submodule update --init #&& git fetch origin pull/XXX/merge && git checkout FETCH_HEAD
 build_script:
 - cmd: >-
     set
