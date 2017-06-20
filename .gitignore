@@ -2,7 +2,6 @@
 build
 *.o
 *.user
-.clang-format
 .vimrc
 .ycm_extra_conf.py
 
