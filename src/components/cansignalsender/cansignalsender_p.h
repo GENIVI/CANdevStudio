@@ -1,29 +1,30 @@
 #ifndef CANSIGNALSENDER_P_H
 #define CANSIGNALSENDER_P_H
 
-#include <memory>
-#include <QtWidgets/QVBoxLayout>
-#include <QtWidgets/QToolBar>
-#include <QtWidgets/QTableView>
-#include <QtGui/QStandardItemModel>
-#include <QtWidgets/QPushButton>
-#include <QtWidgets/QHeaderView>
 #include "cansignalsender.h"
+#include <QtGui/QStandardItemModel>
+#include <QtWidgets/QHeaderView>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QTableView>
+#include <QtWidgets/QToolBar>
+#include <QtWidgets/QVBoxLayout>
+#include <memory>
 
-class CanSignalSenderPrivate : public QObject
-{
+class CanSignalSenderPrivate : public QObject {
     Q_OBJECT
     Q_DECLARE_PUBLIC(CanSignalSender)
 
 public:
-    CanSignalSenderPrivate(CanSignalSender *q) :
-        tvModel(0,3), pbAdd("Add"), q_ptr(q)
+    CanSignalSenderPrivate(CanSignalSender* q)
+        : tvModel(0, 3)
+        , pbAdd("Add")
+        , q_ptr(q)
     {
     }
 
     void setupUi()
     {
-        tvModel.setHorizontalHeaderLabels({tr("name"), tr("value"), ""});
+        tvModel.setHorizontalHeaderLabels({ tr("name"), tr("value"), "" });
         tv.setModel(&tvModel);
         tv.verticalHeader()->hideSection(0);
         tv.setColumnWidth(0, 180);
@@ -34,29 +35,29 @@ public:
         layout.addWidget(&toolbar);
         layout.addWidget(&tv);
 
-        connect(&pbAdd, &QPushButton::pressed, [this] () {
-                    QStandardItem *name = new QStandardItem();
-                    QStandardItem *value = new QStandardItem();
-                    QList<QStandardItem*> list {name, value};
-                    tvModel.appendRow(list);
-                    QPushButton *pbSend = new QPushButton("Send");
-                    tv.setIndexWidget(tvModel.index(tvModel.rowCount()-1,2), pbSend);
+        connect(&pbAdd, &QPushButton::pressed, [this]() {
+            QStandardItem* name = new QStandardItem();
+            QStandardItem* value = new QStandardItem();
+            QList<QStandardItem*> list{ name, value };
+            tvModel.appendRow(list);
+            QPushButton* pbSend = new QPushButton("Send");
+            tv.setIndexWidget(tvModel.index(tvModel.rowCount() - 1, 2), pbSend);
 
-                    connect(pbSend, &QPushButton::pressed, [this, name, value] () {
-                                Q_Q(CanSignalSender);
+            connect(pbSend, &QPushButton::pressed, [this, name, value]() {
+                Q_Q(CanSignalSender);
 
-                                if(name->text().size() && value->text().size()) {
-                                    quint32 val;
-                                    if(value->text().startsWith("0x"))
-                                        val = value->text().toUInt(nullptr, 16);
-                                    else
-                                        val = value->text().toUInt(nullptr, 10);
+                if (name->text().size() && value->text().size()) {
+                    quint32 val;
+                    if (value->text().startsWith("0x"))
+                        val = value->text().toUInt(nullptr, 16);
+                    else
+                        val = value->text().toUInt(nullptr, 10);
 
-                                    QByteArray ba = QByteArray::number(val);
-                                    emit q->sendSignal(name->text(), ba);
-                                }
-                            });
-                });
+                    QByteArray ba = QByteArray::number(val);
+                    emit q->sendSignal(name->text(), ba);
+                }
+            });
+        });
 
         // Testing code start
         // TODO: remove
@@ -74,7 +75,7 @@ public:
     QPushButton pbAdd;
 
 private:
-    CanSignalSender *q_ptr;
+    CanSignalSender* q_ptr;
 };
 
 #endif // CANSIGNALSENDER_P_H
