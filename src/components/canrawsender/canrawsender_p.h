@@ -17,28 +17,28 @@ class CanRawSenderPrivate : public QObject
 
 public:
     CanRawSenderPrivate(CanRawSender *q) :
-        q_ptr(q)
+        tvModel (0,3), pbAdd("Add"), q_ptr(q)
     {
     }
 
     void setupUi()
     {
-        tvModel->setHorizontalHeaderLabels({tr("id"), tr("data"), ""});
-        tv->setModel(tvModel.get());
-        tv->verticalHeader()->hideSection(0);
+        tvModel.setHorizontalHeaderLabels({tr("id"), tr("data"), ""});
+        tv.setModel(&tvModel);
+        tv.verticalHeader()->hideSection(0);
 
-        toolbar->addWidget(pbAdd.get());
+        toolbar.addWidget(&pbAdd);
 
-        layout->addWidget(toolbar.get());
-        layout->addWidget(tv.get());
+        layout.addWidget(&toolbar);
+        layout.addWidget(&tv);
 
-        connect(pbAdd.get(), &QPushButton::pressed, [this] () {
+        connect(&pbAdd, &QPushButton::pressed, [this] () {
                     QStandardItem *id = new QStandardItem();
                     QStandardItem *value = new QStandardItem();
                     QList<QStandardItem*> list {id, value};
-                    tvModel->appendRow(list);
+                    tvModel.appendRow(list);
                     QPushButton *pbSend = new QPushButton("Send");
-                    tv->setIndexWidget(tvModel->index(tvModel->rowCount()-1,2), pbSend);
+                    tv.setIndexWidget(tvModel.index(tvModel.rowCount()-1,2), pbSend);
 
                     connect(pbSend, &QPushButton::pressed, [this, id, value] () {
                                 Q_Q(CanRawSender);
@@ -60,11 +60,11 @@ public:
                 });
     }
 
-    std::unique_ptr<QVBoxLayout> layout { std::make_unique<QVBoxLayout>() };
-    std::unique_ptr<QToolBar> toolbar { std::make_unique<QToolBar>() };
-    std::unique_ptr<QTableView> tv { std::make_unique<QTableView>() };
-    std::unique_ptr<QStandardItemModel> tvModel { std::make_unique<QStandardItemModel>(0, 3) };
-    std::unique_ptr<QPushButton> pbAdd { std::make_unique<QPushButton>("Add") };
+    QVBoxLayout layout;
+    QToolBar toolbar;
+    QTableView tv;
+    QStandardItemModel tvModel;
+    QPushButton pbAdd;
 
 private:
     CanRawSender *q_ptr;

@@ -11,7 +11,7 @@ CanSignalView::CanSignalView(QWidget *parent) :
     Q_D(CanSignalView);
 
     d->setupUi();
-    setLayout(d->layout.get());
+    setLayout(&d->layout);
 }
 
 CanSignalView::~CanSignalView()
@@ -27,6 +27,6 @@ void CanSignalView::signalReceived(const QString &name, const QByteArray &val)
     list.append(new QStandardItem(name));
     list.append(new QStandardItem(QString::number(val.toUInt())));
     
-    d->tvModel->appendRow(list);
+    d->tvModel.appendRow(list);
 }
 

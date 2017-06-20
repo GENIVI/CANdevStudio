@@ -12,7 +12,7 @@ CanRawView::CanRawView(QWidget *parent) :
     Q_D(CanRawView);
 
     d->setupUi();
-    setLayout(d->layout.get());
+    setLayout(&d->layout);
 }
 
 CanRawView::~CanRawView()
@@ -35,7 +35,7 @@ void CanRawView::frameReceived(const QCanBusFrame &frame)
     list.append(new QStandardItem(QString::number(frame.payload().size())));
     list.append(new QStandardItem(QString::fromUtf8(payHex.data(), payHex.size())));
 
-    d->tvModel->appendRow(list);
+    d->tvModel.appendRow(list);
 }
 
 void CanRawView::frameSent(bool status, const QCanBusFrame &frame, const QVariant &)
@@ -55,6 +55,6 @@ void CanRawView::frameSent(bool status, const QCanBusFrame &frame, const QVarian
         list.append(new QStandardItem(QString::number(frame.payload().size())));
         list.append(new QStandardItem(QString::fromUtf8(payHex.data(), payHex.size())));
 
-        d->tvModel->appendRow(list);
+        d->tvModel.appendRow(list);
     }
 }
