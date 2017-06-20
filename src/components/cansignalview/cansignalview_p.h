@@ -1,25 +1,26 @@
 #ifndef CANSIGNALVIEW_P_H
 #define CANSIGNALVIEW_P_H
 
-#include <memory>
-#include <QtWidgets/QVBoxLayout>
-#include <QtWidgets/QToolBar>
-#include <QtWidgets/QTableView>
 #include <QtGui/QStandardItemModel>
-#include <QtWidgets/QPushButton>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QTableView>
+#include <QtWidgets/QToolBar>
+#include <QtWidgets/QVBoxLayout>
+#include <memory>
 
-class CanSignalViewPrivate : public QObject
-{
+class CanSignalViewPrivate : public QObject {
     Q_OBJECT
 
 public:
-    CanSignalViewPrivate() : 
-        tvModel(0,3), pbClear("Clear")
-    {}
+    CanSignalViewPrivate()
+        : tvModel(0, 3)
+        , pbClear("Clear")
+    {
+    }
     void setupUi()
     {
-        tvModel.setHorizontalHeaderLabels({tr("time"), tr("name"), tr("value")});
+        tvModel.setHorizontalHeaderLabels({ tr("time"), tr("name"), tr("value") });
         tv.setModel(&tvModel);
         tv.verticalHeader()->hideSection(0);
         tv.setColumnWidth(0, 36);
@@ -40,4 +41,3 @@ public:
 };
 
 #endif // CANSIGNALVIEW_P_H
-

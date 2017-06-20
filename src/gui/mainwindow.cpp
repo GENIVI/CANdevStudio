@@ -1,26 +1,26 @@
-#include <QtWidgets/QMdiArea>
-#include <QtWidgets/QTableView>
 #include <QtGui/QStandardItemModel>
-#include <QtWidgets/QHeaderView>
 #include <QtWidgets/QHBoxLayout>
-#include <QtWidgets/QToolBar>
+#include <QtWidgets/QHeaderView>
+#include <QtWidgets/QMdiArea>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QTableView>
+#include <QtWidgets/QToolBar>
 
-#include "mainwindow.h"
 #include "candevice/candevice.h"
-#include "canrawview/canrawview.h"
-#include "cansignalview/cansignalview.h"
 #include "canrawsender/canrawsender.h"
+#include "canrawview/canrawview.h"
 #include "cansignalsender/cansignalsender.cpp"
+#include "cansignalview/cansignalview.h"
+#include "mainwindow.h"
 
-MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
-    mdi(std::make_unique<QMdiArea>()),
-    canDevice(std::make_unique<CanDevice>()),
-    canRawView(std::make_unique<CanRawView>()),
-    canSignalView(std::make_unique<CanSignalView>()),
-    canRawSender(std::make_unique<CanRawSender>()),
-    canSignalSender(std::make_unique<CanSignalSender>())
+MainWindow::MainWindow(QWidget* parent)
+    : QMainWindow(parent)
+    , mdi(std::make_unique<QMdiArea>())
+    , canDevice(std::make_unique<CanDevice>())
+    , canRawView(std::make_unique<CanRawView>())
+    , canSignalView(std::make_unique<CanSignalView>())
+    , canRawSender(std::make_unique<CanRawSender>())
+    , canSignalSender(std::make_unique<CanSignalSender>())
 {
     mdi->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     mdi->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);

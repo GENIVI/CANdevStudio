@@ -1,26 +1,27 @@
 #ifndef CANRAWVIEW_P_H
 #define CANRAWVIEW_P_H
 
-#include <memory>
-#include <QtWidgets/QVBoxLayout>
-#include <QtWidgets/QToolBar>
-#include <QtWidgets/QTableView>
 #include <QtGui/QStandardItemModel>
-#include <QtWidgets/QPushButton>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QTableView>
+#include <QtWidgets/QToolBar>
+#include <QtWidgets/QVBoxLayout>
+#include <memory>
 
-class CanRawViewPrivate : public QObject
-{
+class CanRawViewPrivate : public QObject {
     Q_OBJECT
 
 public:
-    CanRawViewPrivate(): tvModel(0,5), pbClear("Clear")
+    CanRawViewPrivate()
+        : tvModel(0, 5)
+        , pbClear("Clear")
     {
     }
 
     void setupUi()
     {
-        tvModel.setHorizontalHeaderLabels({tr("time"), tr("id"), tr("dir"), tr("dlc"), tr("data")});
+        tvModel.setHorizontalHeaderLabels({ tr("time"), tr("id"), tr("dir"), tr("dlc"), tr("data") });
         tv.setModel(&tvModel);
         tv.verticalHeader()->hideSection(0);
         tv.setColumnWidth(0, 36);
