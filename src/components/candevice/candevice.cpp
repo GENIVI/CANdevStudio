@@ -11,14 +11,14 @@ CanDevice::~CanDevice()
 {
 }
 
-bool CanDevice::init(const QString& backend, const QString& interface)
+bool CanDevice::init(const QString& backend, const QString& iface)
 {
     Q_D(CanDevice);
     QString errorString;
 
     d->mBackend = backend;
-    d->mInterface = interface;
-    d->mDevice.reset(QCanBus::instance()->createDevice(backend, interface, &errorString));
+    d->mInterface = iface;
+    d->mDevice.reset(QCanBus::instance()->createDevice(backend, iface, &errorString));
 
     if (!d->mDevice) {
         return false;
@@ -36,8 +36,9 @@ void CanDevice::sendFrame(const QCanBusFrame& frame, const QVariant& context)
     Q_D(CanDevice);
     bool status = false;
 
-    if (!d->mDevice)
+    if (!d->mDevice) {
         return;
+    }
 
     // Success will be reported in framesWritten signal.
     // Sending may be buffered. Keep correlation between sending results and frame/context
@@ -57,16 +58,16 @@ bool CanDevice::start()
 
     if (d->mDevice) {
         return d->mDevice->connectDevice();
-    } else {
-        return false;
     }
+
+    return false;
 }
 
 void CanDevice::framesReceived()
 {
     Q_D(CanDevice);
 
-    while (d->mDevice->framesAvailable()) {
+    while (static_cast<bool>(d->mDevice->framesAvailable())) {
         const QCanBusFrame frame = d->mDevice->readFrame();
 
         emit frameReceived(frame);
