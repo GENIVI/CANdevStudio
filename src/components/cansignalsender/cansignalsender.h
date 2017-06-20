@@ -1,23 +1,22 @@
 #ifndef CANSIGNALSENDER_H
 #define CANSIGNALSENDER_H
 
-#include <QtWidgets/QWidget>
 #include <QtCore/QScopedPointer>
+#include <QtWidgets/QWidget>
 
 class QCanBusFrame;
 class CanSignalSenderPrivate;
 
-class CanSignalSender : public QWidget
-{
+class CanSignalSender : public QWidget {
     Q_OBJECT
     Q_DECLARE_PRIVATE(CanSignalSender)
 
 public:
-    explicit CanSignalSender(QWidget *parent = nullptr);
+    explicit CanSignalSender(QWidget* parent = nullptr);
     ~CanSignalSender();
 
 signals:
-    void sendSignal(const QString &name, const QByteArray &value);
+    void sendSignal(const QString& name, const QByteArray& value);
 
 public slots:
 

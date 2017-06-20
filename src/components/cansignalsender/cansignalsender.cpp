@@ -1,9 +1,9 @@
 #include "cansignalsender.h"
 #include "cansignalsender_p.h"
 
-CanSignalSender::CanSignalSender(QWidget *parent) :
-    QWidget(parent),
-    d_ptr(new CanSignalSenderPrivate(this))
+CanSignalSender::CanSignalSender(QWidget* parent)
+    : QWidget(parent)
+    , d_ptr(new CanSignalSenderPrivate(this))
 {
     Q_D(CanSignalSender);
 
@@ -13,5 +13,4 @@ CanSignalSender::CanSignalSender(QWidget *parent) :
 
 CanSignalSender::~CanSignalSender()
 {
-
 }

@@ -1,24 +1,23 @@
 #ifndef CANRAWVIEW_H
 #define CANRAWVIEW_H
 
-#include <QtWidgets/QWidget>
 #include <QtCore/QScopedPointer>
+#include <QtWidgets/QWidget>
 
 class QCanBusFrame;
 class CanRawViewPrivate;
 
-class CanRawView : public QWidget
-{
+class CanRawView : public QWidget {
     Q_OBJECT
     Q_DECLARE_PRIVATE(CanRawView)
 
 public:
-    explicit CanRawView(QWidget *parent = nullptr);
+    explicit CanRawView(QWidget* parent = nullptr);
     ~CanRawView();
 
 public Q_SLOTS:
-    void frameReceived(const QCanBusFrame &frame);
-    void frameSent(bool status, const QCanBusFrame &frame, const QVariant &context);
+    void frameReceived(const QCanBusFrame& frame);
+    void frameSent(bool status, const QCanBusFrame& frame, const QVariant& context);
 
 private:
     QScopedPointer<CanRawViewPrivate> d_ptr;

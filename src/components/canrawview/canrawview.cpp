@@ -1,13 +1,13 @@
-#include <QtGui/QStandardItem>
-#include <QtSerialBus/QCanBusFrame>
-#include <QtCore/QStringList>
-#include <QtCore/QList>
 #include "canrawview.h"
 #include "canrawview_p.h"
+#include <QtCore/QList>
+#include <QtCore/QStringList>
+#include <QtGui/QStandardItem>
+#include <QtSerialBus/QCanBusFrame>
 
-CanRawView::CanRawView(QWidget *parent) :
-    QWidget(parent),
-    d_ptr(new CanRawViewPrivate())
+CanRawView::CanRawView(QWidget* parent)
+    : QWidget(parent)
+    , d_ptr(new CanRawViewPrivate())
 {
     Q_D(CanRawView);
 
@@ -19,12 +19,12 @@ CanRawView::~CanRawView()
 {
 }
 
-void CanRawView::frameReceived(const QCanBusFrame &frame)
+void CanRawView::frameReceived(const QCanBusFrame& frame)
 {
     Q_D(CanRawView);
 
     auto payHex = frame.payload().toHex();
-    for(int i = payHex.size(); i >= 2; i-=2) {
+    for (int i = payHex.size(); i >= 2; i -= 2) {
         payHex.insert(i, ' ');
     }
 
@@ -38,13 +38,13 @@ void CanRawView::frameReceived(const QCanBusFrame &frame)
     d->tvModel.appendRow(list);
 }
 
-void CanRawView::frameSent(bool status, const QCanBusFrame &frame, const QVariant &)
+void CanRawView::frameSent(bool status, const QCanBusFrame& frame, const QVariant&)
 {
     Q_D(CanRawView);
 
-    if(status) {
+    if (status) {
         auto payHex = frame.payload().toHex();
-        for(int i = payHex.size(); i >= 2; i-=2) {
+        for (int i = payHex.size(); i >= 2; i -= 2) {
             payHex.insert(i, ' ');
         }
 
