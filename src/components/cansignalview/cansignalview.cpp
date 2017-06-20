@@ -1,6 +1,6 @@
-#include <QList>
-#include <QStandardItem>
-#include <QString>
+#include <QtCore/QList>
+#include <QtGui/QStandardItem>
+#include <QtCore/QString>
 #include "cansignalview.h"
 #include "cansignalview_p.h"
 

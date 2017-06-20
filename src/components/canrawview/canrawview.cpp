@@ -1,7 +1,7 @@
-#include <QStandardItem>
-#include <QCanBusFrame>
-#include <QStringList>
-#include <QList>
+#include <QtGui/QStandardItem>
+#include <QtSerialBus/QCanBusFrame>
+#include <QtCore/QStringList>
+#include <QtCore/QList>
 #include "canrawview.h"
 #include "canrawview_p.h"
 

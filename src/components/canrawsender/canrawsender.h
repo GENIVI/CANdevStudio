@@ -1,8 +1,8 @@
 #ifndef CANRAWSENDER_H
 #define CANRAWSENDER_H
 
-#include <QWidget>
-#include <QScopedPointer>
+#include <QtWidgets/QWidget>
+#include <QtCore/QScopedPointer>
 
 class QCanBusFrame;
 class CanRawSenderPrivate;
@@ -13,7 +13,7 @@ class CanRawSender : public QWidget
     Q_DECLARE_PRIVATE(CanRawSender)
 
 public:
-    explicit CanRawSender(QWidget *parent = 0);
+    explicit CanRawSender(QWidget *parent = nullptr);
     ~CanRawSender();
 
 signals:

@@ -1,12 +1,12 @@
 #ifndef __CANDEVICE_P_H
 #define __CANDEVICE_P_H
 
-#include <QtCore/qobject.h>
-#include <QCanBus>
-#include <QCanBusFrame>
-#include <QScopedPointer>
-#include <QVariant>
-#include <QVector>
+#include <QtCore/QObject>
+#include <QtSerialBus/QCanBus>
+#include <QtSerialBus/QCanBusFrame>
+#include <QtCore/QScopedPointer>
+#include <QtCore/QVariant>
+#include <QtCore/QVector>
 
 class CanDevicePrivate
 {
