@@ -7,11 +7,11 @@ clone_script:
 
     git clone -q --branch=%APPVEYOR_REPO_BRANCH% %REPO_PATH% %APPVEYOR_BUILD_FOLDER%
 
-    git submodule update --init
-
     rem git fetch origin pull/XXX/merge
 
     rem git checkout FETCH_HEAD
+
+    git submodule update --init --recursive
 
     git --no-pager log --pretty=oneline -1
 image: Visual Studio 2015
