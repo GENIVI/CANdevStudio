@@ -1,6 +1,7 @@
 sudo: required
 language: cpp
 dist: trusty
+group: edge
 
 notifications:
   email: false
