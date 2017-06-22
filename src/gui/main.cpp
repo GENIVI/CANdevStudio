@@ -52,11 +52,7 @@ void setupLogger(bool verbose)
 int main(int argc, char* argv[])
 {
     QApplication a(argc, argv);
-#ifdef CDS_DEBUG
-    setupLogger(true);
-#else
-    setupLogger(false);
-#endif
+    setupLogger(CDS_DEBUG);
 
     cds_debug("Staring CanDevStudio");
 
