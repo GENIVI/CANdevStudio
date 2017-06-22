@@ -31,7 +31,4 @@ TEST_CASE("Initialization succedded", "[candevice]")
     CHECK(canDevice.init("", "") == true);
 }
 
-int main(int argc, char* argv[])
-{
-    return Catch::Session().run(argc, argv);
-}
+int main(int argc, char* argv[]) { return Catch::Session().run(argc, argv); }
