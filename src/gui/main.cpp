@@ -52,6 +52,8 @@ void setupLogger(bool verbose)
 int main(int argc, char* argv[])
 {
     QApplication a(argc, argv);
+    
+    // CDS_DEBUG is set automatically in CMakeLists.txt based on build type (i.e. false for Release, true for Debug)
     setupLogger(CDS_DEBUG);
 
     cds_debug("Staring CanDevStudio");
