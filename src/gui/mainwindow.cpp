@@ -12,11 +12,12 @@
 #include "cansignalsender/cansignalsender.cpp"
 #include "cansignalview/cansignalview.h"
 #include "mainwindow.h"
+#include "canfactoryqt.hpp"
 
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent)
     , mdi(std::make_unique<QMdiArea>())
-    , canDevice(std::make_unique<CanDevice>())
+    , canDevice(std::make_unique<CanDevice>(factory))
     , canRawView(std::make_unique<CanRawView>())
     , canSignalView(std::make_unique<CanSignalView>())
     , canRawSender(std::make_unique<CanRawSender>())

@@ -4,6 +4,8 @@
 #include <QtWidgets/QMainWindow>
 #include <memory>
 
+#include "canfactoryqt.hpp"
+
 class QMdiArea;
 class CanDevice;
 class CanRawView;
@@ -25,6 +27,7 @@ private:
     std::unique_ptr<CanSignalView> canSignalView;
     std::unique_ptr<CanRawSender> canRawSender;
     std::unique_ptr<CanSignalSender> canSignalSender;
+    CanFactoryQt factory;
 };
 
 #endif // MAINWINDOW_H
