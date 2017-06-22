@@ -6,6 +6,9 @@
 #include "candeviceinterface.hpp"
 #include "canfactory.hpp"
 
+#include "log.hpp"
+std::shared_ptr<spdlog::logger> kDefaultLogger;
+
 TEST_CASE("Initialization failed", "[candevice]")
 {
     using namespace fakeit;
@@ -31,4 +34,13 @@ TEST_CASE("Initialization succedded", "[candevice]")
     CHECK(canDevice.init("", "") == true);
 }
 
-int main(int argc, char* argv[]) { return Catch::Session().run(argc, argv); }
+int main(int argc, char* argv[])
+{
+    bool haveDebug = std::getenv("CDS_DEBUG") != nullptr;
+    kDefaultLogger = spdlog::stdout_color_mt("cds");
+    if (haveDebug) {
+        kDefaultLogger->set_level(spdlog::level::debug);
+    }
+    cds_debug("Staring unit tests");
+    return Catch::Session().run(argc, argv);
+}

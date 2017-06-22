@@ -31,24 +31,12 @@ struct CanDeviceQt : public CanDeviceInterface {
         QObject::connect(_device, &QCanBusDevice::errorOccurred, cb);
     }
 
-    virtual bool writeFrame(const QCanBusFrame& frame) override
-    {
-        return _device->writeFrame(frame);
-    }
+    virtual bool writeFrame(const QCanBusFrame& frame) override { return _device->writeFrame(frame); }
 
-    virtual bool connectDevice() override
-    {
-        return _device->connectDevice();
-    }
-    virtual qint64 framesAvailable()
-    {
-        return _device->framesAvailable();
-    }
+    virtual bool connectDevice() override { return _device->connectDevice(); }
+    virtual qint64 framesAvailable() override { return _device->framesAvailable(); }
 
-    virtual QCanBusFrame readFrame() noexcept
-    {
-        return _device->readFrame();
-    }
+    virtual QCanBusFrame readFrame() noexcept override { return _device->readFrame(); }
 
 private:
     QCanBusDevice* _device = nullptr;
