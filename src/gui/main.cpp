@@ -56,7 +56,7 @@ int main(int argc, char* argv[])
     // CDS_DEBUG is set automatically in CMakeLists.txt based on build type (i.e. false for Release, true for Debug)
     setupLogger(CDS_DEBUG);
 
-    cds_debug("Staring CanDevStudio");
+    cds_debug("Staring CANdevStudio");
 
     qDebug() << "Qt message ";
 
