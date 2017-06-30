@@ -3,8 +3,8 @@
 #define CATCH_CONFIG_RUNNER
 #include <fakeit.hpp>
 
-#include "candeviceinterface.hpp"
-#include "canfactory.hpp"
+#include "candevice/candeviceinterface.hpp"
+#include "candevice/canfactory.hpp"
 
 #include "log.hpp"
 std::shared_ptr<spdlog::logger> kDefaultLogger;
