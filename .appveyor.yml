@@ -19,22 +19,22 @@ environment:
   matrix:
   - GENERATOR: '"MinGW Makefiles"'
     BUILD_TYPE: Debug
-    QT_PATH: C:\Qt\5.8\mingw53_32
+    QT_PATH: C:\Qt\5.9\mingw53_32
   - GENERATOR: '"MinGW Makefiles"'
     BUILD_TYPE: Release
-    QT_PATH: C:\Qt\5.8\mingw53_32
+    QT_PATH: C:\Qt\5.9\mingw53_32
   - GENERATOR: '"Visual Studio 14 2015"'
     BUILD_TYPE: Debug
-    QT_PATH: C:\Qt\5.8\msvc2015
+    QT_PATH: C:\Qt\5.6\msvc2015
   - GENERATOR: '"Visual Studio 14 2015"'
     BUILD_TYPE: Release
-    QT_PATH: C:\Qt\5.8\msvc2015
+    QT_PATH: C:\Qt\5.6\msvc2015
   - GENERATOR: '"Visual Studio 14 2015 Win64"'
     BUILD_TYPE: Debug
-    QT_PATH: C:\Qt\5.8\msvc2015_64
+    QT_PATH: C:\Qt\5.7\msvc2015_64
   - GENERATOR: '"Visual Studio 14 2015 Win64"'
     BUILD_TYPE: Release
-    QT_PATH: C:\Qt\5.8\msvc2015_64
+    QT_PATH: C:\Qt\5.7\msvc2015_64
 build_script:
 - cmd: >-
     set

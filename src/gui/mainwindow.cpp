@@ -12,7 +12,6 @@
 #include "cansignalsender/cansignalsender.cpp"
 #include "cansignalview/cansignalview.h"
 #include "mainwindow.h"
-#include "canfactoryqt.hpp"
 
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent)

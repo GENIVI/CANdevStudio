@@ -4,7 +4,7 @@
 #include <QtWidgets/QMainWindow>
 #include <memory>
 
-#include "canfactoryqt.hpp"
+#include "candevice/canfactoryqt.hpp"
 
 class QMdiArea;
 class CanDevice;

@@ -9,8 +9,7 @@
 struct CanDeviceQt : public CanDeviceInterface {
     CanDeviceQt(const QString& backend, const QString& iface)
     {
-        QString errorString;
-        _device = QCanBus::instance()->createDevice(backend, iface, &errorString);
+        _device = QCanBus::instance()->createDevice(backend.toUtf8(), iface);
         if (!_device) {
             throw std::runtime_error("Unable to create candevice");
         }
