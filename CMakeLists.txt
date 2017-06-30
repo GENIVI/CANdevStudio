@@ -11,10 +11,11 @@ list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/Modules)
 option(WITH_COVERAGE "Build with coverage" OFF)
 option(WITH_TESTS "Build with test" ON)
 
-set(QT_REQUIRED_VERSION "5.8")
+set(QT_REQUIRED_VERSION "5.6")
 find_package(Qt5Core ${QT_REQUIRED_VERSION} REQUIRED)
 find_package(Qt5SerialBus ${QT_REQUIRED_VERSION} REQUIRED)
 find_package(Qt5Widgets ${QT_REQUIRED_VERSION} REQUIRED)
+message(STATUS "Qt Version found: ${Qt5Core_VERSION}")
 
 set_property(TARGET Qt5::SerialBus PROPERTY INTERFACE_COMPILE_FEATURES "")
 set_property(TARGET Qt5::Core PROPERTY INTERFACE_COMPILE_FEATURES "")
