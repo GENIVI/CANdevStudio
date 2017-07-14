@@ -45,7 +45,9 @@ cd code_docs
 
 # Get the current gh-pages branch
 git clone -b gh-pages https://git@$GH_REPO_REF
+pwd
 cd $GH_REPO_NAME
+pwd
 
 ##### Configure git.
 # Set the push default to simple i.e. push only the current branch.
@@ -71,6 +73,7 @@ echo "" > .nojekyll
 ##### Generate the Doxygen code documentation and log the output.          #####
 echo 'Generating Doxygen code documentation...'
 # Redirect both stderr and stdout to the log file AND the console.
+ls -al ..
 /usr/bin/doxygen $DOXYFILE 2>&1 | tee doxygen.log
 
 ################################################################################
