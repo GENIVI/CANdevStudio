@@ -36,7 +36,7 @@ script:
 after_success:
   - cd $TRAVIS_BUILD_DIR
   - chmod +x generateDocumentationAndDeploy.sh
-  - docker run \
-     $ci_env -e DOXYFILE -e GH_REPO_NAME -e GH_REPO_REF -e GH_REPO_TOKEN \
-     -v `pwd`:/root/sources bartekt/can_dev_base_image /bin/bash \
-     -c "cd /root/sources && ./generateDocumentationAndDeploy.sh"
+  - docker run
+    $ci_env -e DOXYFILE -e GH_REPO_NAME -e GH_REPO_REF -e GH_REPO_TOKEN
+    -v `pwd`:/root/sources bartekt/can_dev_base_image /bin/bash
+    -c "cd /root/sources && ./generateDocumentationAndDeploy.sh"
