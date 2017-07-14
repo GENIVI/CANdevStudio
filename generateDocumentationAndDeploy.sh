@@ -40,20 +40,7 @@ echo 'Setting up the script...'
 set -e
 
 # Get the current gh-pages branch
-git clone -b gh-pages https://git@$GH_REPO_REF html
-
-# Remove everything currently in the gh-pages branch.
-# GitHub is smart enough to know which files have changed and which files have
-# stayed the same and will only update the changed files. So the gh-pages branch
-# can be safely cleaned, and it is sure that everything pushed later is the new
-# documentation.
-rm -rf html/*
-
-# Need to create a .nojekyll file to allow filenames starting with an underscore
-# to be seen on the gh-pages site. Therefore creating an empty .nojekyll file.
-# Presumably this is only needed when the SHORT_NAMES option in Doxygen is set
-# to NO, which it is by default. So creating the file just in case.
-echo "" > html/.nojekyll
+git clone -b gh-pages https://git@$GH_REPO_REF repo
 
 ################################################################################
 ##### Generate the Doxygen code documentation and log the output.          #####
@@ -67,7 +54,19 @@ doxygen $DOXYFILE 2>&1 | tee html/doxygen.log
 # Check this by verifying that the html directory and the file html/index.html
 # both exist. This is a good indication that Doxygen did it's work.
 if [ -d "html" ] && [ -f "html/index.html" ]; then
-    cd html
+    # Need to create a .nojekyll file to allow filenames starting with an underscore
+    # to be seen on the gh-pages site. Therefore creating an empty .nojekyll file.
+    # Presumably this is only needed when the SHORT_NAMES option in Doxygen is set
+    # to NO, which it is by default. So creating the file just in case.
+    echo "" > html/.nojekyll
+    
+    if [ ${TRAVIS_PULL_REQUEST} == "false" ]; then 
+        mv html repo/${TRAVIS_BRANCH}
+    else
+        mv html repo/PR${TRAVIS_PULL_REQUEST}
+    fi
+    
+    cd repo
     
     ##### Configure git.
     # Set the push default to simple i.e. push only the current branch.
