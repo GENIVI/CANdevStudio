@@ -14,9 +14,7 @@ class CdsToolbox : public QWidget
 public:
     explicit CdsToolbox(QWidget *parent = 0);
     ~CdsToolbox();
-signals:
-    void simulationStart();
-    void simulationStop();
+
 private:
     Ui::CdsToolbox *ui;
 
