@@ -39,15 +39,8 @@ echo 'Setting up the script...'
 # Exit with nonzero exit code if anything fails
 set -e
 
-# Create a clean working directory for this script.
-mkdir code_docs
-cd code_docs
-
 # Get the current gh-pages branch
-git clone -b gh-pages https://git@$GH_REPO_REF
-pwd
-cd $GH_REPO_NAME
-pwd
+git clone -b gh-pages https://git@$GH_REPO_REF html
 
 ##### Configure git.
 # Set the push default to simple i.e. push only the current branch.
@@ -61,20 +54,19 @@ git config user.email "travis@travis-ci.org"
 # stayed the same and will only update the changed files. So the gh-pages branch
 # can be safely cleaned, and it is sure that everything pushed later is the new
 # documentation.
-rm -rf *
+rm -rf html/*
 
 # Need to create a .nojekyll file to allow filenames starting with an underscore
 # to be seen on the gh-pages site. Therefore creating an empty .nojekyll file.
 # Presumably this is only needed when the SHORT_NAMES option in Doxygen is set
 # to NO, which it is by default. So creating the file just in case.
-echo "" > .nojekyll
+echo "" > html/.nojekyll
 
 ################################################################################
 ##### Generate the Doxygen code documentation and log the output.          #####
 echo 'Generating Doxygen code documentation...'
 # Redirect both stderr and stdout to the log file AND the console.
-ls -al ..
-/usr/bin/doxygen $DOXYFILE 2>&1 | tee doxygen.log
+doxygen $DOXYFILE 2>&1 | tee html/doxygen.log
 
 ################################################################################
 ##### Upload the documentation to the gh-pages branch of the repository.   #####
