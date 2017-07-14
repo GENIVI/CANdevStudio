@@ -6,7 +6,7 @@
 #include "canrawview/canrawview.h"
 #include "cansignalsender/cansignalsender.h"
 #include "cansignalview/cansignalview.h"
-#include "mainwindow.h"
+#include "toolbox/cdstoolbox.h"
 
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent)
