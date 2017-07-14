@@ -36,4 +36,6 @@ script:
 after_success:
   - cd $TRAVIS_BUILD_DIR
   - chmod +x generateDocumentationAndDeploy.sh
-  - ./generateDocumentationAndDeploy.sh    
+  - docker run \
+     -v `pwd`:/root/sources bartekt/can_dev_base_image /bin/bash \
+     -c "cd /root/sources && ./generateDocumentationAndDeploy.sh"
