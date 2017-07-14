@@ -12,6 +12,9 @@ class CanRawView;
 class CanSignalView;
 class CanRawSender;
 class CanSignalSender;
+class QVBoxLayout;
+class QWidget;
+class CdsToolbox;
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
@@ -21,6 +24,9 @@ public:
     ~MainWindow();
 
 private:
+    std::unique_ptr<QWidget> MainWidget;
+    std::unique_ptr<QVBoxLayout> VertLayout;
+    std::unique_ptr<CdsToolbox> Toolbox;
     std::unique_ptr<QMdiArea> mdi;
     std::unique_ptr<CanDevice> canDevice;
     std::unique_ptr<CanRawView> canRawView;
