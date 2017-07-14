@@ -1,5 +1,6 @@
 #include <QtGui/QStandardItemModel>
 #include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QMdiArea>
 #include <QtWidgets/QPushButton>
@@ -12,9 +13,13 @@
 #include "cansignalsender/cansignalsender.cpp"
 #include "cansignalview/cansignalview.h"
 #include "mainwindow.h"
+#include "toolbox/cdstoolbox.h"
 
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent)
+    , MainWidget(std::make_unique<QWidget>())
+    , VertLayout(std::make_unique<QVBoxLayout>())
+    , Toolbox(std::make_unique<CdsToolbox>())
     , mdi(std::make_unique<QMdiArea>())
     , canDevice(std::make_unique<CanDevice>(factory))
     , canRawView(std::make_unique<CanRawView>())
@@ -25,7 +30,10 @@ MainWindow::MainWindow(QWidget* parent)
     mdi->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     mdi->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
 
-    setCentralWidget(mdi.get());
+    VertLayout->addWidget(Toolbox.get());
+    VertLayout->addWidget(mdi.get());
+    MainWidget->setLayout(VertLayout.get());
+    setCentralWidget(MainWidget.get());
 
     canRawView->setWindowTitle("Can Raw View");
     mdi->addSubWindow(canRawView.get());
