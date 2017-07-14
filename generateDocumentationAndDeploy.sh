@@ -42,13 +42,6 @@ set -e
 # Get the current gh-pages branch
 git clone -b gh-pages https://git@$GH_REPO_REF html
 
-##### Configure git.
-# Set the push default to simple i.e. push only the current branch.
-git config --global push.default simple
-# Pretend to be an user called Travis CI.
-git config user.name "Travis CI"
-git config user.email "travis@travis-ci.org"
-
 # Remove everything currently in the gh-pages branch.
 # GitHub is smart enough to know which files have changed and which files have
 # stayed the same and will only update the changed files. So the gh-pages branch
@@ -75,6 +68,14 @@ doxygen $DOXYFILE 2>&1 | tee html/doxygen.log
 # both exist. This is a good indication that Doxygen did it's work.
 if [ -d "html" ] && [ -f "html/index.html" ]; then
     cd html
+    
+    ##### Configure git.
+    # Set the push default to simple i.e. push only the current branch.
+    git config --global push.default simple
+    # Pretend to be an user called Travis CI.
+    git config user.name "Travis CI"
+    git config user.email "travis@travis-ci.org"
+    
     echo 'Uploading documentation to the gh-pages branch...'
     # Add everything in this directory (the Doxygen code documentation) to the
     # gh-pages branch.
