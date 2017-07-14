@@ -14,7 +14,7 @@ branches:
   except:
     - gh-pages
 
-  before_install:
+before_install:
   - env
   - echo refs/heads/$TRAVIS_BRANCH~ refs/heads/$TRAVIS_BRANCH refs/heads/$TRAVIS_BRANCH | ./.trigger_appveyor.rb || true
   - docker pull bartekt/can_dev_base_image
