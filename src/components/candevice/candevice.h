@@ -17,8 +17,9 @@ class CanDevice : public QObject {
     Q_DECLARE_PRIVATE(CanDevice)
 
 public:
-    // Constructior
+    // Constructor
     CanDevice(CanFactoryInterface& factory);
+    
     // Default destructor
     ~CanDevice();
 
