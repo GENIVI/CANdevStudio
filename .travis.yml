@@ -9,6 +9,11 @@ notifications:
 services:
   docker
 
+# Blacklist
+branches:
+  except:
+    - gh-pages
+
 before_install:
   - env
   - echo refs/heads/$TRAVIS_BRANCH~ refs/heads/$TRAVIS_BRANCH refs/heads/$TRAVIS_BRANCH | ./.trigger_appveyor.rb || true
@@ -26,4 +31,12 @@ script:
   - ./.travis.sh
   - export CC=gcc-6 CXX=g++-6 CMAKE_BUILD_TYPE=Debug WITH_COVERAGE=ON
   - ./.travis.sh
-    
+
+# Generate and deploy documentation
+after_success:
+  - cd $TRAVIS_BUILD_DIR
+  - chmod +x .travis_doxygen.sh
+  - docker run
+    $ci_env -e DOXYFILE -e GH_REPO_NAME -e GH_REPO_REF -e GH_REPO_TOKEN -e TRAVIS_BUILD_NUMBER
+    -v `pwd`:/root/sources bartekt/can_dev_base_image /bin/bash
+    -c "cd /root/sources && ./.travis_doxygen.sh"
