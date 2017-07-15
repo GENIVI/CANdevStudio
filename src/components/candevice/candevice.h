@@ -17,14 +17,13 @@ class CanDevice : public QObject {
     Q_DECLARE_PRIVATE(CanDevice)
 
 public:
-    // Constructor
     CanDevice(CanFactoryInterface& factory);
-    
-    // Default destructor
     ~CanDevice();
 
     /**
     *   @brief  Configures CAN BUS backend and interface
+    *
+    *   This function is used to configure QtCanBus class. 
     *
     *   @param  backend one of backends supported by QtCanBus class
     *   @param  iface CAN BUS interface index (e.g. can0 for socketcan backend)
