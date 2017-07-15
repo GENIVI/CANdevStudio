@@ -59,14 +59,14 @@ if [ -d "html" ] && [ -f "html/index.html" ]; then
     # Presumably this is only needed when the SHORT_NAMES option in Doxygen is set
     # to NO, which it is by default. So creating the file just in case.
     echo "" > html/.nojekyll
-	
-	if [ $TRAVIS_PULL_REQUEST == "false" ]; then
-		rm -rf repo/$TRAVIS_BRANCH
-		mv html repo/$TRAVIS_BRANCH
-	else
-		rm -rf repo/PR$TRAVIS_PULL_REQUEST
-		mv html repo/PR$TRAVIS_PULL_REQUEST
-	fi
+
+    if [ $TRAVIS_PULL_REQUEST == "false" ]; then
+        rm -rf repo/$TRAVIS_BRANCH
+        mv html repo/$TRAVIS_BRANCH
+    else
+        rm -rf repo/PR$TRAVIS_PULL_REQUEST
+        mv html repo/PR$TRAVIS_PULL_REQUEST
+    fi
     
     cd repo
     
