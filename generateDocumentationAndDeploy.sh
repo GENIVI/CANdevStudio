@@ -60,6 +60,7 @@ if [ -d "html" ] && [ -f "html/index.html" ]; then
     # to NO, which it is by default. So creating the file just in case.
     echo "" > html/.nojekyll
     
+TRAVIS_PULL_REQUEST=false
 if [ $TRAVIS_PULL_REQUEST == "false" ]; then
         rm -rf repo/${TRAVIS_BRANCH}
         mv html repo/${TRAVIS_BRANCH}
