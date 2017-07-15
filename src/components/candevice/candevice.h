@@ -9,6 +9,9 @@
 class CanDevicePrivate;
 struct CanFactoryInterface;
 
+/**
+*   @brief The class provides abstraction layer for CAN BUS hardware
+*/
 class CanDevice : public QObject {
     Q_OBJECT
     Q_DECLARE_PRIVATE(CanDevice)
@@ -16,6 +19,14 @@ class CanDevice : public QObject {
 public:
     CanDevice(CanFactoryInterface& factory);
     ~CanDevice();
+
+    /**
+    *   @brief  Configures CAN BUS backend and interface
+    *
+    *   @param  backend one of backends supported by QtCanBus class
+    *   @param  iface CAN BUS interface index (e.g. can0 for socketcan backend)
+    *   @return true on success, false of failure
+    */
     bool init(const QString& backend, const QString& iface);
     bool start();
 
