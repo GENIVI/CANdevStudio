@@ -1,20 +1,16 @@
-#include <QtGui/QStandardItemModel>
-#include <QtWidgets/QHBoxLayout>
-#include <QtWidgets/QHeaderView>
-#include <QtWidgets/QMdiArea>
-#include <QtWidgets/QPushButton>
-#include <QtWidgets/QTableView>
-#include <QtWidgets/QToolBar>
+#include "mainwindow.h"
+#include "ui_mainwindow.h"
 
 #include "candevice/candevice.h"
 #include "canrawsender/canrawsender.h"
 #include "canrawview/canrawview.h"
-#include "cansignalsender/cansignalsender.cpp"
+#include "cansignalsender/cansignalsender.h"
 #include "cansignalview/cansignalview.h"
 #include "mainwindow.h"
 
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent)
+    , ui(new Ui::MainWindow)
     , mdi(std::make_unique<QMdiArea>())
     , canDevice(std::make_unique<CanDevice>(factory))
     , canRawView(std::make_unique<CanRawView>())
@@ -22,20 +18,22 @@ MainWindow::MainWindow(QWidget* parent)
     , canRawSender(std::make_unique<CanRawSender>())
     , canSignalSender(std::make_unique<CanSignalSender>())
 {
-    mdi->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
-    mdi->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
-
-    setCentralWidget(mdi.get());
+    ui->setupUi(this);
+    ui->centralWidget->layout()->setContentsMargins(0,0,0,0);
 
     canRawView->setWindowTitle("Can Raw View");
-    mdi->addSubWindow(canRawView.get());
+    ui->mdiArea->addSubWindow(canRawView.get());
+
     canSignalView->setWindowTitle("Can Signal View");
-    mdi->addSubWindow(canSignalView.get());
+    ui->mdiArea->addSubWindow(canSignalView.get());
+
     canSignalSender->setWindowTitle("Can Signal Sender");
-    mdi->addSubWindow(canSignalSender.get());
+    ui->mdiArea->addSubWindow(canSignalSender.get());
+
     canRawSender->setWindowTitle("Can Raw Sender");
-    mdi->addSubWindow(canRawSender.get());
-    mdi->tileSubWindows();
+    ui->mdiArea->addSubWindow(canRawSender.get());
+
+    ui->mdiArea->tileSubWindows();
 
     connect(canDevice.get(), &CanDevice::frameReceived, canRawView.get(), &CanRawView::frameReceived);
     connect(canDevice.get(), &CanDevice::frameSent, canRawView.get(), &CanRawView::frameSent);
@@ -48,4 +46,5 @@ MainWindow::MainWindow(QWidget* parent)
 
 MainWindow::~MainWindow()
 {
+    delete ui;
 }

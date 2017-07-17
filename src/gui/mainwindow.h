@@ -13,14 +13,20 @@ class CanSignalView;
 class CanRawSender;
 class CanSignalSender;
 
-class MainWindow : public QMainWindow {
+namespace Ui {
+class MainWindow;
+}
+
+class MainWindow : public QMainWindow
+{
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget* parent = nullptr);
+    explicit MainWindow(QWidget* parent = 0);
     ~MainWindow();
 
 private:
+    Ui::MainWindow* ui;
     std::unique_ptr<QMdiArea> mdi;
     std::unique_ptr<CanDevice> canDevice;
     std::unique_ptr<CanRawView> canRawView;

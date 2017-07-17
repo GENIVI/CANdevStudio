@@ -11,8 +11,7 @@ CanRawView::CanRawView(QWidget* parent)
 {
     Q_D(CanRawView);
 
-    d->setupUi();
-    setLayout(&d->layout);
+    setLayout(d->ui->layout);
 }
 
 CanRawView::~CanRawView()

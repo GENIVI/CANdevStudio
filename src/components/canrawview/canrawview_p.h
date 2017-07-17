@@ -1,46 +1,45 @@
 #ifndef CANRAWVIEW_P_H
 #define CANRAWVIEW_P_H
 
+#include "ui_canrawview.h"
 #include <QtGui/QStandardItemModel>
-#include <QtWidgets/QHeaderView>
-#include <QtWidgets/QPushButton>
-#include <QtWidgets/QTableView>
-#include <QtWidgets/QToolBar>
-#include <QtWidgets/QVBoxLayout>
-#include <memory>
 
-class CanRawViewPrivate : public QObject {
+namespace Ui {
+class CanRawViewPrivate;
+}
+
+class CanRawViewPrivate : public QWidget {
     Q_OBJECT
 
 public:
     CanRawViewPrivate()
-        : tvModel(0, 5)
-        , pbClear("Clear")
+    : ui(new Ui::CanRawViewPrivate)
     {
+        ui->setupUi(this);
+
+        tvModel.setHorizontalHeaderLabels({"time", "id", "dir", "dlc", "data"});
+        ui->tv->setModel(&tvModel);
+        ui->tv->setColumnWidth(0, 36);
+        ui->tv->setColumnWidth(1, 92);
+        ui->tv->setColumnWidth(2, 27);
+        ui->tv->setColumnWidth(3, 25);
+        ui->tv->setColumnWidth(4, 178);
+
+
+        connect(ui->pbClear, &QPushButton::pressed, this, &CanRawViewPrivate::clear);
     }
 
-    void setupUi()
+    ~CanRawViewPrivate()
     {
-        tvModel.setHorizontalHeaderLabels({ tr("time"), tr("id"), tr("dir"), tr("dlc"), tr("data") });
-        tv.setModel(&tvModel);
-        tv.verticalHeader()->hideSection(0);
-        tv.setColumnWidth(0, 36);
-        tv.setColumnWidth(1, 92);
-        tv.setColumnWidth(2, 27);
-        tv.setColumnWidth(3, 25);
-        tv.setColumnWidth(4, 178);
-
-        toolbar.addWidget(&pbClear);
-
-        layout.addWidget(&toolbar);
-        layout.addWidget(&tv);
+        delete ui;
     }
 
-    QVBoxLayout layout;
-    QToolBar toolbar;
-    QTableView tv;
+    Ui::CanRawViewPrivate *ui;
     QStandardItemModel tvModel;
-    QPushButton pbClear;
-};
 
+private slots:
+    void clear()
+    {
+    }
+};
 #endif // CANRAWVIEW_P_H
