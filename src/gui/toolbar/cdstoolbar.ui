@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>CdsToolbox</class>
- <widget class="QWidget" name="CdsToolbox">
+ <class>CdsToolbar</class>
+ <widget class="QWidget" name="CdsToolbar">
   <property name="windowModality">
    <enum>Qt::NonModal</enum>
   </property>

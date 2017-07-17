@@ -1,19 +1,19 @@
-#include "cdstoolbox.h"
-#include "ui_cdstoolbox.h"
+#include "cdstoolbar.h"
+#include "ui_cdstoolbar.h"
 #include "log.hpp"
 
-CdsToolbox::CdsToolbox(QWidget *parent) :
+CdsToolbar::CdsToolbar(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::CdsToolbox)
+    ui(new Ui::CdsToolbar)
 {
     ui->setupUi(this);
     connect(ui->startButton,SIGNAL(clicked(bool)),this,SLOT(startButtonClicked()));
     connect(ui->stopButton,SIGNAL(clicked(bool)),this,SLOT(stopButtonClicked()));
-    connect(ui->startButton,SIGNAL(clicked(bool),this,SIGNAL(simulationStart());
-    connect(ui->stopButton,SIGNAL(clicked(bool),this,SIGNAL(simulationStop());
+    connect(ui->startButton,SIGNAL(clicked(bool)),this,SIGNAL(simulationStart()));
+    connect(ui->stopButton,SIGNAL(clicked(bool)),this,SIGNAL(simulationStop()));
 }
 
-void CdsToolbox::startButtonClicked()
+void CdsToolbar::startButtonClicked()
 {
     cds_debug("start button clicked");
     ui->startButton->setEnabled(false);
@@ -21,7 +21,7 @@ void CdsToolbox::startButtonClicked()
     emit simulationStart();
 }
 
-void CdsToolbox::stopButtonClicked()
+void CdsToolbar::stopButtonClicked()
 {
     cds_debug("stop button clicked");
     ui->stopButton->setEnabled(false);
@@ -29,7 +29,7 @@ void CdsToolbox::stopButtonClicked()
     emit simulationStop();
 }
 
-CdsToolbox::~CdsToolbox()
+CdsToolbar::~CdsToolbar()
 {
     delete ui;
 }
