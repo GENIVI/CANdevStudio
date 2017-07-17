@@ -1,3 +1,4 @@
+#include <QtCore/QtDebug>
 #include <QtGui/QStandardItemModel>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
@@ -5,6 +6,8 @@
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QTableView>
 #include <QtWidgets/QToolBar>
+#include <QtWidgets/QMenu>
+#include <QtWidgets/QMenuBar>
 
 #include "candevice/candevice.h"
 #include "canrawsender/canrawsender.h"
@@ -16,6 +19,15 @@
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent)
     , mdi(std::make_unique<QMdiArea>())
+    , projectMenu(nullptr)
+    , loadAct(nullptr)
+    , exitAct(nullptr)
+    , windowMenu(nullptr)
+    , cascadeAct(nullptr)
+    , tileAct(nullptr)
+    , tabViewAct(nullptr)
+    , helpMenu(nullptr)
+    , aboutAct(nullptr)
     , canDevice(std::make_unique<CanDevice>(factory))
     , canRawView(std::make_unique<CanRawView>())
     , canSignalView(std::make_unique<CanSignalView>())
@@ -37,6 +49,8 @@ MainWindow::MainWindow(QWidget* parent)
     mdi->addSubWindow(canRawSender.get());
     mdi->tileSubWindows();
 
+    createMenu();
+
     connect(canDevice.get(), &CanDevice::frameReceived, canRawView.get(), &CanRawView::frameReceived);
     connect(canDevice.get(), &CanDevice::frameSent, canRawView.get(), &CanRawView::frameSent);
 
@@ -48,4 +62,77 @@ MainWindow::MainWindow(QWidget* parent)
 
 MainWindow::~MainWindow()
 {
+}
+
+void MainWindow::createMenu()
+{
+    // Project menu:
+    loadAct.reset(new QAction(tr("&Load"), this));
+    loadAct->setShortcuts(QKeySequence::Open);
+    loadAct->setStatusTip(tr("Load project"));
+    connect(loadAct.get(), &QAction::triggered, this, &MainWindow::loadProject);
+
+    exitAct.reset(new QAction(tr("E&xit"), this));
+    exitAct->setShortcuts(QKeySequence::Quit);
+    exitAct->setStatusTip(tr("Exit the application"));
+    connect(exitAct.get(), &QAction::triggered, this, &QWidget::close);
+
+    projectMenu.reset(menuBar()->addMenu(tr("&Project")));
+    projectMenu->addAction(loadAct.get());
+    projectMenu->addSeparator();
+    projectMenu->addAction(exitAct.get());
+
+    // Window menu:
+    cascadeAct.reset(new QAction(tr("&Cascade"), this));
+    cascadeAct->setStatusTip(tr("Cascade windows"));
+    connect(cascadeAct.get(), &QAction::triggered, this, &MainWindow::cascadeWindows);
+
+    tileAct.reset(new QAction(tr("Tile"), this));
+    tileAct->setStatusTip(tr("Tile windows"));
+    connect(tileAct.get(), &QAction::triggered, this, &MainWindow::tileWindows);
+
+    tabViewAct.reset(new QAction(tr("Tab &view"), this));
+    tabViewAct->setStatusTip(tr("Enable tab view"));
+    connect(tabViewAct.get(), &QAction::triggered, this, &MainWindow::tabView);
+
+    windowMenu.reset(menuBar()->addMenu(tr("&Windows")));
+    windowMenu->addAction(cascadeAct.get());
+    windowMenu->addAction(tileAct.get());
+    windowMenu->addAction(tabViewAct.get());
+
+    // Help menu:
+    aboutAct.reset(new QAction(tr("&About"), this));
+    aboutAct->setStatusTip(tr("Show the application's About box"));
+    connect(aboutAct.get(), &QAction::triggered, this, &MainWindow::about);
+
+    helpMenu.reset(menuBar()->addMenu(tr("&Help")));
+    helpMenu->addAction(aboutAct.get());
+}
+
+// Menu item slots:
+void MainWindow::loadProject()
+{
+    qDebug() << "loadProject()";
+}
+
+void MainWindow::cascadeWindows()
+{
+    qDebug() << "cascadeWindows()";
+    mdi->cascadeSubWindows();
+}
+
+void MainWindow::tileWindows()
+{
+    qDebug() << "tileWindows()";
+    mdi->tileSubWindows();
+}
+
+void MainWindow::tabView()
+{
+    qDebug() << "tabView()";
+}
+
+void MainWindow::about()
+{
+    qDebug() << "about()";
 }
