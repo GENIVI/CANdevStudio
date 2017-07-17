@@ -10,35 +10,36 @@
 
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
-    , mdi(std::make_unique<QMdiArea>())
-    , canDevice(std::make_unique<CanDevice>(factory))
-    , canRawView(std::make_unique<CanRawView>())
-    , canSignalView(std::make_unique<CanSignalView>())
-    , canRawSender(std::make_unique<CanRawSender>())
-    , canSignalSender(std::make_unique<CanSignalSender>())
+    , ui(std::make_unique<Ui::MainWindow>())
 {
     ui->setupUi(this);
     ui->centralWidget->layout()->setContentsMargins(0,0,0,0);
 
+    CanFactoryQt factory;
+    CanDevice* canDevice = new CanDevice(factory);
+    CanRawView* canRawView = new CanRawView();
+    CanSignalView* canSignalView = new CanSignalView();
+    CanRawSender* canRawSender = new CanRawSender();
+    CanSignalSender* canSignalSender = new CanSignalSender;
+
     canRawView->setWindowTitle("Can Raw View");
-    ui->mdiArea->addSubWindow(canRawView.get());
+    ui->mdiArea->addSubWindow(canRawView);
 
     canSignalView->setWindowTitle("Can Signal View");
-    ui->mdiArea->addSubWindow(canSignalView.get());
+    ui->mdiArea->addSubWindow(canSignalView);
 
     canSignalSender->setWindowTitle("Can Signal Sender");
-    ui->mdiArea->addSubWindow(canSignalSender.get());
+    ui->mdiArea->addSubWindow(canSignalSender);
 
     canRawSender->setWindowTitle("Can Raw Sender");
-    ui->mdiArea->addSubWindow(canRawSender.get());
+    ui->mdiArea->addSubWindow(canRawSender);
 
     ui->mdiArea->tileSubWindows();
 
-    connect(canDevice.get(), &CanDevice::frameReceived, canRawView.get(), &CanRawView::frameReceived);
-    connect(canDevice.get(), &CanDevice::frameSent, canRawView.get(), &CanRawView::frameSent);
+    connect(canDevice, &CanDevice::frameReceived, canRawView, &CanRawView::frameReceived);
+    connect(canDevice, &CanDevice::frameSent, canRawView, &CanRawView::frameSent);
 
-    connect(canRawSender.get(), &CanRawSender::sendFrame, canDevice.get(), &CanDevice::sendFrame);
+    connect(canRawSender, &CanRawSender::sendFrame, canDevice, &CanDevice::sendFrame);
 
     canDevice->init("socketcan", "can0");
     canDevice->start();
@@ -46,5 +47,4 @@ MainWindow::MainWindow(QWidget* parent)
 
 MainWindow::~MainWindow()
 {
-    delete ui;
 }

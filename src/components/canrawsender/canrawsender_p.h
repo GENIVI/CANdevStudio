@@ -2,6 +2,7 @@
 #define CANRAWSENDER_P_H
 
 #include "ui_canrawsender.h"
+#include <memory>
 #include <QtSerialBus/QCanBusFrame>
 #include <QtGui/QStandardItemModel>
 
@@ -15,7 +16,7 @@ class CanRawSenderPrivate : public QWidget {
 
 public:
     CanRawSenderPrivate(CanRawSender* q)
-    : ui(new Ui::CanRawSenderPrivate)
+    : ui(std::make_unique<Ui::CanRawSenderPrivate>())
     , q_ptr(q)
     {
         ui->setupUi(this);
@@ -28,11 +29,10 @@ public:
 
     ~CanRawSenderPrivate()
     {
-        delete ui;
     }
 
 private:
-    Ui::CanRawSenderPrivate* ui;
+    std::unique_ptr<Ui::CanRawSenderPrivate> ui;
     QStandardItemModel tvModel;
     CanRawSender* q_ptr;
 

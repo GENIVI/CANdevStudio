@@ -3,6 +3,7 @@
 
 #include "ui_canrawview.h"
 #include <QtGui/QStandardItemModel>
+#include <memory>
 
 namespace Ui {
 class CanRawViewPrivate;
@@ -13,7 +14,7 @@ class CanRawViewPrivate : public QWidget {
 
 public:
     CanRawViewPrivate()
-    : ui(new Ui::CanRawViewPrivate)
+    : ui(std::make_unique<Ui::CanRawViewPrivate>())
     {
         ui->setupUi(this);
 
@@ -31,10 +32,9 @@ public:
 
     ~CanRawViewPrivate()
     {
-        delete ui;
     }
 
-    Ui::CanRawViewPrivate *ui;
+    std::unique_ptr<Ui::CanRawViewPrivate> ui;
     QStandardItemModel tvModel;
 
 private slots:

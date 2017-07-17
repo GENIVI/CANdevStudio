@@ -5,6 +5,7 @@
 #include "ui_cansignalsender.h"
 #include <QtGui/QStandardItemModel>
 #include <QtSerialBus/QCanBusFrame>
+#include <memory>
 
 namespace Ui {
 class CanSignalSenderPrivate;
@@ -17,7 +18,7 @@ class CanSignalSenderPrivate : public QWidget {
 public:
     CanSignalSenderPrivate(CanSignalSender* q)
     : q_ptr(q) 
-    , ui(new Ui::CanSignalSenderPrivate)
+    , ui(std::make_unique<Ui::CanSignalSenderPrivate>())
     {
         ui->setupUi(this);
 
@@ -29,13 +30,12 @@ public:
 
     ~CanSignalSenderPrivate()
     {
-        delete ui;
     }
 
 
 private:
     CanSignalSender* q_ptr;
-    Ui::CanSignalSenderPrivate* ui;
+    std::unique_ptr<Ui::CanSignalSenderPrivate> ui;
     QStandardItemModel tvModel;
 
 private slots:

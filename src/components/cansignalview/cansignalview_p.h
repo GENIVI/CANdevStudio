@@ -3,6 +3,7 @@
 
 #include "ui_cansignalview.h"
 #include <QtGui/QStandardItemModel>
+#include <memory>
 
 namespace Ui {
 class CanSignalViewPrivate;
@@ -13,7 +14,7 @@ class CanSignalViewPrivate : public QWidget {
 
 public:
     CanSignalViewPrivate()
-    : ui(new Ui::CanSignalViewPrivate)
+    : ui(std::make_unique<Ui::CanSignalViewPrivate>())
     {
         ui->setupUi(this);
 
@@ -29,10 +30,9 @@ public:
 
     ~CanSignalViewPrivate()
     {
-        delete ui;
     }
 
-    Ui::CanSignalViewPrivate* ui;
+    std::unique_ptr<Ui::CanSignalViewPrivate> ui;
     QStandardItemModel tvModel;
 
 private slots:
