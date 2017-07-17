@@ -26,7 +26,7 @@ public:
 private:
     std::unique_ptr<QWidget> MainWidget;
     std::unique_ptr<QVBoxLayout> VertLayout;
-    std::unique_ptr<CdsToolbar> Toolbar;
+    std::unique_ptr<CdsToolbar> toolBarArea();
     std::unique_ptr<QMdiArea> mdi;
     std::unique_ptr<CanDevice> canDevice;
     std::unique_ptr<CanRawView> canRawView;

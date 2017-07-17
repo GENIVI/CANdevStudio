@@ -13,13 +13,13 @@
 #include "cansignalsender/cansignalsender.cpp"
 #include "cansignalview/cansignalview.h"
 #include "mainwindow.h"
-#include "toolbox/cdstoolbox.h"
+#include "toolbar/cdstoolbar.h"
 
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent)
     , MainWidget(std::make_unique<QWidget>())
     , VertLayout(std::make_unique<QVBoxLayout>())
-    , Toolbox(std::make_unique<CdsToolbox>())
+    , Toolbar(std::make_unique<CdsToolbar>())
     , mdi(std::make_unique<QMdiArea>())
     , canDevice(std::make_unique<CanDevice>(factory))
     , canRawView(std::make_unique<CanRawView>())
@@ -30,7 +30,7 @@ MainWindow::MainWindow(QWidget* parent)
     mdi->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     mdi->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
 
-    VertLayout->addWidget(Toolbox.get());
+    VertLayout->addWidget(Toolbar.get());
     VertLayout->addWidget(mdi.get());
     MainWidget->setLayout(VertLayout.get());
     setCentralWidget(MainWidget.get());
