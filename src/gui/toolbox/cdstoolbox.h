@@ -7,6 +7,7 @@ namespace Ui {
 class CdsToolbox;
 }
 
+//simple comment remove in the future
 //! CANdeviceStudio Toolbox class
 
 class CdsToolbox : public QWidget
