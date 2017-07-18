@@ -18,7 +18,6 @@ void CdsToolbar::startButtonClicked()
     cds_debug("start button clicked");
     ui->startButton->setEnabled(false);
     ui->stopButton->setEnabled(true);
-    emit simulationStart();
 }
 
 void CdsToolbar::stopButtonClicked()
@@ -26,7 +25,6 @@ void CdsToolbar::stopButtonClicked()
     cds_debug("stop button clicked");
     ui->stopButton->setEnabled(false);
     ui->startButton->setEnabled(true);
-    emit simulationStop();
 }
 
 CdsToolbar::~CdsToolbar()
