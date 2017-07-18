@@ -21,9 +21,6 @@ signals:
 private:
     Ui::CdsToolbar *ui;
 
-private slots:
-    void startButtonClicked();
-    void stopButtonClicked();
 };
 
 #endif // CDSTOOLBAR_H
