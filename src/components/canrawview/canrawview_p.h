@@ -17,7 +17,6 @@ public:
     : ui(std::make_unique<Ui::CanRawViewPrivate>())
     {
         ui->setupUi(this);
-
         tvModel.setHorizontalHeaderLabels({"time", "id", "dir", "dlc", "data"});
         ui->tv->setModel(&tvModel);
         ui->tv->setColumnWidth(0, 36);
@@ -26,7 +25,8 @@ public:
         ui->tv->setColumnWidth(3, 25);
         ui->tv->setColumnWidth(4, 178);
 
-
+        ui->tv->setSortingEnabled(true);
+        ui->tv->horizontalHeader()->setSectionsMovable(true);
         connect(ui->pbClear, &QPushButton::pressed, this, &CanRawViewPrivate::clear);
     }
 
