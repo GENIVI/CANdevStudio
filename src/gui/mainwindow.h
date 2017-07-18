@@ -6,7 +6,6 @@
 
 #include "candevice/canfactoryqt.hpp"
 
-
 namespace Ui {
 class MainWindow;
 }
@@ -21,7 +20,6 @@ public:
 
 private:
     std::unique_ptr<Ui::MainWindow> ui;
-
 
 };
 

@@ -1,7 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-
 #include "candevice/candevice.h"
 #include "canrawsender/canrawsender.h"
 #include "canrawview/canrawview.h"
