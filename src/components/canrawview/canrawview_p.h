@@ -26,6 +26,8 @@ public:
         ui->tv->setColumnWidth(3, 25);
         ui->tv->setColumnWidth(4, 178);
 
+        ui->tv->setSortingEnabled(true);
+        ui->tv->horizontalHeader()->setSectionsMovable(true);
 
         connect(ui->pbClear, &QPushButton::pressed, this, &CanRawViewPrivate::clear);
     }
