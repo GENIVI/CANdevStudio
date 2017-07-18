@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['layout',['layout',['../class_can_raw_sender_private.html#a0d648c4488f781ae48ff92dd1591a281',1,'CanRawSenderPrivate::layout()'],['../class_can_raw_view_private.html#abf9838ce7885d8c30bf5ffa5d3a35fc5',1,'CanRawViewPrivate::layout()'],['../class_can_signal_sender_private.html#a71435243abdd8d54d19bfc1b459ee81b',1,'CanSignalSenderPrivate::layout()'],['../class_can_signal_view_private.html#a96ce342bb55094d4385b100c4ae49664',1,'CanSignalViewPrivate::layout()']]]
+  ['mbackend',['mBackend',['../class_can_device_private.html#af62a70f95fa9843354d543fa7626c610',1,'CanDevicePrivate']]],
+  ['minterface',['mInterface',['../class_can_device_private.html#a8b15f6aa04680d65cbfbc05eabcfc441',1,'CanDevicePrivate']]],
+  ['msendqueue',['mSendQueue',['../class_can_device_private.html#a5175a69e56775033cd1fcb31f8b1893b',1,'CanDevicePrivate']]]
 ];
