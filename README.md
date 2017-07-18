@@ -8,4 +8,3 @@ Coverage: [![codecov](https://codecov.io/gh/PrzemyslawDraszkiewicz/CANdevStudio/
 * [How to contribute](https://at.projects.genivi.org/wiki/display/PROJ/How+to+contribute) 
 
 [JIRA tracker](https://at.projects.genivi.org/jira/projects/CDS)
-

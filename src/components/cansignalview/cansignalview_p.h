@@ -1,43 +1,44 @@
 #ifndef CANSIGNALVIEW_P_H
 #define CANSIGNALVIEW_P_H
 
+#include "ui_cansignalview.h"
 #include <QtGui/QStandardItemModel>
-#include <QtWidgets/QHeaderView>
-#include <QtWidgets/QPushButton>
-#include <QtWidgets/QTableView>
-#include <QtWidgets/QToolBar>
-#include <QtWidgets/QVBoxLayout>
 #include <memory>
 
-class CanSignalViewPrivate : public QObject {
+namespace Ui {
+class CanSignalViewPrivate;
+}
+
+class CanSignalViewPrivate : public QWidget {
     Q_OBJECT
 
 public:
     CanSignalViewPrivate()
-        : tvModel(0, 3)
-        , pbClear("Clear")
+    : ui(std::make_unique<Ui::CanSignalViewPrivate>())
     {
-    }
-    void setupUi()
-    {
+        ui->setupUi(this);
+
         tvModel.setHorizontalHeaderLabels({ tr("time"), tr("name"), tr("value") });
-        tv.setModel(&tvModel);
-        tv.verticalHeader()->hideSection(0);
-        tv.setColumnWidth(0, 36);
-        tv.setColumnWidth(1, 170);
-        tv.setColumnWidth(2, 92);
+        ui->tv->setModel(&tvModel);
+        ui->tv->verticalHeader()->hideSection(0);
+        ui->tv->setColumnWidth(0, 36);
+        ui->tv->setColumnWidth(1, 170);
+        ui->tv->setColumnWidth(2, 92);
 
-        toolbar.addWidget(&pbClear);
-
-        layout.addWidget(&toolbar);
-        layout.addWidget(&tv);
+        connect(ui->pbClear, &QPushButton::pressed, this, &CanSignalViewPrivate::clear);
     }
 
-    QVBoxLayout layout;
-    QToolBar toolbar;
-    QTableView tv;
+    ~CanSignalViewPrivate()
+    {
+    }
+
+    std::unique_ptr<Ui::CanSignalViewPrivate> ui;
     QStandardItemModel tvModel;
-    QPushButton pbClear;
+
+private slots:
+    void clear()
+    {
+    }
 };
 
 #endif // CANSIGNALVIEW_P_H

@@ -7,8 +7,7 @@ CanSignalSender::CanSignalSender(QWidget* parent)
 {
     Q_D(CanSignalSender);
 
-    d->setupUi();
-    setLayout(&d->layout);
+    setLayout(d->ui->layout);
 }
 
 CanSignalSender::~CanSignalSender()
