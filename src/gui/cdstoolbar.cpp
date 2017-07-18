@@ -4,7 +4,7 @@
 
 CdsToolbar::CdsToolbar(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::CdsToolbar)
+    ui(std::make_unique<Ui::CdsToolbar>())
 {
     ui->setupUi(this);
     connect(ui->startButton,SIGNAL(clicked(bool)),this,SIGNAL(simulationStart()));
@@ -17,5 +17,4 @@ CdsToolbar::CdsToolbar(QWidget *parent) :
 
 CdsToolbar::~CdsToolbar()
 {
-    delete ui;
 }

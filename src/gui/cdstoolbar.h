@@ -2,6 +2,7 @@
 #define CDSTOOLBAR_H
 
 #include <QtWidgets/QWidget>
+#include <memory>
 
 namespace Ui {
 class CdsToolbar;
@@ -19,8 +20,7 @@ signals:
     void simulationStart(); //!< signal emitted when user clicks "start" button in toolbar
     void simulationStop(); //!< signal emitted when user clicks "stop" button in toolbar
 private:
-    Ui::CdsToolbar *ui;
-
+    std::unique_ptr<Ui::CdsToolbar> ui;
 };
 
 #endif // CDSTOOLBAR_H
