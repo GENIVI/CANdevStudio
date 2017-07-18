@@ -3,7 +3,7 @@
 set(srcs
     main.cpp
     mainwindow.cpp
-    toolbar/cdstoolbar.cpp
+    cdstoolbar.cpp
 )
 
 add_executable(CANdevStudio ${srcs})
