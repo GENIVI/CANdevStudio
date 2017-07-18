@@ -20,6 +20,7 @@ public:
 
 private:
     std::unique_ptr<Ui::MainWindow> ui;
+
 };
 
 #endif // MAINWINDOW_H
