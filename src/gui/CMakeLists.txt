@@ -3,6 +3,7 @@
 set(srcs
     main.cpp
     mainwindow.cpp
+    mainwindow.ui
 )
 
 add_executable(CANdevStudio ${srcs})
