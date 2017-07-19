@@ -6,7 +6,7 @@
 #include "canrawview/canrawview.h"
 #include "cansignalsender/cansignalsender.h"
 #include "cansignalview/cansignalview.h"
-#include "cdstoolbar.h"
+
 
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent)
@@ -40,6 +40,11 @@ MainWindow::MainWindow(QWidget* parent)
     connect(canDevice, &CanDevice::frameSent, canRawView, &CanRawView::frameSent);
 
     connect(canRawSender, &CanRawSender::sendFrame, canDevice, &CanDevice::sendFrame);
+
+    connect(ui->actionstart,SIGNAL(triggered(bool)),ui->actionstop,SLOT(setDisabled(bool)));
+    connect(ui->actionstart,SIGNAL(triggered(bool)),ui->actionstart,SLOT(setEnabled(bool)));
+    connect(ui->actionstop,SIGNAL(triggered(bool)),ui->actionstop,SLOT(setEnabled(bool)));
+    connect(ui->actionstop,SIGNAL(triggered(bool)),ui->actionstart,SLOT(setDisabled(bool)));
 
     canDevice->init("socketcan", "can0");
     canDevice->start();
