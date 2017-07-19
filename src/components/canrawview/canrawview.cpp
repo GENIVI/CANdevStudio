@@ -4,10 +4,12 @@
 #include <QtCore/QStringList>
 #include <QtGui/QStandardItem>
 #include <QtSerialBus/QCanBusFrame>
+#include <QtCore/QElapsedTimer>
 
 CanRawView::CanRawView(QWidget* parent)
     : QWidget(parent)
     , d_ptr(new CanRawViewPrivate())
+    , timer(std::make_unique<QElapsedTimer>())
 {
     Q_D(CanRawView);
 
@@ -16,6 +18,11 @@ CanRawView::CanRawView(QWidget* parent)
 
 CanRawView::~CanRawView()
 {
+}
+
+void CanRawView::simulationStarted()
+{
+    timer->restart();
 }
 
 void CanRawView::frameReceived(const QCanBusFrame& frame)
@@ -28,7 +35,7 @@ void CanRawView::frameReceived(const QCanBusFrame& frame)
     }
 
     QList<QStandardItem*> list;
-    list.append(new QStandardItem("0"));
+    list.append(new QStandardItem(QString::number( (double) timer->elapsed() / 1000)));
     list.append(new QStandardItem("0x" + QString::number(frame.frameId(), 16)));
     list.append(new QStandardItem("RX"));
     list.append(new QStandardItem(QString::number(frame.payload().size())));
@@ -48,7 +55,7 @@ void CanRawView::frameSent(bool status, const QCanBusFrame& frame, const QVarian
         }
 
         QList<QStandardItem*> list;
-        list.append(new QStandardItem("0"));
+        list.append(new QStandardItem(QString::number( (double) timer->elapsed() / 1000)));
         list.append(new QStandardItem("0x" + QString::number(frame.frameId(), 16)));
         list.append(new QStandardItem("TX"));
         list.append(new QStandardItem(QString::number(frame.payload().size())));

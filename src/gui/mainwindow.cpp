@@ -38,7 +38,7 @@ MainWindow::MainWindow(QWidget* parent)
 
     connect(canDevice, &CanDevice::frameReceived, canRawView, &CanRawView::frameReceived);
     connect(canDevice, &CanDevice::frameSent, canRawView, &CanRawView::frameSent);
-
+    connect(ui->actionstart,SIGNAL(triggered(bool)),canRawView,SLOT(simulationStarted(void)));
     connect(canRawSender, &CanRawSender::sendFrame, canDevice, &CanDevice::sendFrame);
 
     connect(ui->actionstart,SIGNAL(triggered(bool)),ui->actionstop,SLOT(setDisabled(bool)));
