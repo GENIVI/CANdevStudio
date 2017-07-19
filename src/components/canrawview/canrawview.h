@@ -3,9 +3,11 @@
 
 #include <QtCore/QScopedPointer>
 #include <QtWidgets/QWidget>
+#include <memory>
 
 class QCanBusFrame;
 class CanRawViewPrivate;
+class QElapsedTimer;
 
 class CanRawView : public QWidget {
     Q_OBJECT
@@ -18,11 +20,13 @@ public:
 public Q_SLOTS:
     void frameReceived(const QCanBusFrame& frame);
     void frameSent(bool status, const QCanBusFrame& frame, const QVariant& context);
+    void simulationStarted(void);
 
 private:
     void frameView(const QCanBusFrame& frame, const QString& direction);
 
     QScopedPointer<CanRawViewPrivate> d_ptr;
+    std::unique_ptr<QElapsedTimer> timer;
 };
 
 #endif // CANRAWVIEW_H
