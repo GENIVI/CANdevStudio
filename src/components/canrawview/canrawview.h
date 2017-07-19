@@ -20,6 +20,8 @@ public Q_SLOTS:
     void frameSent(bool status, const QCanBusFrame& frame, const QVariant& context);
 
 private:
+    void frameView(const QCanBusFrame& frame, const QString& direction);
+
     QScopedPointer<CanRawViewPrivate> d_ptr;
 };
 
