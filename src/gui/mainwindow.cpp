@@ -7,13 +7,12 @@
 #include "cansignalsender/cansignalsender.h"
 #include "cansignalview/cansignalview.h"
 
-
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent)
     , ui(std::make_unique<Ui::MainWindow>())
 {
     ui->setupUi(this);
-    ui->centralWidget->layout()->setContentsMargins(0,0,0,0);
+    ui->centralWidget->layout()->setContentsMargins(0, 0, 0, 0);
 
     CanFactoryQt factory;
     CanDevice* canDevice = new CanDevice(factory);
@@ -41,10 +40,10 @@ MainWindow::MainWindow(QWidget* parent)
 
     connect(canRawSender, &CanRawSender::sendFrame, canDevice, &CanDevice::sendFrame);
 
-    connect(ui->actionstart,SIGNAL(triggered(bool)),ui->actionstop,SLOT(setDisabled(bool)));
-    connect(ui->actionstart,SIGNAL(triggered(bool)),ui->actionstart,SLOT(setEnabled(bool)));
-    connect(ui->actionstop,SIGNAL(triggered(bool)),ui->actionstop,SLOT(setEnabled(bool)));
-    connect(ui->actionstop,SIGNAL(triggered(bool)),ui->actionstart,SLOT(setDisabled(bool)));
+    connect(ui->actionstart, SIGNAL(triggered(bool)), ui->actionstop, SLOT(setDisabled(bool)));
+    connect(ui->actionstart, SIGNAL(triggered(bool)), ui->actionstart, SLOT(setEnabled(bool)));
+    connect(ui->actionstop, SIGNAL(triggered(bool)), ui->actionstop, SLOT(setEnabled(bool)));
+    connect(ui->actionstop, SIGNAL(triggered(bool)), ui->actionstart, SLOT(setDisabled(bool)));
 
     canDevice->init("socketcan", "can0");
     canDevice->start();

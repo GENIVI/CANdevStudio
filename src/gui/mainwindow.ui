@@ -51,7 +51,7 @@
   </widget>
   <action name="actionstart">
    <property name="text">
-    <string>start</string>
+    <string>Start</string>
    </property>
   </action>
   <action name="actionstop">
@@ -59,7 +59,7 @@
     <bool>false</bool>
    </property>
    <property name="text">
-    <string>stop</string>
+    <string>Stop</string>
    </property>
   </action>
  </widget>
