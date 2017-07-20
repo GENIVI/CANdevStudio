@@ -20,8 +20,8 @@ public:
 public Q_SLOTS:
     void frameReceived(const QCanBusFrame& frame);
     void frameSent(bool status, const QCanBusFrame& frame, const QVariant& context);
-    void simulationStarted(void);
-    void simulationStopped(void);
+    void stopSimulation(void);
+    void startSimulation(void);
 
 private:
     QScopedPointer<CanRawViewPrivate> d_ptr;
