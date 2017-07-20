@@ -1,11 +1,13 @@
 #include "canrawview.h"
 #include "canrawview_p.h"
+#include "log.hpp"
 #include <QtCore/QList>
 #include <QtCore/QString>
 #include <QtCore/QStringList>
 #include <QtGui/QStandardItem>
 #include <QtSerialBus/QCanBusFrame>
 #include <QtCore/QElapsedTimer>
+
 
 CanRawView::CanRawView(QWidget* parent)
     : QWidget(parent)
@@ -20,21 +22,25 @@ CanRawView::CanRawView(QWidget* parent)
 
 CanRawView::~CanRawView() {}
 
-void CanRawView::simulationStarted()
+void CanRawView::startSimulation()
 {
     timer->restart();
     simStarted = true;
 }
 
-void CanRawView::simulationStopped()
+void CanRawView::stopSimulation()
 {
     simStarted = false;
 }
 
 void CanRawView::frameView(const QCanBusFrame& frame, const QString& direction)
 {
-    if(!simStarted) return;
     Q_D(CanRawView);
+    if(!simStarted)
+    {
+        cds_debug("received frame while simulation stopped");
+        return;
+    }
 
     auto payHex = frame.payload().toHex();
     for (int ii = payHex.size(); ii >= 2; ii -= 2) {
