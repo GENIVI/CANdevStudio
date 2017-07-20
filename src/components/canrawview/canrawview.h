@@ -21,12 +21,14 @@ public Q_SLOTS:
     void frameReceived(const QCanBusFrame& frame);
     void frameSent(bool status, const QCanBusFrame& frame, const QVariant& context);
     void simulationStarted(void);
+    void simulationStopped(void);
 
 private:
     void frameView(const QCanBusFrame& frame, const QString& direction);
 
     QScopedPointer<CanRawViewPrivate> d_ptr;
     std::unique_ptr<QElapsedTimer> timer;
+    bool simStarted;
 };
 
 #endif // CANRAWVIEW_H
