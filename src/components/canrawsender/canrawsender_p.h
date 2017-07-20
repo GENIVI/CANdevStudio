@@ -21,7 +21,7 @@ public:
     {
         ui->setupUi(this);
 
-        tvModel.setHorizontalHeaderLabels({"id", "value",""});
+        tvModel.setHorizontalHeaderLabels({"ID", "Data", "Cyclic", ""});
         ui->tv->setModel(&tvModel);
         ui->tv->horizontalHeader()->setSectionsMovable(true);
         ui->tv->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -61,17 +61,17 @@ private slots:
     void addNewItem()
     {
         QStandardItem* id = new QStandardItem();
-        QStandardItem* value = new QStandardItem();
-        QList<QStandardItem*> list {id, value};
+        QStandardItem* data = new QStandardItem();
+        QStandardItem* cyclic = new QStandardItem("0");
+        QList<QStandardItem*> list {id, data, cyclic};
         tvModel.appendRow(list);
 
         QPushButton* pbSend = new QPushButton("Send");
-        ui->tv->setIndexWidget(tvModel.index(tvModel.rowCount() - 1, 2), pbSend);
-
-        connect(pbSend, &QPushButton::pressed, this, [this, id, value] {
+        ui->tv->setIndexWidget(tvModel.index(tvModel.rowCount() - 1, 3), pbSend);
+        connect(pbSend, &QPushButton::pressed, this, [this, id, data, cyclic] {
             Q_Q(CanRawSender);
 
-            if (id->text().size() && value->text().size()) {
+            if (id->text().size() && data->text().size()) {
                 quint32 val;
                 if (id->text().startsWith("0x"))
                     val = id->text().toUInt(nullptr, 16);
@@ -80,7 +80,7 @@ private slots:
 
                 QCanBusFrame frame;
                 frame.setFrameId(val);
-                frame.setPayload(QByteArray::fromHex(value->text().toUtf8()));
+                frame.setPayload(QByteArray::fromHex(data->text().toUtf8()));
                 emit q->sendFrame(frame);
             }
         });
