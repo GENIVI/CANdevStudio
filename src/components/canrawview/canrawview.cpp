@@ -10,6 +10,7 @@ CanRawView::CanRawView(QWidget* parent)
     : QWidget(parent)
     , d_ptr(new CanRawViewPrivate())
     , timer(std::make_unique<QElapsedTimer>())
+    , simStarted(false)
 {
     Q_D(CanRawView);
 
@@ -23,10 +24,17 @@ CanRawView::~CanRawView()
 void CanRawView::simulationStarted()
 {
     timer->restart();
+    simStarted = true;
+}
+
+void CanRawView::simulationStopped()
+{
+    simStarted = false;
 }
 
 void CanRawView::frameReceived(const QCanBusFrame& frame)
 {
+    if(!simStarted) return;
     Q_D(CanRawView);
 
     auto payHex = frame.payload().toHex();
@@ -46,6 +54,7 @@ void CanRawView::frameReceived(const QCanBusFrame& frame)
 
 void CanRawView::frameSent(bool status, const QCanBusFrame& frame, const QVariant&)
 {
+    if(!simStarted) return;
     Q_D(CanRawView);
 
     if (status) {
