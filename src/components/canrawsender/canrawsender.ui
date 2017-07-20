@@ -58,7 +58,11 @@
     </layout>
    </item>
    <item>
-    <widget class="QTableView" name="tv"/>
+    <widget class="QTableView" name="tv">
+     <property name="sortingEnabled">
+      <bool>true</bool>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>
