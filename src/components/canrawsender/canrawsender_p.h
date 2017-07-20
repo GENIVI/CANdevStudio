@@ -25,6 +25,8 @@ public:
         ui->tv->setModel(&tvModel);
 
         connect(ui->pbAdd, &QPushButton::pressed, this, &CanRawSenderPrivate::addNewItem);
+
+        connect(ui->pbDockUndock, &QPushButton::pressed, this, &CanRawSenderPrivate::dockUndock);
     }
 
     ~CanRawSenderPrivate()
@@ -64,6 +66,12 @@ private slots:
                 emit q->sendFrame(frame, ctx);
             }
         });
+    }
+
+    void dockUndock()
+    {
+        Q_Q(CanRawSender);
+        emit q->dockUndock();
     }
 };
 

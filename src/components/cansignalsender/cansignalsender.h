@@ -17,6 +17,7 @@ public:
 
 signals:
     void sendSignal(const QString& name, const QByteArray& value);
+    void dockUndock();
 
 public slots:
 

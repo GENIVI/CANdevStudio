@@ -6,6 +6,9 @@
 #include "canrawview/canrawview.h"
 #include "cansignalsender/cansignalsender.h"
 #include "cansignalview/cansignalview.h"
+#include "mainwindow.h"
+#include <QtWidgets/QMdiArea>
+#include <QtWidgets/QMdiSubWindow>
 
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent)
@@ -45,10 +48,42 @@ MainWindow::MainWindow(QWidget* parent)
     connect(ui->actionstop, SIGNAL(triggered(bool)), ui->actionstop, SLOT(setEnabled(bool)));
     connect(ui->actionstop, SIGNAL(triggered(bool)), ui->actionstart, SLOT(setDisabled(bool)));
 
+    //docking signals connection
+    connect(canRawView, &CanRawView::dockUndock, this, [this, canRawView] {
+                        handleDock(canRawView, ui->mdiArea);
+		    });
+    connect(canSignalView, &CanSignalView::dockUndock, this, [this, canSignalView] {
+		        handleDock(canSignalView, ui->mdiArea);
+		    });
+    connect(canSignalSender, &CanSignalSender::dockUndock, this, [this, canSignalSender] {
+		        handleDock(canSignalSender, ui->mdiArea);
+		    });
+    connect(canRawSender, &CanRawSender::dockUndock, this, [this, canRawSender] {
+			handleDock(canRawSender, ui->mdiArea);
+		    });
+
     canDevice->init("socketcan", "can0");
     canDevice->start();
 }
 
 MainWindow::~MainWindow()
 {
+}
+
+void MainWindow::handleDock(QWidget* component, QMdiArea* mdi)
+{
+    //check if component is already displayed by mdi area
+    if(mdi->subWindowList().contains(static_cast<QMdiSubWindow*>(component->parentWidget())))
+    {
+        //undock
+        auto parent = component->parentWidget();
+        mdi->removeSubWindow(component);    //removeSubwWndow only removes widget, not window
+        component->show();
+        parent->close();
+    }
+    else
+    {
+        //dock
+        mdi->addSubWindow(component)->show();
+    }
 }

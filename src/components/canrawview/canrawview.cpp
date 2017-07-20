@@ -7,7 +7,7 @@
 
 CanRawView::CanRawView(QWidget* parent)
     : QWidget(parent)
-    , d_ptr(new CanRawViewPrivate())
+    , d_ptr(new CanRawViewPrivate(this))
 {
     Q_D(CanRawView);
 

@@ -15,6 +15,9 @@ public:
     explicit CanRawView(QWidget* parent = nullptr);
     ~CanRawView();
 
+signals:
+    void dockUndock();
+
 public Q_SLOTS:
     void frameReceived(const QCanBusFrame& frame);
     void frameSent(bool status, const QCanBusFrame& frame, const QVariant& context);

@@ -11,10 +11,12 @@ class CanSignalViewPrivate;
 
 class CanSignalViewPrivate : public QWidget {
     Q_OBJECT
+    Q_DECLARE_PUBLIC(CanSignalView);
 
 public:
-    CanSignalViewPrivate()
+    CanSignalViewPrivate(CanSignalView* q)
     : ui(std::make_unique<Ui::CanSignalViewPrivate>())
+    , q_ptr(q)
     {
         ui->setupUi(this);
 
@@ -26,6 +28,9 @@ public:
         ui->tv->setColumnWidth(2, 92);
 
         connect(ui->pbClear, &QPushButton::pressed, this, &CanSignalViewPrivate::clear);
+
+        connect(ui->pbDockUndock, &QPushButton::pressed, this, &CanSignalViewPrivate::dockUndock);
+
     }
 
     ~CanSignalViewPrivate()
@@ -35,9 +40,18 @@ public:
     std::unique_ptr<Ui::CanSignalViewPrivate> ui;
     QStandardItemModel tvModel;
 
+private:
+    CanSignalView* q_ptr;
+
 private slots:
     void clear()
     {
+    }
+
+    void dockUndock()
+    {
+        Q_Q(CanSignalView);
+        emit q->dockUndock();
     }
 };
 
