@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['localfile',['localFile',['../main_8cpp.html#a315a8c1468a66de1f41cebc177e22ab0',1,'main.cpp']]],
-  ['log_2ehpp',['log.hpp',['../log_8hpp.html',1,'']]]
+  ['kdefaultlogger',['kDefaultLogger',['../log_8hpp.html#a20e4133288a6dd5e9b289bf4407d57d6',1,'kDefaultLogger():&#160;main.cpp'],['../main_8cpp.html#a20e4133288a6dd5e9b289bf4407d57d6',1,'kDefaultLogger():&#160;main.cpp']]]
 ];
