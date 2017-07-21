@@ -23,9 +23,6 @@ void CanRawView::frameView(const QCanBusFrame& frame, const QString& direction)
 {
    Q_D(CanRawView);
 
-   if (d->ui->freezeBox->isChecked() == true)
-       return;
-
    auto payHex = frame.payload().toHex();
    for (int ii = payHex.size(); ii >= 2; ii -= 2) {
        payHex.insert(ii, ' ');
@@ -39,6 +36,11 @@ void CanRawView::frameView(const QCanBusFrame& frame, const QString& direction)
    list.append(new QStandardItem(QString::fromUtf8(payHex.data(), payHex.size())));
 
    d->tvModel.appendRow(list);
+
+   if (d->ui->freezeBox->isChecked() == false) {
+       d->ui->tv->scrollToBottom();
+   }
+
 }
 
 void CanRawView::frameReceived(const QCanBusFrame& frame)
