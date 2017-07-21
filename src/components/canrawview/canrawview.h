@@ -7,7 +7,6 @@
 
 class QCanBusFrame;
 class CanRawViewPrivate;
-class QElapsedTimer;
 
 class CanRawView : public QWidget {
     Q_OBJECT
@@ -27,10 +26,7 @@ public Q_SLOTS:
     void startSimulation(void);
 
 private:
-    void frameView(const QCanBusFrame& frame, const QString& direction);
     QScopedPointer<CanRawViewPrivate> d_ptr;
-    std::unique_ptr<QElapsedTimer> timer;
-    bool simStarted;
 };
 
 #endif // CANRAWVIEW_H

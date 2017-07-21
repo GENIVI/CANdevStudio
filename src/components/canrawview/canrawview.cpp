@@ -9,9 +9,7 @@
 
 CanRawView::CanRawView(QWidget* parent)
     : QWidget(parent)
-    , d_ptr(new CanRawViewPrivate())
-    , timer(std::make_unique<QElapsedTimer>())
-    , simStarted(false)
+    , d_ptr(new CanRawViewPrivate(this))
 {
     Q_D(CanRawView);
 
@@ -22,45 +20,31 @@ CanRawView::~CanRawView() {}
 
 void CanRawView::startSimulation()
 {
-    timer->restart();
-    simStarted = true;
+    Q_D(CanRawView);
+
+    d->timer->restart();
+    d->simStarted = true;
 }
 
-void CanRawView::stopSimulation() { simStarted = false; }
-
-void CanRawView::frameView(const QCanBusFrame& frame, const QString& direction)
+void CanRawView::stopSimulation()
 {
     Q_D(CanRawView);
 
-    if (!simStarted) {
-        cds_debug("send/received frame while simulation stopped");
-        return;
-    }
-
-    auto payHex = frame.payload().toHex();
-    for (int ii = payHex.size(); ii >= 2; ii -= 2) {
-        payHex.insert(ii, ' ');
-    }
-
-    QList<QStandardItem*> list;
-    list.append(new QStandardItem(QString::number((double)timer->elapsed() / 1000, 'f', 2)));
-    list.append(new QStandardItem("0x" + QString::number(frame.frameId(), 16)));
-    list.append(new QStandardItem(direction));
-    list.append(new QStandardItem(QString::number(frame.payload().size())));
-    list.append(new QStandardItem(QString::fromUtf8(payHex.data(), payHex.size())));
-
-    d->tvModel.appendRow(list);
-
-    if (d->ui->freezeBox->isChecked() == false) {
-        d->ui->tv->scrollToBottom();
-    }
+    d->simStarted = false;
 }
 
-void CanRawView::frameReceived(const QCanBusFrame& frame) { frameView(frame, "RX"); }
+void CanRawView::frameReceived(const QCanBusFrame& frame)
+{
+    Q_D(CanRawView);
+
+    d->frameView(frame, "RX");
+}
 
 void CanRawView::frameSent(bool status, const QCanBusFrame& frame, const QVariant&)
 {
+    Q_D(CanRawView);
+
     if (status) {
-        frameView(frame, "TX");
+        d->frameView(frame, "TX");
     }
 }
