@@ -28,7 +28,6 @@ public Q_SLOTS:
 
 private:
     void frameView(const QCanBusFrame& frame, const QString& direction);
-
     QScopedPointer<CanRawViewPrivate> d_ptr;
     std::unique_ptr<QElapsedTimer> timer;
     bool simStarted;

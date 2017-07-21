@@ -10,7 +10,6 @@
 #include <QtWidgets/QMdiArea>
 #include <QtWidgets/QMdiSubWindow>
 
-
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent)
     , ui(std::make_unique<Ui::MainWindow>())
@@ -45,10 +44,10 @@ MainWindow::MainWindow(QWidget* parent)
     connect(ui->actionstop, &QAction::triggered, canRawView, &CanRawView::stopSimulation);
     connect(canRawSender, &CanRawSender::sendFrame, canDevice, &CanDevice::sendFrame);
 
-    connect(ui->actionstart,&QAction::triggered,ui->actionstop,&QAction::setDisabled);
-    connect(ui->actionstart,&QAction::triggered,ui->actionstart,&QAction::setEnabled);
-    connect(ui->actionstop,&QAction::triggered,ui->actionstop,&QAction::setEnabled);
-    connect(ui->actionstop,&QAction::triggered,ui->actionstart,&QAction::setDisabled);
+    connect(ui->actionstart, &QAction::triggered, ui->actionstop, &QAction::setDisabled);
+    connect(ui->actionstart, &QAction::triggered, ui->actionstart, &QAction::setEnabled);
+    connect(ui->actionstop, &QAction::triggered, ui->actionstop, &QAction::setEnabled);
+    connect(ui->actionstop, &QAction::triggered, ui->actionstart, &QAction::setDisabled);
 
     //docking signals connection
     connect(canRawView, &CanRawView::dockUndock, this, [this, canRawView] {
@@ -63,7 +62,6 @@ MainWindow::MainWindow(QWidget* parent)
     connect(canRawSender, &CanRawSender::dockUndock, this, [this, canRawSender] {
 			handleDock(canRawSender, ui->mdiArea);
 		    });
-
     canDevice->init("socketcan", "can0");
     canDevice->start();
 }

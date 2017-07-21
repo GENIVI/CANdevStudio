@@ -1,13 +1,11 @@
 #include "canrawview.h"
 #include "canrawview_p.h"
 #include "log.hpp"
+#include <QtCore/QElapsedTimer>
 #include <QtCore/QList>
 #include <QtCore/QString>
 #include <QtCore/QStringList>
-#include <QtGui/QStandardItem>
 #include <QtSerialBus/QCanBusFrame>
-#include <QtCore/QElapsedTimer>
-
 
 CanRawView::CanRawView(QWidget* parent)
     : QWidget(parent)
@@ -28,16 +26,13 @@ void CanRawView::startSimulation()
     simStarted = true;
 }
 
-void CanRawView::stopSimulation()
-{
-    simStarted = false;
-}
+void CanRawView::stopSimulation() { simStarted = false; }
 
 void CanRawView::frameView(const QCanBusFrame& frame, const QString& direction)
 {
     Q_D(CanRawView);
-    if(!simStarted)
-    {
+
+    if (!simStarted) {
         cds_debug("send/received frame while simulation stopped");
         return;
     }
@@ -48,7 +43,7 @@ void CanRawView::frameView(const QCanBusFrame& frame, const QString& direction)
     }
 
     QList<QStandardItem*> list;
-    list.append(new QStandardItem(QString::number( (double) timer->elapsed() / 1000)));
+    list.append(new QStandardItem(QString::number((double)timer->elapsed() / 1000, 'f', 2)));
     list.append(new QStandardItem("0x" + QString::number(frame.frameId(), 16)));
     list.append(new QStandardItem(direction));
     list.append(new QStandardItem(QString::number(frame.payload().size())));
