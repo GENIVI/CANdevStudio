@@ -6,7 +6,7 @@
 
 CanSignalView::CanSignalView(QWidget* parent)
     : QWidget(parent)
-    , d_ptr(new CanSignalViewPrivate())
+    , d_ptr(new CanSignalViewPrivate(this))
 {
     Q_D(CanSignalView);
 

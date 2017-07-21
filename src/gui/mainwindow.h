@@ -6,6 +6,8 @@
 
 #include "candevice/canfactoryqt.hpp"
 
+class QMdiArea;
+
 namespace Ui {
 class MainWindow;
 }
@@ -20,6 +22,7 @@ public:
 
 private:
     std::unique_ptr<Ui::MainWindow> ui;
+    void handleDock(QWidget* component, QMdiArea* mdi);
 };
 
 #endif // MAINWINDOW_H

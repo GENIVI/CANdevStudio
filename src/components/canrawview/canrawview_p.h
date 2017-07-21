@@ -11,10 +11,12 @@ class CanRawViewPrivate;
 
 class CanRawViewPrivate : public QWidget {
     Q_OBJECT
+    Q_DECLARE_PUBLIC(CanRawView)
 
 public:
-    CanRawViewPrivate()
+    CanRawViewPrivate(CanRawView* q)
     : ui(std::make_unique<Ui::CanRawViewPrivate>())
+    , q_ptr(q)
     {
         ui->setupUi(this);
 
@@ -28,6 +30,8 @@ public:
 
 
         connect(ui->pbClear, &QPushButton::pressed, this, &CanRawViewPrivate::clear);
+
+	connect(ui->pbDockUndock, &QPushButton::pressed, this, &CanRawViewPrivate::dockUndock);
     }
 
     ~CanRawViewPrivate()
@@ -37,9 +41,18 @@ public:
     std::unique_ptr<Ui::CanRawViewPrivate> ui;
     QStandardItemModel tvModel;
 
+private:
+    CanRawView* q_ptr;
+
 private slots:
     void clear()
     {
+    }
+
+    void dockUndock()
+    {
+        Q_Q(CanRawView);
+        emit q->dockUndock();
     }
 };
 #endif // CANRAWVIEW_P_H

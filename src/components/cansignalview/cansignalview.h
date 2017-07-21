@@ -15,6 +15,9 @@ public:
     explicit CanSignalView(QWidget* parent = 0);
     ~CanSignalView();
 
+signals:
+    void dockUndock();
+
 public Q_SLOTS:
     void signalReceived(const QString& name, const QByteArray& val);
 
