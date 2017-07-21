@@ -137,13 +137,19 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ac5c02a4d9be2ca08b1f33dcc2e111df6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2457b43c2a434f6c6827ded804f43d0d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_raw_view_private.html#a2457b43c2a434f6c6827ded804f43d0d">~CanRawViewPrivate</a> ()</td></tr>
 <tr class="separator:a2457b43c2a434f6c6827ded804f43d0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1573036ba16b36b7c6ce61cacf6124a5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_raw_view_private.html#a1573036ba16b36b7c6ce61cacf6124a5">frameView</a> (const QCanBusFrame &amp;frame, const QString &amp;direction)</td></tr>
+<tr class="separator:a1573036ba16b36b7c6ce61cacf6124a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a0cd07a1650068bde6fe2e6a59dd60b0f"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; Ui::CanRawViewPrivate &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_raw_view_private.html#a0cd07a1650068bde6fe2e6a59dd60b0f">ui</a></td></tr>
 <tr class="separator:a0cd07a1650068bde6fe2e6a59dd60b0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d9238e0c786981ae30c5564ca4edcf0"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; QElapsedTimer &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_raw_view_private.html#a0d9238e0c786981ae30c5564ca4edcf0">timer</a></td></tr>
+<tr class="separator:a0d9238e0c786981ae30c5564ca4edcf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acc80cef35de6b73126143cb55708db59"><td class="memItemLeft" align="right" valign="top">QStandardItemModel&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_raw_view_private.html#acc80cef35de6b73126143cb55708db59">tvModel</a></td></tr>
 <tr class="separator:acc80cef35de6b73126143cb55708db59"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1773e4feac7c9c06eeb7076855ca5fd8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_raw_view_private.html#a1773e4feac7c9c06eeb7076855ca5fd8">simStarted</a></td></tr>
+<tr class="separator:a1773e4feac7c9c06eeb7076855ca5fd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="ac5c02a4d9be2ca08b1f33dcc2e111df6"></a>
@@ -193,7 +199,66 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a1573036ba16b36b7c6ce61cacf6124a5"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CanRawViewPrivate::frameView </td>
+          <td>(</td>
+          <td class="paramtype">const QCanBusFrame &amp;&#160;</td>
+          <td class="paramname"><em>frame</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>direction</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a1773e4feac7c9c06eeb7076855ca5fd8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CanRawViewPrivate::simStarted</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a0d9238e0c786981ae30c5564ca4edcf0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unique_ptr&lt;QElapsedTimer&gt; CanRawViewPrivate::timer</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="acc80cef35de6b73126143cb55708db59"></a>
 <div class="memitem">
 <div class="memproto">
