@@ -13,6 +13,4 @@ endfunction()
 add_component(candevice)
 add_component_ui(canrawview)
 add_component_ui(canrawsender)
-add_component_ui(cansignalview)
-add_component_ui(cansignalsender)
 

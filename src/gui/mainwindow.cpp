@@ -4,8 +4,6 @@
 #include "candevice/candevice.h"
 #include "canrawsender/canrawsender.h"
 #include "canrawview/canrawview.h"
-#include "cansignalsender/cansignalsender.h"
-#include "cansignalview/cansignalview.h"
 #include "mainwindow.h"
 #include <QtWidgets/QMdiArea>
 #include <QtWidgets/QMdiSubWindow>
@@ -20,18 +18,10 @@ MainWindow::MainWindow(QWidget* parent)
     CanFactoryQt factory;
     CanDevice* canDevice = new CanDevice(factory);
     CanRawView* canRawView = new CanRawView();
-    CanSignalView* canSignalView = new CanSignalView();
     CanRawSender* canRawSender = new CanRawSender();
-    CanSignalSender* canSignalSender = new CanSignalSender;
 
     canRawView->setWindowTitle("Can Raw View");
     ui->mdiArea->addSubWindow(canRawView);
-
-    canSignalView->setWindowTitle("Can Signal View");
-    ui->mdiArea->addSubWindow(canSignalView);
-
-    canSignalSender->setWindowTitle("Can Signal Sender");
-    ui->mdiArea->addSubWindow(canSignalSender);
 
     canRawSender->setWindowTitle("Can Raw Sender");
     ui->mdiArea->addSubWindow(canRawSender);
@@ -52,12 +42,6 @@ MainWindow::MainWindow(QWidget* parent)
     //docking signals connection
     connect(canRawView, &CanRawView::dockUndock, this, [this, canRawView] {
                         handleDock(canRawView, ui->mdiArea);
-		    });
-    connect(canSignalView, &CanSignalView::dockUndock, this, [this, canSignalView] {
-		        handleDock(canSignalView, ui->mdiArea);
-		    });
-    connect(canSignalSender, &CanSignalSender::dockUndock, this, [this, canSignalSender] {
-		        handleDock(canSignalSender, ui->mdiArea);
 		    });
     connect(canRawSender, &CanRawSender::dockUndock, this, [this, canRawSender] {
 			handleDock(canRawSender, ui->mdiArea);
