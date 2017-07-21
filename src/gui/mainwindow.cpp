@@ -40,13 +40,14 @@ MainWindow::MainWindow(QWidget* parent)
 
     connect(canDevice, &CanDevice::frameReceived, canRawView, &CanRawView::frameReceived);
     connect(canDevice, &CanDevice::frameSent, canRawView, &CanRawView::frameSent);
-
+    connect(ui->actionstart, &QAction::triggered, canRawView, &CanRawView::startSimulation);
+    connect(ui->actionstop, &QAction::triggered, canRawView, &CanRawView::stopSimulation);
     connect(canRawSender, &CanRawSender::sendFrame, canDevice, &CanDevice::sendFrame);
 
-    connect(ui->actionstart, SIGNAL(triggered(bool)), ui->actionstop, SLOT(setDisabled(bool)));
-    connect(ui->actionstart, SIGNAL(triggered(bool)), ui->actionstart, SLOT(setEnabled(bool)));
-    connect(ui->actionstop, SIGNAL(triggered(bool)), ui->actionstop, SLOT(setEnabled(bool)));
-    connect(ui->actionstop, SIGNAL(triggered(bool)), ui->actionstart, SLOT(setDisabled(bool)));
+    connect(ui->actionstart, &QAction::triggered, ui->actionstop, &QAction::setDisabled);
+    connect(ui->actionstart, &QAction::triggered, ui->actionstart, &QAction::setEnabled);
+    connect(ui->actionstop, &QAction::triggered, ui->actionstop, &QAction::setEnabled);
+    connect(ui->actionstop, &QAction::triggered, ui->actionstart, &QAction::setDisabled);
 
     //docking signals connection
     connect(canRawView, &CanRawView::dockUndock, this, [this, canRawView] {
@@ -61,7 +62,6 @@ MainWindow::MainWindow(QWidget* parent)
     connect(canRawSender, &CanRawSender::dockUndock, this, [this, canRawSender] {
 			handleDock(canRawSender, ui->mdiArea);
 		    });
-
     canDevice->init("socketcan", "can0");
     canDevice->start();
 }

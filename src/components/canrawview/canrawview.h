@@ -3,6 +3,7 @@
 
 #include <QtCore/QScopedPointer>
 #include <QtWidgets/QWidget>
+#include <memory>
 
 class QCanBusFrame;
 class CanRawViewPrivate;
@@ -21,10 +22,10 @@ signals:
 public Q_SLOTS:
     void frameReceived(const QCanBusFrame& frame);
     void frameSent(bool status, const QCanBusFrame& frame, const QVariant& context);
+    void stopSimulation(void);
+    void startSimulation(void);
 
 private:
-    void frameView(const QCanBusFrame& frame, const QString& direction);
-
     QScopedPointer<CanRawViewPrivate> d_ptr;
 };
 
