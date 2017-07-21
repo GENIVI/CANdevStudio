@@ -7,9 +7,5 @@ var searchData=
   ['_7ecanrawsenderprivate',['~CanRawSenderPrivate',['../class_can_raw_sender_private.html#a9b29e72082c46c4b1bfc2efd3c837a50',1,'CanRawSenderPrivate']]],
   ['_7ecanrawview',['~CanRawView',['../class_can_raw_view.html#a61e97fe7ae8b79740408311f4a243f82',1,'CanRawView']]],
   ['_7ecanrawviewprivate',['~CanRawViewPrivate',['../class_can_raw_view_private.html#a2457b43c2a434f6c6827ded804f43d0d',1,'CanRawViewPrivate']]],
-  ['_7ecansignalsender',['~CanSignalSender',['../class_can_signal_sender.html#a26dc4f8d371d131373d472d23d1256ba',1,'CanSignalSender']]],
-  ['_7ecansignalsenderprivate',['~CanSignalSenderPrivate',['../class_can_signal_sender_private.html#ac8f8d09f6c1aa9e0f2913b4bab6d158e',1,'CanSignalSenderPrivate']]],
-  ['_7ecansignalview',['~CanSignalView',['../class_can_signal_view.html#a2513f9f42bacd29dea1882fa1859d7ff',1,'CanSignalView']]],
-  ['_7ecansignalviewprivate',['~CanSignalViewPrivate',['../class_can_signal_view_private.html#ae100c342c2f15e4e2118779e5982144c',1,'CanSignalViewPrivate']]],
   ['_7emainwindow',['~MainWindow',['../class_main_window.html#ae98d00a93bc118200eeef9f9bba1dba7',1,'MainWindow']]]
 ];

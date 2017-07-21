@@ -12,11 +12,5 @@ var searchData=
   ['canrawsender_5fp_2eh',['canrawsender_p.h',['../canrawsender__p_8h.html',1,'']]],
   ['canrawview_2ecpp',['canrawview.cpp',['../canrawview_8cpp.html',1,'']]],
   ['canrawview_2eh',['canrawview.h',['../canrawview_8h.html',1,'']]],
-  ['canrawview_5fp_2eh',['canrawview_p.h',['../canrawview__p_8h.html',1,'']]],
-  ['cansignalsender_2ecpp',['cansignalsender.cpp',['../cansignalsender_8cpp.html',1,'']]],
-  ['cansignalsender_2eh',['cansignalsender.h',['../cansignalsender_8h.html',1,'']]],
-  ['cansignalsender_5fp_2eh',['cansignalsender_p.h',['../cansignalsender__p_8h.html',1,'']]],
-  ['cansignalview_2ecpp',['cansignalview.cpp',['../cansignalview_8cpp.html',1,'']]],
-  ['cansignalview_2eh',['cansignalview.h',['../cansignalview_8h.html',1,'']]],
-  ['cansignalview_5fp_2eh',['cansignalview_p.h',['../cansignalview__p_8h.html',1,'']]]
+  ['canrawview_5fp_2eh',['canrawview_p.h',['../canrawview__p_8h.html',1,'']]]
 ];

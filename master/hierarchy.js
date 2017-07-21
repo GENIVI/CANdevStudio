@@ -17,10 +17,6 @@ var hierarchy =
       [ "CanRawSender", "class_can_raw_sender.html", null ],
       [ "CanRawSenderPrivate", "class_can_raw_sender_private.html", null ],
       [ "CanRawView", "class_can_raw_view.html", null ],
-      [ "CanRawViewPrivate", "class_can_raw_view_private.html", null ],
-      [ "CanSignalSender", "class_can_signal_sender.html", null ],
-      [ "CanSignalSenderPrivate", "class_can_signal_sender_private.html", null ],
-      [ "CanSignalView", "class_can_signal_view.html", null ],
-      [ "CanSignalViewPrivate", "class_can_signal_view_private.html", null ]
+      [ "CanRawViewPrivate", "class_can_raw_view_private.html", null ]
     ] ]
 ];

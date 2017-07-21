@@ -10,9 +10,5 @@ var annotated_dup =
     [ "CanRawSenderPrivate", "class_can_raw_sender_private.html", "class_can_raw_sender_private" ],
     [ "CanRawView", "class_can_raw_view.html", "class_can_raw_view" ],
     [ "CanRawViewPrivate", "class_can_raw_view_private.html", "class_can_raw_view_private" ],
-    [ "CanSignalSender", "class_can_signal_sender.html", "class_can_signal_sender" ],
-    [ "CanSignalSenderPrivate", "class_can_signal_sender_private.html", "class_can_signal_sender_private" ],
-    [ "CanSignalView", "class_can_signal_view.html", "class_can_signal_view" ],
-    [ "CanSignalViewPrivate", "class_can_signal_view_private.html", "class_can_signal_view_private" ],
     [ "MainWindow", "class_main_window.html", "class_main_window" ]
 ];
