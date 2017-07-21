@@ -38,7 +38,7 @@ void CanRawView::frameView(const QCanBusFrame& frame, const QString& direction)
     Q_D(CanRawView);
     if(!simStarted)
     {
-        cds_debug("received frame while simulation stopped");
+        cds_debug("send/received frame while simulation stopped");
         return;
     }
 
@@ -65,8 +65,6 @@ void CanRawView::frameReceived(const QCanBusFrame& frame) { frameView(frame, "RX
 
 void CanRawView::frameSent(bool status, const QCanBusFrame& frame, const QVariant&)
 {
-    Q_D(CanRawView);
-
     if (status) {
         frameView(frame, "TX");
     }

@@ -7,6 +7,7 @@
 #include "cansignalsender/cansignalsender.h"
 #include "cansignalview/cansignalview.h"
 
+
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent)
     , ui(std::make_unique<Ui::MainWindow>())
