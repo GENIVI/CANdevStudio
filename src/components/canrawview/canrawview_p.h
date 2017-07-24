@@ -7,6 +7,8 @@
 #include <QtGui/QStandardItemModel>
 #include <QtSerialBus/QCanBusFrame>
 #include <memory>
+#include <QDebug>
+#include <QHeaderView>
 
 namespace Ui {
 class CanRawViewPrivate;
@@ -29,14 +31,11 @@ public:
 
         tvModel.setHorizontalHeaderLabels({ "time", "id", "dir", "dlc", "data" });
         ui->tv->setModel(&tvModel);
-        ui->tv->setColumnWidth(0, 36);
-        ui->tv->setColumnWidth(1, 92);
-        ui->tv->setColumnWidth(2, 27);
-        ui->tv->setColumnWidth(3, 25);
-        ui->tv->setColumnWidth(4, 178);
 
         connect(ui->pbClear, &QPushButton::pressed, this, &CanRawViewPrivate::clear);
         connect(ui->pbDockUndock, &QPushButton::pressed, this, &CanRawViewPrivate::dockUndock);
+        connect(&tvModel, &QAbstractItemModel::dataChanged, this, &CanRawViewPrivate::update);
+
     }
 
     ~CanRawViewPrivate() {}
@@ -82,6 +81,10 @@ private slots:
     {
         Q_Q(CanRawView);
         emit q->dockUndock();
+    }
+
+    void update()
+    {
     }
 };
 #endif // CANRAWVIEW_P_H
