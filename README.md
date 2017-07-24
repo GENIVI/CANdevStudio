@@ -6,5 +6,6 @@ Coverage: [![codecov](https://codecov.io/gh/GENIVI/CANdevStudio/branch/master/gr
 * [How to build](https://at.projects.genivi.org/wiki/display/PROJ/Build+instructions)
 * [How to contribute](https://at.projects.genivi.org/wiki/display/PROJ/How+to+contribute) 
 
-[JIRA tracker](https://at.projects.genivi.org/jira/projects/CDS)
+[Doxygen](https://genivi.github.io/CANdevStudio/master/)
 
+[JIRA tracker](https://at.projects.genivi.org/jira/projects/CDS)

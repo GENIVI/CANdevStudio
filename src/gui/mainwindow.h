@@ -7,13 +7,13 @@
 #include "candevice/canfactoryqt.hpp"
 
 class QMdiArea;
-class CanDevice;
-class CanRawView;
-class CanSignalView;
-class CanRawSender;
-class CanSignalSender;
 
-class MainWindow : public QMainWindow {
+namespace Ui {
+class MainWindow;
+}
+
+class MainWindow : public QMainWindow
+{
     Q_OBJECT
 
 public:
@@ -21,13 +21,8 @@ public:
     ~MainWindow();
 
 private:
-    std::unique_ptr<QMdiArea> mdi;
-    std::unique_ptr<CanDevice> canDevice;
-    std::unique_ptr<CanRawView> canRawView;
-    std::unique_ptr<CanSignalView> canSignalView;
-    std::unique_ptr<CanRawSender> canRawSender;
-    std::unique_ptr<CanSignalSender> canSignalSender;
-    CanFactoryQt factory;
+    std::unique_ptr<Ui::MainWindow> ui;
+    void handleDock(QWidget* component, QMdiArea* mdi);
 };
 
 #endif // MAINWINDOW_H

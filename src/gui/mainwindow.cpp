@@ -1,51 +1,73 @@
-#include <QtGui/QStandardItemModel>
-#include <QtWidgets/QHBoxLayout>
-#include <QtWidgets/QHeaderView>
-#include <QtWidgets/QMdiArea>
-#include <QtWidgets/QPushButton>
-#include <QtWidgets/QTableView>
-#include <QtWidgets/QToolBar>
+#include "mainwindow.h"
+#include "ui_mainwindow.h"
 
 #include "candevice/candevice.h"
 #include "canrawsender/canrawsender.h"
 #include "canrawview/canrawview.h"
-#include "cansignalsender/cansignalsender.cpp"
-#include "cansignalview/cansignalview.h"
 #include "mainwindow.h"
+#include <QtWidgets/QMdiArea>
+#include <QtWidgets/QMdiSubWindow>
 
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent)
-    , mdi(std::make_unique<QMdiArea>())
-    , canDevice(std::make_unique<CanDevice>(factory))
-    , canRawView(std::make_unique<CanRawView>())
-    , canSignalView(std::make_unique<CanSignalView>())
-    , canRawSender(std::make_unique<CanRawSender>())
-    , canSignalSender(std::make_unique<CanSignalSender>())
+    , ui(std::make_unique<Ui::MainWindow>())
 {
-    mdi->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
-    mdi->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+    ui->setupUi(this);
+    ui->centralWidget->layout()->setContentsMargins(0, 0, 0, 0);
 
-    setCentralWidget(mdi.get());
+    CanFactoryQt factory;
+    CanDevice* canDevice = new CanDevice(factory);
+    CanRawView* canRawView = new CanRawView();
+    CanRawSender* canRawSender = new CanRawSender();
 
     canRawView->setWindowTitle("Can Raw View");
-    mdi->addSubWindow(canRawView.get());
-    canSignalView->setWindowTitle("Can Signal View");
-    mdi->addSubWindow(canSignalView.get());
-    canSignalSender->setWindowTitle("Can Signal Sender");
-    mdi->addSubWindow(canSignalSender.get());
+    ui->mdiArea->addSubWindow(canRawView);
+
     canRawSender->setWindowTitle("Can Raw Sender");
-    mdi->addSubWindow(canRawSender.get());
-    mdi->tileSubWindows();
+    ui->mdiArea->addSubWindow(canRawSender);
 
-    connect(canDevice.get(), &CanDevice::frameReceived, canRawView.get(), &CanRawView::frameReceived);
-    connect(canDevice.get(), &CanDevice::frameSent, canRawView.get(), &CanRawView::frameSent);
+    ui->mdiArea->tileSubWindows();
 
-    connect(canRawSender.get(), &CanRawSender::sendFrame, canDevice.get(), &CanDevice::sendFrame);
+    connect(canDevice, &CanDevice::frameReceived, canRawView, &CanRawView::frameReceived);
+    connect(canDevice, &CanDevice::frameSent, canRawView, &CanRawView::frameSent);
+    connect(ui->actionstart, &QAction::triggered, canRawView, &CanRawView::startSimulation);
+    connect(ui->actionstop, &QAction::triggered, canRawView, &CanRawView::stopSimulation);
+    connect(canRawSender, &CanRawSender::sendFrame, canDevice, &CanDevice::sendFrame);
 
+    connect(ui->actionstart, &QAction::triggered, ui->actionstop, &QAction::setDisabled);
+    connect(ui->actionstart, &QAction::triggered, ui->actionstart, &QAction::setEnabled);
+    connect(ui->actionstop, &QAction::triggered, ui->actionstop, &QAction::setEnabled);
+    connect(ui->actionstop, &QAction::triggered, ui->actionstart, &QAction::setDisabled);
+
+    //docking signals connection
+    connect(canRawView, &CanRawView::dockUndock, this, [this, canRawView] {
+                        handleDock(canRawView, ui->mdiArea);
+		    });
+    connect(canRawSender, &CanRawSender::dockUndock, this, [this, canRawSender] {
+			handleDock(canRawSender, ui->mdiArea);
+		    });
     canDevice->init("socketcan", "can0");
     canDevice->start();
 }
 
 MainWindow::~MainWindow()
 {
+}
+
+void MainWindow::handleDock(QWidget* component, QMdiArea* mdi)
+{
+    //check if component is already displayed by mdi area
+    if(mdi->subWindowList().contains(static_cast<QMdiSubWindow*>(component->parentWidget())))
+    {
+        //undock
+        auto parent = component->parentWidget();
+        mdi->removeSubWindow(component);    //removeSubwWndow only removes widget, not window
+        component->show();
+        parent->close();
+    }
+    else
+    {
+        //dock
+        mdi->addSubWindow(component)->show();
+    }
 }
