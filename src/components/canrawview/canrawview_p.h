@@ -31,6 +31,7 @@ public:
 
         tvModel.setHorizontalHeaderLabels({ "time", "id", "dir", "dlc", "data" });
         ui->tv->setModel(&tvModel);
+        ui->tv->horizontalHeader()->setSectionsMovable(true);
 
         connect(ui->pbClear, &QPushButton::pressed, this, &CanRawViewPrivate::clear);
         connect(ui->pbDockUndock, &QPushButton::pressed, this, &CanRawViewPrivate::dockUndock);
