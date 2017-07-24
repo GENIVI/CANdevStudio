@@ -36,7 +36,7 @@ endif()
 
 set(SPDLOG_BUILD_TESTING CACHE FORCE OFF)
 add_subdirectory(3rdParty/spdlog)
-add_subdirectory(3rdParty/dunnart/libdunnartcanvas)
+add_subdirectory(3rdParty/dunnart)
 add_subdirectory(src/common)
 add_subdirectory(src/gui)
 add_subdirectory(src/components)
@@ -46,3 +46,4 @@ if(WITH_TESTS OR WITH_COVERAGE)
     add_subdirectory(3rdParty/fakeit)
     add_subdirectory(tests)
 endif()
+
