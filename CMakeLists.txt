@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0.0)
+cmake_minimum_required(VERSION 3.6.3)
 
 project(CANdevStudio CXX)
 
@@ -46,4 +46,6 @@ if(WITH_TESTS OR WITH_COVERAGE)
     add_subdirectory(3rdParty/fakeit)
     add_subdirectory(tests)
 endif()
+
+set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT CANdevStudio)
 
