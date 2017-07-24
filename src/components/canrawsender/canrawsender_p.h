@@ -63,19 +63,36 @@ private slots:
 
     void addNewItem()
     {
-        QStandardItem* id = new QStandardItem();
-        QStandardItem* data = new QStandardItem();
+        QRegExp reDec("[1-9]\\d{0,6}");
+        QRegExp reIdHex("[1]?[0-9A-Fa-f]{7}");
+        QRegExp reDataHex("[0-9A-Fa-f]{16}");
+        QValidator *vDec = new QRegExpValidator(reDec, this);
+        QValidator *vIdHex = new QRegExpValidator(reIdHex, this);
+        QValidator *vDataHex = new QRegExpValidator(reDataHex, this);
 
-        QList<QStandardItem*> list {id, data};
+        QList<QStandardItem*> list {};
         tvModel.appendRow(list);
+
+        QLineEdit* id = new QLineEdit;
+        id->setFrame(false);
+        id->setAlignment(Qt::AlignHCenter);
+        id->setPlaceholderText("Id in hex");
+        id->setValidator(vIdHex);
+        ui->tv->setIndexWidget(tvModel.index(tvModel.rowCount() - 1, tvModel.columnCount() -5), id);
+
+
+        QLineEdit* data = new QLineEdit;
+        data->setFrame(false);
+        data->setAlignment(Qt::AlignHCenter);
+        data->setPlaceholderText("Data in hex");
+        data->setValidator(vDataHex);
+        ui->tv->setIndexWidget(tvModel.index(tvModel.rowCount() - 1, tvModel.columnCount() -4), data);
 
         QLineEdit* cyclic = new QLineEdit;
         cyclic->setFrame(false);
         cyclic->setAlignment(Qt::AlignHCenter);
         cyclic->setPlaceholderText("Time in ms");
-        QRegExp rx("[1-9]\\d{0,6}");
-        QValidator *v = new QRegExpValidator(rx, this);
-        cyclic->setValidator(v);
+        cyclic->setValidator(vDec);
         ui->tv->setIndexWidget(tvModel.index(tvModel.rowCount() - 1, tvModel.columnCount() -3), cyclic);
 
         QWidget *loopWidget = new QWidget();
