@@ -6,7 +6,6 @@
 #include <QtSerialBus/QCanBusFrame>
 #include <QtGui/QStandardItemModel>
 #include <QCheckBox>
-#include <QStandardItemModel>
 #include <QLineEdit>
 
 namespace Ui {
@@ -39,6 +38,17 @@ public:
     }
 
 private:
+    void setSendButtonState(QLineEdit* id, QLineEdit* data, QPushButton* button) {
+        if ((id == nullptr) || (data == nullptr) || (button == nullptr))
+            return;
+        if ((id->text().length() > 0) && (data->text().length() > 0)) {
+            if (button->isEnabled() == false)
+                button->setDisabled(false);
+        }
+        else if (button->isEnabled() == true)
+            button->setDisabled(true);
+    }
+
     std::unique_ptr<Ui::CanRawSenderPrivate> ui;
     QStandardItemModel tvModel;
     CanRawSender* q_ptr;
@@ -113,18 +123,21 @@ private slots:
         });
 
         QPushButton* pbSend = new QPushButton("Send");
+        pbSend->setDisabled(true);
         ui->tv->setIndexWidget(tvModel.index(tvModel.rowCount() - 1, tvModel.columnCount() -1), pbSend);
+
+        connect(id, &QLineEdit::textChanged, this, [this, id, data, pbSend]{
+            setSendButtonState(id, data, pbSend);
+        });
+        connect(data, &QLineEdit::textChanged, this, [this, id, data, pbSend]{
+            setSendButtonState(id, data, pbSend);
+        });
 
         connect(pbSend, &QPushButton::pressed, this, [this, id, data, cyclic] {
             Q_Q(CanRawSender);
 
-            if (id->text().size() && data->text().size()) {
-                quint32 val;
-                if (id->text().startsWith("0x"))
-                    val = id->text().toUInt(nullptr, 16);
-                else
-                    val = id->text().toUInt(nullptr, 10);
-
+            if (id->text().length() && data->text().length()) {
+                auto val = id->text().toUInt(nullptr, 16);
                 QCanBusFrame frame;
                 frame.setFrameId(val);
                 frame.setPayload(QByteArray::fromHex(data->text().toUtf8()));
