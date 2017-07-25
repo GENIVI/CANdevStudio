@@ -7,6 +7,8 @@
 #include <QtGui/QStandardItemModel>
 #include <QCheckBox>
 #include <QLineEdit>
+#include <QTimer>
+
 
 namespace Ui {
 class CanRawSenderPrivate;
@@ -83,13 +85,15 @@ private slots:
         QList<QStandardItem*> list {};
         tvModel.appendRow(list);
 
+        QTimer *timer = new QTimer(this);
+        bool *autoSenderEnable = new bool(false);
+
         QLineEdit* id = new QLineEdit;
         id->setFrame(false);
         id->setAlignment(Qt::AlignHCenter);
         id->setPlaceholderText("Id in hex");
         id->setValidator(vIdHex);
         ui->tv->setIndexWidget(tvModel.index(tvModel.rowCount() - 1, tvModel.columnCount() -5), id);
-
 
         QLineEdit* data = new QLineEdit;
         data->setFrame(false);
@@ -121,7 +125,15 @@ private slots:
             else
                 loopCheckBox->setCheckable(false);
         });
-
+        connect(loopCheckBox, &QCheckBox::released, this, [autoSenderEnable, loopCheckBox, timer, id, data, cyclic] {
+            if ((loopCheckBox->isChecked() == false) && (*autoSenderEnable == true)) {
+                *autoSenderEnable = false;
+                timer->stop();
+                id->setDisabled(false);
+                data->setDisabled(false);
+                cyclic->setDisabled(false);
+            }
+        });
         QPushButton* pbSend = new QPushButton("Send");
         pbSend->setDisabled(true);
         ui->tv->setIndexWidget(tvModel.index(tvModel.rowCount() - 1, tvModel.columnCount() -1), pbSend);
@@ -133,7 +145,7 @@ private slots:
             setSendButtonState(id, data, pbSend);
         });
 
-        connect(pbSend, &QPushButton::pressed, this, [this, id, data, cyclic] {
+        connect(pbSend, &QPushButton::pressed, this, [this, id, data, cyclic, autoSenderEnable, loopCheckBox, timer] {
             Q_Q(CanRawSender);
 
             if (id->text().length() && data->text().length()) {
@@ -142,6 +154,20 @@ private slots:
                 frame.setFrameId(val);
                 frame.setPayload(QByteArray::fromHex(data->text().toUtf8()));
                 emit q->sendFrame(frame);
+
+                if ((*autoSenderEnable == false) && (loopCheckBox->isChecked() == true))
+                {
+                    *autoSenderEnable = true;
+                    timer->disconnect();
+                    connect(timer, &QTimer::timeout, this, [this, frame, ctx]{
+                        Q_Q(CanRawSender);
+                        emit q->sendFrame(frame, ctx);
+                    });
+                    timer->start(cyclic->text().toUInt());
+                    id->setDisabled(true);
+                    data->setDisabled(true);
+                    cyclic->setDisabled(true);
+                }
             }
         });
     }
