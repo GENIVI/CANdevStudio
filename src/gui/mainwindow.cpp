@@ -7,6 +7,7 @@
 #include "mainwindow.h"
 #include <QtWidgets/QMdiArea>
 #include <QtWidgets/QMdiSubWindow>
+#include <QtWidgets/QMessageBox>
 
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent)
@@ -39,6 +40,18 @@ MainWindow::MainWindow(QWidget* parent)
     connect(ui->actionstop, &QAction::triggered, ui->actionstop, &QAction::setEnabled);
     connect(ui->actionstop, &QAction::triggered, ui->actionstart, &QAction::setDisabled);
 
+    QActionGroup *ViewModes = new QActionGroup(this);
+    ViewModes->addAction(ui->actionTabView);
+    ViewModes->addAction(ui->actionSubWindowView);
+    connect(ui->actionAbout,&QAction::triggered,this,[this] { QMessageBox::about(this,"About","<about body>"); });
+    connect(ui->actionExit,&QAction::triggered,this,&MainWindow::handleExitAction);
+    connect(ui->actionTile,&QAction::triggered,ui->mdiArea,&QMdiArea::tileSubWindows);
+    connect(ui->actionCascade,&QAction::triggered,ui->mdiArea,&QMdiArea::cascadeSubWindows);
+    connect(ui->actionTabView,&QAction::triggered,this,[this]{ ui->mdiArea->setViewMode(QMdiArea::TabbedView); });
+    connect(ui->actionTabView,&QAction::toggled,ui->actionTile,&QAction::setDisabled);
+    connect(ui->actionTabView,&QAction::toggled,ui->actionCascade,&QAction::setDisabled);
+    connect(ui->actionSubWindowView,&QAction::triggered,this,[this]{ ui->mdiArea->setViewMode(QMdiArea::SubWindowView); });
+
     //docking signals connection
     connect(canRawView, &CanRawView::dockUndock, this, [this, canRawView] {
                         handleDock(canRawView, ui->mdiArea);
@@ -70,4 +83,15 @@ void MainWindow::handleDock(QWidget* component, QMdiArea* mdi)
         //dock
         mdi->addSubWindow(component)->show();
     }
+}
+
+void MainWindow::handleExitAction()
+{
+    QMessageBox::StandardButton userReply;
+    userReply = QMessageBox::question(this, "Exit"
+                                      , "Are you shure you want to quit CANdevStudio?"
+                                      , QMessageBox::Yes | QMessageBox::No);
+    if(userReply == QMessageBox::Yes)
+        QApplication::quit();
+
 }

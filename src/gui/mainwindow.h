@@ -23,6 +23,8 @@ public:
 private:
     std::unique_ptr<Ui::MainWindow> ui;
     void handleDock(QWidget* component, QMdiArea* mdi);
+private slots:
+    void handleExitAction(void);
 };
 
 #endif // MAINWINDOW_H
