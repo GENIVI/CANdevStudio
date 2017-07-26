@@ -55,6 +55,13 @@
        </property>
       </spacer>
      </item>
+     <item>
+      <widget class="QPushButton" name="pbDockUndock">
+       <property name="text">
+        <string>D/U</string>
+       </property>
+      </widget>
+     </item>
     </layout>
    </item>
    <item>

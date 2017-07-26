@@ -3,6 +3,7 @@
 
 #include <QtCore/QScopedPointer>
 #include <QtWidgets/QWidget>
+#include <memory>
 
 class QCanBusFrame;
 class CanRawViewPrivate;
@@ -15,9 +16,14 @@ public:
     explicit CanRawView(QWidget* parent = nullptr);
     ~CanRawView();
 
+signals:
+    void dockUndock();
+
 public Q_SLOTS:
     void frameReceived(const QCanBusFrame& frame);
     void frameSent(bool status, const QCanBusFrame& frame, const QVariant& context);
+    void stopSimulation(void);
+    void startSimulation(void);
 
 private:
     QScopedPointer<CanRawViewPrivate> d_ptr;

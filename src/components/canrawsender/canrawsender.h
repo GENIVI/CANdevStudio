@@ -17,6 +17,7 @@ public:
 
 signals:
     void sendFrame(const QCanBusFrame& frame, const QVariant& context);
+    void dockUndock();
 
 public slots:
 
