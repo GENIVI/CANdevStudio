@@ -10,3 +10,6 @@ add_executable(candevice_test candevicetest.cpp candeviceqt_test.cpp)
 target_link_libraries(candevice_test candevice Qt5::Core Qt5::SerialBus cds-common)
 target_compile_options(candevice_test PRIVATE $<$<CXX_COMPILER_ID:GNU>:-fno-devirtualize>)
 add_test( NAME CanDeviceTest COMMAND candevice_test)
+
+target_compile_definitions(candevice_test PRIVATE "_CRT_SECURE_NO_WARNINGS=1")
+
