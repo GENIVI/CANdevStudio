@@ -38,6 +38,10 @@ public:
 private slots:
     void clear()
     {
+        for (int i =  tvModel.rowCount(); i >0; --i)
+        {
+            tvModel.removeRow(i-1);
+        }
     }
 };
 

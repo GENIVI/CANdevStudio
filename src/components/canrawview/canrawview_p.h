@@ -26,7 +26,6 @@ public:
         ui->tv->setColumnWidth(3, 25);
         ui->tv->setColumnWidth(4, 178);
 
-
         connect(ui->pbClear, &QPushButton::pressed, this, &CanRawViewPrivate::clear);
     }
 
@@ -40,6 +39,10 @@ public:
 private slots:
     void clear()
     {
+        for (int i =  tvModel.rowCount(); i >0; --i)
+        {
+            tvModel.removeRow(i-1);
+        }
     }
 };
 #endif // CANRAWVIEW_P_H
