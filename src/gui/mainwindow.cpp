@@ -7,7 +7,7 @@
 #include <QtWidgets/QMdiSubWindow>
 #include <QInputDialog>
 
-#include <iostream>
+#include <log.hpp>
 
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent)
@@ -81,7 +81,8 @@ void MainWindow::availableDevices(QString backend,
 
     if (devices.empty())
     {
-        return; //FIXME: show dialog
+        cds_error("Received empty devices list");
+        return;
     }
 
     for (const auto& d: devices)

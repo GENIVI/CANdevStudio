@@ -1,7 +1,9 @@
 #include <CanDeviceManager.hpp>
 
 #include <candevice/candevice.h>
-#include <iostream>
+#include <log.hpp>
+
+#include <QString>
 
 CanDeviceManager::CanDeviceManager()
 {
@@ -15,22 +17,34 @@ CanDeviceManager::~CanDeviceManager()
 
 void CanDeviceManager::fetchAvailableDevices(QString backend)
 {
-    QString errorMessage; // FIXME: log error
+    QString errorMessage;
     auto devices = qtfactory.availableDevices(backend, &errorMessage);
+
+    if (!errorMessage.isEmpty())
+    {
+        cds_error("Error fetching available devices: {0}", errorMessage.toStdString());
+        return;
+    }
 
     emit sendAvailableDevices(backend, devices);
 }
 
 void CanDeviceManager::selectCANDevice(QString backend, QString name)
 {
-    QString errorMessage; // FIXME: log error
+    QString errorMessage;
     auto devices = qtfactory.availableDevices(backend, &errorMessage);
+    if (!errorMessage.isEmpty())
+    {
+        cds_error("Error fetching available devices: {0}", errorMessage.toStdString());
+        return;
+    }
 
     auto result = std::find_if(devices.begin(), devices.end(), [&name](const auto& dev){ return dev.name() == name; });
 
     if (result == devices.end())
     {
-        // FIXME: log error, show selection dialog again
+        cds_error("Failed to find {0} device on backend {1}", name.toStdString(), backend.toStdString());
+
         return;
     }
 
