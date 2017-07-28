@@ -1,6 +1,7 @@
 #ifndef CANRAWSENDER_P_H
 #define CANRAWSENDER_P_H
 
+#include "newlinemanager.h"
 #include "ui_canrawsender.h"
 #include <memory>
 #include <QtGui/QStandardItemModel>
