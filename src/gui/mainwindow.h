@@ -43,6 +43,9 @@ private:
     CanRawView* canRawView = nullptr;
     CanRawSender* canRawSender = nullptr;
 
+private slots:
+    void handleExitAction(void);
+
 };
 
 #endif // MAINWINDOW_H
