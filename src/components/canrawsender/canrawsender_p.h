@@ -62,8 +62,7 @@ private slots:
                 QCanBusFrame frame;
                 frame.setFrameId(val);
                 frame.setPayload(QByteArray::fromHex(value->text().toUtf8()));
-                QVariant ctx = 0;
-                emit q->sendFrame(frame, ctx);
+                emit q->sendFrame(frame);
             }
         });
     }

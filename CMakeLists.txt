@@ -16,6 +16,7 @@ set(QT_REQUIRED_VERSION "5.6")
 find_package(Qt5Core ${QT_REQUIRED_VERSION} REQUIRED)
 find_package(Qt5SerialBus ${QT_REQUIRED_VERSION} REQUIRED)
 find_package(Qt5Widgets ${QT_REQUIRED_VERSION} REQUIRED)
+find_package(Qt5Test ${QT_REQUIRED_VERSION} REQUIRED)
 message(STATUS "Qt Version found: ${Qt5Core_VERSION}")
 
 set_property(TARGET Qt5::SerialBus PROPERTY INTERFACE_COMPILE_FEATURES "")
@@ -23,6 +24,8 @@ set_property(TARGET Qt5::Core PROPERTY INTERFACE_COMPILE_FEATURES "")
 
 if(NOT MSVC)
     add_definitions(-Wall -Wextra)
+else()
+    add_definitions( /bigobj)
 endif()
 
 include(CompilerVersion)
