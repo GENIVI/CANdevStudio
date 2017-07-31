@@ -83,7 +83,7 @@ void MainWindow::handleDock(QWidget* component, QMdiArea* mdi)
     }
 }
 
-void MainWindow::showEvent(QShowEvent* event)
+void MainWindow::showEvent(QShowEvent* event [[gnu::unused]])
 {
     emit requestAvailableDevices("socketcan"); // FIXME: plugin name should be configurable
 }
