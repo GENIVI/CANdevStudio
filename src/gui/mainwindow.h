@@ -29,7 +29,11 @@ signals:
     void selectCANDevice(QString backend, QString name);
 
 public slots:
+#if QT_VERSION >= QT_VERSION_CHECK(5, 9, 1)
     void availableDevices(QString backend, QList<QCanBusDeviceInfo> devices);
+#else
+    void availableDevices(QString backend);
+#endif
     void attachToViews(CanDevice* device);
 
 protected:

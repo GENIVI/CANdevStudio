@@ -15,6 +15,7 @@ CanDeviceManager::~CanDeviceManager()
 
 }
 
+#if QT_VERSION >= QT_VERSION_CHECK(5, 9, 1)
 void CanDeviceManager::fetchAvailableDevices(QString backend)
 {
     QString errorMessage;
@@ -28,10 +29,17 @@ void CanDeviceManager::fetchAvailableDevices(QString backend)
 
     emit sendAvailableDevices(backend, devices);
 }
+#else
+void CanDeviceManager::fetchAvailableDevices(QString backend)
+{
+    emit sendAvailableDevicesDummy(backend);
+}
+#endif
 
 void CanDeviceManager::selectCANDevice(QString backend, QString name)
 {
     QString errorMessage;
+#if QT_VERSION >= QT_VERSION_CHECK(5, 9, 1)
     auto devices = qtfactory.availableDevices(backend, &errorMessage);
     if (!errorMessage.isEmpty())
     {
@@ -44,9 +52,9 @@ void CanDeviceManager::selectCANDevice(QString backend, QString name)
     if (result == devices.end())
     {
         cds_error("Failed to find {0} device on backend {1}", name.toStdString(), backend.toStdString());
-
         return;
     }
+#endif
 
     if (device)
     {

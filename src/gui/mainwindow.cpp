@@ -88,6 +88,7 @@ void MainWindow::showEvent(QShowEvent* event [[gnu::unused]])
     emit requestAvailableDevices("socketcan"); // FIXME: plugin name should be configurable
 }
 
+#if QT_VERSION >= QT_VERSION_CHECK(5, 9, 1)
 void MainWindow::availableDevices(QString backend,
         QList<QCanBusDeviceInfo> devices)
 {
@@ -109,6 +110,15 @@ void MainWindow::availableDevices(QString backend,
 
     emit selectCANDevice(backend, item);
 }
+#else
+void MainWindow::availableDevices(QString backend)
+{
+    QString item = QInputDialog::getText(this, tr("Provide CAN device name"),
+            tr("Please input below the name of CAN device to use"));
+
+    emit selectCANDevice(backend, item);
+}
+#endif
 
 void MainWindow::attachToViews(CanDevice* device)
 {
