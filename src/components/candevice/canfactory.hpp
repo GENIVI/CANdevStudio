@@ -1,7 +1,9 @@
 #ifndef CANFACTORY_HPP_C394TY5U
 #define CANFACTORY_HPP_C394TY5U
 
-#include <QtCore/QString>
+#include <QCanBusDeviceInfo>
+#include <QList>
+#include <QString>
 
 struct CanDeviceInterface;
 struct CanFactoryInterface {
