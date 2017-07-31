@@ -10,15 +10,20 @@ function(add_component_ui componentName componentModelName)
     target_include_directories(${componentName} INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
 endfunction()
 
-function(add_component_dir componentName)
-    file(GLOB SRC_FILES ${componentName}/*.cpp)
-    add_library(${componentName} ${SRC_FILES})
+set(CANRAWSENDER_FILES
+    canrawsender/canrawsender.cpp
+    canrawsender/canrawsender.ui
+    canrawsender/newlinemanager.cpp
+)
+
+function(add_component_dir componentName srcfiles)
+    add_library(${componentName} ${srcfiles})
     target_link_libraries(${componentName} Qt5::Widgets Qt5::Core Qt5::SerialBus)
     target_include_directories(${componentName} INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
 endfunction()
 
 add_component(candevice)
 add_component_ui(canrawview)
-add_component_dir(canrawsender)
+add_component_dir(canrawsender "${CANRAWSENDER_FILES}")
 
 

@@ -11,21 +11,41 @@
 
 class CanRawSender;
 
+template < typename typeName, typeName beginVal, typeName endVal>
+class Iterator {
+  typedef typename std::underlying_type<typeName>::type val_t;
+  int val;
+public:
+  Iterator(const typeName & f) : val(static_cast<val_t>(f)) {}
+  Iterator() : val(static_cast<val_t>(beginVal)) {}
+  Iterator operator++() {
+    ++val;
+    return *this;
+  }
+  typeName operator*() { return static_cast<typeName>(val); }
+  Iterator begin() { return *this; }
+  Iterator end() {
+      static const Iterator endIter = ++Iterator(endVal);
+      return endIter;
+  }
+  bool operator!=(const Iterator& f) { return val != f.val; }
+};
+
 class NewLineManager : public QObject {
   Q_OBJECT
 public:
   NewLineManager(CanRawSender *q);
 
-  enum RowName {
+  enum class RowName {
     IdLine = 0,
-    DataLine = 1,
-    CyclicLine = 2,
-    LoopCheckBox = 3,
-    SendButton = 4,
-    RowMAX
+    DataLine,
+    CyclicLine,
+    LoopCheckBox,
+    SendButton,
   };
 
-  QWidget *GetRows(RowName name);
+  typedef Iterator<RowName, RowName::IdLine, RowName::SendButton> RowNameIterator;
+  QWidget *GetRows(RowNameIterator name);
 
 private:
   void LineEditDefault(QLineEdit &lineEdit, const QString &placeholderText,

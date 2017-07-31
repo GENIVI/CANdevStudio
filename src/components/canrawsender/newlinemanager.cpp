@@ -84,17 +84,17 @@ void NewLineManager::TimerExpired() {
   emit canRawSender->sendFrame(frame, ctx);
 }
 
-QWidget *NewLineManager::GetRows(RowName name) {
-  switch (name) {
-  case IdLine:
+QWidget *NewLineManager::GetRows(RowNameIterator name) {
+  switch (*name) {
+  case RowName::IdLine:
     return &id;
-  case DataLine:
+  case RowName::DataLine:
     return &data;
-  case CyclicLine:
+  case RowName::CyclicLine:
     return &cyclic;
-  case LoopCheckBox:
+  case RowName::LoopCheckBox:
     return &loop.qWidget;
-  case SendButton:
+  case RowName::SendButton:
     return &send;
   default:
     return nullptr;
