@@ -40,7 +40,7 @@ void CanRawView::frameReceived(const QCanBusFrame& frame)
     d->frameView(frame, "RX");
 }
 
-void CanRawView::frameSent(bool status, const QCanBusFrame& frame, const QVariant&)
+void CanRawView::frameSent(bool status, const QCanBusFrame& frame)
 {
     Q_D(CanRawView);
 

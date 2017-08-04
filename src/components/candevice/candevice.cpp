@@ -36,7 +36,7 @@ bool CanDevice::init(const QString& backend, const QString& interface)
     return true;
 }
 
-void CanDevice::sendFrame(const QCanBusFrame& frame, const QVariant& context)
+void CanDevice::sendFrame(const QCanBusFrame& frame)
 {
     Q_D(CanDevice);
     bool status = false;
@@ -47,12 +47,12 @@ void CanDevice::sendFrame(const QCanBusFrame& frame, const QVariant& context)
 
     // Success will be reported in framesWritten signal.
     // Sending may be buffered. Keep correlation between sending results and frame/context
-    d->mSendQueue.push_back({ frame, context });
+    d->mSendQueue.push_back(frame);
 
     status = d->canDevice->writeFrame(frame);
 
     if (!status) {
-        emit frameSent(status, frame, context);
+        emit frameSent(status, frame);
         d->mSendQueue.takeFirst();
     }
 }
@@ -85,7 +85,7 @@ void CanDevice::framesWritten(qint64)
 
     if (!d->mSendQueue.isEmpty()) {
         auto sendItem = d->mSendQueue.takeFirst();
-        emit frameSent(true, sendItem.first, sendItem.second);
+        emit frameSent(true, sendItem);
     }
 }
 
@@ -95,6 +95,6 @@ void CanDevice::errorOccurred(int error)
 
     if (error == QCanBusDevice::WriteError && !d->mSendQueue.isEmpty()) {
         auto sendItem = d->mSendQueue.takeFirst();
-        emit frameSent(false, sendItem.first, sendItem.second);
+        emit frameSent(false, sendItem);
     }
 }

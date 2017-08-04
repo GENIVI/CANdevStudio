@@ -14,7 +14,7 @@ class CanDevicePrivate {
 public:
     QString mBackend;
     QString mInterface;
-    QVector<std::pair<QCanBusFrame, QVariant> > mSendQueue;
+    QVector<QCanBusFrame> mSendQueue;
     std::unique_ptr<CanDeviceInterface> canDevice;
 };
 

@@ -21,7 +21,7 @@ signals:
 
 public Q_SLOTS:
     void frameReceived(const QCanBusFrame& frame);
-    void frameSent(bool status, const QCanBusFrame& frame, const QVariant& context);
+    void frameSent(bool status, const QCanBusFrame& frame);
     void stopSimulation(void);
     void startSimulation(void);
 

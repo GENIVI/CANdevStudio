@@ -34,10 +34,10 @@ public:
 
 Q_SIGNALS:
     void frameReceived(const QCanBusFrame& frame);
-    void frameSent(bool status, const QCanBusFrame& frame, const QVariant& context);
+    void frameSent(bool status, const QCanBusFrame& frame);
 
 public Q_SLOTS:
-    void sendFrame(const QCanBusFrame& frame, const QVariant& context);
+    void sendFrame(const QCanBusFrame& frame);
 
 private Q_SLOTS:
     void errorOccurred(int error);

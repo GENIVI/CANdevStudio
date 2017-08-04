@@ -16,7 +16,7 @@ public:
     ~CanRawSender();
 
 signals:
-    void sendFrame(const QCanBusFrame& frame, const QVariant& context);
+    void sendFrame(const QCanBusFrame& frame);
     void dockUndock();
 
 public slots:
