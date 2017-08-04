@@ -2,7 +2,7 @@
 #include "canrawsender.h"
 #include <QRegExpValidator>
 
-NewLineManager::NewLineManager(CanRawSender *q) : canRawSender(q), ctx(0) {
+NewLineManager::NewLineManager(CanRawSender *q) : canRawSender(q) {
   QRegExp qRegExp("[1]?[0-9A-Fa-f]{7}");
   vIdHex = new QRegExpValidator(qRegExp, this);
   LineEditDefault(id, "Id in hex", vIdHex);
@@ -69,7 +69,7 @@ void NewLineManager::SendButtonPressed() {
   if (id.text().length() && data.text().length()) {
     frame.setFrameId(id.text().toUInt(nullptr, 16));
     frame.setPayload(QByteArray::fromHex(data.text().toUtf8()));
-    emit canRawSender->sendFrame(frame, ctx);
+    emit canRawSender->sendFrame(frame);
 
     if ((timer.isActive() == false) && (loop.qCheckBox.isChecked() == true)) {
       timer.start(cyclic.text().toUInt());
@@ -81,7 +81,7 @@ void NewLineManager::SendButtonPressed() {
 }
 
 void NewLineManager::TimerExpired() {
-  emit canRawSender->sendFrame(frame, ctx);
+  emit canRawSender->sendFrame(frame);
 }
 
 QWidget *NewLineManager::GetRows(RowNameIterator name) {

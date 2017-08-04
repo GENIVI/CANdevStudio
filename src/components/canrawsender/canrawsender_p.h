@@ -64,8 +64,8 @@ private slots:
         QList<QStandardItem*> list {};
         tvModel.appendRow(list);
         auto newLine = std::make_unique<NewLineManager>(q_ptr);
-        for (auto ii = 0; ii < NewLineManager::RowName::RowMAX; ++ii)
-            ui->tv->setIndexWidget(tvModel.index(tvModel.rowCount() - 1, ii), newLine->GetRows(static_cast<NewLineManager::RowName>(ii)));
+        for (NewLineManager::RowName ii : NewLineManager::RowNameIterator())
+            ui->tv->setIndexWidget(tvModel.index(tvModel.rowCount() - 1, static_cast<int>(ii)), newLine->GetRows(ii));
         lines.push_back(std::move(newLine));
     }
 

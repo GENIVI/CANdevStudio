@@ -79,7 +79,6 @@ private:
   QValidator *vDataHex;
 
   QCanBusFrame frame;
-  QVariant ctx;
 
 signals:
 
