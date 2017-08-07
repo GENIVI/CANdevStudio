@@ -64,14 +64,14 @@ int main(int argc, char* argv[])
     CanDeviceManager m;
     MainWindow w;
 
-    QObject::connect(&w, SIGNAL(requestAvailableDevices(QString)), &m, SLOT(fetchAvailableDevices(QString)));
-    QObject::connect(&w, SIGNAL(selectCANDevice(QString, QString)), &m, SLOT(selectCANDevice(QString, QString)));
+    QObject::connect(&w, &MainWindow::requestAvailableDevices, &m, &CanDeviceManager::fetchAvailableDevices);
+    QObject::connect(&w, &MainWindow::selectCANDevice, &m, &CanDeviceManager::selectCANDevice);
 #if QT_VERSION >= QT_VERSION_CHECK(5, 9, 1)
-    QObject::connect(&m, SIGNAL(sendAvailableDevices(QString, QList<QCanBusDeviceInfo>)), &w, SLOT(availableDevices(QString, QList<QCanBusDeviceInfo>)));
+    QObject::connect(&m, &CanDeviceManager::sendAvailableDevices, &w, &MainWindow::availableDevices);
 #else
-    QObject::connect(&m, SIGNAL(sendAvailableDevicesDummy(QString)), &w, SLOT(availableDevices(QString)));
+    QObject::connect(&m, &CanDeviceManager::sendAvailableDevicesDummy, &w, &MainWindow::availableDevices);
 #endif
-    QObject::connect(&m, SIGNAL(attachToViews(CanDevice*)), &w, SLOT(attachToViews(CanDevice*)));
+    QObject::connect(&m, &CanDeviceManager::attachToViews, &w, &MainWindow::attachToViews);
 
     w.show();
 

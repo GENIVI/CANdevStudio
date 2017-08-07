@@ -5,21 +5,11 @@
 
 #include <QString>
 
-CanDeviceManager::CanDeviceManager()
-{
-
-}
-
-CanDeviceManager::~CanDeviceManager()
-{
-
-}
-
 #if QT_VERSION >= QT_VERSION_CHECK(5, 9, 1)
-void CanDeviceManager::fetchAvailableDevices(QString backend)
+void CanDeviceManager::fetchAvailableDevices(const QString& backend)
 {
     QString errorMessage;
-    auto devices = qtfactory.availableDevices(backend, &errorMessage);
+    const auto devices = qtfactory.availableDevices(backend, &errorMessage);
 
     if (!errorMessage.isEmpty())
     {
@@ -30,24 +20,27 @@ void CanDeviceManager::fetchAvailableDevices(QString backend)
     emit sendAvailableDevices(backend, devices);
 }
 #else
-void CanDeviceManager::fetchAvailableDevices(QString backend)
+void CanDeviceManager::fetchAvailableDevices(const QString& backend)
 {
     emit sendAvailableDevicesDummy(backend);
 }
 #endif
 
-void CanDeviceManager::selectCANDevice(QString backend, QString name)
+void CanDeviceManager::selectCANDevice(const QString& backend, const QString& name)
 {
     QString errorMessage;
 #if QT_VERSION >= QT_VERSION_CHECK(5, 9, 1)
-    auto devices = qtfactory.availableDevices(backend, &errorMessage);
+    const auto devices = qtfactory.availableDevices(backend, &errorMessage);
     if (!errorMessage.isEmpty())
     {
         cds_error("Error fetching available devices: {0}", errorMessage.toStdString());
         return;
     }
 
-    auto result = std::find_if(devices.begin(), devices.end(), [&name](const auto& dev){ return dev.name() == name; });
+    const auto result = std::find_if(devices.begin(), devices.end(), [&name](const auto& dev)
+    {
+        return dev.name() == name;
+    });
 
     if (result == devices.end())
     {

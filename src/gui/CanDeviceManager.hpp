@@ -15,20 +15,24 @@ class CanDeviceManager : public QObject
     Q_OBJECT
 
 public:
-    CanDeviceManager();
-    virtual ~CanDeviceManager();
+    CanDeviceManager() = default;
+    virtual ~CanDeviceManager() = default;
 
 signals:
 #if QT_VERSION >= QT_VERSION_CHECK(5, 9, 1)
-    void sendAvailableDevices(QString backend, QList<QCanBusDeviceInfo> devices);
+    void sendAvailableDevices(const QString& backend, const QList<QCanBusDeviceInfo>& devices);
 #else
-    void sendAvailableDevicesDummy(QString backend);
+    void sendAvailableDevicesDummy(const QString& backend);
 #endif
+    /**
+     * Request attaching of CAN device to prepared CanRawView and CanRawSender
+     * @param device Pointer to source CanDevice. Ownership is not transferred.
+     */
     void attachToViews(CanDevice* device);
 
 public slots:
-    void selectCANDevice(QString backend, QString name);
-    void fetchAvailableDevices(QString backend);
+    void selectCANDevice(const QString& backend, const QString& name);
+    void fetchAvailableDevices(const QString& backend);
 
 private:
     CanFactoryQt qtfactory;

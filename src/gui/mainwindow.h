@@ -34,6 +34,10 @@ public slots:
 #else
     void availableDevices(QString backend);
 #endif
+    /**
+     * Attach CAN device to prepared CanRawView and CanRawSender
+     * @param device Pointer to source CanDevice. Ownership is not transferred.
+     */
     void attachToViews(CanDevice* device);
 
 protected:
