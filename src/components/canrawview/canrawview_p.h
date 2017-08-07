@@ -9,7 +9,7 @@
 #include <memory>
 #include <iostream>
 #include <QHeaderView>
-
+using namespace std;
 namespace Ui {
 class CanRawViewPrivate;
 }
@@ -57,13 +57,22 @@ public:
         }
         
         static int rowID = 0;
+        QList<QVariant> qvlist;
         QList<QStandardItem*> list;
-        list.append(new QStandardItem(QString::number(rowID++)));
-        list.append(new QStandardItem(QString::number((double)timer->elapsed() / 1000, 'f', 2)));
-        list.append(new QStandardItem("0x" + QString::number(frame.frameId(), 16)));
-        list.append(new QStandardItem(direction));
-        list.append(new QStandardItem(QString::number(frame.payload().size())));
-        list.append(new QStandardItem(QString::fromUtf8(payHex.data(), payHex.size())));
+
+        qvlist.append(rowID++);
+        qvlist.append(QString::number((double)timer->elapsed() / 1000, 'f', 2).toDouble());
+        qvlist.append(QString("0x" + QString::number(frame.frameId(), 16)));
+        qvlist.append(direction);
+        qvlist.append(QString::number(frame.payload().size()).toInt());
+        qvlist.append(QString::fromUtf8(payHex.data(), payHex.size()).toInt());
+
+        for (QVariant qvitem : qvlist)
+        {
+            QStandardItem* item = new QStandardItem();
+            item->setData(qvitem,Qt::EditRole);
+            list.append(item);
+        }
 
         tvModel.appendRow(list);
 
