@@ -12,7 +12,10 @@
 #include <QtCore/QElapsedTimer>
 #include <QtGui/QStandardItemModel>
 #include <QtSerialBus/QCanBusFrame>
-
+#include <memory>
+#include <iostream>
+#include <QHeaderView>
+using namespace std;
 namespace Ui {
 class CanRawViewPrivate;
 }
@@ -96,22 +99,22 @@ public:
         for (int ii = payHex.size() - 2; ii >= 2; ii -= 2) {
             payHex.insert(ii, ' ');
         }
-
-        QList<QVariant> qvList;
+        
+        static int rowID = 0;
+        QList<QVariant> qvlist;
         QList<QStandardItem*> list;
 
-        qvList.append(rowID++);
-        qvList.append(QString::number((double)timer->elapsed() / 1000, 'f', 2).toDouble());
-        qvList.append(QString::number((double)timer->elapsed() / 1000, 'f', 2));
-        qvList.append(frame.frameId());
-        qvList.append(QString("0x" + QString::number(frame.frameId(), 16)));
-        qvList.append(direction);
-        qvList.append(QString::number(frame.payload().size()).toInt());
-        qvList.append(QString::fromUtf8(payHex.data(), payHex.size()));
+        qvlist.append(rowID++);
+        qvlist.append(QString::number((double)timer->elapsed() / 1000, 'f', 2).toDouble());
+        qvlist.append(QString("0x" + QString::number(frame.frameId(), 16)));
+        qvlist.append(direction);
+        qvlist.append(QString::number(frame.payload().size()).toInt());
+        qvlist.append(QString::fromUtf8(payHex.data(), payHex.size()).toInt());
 
-        for (QVariant qvitem : qvList) {
+        for (QVariant qvitem : qvlist)
+        {
             QStandardItem* item = new QStandardItem();
-            item->setData(qvitem, Qt::DisplayRole);
+            item->setData(qvitem,Qt::EditRole);
             list.append(item);
         }
 
