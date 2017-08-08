@@ -10,8 +10,8 @@
 std::shared_ptr<spdlog::logger> kDefaultLogger;
 
 #include <QSignalSpy>
-//needed for QSignalSpy cause according to qtbug 49623 comments
-//automatic detection of types is "flawed" in moc
+// needed for QSignalSpy cause according to qtbug 49623 comments
+// automatic detection of types is "flawed" in moc
 Q_DECLARE_METATYPE(QCanBusFrame);
 
 TEST_CASE("Initialization failed", "[candevice]")
@@ -30,9 +30,9 @@ TEST_CASE("Initialization succedded", "[candevice]")
     fakeit::Mock<CanDeviceInterface> deviceMock;
 
     Fake(Dtor(deviceMock));
-    When(Method(deviceMock, framesWritten)).Do([](const auto& cb) { cb(100); });
-    Fake(Method(deviceMock, framesReceived));
-    Fake(Method(deviceMock, errorOccurred));
+    When(Method(deviceMock, setFramesWrittenCbk)).Do([](const auto& cb) { cb(100); });
+    Fake(Method(deviceMock, setFramesReceivedCbk));
+    Fake(Method(deviceMock, setErrorOccurredCbk));
 
     fakeit::When(Method(factoryMock, create)).Return(&(deviceMock.get()));
     CanDevice canDevice{ factoryMock.get() };
@@ -57,9 +57,9 @@ TEST_CASE("Start failed - could not connect to device", "[candevice]")
     Mock<CanDeviceInterface> deviceMock;
 
     Fake(Dtor(deviceMock));
-    Fake(Method(deviceMock, framesWritten));
-    Fake(Method(deviceMock, framesReceived));
-    Fake(Method(deviceMock, errorOccurred));
+    Fake(Method(deviceMock, setFramesWrittenCbk));
+    Fake(Method(deviceMock, setFramesReceivedCbk));
+    Fake(Method(deviceMock, setErrorOccurredCbk));
     When(Method(deviceMock, connectDevice)).Return(false);
 
     When(Method(factoryMock, create)).Return(&(deviceMock.get()));
@@ -75,9 +75,9 @@ TEST_CASE("Start succeeded", "[candevice]")
     Mock<CanDeviceInterface> deviceMock;
 
     Fake(Dtor(deviceMock));
-    Fake(Method(deviceMock, framesWritten));
-    Fake(Method(deviceMock, framesReceived));
-    Fake(Method(deviceMock, errorOccurred));
+    Fake(Method(deviceMock, setFramesWrittenCbk));
+    Fake(Method(deviceMock, setFramesReceivedCbk));
+    Fake(Method(deviceMock, setErrorOccurredCbk));
     When(Method(deviceMock, connectDevice)).Return(true);
 
     When(Method(factoryMock, create)).Return(&(deviceMock.get()));
@@ -93,12 +93,11 @@ TEST_CASE("sendFrame results in frameSent being emitted and writeFrame being cal
     Mock<CanDeviceInterface> deviceMock;
 
     Fake(Dtor(deviceMock));
-    Fake(Method(deviceMock, framesWritten));
-    Fake(Method(deviceMock, framesReceived));
-    Fake(Method(deviceMock, errorOccurred));
+    Fake(Method(deviceMock, setFramesWrittenCbk));
+    Fake(Method(deviceMock, setFramesReceivedCbk));
+    Fake(Method(deviceMock, setErrorOccurredCbk));
     Fake(Method(deviceMock, connectDevice));
     When(Method(deviceMock, writeFrame)).Return(false);
-    qRegisterMetaType<QCanBusFrame>();    //required by QSignalSpy
     QCanBusFrame testFrame;
     testFrame.setFrameId(123);
 
@@ -119,12 +118,11 @@ TEST_CASE("sendFrame, writeframe returns true, no signal emitted", "[candevice]"
     Mock<CanDeviceInterface> deviceMock;
 
     Fake(Dtor(deviceMock));
-    Fake(Method(deviceMock, framesWritten));
-    Fake(Method(deviceMock, framesReceived));
-    Fake(Method(deviceMock, errorOccurred));
+    Fake(Method(deviceMock, setFramesWrittenCbk));
+    Fake(Method(deviceMock, setFramesReceivedCbk));
+    Fake(Method(deviceMock, setErrorOccurredCbk));
     Fake(Method(deviceMock, connectDevice));
     When(Method(deviceMock, writeFrame)).Return(true);
-    qRegisterMetaType<QCanBusFrame>();    //required by QSignalSpy
     QCanBusFrame testFrame;
 
     When(Method(factoryMock, create)).Return(&(deviceMock.get()));
@@ -140,7 +138,6 @@ TEST_CASE("sendFrame, no device availablie, frameSent is not emitted", "[candevi
     using namespace fakeit;
     Mock<CanFactoryInterface> factoryMock;
 
-    qRegisterMetaType<QCanBusFrame>();    //required by QSignalSpy
     QCanBusFrame testFrame;
 
     When(Method(factoryMock, create)).Return(nullptr);
@@ -160,5 +157,6 @@ int main(int argc, char* argv[])
         kDefaultLogger->set_level(spdlog::level::debug);
     }
     cds_debug("Staring unit tests");
+    qRegisterMetaType<QCanBusFrame>(); // required by QSignalSpy
     return Catch::Session().run(argc, argv);
 }
