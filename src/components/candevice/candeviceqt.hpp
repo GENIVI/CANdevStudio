@@ -15,17 +15,17 @@ struct CanDeviceQt : public CanDeviceInterface {
         }
     }
 
-    virtual void framesWritten(const framesWritten_t& cb) override
+    virtual void setFramesWrittenCbk(const framesWritten_t& cb) override
     {
         QObject::connect(_device, &QCanBusDevice::framesWritten, cb);
     }
 
-    virtual void framesReceived(const framesReceived_t& cb) override
+    virtual void setFramesReceivedCbk(const framesReceived_t& cb) override
     {
         QObject::connect(_device, &QCanBusDevice::framesReceived, cb);
     }
 
-    virtual void errorOccurred(const errorOccurred_t& cb) override
+    virtual void setErrorOccurredCbk(const errorOccurred_t& cb) override
     {
         QObject::connect(_device, &QCanBusDevice::errorOccurred, cb);
     }

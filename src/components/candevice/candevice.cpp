@@ -10,9 +10,7 @@ CanDevice::CanDevice(CanFactoryInterface& factory)
 {
 }
 
-CanDevice::~CanDevice()
-{
-}
+CanDevice::~CanDevice() {}
 
 bool CanDevice::init(const QString& backend, const QString& interface)
 {
@@ -27,9 +25,9 @@ bool CanDevice::init(const QString& backend, const QString& interface)
         return false;
     }
 
-    d->canDevice->framesWritten(std::bind(&CanDevice::framesWritten, this, std::placeholders::_1));
-    d->canDevice->framesReceived(std::bind(&CanDevice::framesReceived, this));
-    d->canDevice->errorOccurred(std::bind(&CanDevice::errorOccurred, this, std::placeholders::_1));
+    d->canDevice->setFramesWrittenCbk(std::bind(&CanDevice::framesWritten, this, std::placeholders::_1));
+    d->canDevice->setFramesReceivedCbk(std::bind(&CanDevice::framesReceived, this));
+    d->canDevice->setErrorOccurredCbk(std::bind(&CanDevice::errorOccurred, this, std::placeholders::_1));
 
     // connect
 
@@ -61,12 +59,11 @@ bool CanDevice::start()
 {
     Q_D(CanDevice);
 
-    if(!d->canDevice) {
+    if (!d->canDevice) {
         return false;
     }
 
     return d->canDevice->connectDevice();
-
 }
 
 void CanDevice::framesReceived()
