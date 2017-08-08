@@ -29,10 +29,11 @@ public:
     {
         ui->setupUi(this);
 
-        tvModel.setHorizontalHeaderLabels({ "rowID", "time", "id", "dir", "dlc", "data" });
+        tvModel.setHorizontalHeaderLabels({ "rowID", "timeDouble", "time", "id", "dir", "dlc", "data" });
         ui->tv->setModel(&tvModel);
         ui->tv->horizontalHeader()->setSectionsMovable(true);
-        //ui->tv->setColumnHidden(0, true);
+        ui->tv->setColumnHidden(0, true);
+        ui->tv->setColumnHidden(1, true);
 
         connect(ui->pbClear, &QPushButton::pressed, this, &CanRawViewPrivate::clear);
         connect(ui->pbDockUndock, &QPushButton::pressed, this, &CanRawViewPrivate::dockUndock);
@@ -57,17 +58,18 @@ public:
         }
         
         static int rowID = 0;
-        QList<QVariant> qvlist;
+        QList<QVariant> qvList;
         QList<QStandardItem*> list;
 
-        qvlist.append(rowID++);
-        qvlist.append(QString::number((double)timer->elapsed() / 1000, 'f', 2).toDouble());
-        qvlist.append(QString("0x" + QString::number(frame.frameId(), 16)));
-        qvlist.append(direction);
-        qvlist.append(QString::number(frame.payload().size()).toInt());
-        qvlist.append(QString::fromUtf8(payHex.data(), payHex.size()).toInt());
+        qvList.append(rowID++);
+        qvList.append(QString::number((double)timer->elapsed() / 1000, 'f', 2).toDouble());
+        qvList.append(QString::number((double)timer->elapsed() / 1000, 'f', 2));
+        qvList.append(QString("0x" + QString::number(frame.frameId(), 16)));
+        qvList.append(direction);
+        qvList.append(QString::number(frame.payload().size()).toInt());
+        qvList.append(QString::fromUtf8(payHex.data(), payHex.size()).toInt());
 
-        for (QVariant qvitem : qvlist)
+        for (QVariant qvitem : qvList)
         {
             QStandardItem* item = new QStandardItem();
             item->setData(qvitem,Qt::EditRole);
@@ -106,7 +108,11 @@ private slots:
     void sort(const int currentIndex, QList<int> &clickedIndexes)
     {
         clickedIndexes.removeFirst();
-        clickedIndexes.append(currentIndex);
+
+        if (currentIndex == 2)
+            clickedIndexes.append(1);
+        else
+            clickedIndexes.append(currentIndex);
 
         if ((clickedIndexes[2] == clickedIndexes[1]) && (clickedIndexes[1] == clickedIndexes[0]))
         {
@@ -115,12 +121,12 @@ private slots:
         }
         else if (clickedIndexes[2] == clickedIndexes[1])
         {
-            ui->tv->sortByColumn(currentIndex,Qt::DescendingOrder);
+            ui->tv->sortByColumn(clickedIndexes[2],Qt::DescendingOrder);
             ui->tv->horizontalHeader()->setSortIndicator(currentIndex,Qt::DescendingOrder);
         }
         else
         {
-            ui->tv->sortByColumn(currentIndex,Qt::AscendingOrder);
+            ui->tv->sortByColumn(clickedIndexes[2],Qt::AscendingOrder);
             ui->tv->horizontalHeader()->setSortIndicator(currentIndex,Qt::AscendingOrder);
         }
     }
