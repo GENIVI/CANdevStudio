@@ -9,14 +9,13 @@
 #include <QtWidgets/QMdiSubWindow>
 #include <QtWidgets/QMessageBox>
 
-
-MainWindow::MainWindow(QWidget *parent, std::shared_ptr<Ui::MainWindow> T_Ui)
+MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent)
-    , ui(T_Ui)
+    , ui(std::make_unique<Ui::MainWindow>())
 {
     ui->setupUi(this);
     ui->centralWidget->layout()->setContentsMargins(0, 0, 0, 0);
-    ui->menuBar->setNativeMenuBar(false);
+
     CanFactoryQt factory;
     CanDevice* canDevice = new CanDevice(factory);
     CanRawView* canRawView = new CanRawView();
@@ -46,7 +45,6 @@ MainWindow::MainWindow(QWidget *parent, std::shared_ptr<Ui::MainWindow> T_Ui)
     ViewModes->addAction(ui->actionSubWindowView);
     connect(ui->actionAbout,&QAction::triggered,this,[this] { QMessageBox::about(this,"About","<about body>"); });
     connect(ui->actionExit,&QAction::triggered,this,&MainWindow::handleExitAction);
-    connect(ui->actionLoad,&QAction::triggered,this,&MainWindow::handleLoadAction);
     connect(ui->actionTile,&QAction::triggered,ui->mdiArea,&QMdiArea::tileSubWindows);
     connect(ui->actionCascade,&QAction::triggered,ui->mdiArea,&QMdiArea::cascadeSubWindows);
     connect(ui->actionTabView,&QAction::triggered,this,[this]{ ui->mdiArea->setViewMode(QMdiArea::TabbedView); });
@@ -57,13 +55,12 @@ MainWindow::MainWindow(QWidget *parent, std::shared_ptr<Ui::MainWindow> T_Ui)
     //docking signals connection
     connect(canRawView, &CanRawView::dockUndock, this, [this, canRawView] {
                         handleDock(canRawView, ui->mdiArea);
-            });
+		    });
     connect(canRawSender, &CanRawSender::dockUndock, this, [this, canRawSender] {
-            handleDock(canRawSender, ui->mdiArea);
-            });
+			handleDock(canRawSender, ui->mdiArea);
+		    });
     canDevice->init("socketcan", "can0");
     canDevice->start();
-
 }
 
 MainWindow::~MainWindow()
@@ -96,40 +93,5 @@ void MainWindow::handleExitAction()
                                       , QMessageBox::Yes | QMessageBox::No);
     if(userReply == QMessageBox::Yes)
         QApplication::quit();
-
-}
-
-void MainWindow::handleLoadAction()
-{
-    try
-    {
-        QString fileData;
-        QString fileName = QFileDialog::getOpenFileName(this,tr("Open CDS file"), "", tr("CDS file (*.cds)"));
-        QFile file(fileName);
-
-        if( !file.open(QIODevice::ReadOnly | QIODevice::Text))
-        {
-            throw "Could not open file";
-        }
-
-        while(!file.atEnd())
-        {
-            fileData += file.readLine();
-        }
-
-        /*to do
-         *
-        */
-         emit fileLoadedOk();
-    }
-    catch (QString str)
-    {
-        QMessageBox::question(this, "Error", str);
-    }
-    catch(...)
-    {
-        QMessageBox::question(this, "Unknown Error", QString::fromStdString("<error body>"));
-    }
-
 
 }

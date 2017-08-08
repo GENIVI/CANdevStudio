@@ -18,13 +18,10 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(QWidget* parent = nullptr);
-    MainWindow(QWidget* parent,std::shared_ptr<Ui::MainWindow> ui);
     ~MainWindow();
-signals:
-    void fileLoadedOk();
 
 private:
-    std::shared_ptr<Ui::MainWindow> ui;
+    std::unique_ptr<Ui::MainWindow> ui;
     void handleDock(QWidget* component, QMdiArea* mdi);
 private slots:
     void handleExitAction(void);
