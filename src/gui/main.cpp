@@ -4,6 +4,7 @@
 #include <QtWidgets/QApplication>
 
 #include "log.hpp"
+#include "CanDeviceManager.hpp"
 
 std::shared_ptr<spdlog::logger> kDefaultLogger;
 std::shared_ptr<spdlog::logger> qtDefaultLogger;
@@ -60,7 +61,18 @@ int main(int argc, char* argv[])
 
     qDebug() << "Qt message ";
 
+    CanDeviceManager m;
     MainWindow w;
+
+    QObject::connect(&w, &MainWindow::requestAvailableDevices, &m, &CanDeviceManager::fetchAvailableDevices);
+    QObject::connect(&w, &MainWindow::selectCANDevice, &m, &CanDeviceManager::selectCANDevice);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 9, 1)
+    QObject::connect(&m, &CanDeviceManager::sendAvailableDevices, &w, &MainWindow::availableDevices);
+#else
+    QObject::connect(&m, &CanDeviceManager::sendAvailableDevicesDummy, &w, &MainWindow::availableDevices);
+#endif
+    QObject::connect(&m, &CanDeviceManager::attachToViews, &w, &MainWindow::attachToViews);
+
     w.show();
 
     return a.exec();

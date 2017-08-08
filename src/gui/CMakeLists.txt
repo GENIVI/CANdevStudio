@@ -1,6 +1,7 @@
 
 
 set(srcs
+    CanDeviceManager.cpp
     main.cpp
     mainwindow.cpp
     mainwindow.ui

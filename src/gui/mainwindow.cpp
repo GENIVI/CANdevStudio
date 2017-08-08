@@ -2,12 +2,14 @@
 #include "ui_mainwindow.h"
 
 #include "candevice/candevice.h"
-#include "canrawsender/canrawsender.h"
-#include "canrawview/canrawview.h"
 #include "mainwindow.h"
 #include <QtWidgets/QMdiArea>
 #include <QtWidgets/QMdiSubWindow>
 #include <QtWidgets/QMessageBox>
+#include <QInputDialog>
+
+#include <log.hpp>
+
 
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent)
@@ -16,10 +18,8 @@ MainWindow::MainWindow(QWidget* parent)
     ui->setupUi(this);
     ui->centralWidget->layout()->setContentsMargins(0, 0, 0, 0);
 
-    CanFactoryQt factory;
-    CanDevice* canDevice = new CanDevice(factory);
-    CanRawView* canRawView = new CanRawView();
-    CanRawSender* canRawSender = new CanRawSender();
+    canRawView = new CanRawView();
+    canRawSender = new CanRawSender();
 
     canRawView->setWindowTitle("Can Raw View");
     ui->mdiArea->addSubWindow(canRawView);
@@ -29,11 +29,8 @@ MainWindow::MainWindow(QWidget* parent)
 
     ui->mdiArea->tileSubWindows();
 
-    connect(canDevice, &CanDevice::frameReceived, canRawView, &CanRawView::frameReceived);
-    connect(canDevice, &CanDevice::frameSent, canRawView, &CanRawView::frameSent);
     connect(ui->actionstart, &QAction::triggered, canRawView, &CanRawView::startSimulation);
     connect(ui->actionstop, &QAction::triggered, canRawView, &CanRawView::stopSimulation);
-    connect(canRawSender, &CanRawSender::sendFrame, canDevice, &CanDevice::sendFrame);
 
     connect(ui->actionstart, &QAction::triggered, ui->actionstop, &QAction::setDisabled);
     connect(ui->actionstart, &QAction::triggered, ui->actionstart, &QAction::setEnabled);
@@ -53,18 +50,19 @@ MainWindow::MainWindow(QWidget* parent)
     connect(ui->actionSubWindowView,&QAction::triggered,this,[this]{ ui->mdiArea->setViewMode(QMdiArea::SubWindowView); });
 
     //docking signals connection
-    connect(canRawView, &CanRawView::dockUndock, this, [this, canRawView] {
-                        handleDock(canRawView, ui->mdiArea);
-		    });
-    connect(canRawSender, &CanRawSender::dockUndock, this, [this, canRawSender] {
-			handleDock(canRawSender, ui->mdiArea);
-		    });
-    canDevice->init("socketcan", "can0");
-    canDevice->start();
+    connect(canRawView, &CanRawView::dockUndock, this, [this] {
+        handleDock(this->canRawView, ui->mdiArea);
+    });
+    connect(canRawSender, &CanRawSender::dockUndock, this, [this] {
+        handleDock(this->canRawSender, ui->mdiArea);
+    });
+
 }
 
 MainWindow::~MainWindow()
 {
+    delete canRawView;
+    delete canRawSender;
 }
 
 void MainWindow::handleDock(QWidget* component, QMdiArea* mdi)
@@ -85,6 +83,52 @@ void MainWindow::handleDock(QWidget* component, QMdiArea* mdi)
     }
 }
 
+void MainWindow::showEvent(QShowEvent* event [[gnu::unused]])
+{
+    emit requestAvailableDevices("socketcan"); // FIXME: plugin name should be configurable
+}
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 9, 1)
+void MainWindow::availableDevices(QString backend,
+        QList<QCanBusDeviceInfo> devices)
+{
+    QStringList items;
+
+    if (devices.empty())
+    {
+        cds_error("Received empty devices list");
+        return;
+    }
+
+    for (const auto& d: devices)
+        items.push_back(d.name());
+
+    bool ok;
+    QString item = QInputDialog::getItem(this, tr("Choose CAN device"),
+                                         tr("Available CAN devices on %1 backend").arg(backend),
+                                         items, 0, false, &ok);
+
+    emit selectCANDevice(backend, item);
+}
+#else
+void MainWindow::availableDevices(QString backend)
+{
+    QString item = QInputDialog::getText(this, tr("Provide CAN device name"),
+            tr("Please input below the name of CAN device to use"));
+
+    emit selectCANDevice(backend, item);
+}
+#endif
+
+void MainWindow::attachToViews(CanDevice* device)
+{
+    QObject::connect(device, &CanDevice::frameReceived, canRawView, &CanRawView::frameReceived);
+    QObject::connect(device, &CanDevice::frameSent, canRawView, &CanRawView::frameSent);
+    QObject::connect(canRawSender, &CanRawSender::sendFrame, device, &CanDevice::sendFrame);
+
+    ui->actionstart->setEnabled(true);
+}
+
 void MainWindow::handleExitAction()
 {
     QMessageBox::StandardButton userReply;
@@ -93,5 +137,4 @@ void MainWindow::handleExitAction()
                                       , QMessageBox::Yes | QMessageBox::No);
     if(userReply == QMessageBox::Yes)
         QApplication::quit();
-
 }

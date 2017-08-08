@@ -86,9 +86,13 @@
    <addaction name="menuHelp"/>
   </widget>
   <action name="actionstart">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Start</string>
    </property>
+   <property></property>
   </action>
   <action name="actionstop">
    <property name="enabled">
