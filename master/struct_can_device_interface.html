@@ -138,12 +138,12 @@ Public Types</h2></td></tr>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ad81788df9251ba0fa9a6b3cd854c9836"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_can_device_interface.html#ad81788df9251ba0fa9a6b3cd854c9836">~CanDeviceInterface</a> ()</td></tr>
 <tr class="separator:ad81788df9251ba0fa9a6b3cd854c9836"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1810517a23b6a0d5ab63243fc5952828"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_can_device_interface.html#a1810517a23b6a0d5ab63243fc5952828">framesWritten</a> (const <a class="el" href="struct_can_device_interface.html#a7297a3f6cbb3f1ba6f87c28c04df03a1">framesWritten_t</a> &amp;cb)=0</td></tr>
-<tr class="separator:a1810517a23b6a0d5ab63243fc5952828"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7768d75f9e49b617a4c05e09448d2836"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_can_device_interface.html#a7768d75f9e49b617a4c05e09448d2836">framesReceived</a> (const <a class="el" href="struct_can_device_interface.html#a0fcd238644d7fde2a4b4f7242fc0fa86">framesReceived_t</a> &amp;cb)=0</td></tr>
-<tr class="separator:a7768d75f9e49b617a4c05e09448d2836"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a808135eb997ba5f077f0144a0f333ed8"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_can_device_interface.html#a808135eb997ba5f077f0144a0f333ed8">errorOccurred</a> (const <a class="el" href="struct_can_device_interface.html#a58a0e7e2eb6660680ea09ad01a415029">errorOccurred_t</a> &amp;cb)=0</td></tr>
-<tr class="separator:a808135eb997ba5f077f0144a0f333ed8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83eb2a451898d07703bce9efbf3f6df3"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_can_device_interface.html#a83eb2a451898d07703bce9efbf3f6df3">setFramesWrittenCbk</a> (const <a class="el" href="struct_can_device_interface.html#a7297a3f6cbb3f1ba6f87c28c04df03a1">framesWritten_t</a> &amp;cb)=0</td></tr>
+<tr class="separator:a83eb2a451898d07703bce9efbf3f6df3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad56683892b79922799ba163f81c3404"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_can_device_interface.html#aad56683892b79922799ba163f81c3404">setFramesReceivedCbk</a> (const <a class="el" href="struct_can_device_interface.html#a0fcd238644d7fde2a4b4f7242fc0fa86">framesReceived_t</a> &amp;cb)=0</td></tr>
+<tr class="separator:aad56683892b79922799ba163f81c3404"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ffe30d097d59b48a78a91215d831540"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_can_device_interface.html#a5ffe30d097d59b48a78a91215d831540">setErrorOccurredCbk</a> (const <a class="el" href="struct_can_device_interface.html#a58a0e7e2eb6660680ea09ad01a415029">errorOccurred_t</a> &amp;cb)=0</td></tr>
+<tr class="separator:a5ffe30d097d59b48a78a91215d831540"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeb963d0da7bd307275d43dbea110e1c9"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_can_device_interface.html#aeb963d0da7bd307275d43dbea110e1c9">writeFrame</a> (const QCanBusFrame &amp;frame)=0</td></tr>
 <tr class="separator:aeb963d0da7bd307275d43dbea110e1c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae93401fab526dc31098998e15baba1be"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_can_device_interface.html#ae93401fab526dc31098998e15baba1be">connectDevice</a> ()=0</td></tr>
@@ -240,32 +240,6 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a808135eb997ba5f077f0144a0f333ed8"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual void CanDeviceInterface::errorOccurred </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="struct_can_device_interface.html#a58a0e7e2eb6660680ea09ad01a415029">errorOccurred_t</a> &amp;&#160;</td>
-          <td class="paramname"><em>cb</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Implemented in <a class="el" href="struct_can_device_qt.html#ae098a2c9ec3debf2129d556446593a42">CanDeviceQt</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="a20961a2ad09942ba9f847bd465201cba"></a>
 <div class="memitem">
 <div class="memproto">
@@ -291,58 +265,6 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a7768d75f9e49b617a4c05e09448d2836"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual void CanDeviceInterface::framesReceived </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="struct_can_device_interface.html#a0fcd238644d7fde2a4b4f7242fc0fa86">framesReceived_t</a> &amp;&#160;</td>
-          <td class="paramname"><em>cb</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Implemented in <a class="el" href="struct_can_device_qt.html#a4c4834ff1449f250731ccbb58407e510">CanDeviceQt</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a1810517a23b6a0d5ab63243fc5952828"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual void CanDeviceInterface::framesWritten </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="struct_can_device_interface.html#a7297a3f6cbb3f1ba6f87c28c04df03a1">framesWritten_t</a> &amp;&#160;</td>
-          <td class="paramname"><em>cb</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Implemented in <a class="el" href="struct_can_device_qt.html#a56e0e5e39ac30dafeea35f77de327b75">CanDeviceQt</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="a8c21c2e367ce6166182af2c7d183a73f"></a>
 <div class="memitem">
 <div class="memproto">
@@ -365,6 +287,84 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implemented in <a class="el" href="struct_can_device_qt.html#ab83cb6b3cd34b828fa52154826e6c87f">CanDeviceQt</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5ffe30d097d59b48a78a91215d831540"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void CanDeviceInterface::setErrorOccurredCbk </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_can_device_interface.html#a58a0e7e2eb6660680ea09ad01a415029">errorOccurred_t</a> &amp;&#160;</td>
+          <td class="paramname"><em>cb</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="struct_can_device_qt.html#a5b9294df606c7773413fbb26d1588e63">CanDeviceQt</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aad56683892b79922799ba163f81c3404"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void CanDeviceInterface::setFramesReceivedCbk </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_can_device_interface.html#a0fcd238644d7fde2a4b4f7242fc0fa86">framesReceived_t</a> &amp;&#160;</td>
+          <td class="paramname"><em>cb</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="struct_can_device_qt.html#ab3dbf5e6f572f406d523496533797b33">CanDeviceQt</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a83eb2a451898d07703bce9efbf3f6df3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void CanDeviceInterface::setFramesWrittenCbk </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_can_device_interface.html#a7297a3f6cbb3f1ba6f87c28c04df03a1">framesWritten_t</a> &amp;&#160;</td>
+          <td class="paramname"><em>cb</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="struct_can_device_qt.html#ab32e80032d7b5f821381dd3da252ef23">CanDeviceQt</a>.</p>
 
 </div>
 </div>

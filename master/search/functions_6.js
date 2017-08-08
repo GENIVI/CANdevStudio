@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['main',['main',['../main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main.cpp']]],
-  ['mainwindow',['MainWindow',['../class_main_window.html#a996c5a2b6f77944776856f08ec30858d',1,'MainWindow']]]
+  ['readframe',['readFrame',['../struct_can_device_interface.html#a8c21c2e367ce6166182af2c7d183a73f',1,'CanDeviceInterface::readFrame()'],['../struct_can_device_qt.html#ab83cb6b3cd34b828fa52154826e6c87f',1,'CanDeviceQt::readFrame()']]]
 ];

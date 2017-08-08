@@ -1,4 +1,7 @@
 var searchData=
 [
-  ['erroroccurred',['errorOccurred',['../struct_can_device_interface.html#a808135eb997ba5f077f0144a0f333ed8',1,'CanDeviceInterface::errorOccurred()'],['../struct_can_device_qt.html#ae098a2c9ec3debf2129d556446593a42',1,'CanDeviceQt::errorOccurred()']]]
+  ['framereceived',['frameReceived',['../class_can_device.html#a883d4ce76d9c7329e0d3718b7aa5589c',1,'CanDevice::frameReceived()'],['../class_can_raw_view.html#ace7bb231aa483369b389d02b353a8a17',1,'CanRawView::frameReceived()']]],
+  ['framesavailable',['framesAvailable',['../struct_can_device_interface.html#a20961a2ad09942ba9f847bd465201cba',1,'CanDeviceInterface::framesAvailable()'],['../struct_can_device_qt.html#af1bf6677b8ac4ebade2396c2eaa75f68',1,'CanDeviceQt::framesAvailable()']]],
+  ['framesent',['frameSent',['../class_can_device.html#aac8ab09993968f767c9013b9891c4312',1,'CanDevice::frameSent()'],['../class_can_raw_view.html#a81d095b9dfd03fbc2f53ca8c298abf4f',1,'CanRawView::frameSent()']]],
+  ['frameview',['frameView',['../class_can_raw_view_private.html#a1573036ba16b36b7c6ce61cacf6124a5',1,'CanRawViewPrivate']]]
 ];
