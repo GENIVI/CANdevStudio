@@ -25,6 +25,7 @@ private:
     void handleDock(QWidget* component, QMdiArea* mdi);
 private slots:
     void handleExitAction(void);
+    void handleLoadAction();
 };
 
 #endif // MAINWINDOW_H

@@ -8,6 +8,8 @@
 #include <QtWidgets/QMdiArea>
 #include <QtWidgets/QMdiSubWindow>
 #include <QtWidgets/QMessageBox>
+#include <qfiledialog.h>
+#include <qfile.h>
 
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent)
@@ -15,7 +17,7 @@ MainWindow::MainWindow(QWidget* parent)
 {
     ui->setupUi(this);
     ui->centralWidget->layout()->setContentsMargins(0, 0, 0, 0);
-
+    ui->menuBar->setNativeMenuBar(false);
     CanFactoryQt factory;
     CanDevice* canDevice = new CanDevice(factory);
     CanRawView* canRawView = new CanRawView();
@@ -45,6 +47,7 @@ MainWindow::MainWindow(QWidget* parent)
     ViewModes->addAction(ui->actionSubWindowView);
     connect(ui->actionAbout,&QAction::triggered,this,[this] { QMessageBox::about(this,"About","<about body>"); });
     connect(ui->actionExit,&QAction::triggered,this,&MainWindow::handleExitAction);
+    connect(ui->actionLoad,&QAction::triggered,this,&MainWindow::handleLoadAction);
     connect(ui->actionTile,&QAction::triggered,ui->mdiArea,&QMdiArea::tileSubWindows);
     connect(ui->actionCascade,&QAction::triggered,ui->mdiArea,&QMdiArea::cascadeSubWindows);
     connect(ui->actionTabView,&QAction::triggered,this,[this]{ ui->mdiArea->setViewMode(QMdiArea::TabbedView); });
@@ -93,5 +96,38 @@ void MainWindow::handleExitAction()
                                       , QMessageBox::Yes | QMessageBox::No);
     if(userReply == QMessageBox::Yes)
         QApplication::quit();
+
+}
+
+void MainWindow::handleLoadAction()
+{
+    try
+    {
+        QString fileData;
+        QString fileName = QFileDialog::getOpenFileName(this,tr("Open CDS file"), "", tr("CDS file (*.cds)"));
+        QFile file(fileName);
+
+        if( !file.open(QIODevice::ReadOnly | QIODevice::Text))
+        {
+            throw "Could not open file";
+        }
+
+        while(!file.atEnd())
+        {
+            fileData += file.readLine();
+        }
+
+        /*to do
+         *
+        */
+    }
+    catch (QString str)
+    {
+        QMessageBox::question(this, "Error", str);
+    }
+    catch(...)
+    {
+        QMessageBox::question(this, "Unknown Error", QString::fromStdString("<error body>"));
+    }
 
 }
