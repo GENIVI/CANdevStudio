@@ -4,3 +4,6 @@
 [submodule "3rdParty/spdlog"]
 	path = 3rdParty/spdlog
 	url = https://github.com/gabime/spdlog.git
+[submodule "3rdParty/nodeeditor"]
+	path = 3rdParty/nodeeditor
+	url = https://github.com/paceholder/nodeeditor
