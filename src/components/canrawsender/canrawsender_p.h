@@ -23,9 +23,10 @@ public:
 
         tvModel.setHorizontalHeaderLabels({"id", "value",""});
         ui->tv->setModel(&tvModel);
+        ui->tv->setSelectionBehavior(QAbstractItemView::SelectRows);
 
         connect(ui->pbAdd, &QPushButton::pressed, this, &CanRawSenderPrivate::addNewItem);
-
+        connect(ui->pbRemove, &QPushButton::pressed, this, &CanRawSenderPrivate::removeRowsSelectedByMouse);
         connect(ui->pbDockUndock, &QPushButton::pressed, this, &CanRawSenderPrivate::dockUndock);
     }
 
@@ -39,6 +40,17 @@ private:
     CanRawSender* q_ptr;
 
 private slots:
+    void removeRowsSelectedByMouse()
+    {
+        QModelIndexList IndexList;
+        IndexList=ui->tv->selectionModel()->selectedRows();
+
+        for(int i=IndexList.size();i>0;i--)
+        {
+            tvModel.removeRow(IndexList.at(i-1).row());
+        }
+    }
+
     void addNewItem()
     {
         QStandardItem* id = new QStandardItem();
