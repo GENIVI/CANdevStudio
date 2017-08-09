@@ -111,11 +111,11 @@ $(document).ready(function(){initNavTree('log_8hpp.html','');});
 <div class="title">log.hpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;spdlog/spdlog.h&gt;</code><br />
-<code>#include &lt;spdlog/fmt/ostr.h&gt;</code><br />
-<code>#include &lt;cstring&gt;</code><br />
-<code>#include &lt;memory&gt;</code><br />
+<div class="textblock"><code>#include &lt;cstring&gt;</code><br />
 <code>#include &lt;iostream&gt;</code><br />
+<code>#include &lt;memory&gt;</code><br />
+<code>#include &lt;spdlog/fmt/ostr.h&gt;</code><br />
+<code>#include &lt;spdlog/spdlog.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for log.hpp:</div>
 <div class="dyncontent">
@@ -131,6 +131,7 @@ This graph shows which files directly or indirectly include this file:</div>
 <area shape="rect" id="node2" href="canrawview__p_8h.html" title="src/components/canrawview\l/canrawview_p.h" alt="" coords="5,80,207,121"/>
 <area shape="rect" id="node3" href="canrawview_8cpp.html" title="src/components/canrawview\l/canrawview.cpp" alt="" coords="75,169,276,211"/>
 <area shape="rect" id="node4" href="main_8cpp.html" title="src/gui/main.cpp" alt="" coords="283,87,409,114"/>
+<area shape="rect" id="node5" href="mainwindow_8cpp.html" title="src/gui/mainwindow.cpp" alt="" coords="434,87,605,114"/>
 </map>
 </div>
 </div>
@@ -190,7 +191,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> {                                                          <a class="code" href="log_8hpp.html#a20e4133288a6dd5e9b289bf4407d57d6">\</a></div><div class="line"><a class="code" href="log_8hpp.html#a20e4133288a6dd5e9b289bf4407d57d6">        kDefaultLogger</a>-&gt;debug(<span class="stringliteral">&quot;[{}@{}] &quot;</span> fmt, <a class="code" href="log_8hpp.html#a5fccb4fc71e44089a1b1a77fc76c0b68">__FILENAME__</a>, __LINE__, \</div><div class="line">                              ##__VA_ARGS__);                     \</div><div class="line">    } <span class="keywordflow">while</span> (0)</div><div class="ttc" id="log_8hpp_html_a20e4133288a6dd5e9b289bf4407d57d6"><div class="ttname"><a href="log_8hpp.html#a20e4133288a6dd5e9b289bf4407d57d6">kDefaultLogger</a></div><div class="ttdeci">std::shared_ptr&lt; spdlog::logger &gt; kDefaultLogger</div><div class="ttdef"><b>Definition:</b> main.cpp:8</div></div>
+<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> {                                                                                                               <a class="code" href="log_8hpp.html#a20e4133288a6dd5e9b289bf4407d57d6">\</a></div><div class="line"><a class="code" href="log_8hpp.html#a20e4133288a6dd5e9b289bf4407d57d6">        kDefaultLogger</a>-&gt;debug(<span class="stringliteral">&quot;[{}@{}] &quot;</span> fmt, <a class="code" href="log_8hpp.html#a5fccb4fc71e44089a1b1a77fc76c0b68">__FILENAME__</a>, __LINE__, ##__VA_ARGS__);                                  \</div><div class="line">    } <span class="keywordflow">while</span> (0)</div><div class="ttc" id="log_8hpp_html_a20e4133288a6dd5e9b289bf4407d57d6"><div class="ttname"><a href="log_8hpp.html#a20e4133288a6dd5e9b289bf4407d57d6">kDefaultLogger</a></div><div class="ttdeci">std::shared_ptr&lt; spdlog::logger &gt; kDefaultLogger</div><div class="ttdef"><b>Definition:</b> main.cpp:8</div></div>
 <div class="ttc" id="log_8hpp_html_a5fccb4fc71e44089a1b1a77fc76c0b68"><div class="ttname"><a href="log_8hpp.html#a5fccb4fc71e44089a1b1a77fc76c0b68">__FILENAME__</a></div><div class="ttdeci">#define __FILENAME__</div><div class="ttdef"><b>Definition:</b> log.hpp:9</div></div>
 </div><!-- fragment -->
 </div>
@@ -218,7 +219,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> {                                                          <a class="code" href="log_8hpp.html#a20e4133288a6dd5e9b289bf4407d57d6">\</a></div><div class="line"><a class="code" href="log_8hpp.html#a20e4133288a6dd5e9b289bf4407d57d6">        kDefaultLogger</a>-&gt;error(<span class="stringliteral">&quot;[{}@{}] &quot;</span> fmt, <a class="code" href="log_8hpp.html#a5fccb4fc71e44089a1b1a77fc76c0b68">__FILENAME__</a>, __LINE__, \</div><div class="line">                              ##__VA_ARGS__);                     \</div><div class="line">    } <span class="keywordflow">while</span> (0)</div><div class="ttc" id="log_8hpp_html_a20e4133288a6dd5e9b289bf4407d57d6"><div class="ttname"><a href="log_8hpp.html#a20e4133288a6dd5e9b289bf4407d57d6">kDefaultLogger</a></div><div class="ttdeci">std::shared_ptr&lt; spdlog::logger &gt; kDefaultLogger</div><div class="ttdef"><b>Definition:</b> main.cpp:8</div></div>
+<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> {                                                                                                               <a class="code" href="log_8hpp.html#a20e4133288a6dd5e9b289bf4407d57d6">\</a></div><div class="line"><a class="code" href="log_8hpp.html#a20e4133288a6dd5e9b289bf4407d57d6">        kDefaultLogger</a>-&gt;error(<span class="stringliteral">&quot;[{}@{}] &quot;</span> fmt, <a class="code" href="log_8hpp.html#a5fccb4fc71e44089a1b1a77fc76c0b68">__FILENAME__</a>, __LINE__, ##__VA_ARGS__);                                  \</div><div class="line">    } <span class="keywordflow">while</span> (0)</div><div class="ttc" id="log_8hpp_html_a20e4133288a6dd5e9b289bf4407d57d6"><div class="ttname"><a href="log_8hpp.html#a20e4133288a6dd5e9b289bf4407d57d6">kDefaultLogger</a></div><div class="ttdeci">std::shared_ptr&lt; spdlog::logger &gt; kDefaultLogger</div><div class="ttdef"><b>Definition:</b> main.cpp:8</div></div>
 <div class="ttc" id="log_8hpp_html_a5fccb4fc71e44089a1b1a77fc76c0b68"><div class="ttname"><a href="log_8hpp.html#a5fccb4fc71e44089a1b1a77fc76c0b68">__FILENAME__</a></div><div class="ttdeci">#define __FILENAME__</div><div class="ttdef"><b>Definition:</b> log.hpp:9</div></div>
 </div><!-- fragment -->
 </div>
@@ -246,7 +247,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> {                                                             <a class="code" href="log_8hpp.html#a20e4133288a6dd5e9b289bf4407d57d6">\</a></div><div class="line"><a class="code" href="log_8hpp.html#a20e4133288a6dd5e9b289bf4407d57d6">        kDefaultLogger</a>-&gt;info(<span class="stringliteral">&quot;[{}@{}] &quot;</span> fmt, <a class="code" href="log_8hpp.html#a5fccb4fc71e44089a1b1a77fc76c0b68">__FILENAME__</a>, __LINE__, \</div><div class="line">                             ##__VA_ARGS__);                         \</div><div class="line">    } <span class="keywordflow">while</span> (0)</div><div class="ttc" id="log_8hpp_html_a20e4133288a6dd5e9b289bf4407d57d6"><div class="ttname"><a href="log_8hpp.html#a20e4133288a6dd5e9b289bf4407d57d6">kDefaultLogger</a></div><div class="ttdeci">std::shared_ptr&lt; spdlog::logger &gt; kDefaultLogger</div><div class="ttdef"><b>Definition:</b> main.cpp:8</div></div>
+<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> {                                                                                                               <a class="code" href="log_8hpp.html#a20e4133288a6dd5e9b289bf4407d57d6">\</a></div><div class="line"><a class="code" href="log_8hpp.html#a20e4133288a6dd5e9b289bf4407d57d6">        kDefaultLogger</a>-&gt;info(<span class="stringliteral">&quot;[{}@{}] &quot;</span> fmt, <a class="code" href="log_8hpp.html#a5fccb4fc71e44089a1b1a77fc76c0b68">__FILENAME__</a>, __LINE__, ##__VA_ARGS__);                                   \</div><div class="line">    } <span class="keywordflow">while</span> (0)</div><div class="ttc" id="log_8hpp_html_a20e4133288a6dd5e9b289bf4407d57d6"><div class="ttname"><a href="log_8hpp.html#a20e4133288a6dd5e9b289bf4407d57d6">kDefaultLogger</a></div><div class="ttdeci">std::shared_ptr&lt; spdlog::logger &gt; kDefaultLogger</div><div class="ttdef"><b>Definition:</b> main.cpp:8</div></div>
 <div class="ttc" id="log_8hpp_html_a5fccb4fc71e44089a1b1a77fc76c0b68"><div class="ttname"><a href="log_8hpp.html#a5fccb4fc71e44089a1b1a77fc76c0b68">__FILENAME__</a></div><div class="ttdeci">#define __FILENAME__</div><div class="ttdef"><b>Definition:</b> log.hpp:9</div></div>
 </div><!-- fragment -->
 </div>
@@ -274,7 +275,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> {                                                          <a class="code" href="log_8hpp.html#a20e4133288a6dd5e9b289bf4407d57d6">\</a></div><div class="line"><a class="code" href="log_8hpp.html#a20e4133288a6dd5e9b289bf4407d57d6">        kDefaultLogger</a>-&gt;warn(<span class="stringliteral">&quot;[{}@{}] &quot;</span> fmt, <a class="code" href="log_8hpp.html#a5fccb4fc71e44089a1b1a77fc76c0b68">__FILENAME__</a>, ___LINE__, \</div><div class="line">                             ##__VA_ARGS__);                      \</div><div class="line">    } <span class="keywordflow">while</span> (0)</div><div class="ttc" id="log_8hpp_html_a20e4133288a6dd5e9b289bf4407d57d6"><div class="ttname"><a href="log_8hpp.html#a20e4133288a6dd5e9b289bf4407d57d6">kDefaultLogger</a></div><div class="ttdeci">std::shared_ptr&lt; spdlog::logger &gt; kDefaultLogger</div><div class="ttdef"><b>Definition:</b> main.cpp:8</div></div>
+<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> {                                                                                                               <a class="code" href="log_8hpp.html#a20e4133288a6dd5e9b289bf4407d57d6">\</a></div><div class="line"><a class="code" href="log_8hpp.html#a20e4133288a6dd5e9b289bf4407d57d6">        kDefaultLogger</a>-&gt;warn(<span class="stringliteral">&quot;[{}@{}] &quot;</span> fmt, <a class="code" href="log_8hpp.html#a5fccb4fc71e44089a1b1a77fc76c0b68">__FILENAME__</a>, __LINE__, ##__VA_ARGS__);                                   \</div><div class="line">    } <span class="keywordflow">while</span> (0)</div><div class="ttc" id="log_8hpp_html_a20e4133288a6dd5e9b289bf4407d57d6"><div class="ttname"><a href="log_8hpp.html#a20e4133288a6dd5e9b289bf4407d57d6">kDefaultLogger</a></div><div class="ttdeci">std::shared_ptr&lt; spdlog::logger &gt; kDefaultLogger</div><div class="ttdef"><b>Definition:</b> main.cpp:8</div></div>
 <div class="ttc" id="log_8hpp_html_a5fccb4fc71e44089a1b1a77fc76c0b68"><div class="ttname"><a href="log_8hpp.html#a5fccb4fc71e44089a1b1a77fc76c0b68">__FILENAME__</a></div><div class="ttdeci">#define __FILENAME__</div><div class="ttdef"><b>Definition:</b> log.hpp:9</div></div>
 </div><!-- fragment -->
 </div>
