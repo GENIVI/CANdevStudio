@@ -22,6 +22,8 @@ signals:
     void dockUndock();
 
 public slots:
+    void stopSimulation(void);
+    void startSimulation(void);
 
 private:
     QScopedPointer<CanRawSenderPrivate> d_ptr;

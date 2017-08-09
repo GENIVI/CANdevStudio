@@ -37,6 +37,9 @@ MainWindow::MainWindow(QWidget* parent)
     connectMenuSignals();
 }
 
+    connect(ui->actionstart, &QAction::triggered, canRawSender, &CanRawSender::startSimulation);
+    connect(ui->actionstop, &QAction::triggered, canRawSender, &CanRawSender::stopSimulation);
+
 MainWindow::~MainWindow() { delete graphView; }
 
 void MainWindow::closeEvent(QCloseEvent*) { handleExitAction(); }

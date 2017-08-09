@@ -36,25 +36,26 @@ class NewLineManager : public QObject {
 public:
   NewLineManager(CanRawSender *q);
 
-  enum class RowName {
+  enum class ColName {
     IdLine = 0,
     DataLine,
-    CyclicLine,
     LoopCheckBox,
+    IntervalLine,
     SendButton,
   };
 
-  typedef Iterator<RowName, RowName::IdLine, RowName::SendButton> RowNameIterator;
-  QWidget *GetRows(RowNameIterator name);
+  typedef Iterator<ColName, ColName::IdLine, ColName::SendButton> ColNameIterator;
+  QWidget *GetColsWidget(ColNameIterator name);
+  void SetSimulationState(bool state);
 
 private:
   void LineEditDefault(QLineEdit &lineEdit, const QString &placeholderText,
                        QValidator *qValidator = nullptr);
+  void StopTimer();
 
   struct CheckBox {
     CheckBox() {
       qLayout = new QHBoxLayout(&qWidget);
-      qCheckBox.setCheckable(false);
       qLayout->addWidget(&qCheckBox);
       qLayout->setAlignment(Qt::AlignCenter);
       qLayout->setContentsMargins(0, 0, 0, 0);
@@ -69,7 +70,7 @@ private:
 
   QLineEdit id;
   QLineEdit data;
-  QLineEdit cyclic;
+  QLineEdit interval;
   CheckBox loop;
   QPushButton send;
 
@@ -79,11 +80,11 @@ private:
   QValidator *vDataHex;
 
   QCanBusFrame frame;
+  bool simState;
 
 signals:
 
 private slots:
-  void CyclicTextChanged();
   void LoopCheckBoxReleased();
   void SetSendButtonState();
   void SendButtonPressed();

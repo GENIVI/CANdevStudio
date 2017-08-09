@@ -2,7 +2,7 @@
 #include "canrawsender.h"
 #include <QRegExpValidator>
 
-NewLineManager::NewLineManager(CanRawSender *q) : canRawSender(q) {
+NewLineManager::NewLineManager(CanRawSender *q) : canRawSender(q), simState(false) {
   QRegExp qRegExp("[1]?[0-9A-Fa-f]{7}");
   vIdHex = new QRegExpValidator(qRegExp, this);
   LineEditDefault(id, "Id in hex", vIdHex);
@@ -13,13 +13,12 @@ NewLineManager::NewLineManager(CanRawSender *q) : canRawSender(q) {
 
   qRegExp.setPattern("[1-9]\\d{0,6}");
   vDec = new QRegExpValidator(qRegExp, this);
-  LineEditDefault(cyclic, "Time in ms", vDec);
+  LineEditDefault(interval, "Select Loop", vDec);
+  interval.setDisabled(true);
 
   send.setText("Send");
   send.setDisabled(true);
 
-  connect(&cyclic, &QLineEdit::textChanged, this,
-          &NewLineManager::CyclicTextChanged);
   connect(&loop.qCheckBox, &QCheckBox::released, this,
           &NewLineManager::LoopCheckBoxReleased);
   connect(&id, &QLineEdit::textChanged, this,
@@ -37,30 +36,44 @@ void NewLineManager::LineEditDefault(QLineEdit &lineEdit,
   lineEdit.setFrame(false);
   lineEdit.setAlignment(Qt::AlignHCenter);
   lineEdit.setPlaceholderText(placeholderText);
-  if (qValidator != nullptr)
+  if (qValidator != nullptr) {
     lineEdit.setValidator(qValidator);
+  }
 }
 
-void NewLineManager::CyclicTextChanged() {
-  if (cyclic.text().length() > 0)
-    loop.qCheckBox.setCheckable(true);
-  else
-    loop.qCheckBox.setCheckable(false);
-}
-
-void NewLineManager::LoopCheckBoxReleased() {
-  if ((loop.qCheckBox.isChecked() == false) && (timer.isActive() == true)) {
+void NewLineManager::StopTimer() {
     timer.stop();
     id.setDisabled(false);
     data.setDisabled(false);
-    cyclic.setDisabled(false);
+}
+
+void NewLineManager::LoopCheckBoxReleased() {
+
+  if (loop.qCheckBox.isChecked() == false) {
+      interval.setDisabled(true);
+     if (timer.isActive() == true) {
+         StopTimer();
+     }
+     else if (interval.text().length() == 0) {
+       interval.setPlaceholderText("Select Loop");
+     }
+  }
+
+  if ((loop.qCheckBox.isChecked() == true) && (timer.isActive() == false)) {
+    interval.setDisabled(false);
+    if (interval.text().length() == 0)
+    {
+        interval.setPlaceholderText("Time in ms");
+    }
   }
 }
 
 void NewLineManager::SetSendButtonState() {
-  if ((id.text().length() > 0) && (data.text().length() > 0)) {
+  if ((id.text().length() > 0) && (data.text().length() > 0) && (simState == true)) {
     if (send.isEnabled() == false)
+    {
       send.setDisabled(false);
+    }
   } else if (send.isEnabled() == true)
     send.setDisabled(true);
 }
@@ -72,10 +85,14 @@ void NewLineManager::SendButtonPressed() {
     emit canRawSender->sendFrame(frame);
 
     if ((timer.isActive() == false) && (loop.qCheckBox.isChecked() == true)) {
-      timer.start(cyclic.text().toUInt());
-      id.setDisabled(true);
-      data.setDisabled(true);
-      cyclic.setDisabled(true);
+      auto delay = interval.text().toUInt();
+      if (delay != 0)
+      {
+          timer.start(delay);
+          id.setDisabled(true);
+          data.setDisabled(true);
+          interval.setDisabled(true);
+      }
     }
   }
 }
@@ -84,19 +101,28 @@ void NewLineManager::TimerExpired() {
   emit canRawSender->sendFrame(frame);
 }
 
-QWidget *NewLineManager::GetRows(RowNameIterator name) {
+QWidget *NewLineManager::GetColsWidget(ColNameIterator name) {
   switch (*name) {
-  case RowName::IdLine:
+  case ColName::IdLine:
     return &id;
-  case RowName::DataLine:
+  case ColName::DataLine:
     return &data;
-  case RowName::CyclicLine:
-    return &cyclic;
-  case RowName::LoopCheckBox:
+  case ColName::IntervalLine:
+    return &interval;
+  case ColName::LoopCheckBox:
     return &loop.qWidget;
-  case RowName::SendButton:
+  case ColName::SendButton:
     return &send;
   default:
     return nullptr;
-  }
+  }  
+}
+
+void NewLineManager::SetSimulationState(bool state) {
+    simState = state;
+    SetSendButtonState();
+    if ((simState == false) && (timer.isActive() == true)) {
+        StopTimer();
+        interval.setDisabled(false);
+    }
 }

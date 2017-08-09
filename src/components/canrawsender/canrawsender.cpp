@@ -21,3 +21,12 @@ void CanRawSender::closeEvent(QCloseEvent* e)
     }
     e->ignore();
 }
+void CanRawSender::startSimulation()
+{
+    d_ptr->SetSimulationState(true);
+}
+
+void CanRawSender::stopSimulation()
+{
+    d_ptr->SetSimulationState(false);
+}
