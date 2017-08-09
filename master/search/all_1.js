@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['candevice',['CanDevice',['../class_can_device.html',1,'CanDevice'],['../class_can_device.html#a694c6a1ba7457a1bc68f11683f61bdd4',1,'CanDevice::CanDevice()'],['../class_can_device_private.html#a22c3020712af344e4326866e5b17614d',1,'CanDevicePrivate::canDevice()']]],
+  ['candevice',['CanDevice',['../class_can_device.html',1,'CanDevice'],['../class_can_device_private.html#a22c3020712af344e4326866e5b17614d',1,'CanDevicePrivate::canDevice()'],['../class_can_device.html#a694c6a1ba7457a1bc68f11683f61bdd4',1,'CanDevice::CanDevice()']]],
   ['candevice_2ecpp',['candevice.cpp',['../candevice_8cpp.html',1,'']]],
   ['candevice_2eh',['candevice.h',['../candevice_8h.html',1,'']]],
   ['candevice_5fp_2eh',['candevice_p.h',['../candevice__p_8h.html',1,'']]],
