@@ -4,23 +4,23 @@
 #include <QtWidgets/QMainWindow>
 #include <memory>
 
-#include "candevice/canfactoryqt.hpp"
 #include "candevice/candevice.h"
+#include "candevice/canfactoryqt.hpp"
 #include "canrawsender/canrawsender.h"
 #include "canrawview/canrawview.h"
 
-#include <nodes/NodeData>
 #include <nodes/FlowScene>
 #include <nodes/FlowView>
+#include <nodes/NodeData>
 
 class QMdiArea;
+class QCloseEvent;
 
 namespace Ui {
 class MainWindow;
 }
 
-class MainWindow : public QMainWindow
-{
+class MainWindow : public QMainWindow {
     Q_OBJECT
 
 public:
@@ -31,16 +31,13 @@ private:
     std::unique_ptr<Ui::MainWindow> ui;
     std::shared_ptr<CanDevice> canDevice;
     std::shared_ptr<QtNodes::FlowScene> graphScene;
-    CanRawView* canRawView;
-    CanRawSender* canRawSender;
-    QtNodes::FlowView* graphView;
+    QVector<QWidget*> undockWindows;
 
     void handleDock(QWidget* component, QMdiArea* mdi);
-    void connectCanComponentsSignals();
     void connectToolbarSignals();
     void connectMenuSignals();
-    void connectDockingSignals();
     void setupMdiArea();
+    void closeEvent(QCloseEvent* event);
 
 private slots:
     void handleExitAction(void);
