@@ -40,14 +40,18 @@ private:
     CanRawSender* q_ptr;
 
 private slots:
+    /**
+     * @brief removeRowsSelectedByMouse
+     *
+     *  This function is used to remove selected (selected by mouse) rows.
+     */
     void removeRowsSelectedByMouse()
     {
         QModelIndexList IndexList;
-        IndexList=ui->tv->selectionModel()->selectedRows();
+        IndexList = ui->tv->selectionModel()->selectedRows();
 
-        for(int i=IndexList.size();i>0;i--)
-        {
-            tvModel.removeRow(IndexList.at(i-1).row());
+        for (int i = IndexList.size(); i > 0; i--) {
+            tvModel.removeRow(IndexList.at(i - 1).row());
         }
     }
 
