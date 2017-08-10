@@ -7,6 +7,10 @@
 #include <QtWidgets/QMdiSubWindow>
 #include <QtWidgets/QMessageBox>
 
+#include <candevicemodel/candevicemodel.h>
+#include <canrawsendermodel/canrawsendermodel.h>
+#include <canrawviewmodel/canrawviewmodel.h>
+
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent)
     , ui(std::make_unique<Ui::MainWindow>())
@@ -15,6 +19,9 @@ MainWindow::MainWindow(QWidget* parent)
     ui->centralWidget->layout()->setContentsMargins(0, 0, 0, 0);
 
     auto modelRegistry = std::make_shared<QtNodes::DataModelRegistry>();
+    modelRegistry->registerModel<CanDeviceModel>();
+    modelRegistry->registerModel<CanRawSenderModel>();
+    modelRegistry->registerModel<CanRawViewModel>();
 
     canDevice = std::make_shared<CanDevice>();
     graphScene = std::make_shared<QtNodes::FlowScene>(modelRegistry);
