@@ -22,24 +22,22 @@ public:
     {
         ui->setupUi(this);
 
-    tvModel.setHorizontalHeaderLabels({"Id", "Data", "Loop", "Interval", ""});
-    ui->tv->setModel(&tvModel);
+        tvModel.setHorizontalHeaderLabels({ "Id", "Data", "Loop", "Interval", "" });
+        ui->tv->setModel(&tvModel);
         ui->tv->setSelectionBehavior(QAbstractItemView::SelectRows);
 
         connect(ui->pbAdd, &QPushButton::pressed, this, &CanRawSenderPrivate::addNewItem);
         connect(ui->pbDockUndock, &QPushButton::pressed, this, &CanRawSenderPrivate::dockUndock);
     }
 
-    ~CanRawSenderPrivate()
-    {
-    }
+    ~CanRawSenderPrivate() {}
 
-    void SetSimulationState(bool state) {
+    void SetSimulationState(bool state)
+    {
         for (auto& iter : lines) {
             iter->SetSimulationState(state);
         }
     }
-
 
 private:
     std::vector<std::unique_ptr<NewLineManager>> lines;
@@ -67,11 +65,12 @@ private slots:
 
     void addNewItem()
     {
-        QList<QStandardItem*> list {};
+        QList<QStandardItem*> list{};
         tvModel.appendRow(list);
         auto newLine = std::make_unique<NewLineManager>(q_ptr);
         for (NewLineManager::ColName ii : NewLineManager::ColNameIterator()) {
-            ui->tv->setIndexWidget(tvModel.index(tvModel.rowCount() - 1, static_cast<int>(ii)), newLine->GetColsWidget(ii));
+            ui->tv->setIndexWidget(
+                tvModel.index(tvModel.rowCount() - 1, static_cast<int>(ii)), newLine->GetColsWidget(ii));
         }
         lines.push_back(std::move(newLine));
     }
