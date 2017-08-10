@@ -44,14 +44,16 @@ private slots:
      * @brief removeRowsSelectedByMouse
      *
      *  This function is used to remove selected (selected by mouse) rows.
+     *
      */
     void removeRowsSelectedByMouse()
     {
-        QModelIndexList IndexList;
-        IndexList = ui->tv->selectionModel()->selectedRows();
-
-        for (int i = IndexList.size(); i > 0; i--) {
-            tvModel.removeRow(IndexList.at(i - 1).row());
+        QModelIndexList IndexList = ui->tv->selectionModel()->selectedRows();
+        std::list<QModelIndex> tmp = IndexList.toStdList();
+        tmp.sort(); // List must to be sorted and reversed because erasing started from last row
+        tmp.reverse();
+        for (QModelIndex n : tmp) {
+            tvModel.removeRow(n.row());
         }
     }
 
