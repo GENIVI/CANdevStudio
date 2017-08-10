@@ -68,7 +68,7 @@ void NewLineManager::LoopCheckBoxReleased()
 
 void NewLineManager::SetSendButtonState()
 {
-    if ((id.text().length() > 0) && (data.text().length() > 0) && (simState == true)) {
+    if ((id.text().length() > 0) && (simState == true)) {
         if (send.isEnabled() == false) {
             send.setDisabled(false);
         }
@@ -78,7 +78,7 @@ void NewLineManager::SetSendButtonState()
 
 void NewLineManager::SendButtonPressed()
 {
-    if (id.text().length() && data.text().length()) {
+    if (id.text().length()) {
         frame.setFrameId(id.text().toUInt(nullptr, 16));
         frame.setPayload(QByteArray::fromHex(data.text().toUtf8()));
         emit canRawSender->sendFrame(frame);
