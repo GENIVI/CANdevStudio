@@ -82,7 +82,15 @@ private:
     CanRawView* q_ptr;
 
 private slots:
-    void clear() {}
+    /**
+     * @brief clear
+     *
+     * This function is used to clear whole table
+     */
+    void clear()
+    {
+        tvModel.removeRows(0,tvModel.rowCount());
+    }
 
     void dockUndock()
     {
