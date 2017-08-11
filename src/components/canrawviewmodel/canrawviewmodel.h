@@ -47,9 +47,6 @@ public:
 
     bool resizable() const override { return false; }
 
-protected:
-    bool eventFilter(QObject* object, QEvent* event) override;
-
 private:
     QLabel* label;
     QCanBusFrame _frame;

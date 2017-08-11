@@ -15,7 +15,7 @@ CanDeviceModel::CanDeviceModel()
 {
     label->setAlignment(Qt::AlignVCenter | Qt::AlignHCenter);
 
-    label->setFixedSize(150, 100);
+    label->setFixedSize(75, 25);
 
     label->installEventFilter(this);
 
@@ -38,21 +38,28 @@ unsigned int CanDeviceModel::nPorts(PortType portType) const
     case PortType::Out:
         result = 1;
 	break;
+
+	   case PortType::None:
+	        result = 0;
+		        break;
     }
 
     return result;
 }
 
-bool CanDeviceModel::eventFilter(QObject* object, QEvent* event) { return false; }
-
-NodeDataType CanDeviceModel::dataType(PortType portType, PortIndex portIndex) const
+NodeDataType CanDeviceModel::dataType(PortType portType, PortIndex)  const
 {
     switch (portType) {
     case PortType::In:
         return RawSenderData().type();
+	break;
 
     case PortType::Out:
         return RawViewData().type();
+	break;
+
+	    case PortType::None:
+	        break;
     }
 }
 

@@ -6,7 +6,6 @@
 
 #include <nodes/DataModelRegistry>
 #include <nodes/NodeDataModel>
-#include <canrawsender/canrawsender.h>
 
 #include <QCanBusFrame>
 
@@ -41,21 +40,17 @@ public:
 
     std::shared_ptr<NodeData> outData(PortIndex port) override;
 
-    void setInData(std::shared_ptr<NodeData> nodeData, PortIndex port) override;
+    void setInData(std::shared_ptr<NodeData>, PortIndex) override;
 
     QWidget* embeddedWidget() override { return label; }
 
     bool resizable() const override { return false; }
 
-protected:
-    bool eventFilter(QObject* object, QEvent* event) override;
-
 private:
     QLabel* label;
     QCanBusFrame _frame;
-    CanRawSender senderWindow;
 
-private slots:
+public slots:
     void sendFrame(const QCanBusFrame& frame);
 };
 

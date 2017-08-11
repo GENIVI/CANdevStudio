@@ -6,6 +6,7 @@
 #include <QtWidgets/QMdiArea>
 #include <QtWidgets/QMdiSubWindow>
 #include <QtWidgets/QMessageBox>
+#include <iostream>
 
 #include <candevicemodel/candevicemodel.h>
 #include <canrawsendermodel/canrawsendermodel.h>
@@ -26,6 +27,10 @@ MainWindow::MainWindow(QWidget* parent)
     canDevice = std::make_shared<CanDevice>();
     graphScene = std::make_shared<QtNodes::FlowScene>(modelRegistry);
 
+    connect(graphScene.get(), &QtNodes::FlowScene::nodeCreated, this, &MainWindow::nodeCreatedCallback);
+    connect(graphScene.get(), &QtNodes::FlowScene::nodeDeleted, this, &MainWindow::nodeDeletedCallback);
+    connect(graphScene.get(), &QtNodes::FlowScene::nodeDoubleClicked, this, &MainWindow::nodeDoubleClickedCallback);
+
     setupMdiArea();
     connectToolbarSignals();
     connectMenuSignals();
@@ -44,6 +49,38 @@ void MainWindow::closeEvent(QCloseEvent*)
         w->close();
         delete w;
     }
+}
+
+void MainWindow::nodeCreatedCallback(QtNodes::Node& node)
+{
+    auto dataModel = node.nodeDataModel();
+
+    if (dataModel->name() == "CanRawSenderModel") {
+        CanRawSender* canRawSender = new CanRawSender();
+        canRawSender->setWindowTitle("CANrawSender test");
+        connect(canRawSender, &CanRawSender::sendFrame, dynamic_cast<CanRawSenderModel*>(dataModel),
+            &CanRawSenderModel::sendFrame);
+        connect(canRawSender, &CanRawSender::dockUndock, this,
+            [this, canRawSender] { handleDock(canRawSender, ui->mdiArea); });
+        undockWindows.push_back(canRawSender);
+        nodeComponentMap.insert({ dataModel, canRawSender });
+
+    } else if (dataModel->name() == "CanRawViewModel") {
+        CanRawView* canRawView = new CanRawView();
+        canRawView->setWindowTitle("CANrawView test");
+        undockWindows.push_back(canRawView);
+        nodeComponentMap.insert({ dataModel, canRawView });
+    }
+}
+
+void MainWindow::nodeDeletedCallback(QtNodes::Node& node)
+{
+    // TODO
+}
+
+void MainWindow::nodeDoubleClickedCallback(QtNodes::Node& node)
+{
+    dynamic_cast<QWidget*>(nodeComponentMap[node.nodeDataModel()])->show();
 }
 
 void MainWindow::handleDock(QWidget* component, QMdiArea* mdi)

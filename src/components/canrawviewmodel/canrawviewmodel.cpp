@@ -6,13 +6,12 @@
 #include <nodes/DataModelRegistry>
 
 #include "../datamodeltypes/rawviewdata.h"
-
 CanRawViewModel::CanRawViewModel()
     : label(new QLabel())
 {
     label->setAlignment(Qt::AlignVCenter | Qt::AlignHCenter);
 
-    label->setFixedSize(150, 100);
+    label->setFixedSize(75, 25);
 
     label->installEventFilter(this);
 
@@ -29,24 +28,11 @@ unsigned int CanRawViewModel::nPorts(PortType portType) const
     }
 }
 
-bool CanRawViewModel::eventFilter(QObject* object, QEvent* event)
-{
-    if (object == label) {
-
-        if (event->type() == QEvent::MouseButtonPress) {
-            viewWindow.show();
-
-            return true;
-        }
-    }
-    return false;
-}
-
 NodeDataType CanRawViewModel::dataType(PortType, PortIndex) const { return RawViewData().type(); }
 
 std::shared_ptr<NodeData> CanRawViewModel::outData(PortIndex) { return std::make_shared<RawViewData>(_frame); }
 
-void CanRawViewModel::setInData(std::shared_ptr<NodeData> nodeData, PortIndex port) {
+void CanRawViewModel::setInData(std::shared_ptr<NodeData> nodeData, PortIndex) {
 if(nodeData)
 {
 //
