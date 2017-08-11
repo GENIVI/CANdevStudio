@@ -23,9 +23,10 @@ public:
 
         tvModel.setHorizontalHeaderLabels({"id", "value",""});
         ui->tv->setModel(&tvModel);
+        ui->tv->setSelectionBehavior(QAbstractItemView::SelectRows);
 
         connect(ui->pbAdd, &QPushButton::pressed, this, &CanRawSenderPrivate::addNewItem);
-
+        connect(ui->pbRemove, &QPushButton::pressed, this, &CanRawSenderPrivate::removeRowsSelectedByMouse);
         connect(ui->pbDockUndock, &QPushButton::pressed, this, &CanRawSenderPrivate::dockUndock);
     }
 
@@ -39,6 +40,23 @@ private:
     CanRawSender* q_ptr;
 
 private slots:
+    /**
+     * @brief removeRowsSelectedByMouse
+     *
+     *  This function is used to remove selected (selected by mouse) rows.
+     *
+     */
+    void removeRowsSelectedByMouse()
+    {
+        QModelIndexList IndexList = ui->tv->selectionModel()->selectedRows();
+        std::list<QModelIndex> tmp = IndexList.toStdList();
+        tmp.sort(); // List must to be sorted and reversed because erasing started from last row
+        tmp.reverse();
+        for (QModelIndex n : tmp) {
+            tvModel.removeRow(n.row());
+        }
+    }
+
     void addNewItem()
     {
         QStandardItem* id = new QStandardItem();
