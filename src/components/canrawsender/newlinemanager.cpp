@@ -6,6 +6,9 @@ NewLineManager::NewLineManager(CanRawSender* q)
     : canRawSender(q)
     , simState(false)
 {
+    if (q == nullptr) {
+        throw std::runtime_error("CanRawSender is nullptr");
+    }
     QRegExp qRegExp("[1]?[0-9A-Fa-f]{7}");
     vIdHex = new QRegExpValidator(qRegExp, this);
     LineEditDefault(id, "Id in hex", vIdHex);

@@ -51,6 +51,7 @@ public:
     /// \brief constructor
     /// \brief Create new line manager class
     /// \param[in] q Pointer to CanRawSender class
+    /// \throw if CanRawSender pointer not exist
     NewLineManager(CanRawSender* q);
 
     /// \enum CalName class enumeration
