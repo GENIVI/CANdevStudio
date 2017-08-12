@@ -4,7 +4,6 @@
 #include <fakeit.hpp>
 
 #include "candevice/candeviceinterface.hpp"
-#include "candevice/canfactory.hpp"
 
 #include "log.hpp"
 std::shared_ptr<spdlog::logger> kDefaultLogger;
@@ -14,19 +13,9 @@ std::shared_ptr<spdlog::logger> kDefaultLogger;
 // automatic detection of types is "flawed" in moc
 Q_DECLARE_METATYPE(QCanBusFrame);
 
-TEST_CASE("Initialization failed", "[candevice]")
-{
-    using namespace fakeit;
-    fakeit::Mock<CanFactoryInterface> factoryMock;
-    fakeit::When(Method(factoryMock, create)).Return(nullptr);
-    CanDevice canDevice{ factoryMock.get() };
-    CHECK(canDevice.init("", "") == false);
-}
-
 TEST_CASE("Initialization succedded", "[candevice]")
 {
     using namespace fakeit;
-    fakeit::Mock<CanFactoryInterface> factoryMock;
     fakeit::Mock<CanDeviceInterface> deviceMock;
 
     Fake(Dtor(deviceMock));
@@ -34,26 +23,12 @@ TEST_CASE("Initialization succedded", "[candevice]")
     Fake(Method(deviceMock, setFramesReceivedCbk));
     Fake(Method(deviceMock, setErrorOccurredCbk));
 
-    fakeit::When(Method(factoryMock, create)).Return(&(deviceMock.get()));
-    CanDevice canDevice{ factoryMock.get() };
-    CHECK(canDevice.init("", "") == true);
-}
-
-TEST_CASE("Start failed", "[candevice]")
-{
-    using namespace fakeit;
-    Mock<CanFactoryInterface> factoryMock;
-
-    When(Method(factoryMock, create)).Return(nullptr);
-
-    CanDevice canDevice{ factoryMock.get() };
-    CHECK(canDevice.start() == false);
+    CanDevice canDevice{ deviceMock.get() };
 }
 
 TEST_CASE("Start failed - could not connect to device", "[candevice]")
 {
     using namespace fakeit;
-    Mock<CanFactoryInterface> factoryMock;
     Mock<CanDeviceInterface> deviceMock;
 
     Fake(Dtor(deviceMock));
@@ -62,16 +37,13 @@ TEST_CASE("Start failed - could not connect to device", "[candevice]")
     Fake(Method(deviceMock, setErrorOccurredCbk));
     When(Method(deviceMock, connectDevice)).Return(false);
 
-    When(Method(factoryMock, create)).Return(&(deviceMock.get()));
-    CanDevice canDevice{ factoryMock.get() };
-    CHECK(canDevice.init("", "") == true);
+    CanDevice canDevice{ deviceMock.get() };
     CHECK(canDevice.start() == false);
 }
 
 TEST_CASE("Start succeeded", "[candevice]")
 {
     using namespace fakeit;
-    Mock<CanFactoryInterface> factoryMock;
     Mock<CanDeviceInterface> deviceMock;
 
     Fake(Dtor(deviceMock));
@@ -80,16 +52,13 @@ TEST_CASE("Start succeeded", "[candevice]")
     Fake(Method(deviceMock, setErrorOccurredCbk));
     When(Method(deviceMock, connectDevice)).Return(true);
 
-    When(Method(factoryMock, create)).Return(&(deviceMock.get()));
-    CanDevice canDevice{ factoryMock.get() };
-    CHECK(canDevice.init("", "") == true);
+    CanDevice canDevice{ deviceMock.get() };
     CHECK(canDevice.start() == true);
 }
 
 TEST_CASE("sendFrame results in frameSent being emitted and writeFrame being called", "[candevice]")
 {
     using namespace fakeit;
-    Mock<CanFactoryInterface> factoryMock;
     Mock<CanDeviceInterface> deviceMock;
 
     Fake(Dtor(deviceMock));
@@ -101,10 +70,8 @@ TEST_CASE("sendFrame results in frameSent being emitted and writeFrame being cal
     QCanBusFrame testFrame;
     testFrame.setFrameId(123);
 
-    When(Method(factoryMock, create)).Return(&(deviceMock.get()));
-    CanDevice canDevice{ factoryMock.get() };
+    CanDevice canDevice{ deviceMock.get() };
     QSignalSpy frameSentSpy(&canDevice, &CanDevice::frameSent);
-    CHECK(canDevice.init("", "") == true);
 
     canDevice.sendFrame(testFrame);
     CHECK(frameSentSpy.count() == 1);
@@ -114,7 +81,6 @@ TEST_CASE("sendFrame results in frameSent being emitted and writeFrame being cal
 TEST_CASE("sendFrame, writeframe returns true, no signal emitted", "[candevice]")
 {
     using namespace fakeit;
-    Mock<CanFactoryInterface> factoryMock;
     Mock<CanDeviceInterface> deviceMock;
 
     Fake(Dtor(deviceMock));
@@ -125,25 +91,8 @@ TEST_CASE("sendFrame, writeframe returns true, no signal emitted", "[candevice]"
     When(Method(deviceMock, writeFrame)).Return(true);
     QCanBusFrame testFrame;
 
-    When(Method(factoryMock, create)).Return(&(deviceMock.get()));
-    CanDevice canDevice{ factoryMock.get() };
+    CanDevice canDevice{ deviceMock.get() };
     QSignalSpy frameSentSpy(&canDevice, &CanDevice::frameSent);
-
-    canDevice.sendFrame(testFrame);
-    CHECK(frameSentSpy.count() == 0);
-}
-
-TEST_CASE("sendFrame, no device availablie, frameSent is not emitted", "[candevice]")
-{
-    using namespace fakeit;
-    Mock<CanFactoryInterface> factoryMock;
-
-    QCanBusFrame testFrame;
-
-    When(Method(factoryMock, create)).Return(nullptr);
-    CanDevice canDevice{ factoryMock.get() };
-    QSignalSpy frameSentSpy(&canDevice, &CanDevice::frameSent);
-    CHECK(canDevice.init("", "") == false);
 
     canDevice.sendFrame(testFrame);
     CHECK(frameSentSpy.count() == 0);

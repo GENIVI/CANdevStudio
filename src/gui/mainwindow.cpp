@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "candevice/candeviceqt.hpp"
 #include "log.hpp"
 #include "ui_mainwindow.h"
 
@@ -14,17 +15,16 @@ MainWindow::MainWindow(QWidget* parent)
     ui->setupUi(this);
     ui->centralWidget->layout()->setContentsMargins(0, 0, 0, 0);
 
-    CanFactoryQt factory;
     auto modelRegistry = std::make_shared<QtNodes::DataModelRegistry>();
 
-    canDevice = std::make_shared<CanDevice>(factory);
+    canDeviceImpl_ = std::make_unique<CanDeviceQt>("socketcan", "vcan0");
+    canDevice = std::make_shared<CanDevice>(*canDeviceImpl_);
     graphScene = std::make_shared<QtNodes::FlowScene>(modelRegistry);
 
     setupMdiArea();
     connectToolbarSignals();
     connectMenuSignals();
 
-    canDevice->init("socketcan", "can0");
     canDevice->start();
 }
 
