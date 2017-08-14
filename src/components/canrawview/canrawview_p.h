@@ -12,8 +12,6 @@
 #include <QtCore/QElapsedTimer>
 #include <QtGui/QStandardItemModel>
 #include <QtSerialBus/QCanBusFrame>
-#include <iostream>
-#include <memory>
 
 namespace Ui {
 class CanRawViewPrivate;
@@ -46,9 +44,8 @@ public:
         connect(ui->pbClear, &QPushButton::pressed, this, &CanRawViewPrivate::clear);
         connect(ui->pbDockUndock, &QPushButton::pressed, this, &CanRawViewPrivate::dockUndock);
 
-        connect(ui->tv->horizontalHeader(), &QHeaderView::sectionClicked,
-            [=](const int& logicalIndex) { sort(logicalIndex); });
-        connect(&tvModel, &QAbstractItemModel::rowsInserted, [=]() { update(); });
+        connect(
+            ui->tv->horizontalHeader(), &QHeaderView::sectionClicked, [=](int logicalIndex) { sort(logicalIndex); });
     }
 
     ~CanRawViewPrivate() {}
@@ -100,7 +97,6 @@ public:
             payHex.insert(ii, ' ');
         }
 
-        static int rowID = 0;
         QList<QVariant> qvList;
         QList<QStandardItem*> list;
 
@@ -138,7 +134,6 @@ public:
 
 private:
     CanRawView* q_ptr;
-    int rowID = 0;
     int prevIndex = 0;
     int sortIndex = 0;
     Qt::SortOrder currentSortOrder = Qt::AscendingOrder;
@@ -198,16 +193,11 @@ private slots:
         emit q->dockUndock();
     }
 
-    void update() {}
-
     void sort(const int clickedIndex)
     {
         int currentSortOrder = ui->tv->horizontalHeader()->sortIndicatorOrder();
         int sortIndex = clickedIndex;
-        static int prevIndex = 0;
 
-<<<<<<< def82be2a8c5cec7e4d5dc507e036ec58c6887bc
-<<<<<<< 4cac726711c2328dea539c4ced862b5eec4cfab1
         if (prevIndex == clickedIndex) {
             if (currentSortOrder == Qt::DescendingOrder) {
                 ui->tv->sortByColumn(sortIndex, Qt::DescendingOrder);
@@ -222,43 +212,6 @@ private slots:
             ui->tv->sortByColumn(sortIndex, Qt::AscendingOrder);
             ui->tv->horizontalHeader()->setSortIndicator(clickedIndex, Qt::AscendingOrder);
             prevIndex = clickedIndex;
-=======
-        if ((clickedIndexes[2] == clickedIndexes[1]) && (clickedIndexes[1] == clickedIndexes[0]))
-        {
-            ui->tv->sortByColumn(0,Qt::AscendingOrder);
-            clickedIndexes = {0,0,0};
-        }
-        else if (clickedIndexes[2] == clickedIndexes[1])
-        {
-            ui->tv->sortByColumn(clickedIndexes[2],Qt::DescendingOrder);
-            ui->tv->horizontalHeader()->setSortIndicator(currentIndex,Qt::DescendingOrder);
-        }
-        else
-        {
-            ui->tv->sortByColumn(clickedIndexes[2],Qt::AscendingOrder);
-            ui->tv->horizontalHeader()->setSortIndicator(currentIndex,Qt::AscendingOrder);
->>>>>>> Sort function - bug fixes
-=======
-        if ((ui->tv->model()->headerData(clickedIndex, Qt::Horizontal).toString() == "time")
-            || (ui->tv->model()->headerData(clickedIndex, Qt::Horizontal).toString() == "id")) {
-            sortIndex = sortIndex - 1;
-        }
-
-        if (prevIndex == clickedIndex) {
-            if (currentSortOrder == Qt::DescendingOrder) {
-                ui->tv->sortByColumn(sortIndex, Qt::DescendingOrder);
-                ui->tv->horizontalHeader()->setSortIndicator(clickedIndex, Qt::DescendingOrder);
-                prevIndex = clickedIndex;
-            } else {
-                ui->tv->sortByColumn(0, Qt::AscendingOrder);
-                ui->tv->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
-                prevIndex = 0;
-            }
-        } else {
-            ui->tv->sortByColumn(sortIndex, Qt::AscendingOrder);
-            ui->tv->horizontalHeader()->setSortIndicator(clickedIndex, Qt::AscendingOrder);
-            prevIndex = clickedIndex;
->>>>>>> Rebuilt sorting function.
         }
     }
 };
