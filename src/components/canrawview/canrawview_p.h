@@ -7,8 +7,6 @@
 #include <QtCore/QElapsedTimer>
 #include <QtGui/QStandardItemModel>
 #include <QtSerialBus/QCanBusFrame>
-#include <iostream>
-#include <memory>
 
 namespace Ui {
 class CanRawViewPrivate;
@@ -40,9 +38,8 @@ public:
         connect(ui->pbClear, &QPushButton::pressed, this, &CanRawViewPrivate::clear);
         connect(ui->pbDockUndock, &QPushButton::pressed, this, &CanRawViewPrivate::dockUndock);
 
-        connect(ui->tv->horizontalHeader(), &QHeaderView::sectionClicked,
-            [=](const int& logicalIndex) { sort(logicalIndex); });
-        connect(&tvModel, &QAbstractItemModel::rowsInserted, [=]() { update(); });
+        connect(
+            ui->tv->horizontalHeader(), &QHeaderView::sectionClicked, [=](int logicalIndex) { sort(logicalIndex); });
     }
 
     ~CanRawViewPrivate() {}
@@ -59,7 +56,6 @@ public:
             payHex.insert(ii, ' ');
         }
 
-        static int rowID = 0;
         QList<QVariant> qvList;
         QList<QStandardItem*> list;
 
@@ -92,6 +88,8 @@ public:
 
 private:
     CanRawView* q_ptr;
+    int prevIndex = 0;
+    int rowID = 0;
 
 private slots:
     void clear() {}
@@ -102,13 +100,10 @@ private slots:
         emit q->dockUndock();
     }
 
-    void update() {}
-
     void sort(const int clickedIndex)
     {
         int currentSortOrder = ui->tv->horizontalHeader()->sortIndicatorOrder();
         int sortIndex = clickedIndex;
-        static int prevIndex = 0;
 
         if ((ui->tv->model()->headerData(clickedIndex, Qt::Horizontal).toString() == "time")
             || (ui->tv->model()->headerData(clickedIndex, Qt::Horizontal).toString() == "id")) {
