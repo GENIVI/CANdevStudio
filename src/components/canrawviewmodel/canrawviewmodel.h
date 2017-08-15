@@ -46,6 +46,7 @@ public:
     QWidget* embeddedWidget() override { return label; }
 
     bool resizable() const override { return false; }
+    CanRawView canRawView;
 
 private:
     QLabel* label;

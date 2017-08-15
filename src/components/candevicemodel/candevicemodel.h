@@ -53,6 +53,10 @@ private:
 
     std::shared_ptr<NodeData> _nodeData;
 
+    QString _direction;
+
+    QCanBusFrame _frame;
+
     CanFactoryQt factory;
 
     CanDevice* canDevice;

@@ -56,19 +56,12 @@ void MainWindow::nodeCreatedCallback(QtNodes::Node& node)
     auto dataModel = node.nodeDataModel();
 
     if (dataModel->name() == "CanRawSenderModel") {
-        CanRawSender* canRawSender = new CanRawSender();
-        canRawSender->setWindowTitle("CANrawSender test");
-        connect(canRawSender, &CanRawSender::sendFrame, dynamic_cast<CanRawSenderModel*>(dataModel),
-            &CanRawSenderModel::sendFrame);
-        connect(canRawSender, &CanRawSender::dockUndock, this,
-            [this, canRawSender] { handleDock(canRawSender, ui->mdiArea); });
-        undockWindows.push_back(canRawSender);
-        nodeComponentMap.insert({ dataModel, canRawSender });
+
+	
 
     } else if (dataModel->name() == "CanRawViewModel") {
         CanRawView* canRawView = new CanRawView();
         canRawView->setWindowTitle("CANrawView test");
-        undockWindows.push_back(canRawView);
         nodeComponentMap.insert({ dataModel, canRawView });
     }
 }
@@ -80,7 +73,17 @@ void MainWindow::nodeDeletedCallback(QtNodes::Node& node)
 
 void MainWindow::nodeDoubleClickedCallback(QtNodes::Node& node)
 {
-    dynamic_cast<QWidget*>(nodeComponentMap[node.nodeDataModel()])->show();
+    auto dataModel = node.nodeDataModel();
+
+    if (dataModel->name() == "CanRawSenderModel") {
+
+    dynamic_cast<CanRawSenderModel*>(dataModel)->canRawSender.show();
+
+
+    } else if (dataModel->name() == "CanRawViewModel") {
+
+    dynamic_cast<CanRawViewModel*>(dataModel)->canRawView.show();
+    }
 }
 
 void MainWindow::handleDock(QWidget* component, QMdiArea* mdi)
@@ -150,21 +153,14 @@ void MainWindow::connectMenuSignals()
 
 void MainWindow::setupMdiArea()
 {
-    CanRawView* canRawView = new CanRawView();
-    connect(canDevice.get(), &CanDevice::frameReceived, canRawView, &CanRawView::frameReceived);
-    connect(canDevice.get(), &CanDevice::frameSent, canRawView, &CanRawView::frameSent);
-    connect(ui->actionstart, &QAction::triggered, canRawView, &CanRawView::startSimulation);
-    connect(ui->actionstop, &QAction::triggered, canRawView, &CanRawView::stopSimulation);
-    canRawView->setWindowTitle("CANrawView");
-    connect(canRawView, &CanRawView::dockUndock, this, [this, canRawView] { handleDock(canRawView, ui->mdiArea); });
-    ui->mdiArea->addSubWindow(canRawView);
+    //connect(ui->actionstart, &QAction::triggered, canRawView, &CanRawView::startSimulation);
+    //connect(ui->actionstop, &QAction::triggered, canRawView, &CanRawView::stopSimulation);
+    //connect(canRawView, &CanRawView::dockUndock, this, [this, canRawView] { handleDock(canRawView, ui->mdiArea); });
+    //ui->mdiArea->addSubWindow(canRawView);
 
-    CanRawSender* canRawSender = new CanRawSender();
-    canRawSender->setWindowTitle("CANrawSender");
-    connect(canRawSender, &CanRawSender::sendFrame, canDevice.get(), &CanDevice::sendFrame);
-    connect(
-        canRawSender, &CanRawSender::dockUndock, this, [this, canRawSender] { handleDock(canRawSender, ui->mdiArea); });
-    ui->mdiArea->addSubWindow(canRawSender);
+    //connect(
+    //    canRawSender, &CanRawSender::dockUndock, this, [this, canRawSender] { handleDock(canRawSender, ui->mdiArea); });
+    //ui->mdiArea->addSubWindow(canRawSender);
 
     QtNodes::FlowView* graphView = new QtNodes::FlowView(graphScene.get());
     graphView->setWindowTitle("Project Configuration");

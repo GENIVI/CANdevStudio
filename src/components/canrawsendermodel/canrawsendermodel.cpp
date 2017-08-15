@@ -16,6 +16,10 @@ CanRawSenderModel::CanRawSenderModel()
     label->installEventFilter(this);
 
     label->setAttribute(Qt::WA_TranslucentBackground);
+
+    canRawSender.setWindowTitle("CANrawSender test");
+    connect(&canRawSender, &CanRawSender::sendFrame, this,
+            &CanRawSenderModel::sendFrame);
 }
 
 unsigned int CanRawSenderModel::nPorts(PortType portType) const

@@ -64,7 +64,7 @@ NodeDataType CanDeviceModel::dataType(PortType portType, PortIndex)  const
 }
 
 std::shared_ptr<NodeData> CanDeviceModel::outData(PortIndex) {
-return std::make_shared<RawSenderData>();
+return std::make_shared<RawViewData>(_frame, _direction);
 }
 
 void CanDeviceModel::setInData(std::shared_ptr<NodeData> nodeData, PortIndex) {
@@ -72,5 +72,8 @@ void CanDeviceModel::setInData(std::shared_ptr<NodeData> nodeData, PortIndex) {
        {	       
 	auto d = std::dynamic_pointer_cast<RawSenderData>(nodeData);
 	canDevice->sendFrame(d->frame());
+        _frame = d->frame();
+        _direction = "TX";
+        emit dataUpdated(0);
        }
 }

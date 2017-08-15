@@ -7,6 +7,8 @@
 #include <nodes/DataModelRegistry>
 #include <nodes/NodeDataModel>
 
+#include <canrawsender/canrawsender.h>
+
 #include <QCanBusFrame>
 
 using QtNodes::PortType;
@@ -45,6 +47,8 @@ public:
     QWidget* embeddedWidget() override { return label; }
 
     bool resizable() const override { return false; }
+
+    CanRawSender canRawSender;
 
 private:
     QLabel* label;

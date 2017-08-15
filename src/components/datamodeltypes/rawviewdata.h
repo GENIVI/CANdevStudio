@@ -12,7 +12,7 @@ class RawViewData : public NodeData
 public:
 
   RawViewData() {};
-  RawViewData(QCanBusFrame const &frame) :_frame(frame) {}
+  RawViewData(QCanBusFrame const &frame, QString const direction) :_frame(frame), _direction(direction){}
 
   NodeDataType type() const override
   {
@@ -21,9 +21,11 @@ public:
   }
 
   QCanBusFrame frame() const { return _frame; };
+  QString direction() const { return _direction; };
 
 private:
   QCanBusFrame _frame;
+  QString _direction;
 };
 
 #endif // RAWVIEWDATA_H
