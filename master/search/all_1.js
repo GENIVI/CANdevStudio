@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['candevice',['CanDevice',['../class_can_device.html',1,'CanDevice'],['../class_can_device.html#a694c6a1ba7457a1bc68f11683f61bdd4',1,'CanDevice::CanDevice()'],['../class_can_device_private.html#a22c3020712af344e4326866e5b17614d',1,'CanDevicePrivate::canDevice()']]],
+  ['candevice',['CanDevice',['../class_can_device.html',1,'CanDevice'],['../class_can_device_private.html#a22c3020712af344e4326866e5b17614d',1,'CanDevicePrivate::canDevice()'],['../class_can_device.html#a694c6a1ba7457a1bc68f11683f61bdd4',1,'CanDevice::CanDevice()']]],
   ['candevice_2ecpp',['candevice.cpp',['../candevice_8cpp.html',1,'']]],
   ['candevice_2eh',['candevice.h',['../candevice_8h.html',1,'']]],
   ['candevice_5fp_2eh',['candevice_p.h',['../candevice__p_8h.html',1,'']]],
@@ -27,7 +27,6 @@ var searchData=
   ['cds_5ferror',['cds_error',['../log_8hpp.html#aadcd3161833f6a2188d288cfdc04d791',1,'log.hpp']]],
   ['cds_5finfo',['cds_info',['../log_8hpp.html#af452303c755aa9a6dc47c581c77bc326',1,'log.hpp']]],
   ['cds_5fwarn',['cds_warn',['../log_8hpp.html#a11beebd02665e16c7d0419ce0a7e746a',1,'log.hpp']]],
-  ['clickedindexes',['clickedIndexes',['../class_can_raw_view_private.html#a0f3944d5b50d0013fed9b1af0576bf44',1,'CanRawViewPrivate']]],
   ['connectdevice',['connectDevice',['../struct_can_device_interface.html#ae93401fab526dc31098998e15baba1be',1,'CanDeviceInterface::connectDevice()'],['../struct_can_device_qt.html#a3217273ad521531a3250d35974e100c7',1,'CanDeviceQt::connectDevice()']]],
   ['create',['create',['../struct_can_factory_interface.html#a98a610c45c2aeba0c2ccb93dbc084407',1,'CanFactoryInterface::create()'],['../struct_can_factory_qt.html#a44a10b6d673174712ec2c0c49bedb9a1',1,'CanFactoryQt::create()']]]
 ];
