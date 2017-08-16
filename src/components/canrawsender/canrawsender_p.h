@@ -23,6 +23,7 @@ public:
 
         tvModel.setHorizontalHeaderLabels({"id", "value",""});
         ui->tv->setModel(&tvModel);
+        ui->tv->horizontalHeader()->setSectionsMovable(true);
         ui->tv->setSelectionBehavior(QAbstractItemView::SelectRows);
 
         connect(ui->pbAdd, &QPushButton::pressed, this, &CanRawSenderPrivate::addNewItem);
