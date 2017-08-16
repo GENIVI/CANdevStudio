@@ -11,7 +11,7 @@ target_link_libraries(candevice_test candevice Qt5::Core Qt5::SerialBus Qt5::Tes
 target_compile_options(candevice_test PRIVATE $<$<CXX_COMPILER_ID:GNU>:-fno-devirtualize>)
 add_test( NAME CanDeviceTest COMMAND candevice_test)
 
-add_executable(newlinemanager_test newlinemanager_test.cpp)
-target_link_libraries(newlinemanager_test canrawsender Qt5::Core Qt5::SerialBus Qt5::Test cds-common)
-target_compile_options(newlinemanager_test PRIVATE $<$<CXX_COMPILER_ID:GNU>:-fno-devirtualize>)
-add_test( NAME NewLineManagerTest COMMAND newlinemanager_test)
+add_executable(canrawsender_test newlinemanager_test.cpp)
+target_link_libraries(canrawsender_test canrawsender Qt5::Core Qt5::SerialBus Qt5::Test cds-common)
+target_compile_options(canrawsender_test PRIVATE $<$<CXX_COMPILER_ID:GNU>:-fno-devirtualize>)
+add_test( NAME CanRawSenderTest COMMAND canrawsender_test)

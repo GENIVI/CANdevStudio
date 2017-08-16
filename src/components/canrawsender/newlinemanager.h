@@ -51,8 +51,9 @@ public:
     /// \brief constructor
     /// \brief Create new line manager class
     /// \param[in] q Pointer to CanRawSender class
+    /// \param[in] simulationState Actual simulation state
     /// \throw if CanRawSender pointer not exist
-    NewLineManager(CanRawSender* q);
+    NewLineManager(CanRawSender* q, bool simulationState);
 
     /// \enum CalName class enumeration
     /// \brief This is an enumeration used by functions reponsible for return columns information

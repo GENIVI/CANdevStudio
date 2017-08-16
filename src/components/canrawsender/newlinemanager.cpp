@@ -2,9 +2,9 @@
 #include "canrawsender.h"
 #include <QRegExpValidator>
 
-NewLineManager::NewLineManager(CanRawSender* q)
+NewLineManager::NewLineManager(CanRawSender* q, bool simulationState)
     : canRawSender(q)
-    , simState(false)
+    , simState(simulationState)
 {
     if (q == nullptr) {
         throw std::runtime_error("CanRawSender is nullptr");

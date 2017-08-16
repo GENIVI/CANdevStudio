@@ -3,9 +3,8 @@
 
 #include "newlinemanager.h"
 #include "ui_canrawsender.h"
-#include <memory>
 #include <QtGui/QStandardItemModel>
-#include "newlinemanager.h"
+#include <memory>
 
 namespace Ui {
 class CanRawSenderPrivate;
@@ -17,8 +16,9 @@ class CanRawSenderPrivate : public QWidget {
 
 public:
     CanRawSenderPrivate(CanRawSender* q)
-    : ui(std::make_unique<Ui::CanRawSenderPrivate>())
-    , q_ptr(q)
+        : ui(std::make_unique<Ui::CanRawSenderPrivate>())
+        , q_ptr(q)
+        , simulationState(false)
     {
         ui->setupUi(this);
 
@@ -34,6 +34,7 @@ public:
 
     void SetSimulationState(bool state)
     {
+        simulationState = state;
         for (auto& iter : lines) {
             iter->SetSimulationState(state);
         }
@@ -44,6 +45,7 @@ private:
     std::unique_ptr<Ui::CanRawSenderPrivate> ui;
     QStandardItemModel tvModel;
     CanRawSender* q_ptr;
+    bool simulationState;
 
 private slots:
     /**
@@ -67,7 +69,7 @@ private slots:
     {
         QList<QStandardItem*> list{};
         tvModel.appendRow(list);
-        auto newLine = std::make_unique<NewLineManager>(q_ptr);
+        auto newLine = std::make_unique<NewLineManager>(q_ptr, simulationState);
         for (NewLineManager::ColName ii : NewLineManager::ColNameIterator()) {
             ui->tv->setIndexWidget(
                 tvModel.index(tvModel.rowCount() - 1, static_cast<int>(ii)), newLine->GetColsWidget(ii));

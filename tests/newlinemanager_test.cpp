@@ -8,19 +8,19 @@
 
 TEST_CASE("Create NewLineManager class with wrong argument", "[newlinemanager]")
 {
-    REQUIRE_THROWS(new NewLineManager(nullptr));
+    REQUIRE_THROWS(new NewLineManager(nullptr, false));
 }
 
 TEST_CASE("Create NewLineManager class with correct argument", "[newlinemanager]")
 {
     CanRawSender canRawSender;
-    REQUIRE_NOTHROW(new NewLineManager(&canRawSender));
+    REQUIRE_NOTHROW(new NewLineManager(&canRawSender, false));
 }
 
 TEST_CASE("Check initial wigdets settings", "[newlinemanager]")
 {
     CanRawSender canRawSender;
-    NewLineManager newLine(&canRawSender);
+    NewLineManager newLine(&canRawSender, false);
 
     auto intervalWidget = newLine.GetColsWidget(NewLineManager::ColName::IntervalLine);
     CHECK(intervalWidget->isEnabled() == false);
@@ -32,7 +32,7 @@ TEST_CASE("Check initial wigdets settings", "[newlinemanager]")
 TEST_CASE("Check get column widget returns", "[newlinemanager]")
 {
     CanRawSender canRawSender;
-    NewLineManager newLine(&canRawSender);
+    NewLineManager newLine(&canRawSender, false);
 
     auto idWidget = newLine.GetColsWidget(NewLineManager::ColName::IdLine);
     CHECK(idWidget != nullptr);
