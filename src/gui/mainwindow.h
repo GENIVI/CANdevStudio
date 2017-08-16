@@ -5,7 +5,6 @@
 #include <memory>
 
 #include "candevice/candevice.h"
-#include "candevice/canfactoryqt.hpp"
 #include "canrawsender/canrawsender.h"
 #include "canrawview/canrawview.h"
 
@@ -29,6 +28,7 @@ public:
 
 private:
     std::unique_ptr<Ui::MainWindow> ui;
+    std::unique_ptr<CanDeviceInterface> canDeviceImpl_;
     std::shared_ptr<CanDevice> canDevice;
     std::shared_ptr<QtNodes::FlowScene> graphScene;
     QVector<QWidget*> undockWindows;

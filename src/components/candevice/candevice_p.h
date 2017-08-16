@@ -7,15 +7,12 @@
 #include <QtCore/QVector>
 #include <QtSerialBus/QCanBus>
 #include <QtSerialBus/QCanBusFrame>
-#include "candeviceinterface.hpp"
-#include <memory>
 
 class CanDevicePrivate {
 public:
     QString mBackend;
     QString mInterface;
     QVector<QCanBusFrame> mSendQueue;
-    std::unique_ptr<CanDeviceInterface> canDevice;
 };
 
 #endif /* !__CANDEVICE_P_H */

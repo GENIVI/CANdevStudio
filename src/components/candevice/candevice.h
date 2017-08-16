@@ -7,7 +7,7 @@
 #include <QtSerialBus/QCanBusFrame>
 
 class CanDevicePrivate;
-struct CanFactoryInterface;
+struct CanDeviceInterface;
 
 /**
 *   @brief The class provides abstraction layer for CAN BUS hardware
@@ -17,19 +17,19 @@ class CanDevice : public QObject {
     Q_DECLARE_PRIVATE(CanDevice)
 
 public:
-    CanDevice(CanFactoryInterface& factory);
+    /**
+     * @brief Construct a @c CanDevice object using @c canDevice as its actual communication backend.
+     *
+     * @param canDevice Reference to an object implementing the @c CanDeviceInterface . The object must remain alive
+     * throughout this object's lifetime.
+     *
+     * @note @c canDevice should really be a @c unique_ptr that's @c std::move -d into the constructor. However, our
+     * mocking framework does not allow making custom instances of mocked classes. This has the added advantage of not
+     * requiring any null-checks, which would've been necessary with a @c unique_ptr .
+     */
+    CanDevice(CanDeviceInterface& canDevice);
     ~CanDevice();
 
-    /**
-    *   @brief  Configures CAN BUS backend and interface
-    *
-    *   This function is used to configure QtCanBus class. 
-    *
-    *   @param  backend one of backends supported by QtCanBus class
-    *   @param  iface CAN BUS interface index (e.g. can0 for socketcan backend)
-    *   @return true on success, false of failure
-    */
-    bool init(const QString& backend, const QString& iface);
     bool start();
 
 Q_SIGNALS:
@@ -46,7 +46,7 @@ private Q_SLOTS:
 
 private:
     QScopedPointer<CanDevicePrivate> d_ptr;
-    CanFactoryInterface& mFactory;
+    CanDeviceInterface& canDevice_;
 };
 
 #endif /* !__CANDEVICE_H */
