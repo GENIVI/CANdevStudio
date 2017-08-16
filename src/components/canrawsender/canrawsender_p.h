@@ -27,6 +27,7 @@ public:
         ui->tv->setSelectionBehavior(QAbstractItemView::SelectRows);
 
         connect(ui->pbAdd, &QPushButton::pressed, this, &CanRawSenderPrivate::addNewItem);
+        connect(ui->pbRemove, &QPushButton::pressed, this, &CanRawSenderPrivate::removeRowsSelectedByMouse);
         connect(ui->pbDockUndock, &QPushButton::pressed, this, &CanRawSenderPrivate::dockUndock);
     }
 
@@ -61,7 +62,9 @@ private slots:
         tmp.sort(); // List must to be sorted and reversed because erasing started from last row
         tmp.reverse();
         for (QModelIndex n : tmp) {
-            tvModel.removeRow(n.row());
+            tvModel.removeRow(n.row()); // Delete line from table view
+            lines.erase(lines.begin() + n.row()); // Delete lines also from collection
+            // TODO: check if works when the collums was sorted before
         }
     }
 
