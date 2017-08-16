@@ -48,3 +48,13 @@ void CanRawView::frameSent(bool status, const QCanBusFrame& frame)
         d->frameView(frame, "TX");
     }
 }
+
+void CanRawView::closeEvent(QCloseEvent* e)
+{
+    if (parentWidget()) {
+        parentWidget()->hide();
+    } else {
+        hide();
+    }
+    e->ignore();
+}

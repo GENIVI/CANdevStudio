@@ -11,8 +11,8 @@
 
 #include <nodes/FlowScene>
 #include <nodes/FlowView>
-#include <nodes/NodeData>
 #include <nodes/Node>
+#include <nodes/NodeData>
 
 class QMdiArea;
 class QCloseEvent;
@@ -30,10 +30,8 @@ public:
 
 private:
     std::unique_ptr<Ui::MainWindow> ui;
-    std::shared_ptr<CanDevice> canDevice;
     std::shared_ptr<QtNodes::FlowScene> graphScene;
-    QVector<QWidget*> undockWindows;
-    std::unordered_map<QtNodes::NodeDataModel*, QObject*> nodeComponentMap;
+    QtNodes::FlowView* graphView;
 
     void handleDock(QWidget* component, QMdiArea* mdi);
     void connectToolbarSignals();

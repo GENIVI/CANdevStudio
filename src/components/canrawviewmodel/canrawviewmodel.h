@@ -4,9 +4,9 @@
 #include <QtCore/QObject>
 #include <QtWidgets/QLabel>
 
+#include <canrawview/canrawview.h>
 #include <nodes/DataModelRegistry>
 #include <nodes/NodeDataModel>
-#include <canrawview/canrawview.h>
 
 #include <QCanBusFrame>
 

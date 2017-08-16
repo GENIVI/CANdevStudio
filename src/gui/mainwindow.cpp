@@ -24,7 +24,6 @@ MainWindow::MainWindow(QWidget* parent)
     modelRegistry->registerModel<CanRawSenderModel>();
     modelRegistry->registerModel<CanRawViewModel>();
 
-    canDevice = std::make_shared<CanDevice>();
     graphScene = std::make_shared<QtNodes::FlowScene>(modelRegistry);
 
     connect(graphScene.get(), &QtNodes::FlowScene::nodeCreated, this, &MainWindow::nodeCreatedCallback);
@@ -34,22 +33,11 @@ MainWindow::MainWindow(QWidget* parent)
     setupMdiArea();
     connectToolbarSignals();
     connectMenuSignals();
-
-    canDevice->init("socketcan", "can0");
-    canDevice->start();
 }
 
-MainWindow::~MainWindow() {}
+MainWindow::~MainWindow() { delete graphView; }
 
-void MainWindow::closeEvent(QCloseEvent*)
-{
-    // Close all undocked windows
-    for (QWidget* w : undockWindows) {
-        cds_debug("Deleting 0x{:x} widget", reinterpret_cast<uintptr_t>(w));
-        w->close();
-        delete w;
-    }
-}
+void MainWindow::closeEvent(QCloseEvent*) { handleExitAction(); }
 
 void MainWindow::nodeCreatedCallback(QtNodes::Node& node)
 {
@@ -57,18 +45,45 @@ void MainWindow::nodeCreatedCallback(QtNodes::Node& node)
 
     if (dataModel->name() == "CanRawSenderModel") {
 
-	
+        auto rawSender = &static_cast<CanRawSenderModel*>(dataModel)->canRawSender;
+        connect(rawSender, &CanRawSender::dockUndock, this, [this, rawSender] { handleDock(rawSender, ui->mdiArea); });
 
     } else if (dataModel->name() == "CanRawViewModel") {
-        CanRawView* canRawView = new CanRawView();
-        canRawView->setWindowTitle("CANrawView test");
-        nodeComponentMap.insert({ dataModel, canRawView });
+        auto rawView = &static_cast<CanRawViewModel*>(dataModel)->canRawView;
+
+        connect(ui->actionstart, &QAction::triggered, rawView, &CanRawView::startSimulation);
+        connect(ui->actionstop, &QAction::triggered, rawView, &CanRawView::stopSimulation);
+        connect(rawView, &CanRawView::dockUndock, this, [this, rawView] { handleDock(rawView, ui->mdiArea); });
+    }
+}
+
+void handleWidgetDeletion(QWidget* widget)
+{
+    if (widget->parentWidget()) {
+
+        widget->parentWidget()->close();
     }
 }
 
 void MainWindow::nodeDeletedCallback(QtNodes::Node& node)
 {
-    // TODO
+    auto dataModel = node.nodeDataModel();
+
+    if (dataModel->name() == "CanRawSenderModel") {
+        handleWidgetDeletion(&static_cast<CanRawSenderModel*>(dataModel)->canRawSender);
+    } else if (dataModel->name() == "CanRawViewModel") {
+        handleWidgetDeletion(&static_cast<CanRawViewModel*>(dataModel)->canRawView);
+    }
+}
+
+void handleWidgetShowing(QWidget* widget)
+{
+    if (widget->parentWidget()) {
+
+        widget->parentWidget()->show();
+    } else {
+        widget->show();
+    }
 }
 
 void MainWindow::nodeDoubleClickedCallback(QtNodes::Node& node)
@@ -76,13 +91,9 @@ void MainWindow::nodeDoubleClickedCallback(QtNodes::Node& node)
     auto dataModel = node.nodeDataModel();
 
     if (dataModel->name() == "CanRawSenderModel") {
-
-    dynamic_cast<CanRawSenderModel*>(dataModel)->canRawSender.show();
-
-
+        handleWidgetShowing(&static_cast<CanRawSenderModel*>(dataModel)->canRawSender);
     } else if (dataModel->name() == "CanRawViewModel") {
-
-    dynamic_cast<CanRawViewModel*>(dataModel)->canRawView.show();
+        handleWidgetShowing(&static_cast<CanRawViewModel*>(dataModel)->canRawView);
     }
 }
 
@@ -94,27 +105,11 @@ void MainWindow::handleDock(QWidget* component, QMdiArea* mdi)
         auto parent = component->parentWidget();
         mdi->removeSubWindow(component); // removeSubwWndow only removes widget, not window
 
-        // component is loosing parent. Add it to list to clear it later
-        if (!undockWindows.contains(component)) {
-            undockWindows.push_back(component);
-            cds_debug("Removing parent from 0x{:x} widget", reinterpret_cast<uintptr_t>(component));
-        } else {
-            cds_warn("Undocked window already on list!");
-        }
-
         component->show();
         parent->close();
     } else {
         // dock
         mdi->addSubWindow(component)->show();
-
-        // component have parent again. No need to clear it manually.
-        if (undockWindows.contains(component)) {
-            undockWindows.removeOne(component);
-            cds_debug("Adding parent to 0x{:x} widget", reinterpret_cast<uintptr_t>(component));
-        } else {
-            cds_warn("Docked window is not on the list!");
-        }
     }
 }
 
@@ -122,7 +117,7 @@ void MainWindow::handleExitAction()
 {
     QMessageBox::StandardButton userReply;
     userReply = QMessageBox::question(
-        this, "Exit", "Are you shure you want to quit CANdevStudio?", QMessageBox::Yes | QMessageBox::No);
+        this, "Exit", "Are you sure you want to quit CANdevStudio?", QMessageBox::Yes | QMessageBox::No);
     if (userReply == QMessageBox::Yes)
         QApplication::quit();
 }
@@ -153,18 +148,9 @@ void MainWindow::connectMenuSignals()
 
 void MainWindow::setupMdiArea()
 {
-    //connect(ui->actionstart, &QAction::triggered, canRawView, &CanRawView::startSimulation);
-    //connect(ui->actionstop, &QAction::triggered, canRawView, &CanRawView::stopSimulation);
-    //connect(canRawView, &CanRawView::dockUndock, this, [this, canRawView] { handleDock(canRawView, ui->mdiArea); });
-    //ui->mdiArea->addSubWindow(canRawView);
-
-    //connect(
-    //    canRawSender, &CanRawSender::dockUndock, this, [this, canRawSender] { handleDock(canRawSender, ui->mdiArea); });
-    //ui->mdiArea->addSubWindow(canRawSender);
-
-    QtNodes::FlowView* graphView = new QtNodes::FlowView(graphScene.get());
+    graphView = new QtNodes::FlowView(graphScene.get());
     graphView->setWindowTitle("Project Configuration");
     ui->mdiArea->addSubWindow(graphView);
-
+    ui->mdiArea->setAttribute(Qt::WA_DeleteOnClose, false);
     ui->mdiArea->tileSubWindows();
 }

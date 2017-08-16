@@ -18,8 +18,7 @@ CanRawSenderModel::CanRawSenderModel()
     label->setAttribute(Qt::WA_TranslucentBackground);
 
     canRawSender.setWindowTitle("CANrawSender test");
-    connect(&canRawSender, &CanRawSender::sendFrame, this,
-            &CanRawSenderModel::sendFrame);
+    connect(&canRawSender, &CanRawSender::sendFrame, this, &CanRawSenderModel::sendFrame);
 }
 
 unsigned int CanRawSenderModel::nPorts(PortType portType) const
@@ -35,7 +34,7 @@ NodeDataType CanRawSenderModel::dataType(PortType, PortIndex) const { return Raw
 
 std::shared_ptr<NodeData> CanRawSenderModel::outData(PortIndex) { return std::make_shared<RawSenderData>(_frame); }
 
-void CanRawSenderModel::setInData(std::shared_ptr<NodeData> , PortIndex) {}
+void CanRawSenderModel::setInData(std::shared_ptr<NodeData>, PortIndex) {}
 
 void CanRawSenderModel::sendFrame(const QCanBusFrame& frame)
 {

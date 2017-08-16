@@ -1,7 +1,7 @@
 #include "candevicemodel.h"
-#include <iostream>
 #include <QtCore/QDir>
 #include <QtCore/QEvent>
+#include <iostream>
 
 #include <QtWidgets/QFileDialog>
 
@@ -37,43 +37,44 @@ unsigned int CanDeviceModel::nPorts(PortType portType) const
 
     case PortType::Out:
         result = 1;
-	break;
+        break;
 
-	   case PortType::None:
-	        result = 0;
-		        break;
+    case PortType::None:
+        result = 0;
+        break;
     }
 
     return result;
 }
 
-NodeDataType CanDeviceModel::dataType(PortType portType, PortIndex)  const
+NodeDataType CanDeviceModel::dataType(PortType portType, PortIndex) const
 {
     switch (portType) {
     case PortType::In:
         return RawSenderData().type();
-	break;
+        break;
 
     case PortType::Out:
         return RawViewData().type();
-	break;
+        break;
 
-	    case PortType::None:
-	        break;
+    case PortType::None:
+        break;
     }
 }
 
-std::shared_ptr<NodeData> CanDeviceModel::outData(PortIndex) {
-return std::make_shared<RawViewData>(_frame, _direction);
+std::shared_ptr<NodeData> CanDeviceModel::outData(PortIndex)
+{
+    return std::make_shared<RawViewData>(_frame, _direction);
 }
 
-void CanDeviceModel::setInData(std::shared_ptr<NodeData> nodeData, PortIndex) {
-       if(nodeData)
-       {	       
-	auto d = std::dynamic_pointer_cast<RawSenderData>(nodeData);
-	canDevice->sendFrame(d->frame());
+void CanDeviceModel::setInData(std::shared_ptr<NodeData> nodeData, PortIndex)
+{
+    if (nodeData) {
+        auto d = std::dynamic_pointer_cast<RawSenderData>(nodeData);
+        canDevice->sendFrame(d->frame());
         _frame = d->frame();
         _direction = "TX";
         emit dataUpdated(0);
-       }
+    }
 }

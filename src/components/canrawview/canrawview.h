@@ -1,6 +1,7 @@
 #ifndef CANRAWVIEW_H
 #define CANRAWVIEW_H
 
+#include <QCloseEvent>
 #include <QtCore/QScopedPointer>
 #include <QtWidgets/QWidget>
 #include <memory>
@@ -15,6 +16,7 @@ class CanRawView : public QWidget {
 public:
     explicit CanRawView(QWidget* parent = nullptr);
     ~CanRawView();
+    void closeEvent(QCloseEvent* e);
 
 signals:
     void dockUndock();

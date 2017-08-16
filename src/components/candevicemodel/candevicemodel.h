@@ -4,9 +4,9 @@
 #include <QtCore/QObject>
 #include <QtWidgets/QLabel>
 
+#include <QCanBusFrame>
 #include <nodes/DataModelRegistry>
 #include <nodes/NodeDataModel>
-#include <QCanBusFrame>
 
 #include <candevice/candevice.h>
 #include <candevice/canfactoryqt.hpp>

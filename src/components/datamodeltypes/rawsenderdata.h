@@ -7,23 +7,20 @@
 
 using QtNodes::NodeDataType;
 
-class RawSenderData : public NodeData
-{
+class RawSenderData : public NodeData {
 public:
+    RawSenderData(){};
+    RawSenderData(QCanBusFrame const& frame)
+        : _frame(frame)
+    {
+    }
 
-  RawSenderData() {};
-  RawSenderData(QCanBusFrame const &frame) :_frame(frame) {}
+    NodeDataType type() const override { return NodeDataType{ "rawsender", "Raw" }; }
 
-  NodeDataType type() const override
-  {
-    return NodeDataType {"rawsender",
-                         "Raw"};
-  }
-
-  QCanBusFrame frame() const { return _frame; };
+    QCanBusFrame frame() const { return _frame; };
 
 private:
-  QCanBusFrame _frame;
+    QCanBusFrame _frame;
 };
 
 #endif // RAWSENDERDATA_H
