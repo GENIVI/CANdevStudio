@@ -7,18 +7,16 @@
 #include <QtCore/QStringList>
 #include <QtSerialBus/QCanBusFrame>
 
-CanRawView::CanRawView(QWidget* parent)
-    : QWidget(parent)
-    , d_ptr(new CanRawViewPrivate(this))
+CanRawView::CanRawView()
+    : d_ptr(new CanRawViewPrivate(this))
 {
     Q_D(CanRawView);
 
     //setLayout(d->ui->layout);
 }
 
-CanRawView::CanRawView(CRVFactoryInterface& factory, QWidget* parent)
-    : QWidget(parent)
-    , d_ptr(new CanRawViewPrivate(this, factory))
+CanRawView::CanRawView(CRVFactoryInterface& factory)
+    : d_ptr(new CanRawViewPrivate(this, factory))
 {
     Q_D(CanRawView);
 

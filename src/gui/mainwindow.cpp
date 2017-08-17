@@ -111,9 +111,9 @@ void MainWindow::setupMdiArea()
     connect(canDevice.get(), &CanDevice::frameSent, canRawView, &CanRawView::frameSent);
     connect(ui->actionstart, &QAction::triggered, canRawView, &CanRawView::startSimulation);
     connect(ui->actionstop, &QAction::triggered, canRawView, &CanRawView::stopSimulation);
-    canRawView->setWindowTitle("CANrawView");
-    connect(canRawView, &CanRawView::dockUndock, this, [this, canRawView] { handleDock(canRawView, ui->mdiArea); });
-    ui->mdiArea->addSubWindow(canRawView);
+    //canRawView->setWindowTitle("CANrawView");
+    //connect(canRawView, &CanRawView::dockUndock, this, [this, canRawView] { handleDock(canRawView, ui->mdiArea); });
+    //ui->mdiArea->addSubWindow(canRawView);
 
     CanRawSender* canRawSender = new CanRawSender();
     canRawSender->setWindowTitle("CANrawSender");

@@ -2,20 +2,20 @@
 #define CANRAWVIEW_H
 
 #include <QtCore/QScopedPointer>
-#include <QtWidgets/QWidget>
+#include <QtCore/QObject>
 #include <memory>
 
 class QCanBusFrame;
 class CanRawViewPrivate;
 class CRVFactoryInterface;
 
-class CanRawView : public QWidget {
+class CanRawView : public QObject {
     Q_OBJECT
     Q_DECLARE_PRIVATE(CanRawView)
 
 public:
-    explicit CanRawView(QWidget* parent = nullptr);
-    explicit CanRawView(CRVFactoryInterface& factory, QWidget* parent = nullptr);
+    explicit CanRawView();
+    explicit CanRawView(CRVFactoryInterface& factory);
     ~CanRawView();
 
 signals:
