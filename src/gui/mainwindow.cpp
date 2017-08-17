@@ -17,6 +17,7 @@ MainWindow::MainWindow(QWidget* parent)
     auto modelRegistry = std::make_shared<QtNodes::DataModelRegistry>();
 
     canDevice = std::make_shared<CanDevice>();
+    canRawView = std::make_shared<CanRawView>();
     graphScene = std::make_shared<QtNodes::FlowScene>(modelRegistry);
 
     setupMdiArea();
@@ -106,14 +107,15 @@ void MainWindow::connectMenuSignals()
 
 void MainWindow::setupMdiArea()
 {
-    CanRawView* canRawView = new CanRawView();
-    connect(canDevice.get(), &CanDevice::frameReceived, canRawView, &CanRawView::frameReceived);
-    connect(canDevice.get(), &CanDevice::frameSent, canRawView, &CanRawView::frameSent);
-    connect(ui->actionstart, &QAction::triggered, canRawView, &CanRawView::startSimulation);
-    connect(ui->actionstop, &QAction::triggered, canRawView, &CanRawView::stopSimulation);
-    //canRawView->setWindowTitle("CANrawView");
-    //connect(canRawView, &CanRawView::dockUndock, this, [this, canRawView] { handleDock(canRawView, ui->mdiArea); });
-    //ui->mdiArea->addSubWindow(canRawView);
+    QWidget* crvWidget = canRawView->getMainWidget();
+
+    connect(canDevice.get(), &CanDevice::frameReceived, canRawView.get(), &CanRawView::frameReceived);
+    connect(canDevice.get(), &CanDevice::frameSent, canRawView.get(), &CanRawView::frameSent);
+    connect(ui->actionstart, &QAction::triggered, canRawView.get(), &CanRawView::startSimulation);
+    connect(ui->actionstop, &QAction::triggered, canRawView.get(), &CanRawView::stopSimulation);
+    crvWidget->setWindowTitle("CANrawView");
+    connect(canRawView.get(), &CanRawView::dockUndock, this, [this, crvWidget] { handleDock(crvWidget, ui->mdiArea); });
+    ui->mdiArea->addSubWindow(crvWidget);
 
     CanRawSender* canRawSender = new CanRawSender();
     canRawSender->setWindowTitle("CANrawSender");

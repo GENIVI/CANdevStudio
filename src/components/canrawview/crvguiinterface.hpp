@@ -7,6 +7,7 @@ class QAbstractItemModel;
 struct CRVGuiInterface {
     virtual ~CRVGuiInterface() {}
 
+    virtual QWidget* getMainWidget() = 0;
     virtual void initTableView(QAbstractItemModel& tvModel) = 0;
 };
 

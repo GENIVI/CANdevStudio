@@ -11,16 +11,12 @@ CanRawView::CanRawView()
     : d_ptr(new CanRawViewPrivate(this))
 {
     Q_D(CanRawView);
-
-    //setLayout(d->ui->layout);
 }
 
 CanRawView::CanRawView(CRVFactoryInterface& factory)
     : d_ptr(new CanRawViewPrivate(this, factory))
 {
     Q_D(CanRawView);
-
-    //setLayout(d->ui->layout);
 }
 
 CanRawView::~CanRawView() {}
@@ -54,4 +50,11 @@ void CanRawView::frameSent(bool status, const QCanBusFrame& frame)
     if (status) {
         d->frameView(frame, "TX");
     }
+}
+
+QWidget* CanRawView::getMainWidget()
+{
+    Q_D(CanRawView);
+
+    return d->mUi->getMainWidget();
 }

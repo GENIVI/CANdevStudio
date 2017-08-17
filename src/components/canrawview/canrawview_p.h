@@ -11,8 +11,6 @@
 #include <QtSerialBus/QCanBusFrame>
 #include <memory>
 
-// class QElapsedTimer;
-
 class CanRawViewPrivate : public QObject {
     Q_OBJECT
     Q_DECLARE_PUBLIC(CanRawView)
@@ -27,10 +25,11 @@ public:
         : timer(std::make_unique<QElapsedTimer>())
         , simStarted(false)
         , mFactory(factory)
-        , mUi(mFactory.createGui())
         , q_ptr(q)
     {
         tvModel.setHorizontalHeaderLabels({ "rowID", "timeDouble", "time", "idInt", "id", "dir", "dlc", "data" });
+        mUi.reset(mFactory.createGui());
+        mUi->initTableView(tvModel);
 
         // connect(ui->pbClear, &QPushButton::pressed, this, &CanRawViewPrivate::clear);
         // connect(ui->pbDockUndock, &QPushButton::pressed, this, &CanRawViewPrivate::dockUndock);

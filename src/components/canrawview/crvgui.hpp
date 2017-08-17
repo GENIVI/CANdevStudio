@@ -18,7 +18,7 @@ struct CRVGui : public CRVGuiInterface {
         ui->setupUi(widget);
     }
 
-    QWidget* getMainWidget()
+    QWidget* getMainWidget() override
     {
         return widget;
     }
