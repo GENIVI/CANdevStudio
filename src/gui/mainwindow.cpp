@@ -46,11 +46,12 @@ void MainWindow::nodeCreatedCallback(QtNodes::Node& node)
     if (dataModel->name() == "CanRawSenderModel") {
 
         auto rawSender = &static_cast<CanRawSenderModel*>(dataModel)->canRawSender;
+        ui->mdiArea->addSubWindow(rawSender);
         connect(rawSender, &CanRawSender::dockUndock, this, [this, rawSender] { handleDock(rawSender, ui->mdiArea); });
 
     } else if (dataModel->name() == "CanRawViewModel") {
         auto rawView = &static_cast<CanRawViewModel*>(dataModel)->canRawView;
-
+        ui->mdiArea->addSubWindow(rawView);
         connect(ui->actionstart, &QAction::triggered, rawView, &CanRawView::startSimulation);
         connect(ui->actionstop, &QAction::triggered, rawView, &CanRawView::stopSimulation);
         connect(rawView, &CanRawView::dockUndock, this, [this, rawView] { handleDock(rawView, ui->mdiArea); });
