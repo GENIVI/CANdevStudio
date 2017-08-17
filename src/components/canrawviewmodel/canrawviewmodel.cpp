@@ -35,10 +35,11 @@ std::shared_ptr<NodeData> CanRawViewModel::outData(PortIndex) { return std::make
 void CanRawViewModel::setInData(std::shared_ptr<NodeData> nodeData, PortIndex)
 {
     if (nodeData) {
-
         auto d = std::dynamic_pointer_cast<RawViewData>(nodeData);
         if (d->direction() == "TX") {
-            canRawView.frameSent(true, d->frame());
+            canRawView.frameSent(d->status(), d->frame());
+        } else if (d->direction() == "RX") {
+            canRawView.frameReceived(d->frame());
         }
     }
 }

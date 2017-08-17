@@ -97,10 +97,7 @@ private slots:
      *
      * This function is used to clear whole table
      */
-    void clear()
-    {
-        tvModel.removeRows(0,tvModel.rowCount());
-    }
+    void clear() { tvModel.removeRows(0, tvModel.rowCount()); }
 
     void dockUndock()
     {

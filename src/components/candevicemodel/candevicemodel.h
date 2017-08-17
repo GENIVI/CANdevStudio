@@ -24,7 +24,7 @@ class CanDeviceModel : public NodeDataModel {
 public:
     CanDeviceModel();
 
-    virtual ~CanDeviceModel() {}
+    virtual ~CanDeviceModel();
 
 public:
     QString caption() const override { return QString("CanDevice Node"); }
@@ -48,10 +48,17 @@ public:
 
     bool resizable() const override { return false; }
 
+private slots:
+
+    void frameReceived(const QCanBusFrame& frame);
+    void frameSent(bool status, const QCanBusFrame& frame);
+
 private:
     QLabel* label;
 
     std::shared_ptr<NodeData> _nodeData;
+
+    bool _status;
 
     QString _direction;
 
