@@ -7,6 +7,7 @@
 
 class QCanBusFrame;
 class CanRawViewPrivate;
+class CRVFactoryInterface;
 
 class CanRawView : public QWidget {
     Q_OBJECT
@@ -14,6 +15,7 @@ class CanRawView : public QWidget {
 
 public:
     explicit CanRawView(QWidget* parent = nullptr);
+    explicit CanRawView(CRVFactoryInterface& factory, QWidget* parent = nullptr);
     ~CanRawView();
 
 signals:

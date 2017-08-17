@@ -13,7 +13,16 @@ CanRawView::CanRawView(QWidget* parent)
 {
     Q_D(CanRawView);
 
-    setLayout(d->ui->layout);
+    //setLayout(d->ui->layout);
+}
+
+CanRawView::CanRawView(CRVFactoryInterface& factory, QWidget* parent)
+    : QWidget(parent)
+    , d_ptr(new CanRawViewPrivate(this, factory))
+{
+    Q_D(CanRawView);
+
+    //setLayout(d->ui->layout);
 }
 
 CanRawView::~CanRawView() {}
