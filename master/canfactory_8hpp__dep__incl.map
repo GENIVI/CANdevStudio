@@ -1,7 +1,8 @@
 <map id="src/components/candevice/canfactory.hpp" name="src/components/candevice/canfactory.hpp">
-<area shape="rect" id="node2" href="$candevice_8cpp.html" title="src/components/candevice\l/candevice.cpp" alt="" coords="5,95,199,136"/>
-<area shape="rect" id="node3" href="$canfactoryqt_8hpp.html" title="src/components/candevice\l/canfactoryqt.hpp" alt="" coords="223,95,416,136"/>
-<area shape="rect" id="node4" href="$mainwindow_8h.html" title="src/gui/mainwindow.h" alt="" coords="241,184,397,211"/>
-<area shape="rect" id="node5" href="$main_8cpp.html" title="src/gui/main.cpp" alt="" coords="169,259,296,285"/>
-<area shape="rect" id="node6" href="$mainwindow_8cpp.html" title="src/gui/mainwindow.cpp" alt="" coords="321,259,491,285"/>
+<area shape="rect" id="node2" href="$canfactoryqt_8hpp.html" title="src/components/candevice\l/canfactoryqt.hpp" alt="" coords="73,95,267,136"/>
+<area shape="rect" id="node4" href="$candevice_8cpp.html" title="src/components/candevice\l/candevice.cpp" alt="" coords="5,273,199,315"/>
+<area shape="rect" id="node3" href="$candevice__p_8h.html" title="src/components/candevice\l/candevice_p.h" alt="" coords="73,184,267,225"/>
+<area shape="rect" id="node5" href="$mainwindow_8h.html" title="src/gui/mainwindow.h" alt="" coords="291,191,447,218"/>
+<area shape="rect" id="node6" href="$main_8cpp.html" title="src/gui/main.cpp" alt="" coords="264,281,391,307"/>
+<area shape="rect" id="node7" href="$mainwindow_8cpp.html" title="src/gui/mainwindow.cpp" alt="" coords="415,281,586,307"/>
 </map>

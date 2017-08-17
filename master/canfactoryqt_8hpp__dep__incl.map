@@ -1,5 +1,7 @@
 <map id="src/components/candevice/canfactoryqt.hpp" name="src/components/candevice/canfactoryqt.hpp">
-<area shape="rect" id="node2" href="$mainwindow_8h.html" title="src/gui/mainwindow.h" alt="" coords="77,95,233,121"/>
-<area shape="rect" id="node3" href="$main_8cpp.html" title="src/gui/main.cpp" alt="" coords="5,169,132,196"/>
-<area shape="rect" id="node4" href="$mainwindow_8cpp.html" title="src/gui/mainwindow.cpp" alt="" coords="157,169,327,196"/>
+<area shape="rect" id="node2" href="$candevice__p_8h.html" title="src/components/candevice\l/candevice_p.h" alt="" coords="5,95,199,136"/>
+<area shape="rect" id="node4" href="$mainwindow_8h.html" title="src/gui/mainwindow.h" alt="" coords="223,102,379,129"/>
+<area shape="rect" id="node3" href="$candevice_8cpp.html" title="src/components/candevice\l/candevice.cpp" alt="" coords="5,184,199,225"/>
+<area shape="rect" id="node5" href="$main_8cpp.html" title="src/gui/main.cpp" alt="" coords="229,191,356,218"/>
+<area shape="rect" id="node6" href="$mainwindow_8cpp.html" title="src/gui/mainwindow.cpp" alt="" coords="381,191,551,218"/>
 </map>

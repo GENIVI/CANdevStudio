@@ -1,5 +1,6 @@
 var class_can_device =
 [
+    [ "CanDevice", "class_can_device.html#a7c6081d39cd9f440147686aabe156682", null ],
     [ "CanDevice", "class_can_device.html#a694c6a1ba7457a1bc68f11683f61bdd4", null ],
     [ "~CanDevice", "class_can_device.html#a4a1a39d39f0de37d5a94acdb4ace1b34", null ],
     [ "frameReceived", "class_can_device.html#a883d4ce76d9c7329e0d3718b7aa5589c", null ],

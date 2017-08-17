@@ -1,12 +1,12 @@
 var searchData=
 [
-  ['candevice',['CanDevice',['../class_can_device.html',1,'CanDevice'],['../class_can_device_private.html#a22c3020712af344e4326866e5b17614d',1,'CanDevicePrivate::canDevice()'],['../class_can_device.html#a694c6a1ba7457a1bc68f11683f61bdd4',1,'CanDevice::CanDevice()']]],
+  ['candevice',['CanDevice',['../class_can_device.html',1,'CanDevice'],['../class_can_device_private.html#a22c3020712af344e4326866e5b17614d',1,'CanDevicePrivate::canDevice()'],['../class_can_device.html#a7c6081d39cd9f440147686aabe156682',1,'CanDevice::CanDevice()'],['../class_can_device.html#a694c6a1ba7457a1bc68f11683f61bdd4',1,'CanDevice::CanDevice(CanFactoryInterface &amp;factory)']]],
   ['candevice_2ecpp',['candevice.cpp',['../candevice_8cpp.html',1,'']]],
   ['candevice_2eh',['candevice.h',['../candevice_8h.html',1,'']]],
   ['candevice_5fp_2eh',['candevice_p.h',['../candevice__p_8h.html',1,'']]],
   ['candeviceinterface',['CanDeviceInterface',['../struct_can_device_interface.html',1,'']]],
   ['candeviceinterface_2ehpp',['candeviceinterface.hpp',['../candeviceinterface_8hpp.html',1,'']]],
-  ['candeviceprivate',['CanDevicePrivate',['../class_can_device_private.html',1,'']]],
+  ['candeviceprivate',['CanDevicePrivate',['../class_can_device_private.html',1,'CanDevicePrivate'],['../class_can_device_private.html#ae3ba11bb8b41409f177f919173d984e8',1,'CanDevicePrivate::CanDevicePrivate()'],['../class_can_device_private.html#ac4641cac32ba044488d89ed02f6b9f20',1,'CanDevicePrivate::CanDevicePrivate(CanFactoryInterface &amp;factory)']]],
   ['candeviceqt',['CanDeviceQt',['../struct_can_device_qt.html',1,'CanDeviceQt'],['../struct_can_device_qt.html#aa8e2bd8c190aa770829df1c56e9fe02a',1,'CanDeviceQt::CanDeviceQt()']]],
   ['candeviceqt_2ehpp',['candeviceqt.hpp',['../candeviceqt_8hpp.html',1,'']]],
   ['canfactory_2ehpp',['canfactory.hpp',['../canfactory_8hpp.html',1,'']]],

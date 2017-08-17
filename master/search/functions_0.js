@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['candevice',['CanDevice',['../class_can_device.html#a694c6a1ba7457a1bc68f11683f61bdd4',1,'CanDevice']]],
+  ['candevice',['CanDevice',['../class_can_device.html#a7c6081d39cd9f440147686aabe156682',1,'CanDevice::CanDevice()'],['../class_can_device.html#a694c6a1ba7457a1bc68f11683f61bdd4',1,'CanDevice::CanDevice(CanFactoryInterface &amp;factory)']]],
+  ['candeviceprivate',['CanDevicePrivate',['../class_can_device_private.html#ae3ba11bb8b41409f177f919173d984e8',1,'CanDevicePrivate::CanDevicePrivate()'],['../class_can_device_private.html#ac4641cac32ba044488d89ed02f6b9f20',1,'CanDevicePrivate::CanDevicePrivate(CanFactoryInterface &amp;factory)']]],
   ['candeviceqt',['CanDeviceQt',['../struct_can_device_qt.html#aa8e2bd8c190aa770829df1c56e9fe02a',1,'CanDeviceQt']]],
   ['canrawsender',['CanRawSender',['../class_can_raw_sender.html#a0d89a359bebfe8031e6d2215761d0f1f',1,'CanRawSender']]],
   ['canrawsenderprivate',['CanRawSenderPrivate',['../class_can_raw_sender_private.html#a59e8a89e9dba59599b197bf12bf29d23',1,'CanRawSenderPrivate']]],
