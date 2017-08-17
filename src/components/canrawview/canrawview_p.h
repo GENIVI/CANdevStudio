@@ -31,50 +31,46 @@ public:
         mUi.reset(mFactory.createGui());
         mUi->initTableView(tvModel);
 
-        // connect(ui->pbClear, &QPushButton::pressed, this, &CanRawViewPrivate::clear);
-        // connect(ui->pbDockUndock, &QPushButton::pressed, this, &CanRawViewPrivate::dockUndock);
-
-        // connect(
-        // ui->tv->horizontalHeader(), &QHeaderView::sectionClicked, [=](int logicalIndex) { sort(logicalIndex); });
+        mUi->setClearCbk(std::bind(&CanRawViewPrivate::clear, this));
+        mUi->setDockUndockCbk(std::bind(&CanRawViewPrivate::dockUndock, this));
+        mUi->setSectionClikedCbk(std::bind(&CanRawViewPrivate::sort, this, std::placeholders::_1));
     }
 
     ~CanRawViewPrivate() {}
 
     void frameView(const QCanBusFrame& frame, const QString& direction)
     {
-        // if (!simStarted) {
-        // cds_debug("send/received frame while simulation stopped");
-        // return;
-        //}
+        if (!simStarted) {
+            cds_debug("send/received frame while simulation stopped");
+            return;
+        }
 
-        // auto payHex = frame.payload().toHex();
-        // for (int ii = payHex.size(); ii >= 2; ii -= 2) {
-        // payHex.insert(ii, ' ');
-        //}
+        auto payHex = frame.payload().toHex();
+        for (int ii = payHex.size(); ii >= 2; ii -= 2) {
+            payHex.insert(ii, ' ');
+        }
 
-        // QList<QVariant> qvList;
-        // QList<QStandardItem*> list;
+        QList<QVariant> qvList;
+        QList<QStandardItem*> list;
 
-        // qvList.append(rowID++);
-        // qvList.append(QString::number((double)timer->elapsed() / 1000, 'f', 2).toDouble());
-        // qvList.append(QString::number((double)timer->elapsed() / 1000, 'f', 2));
-        // qvList.append(frame.frameId());
-        // qvList.append(QString("0x" + QString::number(frame.frameId(), 16)));
-        // qvList.append(direction);
-        // qvList.append(QString::number(frame.payload().size()).toInt());
-        // qvList.append(QString::fromUtf8(payHex.data(), payHex.size()));
+        qvList.append(rowID++);
+        qvList.append(QString::number((double)timer->elapsed() / 1000, 'f', 2).toDouble());
+        qvList.append(QString::number((double)timer->elapsed() / 1000, 'f', 2));
+        qvList.append(frame.frameId());
+        qvList.append(QString("0x" + QString::number(frame.frameId(), 16)));
+        qvList.append(direction);
+        qvList.append(QString::number(frame.payload().size()).toInt());
+        qvList.append(QString::fromUtf8(payHex.data(), payHex.size()));
 
-        // for (QVariant qvitem : qvList) {
-        // QStandardItem* item = new QStandardItem();
-        // item->setData(qvitem, Qt::DisplayRole);
-        // list.append(item);
-        //}
+        for (QVariant qvitem : qvList) {
+            QStandardItem* item = new QStandardItem();
+            item->setData(qvitem, Qt::DisplayRole);
+            list.append(item);
+        }
 
-        // tvModel.appendRow(list);
+        tvModel.appendRow(list);
 
-        // if (ui->freezeBox->isChecked() == false) {
-        // ui->tv->scrollToBottom();
-        //}
+        mUi->updateScroll();
     }
 
     std::unique_ptr<QElapsedTimer> timer;
@@ -95,8 +91,7 @@ private slots:
      *
      * This function is used to clear whole table
      */
-    void clear() {
-        tvModel.removeRows(0, tvModel.rowCount()); }
+    void clear() { tvModel.removeRows(0, tvModel.rowCount()); }
 
     void dockUndock()
     {
@@ -106,29 +101,26 @@ private slots:
 
     void sort(const int clickedIndex)
     {
-        // int currentSortOrder = ui->tv->horizontalHeader()->sortIndicatorOrder();
-        // int sortIndex = clickedIndex;
+        int currentSortOrder = mUi->getSortOrder();
+        int sortIndex = clickedIndex;
+        QString clickedColumn = mUi->getClickedColumn(clickedIndex);
 
-        // if ((ui->tv->model()->headerData(clickedIndex, Qt::Horizontal).toString() == "time")
-        //|| (ui->tv->model()->headerData(clickedIndex, Qt::Horizontal).toString() == "id")) {
-        // sortIndex = sortIndex - 1;
-        //}
+        if ((clickedColumn == "time") || (clickedColumn == "id")) {
+            sortIndex = sortIndex - 1;
+        }
 
-        // if (prevIndex == clickedIndex) {
-        // if (currentSortOrder == Qt::DescendingOrder) {
-        // ui->tv->sortByColumn(sortIndex, Qt::DescendingOrder);
-        // ui->tv->horizontalHeader()->setSortIndicator(clickedIndex, Qt::DescendingOrder);
-        // prevIndex = clickedIndex;
-        //} else {
-        // ui->tv->sortByColumn(0, Qt::AscendingOrder);
-        // ui->tv->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
-        // prevIndex = 0;
-        //}
-        //} else {
-        // ui->tv->sortByColumn(sortIndex, Qt::AscendingOrder);
-        // ui->tv->horizontalHeader()->setSortIndicator(clickedIndex, Qt::AscendingOrder);
-        // prevIndex = clickedIndex;
-        //}
+        if (prevIndex == clickedIndex) {
+            if (currentSortOrder == Qt::DescendingOrder) {
+                mUi->setSorting(sortIndex, clickedIndex, Qt::DescendingOrder);
+                prevIndex = clickedIndex;
+            } else {
+                mUi->setSorting(0, 0, Qt::AscendingOrder);
+                prevIndex = 0;
+            }
+        } else {
+            mUi->setSorting(sortIndex, clickedIndex, Qt::AscendingOrder);
+            prevIndex = clickedIndex;
+        }
     }
 };
 #endif // CANRAWVIEW_P_H

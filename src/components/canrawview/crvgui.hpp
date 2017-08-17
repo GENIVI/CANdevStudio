@@ -18,12 +18,22 @@ struct CRVGui : public CRVGuiInterface {
         ui->setupUi(widget);
     }
 
-    QWidget* getMainWidget() override
+    virtual void setClearCbk(const clear_t& cb) override { QObject::connect(ui->pbClear, &QPushButton::pressed, cb); }
+
+    virtual void setDockUndockCbk(const dockUndock_t& cb) override
     {
-        return widget;
+        QObject::connect(ui->pbDockUndock, &QPushButton::pressed, cb);
     }
 
-    void initTableView(QAbstractItemModel& tvModel) override 
+    virtual void setSectionClikedCbk(const sectionClicked_t& cb) override
+    {
+
+        QObject::connect(ui->tv->horizontalHeader(), &QHeaderView::sectionClicked, cb);
+    }
+
+    virtual QWidget* getMainWidget() override { return widget; }
+
+    virtual void initTableView(QAbstractItemModel& tvModel) override
     {
         ui->tv->setModel(&tvModel);
         ui->tv->horizontalHeader()->setSectionsMovable(true);
@@ -33,9 +43,29 @@ struct CRVGui : public CRVGuiInterface {
         ui->tv->setColumnHidden(3, true);
     }
 
+    virtual void updateScroll() override
+    {
+        if (ui->freezeBox->isChecked() == false) {
+            ui->tv->scrollToBottom();
+        }
+    }
+
+    virtual int getSortOrder() override { return ui->tv->horizontalHeader()->sortIndicatorOrder(); }
+
+    virtual QString getClickedColumn(int ndx) override
+    {
+        return ui->tv->model()->headerData(ndx, Qt::Horizontal).toString();
+    }
+
+    virtual void setSorting(int sortNdx, int clickedNdx, Qt::SortOrder order) override
+    {
+        ui->tv->sortByColumn(sortNdx, order);
+        ui->tv->horizontalHeader()->setSortIndicator(clickedNdx, order);
+    }
+
 private:
-    Ui::CanRawViewPrivate *ui;
-    QWidget *widget;
+    Ui::CanRawViewPrivate* ui;
+    QWidget* widget;
 };
 
 #endif // CRVGUI_H
