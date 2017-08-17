@@ -4,9 +4,13 @@
 
 #include "canfactory.hpp"
 
-CanDevice::CanDevice(CanFactoryInterface& factory)
+CanDevice::CanDevice()
     : d_ptr(new CanDevicePrivate)
-    , mFactory(factory)
+{
+}
+
+CanDevice::CanDevice(CanFactoryInterface& factory)
+    : d_ptr(new CanDevicePrivate(factory))
 {
 }
 
@@ -19,7 +23,7 @@ bool CanDevice::init(const QString& backend, const QString& interface)
 
     d->mBackend = backend;
     d->mInterface = interface;
-    d->canDevice.reset(mFactory.create(backend, interface));
+    d->canDevice.reset(d->mFactory.create(backend, interface));
 
     if (!d->canDevice) {
         return false;

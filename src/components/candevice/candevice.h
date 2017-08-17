@@ -17,13 +17,14 @@ class CanDevice : public QObject {
     Q_DECLARE_PRIVATE(CanDevice)
 
 public:
+    CanDevice();
     CanDevice(CanFactoryInterface& factory);
     ~CanDevice();
 
     /**
     *   @brief  Configures CAN BUS backend and interface
     *
-    *   This function is used to configure QtCanBus class. 
+    *   This function is used to configure QtCanBus class.
     *
     *   @param  backend one of backends supported by QtCanBus class
     *   @param  iface CAN BUS interface index (e.g. can0 for socketcan backend)
@@ -46,7 +47,6 @@ private Q_SLOTS:
 
 private:
     QScopedPointer<CanDevicePrivate> d_ptr;
-    CanFactoryInterface& mFactory;
 };
 
 #endif /* !__CANDEVICE_H */

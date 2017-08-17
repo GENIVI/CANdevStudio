@@ -14,10 +14,9 @@ MainWindow::MainWindow(QWidget* parent)
     ui->setupUi(this);
     ui->centralWidget->layout()->setContentsMargins(0, 0, 0, 0);
 
-    CanFactoryQt factory;
     auto modelRegistry = std::make_shared<QtNodes::DataModelRegistry>();
 
-    canDevice = std::make_shared<CanDevice>(factory);
+    canDevice = std::make_shared<CanDevice>();
     graphScene = std::make_shared<QtNodes::FlowScene>(modelRegistry);
 
     setupMdiArea();
