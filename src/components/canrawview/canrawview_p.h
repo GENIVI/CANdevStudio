@@ -13,7 +13,7 @@
 
 // class QElapsedTimer;
 
-class CanRawViewPrivate : public QWidget {
+class CanRawViewPrivate : public QObject {
     Q_OBJECT
     Q_DECLARE_PUBLIC(CanRawView)
 

@@ -11,9 +11,16 @@ class CanRawViewPrivate;
 
 struct CRVGui : public CRVGuiInterface {
 
-    void setupUi(QWidget *widget)
+    CRVGui()
+        : ui(new Ui::CanRawViewPrivate)
+        , widget(new QWidget)
     {
         ui->setupUi(widget);
+    }
+
+    QWidget* getMainWidget()
+    {
+        return widget;
     }
 
     void initTableView(QAbstractItemModel& tvModel) override 
@@ -27,7 +34,8 @@ struct CRVGui : public CRVGuiInterface {
     }
 
 private:
-    std::unique_ptr<Ui::CanRawViewPrivate> ui;
+    Ui::CanRawViewPrivate *ui;
+    QWidget *widget;
 };
 
 #endif // CRVGUI_H

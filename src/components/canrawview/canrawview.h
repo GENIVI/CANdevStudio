@@ -8,6 +8,7 @@
 class QCanBusFrame;
 class CanRawViewPrivate;
 class CRVFactoryInterface;
+class QWidget;
 
 class CanRawView : public QObject {
     Q_OBJECT
@@ -17,6 +18,8 @@ public:
     explicit CanRawView();
     explicit CanRawView(CRVFactoryInterface& factory);
     ~CanRawView();
+
+    QWidget* getMainWidget();
 
 signals:
     void dockUndock();
