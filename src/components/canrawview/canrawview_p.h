@@ -28,9 +28,9 @@ public:
         , q_ptr(q)
     {
         tvModel.setHorizontalHeaderLabels({ "rowID", "timeDouble", "time", "idInt", "id", "dir", "dlc", "data" });
+
         mUi.reset(mFactory.createGui());
         mUi->initTableView(tvModel);
-
         mUi->setClearCbk(std::bind(&CanRawViewPrivate::clear, this));
         mUi->setDockUndockCbk(std::bind(&CanRawViewPrivate::dockUndock, this));
         mUi->setSectionClikedCbk(std::bind(&CanRawViewPrivate::sort, this, std::placeholders::_1));
