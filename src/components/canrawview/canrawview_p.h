@@ -3,7 +3,12 @@
 
 #include "log.hpp"
 #include "ui_canrawview.h"
+#include <QDebug>
+//#include <QFile>
 #include <QHeaderView>
+#include <QJsonArray>
+#include <QJsonDocument>
+#include <QJsonObject>
 #include <QtCore/QElapsedTimer>
 #include <QtGui/QStandardItemModel>
 #include <QtSerialBus/QCanBusFrame>
@@ -24,10 +29,11 @@ public:
         , timer(std::make_unique<QElapsedTimer>())
         , simStarted(false)
         , q_ptr(q)
+        , columnsOrder({ "rowID", "timeDouble", "time", "idInt", "id", "dir", "dlc", "data" })
     {
         ui->setupUi(this);
 
-        tvModel.setHorizontalHeaderLabels({ "rowID", "timeDouble", "time", "idInt", "id", "dir", "dlc", "data" });
+        tvModel.setHorizontalHeaderLabels(columnsOrder);
         ui->tv->setModel(&tvModel);
         ui->tv->horizontalHeader()->setSectionsMovable(true);
         ui->tv->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
@@ -44,6 +50,31 @@ public:
 
     ~CanRawViewPrivate() {}
 
+    void saveSettings(QJsonObject& json)
+    {
+        QJsonObject jObjects;
+        QJsonArray viewModelsArray;
+        /*
+        QString fileName("viewSave.cds");
+        QFile saveFile(fileName);
+
+        if (saveFile.open(QIODevice::WriteOnly) == false) {
+            cds_debug("Problem with open the file {0} to write confiruration", fileName.toStdString());
+            return;
+        }
+        */
+        writeColumnsOrder(jObjects);
+        jObjects["Sorting"] = prevIndex;
+        jObjects["Scrolling"] = (ui->freezeBox->isChecked() == true) ? 1 : 0;
+        writeViewModel(viewModelsArray);
+        jObjects["Models"] = viewModelsArray;
+        json[q_ptr->windowTitle().toStdString().c_str()] = jObjects;
+        /*
+        QJsonDocument saveDoc(json);
+        saveFile.write(saveDoc.toJson());
+        */
+    }
+
     void frameView(const QCanBusFrame& frame, const QString& direction)
     {
         if (!simStarted) {
@@ -52,7 +83,7 @@ public:
         }
 
         auto payHex = frame.payload().toHex();
-        for (int ii = payHex.size(); ii >= 2; ii -= 2) {
+        for (int ii = payHex.size() - 2; ii >= 2; ii -= 2) {
             payHex.insert(ii, ' ');
         }
 
@@ -98,6 +129,33 @@ private:
     int sortIndex = 0;
     int currentSortIndicator = 0;
     Qt::SortOrder currentSortOrder = Qt::AscendingOrder;
+    QStringList columnsOrder;
+
+    void writeColumnsOrder(QJsonObject& json) const
+    {
+        uint ii = 0;
+        QJsonArray columnList;
+        for (auto iter : columnsOrder) {
+            if (ui->tv->isColumnHidden(ii++) == false) {
+                columnList.append(iter);
+            }
+        }
+        json["Columns"] = columnList;
+    }
+
+    void writeViewModel(QJsonArray& jsonArray) const
+    {
+        for (auto ii = 0; ii < tvModel.rowCount(); ++ii) {
+            QJsonArray lineIter;
+            for (auto jj = 0; jj < tvModel.columnCount(); ++jj) {
+                if (ui->tv->isColumnHidden(jj) == false) {
+                    auto pp = tvModel.data(tvModel.index(ii, jj));
+                    lineIter.append(pp.toString());
+                }
+            }
+            jsonArray.append(lineIter);
+        }
+    }
 
 private slots:
     /**
@@ -127,7 +185,6 @@ private slots:
             if (currentSortOrder == Qt::DescendingOrder) {
                 ui->tv->sortByColumn(sortIndex, Qt::DescendingOrder);
                 ui->tv->horizontalHeader()->setSortIndicator(clickedIndex, Qt::DescendingOrder);
-                prevIndex = clickedIndex;
             } else {
                 ui->tv->sortByColumn(0, Qt::AscendingOrder);
                 ui->tv->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
