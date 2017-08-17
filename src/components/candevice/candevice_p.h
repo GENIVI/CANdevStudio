@@ -14,7 +14,7 @@
 class CanDevicePrivate {
 public:
     CanDevicePrivate()
-        : mFactory(mDefFactory)
+        : CanDevicePrivate(mDefFactory)
     {
     }
 
