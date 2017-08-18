@@ -10,9 +10,9 @@
 #include <QtWidgets/QMessageBox>
 #include <iostream>
 
-#include <candevicemodel/candevicemodel.h>
-#include <canrawsendermodel/canrawsendermodel.h>
-#include <canrawviewmodel/canrawviewmodel.h>
+#include <candevice/candevicemodel.h>
+#include <canrawsender/canrawsendermodel.h>
+#include <canrawview/canrawviewmodel.h>
 
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent)
