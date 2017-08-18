@@ -5,7 +5,7 @@
 
 #include <nodes/DataModelRegistry>
 
-#include "../datamodeltypes/rawviewdata.h"
+#include "datamodeltypes/rawviewdata.h"
 CanRawViewModel::CanRawViewModel()
     : label(new QLabel())
 {
