@@ -1,8 +1,8 @@
 #include "canrawviewmodel.h"
+#include "log.hpp"
 #include <QtCore/QDir>
 #include <QtCore/QEvent>
 #include <QtWidgets/QFileDialog>
-
 #include <nodes/DataModelRegistry>
 
 #include "datamodeltypes/rawviewdata.h"
@@ -40,6 +40,8 @@ void CanRawViewModel::setInData(std::shared_ptr<NodeData> nodeData, PortIndex)
             canRawView.frameSent(d->status(), d->frame());
         } else if (d->direction() == "RX") {
             canRawView.frameReceived(d->frame());
+        } else {
+            cds_error("Incorrect direction");
         }
     }
 }
