@@ -41,6 +41,8 @@ private:
     void nodeCreatedCallback(QtNodes::Node& node);
     void nodeDeletedCallback(QtNodes::Node& node);
     void nodeDoubleClickedCallback(QtNodes::Node& node);
+    void handleLoadAction();
+    void handleSaveAction();
 
 private slots:
     void handleExitAction(void);
