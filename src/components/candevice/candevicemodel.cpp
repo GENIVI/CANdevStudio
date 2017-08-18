@@ -6,8 +6,8 @@
 
 #include <nodes/DataModelRegistry>
 
-#include "datamodeltypes/rawsenderdata.h"
-#include "datamodeltypes/rawviewdata.h"
+#include "datamodeltypes/rawinputdata.h"
+#include "datamodeltypes/rawoutputdata.h"
 
 CanDeviceModel::CanDeviceModel()
     : label(new QLabel())

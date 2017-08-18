@@ -5,7 +5,7 @@
 #include <QtWidgets/QFileDialog>
 #include <nodes/DataModelRegistry>
 
-#include "datamodeltypes/rawviewdata.h"
+#include "datamodeltypes/rawoutputdata.h"
 CanRawViewModel::CanRawViewModel()
     : label(new QLabel())
 {

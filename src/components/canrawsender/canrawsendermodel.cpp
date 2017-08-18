@@ -5,7 +5,7 @@
 
 #include <nodes/DataModelRegistry>
 
-#include "datamodeltypes/rawsenderdata.h"
+#include "datamodeltypes/rawinputdata.h"
 CanRawSenderModel::CanRawSenderModel()
     : label(new QLabel())
 {
