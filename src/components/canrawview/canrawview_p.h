@@ -76,6 +76,10 @@ public:
 
         tvModel.appendRow(list);
 
+        Qt::SortOrder currentSortOrder = ui->tv->horizontalHeader()->sortIndicatorOrder();
+        int currentSortSection = ui->tv->horizontalHeader()->sortIndicatorSection();
+        ui->tv->sortByColumn(currentSortSection, currentSortOrder);
+
         if (ui->freezeBox->isChecked() == false) {
             ui->tv->scrollToBottom();
         }
@@ -97,10 +101,7 @@ private slots:
      *
      * This function is used to clear whole table
      */
-    void clear()
-    {
-        tvModel.removeRows(0,tvModel.rowCount());
-    }
+    void clear() { tvModel.removeRows(0, tvModel.rowCount()); }
 
     void dockUndock()
     {
