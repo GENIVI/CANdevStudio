@@ -6,8 +6,7 @@
 
 #include <nodes/DataModelRegistry>
 
-#include "datamodeltypes/rawinputdata.h"
-#include "datamodeltypes/rawoutputdata.h"
+#include "datamodeltypes/candevicedata.h"
 
 CanDeviceModel::CanDeviceModel()
     : label(new QLabel())
@@ -71,29 +70,29 @@ NodeDataType CanDeviceModel::dataType(PortType portType, PortIndex) const
 {
     switch (portType) {
     case PortType::In:
-        return RawSenderData().type();
+        return CanDeviceDataIn().type();
         break;
 
     case PortType::Out:
-        return RawViewData().type();
+        return CanDeviceDataOut().type();
         break;
 
     case PortType::None:
-        return RawSenderData().type(); // dummy TODO
+        return CanDeviceDataIn().type(); // dummy TODO
         break;
     }
-    return RawSenderData().type(); // dummy TODO
+    return CanDeviceDataIn().type(); // dummy TODO
 }
 
 std::shared_ptr<NodeData> CanDeviceModel::outData(PortIndex)
 {
-    return std::make_shared<RawViewData>(_frame, _direction, _status);
+    return std::make_shared<CanDeviceDataOut>(_frame, _direction, _status);
 }
 
 void CanDeviceModel::setInData(std::shared_ptr<NodeData> nodeData, PortIndex)
 {
     if (nodeData) {
-        auto d = std::dynamic_pointer_cast<RawSenderData>(nodeData);
+        auto d = std::dynamic_pointer_cast<CanDeviceDataIn>(nodeData);
         canDevice->sendFrame(d->frame());
     }
 }

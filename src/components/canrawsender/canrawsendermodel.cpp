@@ -2,10 +2,9 @@
 #include <QtCore/QDir>
 #include <QtCore/QEvent>
 #include <QtWidgets/QFileDialog>
-
 #include <nodes/DataModelRegistry>
+#include "datamodeltypes/canrawsenderdata.h"
 
-#include "datamodeltypes/rawinputdata.h"
 CanRawSenderModel::CanRawSenderModel()
     : label(new QLabel())
 {
@@ -30,9 +29,9 @@ unsigned int CanRawSenderModel::nPorts(PortType portType) const
     }
 }
 
-NodeDataType CanRawSenderModel::dataType(PortType, PortIndex) const { return RawSenderData().type(); }
+NodeDataType CanRawSenderModel::dataType(PortType, PortIndex) const { return CanRawSenderDataOut().type(); }
 
-std::shared_ptr<NodeData> CanRawSenderModel::outData(PortIndex) { return std::make_shared<RawSenderData>(_frame); }
+std::shared_ptr<NodeData> CanRawSenderModel::outData(PortIndex) { return std::make_shared<CanRawSenderDataOut>(_frame); }
 
 void CanRawSenderModel::setInData(std::shared_ptr<NodeData>, PortIndex) {}
 

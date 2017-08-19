@@ -1,11 +1,11 @@
 #include "canrawviewmodel.h"
+#include "datamodeltypes/canrawviewdata.h"
 #include "log.hpp"
 #include <QtCore/QDir>
 #include <QtCore/QEvent>
 #include <QtWidgets/QFileDialog>
 #include <nodes/DataModelRegistry>
 
-#include "datamodeltypes/rawoutputdata.h"
 CanRawViewModel::CanRawViewModel()
     : label(new QLabel())
 {
@@ -28,14 +28,14 @@ unsigned int CanRawViewModel::nPorts(PortType portType) const
     }
 }
 
-NodeDataType CanRawViewModel::dataType(PortType, PortIndex) const { return RawViewData().type(); }
+NodeDataType CanRawViewModel::dataType(PortType, PortIndex) const { return CanRawViewDataIn().type(); }
 
-std::shared_ptr<NodeData> CanRawViewModel::outData(PortIndex) { return std::make_shared<RawViewData>(); }
+std::shared_ptr<NodeData> CanRawViewModel::outData(PortIndex) { return std::make_shared<CanRawViewDataIn>(); }
 
 void CanRawViewModel::setInData(std::shared_ptr<NodeData> nodeData, PortIndex)
 {
     if (nodeData) {
-        auto d = std::dynamic_pointer_cast<RawViewData>(nodeData);
+        auto d = std::dynamic_pointer_cast<CanRawViewDataIn>(nodeData);
         if (d->direction() == "TX") {
             canRawView.frameSent(d->status(), d->frame());
         } else if (d->direction() == "RX") {
