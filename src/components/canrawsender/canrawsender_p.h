@@ -2,9 +2,9 @@
 #define CANRAWSENDER_P_H
 
 #include "ui_canrawsender.h"
-#include <memory>
-#include <QtSerialBus/QCanBusFrame>
 #include <QtGui/QStandardItemModel>
+#include <QtSerialBus/QCanBusFrame>
+#include <memory>
 
 namespace Ui {
 class CanRawSenderPrivate;
@@ -16,12 +16,12 @@ class CanRawSenderPrivate : public QWidget {
 
 public:
     CanRawSenderPrivate(CanRawSender* q)
-    : ui(std::make_unique<Ui::CanRawSenderPrivate>())
-    , q_ptr(q)
+        : ui(std::make_unique<Ui::CanRawSenderPrivate>())
+        , q_ptr(q)
     {
         ui->setupUi(this);
 
-        tvModel.setHorizontalHeaderLabels({"id", "value",""});
+        tvModel.setHorizontalHeaderLabels({ "id", "value", "" });
         ui->tv->setModel(&tvModel);
         ui->tv->horizontalHeader()->setSectionsMovable(true);
         ui->tv->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -31,9 +31,7 @@ public:
         connect(ui->pbDockUndock, &QPushButton::pressed, this, &CanRawSenderPrivate::dockUndock);
     }
 
-    ~CanRawSenderPrivate()
-    {
-    }
+    ~CanRawSenderPrivate() {}
 
 private:
     std::unique_ptr<Ui::CanRawSenderPrivate> ui;
@@ -62,7 +60,7 @@ private slots:
     {
         QStandardItem* id = new QStandardItem();
         QStandardItem* value = new QStandardItem();
-        QList<QStandardItem*> list {id, value};
+        QList<QStandardItem*> list{ id, value };
         tvModel.appendRow(list);
 
         QPushButton* pbSend = new QPushButton("Send");
