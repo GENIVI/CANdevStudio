@@ -76,9 +76,10 @@ public:
 
         tvModel.appendRow(list);
 
-        Qt::SortOrder currentSortOrder = ui->tv->horizontalHeader()->sortIndicatorOrder();
-        int currentSortSection = ui->tv->horizontalHeader()->sortIndicatorSection();
-        ui->tv->sortByColumn(currentSortSection, currentSortOrder);
+        currentSortOrder = ui->tv->horizontalHeader()->sortIndicatorOrder();
+        currentSortIndicator = ui->tv->horizontalHeader()->sortIndicatorSection();
+        ui->tv->sortByColumn(sortIndex, currentSortOrder);
+        ui->tv->horizontalHeader()->setSortIndicator(currentSortIndicator, Qt::AscendingOrder);
 
         if (ui->freezeBox->isChecked() == false) {
             ui->tv->scrollToBottom();
@@ -92,8 +93,11 @@ public:
 
 private:
     CanRawView* q_ptr;
-    int prevIndex = 0;
     int rowID = 0;
+    int prevIndex = 0;
+    int sortIndex = 0;
+    int currentSortIndicator = 0;
+    Qt::SortOrder currentSortOrder = Qt::AscendingOrder;
 
 private slots:
     /**
@@ -111,8 +115,8 @@ private slots:
 
     void sort(const int clickedIndex)
     {
-        int currentSortOrder = ui->tv->horizontalHeader()->sortIndicatorOrder();
-        int sortIndex = clickedIndex;
+        currentSortOrder = ui->tv->horizontalHeader()->sortIndicatorOrder();
+        sortIndex = clickedIndex;
 
         if ((ui->tv->model()->headerData(clickedIndex, Qt::Horizontal).toString() == "time")
             || (ui->tv->model()->headerData(clickedIndex, Qt::Horizontal).toString() == "id")) {
