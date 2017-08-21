@@ -82,7 +82,7 @@ inline void apply_model_visitor(NodeDataModel& m, Actions... actions)
 {
     CanNodeDataModelVisitor v{std::move(actions)...};
 
-    apply_model_visitor(m, v);
+    apply_model_visitor(m, std::move(v));
 }
 
 #endif
