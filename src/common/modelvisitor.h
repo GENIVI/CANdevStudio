@@ -40,12 +40,12 @@ struct NodeDataModelVisitor
     CanRawViewModelAction   _f;
     CanRawSenderModelAction _g;
 
+    // TODO: C++17: use class template argument deduction and get rid of "make_model_visitor"
     NodeDataModelVisitor(CanRawViewModelAction f, CanRawSenderModelAction g)
       : _f(std::move(f)), _g(std::move(g))
     {}
 };
 
-// TODO: C++17: use deduction rules
 template<
     class CanRawViewModelAction
   , class CanRawSenderModelAction
