@@ -26,6 +26,7 @@ MainWindow::MainWindow(QWidget* parent)
     modelRegistry->registerModel<CanRawSenderModel>();
     modelRegistry->registerModel<CanRawViewModel>();
 
+    canRawSender = std::make_shared<CanRawSender>();
     graphScene = std::make_shared<QtNodes::FlowScene>(modelRegistry);
 
     connect(graphScene.get(), &QtNodes::FlowScene::nodeCreated, this, &MainWindow::nodeCreatedCallback);

@@ -1,13 +1,16 @@
 #include "canrawsender.h"
 #include "canrawsender_p.h"
 
-CanRawSender::CanRawSender(QWidget* parent)
-    : QWidget(parent)
-    , d_ptr(new CanRawSenderPrivate(this))
+CanRawSender::CanRawSender()
+    : d_ptr(new CanRawSenderPrivate(this))
 {
     Q_D(CanRawSender);
+}
 
-    setLayout(d->ui->layout);
+CanRawSender::CanRawSender(CRSFactoryInterface& factory)
+    : d_ptr(new CanRawSenderPrivate(this, factory))
+{
+    Q_D(CanRawSender);
 }
 
 CanRawSender::~CanRawSender() {}
@@ -29,4 +32,11 @@ void CanRawSender::startSimulation()
 void CanRawSender::stopSimulation()
 {
     d_ptr->SetSimulationState(false);
+}
+
+QWidget* CanRawSender::getMainWidget()
+{
+    Q_D(CanRawSender);
+
+    return d->mUi->getMainWidget();
 }
