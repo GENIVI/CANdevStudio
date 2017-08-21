@@ -27,7 +27,7 @@ public:
     virtual ~CanRawSenderModel() {}
 
 public:
-    QString caption() const override { return QString("CanRawSender Node"); }
+    QString caption() const override { return QString("CanRawSender Node"); } // TODO
 
     QString name() const override { return QString("CanRawSenderModel"); }
 

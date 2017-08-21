@@ -62,10 +62,11 @@ void MainWindow::nodeCreatedCallback(QtNodes::Node& node)
 
 void handleWidgetDeletion(QWidget* widget)
 {
+    assert(nullptr != widget);
     if (widget->parentWidget()) {
 
         widget->parentWidget()->close();
-    }
+    } // else path not needed
 }
 
 void MainWindow::nodeDeletedCallback(QtNodes::Node& node)
@@ -81,6 +82,7 @@ void MainWindow::nodeDeletedCallback(QtNodes::Node& node)
 
 void handleWidgetShowing(QWidget* widget)
 {
+    assert(nullptr != widget);
     if (widget->parentWidget()) {
 
         widget->parentWidget()->show();
@@ -144,36 +146,36 @@ void MainWindow::handleSaveAction()
 
         QFile file(fileName);
         if (file.open(QIODevice::WriteOnly)) {
-            file.write(graphScene->saveToMemory()); // FIXME 
+            file.write(graphScene->saveToMemory()); // FIXME
         }
+    } else {
+        cds_error("File name empty");
     }
-    else { cds_error("File name empty");}
 }
 
 void MainWindow::handleLoadAction()
 {
     graphScene->clearScene();
 
-    QString fileName = QFileDialog::getOpenFileName(
-        nullptr, "Project Configuration", QDir::homePath(), "CANdevStudio (*.cds)");
+    QString fileName
+        = QFileDialog::getOpenFileName(nullptr, "Project Configuration", QDir::homePath(), "CANdevStudio (*.cds)");
 
-    if (!QFileInfo::exists(fileName))
-    {
-	   cds_error("File does not exist");
+    if (!QFileInfo::exists(fileName)) {
+        cds_error("File does not exist");
         return;
     }
 
     QFile file(fileName);
 
-    if (!file.open(QIODevice::ReadOnly))
-    {
-	    cds_error("Could not open file");
+    if (!file.open(QIODevice::ReadOnly)) {
+        cds_error("Could not open file");
         return;
     }
 
     QByteArray wholeFile = file.readAll();
 
-// TODO check if file is correct, nodeeditor library does not provide it and will crash if incorrect file is supplied
+    // TODO check if file is correct, nodeeditor library does not provide it and will crash if incorrect file is
+    // supplied
 
     graphScene->loadFromMemory(wholeFile); // FIXME
 }

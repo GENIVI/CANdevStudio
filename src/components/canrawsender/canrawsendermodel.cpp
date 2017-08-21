@@ -1,9 +1,9 @@
 #include "canrawsendermodel.h"
+#include "datamodeltypes/canrawsenderdata.h"
 #include <QtCore/QDir>
 #include <QtCore/QEvent>
 #include <QtWidgets/QFileDialog>
 #include <nodes/DataModelRegistry>
-#include "datamodeltypes/canrawsenderdata.h"
 
 CanRawSenderModel::CanRawSenderModel()
     : label(new QLabel())
@@ -12,31 +12,25 @@ CanRawSenderModel::CanRawSenderModel()
 
     label->setFixedSize(75, 25);
 
-    label->installEventFilter(this);
-
     label->setAttribute(Qt::WA_TranslucentBackground);
 
-    canRawSender.setWindowTitle("CANrawSender test");
+    canRawSender.setWindowTitle("CANrawSender");
     connect(&canRawSender, &CanRawSender::sendFrame, this, &CanRawSenderModel::sendFrame);
 }
 
-unsigned int CanRawSenderModel::nPorts(PortType portType) const
-{
-    if (PortType::Out == portType) {
-        return 1;
-    } else {
-        return 0;
-    }
-}
+unsigned int CanRawSenderModel::nPorts(PortType portType) const { return (PortType::Out == portType) ? 1 : 0; }
 
 NodeDataType CanRawSenderModel::dataType(PortType, PortIndex) const { return CanRawSenderDataOut().type(); }
 
-std::shared_ptr<NodeData> CanRawSenderModel::outData(PortIndex) { return std::make_shared<CanRawSenderDataOut>(_frame); }
+std::shared_ptr<NodeData> CanRawSenderModel::outData(PortIndex)
+{
+    return std::make_shared<CanRawSenderDataOut>(_frame);
+}
 
 void CanRawSenderModel::setInData(std::shared_ptr<NodeData>, PortIndex) {}
 
 void CanRawSenderModel::sendFrame(const QCanBusFrame& frame)
 {
     _frame = frame;
-    emit dataUpdated(0);
+    emit dataUpdated(0); // Data ready on port 0
 }

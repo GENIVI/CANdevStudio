@@ -2,14 +2,17 @@
 #include <QtCore/QDir>
 #include <QtCore/QEvent>
 
+#include "log.hpp"
+#include <assert.h>
+
 #include <QtWidgets/QFileDialog>
 
-#include <nodes/DataModelRegistry>
-
 #include "datamodeltypes/candevicedata.h"
+#include <nodes/DataModelRegistry>
 
 CanDeviceModel::CanDeviceModel()
     : label(new QLabel())
+    , canDevice(std::make_unique<CanDevice>())
 {
     label->setAlignment(Qt::AlignVCenter | Qt::AlignHCenter);
 
@@ -19,69 +22,43 @@ CanDeviceModel::CanDeviceModel()
 
     label->setAttribute(Qt::WA_TranslucentBackground);
 
-    canDevice = new CanDevice(factory);
+    connect(canDevice.get(), &CanDevice::frameSent, this, &CanDeviceModel::frameSent);
+    connect(canDevice.get(), &CanDevice::frameReceived, this, &CanDeviceModel::frameReceived);
 
-    connect(canDevice, &CanDevice::frameSent, this, &CanDeviceModel::frameSent);
-    connect(canDevice, &CanDevice::frameReceived, this, &CanDeviceModel::frameReceived);
-
-    canDevice->init("socketcan", "can0");
+    canDevice->init("socketcan", "can0"); // TODO
     canDevice->start();
 }
 
-CanDeviceModel::~CanDeviceModel() { delete canDevice; }
-
 unsigned int CanDeviceModel::nPorts(PortType portType) const
 {
-    unsigned int result = 1;
+    assert((PortType::In == portType) || (PortType::Out == portType) || (PortType::None == portType)); // range check
 
-    switch (portType) {
-    case PortType::In:
-        result = 1;
-        break;
+    return (PortType::None != portType) ? 1 : 0;
+}
 
-    case PortType::Out:
-        result = 1;
-        break;
-
-    case PortType::None:
-        result = 0;
-        break;
-    }
-
-    return result;
+void CanDeviceModel::frameOnQueue()
+{
+    std::tie(_frame, _direction, _status) = frameQueue.takeFirst();
+    emit dataUpdated(0); // Data ready on port 0
 }
 
 void CanDeviceModel::frameReceived(const QCanBusFrame& frame)
 {
-    _frame = frame;
-    _direction = "RX";
-    emit dataUpdated(0);
+    frameQueue.push_back(std::make_tuple(frame, Direction::RX, false));
+    frameOnQueue();
 }
 
 void CanDeviceModel::frameSent(bool status, const QCanBusFrame& frame)
 {
-    _status = status;
-    _frame = frame;
-    _direction = "TX";
-    emit dataUpdated(0);
+    frameQueue.push_back(std::make_tuple(frame, Direction::TX, status));
+    frameOnQueue();
 }
 
 NodeDataType CanDeviceModel::dataType(PortType portType, PortIndex) const
 {
-    switch (portType) {
-    case PortType::In:
-        return CanDeviceDataIn().type();
-        break;
+    assert((PortType::In == portType) || (PortType::Out == portType)); // allowed input
 
-    case PortType::Out:
-        return CanDeviceDataOut().type();
-        break;
-
-    case PortType::None:
-        return CanDeviceDataIn().type(); // dummy TODO
-        break;
-    }
-    return CanDeviceDataIn().type(); // dummy TODO
+    return (PortType::Out == portType) ? CanDeviceDataOut{}.type() : CanDeviceDataIn{}.type();
 }
 
 std::shared_ptr<NodeData> CanDeviceModel::outData(PortIndex)
@@ -93,6 +70,9 @@ void CanDeviceModel::setInData(std::shared_ptr<NodeData> nodeData, PortIndex)
 {
     if (nodeData) {
         auto d = std::dynamic_pointer_cast<CanDeviceDataIn>(nodeData);
+        assert(nullptr != d);
         canDevice->sendFrame(d->frame());
+    } else {
+        cds_warn("Incorrect nodeData");
     }
 }

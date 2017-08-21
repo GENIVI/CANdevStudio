@@ -9,7 +9,6 @@
 #include <nodes/NodeDataModel>
 
 #include <candevice/candevice.h>
-#include <candevice/canfactoryqt.hpp>
 
 using QtNodes::PortType;
 using QtNodes::PortIndex;
@@ -18,16 +17,16 @@ using QtNodes::NodeDataType;
 using QtNodes::NodeDataModel;
 using QtNodes::NodeValidationState;
 
+enum class Direction;
+
 class CanDeviceModel : public NodeDataModel {
     Q_OBJECT
 
 public:
     CanDeviceModel();
 
-    virtual ~CanDeviceModel();
-
 public:
-    QString caption() const override { return QString("CanDevice Node"); }
+    QString caption() const override { return QString("CanDevice Node"); } // TODO
 
     QString name() const override { return QString("CanDeviceModel"); }
 
@@ -48,6 +47,8 @@ public:
 
     bool resizable() const override { return false; }
 
+    void frameOnQueue();
+
 private slots:
 
     void frameReceived(const QCanBusFrame& frame);
@@ -57,16 +58,15 @@ private:
     QLabel* label;
 
     std::shared_ptr<NodeData> _nodeData;
+    QVector<std::tuple<QCanBusFrame, Direction, bool>> frameQueue;
 
     bool _status;
 
-    QString _direction;
+    Direction _direction;
 
     QCanBusFrame _frame;
 
-    CanFactoryQt factory;
-
-    CanDevice* canDevice;
+    std::unique_ptr<CanDevice> canDevice;
 };
 
 #endif // CANDEVICEMODEL_H

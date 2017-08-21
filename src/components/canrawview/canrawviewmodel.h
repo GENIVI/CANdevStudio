@@ -26,7 +26,7 @@ public:
     virtual ~CanRawViewModel() {}
 
 public:
-    QString caption() const override { return QString("CanRawView Node"); }
+    QString caption() const override { return QString("CanRawView Node"); } // TODO
 
     QString name() const override { return QString("CanRawViewModel"); }
 

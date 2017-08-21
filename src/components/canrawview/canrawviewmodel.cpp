@@ -13,20 +13,11 @@ CanRawViewModel::CanRawViewModel()
 
     label->setFixedSize(75, 25);
 
-    label->installEventFilter(this);
-
     label->setAttribute(Qt::WA_TranslucentBackground);
-    canRawView.setWindowTitle("CANrawView test");
+    canRawView.setWindowTitle("CANrawView");
 }
 
-unsigned int CanRawViewModel::nPorts(PortType portType) const
-{
-    if (PortType::In == portType) {
-        return 1;
-    } else {
-        return 0;
-    }
-}
+unsigned int CanRawViewModel::nPorts(PortType portType) const { return (PortType::In == portType) ? 1 : 0; }
 
 NodeDataType CanRawViewModel::dataType(PortType, PortIndex) const { return CanRawViewDataIn().type(); }
 
@@ -36,12 +27,15 @@ void CanRawViewModel::setInData(std::shared_ptr<NodeData> nodeData, PortIndex)
 {
     if (nodeData) {
         auto d = std::dynamic_pointer_cast<CanRawViewDataIn>(nodeData);
-        if (d->direction() == "TX") {
+        assert(nullptr != d);
+        if (d->direction() == Direction::TX) {
             canRawView.frameSent(d->status(), d->frame());
-        } else if (d->direction() == "RX") {
+        } else if (d->direction() == Direction::RX) {
             canRawView.frameReceived(d->frame());
         } else {
-            cds_error("Incorrect direction");
+            cds_warn("Incorrect direction");
         }
+    } else {
+        cds_warn("Incorrect nodeData");
     }
 }

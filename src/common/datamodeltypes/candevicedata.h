@@ -7,6 +7,8 @@
 
 using QtNodes::NodeDataType;
 
+enum class Direction { RX, TX };
+
 class CanDeviceDataIn : public NodeData {
 public:
     CanDeviceDataIn(){};
@@ -26,7 +28,7 @@ private:
 class CanDeviceDataOut : public NodeData {
 public:
     CanDeviceDataOut(){};
-    CanDeviceDataOut(QCanBusFrame const& frame, QString const direction, bool status)
+    CanDeviceDataOut(QCanBusFrame const& frame, Direction const direction, bool status)
         : _frame(frame)
         , _direction(direction)
         , _status(status)
@@ -36,12 +38,12 @@ public:
     NodeDataType type() const override { return NodeDataType{ "rawview", "Raw" }; }
 
     QCanBusFrame frame() const { return _frame; };
-    QString direction() const { return _direction; };
+    Direction direction() const { return _direction; };
     bool status() const { return _status; };
 
 private:
     QCanBusFrame _frame;
-    QString _direction;
+    Direction _direction;
     bool _status; // used only for frameSent, ignored for frameReceived
 };
 
