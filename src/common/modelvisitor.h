@@ -27,6 +27,7 @@ class CanRawSenderModel;
  *
  *  apply_model_visitor(*m, std::move(v));
  *  // or apply_model_visitor(*m, std::move(std::ref(v)));
+ *  // or apply_model_visitor(*m, [](CanRawViewModel&) {}, [](CanRawSenderModel&) {});
  * @endcode
  */
 class CanNodeDataModelVisitor
@@ -38,12 +39,17 @@ class CanNodeDataModelVisitor
     void operator()(CanRawSenderModel& a) { _g(a); }
 //    void operator()(FooModel& a)          { _h(a); }
 
+    // TODO: make apply_* insensitive to order of actions (using tuple indexed by type?)
+
     template<
         class CanRawViewModelAction
       , class CanRawSenderModelAction
 //      , class FooModelAction
       >
-    CanNodeDataModelVisitor(CanRawViewModelAction f, CanRawSenderModelAction g)
+    CanNodeDataModelVisitor(CanRawViewModelAction f
+                          , CanRawSenderModelAction g
+//                          , FooModelAction h
+                           )
       :
         _f{std::move(f)}
       , _g{std::move(g)}
@@ -58,15 +64,25 @@ class CanNodeDataModelVisitor
 
 };
 
+
+
+/** @throws bad_cast if object under @c m is not visitable with @c v. */
 inline void apply_model_visitor(NodeDataModel& m, CanNodeDataModelVisitor v)
 {
-    using B = VisitableWith<CanNodeDataModelVisitor>;
+    // NOTE: Cannot use static_cast since NodeDataModel and VisitableWith
+    //       are not in direct inheritance relation, i.e. only type derived
+    //       from NodeDataModel derives from VisitableWith.
 
-#ifdef NDEBUG
-    static_cast<B&>(m).visit(v);
-#else
-    dynamic_cast<B&>(m).visit(v);  // throws!
-#endif
+    dynamic_cast<VisitableWith<CanNodeDataModelVisitor>&>(m).visit(v);  // throws!
+}
+
+/** @throws bad_cast if object under @c m is not visitable with @c v. */
+template<class... Actions>
+inline void apply_model_visitor(NodeDataModel& m, Actions... actions)
+{
+    CanNodeDataModelVisitor v{std::move(actions)...};
+
+    apply_model_visitor(m, v);
 }
 
 #endif
