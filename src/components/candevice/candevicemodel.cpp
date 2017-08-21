@@ -18,8 +18,6 @@ CanDeviceModel::CanDeviceModel()
 
     label->setFixedSize(75, 25);
 
-    label->installEventFilter(this);
-
     label->setAttribute(Qt::WA_TranslucentBackground);
 
     connect(canDevice.get(), &CanDevice::frameSent, this, &CanDeviceModel::frameSent);
