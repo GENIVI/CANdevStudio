@@ -63,7 +63,7 @@ inline apply_model_visitor(NodeDataModel& m, NodeDataModelVisitor v)
 {
     using B = VisitableWith<NodeDataModelVisitor>;
 
-#ifndef DEBUG
+#ifdef NDEBUG
     static_cast<B&>(m).visit(v);
 #else
     dynamic_cast<B&>(m).visit(v);  // throws!
