@@ -2,7 +2,7 @@
 #ifndef MODELVISITOR_H
 #define MODELVISITOR_H
 
-#include <type_traits> // is_same, result_of
+#include <functional> // function
 #include <utility> // move
 
 #include <nodes/NodeDataModel>
@@ -12,15 +12,16 @@
 
 class CanRawViewModel;
 class CanRawSenderModel;
+//class FooModel;
 
 /**
- * Example usage with @c VisitableWith<T>:
+ * Example usage with @c VisitableWith<CanNodeDataModelVisitor>:
  *
  * @code
  *  auto m = node.nodeDataModel();
  *
- *  auto v = make_model_visitor([this](CanRawViewModel& a) { }
- *                            , [this](CanRawSenderModel& a) { });
+ *  CanNodeDataModelVisitor v{ [this](CanRawViewModel& a) { }
+ *                           , [this](CanRawSenderModel& a) { } };
  *
  *  assert(nullptr != m);
  *
@@ -28,40 +29,38 @@ class CanRawSenderModel;
  *  // or apply_model_visitor(*m, std::move(std::ref(v)));
  * @endcode
  */
-template<
-    class CanRawViewModelAction
-  , class CanRawSenderModelAction
-  >
-struct NodeDataModelVisitor
+class CanNodeDataModelVisitor
 {
+
+ public:
+
     void operator()(CanRawViewModel& a)   { _f(a); }
     void operator()(CanRawSenderModel& a) { _g(a); }
+//    void operator()(FooModel& a)          { _h(a); }
 
-    CanRawViewModelAction   _f;
-    CanRawSenderModelAction _g;
-
-    // TODO: C++17: use class template argument deduction and get rid of "make_model_visitor"
-    NodeDataModelVisitor(CanRawViewModelAction f, CanRawSenderModelAction g)
-      : _f(std::move(f)), _g(std::move(g))
+    template<
+        class CanRawViewModelAction
+      , class CanRawSenderModelAction
+//      , class FooModelAction
+      >
+    CanNodeDataModelVisitor(CanRawViewModelAction f, CanRawSenderModelAction g)
+      :
+        _f{std::move(f)}
+      , _g{std::move(g)}
+//      , _h{std::move(h)}
     {}
+
+ private:
+
+    std::function<void (CanRawViewModel&)>   _f;
+    std::function<void (CanRawSenderModel&)> _g;
+//    std::function<void (FooModel&)> _h;
+
 };
 
-template<
-    class CanRawViewModelAction
-  , class CanRawSenderModelAction
-  >
-inline NodeDataModelVisitor make_model_visitor(F f, G g)
+inline void apply_model_visitor(NodeDataModel& m, CanNodeDataModelVisitor v)
 {
-    static_assert(std::is_same<std::result_of_t<F(CanRawViewModel&)>, void>::value
-               && std::is_same<std::result_of_t<G(CanRawSenderModel&)>, void>::value
-        , "Wrong parameters");
-
-    return NodeDataModelVisitor<F, G>{std::move(f), std::move(g)};
-}
-
-inline apply_model_visitor(NodeDataModel& m, NodeDataModelVisitor v)
-{
-    using B = VisitableWith<NodeDataModelVisitor>;
+    using B = VisitableWith<CanNodeDataModelVisitor>;
 
 #ifdef NDEBUG
     static_cast<B&>(m).visit(v);

@@ -15,11 +15,13 @@
  *  struct A : VisitableWith<V>
  *  {
  *   void visit(V& v) override { v(*this); }
+ *   virtual ~A() = default;
  *  };
  *
  *  struct B : VisitableWith<V>
  *  {
  *   void visit(V& v) override { v(*this); }
+ *   virtual ~B() = default;
  *  };
  *
  *  int main()
