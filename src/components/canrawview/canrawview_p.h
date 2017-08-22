@@ -6,7 +6,6 @@
 #include "ui_canrawview.h"
 #include "uibackend.hpp"
 
-#include <QHeaderView>
 #include <QtCore/QElapsedTimer>
 #include <QtGui/QStandardItemModel>
 #include <QtSerialBus/QCanBusFrame>
@@ -27,16 +26,13 @@ public:
 
     CanRawViewPrivate(CanRawView* q)
         : CanRawViewPrivate{q, std::make_unique<CanRawViewBackend>()}
-    {
-        assert(nullptr != q);
-        assert(nullptr != backend);
-    }
+    {}
 
     CanRawViewPrivate(CanRawView* q, std::unique_ptr<UIBackend<CanRawView>> backend)
         : timer{std::make_unique<QElapsedTimer>()}
         , backend{std::move(backend)}
-        , q_ptr{q}
         , simStarted{false}
+        , q_ptr{q}
     {
         assert(nullptr != q);
         assert(nullptr != backend);

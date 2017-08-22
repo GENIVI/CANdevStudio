@@ -6,10 +6,14 @@
 #include "canrawview_p.h"
 #include "uibackend.hpp"
 
+#include <QHeaderView>
+#include <QtWidgets/QWidget>
+
 #include <functional> // function
 #include <memory>
 #include <utility> // move
 
+namespace Ui { class CanRawViewPrivate };
 
 class CanRawViewBackend : public UIBackend<CanRawView>
 {

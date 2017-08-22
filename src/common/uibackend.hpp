@@ -6,7 +6,7 @@
 
 #include <functional>  // function
 
-class CanRawView
+class CanRawView;
 class QAbstractItemModel;
 class QWidget;
 
@@ -26,7 +26,7 @@ struct UIBackend<CanRawView>
     virtual void setSorting(int sortNdx, int clickedNdx, Qt::SortOrder order) = 0;
     virtual void updateScroll() = 0;
 
-    virtual ~UIBackend() = default
+    virtual ~UIBackend() = default;
 };
 
 #endif // UIBACKEND_H

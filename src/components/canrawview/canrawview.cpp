@@ -10,7 +10,8 @@
 #include <QtCore/QStringList>
 #include <QtSerialBus/QCanBusFrame>
 
-#include <memory>
+#include <cassert> // assert
+#include <memory> // unique_ptr
 
 
 CanRawView::CanRawView()
@@ -29,6 +30,9 @@ void CanRawView::startSimulation()
 {
     Q_D(CanRawView);
 
+    assert(nullptr != d);
+    assert(nullptr != d->timer);
+
     d->timer->restart();
     d->simStarted = true;
 }
@@ -37,6 +41,8 @@ void CanRawView::stopSimulation()
 {
     Q_D(CanRawView);
 
+    assert(nullptr != d);
+
     d->simStarted = false;
 }
 
@@ -44,12 +50,16 @@ void CanRawView::frameReceived(const QCanBusFrame& frame)
 {
     Q_D(CanRawView);
 
+    assert(nullptr != d);
+
     d->frameView(frame, "RX");
 }
 
 void CanRawView::frameSent(bool status, const QCanBusFrame& frame)
 {
     Q_D(CanRawView);
+
+    assert(nullptr != d);
 
     if (status) {
         d->frameView(frame, "TX");
@@ -60,6 +70,9 @@ QWidget* CanRawView::getMainWidget()
 {
     Q_D(CanRawView);
 
-    return d->mUi->getMainWidget();
+    assert(nullptr != d);
+    assert(nullptr != d->backend);
+
+    return d->backend->getMainWidget();
 }
 
