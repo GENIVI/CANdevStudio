@@ -132,6 +132,7 @@ private slots:
                 ui->tv->sortByColumn(0, Qt::AscendingOrder);
                 ui->tv->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
                 prevIndex = 0;
+                sortIndex = 0;
             }
         } else {
             ui->tv->sortByColumn(sortIndex, Qt::AscendingOrder);
