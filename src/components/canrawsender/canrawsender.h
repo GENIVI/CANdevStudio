@@ -1,6 +1,7 @@
 #ifndef CANRAWSENDER_H
 #define CANRAWSENDER_H
 
+#include <QCloseEvent>
 #include <QtCore/QScopedPointer>
 #include <QtWidgets/QWidget>
 
@@ -14,6 +15,7 @@ class CanRawSender : public QWidget {
 public:
     explicit CanRawSender(QWidget* parent = nullptr);
     ~CanRawSender();
+    void closeEvent(QCloseEvent* e);
 
 signals:
     void sendFrame(const QCanBusFrame& frame);

@@ -10,6 +10,14 @@ CanRawSender::CanRawSender(QWidget* parent)
     setLayout(d->ui->layout);
 }
 
-CanRawSender::~CanRawSender()
+CanRawSender::~CanRawSender() {}
+
+void CanRawSender::closeEvent(QCloseEvent* e)
 {
+    if (parentWidget()) {
+        parentWidget()->hide();
+    } else {
+        hide();
+    }
+    e->ignore();
 }
