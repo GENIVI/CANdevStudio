@@ -1,13 +1,11 @@
 #ifndef NEWLINEMANAGER_H
 #define NEWLINEMANAGER_H
 
-#include <QCheckBox>
-#include <QHBoxLayout>
-#include <QLineEdit>
-#include <QPushButton>
+#include "nlmfactory.hpp"
 #include <QTimer>
 #include <QValidator>
 #include <QtSerialBus/QCanBusFrame>
+#include <memory>
 
 class CanRawSender;
 /// \class Iterator
@@ -52,8 +50,15 @@ public:
     /// \brief Create new line manager class
     /// \param[in] q Pointer to CanRawSender class
     /// \param[in] simulationState Actual simulation state
-    /// \throw if CanRawSender pointer not exist
     NewLineManager(CanRawSender* q, bool simulationState);
+
+    /// \brief constructor
+    /// \brief Create new line manager class
+    /// \param[in] q Pointer to CanRawSender class
+    /// \param[in] simulationState Actual simulation state
+    /// \param[in] factory Reference to the factory interface
+    /// \throw if CanRawSender pointer not exist
+    NewLineManager(CanRawSender* q, bool simulationState, NLMFactoryInterface& factory);
 
     /// \enum CalName class enumeration
     /// \brief This is an enumeration used by functions reponsible for return columns information
@@ -79,46 +84,26 @@ public:
     void SetSimulationState(bool state);
 
 private:
-    /// \brief This function adopt lineEdit properties depending on input parameters and roles
-    /// \param[in] lineEdit QLineEdit widget
-    /// \param[in] placeholderText Default string
-    /// \param[in] qValidator Pointer to validator regular expression input text
-    void LineEditDefault(QLineEdit& lineEdit, const QString& placeholderText, QValidator* qValidator = nullptr);
-
     /// \brief This function performs the necessary things when the meter stops
     void StopTimer();
 
-    /// \struct CheckBox
-    /// \brief This structure holds the necessary things for the correct functioning of the check box for line manager
-    struct CheckBox {
-        CheckBox()
-        {
-            qLayout = new QHBoxLayout(&qWidget);
-            qLayout->addWidget(&qCheckBox);
-            qLayout->setAlignment(Qt::AlignCenter);
-            qLayout->setContentsMargins(0, 0, 0, 0);
-            qWidget.setLayout(qLayout);
-        }
-        QWidget qWidget;
-        QCheckBox qCheckBox;
-        QHBoxLayout* qLayout;
-    };
-
+private:
     CanRawSender* canRawSender;
-
-    QLineEdit id;
-    QLineEdit data;
-    QLineEdit interval;
-    CheckBox loop;
-    QPushButton send;
+    QCanBusFrame frame;
+    bool simState;
 
     QTimer timer;
     QValidator* vDec;
     QValidator* vIdHex;
     QValidator* vDataHex;
 
-    QCanBusFrame frame;
-    bool simState;
+    NLMFactory mDefFactory;
+    NLMFactoryInterface& mFactory;
+    std::unique_ptr<NLMCheckBoxInterface> mCheckBox;
+    std::unique_ptr<NLMLineEditInterface> mId;
+    std::unique_ptr<NLMLineEditInterface> mData;
+    std::unique_ptr<NLMLineEditInterface> mInterval;
+    std::unique_ptr<NLMPushButtonInterface> mSend;
 
 signals:
 

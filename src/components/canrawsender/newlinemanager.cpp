@@ -3,96 +3,101 @@
 #include <QRegExpValidator>
 
 NewLineManager::NewLineManager(CanRawSender* q, bool simulationState)
+    : NewLineManager(q, simulationState, mDefFactory)
+{
+}
+
+NewLineManager::NewLineManager(CanRawSender* q, bool simulationState, NLMFactoryInterface& factory)
     : canRawSender(q)
     , simState(simulationState)
+    , mFactory(factory)
 {
     if (q == nullptr) {
         throw std::runtime_error("CanRawSender is nullptr");
     }
+
+    // Id
+    mId.reset(mFactory.createLineEdit());
     QRegExp qRegExp("[1]?[0-9A-Fa-f]{7}");
     vIdHex = new QRegExpValidator(qRegExp, this);
-    LineEditDefault(id, "Id in hex", vIdHex);
+    mId->init("Id in hex", vIdHex);
+    mId->textChangedCbk(std::bind(&NewLineManager::SetSendButtonState, this));
 
+    // Data
+    mData.reset(mFactory.createLineEdit());
     qRegExp.setPattern("[0-9A-Fa-f]{16}");
     vDataHex = new QRegExpValidator(qRegExp, this);
-    LineEditDefault(data, "Data in hex", vDataHex);
+    mData->init("Id in hex", vDataHex);
+    mData->textChangedCbk(std::bind(&NewLineManager::SetSendButtonState, this));
 
+    // Interval
+    mInterval.reset(mFactory.createLineEdit());
     qRegExp.setPattern("[1-9]\\d{0,6}");
     vDec = new QRegExpValidator(qRegExp, this);
-    LineEditDefault(interval, "Select Loop", vDec);
-    interval.setDisabled(true);
+    mInterval->init("Id in hex", vDec);
+    mInterval->textChangedCbk(std::bind(&NewLineManager::SetSendButtonState, this));
 
-    send.setText("Send");
-    send.setDisabled(true);
+    // Checkbox
+    mCheckBox.reset(mFactory.createCheckBox());
+    mCheckBox->releasedCbk(std::bind(&NewLineManager::LoopCheckBoxReleased, this));
 
-    connect(&loop.qCheckBox, &QCheckBox::released, this, &NewLineManager::LoopCheckBoxReleased);
-    connect(&id, &QLineEdit::textChanged, this, &NewLineManager::SetSendButtonState);
-    connect(&data, &QLineEdit::textChanged, this, &NewLineManager::SetSendButtonState);
-    connect(&send, &QPushButton::pressed, this, &NewLineManager::SendButtonPressed);
+    // Send button
+    mSend.reset(mFactory.createPushButton());
+    mSend->init("Send", true);
+    mSend->pressedCbk(std::bind(&NewLineManager::SendButtonPressed, this));
+
     connect(&timer, &QTimer::timeout, this, &NewLineManager::TimerExpired);
-}
-
-void NewLineManager::LineEditDefault(QLineEdit& lineEdit, const QString& placeholderText, QValidator* qValidator)
-{
-    lineEdit.setFrame(false);
-    lineEdit.setAlignment(Qt::AlignHCenter);
-    lineEdit.setPlaceholderText(placeholderText);
-    if (qValidator != nullptr) {
-        lineEdit.setValidator(qValidator);
-    }
 }
 
 void NewLineManager::StopTimer()
 {
     timer.stop();
-    id.setDisabled(false);
-    data.setDisabled(false);
+    mId->setDisabled(false);
+    mData->setDisabled(false);
 }
 
 void NewLineManager::LoopCheckBoxReleased()
 {
-
-    if (loop.qCheckBox.isChecked() == false) {
-        interval.setDisabled(true);
+    if (mCheckBox->getState() == false) {
+        mInterval->setDisabled(true);
         if (timer.isActive() == true) {
             StopTimer();
-        } else if (interval.text().length() == 0) {
-            interval.setPlaceholderText("Select Loop");
+        } else if (mInterval->getTextLength() == 0) {
+            mInterval->setPlaceholderText("Select Loop");
         }
-    }
-
-    if ((loop.qCheckBox.isChecked() == true) && (timer.isActive() == false)) {
-        interval.setDisabled(false);
-        if (interval.text().length() == 0) {
-            interval.setPlaceholderText("Time in ms");
+    } else if (timer.isActive() == false) {
+        mInterval->setDisabled(false);
+        if (mInterval->getTextLength() == 0) {
+            mInterval->setPlaceholderText("Time in ms");
         }
     }
 }
 
 void NewLineManager::SetSendButtonState()
 {
-    if ((id.text().length() > 0) && (simState == true)) {
-        if (send.isEnabled() == false) {
-            send.setDisabled(false);
+    if ((mId->getTextLength() > 0) && (simState == true)) {
+        if (mSend->isEnabled() == false) {
+            mSend->setDisabled(false);
         }
-    } else if (send.isEnabled() == true)
-        send.setDisabled(true);
+    } else if (mSend->isEnabled() == true) {
+        mSend->setDisabled(true);
+    }
 }
 
 void NewLineManager::SendButtonPressed()
 {
-    if (id.text().length()) {
-        frame.setFrameId(id.text().toUInt(nullptr, 16));
-        frame.setPayload(QByteArray::fromHex(data.text().toUtf8()));
+    if (mId->getTextLength() > 0) {
+        frame.setFrameId(mId->getText().toUInt(nullptr, 16));
+        frame.setPayload(QByteArray::fromHex(mData->getText().toUtf8()));
         emit canRawSender->sendFrame(frame);
 
-        if ((timer.isActive() == false) && (loop.qCheckBox.isChecked() == true)) {
-            auto delay = interval.text().toUInt();
+        if ((timer.isActive() == false) && (mCheckBox->getState() == true)) {
+            auto delay = mInterval->getText().toUInt();
             if (delay != 0) {
                 timer.start(delay);
-                id.setDisabled(true);
-                data.setDisabled(true);
-                interval.setDisabled(true);
+                mId->setDisabled(true);
+                mData->setDisabled(true);
+                mInterval->setDisabled(true);
             }
         }
     }
@@ -104,15 +109,15 @@ QWidget* NewLineManager::GetColsWidget(ColNameIterator name)
 {
     switch (*name) {
     case ColName::IdLine:
-        return &id;
+        return mId->getMainWidget();
     case ColName::DataLine:
-        return &data;
+        return mData->getMainWidget();
     case ColName::IntervalLine:
-        return &interval;
+        return mInterval->getMainWidget();
     case ColName::LoopCheckBox:
-        return &loop.qWidget;
+        return mCheckBox->getMainWidget();
     case ColName::SendButton:
-        return &send;
+        return mSend->getMainWidget();
     default:
         return nullptr;
     }
@@ -124,6 +129,6 @@ void NewLineManager::SetSimulationState(bool state)
     SetSendButtonState();
     if ((simState == false) && (timer.isActive() == true)) {
         StopTimer();
-        interval.setDisabled(false);
+        mInterval->setDisabled(false);
     }
 }
