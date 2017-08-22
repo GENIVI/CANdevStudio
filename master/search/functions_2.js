@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['framereceived',['frameReceived',['../class_can_device.html#a883d4ce76d9c7329e0d3718b7aa5589c',1,'CanDevice::frameReceived()'],['../class_can_raw_view.html#ace7bb231aa483369b389d02b353a8a17',1,'CanRawView::frameReceived()']]],
-  ['framesavailable',['framesAvailable',['../struct_can_device_interface.html#a20961a2ad09942ba9f847bd465201cba',1,'CanDeviceInterface::framesAvailable()'],['../struct_can_device_qt.html#af1bf6677b8ac4ebade2396c2eaa75f68',1,'CanDeviceQt::framesAvailable()']]],
-  ['framesent',['frameSent',['../class_can_device.html#aac8ab09993968f767c9013b9891c4312',1,'CanDevice::frameSent()'],['../class_can_raw_view.html#a81d095b9dfd03fbc2f53ca8c298abf4f',1,'CanRawView::frameSent()']]],
-  ['frameview',['frameView',['../class_can_raw_view_private.html#a1573036ba16b36b7c6ce61cacf6124a5',1,'CanRawViewPrivate']]]
+  ['datatype',['dataType',['../class_can_device_model.html#aa8a1a96f0f78a16f1692bc66d05e0095',1,'CanDeviceModel::dataType()'],['../class_can_raw_sender_model.html#ab620ab7774c2cb1f4847c7dc7c2267e7',1,'CanRawSenderModel::dataType()'],['../class_can_raw_view_model.html#ae7d4f0c3b91e497773271f8effaa4bf9',1,'CanRawViewModel::dataType()']]],
+  ['direction',['direction',['../class_can_device_data_out.html#a6b74b7c100b11fd3287caf3579a7e2ca',1,'CanDeviceDataOut']]],
+  ['dockundock',['dockUndock',['../class_can_raw_sender.html#a15d5f950a6e025b84825fd2fc2b23043',1,'CanRawSender::dockUndock()'],['../class_can_raw_view.html#aeda778fc33282d5380f9676ebfabf5dd',1,'CanRawView::dockUndock()']]]
 ];

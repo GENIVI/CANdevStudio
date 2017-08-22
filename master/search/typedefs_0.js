@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['erroroccurred_5ft',['errorOccurred_t',['../struct_can_device_interface.html#a58a0e7e2eb6660680ea09ad01a415029',1,'CanDeviceInterface']]]
+  ['canrawsenderdataout',['CanRawSenderDataOut',['../canrawsenderdata_8h.html#a2e44302cbd10f2be3869eacfc4975413',1,'canrawsenderdata.h']]],
+  ['canrawviewdatain',['CanRawViewDataIn',['../canrawviewdata_8h.html#a3837c80fa1f1aee5ac171ab5844487d7',1,'canrawviewdata.h']]]
 ];

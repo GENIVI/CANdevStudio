@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['qtdefaultlogger',['qtDefaultLogger',['../main_8cpp.html#ab4d70e8cf06e32830aaa27b5701a223d',1,'main.cpp']]]
+  ['localfile',['localFile',['../main_8cpp.html#a315a8c1468a66de1f41cebc177e22ab0',1,'main.cpp']]],
+  ['log_2ehpp',['log.hpp',['../log_8hpp.html',1,'']]]
 ];

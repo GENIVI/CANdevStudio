@@ -1,11 +1,5 @@
 var searchData=
 [
-  ['_7ecandevice',['~CanDevice',['../class_can_device.html#a4a1a39d39f0de37d5a94acdb4ace1b34',1,'CanDevice']]],
-  ['_7ecandeviceinterface',['~CanDeviceInterface',['../struct_can_device_interface.html#ad81788df9251ba0fa9a6b3cd854c9836',1,'CanDeviceInterface']]],
-  ['_7ecanfactoryinterface',['~CanFactoryInterface',['../struct_can_factory_interface.html#a6eb3fe2c42a31b14a798b20a8d2523f3',1,'CanFactoryInterface']]],
-  ['_7ecanrawsender',['~CanRawSender',['../class_can_raw_sender.html#ae62d54a7c677e6838d766fd9cb57b32b',1,'CanRawSender']]],
-  ['_7ecanrawsenderprivate',['~CanRawSenderPrivate',['../class_can_raw_sender_private.html#a9b29e72082c46c4b1bfc2efd3c837a50',1,'CanRawSenderPrivate']]],
-  ['_7ecanrawview',['~CanRawView',['../class_can_raw_view.html#a61e97fe7ae8b79740408311f4a243f82',1,'CanRawView']]],
-  ['_7ecanrawviewprivate',['~CanRawViewPrivate',['../class_can_raw_view_private.html#a2457b43c2a434f6c6827ded804f43d0d',1,'CanRawViewPrivate']]],
-  ['_7emainwindow',['~MainWindow',['../class_main_window.html#ae98d00a93bc118200eeef9f9bba1dba7',1,'MainWindow']]]
+  ['name',['name',['../class_can_device_model.html#a23c811773e449cb11429031ca6034b12',1,'CanDeviceModel::name()'],['../class_can_raw_sender_model.html#a0462f9e7a88d81b9185ce6a7281dd4f3',1,'CanRawSenderModel::name()'],['../class_can_raw_view_model.html#a73f99f6424411b9fdfef965557d4c627',1,'CanRawViewModel::name()']]],
+  ['nports',['nPorts',['../class_can_device_model.html#ad02c6e46e947211afb068f202faa9e4b',1,'CanDeviceModel::nPorts()'],['../class_can_raw_sender_model.html#ad2b2ba0baf9826b9b781f8d05fbefdc0',1,'CanRawSenderModel::nPorts()'],['../class_can_raw_view_model.html#a9e366286e6593bf14168da1cadbd8654',1,'CanRawViewModel::nPorts()']]]
 ];

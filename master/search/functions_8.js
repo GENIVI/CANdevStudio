@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['writeframe',['writeFrame',['../struct_can_device_interface.html#aeb963d0da7bd307275d43dbea110e1c9',1,'CanDeviceInterface::writeFrame()'],['../struct_can_device_qt.html#ab5e13b14d2281ee83d2119f2a083a6e7',1,'CanDeviceQt::writeFrame()']]]
+  ['main',['main',['../main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main.cpp']]],
+  ['mainwindow',['MainWindow',['../class_main_window.html#a996c5a2b6f77944776856f08ec30858d',1,'MainWindow']]],
+  ['modelname',['modelName',['../class_can_device_model.html#a5aa2d2d64f1c36926e94782b682e4113',1,'CanDeviceModel::modelName()'],['../class_can_raw_sender_model.html#a4bdb4db6eebcd42855210351a0e204ac',1,'CanRawSenderModel::modelName()'],['../class_can_raw_view_model.html#a133b2561de385dbc8092515192c061f3',1,'CanRawViewModel::modelName()']]]
 ];

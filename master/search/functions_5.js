@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['main',['main',['../main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main.cpp']]],
-  ['mainwindow',['MainWindow',['../class_main_window.html#a996c5a2b6f77944776856f08ec30858d',1,'MainWindow']]]
+  ['handlewidgetdeletion',['handleWidgetDeletion',['../mainwindow_8cpp.html#a3b9d464ad39a8ef55e15b34582f02194',1,'mainwindow.cpp']]],
+  ['handlewidgetshowing',['handleWidgetShowing',['../mainwindow_8cpp.html#acef5b97894bfa7c1f3a144b55f17d8f6',1,'mainwindow.cpp']]]
 ];

@@ -6,5 +6,9 @@ var dir_94e65932f1e05d44d79da8e98a8aee4c =
     ] ],
     [ "canrawsender_p.h", "canrawsender__p_8h.html", [
       [ "CanRawSenderPrivate", "class_can_raw_sender_private.html", "class_can_raw_sender_private" ]
+    ] ],
+    [ "canrawsendermodel.cpp", "canrawsendermodel_8cpp.html", null ],
+    [ "canrawsendermodel.h", "canrawsendermodel_8h.html", [
+      [ "CanRawSenderModel", "class_can_raw_sender_model.html", "class_can_raw_sender_model" ]
     ] ]
 ];

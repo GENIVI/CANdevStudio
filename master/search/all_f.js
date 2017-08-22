@@ -1,11 +1,14 @@
 var searchData=
 [
-  ['_7ecandevice',['~CanDevice',['../class_can_device.html#a4a1a39d39f0de37d5a94acdb4ace1b34',1,'CanDevice']]],
-  ['_7ecandeviceinterface',['~CanDeviceInterface',['../struct_can_device_interface.html#ad81788df9251ba0fa9a6b3cd854c9836',1,'CanDeviceInterface']]],
-  ['_7ecanfactoryinterface',['~CanFactoryInterface',['../struct_can_factory_interface.html#a6eb3fe2c42a31b14a798b20a8d2523f3',1,'CanFactoryInterface']]],
-  ['_7ecanrawsender',['~CanRawSender',['../class_can_raw_sender.html#ae62d54a7c677e6838d766fd9cb57b32b',1,'CanRawSender']]],
-  ['_7ecanrawsenderprivate',['~CanRawSenderPrivate',['../class_can_raw_sender_private.html#a9b29e72082c46c4b1bfc2efd3c837a50',1,'CanRawSenderPrivate']]],
-  ['_7ecanrawview',['~CanRawView',['../class_can_raw_view.html#a61e97fe7ae8b79740408311f4a243f82',1,'CanRawView']]],
-  ['_7ecanrawviewprivate',['~CanRawViewPrivate',['../class_can_raw_view_private.html#a2457b43c2a434f6c6827ded804f43d0d',1,'CanRawViewPrivate']]],
-  ['_7emainwindow',['~MainWindow',['../class_main_window.html#ae98d00a93bc118200eeef9f9bba1dba7',1,'MainWindow']]]
+  ['sendframe',['sendFrame',['../class_can_device.html#a6ebe57b42df5fb0d0673e652e081c2b0',1,'CanDevice::sendFrame()'],['../class_can_raw_sender.html#a0e6950f7ee975ad8ae200b4bff32614d',1,'CanRawSender::sendFrame()'],['../class_can_raw_sender_model.html#ad6cf38b39e63426d3efb9afcdf05c255',1,'CanRawSenderModel::sendFrame()']]],
+  ['seterroroccurredcbk',['setErrorOccurredCbk',['../struct_can_device_interface.html#a5ffe30d097d59b48a78a91215d831540',1,'CanDeviceInterface::setErrorOccurredCbk()'],['../struct_can_device_qt.html#a5b9294df606c7773413fbb26d1588e63',1,'CanDeviceQt::setErrorOccurredCbk()']]],
+  ['setframesreceivedcbk',['setFramesReceivedCbk',['../struct_can_device_interface.html#aad56683892b79922799ba163f81c3404',1,'CanDeviceInterface::setFramesReceivedCbk()'],['../struct_can_device_qt.html#ab3dbf5e6f572f406d523496533797b33',1,'CanDeviceQt::setFramesReceivedCbk()']]],
+  ['setframeswrittencbk',['setFramesWrittenCbk',['../struct_can_device_interface.html#a83eb2a451898d07703bce9efbf3f6df3',1,'CanDeviceInterface::setFramesWrittenCbk()'],['../struct_can_device_qt.html#ab32e80032d7b5f821381dd3da252ef23',1,'CanDeviceQt::setFramesWrittenCbk()']]],
+  ['setindata',['setInData',['../class_can_device_model.html#a7e7fd2ddd6e47f134741ed4b0b7ce821',1,'CanDeviceModel::setInData()'],['../class_can_raw_sender_model.html#a491777ddd4abae9dcd9a501abf7705a6',1,'CanRawSenderModel::setInData()'],['../class_can_raw_view_model.html#ab6783235e23112e049953083998df571',1,'CanRawViewModel::setInData()']]],
+  ['setuplogger',['setupLogger',['../main_8cpp.html#a677cf1dd7db1d278155bd2637971a267',1,'main.cpp']]],
+  ['simstarted',['simStarted',['../class_can_raw_view_private.html#a1773e4feac7c9c06eeb7076855ca5fd8',1,'CanRawViewPrivate']]],
+  ['start',['start',['../class_can_device.html#a0ea42fef8feb27eeaa473260071e25c0',1,'CanDevice']]],
+  ['startsimulation',['startSimulation',['../class_can_raw_view.html#acf78fa346b606b03632dd6fb47a5e48e',1,'CanRawView']]],
+  ['status',['status',['../class_can_device_data_out.html#aa58fee746094174d0927b1307d0597c3',1,'CanDeviceDataOut']]],
+  ['stopsimulation',['stopSimulation',['../class_can_raw_view.html#a1e7ae58ba92cc0130e259ae089cc8456',1,'CanRawView']]]
 ];
