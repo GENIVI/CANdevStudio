@@ -18,11 +18,15 @@ CanRawSender::~CanRawSender() {}
 
 void CanRawSender::closeEvent(QCloseEvent* e)
 {
-    if (parentWidget()) {
-        parentWidget()->hide();
+    auto parentWidget = getMainWidget();
+    if (parentWidget) {
+        parentWidget->hide();
+    }
+/*
     } else {
         hide();
     }
+*/
     e->ignore();
 }
 void CanRawSender::startSimulation()
