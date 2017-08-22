@@ -3,8 +3,7 @@
 #include <fakeit.hpp>
 
 #include "canrawview/canrawview.h"
-#include "canrawview/crvfactoryinterface.hpp"
-#include "canrawview/crvguiinterface.hpp"
+#include "canrawview/canrawviewbackend.hpp"
 
 #include "log.hpp"
 std::shared_ptr<spdlog::logger> kDefaultLogger;
@@ -17,8 +16,7 @@ std::shared_ptr<spdlog::logger> kDefaultLogger;
 TEST_CASE("Initialization failed", "[canrawview]")
 {
     using namespace fakeit;
-    Mock<CRVFactoryInterface> factoryMock;
-    Mock<CRVGuiInterface> crvMock;
+    Mock<CanRawViewBackend> crvMock;
 
     Fake(Dtor(crvMock));
     Fake(Method(crvMock, setClearCbk));
@@ -31,11 +29,9 @@ TEST_CASE("Initialization failed", "[canrawview]")
     Fake(Method(crvMock, getClickedColumn));
     Fake(Method(crvMock, setSorting));
 
-    When(Method(factoryMock, createGui)).Return(&crvMock.get());
-
     QCanBusFrame testFrame;
     testFrame.setFrameId(123);
-    CanRawView canRawView{ factoryMock.get() };
+    CanRawView canRawView{crvMock.get()};
     canRawView.frameReceived(testFrame);
 }
 

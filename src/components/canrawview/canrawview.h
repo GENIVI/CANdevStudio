@@ -3,11 +3,12 @@
 
 #include <QtCore/QScopedPointer>
 #include <QtCore/QObject>
-#include <memory>
+#include <memory>  // unique_ptr
 
-class QCanBusFrame;
+#include "uibackend.hpp"
+
 class CanRawViewPrivate;
-class CRVFactoryInterface;
+class QCanBusFrame;
 class QWidget;
 
 class CanRawView : public QObject {
@@ -16,8 +17,9 @@ class CanRawView : public QObject {
 
 public:
     explicit CanRawView();
-    explicit CanRawView(CRVFactoryInterface& factory);
-    ~CanRawView();
+    explicit CanRawView(std::unique_ptr<UIBackend<CanRawView>> backend);
+
+    ~CanRawView() = default;
 
     QWidget* getMainWidget();
 

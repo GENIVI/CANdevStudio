@@ -1,25 +1,29 @@
+
 #include "canrawview.h"
 #include "canrawview_p.h"
 #include "log.hpp"
+#include "uibackend.hpp"
+
 #include <QtCore/QElapsedTimer>
 #include <QtCore/QList>
 #include <QtCore/QString>
 #include <QtCore/QStringList>
 #include <QtSerialBus/QCanBusFrame>
 
+#include <memory>
+
+
 CanRawView::CanRawView()
-    : d_ptr(new CanRawViewPrivate(this))
+    : d_ptr{new CanRawViewPrivate{this}}
 {
     Q_D(CanRawView);
 }
 
-CanRawView::CanRawView(CRVFactoryInterface& factory)
-    : d_ptr(new CanRawViewPrivate(this, factory))
+CanRawView::CanRawView(std::unique_ptr<UIBackend<CanRawView>> backend)
+    : d_ptr{new CanRawViewPrivate{this, std::move(backend)}}
 {
     Q_D(CanRawView);
 }
-
-CanRawView::~CanRawView() {}
 
 void CanRawView::startSimulation()
 {
@@ -58,3 +62,4 @@ QWidget* CanRawView::getMainWidget()
 
     return d->mUi->getMainWidget();
 }
+

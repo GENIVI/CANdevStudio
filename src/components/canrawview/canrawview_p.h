@@ -1,46 +1,60 @@
 #ifndef CANRAWVIEW_P_H
 #define CANRAWVIEW_P_H
 
-#include "crvfactory.hpp"
-#include "crvgui.hpp"
+#include "canrawviewbackend.hpp"
 #include "log.hpp"
 #include "ui_canrawview.h"
+#include "uibackend.hpp"
+
 #include <QHeaderView>
 #include <QtCore/QElapsedTimer>
 #include <QtGui/QStandardItemModel>
 #include <QtSerialBus/QCanBusFrame>
-#include <memory>
 
-class CanRawViewPrivate : public QObject {
+#include <cassert> // assert
+#include <memory>  // unique_ptr
+#include <utility> // move
+
+
+class CanRawView;
+
+class CanRawViewPrivate : public QObject
+{
     Q_OBJECT
     Q_DECLARE_PUBLIC(CanRawView)
 
 public:
+
     CanRawViewPrivate(CanRawView* q)
-        : CanRawViewPrivate(q, mDefFactory)
+        : CanRawViewPrivate{q, std::make_unique<CanRawViewBackend>()}
     {
+        assert(nullptr != q);
+        assert(nullptr != backend);
     }
 
-    CanRawViewPrivate(CanRawView* q, CRVFactoryInterface& factory)
-        : timer(std::make_unique<QElapsedTimer>())
-        , simStarted(false)
-        , mFactory(factory)
-        , q_ptr(q)
+    CanRawViewPrivate(CanRawView* q, std::unique_ptr<UIBackend<CanRawView>> backend)
+        : timer{std::make_unique<QElapsedTimer>()}
+        , backend{std::move(backend)}
+        , q_ptr{q}
+        , simStarted{false}
     {
+        assert(nullptr != q);
+        assert(nullptr != backend);
+
         tvModel.setHorizontalHeaderLabels({ "rowID", "timeDouble", "time", "idInt", "id", "dir", "dlc", "data" });
 
-        mUi.reset(mFactory.createGui());
-        mUi->initTableView(tvModel);
-        mUi->setClearCbk(std::bind(&CanRawViewPrivate::clear, this));
-        mUi->setDockUndockCbk(std::bind(&CanRawViewPrivate::dockUndock, this));
-        mUi->setSectionClikedCbk(std::bind(&CanRawViewPrivate::sort, this, std::placeholders::_1));
+        backend->initTableView(tvModel);
+        backend->setClearCbk([this] { clear(); });
+        backend->setDockUndockCbk([this] { dockUndock(); });
+        backend->setSectionClikedCbk([this](auto index) { sort(index); });
     }
 
-    ~CanRawViewPrivate() {}
+    ~CanRawViewPrivate() = default;
 
     void frameView(const QCanBusFrame& frame, const QString& direction)
     {
-        if (!simStarted) {
+        if ( ! simStarted)
+        {
             cds_debug("send/received frame while simulation stopped");
             return;
         }
@@ -70,40 +84,38 @@ public:
 
         tvModel.appendRow(list);
 
-        mUi->updateScroll();
+        backend->updateScroll();
     }
 
     std::unique_ptr<QElapsedTimer> timer;
+    std::unique_ptr<UIBackend<CanRawView>> backend;
+    bool simStarted = false;
     QStandardItemModel tvModel;
-    bool simStarted;
-    CRVFactoryInterface& mFactory;
-    std::unique_ptr<CRVGuiInterface> mUi;
 
 private:
-    CanRawView* q_ptr;
+
+    CanRawView* q_ptr = nullptr;
     int prevIndex = 0;
     int rowID = 0;
-    CRVFactory mDefFactory;
 
 private slots:
-    /**
-     * @brief clear
-     *
-     * This function is used to clear whole table
-     */
+
+    /** Clears whole table. */
     void clear() { tvModel.removeRows(0, tvModel.rowCount()); }
 
     void dockUndock()
     {
         Q_Q(CanRawView);
+
         emit q->dockUndock();
     }
 
-    void sort(const int clickedIndex)
+    void sort(int clickedIndex)
     {
-        int currentSortOrder = mUi->getSortOrder();
+        const int currentSortOrder = backend->getSortOrder();
         int sortIndex = clickedIndex;
-        QString clickedColumn = mUi->getClickedColumn(clickedIndex);
+
+        QString clickedColumn = backend->getClickedColumn(clickedIndex);
 
         if ((clickedColumn == "time") || (clickedColumn == "id")) {
             sortIndex = sortIndex - 1;
@@ -111,14 +123,14 @@ private slots:
 
         if (prevIndex == clickedIndex) {
             if (currentSortOrder == Qt::DescendingOrder) {
-                mUi->setSorting(sortIndex, clickedIndex, Qt::DescendingOrder);
+                backend->setSorting(sortIndex, clickedIndex, Qt::DescendingOrder);
                 prevIndex = clickedIndex;
             } else {
-                mUi->setSorting(0, 0, Qt::AscendingOrder);
+                backend->setSorting(0, 0, Qt::AscendingOrder);
                 prevIndex = 0;
             }
         } else {
-            mUi->setSorting(sortIndex, clickedIndex, Qt::AscendingOrder);
+            backend->setSorting(sortIndex, clickedIndex, Qt::AscendingOrder);
             prevIndex = clickedIndex;
         }
     }
