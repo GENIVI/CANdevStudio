@@ -8,6 +8,7 @@
 #include "candevice/canfactoryqt.hpp"
 #include "canrawsender/canrawsender.h"
 #include "canrawview/canrawview.h"
+#include "canrawview/canrawview_p.h"
 
 #include <nodes/FlowScene>
 #include <nodes/FlowView>
