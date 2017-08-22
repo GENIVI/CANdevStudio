@@ -8,12 +8,13 @@
 
 #include <QHeaderView>
 #include <QtWidgets/QWidget>
+#include <QtWidgets/QPushButton>
 
 #include <functional> // function
 #include <memory>
 #include <utility> // move
 
-namespace Ui { class CanRawViewPrivate };
+namespace Ui { class CanRawViewPrivate; }
 
 class CanRawViewBackend : public UIBackend<CanRawView>
 {

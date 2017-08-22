@@ -40,9 +40,9 @@ public:
         tvModel.setHorizontalHeaderLabels({ "rowID", "timeDouble", "time", "idInt", "id", "dir", "dlc", "data" });
 
         backend->initTableView(tvModel);
-        backend->setClearCbk([this] { clear(); });
-        backend->setDockUndockCbk([this] { dockUndock(); });
-        backend->setSectionClikedCbk([this](auto index) { sort(index); });
+        backend->setClearCbk([this] { this->clear(); });
+        backend->setDockUndockCbk([this] { this->dockUndock(); });
+        backend->setSectionClikedCbk([this](auto index) { this->sort(index); });
     }
 
     ~CanRawViewPrivate() = default;
