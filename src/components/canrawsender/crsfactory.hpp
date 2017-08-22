@@ -6,8 +6,6 @@
 
 struct CRSFactory : public CRSFactoryInterface {
     virtual ~CRSFactory() {}
-    virtual CRSGuiInterface* createGui() override {
-        return new CRSGui;
-    }
+    virtual CRSGuiInterface* createGui() override { return new CRSGui; }
 };
 #endif // CRSFACTORY_HPP
