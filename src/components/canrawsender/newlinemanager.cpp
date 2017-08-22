@@ -79,8 +79,10 @@ void NewLineManager::SetSendButtonState()
         if (mSend->isEnabled() == false) {
             mSend->setDisabled(false);
         }
-    } else if (mSend->isEnabled() == true) {
-        mSend->setDisabled(true);
+    } else {
+        if (mSend->isEnabled() == true) {
+            mSend->setDisabled(true);
+        }
     }
 }
 
@@ -92,7 +94,7 @@ void NewLineManager::SendButtonPressed()
         emit canRawSender->sendFrame(frame);
 
         if ((timer.isActive() == false) && (mCheckBox->getState() == true)) {
-            auto delay = mInterval->getText().toUInt();
+            const auto delay = mInterval->getText().toUInt();
             if (delay != 0) {
                 timer.start(delay);
                 mId->setDisabled(true);
