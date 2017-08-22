@@ -3,10 +3,10 @@
 
 #include <QtCore/QScopedPointer>
 #include <QtCore/QObject>
-#include <memory>  // unique_ptr
 
-#include "canrawview_p.h" // CanRawViewPrivate
 #include "uibackend.hpp"
+
+#include <memory>  // unique_ptr
 
 class CanRawViewPrivate;
 class QCanBusFrame;
