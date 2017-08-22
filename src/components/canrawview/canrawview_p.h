@@ -79,7 +79,7 @@ public:
         currentSortOrder = ui->tv->horizontalHeader()->sortIndicatorOrder();
         currentSortIndicator = ui->tv->horizontalHeader()->sortIndicatorSection();
         ui->tv->sortByColumn(sortIndex, currentSortOrder);
-        ui->tv->horizontalHeader()->setSortIndicator(currentSortIndicator, Qt::AscendingOrder);
+        ui->tv->horizontalHeader()->setSortIndicator(currentSortIndicator, currentSortOrder);
 
         if (ui->freezeBox->isChecked() == false) {
             ui->tv->scrollToBottom();
