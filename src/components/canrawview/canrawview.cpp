@@ -2,6 +2,7 @@
 #include "canrawview.h"
 #include "canrawview_p.h"
 #include "log.hpp"
+#include "ui_canrawview.h"
 #include "uibackend.hpp"
 
 #include <QtCore/QElapsedTimer>
