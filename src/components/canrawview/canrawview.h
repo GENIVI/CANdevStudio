@@ -5,6 +5,7 @@
 #include <QtCore/QObject>
 #include <memory>  // unique_ptr
 
+#include "canrawview_p.h" // CanRawViewPrivate
 #include "uibackend.hpp"
 
 class CanRawViewPrivate;
