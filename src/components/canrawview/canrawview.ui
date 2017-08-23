@@ -75,6 +75,12 @@
      <property name="dragEnabled">
       <bool>false</bool>
      </property>
+     <property name="selectionMode">
+      <enum>QAbstractItemView::NoSelection</enum>
+     </property>
+     <property name="selectionBehavior">
+      <enum>QAbstractItemView::SelectItems</enum>
+     </property>
      <property name="sortingEnabled">
       <bool>false</bool>
      </property>
