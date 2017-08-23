@@ -55,6 +55,8 @@ public:
         QJsonObject jObjects;
         QJsonArray viewModelsArray;
         /*
+         * Temporary below code comments use for test during debug and do possibility to write settings to file
+         *
         QString fileName("viewSave.cds");
         QFile saveFile(fileName);
 
@@ -63,12 +65,17 @@ public:
             return;
         }
         */
+        assert(ui != nullptr);
+        assert(ui->freezeBox != nullptr);
+        assert(q_ptr != nullptr);
+        assert(q_ptr->windowTitle().toStdString().length() != 0);
+
         writeColumnsOrder(jObjects);
         jObjects["Sorting"] = prevIndex;
         jObjects["Scrolling"] = (ui->freezeBox->isChecked() == true) ? 1 : 0;
         writeViewModel(viewModelsArray);
-        jObjects["Models"] = viewModelsArray;
-        json[q_ptr->windowTitle().toStdString().c_str()] = jObjects;
+        jObjects["Models"] = std::move(viewModelsArray);
+        json[q_ptr->windowTitle().toStdString().c_str()] = std::move(jObjects);
         /*
         QJsonDocument saveDoc(json);
         saveFile.write(saveDoc.toJson());
@@ -83,6 +90,7 @@ public:
         }
 
         auto payHex = frame.payload().toHex();
+        // inster space between bytes, skip the end
         for (int ii = payHex.size() - 2; ii >= 2; ii -= 2) {
             payHex.insert(ii, ' ');
         }
@@ -133,27 +141,34 @@ private:
 
     void writeColumnsOrder(QJsonObject& json) const
     {
-        uint ii = 0;
+        assert(ui != nullptr);
+        assert(ui->tv != nullptr);
+
+        int ii = 0;
         QJsonArray columnList;
-        for (auto iter : columnsOrder) {
-            if (ui->tv->isColumnHidden(ii++) == false) {
-                columnList.append(iter);
+        for (const auto& column : columnsOrder) {
+            if (ui->tv->isColumnHidden(ii) == false) {
+                columnList.append(column);
             }
+            ++ii;
         }
-        json["Columns"] = columnList;
+        json["Columns"] = std::move(columnList);
     }
 
     void writeViewModel(QJsonArray& jsonArray) const
     {
-        for (auto ii = 0; ii < tvModel.rowCount(); ++ii) {
+        assert(ui != nullptr);
+        assert(ui->tv != nullptr);
+
+        for (auto row = 0; row < tvModel.rowCount(); ++row) {
             QJsonArray lineIter;
-            for (auto jj = 0; jj < tvModel.columnCount(); ++jj) {
-                if (ui->tv->isColumnHidden(jj) == false) {
-                    auto pp = tvModel.data(tvModel.index(ii, jj));
-                    lineIter.append(pp.toString());
+            for (auto column = 0; column < tvModel.columnCount(); ++column) {
+                if (ui->tv->isColumnHidden(column) == false) {
+                    auto pp = tvModel.data(tvModel.index(row, column));
+                    lineIter.append(std::move(pp.toString()));
                 }
             }
-            jsonArray.append(lineIter);
+            jsonArray.append(std::move(lineIter));
         }
     }
 
