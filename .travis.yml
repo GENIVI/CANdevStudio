@@ -17,7 +17,7 @@ branches:
 before_install:
   - env
   - echo refs/heads/$TRAVIS_BRANCH~ refs/heads/$TRAVIS_BRANCH refs/heads/$TRAVIS_BRANCH | ./.trigger_appveyor.rb || true
-  - docker pull bartekt/can_dev_base_image
+  - docker pull przemyslawdraszkiewicz/can_dev_base_image
   - export ci_env=`bash <(curl -s https://codecov.io/env)`
 
 script:
