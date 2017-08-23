@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['name',['name',['../class_can_device_model.html#a23c811773e449cb11429031ca6034b12',1,'CanDeviceModel::name()'],['../class_can_raw_sender_model.html#a0462f9e7a88d81b9185ce6a7281dd4f3',1,'CanRawSenderModel::name()'],['../class_can_raw_view_model.html#a73f99f6424411b9fdfef965557d4c627',1,'CanRawViewModel::name()']]],
-  ['nports',['nPorts',['../class_can_device_model.html#ad02c6e46e947211afb068f202faa9e4b',1,'CanDeviceModel::nPorts()'],['../class_can_raw_sender_model.html#ad2b2ba0baf9826b9b781f8d05fbefdc0',1,'CanRawSenderModel::nPorts()'],['../class_can_raw_view_model.html#a9e366286e6593bf14168da1cadbd8654',1,'CanRawViewModel::nPorts()']]]
+  ['localfile',['localFile',['../main_8cpp.html#a315a8c1468a66de1f41cebc177e22ab0',1,'main.cpp']]],
+  ['log_2ehpp',['log.hpp',['../log_8hpp.html',1,'']]],
+  ['loopcheckbox',['LoopCheckBox',['../class_new_line_manager.html#a69f0c8e8a1213f641d43b7aa019e87dca34e95545cc4adfb58415f28278ea5b00',1,'NewLineManager']]]
 ];

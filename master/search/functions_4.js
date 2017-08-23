@@ -1,9 +1,5 @@
 var searchData=
 [
-  ['frame',['frame',['../class_can_device_data_in.html#a1341447a6637de166d6c5ad082feec80',1,'CanDeviceDataIn::frame()'],['../class_can_device_data_out.html#a8ef694ce969a050fc78e1c86f5879520',1,'CanDeviceDataOut::frame()']]],
-  ['frameonqueue',['frameOnQueue',['../class_can_device_model.html#a44f295e8d6bb766aa35bdf6d592d7af0',1,'CanDeviceModel']]],
-  ['framereceived',['frameReceived',['../class_can_device.html#a883d4ce76d9c7329e0d3718b7aa5589c',1,'CanDevice::frameReceived()'],['../class_can_raw_view.html#ace7bb231aa483369b389d02b353a8a17',1,'CanRawView::frameReceived()']]],
-  ['framesavailable',['framesAvailable',['../struct_can_device_interface.html#a20961a2ad09942ba9f847bd465201cba',1,'CanDeviceInterface::framesAvailable()'],['../struct_can_device_qt.html#af1bf6677b8ac4ebade2396c2eaa75f68',1,'CanDeviceQt::framesAvailable()']]],
-  ['framesent',['frameSent',['../class_can_device.html#aac8ab09993968f767c9013b9891c4312',1,'CanDevice::frameSent()'],['../class_can_raw_view.html#a81d095b9dfd03fbc2f53ca8c298abf4f',1,'CanRawView::frameSent()']]],
-  ['frameview',['frameView',['../class_can_raw_view_private.html#a1573036ba16b36b7c6ce61cacf6124a5',1,'CanRawViewPrivate']]]
+  ['embeddedwidget',['embeddedWidget',['../class_can_device_model.html#a2fca5ceed7bd75de14a83bea8d8fa6a0',1,'CanDeviceModel::embeddedWidget()'],['../class_can_raw_sender_model.html#a14586ee4f71c871c04298dfb8ef9d002',1,'CanRawSenderModel::embeddedWidget()'],['../class_can_raw_view_model.html#ad55f704cae033fd7223773c750388b81',1,'CanRawViewModel::embeddedWidget()']]],
+  ['end',['end',['../class_iterator.html#aaea31f3653412826005ce95b7718f4fd',1,'Iterator']]]
 ];

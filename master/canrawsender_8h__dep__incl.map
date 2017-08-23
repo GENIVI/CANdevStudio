@@ -1,8 +1,9 @@
 <map id="src/components/canrawsender/canrawsender.h" name="src/components/canrawsender/canrawsender.h">
 <area shape="rect" id="node2" href="$canrawsender_8cpp.html" title="src/components/canrawsender\l/canrawsender.cpp" alt="" coords="5,95,224,136"/>
 <area shape="rect" id="node3" href="$canrawsendermodel_8h.html" title="src/components/canrawsender\l/canrawsendermodel.h" alt="" coords="248,95,467,136"/>
-<area shape="rect" id="node6" href="$mainwindow_8h.html" title="src/gui/mainwindow.h" alt="" coords="491,102,647,129"/>
-<area shape="rect" id="node4" href="$canrawsendermodel_8cpp.html" title="src/components/canrawsender\l/canrawsendermodel.cpp" alt="" coords="155,184,373,225"/>
-<area shape="rect" id="node5" href="$mainwindow_8cpp.html" title="src/gui/mainwindow.cpp" alt="" coords="397,191,568,218"/>
-<area shape="rect" id="node7" href="$main_8cpp.html" title="src/gui/main.cpp" alt="" coords="593,191,719,218"/>
+<area shape="rect" id="node6" href="$newlinemanager_8cpp.html" title="src/components/canrawsender\l/newlinemanager.cpp" alt="" coords="491,95,709,136"/>
+<area shape="rect" id="node7" href="$mainwindow_8h.html" title="src/gui/mainwindow.h" alt="" coords="734,102,890,129"/>
+<area shape="rect" id="node4" href="$canrawsendermodel_8cpp.html" title="src/components/canrawsender\l/canrawsendermodel.cpp" alt="" coords="248,184,467,225"/>
+<area shape="rect" id="node5" href="$mainwindow_8cpp.html" title="src/gui/mainwindow.cpp" alt="" coords="521,191,692,218"/>
+<area shape="rect" id="node8" href="$main_8cpp.html" title="src/gui/main.cpp" alt="" coords="749,191,875,218"/>
 </map>

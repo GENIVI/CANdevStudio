@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['direction',['Direction',['../candevicedata_8h.html#a224b9163917ac32fc95a60d8c1eec3aa',1,'candevicedata.h']]]
+  ['colname',['ColName',['../class_new_line_manager.html#a69f0c8e8a1213f641d43b7aa019e87dc',1,'NewLineManager']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['mainwindow',['MainWindow',['../class_main_window.html',1,'']]]
+  ['iterator',['Iterator',['../class_iterator.html',1,'']]]
 ];

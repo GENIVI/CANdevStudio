@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['kdefaultlogger',['kDefaultLogger',['../log_8hpp.html#a20e4133288a6dd5e9b289bf4407d57d6',1,'kDefaultLogger():&#160;main.cpp'],['../main_8cpp.html#a20e4133288a6dd5e9b289bf4407d57d6',1,'kDefaultLogger():&#160;main.cpp']]]
+  ['handlewidgetdeletion',['handleWidgetDeletion',['../mainwindow_8cpp.html#a3b9d464ad39a8ef55e15b34582f02194',1,'mainwindow.cpp']]],
+  ['handlewidgetshowing',['handleWidgetShowing',['../mainwindow_8cpp.html#acef5b97894bfa7c1f3a144b55f17d8f6',1,'mainwindow.cpp']]]
 ];

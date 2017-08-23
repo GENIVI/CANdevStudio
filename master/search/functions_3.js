@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['embeddedwidget',['embeddedWidget',['../class_can_device_model.html#a2fca5ceed7bd75de14a83bea8d8fa6a0',1,'CanDeviceModel::embeddedWidget()'],['../class_can_raw_sender_model.html#a14586ee4f71c871c04298dfb8ef9d002',1,'CanRawSenderModel::embeddedWidget()'],['../class_can_raw_view_model.html#ad55f704cae033fd7223773c750388b81',1,'CanRawViewModel::embeddedWidget()']]]
+  ['datatype',['dataType',['../class_can_device_model.html#aa8a1a96f0f78a16f1692bc66d05e0095',1,'CanDeviceModel::dataType()'],['../class_can_raw_sender_model.html#ab620ab7774c2cb1f4847c7dc7c2267e7',1,'CanRawSenderModel::dataType()'],['../class_can_raw_view_model.html#ae7d4f0c3b91e497773271f8effaa4bf9',1,'CanRawViewModel::dataType()']]],
+  ['direction',['direction',['../class_can_device_data_out.html#a6b74b7c100b11fd3287caf3579a7e2ca',1,'CanDeviceDataOut']]],
+  ['dockundock',['dockUndock',['../class_can_raw_sender.html#a15d5f950a6e025b84825fd2fc2b23043',1,'CanRawSender::dockUndock()'],['../class_can_raw_view.html#aeda778fc33282d5380f9676ebfabf5dd',1,'CanRawView::dockUndock()']]]
 ];

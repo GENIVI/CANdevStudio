@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['visitablewith',['VisitableWith',['../struct_visitable_with.html',1,'']]]
+  ['mainwindow',['MainWindow',['../class_main_window.html',1,'']]]
 ];

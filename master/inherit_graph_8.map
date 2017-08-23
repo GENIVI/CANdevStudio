@@ -1,3 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node2" href="$class_main_window.html" title="MainWindow" alt="" coords="163,5,261,32"/>
+<area shape="rect" id="node1" href="$struct_c_r_s_factory_interface.html" title="CRSFactoryInterface" alt="" coords="5,5,156,32"/>
+<area shape="rect" id="node2" href="$struct_c_r_s_factory.html" title="CRSFactory" alt="" coords="204,5,299,32"/>
 </map>

@@ -1,5 +1,9 @@
 var searchData=
 [
-  ['readframe',['readFrame',['../struct_can_device_interface.html#a8c21c2e367ce6166182af2c7d183a73f',1,'CanDeviceInterface::readFrame()'],['../struct_can_device_qt.html#ab83cb6b3cd34b828fa52154826e6c87f',1,'CanDeviceQt::readFrame()']]],
-  ['resizable',['resizable',['../class_can_device_model.html#a07bc58b09f98ad65c4b54b001a34ae25',1,'CanDeviceModel::resizable()'],['../class_can_raw_sender_model.html#a27622d070cdda3d6bc79ff24377097d7',1,'CanRawSenderModel::resizable()'],['../class_can_raw_view_model.html#a7854dc6622631c5b4273f56ee455e300',1,'CanRawViewModel::resizable()']]]
+  ['name',['name',['../class_can_device_model.html#a23c811773e449cb11429031ca6034b12',1,'CanDeviceModel::name()'],['../class_can_raw_sender_model.html#a0462f9e7a88d81b9185ce6a7281dd4f3',1,'CanRawSenderModel::name()'],['../class_can_raw_view_model.html#a73f99f6424411b9fdfef965557d4c627',1,'CanRawViewModel::name()']]],
+  ['newlinemanager',['NewLineManager',['../class_new_line_manager.html#a4299add56da0cbcb7381d7763b4d1982',1,'NewLineManager::NewLineManager(CanRawSender *q, bool simulationState)'],['../class_new_line_manager.html#a00ff5b0ab566bad65bbc95bbfcc20029',1,'NewLineManager::NewLineManager(CanRawSender *q, bool simulationState, NLMFactoryInterface &amp;factory)']]],
+  ['nlmcheckbox',['NLMCheckBox',['../struct_n_l_m_check_box.html#a2306104822c6f04d334e2ecf7d9c4f72',1,'NLMCheckBox']]],
+  ['nlmlineedit',['NLMLineEdit',['../struct_n_l_m_line_edit.html#a4184867968f2a1eab828e36068c1d338',1,'NLMLineEdit']]],
+  ['nlmpushbutton',['NLMPushButton',['../struct_n_l_m_push_button.html#a12ef361e504e3fed341feeea324e66af',1,'NLMPushButton']]],
+  ['nports',['nPorts',['../class_can_device_model.html#ad02c6e46e947211afb068f202faa9e4b',1,'CanDeviceModel::nPorts()'],['../class_can_raw_sender_model.html#ad2b2ba0baf9826b9b781f8d05fbefdc0',1,'CanRawSenderModel::nPorts()'],['../class_can_raw_view_model.html#a9e366286e6593bf14168da1cadbd8654',1,'CanRawViewModel::nPorts()']]]
 ];
