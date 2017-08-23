@@ -26,6 +26,7 @@ MainWindow::MainWindow(QWidget* parent)
     modelRegistry->registerModel<CanRawSenderModel>();
     modelRegistry->registerModel<CanRawViewModel>();
 
+    canRawSender = std::make_shared<CanRawSender>();
     graphScene = std::make_shared<QtNodes::FlowScene>(modelRegistry);
 
     connect(graphScene.get(), &QtNodes::FlowScene::nodeCreated, this, &MainWindow::nodeCreatedCallback);
@@ -46,11 +47,12 @@ void MainWindow::nodeCreatedCallback(QtNodes::Node& node)
     auto dataModel = node.nodeDataModel();
 
     if (dataModel->name() == "CanRawSenderModel") {
-
-        auto rawSender = &static_cast<CanRawSenderModel*>(dataModel)->canRawSender;
-        ui->mdiArea->addSubWindow(rawSender);
-        connect(rawSender, &CanRawSender::dockUndock, this, [this, rawSender] { handleDock(rawSender, ui->mdiArea); });
-
+        QWidget* crsWidget = static_cast<CanRawSenderModel*>(dataModel)->canRawSender.getMainWidget();
+        auto& rawSender = static_cast<CanRawSenderModel*>(dataModel)->canRawSender;
+        ui->mdiArea->addSubWindow(crsWidget);
+        connect(&rawSender, &CanRawSender::dockUndock, this, [this, crsWidget] { handleDock(crsWidget, ui->mdiArea); });
+        connect(ui->actionstart, &QAction::triggered, &rawSender, &CanRawSender::startSimulation);
+        connect(ui->actionstop, &QAction::triggered, &rawSender, &CanRawSender::stopSimulation);
     } else if (dataModel->name() == "CanRawViewModel") {
         auto rawView = &static_cast<CanRawViewModel*>(dataModel)->canRawView;
         ui->mdiArea->addSubWindow(rawView);
@@ -74,7 +76,7 @@ void MainWindow::nodeDeletedCallback(QtNodes::Node& node)
     auto dataModel = node.nodeDataModel();
 
     if (dataModel->name() == "CanRawSenderModel") {
-        handleWidgetDeletion(&static_cast<CanRawSenderModel*>(dataModel)->canRawSender);
+        handleWidgetDeletion(static_cast<CanRawSenderModel*>(dataModel)->canRawSender.getMainWidget());
     } else if (dataModel->name() == "CanRawViewModel") {
         handleWidgetDeletion(&static_cast<CanRawViewModel*>(dataModel)->canRawView);
     }
@@ -96,7 +98,7 @@ void MainWindow::nodeDoubleClickedCallback(QtNodes::Node& node)
     auto dataModel = node.nodeDataModel();
 
     if (dataModel->name() == "CanRawSenderModel") {
-        handleWidgetShowing(&static_cast<CanRawSenderModel*>(dataModel)->canRawSender);
+        handleWidgetShowing(static_cast<CanRawSenderModel*>(dataModel)->canRawSender.getMainWidget());
     } else if (dataModel->name() == "CanRawViewModel") {
         handleWidgetShowing(&static_cast<CanRawViewModel*>(dataModel)->canRawView);
     }
