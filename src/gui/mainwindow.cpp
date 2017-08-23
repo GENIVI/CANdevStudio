@@ -8,7 +8,6 @@
 #include <QtWidgets/QMdiArea>
 #include <QtWidgets/QMdiSubWindow>
 #include <QtWidgets/QMessageBox>
-#include <iostream>
 
 #include <candevice/candevicemodel.h>
 #include <canrawsender/canrawsendermodel.h>
@@ -40,7 +39,17 @@ MainWindow::MainWindow(QWidget* parent)
 
 MainWindow::~MainWindow() { delete graphView; }
 
-void MainWindow::closeEvent(QCloseEvent*) { handleExitAction(); }
+void MainWindow::closeEvent(QCloseEvent* e)
+{
+    QMessageBox::StandardButton userReply;
+    userReply = QMessageBox::question(
+        this, "Exit", "Are you sure you want to quit CANdevStudio?", QMessageBox::Yes | QMessageBox::No);
+    if (userReply == QMessageBox::Yes) {
+        QApplication::quit();
+    } else {
+        e->ignore();
+    }
+}
 
 void MainWindow::nodeCreatedCallback(QtNodes::Node& node)
 {
@@ -120,15 +129,6 @@ void MainWindow::handleDock(QWidget* component, QMdiArea* mdi)
     }
 }
 
-void MainWindow::handleExitAction()
-{
-    QMessageBox::StandardButton userReply;
-    userReply = QMessageBox::question(
-        this, "Exit", "Are you sure you want to quit CANdevStudio?", QMessageBox::Yes | QMessageBox::No);
-    if (userReply == QMessageBox::Yes)
-        QApplication::quit();
-}
-
 void MainWindow::connectToolbarSignals()
 {
     connect(ui->actionstart, &QAction::triggered, ui->actionstop, &QAction::setDisabled);
@@ -188,7 +188,7 @@ void MainWindow::connectMenuSignals()
     ViewModes->addAction(ui->actionTabView);
     ViewModes->addAction(ui->actionSubWindowView);
     connect(ui->actionAbout, &QAction::triggered, this, [this] { QMessageBox::about(this, "About", "<about body>"); });
-    connect(ui->actionExit, &QAction::triggered, this, &MainWindow::handleExitAction);
+    connect(ui->actionExit, &QAction::triggered, this, &MainWindow::close);
     connect(ui->actionLoad, &QAction::triggered, this, &MainWindow::handleLoadAction);
     connect(ui->actionSave, &QAction::triggered, this, &MainWindow::handleSaveAction);
     connect(ui->actionTile, &QAction::triggered, ui->mdiArea, &QMdiArea::tileSubWindows);
