@@ -1,6 +1,7 @@
 
 #include "canrawview.h"
 #include "canrawview_p.h"
+#include "ui_canrawview.h"  // NOTE: must be here, otherwise compilation errors!
 #include "log.hpp"
 #include "uibackend.hpp"
 
@@ -20,8 +21,8 @@ CanRawView::CanRawView()
     Q_D(CanRawView);
 }
 
-CanRawView::CanRawView(std::unique_ptr<UIBackend<CanRawView>> backend)
-    : d_ptr{new CanRawViewPrivate{this, std::move(backend)}}
+CanRawView::CanRawView(UIBackend<CanRawView>& backend)
+    : d_ptr{new CanRawViewPrivate{this, backend}}
 {
     Q_D(CanRawView);
 }
@@ -71,8 +72,10 @@ QWidget* CanRawView::getMainWidget()
     Q_D(CanRawView);
 
     assert(nullptr != d);
-    assert(nullptr != d->backend);
 
-    return d->backend->getMainWidget();
+    return d->backend().getMainWidget();
 }
+
+#include "canrawview_p.cpp" // FIXME: once cmake macros get ready
+#include "canrawviewbackend.cpp" // FIXME: once cmake macros get ready
 

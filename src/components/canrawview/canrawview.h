@@ -1,14 +1,13 @@
 #ifndef CANRAWVIEW_H
 #define CANRAWVIEW_H
 
+#include "canrawview_p.h"
+
 #include <QtCore/QScopedPointer>
 #include <QtCore/QObject>
 
 #include "uibackend.hpp"
 
-#include <memory>  // unique_ptr
-
-class CanRawViewPrivate;
 class QCanBusFrame;
 class QWidget;
 
@@ -18,7 +17,7 @@ class CanRawView : public QObject {
 
 public:
     explicit CanRawView();
-    explicit CanRawView(std::unique_ptr<UIBackend<CanRawView>> backend);
+    explicit CanRawView(UIBackend<CanRawView>& backend);
 
     ~CanRawView() = default;
 
