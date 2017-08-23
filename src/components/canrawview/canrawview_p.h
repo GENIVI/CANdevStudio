@@ -53,6 +53,7 @@ public:
     void saveSettings(QJsonObject& json)
     {
         QJsonObject jObjects;
+        QJsonObject jSortingObject;
         QJsonArray viewModelsArray;
         /*
          * Temporary below code comments use for test during debug and do possibility to write settings to file
@@ -71,7 +72,8 @@ public:
         assert(q_ptr->windowTitle().toStdString().length() != 0);
 
         writeColumnsOrder(jObjects);
-        jObjects["Sorting"] = prevIndex;
+        writeSortingRules(jSortingObject);
+        jObjects["Sorting"] = std::move(jSortingObject);
         jObjects["Scrolling"] = (ui->freezeBox->isChecked() == true) ? 1 : 0;
         writeViewModel(viewModelsArray);
         jObjects["Models"] = std::move(viewModelsArray);
@@ -116,7 +118,7 @@ public:
         tvModel.appendRow(list);
 
         currentSortOrder = ui->tv->horizontalHeader()->sortIndicatorOrder();
-        currentSortIndicator = ui->tv->horizontalHeader()->sortIndicatorSection();
+        auto currentSortIndicator = ui->tv->horizontalHeader()->sortIndicatorSection();
         ui->tv->sortByColumn(sortIndex, currentSortOrder);
         ui->tv->horizontalHeader()->setSortIndicator(currentSortIndicator, currentSortOrder);
 
@@ -135,9 +137,15 @@ private:
     int rowID = 0;
     int prevIndex = 0;
     int sortIndex = 0;
-    int currentSortIndicator = 0;
     Qt::SortOrder currentSortOrder = Qt::AscendingOrder;
     QStringList columnsOrder;
+
+    void writeSortingRules(QJsonObject& json) const
+    {
+        json["prevIndex"] = prevIndex;
+        json["sortIndex"] = sortIndex;
+        json["currentSortOrder"] = currentSortOrder;
+    }
 
     void writeColumnsOrder(QJsonObject& json) const
     {
