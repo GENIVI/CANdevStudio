@@ -27,14 +27,15 @@ NewLineManager::NewLineManager(CanRawSender* q, bool simulationState, NLMFactory
     mData.reset(mFactory.createLineEdit());
     qRegExp.setPattern("[0-9A-Fa-f]{16}");
     vDataHex = new QRegExpValidator(qRegExp, this);
-    mData->init("Id in hex", vDataHex);
+    mData->init("Data in hex", vDataHex);
     mData->textChangedCbk(std::bind(&NewLineManager::SetSendButtonState, this));
 
     // Interval
     mInterval.reset(mFactory.createLineEdit());
     qRegExp.setPattern("[1-9]\\d{0,6}");
     vDec = new QRegExpValidator(qRegExp, this);
-    mInterval->init("Id in hex", vDec);
+    mInterval->init("Select Loop", vDec);
+    mInterval->setDisabled(true);
     mInterval->textChangedCbk(std::bind(&NewLineManager::SetSendButtonState, this));
 
     // Checkbox
@@ -43,7 +44,7 @@ NewLineManager::NewLineManager(CanRawSender* q, bool simulationState, NLMFactory
 
     // Send button
     mSend.reset(mFactory.createPushButton());
-    mSend->init("Send", true);
+    mSend->init("Send", false);
     mSend->pressedCbk(std::bind(&NewLineManager::SendButtonPressed, this));
 
     connect(&timer, &QTimer::timeout, this, &NewLineManager::TimerExpired);
