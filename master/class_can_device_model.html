@@ -107,12 +107,16 @@ $(document).ready(function(){initNavTree('class_can_device_model.html','');});
 
 <div class="header">
   <div class="summary">
+<a href="#pub-slots">Public Slots</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="class_can_device_model-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">CanDeviceModel Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>The class provides node graphical representation of <a class="el" href="class_can_device.html" title="The class provides abstraction layer for CAN BUS hardware. ">CanDevice</a>.  
+ <a href="class_can_device_model.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="candevicemodel_8h_source.html">candevicemodel.h</a>&gt;</code></p>
 <div class="dynheader">
@@ -130,34 +134,55 @@ Collaboration diagram for CanDeviceModel:</div>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-slots"></a>
+Public Slots</h2></td></tr>
+<tr class="memitem:afd9968d91ebcbb875772acd7d1a1590e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_device_model.html#afd9968d91ebcbb875772acd7d1a1590e">frameReceived</a> (const QCanBusFrame &amp;frame)</td></tr>
+<tr class="memdesc:afd9968d91ebcbb875772acd7d1a1590e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback, called when <a class="el" href="class_can_device.html" title="The class provides abstraction layer for CAN BUS hardware. ">CanDevice</a> emits signal frameReceived.  <a href="#afd9968d91ebcbb875772acd7d1a1590e">More...</a><br /></td></tr>
+<tr class="separator:afd9968d91ebcbb875772acd7d1a1590e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a467b122b1148c77be5c3f0b68b1b34a3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_device_model.html#a467b122b1148c77be5c3f0b68b1b34a3">frameSent</a> (bool status, const QCanBusFrame &amp;frame)</td></tr>
+<tr class="memdesc:a467b122b1148c77be5c3f0b68b1b34a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback, called when <a class="el" href="class_can_device.html" title="The class provides abstraction layer for CAN BUS hardware. ">CanDevice</a> emits signal frameReceived.  <a href="#a467b122b1148c77be5c3f0b68b1b34a3">More...</a><br /></td></tr>
+<tr class="separator:a467b122b1148c77be5c3f0b68b1b34a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:add5985ec6435f710acc0b0b14c560dd1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_device_model.html#add5985ec6435f710acc0b0b14c560dd1">CanDeviceModel</a> ()</td></tr>
 <tr class="separator:add5985ec6435f710acc0b0b14c560dd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5ed0f335aa7537aa9d61a2080738b6b2"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_device_model.html#a5ed0f335aa7537aa9d61a2080738b6b2">caption</a> () const override</td></tr>
+<tr class="memdesc:a5ed0f335aa7537aa9d61a2080738b6b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to get node caption.  <a href="#a5ed0f335aa7537aa9d61a2080738b6b2">More...</a><br /></td></tr>
 <tr class="separator:a5ed0f335aa7537aa9d61a2080738b6b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a23c811773e449cb11429031ca6034b12"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_device_model.html#a23c811773e449cb11429031ca6034b12">name</a> () const override</td></tr>
+<tr class="memdesc:a23c811773e449cb11429031ca6034b12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to identify model by data model name.  <a href="#a23c811773e449cb11429031ca6034b12">More...</a><br /></td></tr>
 <tr class="separator:a23c811773e449cb11429031ca6034b12"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7a5964b08ad2f87cbe66140614630119"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; NodeDataModel &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_device_model.html#a7a5964b08ad2f87cbe66140614630119">clone</a> () const override</td></tr>
 <tr class="separator:a7a5964b08ad2f87cbe66140614630119"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5aa2d2d64f1c36926e94782b682e4113"><td class="memItemLeft" align="right" valign="top">virtual QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_device_model.html#a5aa2d2d64f1c36926e94782b682e4113">modelName</a> () const </td></tr>
+<tr class="memdesc:a5aa2d2d64f1c36926e94782b682e4113"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to get model name.  <a href="#a5aa2d2d64f1c36926e94782b682e4113">More...</a><br /></td></tr>
 <tr class="separator:a5aa2d2d64f1c36926e94782b682e4113"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad02c6e46e947211afb068f202faa9e4b"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_device_model.html#ad02c6e46e947211afb068f202faa9e4b">nPorts</a> (PortType portType) const override</td></tr>
+<tr class="memdesc:ad02c6e46e947211afb068f202faa9e4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to get number of ports of each type used by model.  <a href="#ad02c6e46e947211afb068f202faa9e4b">More...</a><br /></td></tr>
 <tr class="separator:ad02c6e46e947211afb068f202faa9e4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa8a1a96f0f78a16f1692bc66d05e0095"><td class="memItemLeft" align="right" valign="top">NodeDataType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_device_model.html#aa8a1a96f0f78a16f1692bc66d05e0095">dataType</a> (PortType portType, PortIndex portIndex) const override</td></tr>
+<tr class="memdesc:aa8a1a96f0f78a16f1692bc66d05e0095"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to get data type of each port.  <a href="#aa8a1a96f0f78a16f1692bc66d05e0095">More...</a><br /></td></tr>
 <tr class="separator:aa8a1a96f0f78a16f1692bc66d05e0095"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad077ccb7d83c94b603f804bef2b57aac"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; NodeData &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_device_model.html#ad077ccb7d83c94b603f804bef2b57aac">outData</a> (PortIndex port) override</td></tr>
+<tr class="memdesc:ad077ccb7d83c94b603f804bef2b57aac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets output data for propagation.  <a href="#ad077ccb7d83c94b603f804bef2b57aac">More...</a><br /></td></tr>
 <tr class="separator:ad077ccb7d83c94b603f804bef2b57aac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7e7fd2ddd6e47f134741ed4b0b7ce821"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_device_model.html#a7e7fd2ddd6e47f134741ed4b0b7ce821">setInData</a> (std::shared_ptr&lt; NodeData &gt; nodeData, PortIndex port) override</td></tr>
+<tr class="memdesc:a7e7fd2ddd6e47f134741ed4b0b7ce821"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles data on input port, sends frame if correct.  <a href="#a7e7fd2ddd6e47f134741ed4b0b7ce821">More...</a><br /></td></tr>
 <tr class="separator:a7e7fd2ddd6e47f134741ed4b0b7ce821"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2fca5ceed7bd75de14a83bea8d8fa6a0"><td class="memItemLeft" align="right" valign="top">QWidget *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_device_model.html#a2fca5ceed7bd75de14a83bea8d8fa6a0">embeddedWidget</a> () override</td></tr>
+<tr class="memdesc:a2fca5ceed7bd75de14a83bea8d8fa6a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to get widget embedded in Node.  <a href="#a2fca5ceed7bd75de14a83bea8d8fa6a0">More...</a><br /></td></tr>
 <tr class="separator:a2fca5ceed7bd75de14a83bea8d8fa6a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a07bc58b09f98ad65c4b54b001a34ae25"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_device_model.html#a07bc58b09f98ad65c4b54b001a34ae25">resizable</a> () const override</td></tr>
+<tr class="memdesc:a07bc58b09f98ad65c4b54b001a34ae25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to get information if node is resizable.  <a href="#a07bc58b09f98ad65c4b54b001a34ae25">More...</a><br /></td></tr>
 <tr class="separator:a07bc58b09f98ad65c4b54b001a34ae25"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a44f295e8d6bb766aa35bdf6d592d7af0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_device_model.html#a44f295e8d6bb766aa35bdf6d592d7af0">frameOnQueue</a> ()</td></tr>
+<tr class="memdesc:a44f295e8d6bb766aa35bdf6d592d7af0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to send frames that were put in queue.  <a href="#a44f295e8d6bb766aa35bdf6d592d7af0">More...</a><br /></td></tr>
 <tr class="separator:a44f295e8d6bb766aa35bdf6d592d7af0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>The class provides node graphical representation of <a class="el" href="class_can_device.html" title="The class provides abstraction layer for CAN BUS hardware. ">CanDevice</a>. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="add5985ec6435f710acc0b0b14c560dd1"></a>
 <div class="memitem">
 <div class="memproto">
@@ -194,6 +219,9 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Used to get node caption. </p>
+<dl class="section return"><dt>Returns</dt><dd>Node caption </dd></dl>
 
 </div>
 </div>
@@ -252,6 +280,15 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Used to get data type of each port. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>of port  port id </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_can_device_data_out.html" title="The class describing data model used as output for CanDevice node. ">CanDeviceDataOut</a> type if portType is out, <a class="el" href="class_can_device_data_in.html" title="The class describing data model used as input for CanDevice node. ">CanDeviceDataIn</a> type if portType is in </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a2fca5ceed7bd75de14a83bea8d8fa6a0"></a>
@@ -275,6 +312,9 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Used to get widget embedded in Node. </p>
+<dl class="section return"><dt>Returns</dt><dd>QLabel </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a44f295e8d6bb766aa35bdf6d592d7af0"></a>
@@ -289,6 +329,83 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Used to send frames that were put in queue. </p>
+
+</div>
+</div>
+<a class="anchor" id="afd9968d91ebcbb875772acd7d1a1590e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CanDeviceModel::frameReceived </td>
+          <td>(</td>
+          <td class="paramtype">const QCanBusFrame &amp;&#160;</td>
+          <td class="paramname"><em>frame</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Callback, called when <a class="el" href="class_can_device.html" title="The class provides abstraction layer for CAN BUS hardware. ">CanDevice</a> emits signal frameReceived. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">received</td><td>frame </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a467b122b1148c77be5c3f0b68b1b34a3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CanDeviceModel::frameSent </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>status</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QCanBusFrame &amp;&#160;</td>
+          <td class="paramname"><em>frame</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Callback, called when <a class="el" href="class_can_device.html" title="The class provides abstraction layer for CAN BUS hardware. ">CanDevice</a> emits signal frameReceived. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">status</td><td>indicating if sending frame was successful </td></tr>
+    <tr><td class="paramname">sent</td><td>frame </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -313,6 +430,9 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Used to get model name. </p>
+<dl class="section return"><dt>Returns</dt><dd>Model name </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a23c811773e449cb11429031ca6034b12"></a>
@@ -335,6 +455,9 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Used to identify model by data model name. </p>
+<dl class="section return"><dt>Returns</dt><dd>Node model name </dd></dl>
 
 </div>
 </div>
@@ -360,6 +483,15 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Used to get number of ports of each type used by model. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>of port </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>1 if port in or out, 0 if any other type </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="ad077ccb7d83c94b603f804bef2b57aac"></a>
@@ -384,6 +516,15 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Sets output data for propagation. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">port</td><td>id </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_can_device_data_out.html" title="The class describing data model used as output for CanDevice node. ">CanDeviceDataOut</a> or <a class="el" href="class_can_device_data_in.html" title="The class describing data model used as input for CanDevice node. ">CanDeviceDataIn</a> filled with data </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a07bc58b09f98ad65c4b54b001a34ae25"></a>
@@ -406,6 +547,9 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Used to get information if node is resizable. </p>
+<dl class="section return"><dt>Returns</dt><dd>false </dd></dl>
 
 </div>
 </div>
@@ -440,6 +584,15 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Handles data on input port, sends frame if correct. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>on port </td></tr>
+    <tr><td class="paramname">port</td><td>id </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

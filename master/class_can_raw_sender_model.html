@@ -116,6 +116,9 @@ $(document).ready(function(){initNavTree('class_can_raw_sender_model.html','');}
 </div><!--header-->
 <div class="contents">
 
+<p>The class provides node graphical representation of <a class="el" href="class_can_raw_sender.html">CanRawSender</a>.  
+ <a href="class_can_raw_sender_model.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="canrawsendermodel_8h_source.html">canrawsendermodel.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for CanRawSenderModel:</div>
@@ -136,6 +139,7 @@ Collaboration diagram for CanRawSenderModel:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-slots"></a>
 Public Slots</h2></td></tr>
 <tr class="memitem:ad6cf38b39e63426d3efb9afcdf05c255"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_raw_sender_model.html#ad6cf38b39e63426d3efb9afcdf05c255">sendFrame</a> (const QCanBusFrame &amp;frame)</td></tr>
+<tr class="memdesc:ad6cf38b39e63426d3efb9afcdf05c255"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback, called when <a class="el" href="class_can_raw_sender.html">CanRawSender</a> emits signal sendFrame, sends frame.  <a href="#ad6cf38b39e63426d3efb9afcdf05c255">More...</a><br /></td></tr>
 <tr class="separator:ad6cf38b39e63426d3efb9afcdf05c255"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -145,24 +149,33 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a20e9c85060b552854ac3ec019b7cf283"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_raw_sender_model.html#a20e9c85060b552854ac3ec019b7cf283">~CanRawSenderModel</a> ()</td></tr>
 <tr class="separator:a20e9c85060b552854ac3ec019b7cf283"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae99d7b5b951ab61143a3ed98f5a41866"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_raw_sender_model.html#ae99d7b5b951ab61143a3ed98f5a41866">caption</a> () const override</td></tr>
+<tr class="memdesc:ae99d7b5b951ab61143a3ed98f5a41866"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to get node caption.  <a href="#ae99d7b5b951ab61143a3ed98f5a41866">More...</a><br /></td></tr>
 <tr class="separator:ae99d7b5b951ab61143a3ed98f5a41866"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0462f9e7a88d81b9185ce6a7281dd4f3"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_raw_sender_model.html#a0462f9e7a88d81b9185ce6a7281dd4f3">name</a> () const override</td></tr>
+<tr class="memdesc:a0462f9e7a88d81b9185ce6a7281dd4f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to identify model by data model name.  <a href="#a0462f9e7a88d81b9185ce6a7281dd4f3">More...</a><br /></td></tr>
 <tr class="separator:a0462f9e7a88d81b9185ce6a7281dd4f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3990e03d399f3bc74322dc2abc95ab47"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; NodeDataModel &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_raw_sender_model.html#a3990e03d399f3bc74322dc2abc95ab47">clone</a> () const override</td></tr>
 <tr class="separator:a3990e03d399f3bc74322dc2abc95ab47"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4bdb4db6eebcd42855210351a0e204ac"><td class="memItemLeft" align="right" valign="top">virtual QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_raw_sender_model.html#a4bdb4db6eebcd42855210351a0e204ac">modelName</a> () const </td></tr>
+<tr class="memdesc:a4bdb4db6eebcd42855210351a0e204ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to get model name.  <a href="#a4bdb4db6eebcd42855210351a0e204ac">More...</a><br /></td></tr>
 <tr class="separator:a4bdb4db6eebcd42855210351a0e204ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad2b2ba0baf9826b9b781f8d05fbefdc0"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_raw_sender_model.html#ad2b2ba0baf9826b9b781f8d05fbefdc0">nPorts</a> (PortType portType) const override</td></tr>
+<tr class="memdesc:ad2b2ba0baf9826b9b781f8d05fbefdc0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to get number of ports of each type used by model.  <a href="#ad2b2ba0baf9826b9b781f8d05fbefdc0">More...</a><br /></td></tr>
 <tr class="separator:ad2b2ba0baf9826b9b781f8d05fbefdc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab620ab7774c2cb1f4847c7dc7c2267e7"><td class="memItemLeft" align="right" valign="top">NodeDataType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_raw_sender_model.html#ab620ab7774c2cb1f4847c7dc7c2267e7">dataType</a> (PortType portType, PortIndex portIndex) const override</td></tr>
+<tr class="memdesc:ab620ab7774c2cb1f4847c7dc7c2267e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to get data type of each port.  <a href="#ab620ab7774c2cb1f4847c7dc7c2267e7">More...</a><br /></td></tr>
 <tr class="separator:ab620ab7774c2cb1f4847c7dc7c2267e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5f9f15ca57fcd463dbfbcf549e1c4a88"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; NodeData &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_raw_sender_model.html#a5f9f15ca57fcd463dbfbcf549e1c4a88">outData</a> (PortIndex port) override</td></tr>
+<tr class="memdesc:a5f9f15ca57fcd463dbfbcf549e1c4a88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets output data for propagation.  <a href="#a5f9f15ca57fcd463dbfbcf549e1c4a88">More...</a><br /></td></tr>
 <tr class="separator:a5f9f15ca57fcd463dbfbcf549e1c4a88"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a491777ddd4abae9dcd9a501abf7705a6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_raw_sender_model.html#a491777ddd4abae9dcd9a501abf7705a6">setInData</a> (std::shared_ptr&lt; NodeData &gt;, PortIndex) override</td></tr>
+<tr class="memdesc:a491777ddd4abae9dcd9a501abf7705a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles data on input port, not used in this class.  <a href="#a491777ddd4abae9dcd9a501abf7705a6">More...</a><br /></td></tr>
 <tr class="separator:a491777ddd4abae9dcd9a501abf7705a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a14586ee4f71c871c04298dfb8ef9d002"><td class="memItemLeft" align="right" valign="top">QWidget *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_raw_sender_model.html#a14586ee4f71c871c04298dfb8ef9d002">embeddedWidget</a> () override</td></tr>
+<tr class="memdesc:a14586ee4f71c871c04298dfb8ef9d002"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to get widget embedded in Node.  <a href="#a14586ee4f71c871c04298dfb8ef9d002">More...</a><br /></td></tr>
 <tr class="separator:a14586ee4f71c871c04298dfb8ef9d002"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a27622d070cdda3d6bc79ff24377097d7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_raw_sender_model.html#a27622d070cdda3d6bc79ff24377097d7">resizable</a> () const override</td></tr>
+<tr class="memdesc:a27622d070cdda3d6bc79ff24377097d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to get information if node is resizable.  <a href="#a27622d070cdda3d6bc79ff24377097d7">More...</a><br /></td></tr>
 <tr class="separator:a27622d070cdda3d6bc79ff24377097d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -170,7 +183,9 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a00f571255855b52bec4f69c912759160"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_can_raw_sender.html">CanRawSender</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_raw_sender_model.html#a00f571255855b52bec4f69c912759160">canRawSender</a></td></tr>
 <tr class="separator:a00f571255855b52bec4f69c912759160"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>The class provides node graphical representation of <a class="el" href="class_can_raw_sender.html">CanRawSender</a>. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="aafca46c260201ce3c1c20658d14456bc"></a>
 <div class="memitem">
 <div class="memproto">
@@ -231,6 +246,9 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Used to get node caption. </p>
+<dl class="section return"><dt>Returns</dt><dd>Node caption </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a3990e03d399f3bc74322dc2abc95ab47"></a>
@@ -288,6 +306,15 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Used to get data type of each port. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>of port  port id </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_can_device_data_out.html" title="The class describing data model used as output for CanDevice node. ">CanDeviceDataOut</a> type if portType is out </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a14586ee4f71c871c04298dfb8ef9d002"></a>
@@ -310,6 +337,9 @@ Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Used to get widget embedded in Node. </p>
+<dl class="section return"><dt>Returns</dt><dd>QLabel </dd></dl>
 
 </div>
 </div>
@@ -334,6 +364,9 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Used to get model name. </p>
+<dl class="section return"><dt>Returns</dt><dd>Model name </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a0462f9e7a88d81b9185ce6a7281dd4f3"></a>
@@ -356,6 +389,9 @@ Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Used to identify model by data model name. </p>
+<dl class="section return"><dt>Returns</dt><dd>Node model name </dd></dl>
 
 </div>
 </div>
@@ -381,6 +417,15 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Used to get number of ports of each type used by model. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>of port </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>1 if port out, 0 if any other type </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a5f9f15ca57fcd463dbfbcf549e1c4a88"></a>
@@ -405,6 +450,15 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Sets output data for propagation. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">port</td><td>id </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_can_device_data_out.html" title="The class describing data model used as output for CanDevice node. ">CanDeviceDataOut</a> filled with data </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a27622d070cdda3d6bc79ff24377097d7"></a>
@@ -427,6 +481,9 @@ Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Used to get information if node is resizable. </p>
+<dl class="section return"><dt>Returns</dt><dd>false </dd></dl>
 
 </div>
 </div>
@@ -451,6 +508,14 @@ Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Callback, called when <a class="el" href="class_can_raw_sender.html">CanRawSender</a> emits signal sendFrame, sends frame. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">received</td><td>frame </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -485,6 +550,15 @@ Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Handles data on input port, not used in this class. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>on port </td></tr>
+    <tr><td class="paramname">port</td><td>id </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

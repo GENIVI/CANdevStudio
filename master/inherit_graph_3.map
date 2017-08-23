@@ -1,5 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node2" href="$class_can_device_model.html" title="CanDeviceModel" alt="" coords="193,5,321,32"/>
-<area shape="rect" id="node3" href="$class_can_raw_sender_model.html" title="CanRawSenderModel" alt="" coords="179,56,335,83"/>
-<area shape="rect" id="node4" href="$class_can_raw_view_model.html" title="CanRawViewModel" alt="" coords="187,107,326,133"/>
+<area shape="rect" id="node2" href="$class_can_device_model.html" title="The class provides node graphical representation of CanDevice. " alt="" coords="193,5,321,32"/>
+<area shape="rect" id="node3" href="$class_can_raw_sender_model.html" title="The class provides node graphical representation of CanRawSender. " alt="" coords="179,56,335,83"/>
+<area shape="rect" id="node4" href="$class_can_raw_view_model.html" title="The class provides node graphical representation of CanRawView. " alt="" coords="187,107,326,133"/>
 </map>
