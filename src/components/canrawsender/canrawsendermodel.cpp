@@ -14,7 +14,9 @@ CanRawSenderModel::CanRawSenderModel()
 
     label->setAttribute(Qt::WA_TranslucentBackground);
 
-    canRawSender.setWindowTitle("CANrawSender");
+    QWidget* crsWidget = canRawSender.getMainWidget();
+    crsWidget->setWindowTitle("CANrawSender");
+
     connect(&canRawSender, &CanRawSender::sendFrame, this, &CanRawSenderModel::sendFrame);
 }
 

@@ -1,44 +1,62 @@
 #ifndef CANRAWSENDER_P_H
 #define CANRAWSENDER_P_H
 
+#include "crsfactory.hpp"
+#include "crsgui.hpp"
+#include "newlinemanager.h"
 #include "ui_canrawsender.h"
-#include <memory>
-#include <QtSerialBus/QCanBusFrame>
 #include <QtGui/QStandardItemModel>
+#include <memory>
 
 namespace Ui {
 class CanRawSenderPrivate;
 }
 
-class CanRawSenderPrivate : public QWidget {
+class CanRawSenderPrivate : public QObject {
     Q_OBJECT
     Q_DECLARE_PUBLIC(CanRawSender)
 
 public:
     CanRawSenderPrivate(CanRawSender* q)
-    : ui(std::make_unique<Ui::CanRawSenderPrivate>())
-    , q_ptr(q)
-    {
-        ui->setupUi(this);
-
-        tvModel.setHorizontalHeaderLabels({"id", "value",""});
-        ui->tv->setModel(&tvModel);
-        ui->tv->horizontalHeader()->setSectionsMovable(true);
-        ui->tv->setSelectionBehavior(QAbstractItemView::SelectRows);
-
-        connect(ui->pbAdd, &QPushButton::pressed, this, &CanRawSenderPrivate::addNewItem);
-        connect(ui->pbRemove, &QPushButton::pressed, this, &CanRawSenderPrivate::removeRowsSelectedByMouse);
-        connect(ui->pbDockUndock, &QPushButton::pressed, this, &CanRawSenderPrivate::dockUndock);
-    }
-
-    ~CanRawSenderPrivate()
+        : CanRawSenderPrivate(q, mDefFactory)
     {
     }
+
+    CanRawSenderPrivate(CanRawSender* q,  CRSFactoryInterface& factory)
+        : mFactory(factory)
+        , q_ptr(q)
+        , simulationState(false)
+    {
+        tvModel.setHorizontalHeaderLabels({ "Id", "Data", "Loop", "Interval", "" });
+
+        mUi.reset(mFactory.createGui());
+        mUi->initTableView(tvModel);
+
+        mUi->setAddCbk(std::bind(&CanRawSenderPrivate::addNewItem, this));
+        mUi->setRemoveCbk(std::bind(&CanRawSenderPrivate::removeRowsSelectedByMouse, this));
+        mUi->setDockUndockCbk(std::bind(&CanRawSenderPrivate::dockUndock, this));
+    }
+
+    ~CanRawSenderPrivate() {}
+
+    void SetSimulationState(bool state)
+    {
+        simulationState = state;
+        for (auto& iter : lines) {
+            iter->SetSimulationState(state);
+        }
+    }
+
+    CRSFactoryInterface& mFactory;
+    std::unique_ptr<CRSGuiInterface> mUi;
 
 private:
-    std::unique_ptr<Ui::CanRawSenderPrivate> ui;
+    std::vector<std::unique_ptr<NewLineManager>> lines;
     QStandardItemModel tvModel;
     CanRawSender* q_ptr;
+    bool simulationState;
+    CRSFactory mDefFactory;
+
 
 private slots:
     /**
@@ -49,41 +67,30 @@ private slots:
      */
     void removeRowsSelectedByMouse()
     {
-        QModelIndexList IndexList = ui->tv->selectionModel()->selectedRows();
+
+        QModelIndexList IndexList = mUi->getSelectedRows();
         std::list<QModelIndex> tmp = IndexList.toStdList();
         tmp.sort(); // List must to be sorted and reversed because erasing started from last row
         tmp.reverse();
         for (QModelIndex n : tmp) {
-            tvModel.removeRow(n.row());
+            tvModel.removeRow(n.row()); // Delete line from table view
+            lines.erase(lines.begin() + n.row()); // Delete lines also from collection
+            // TODO: check if works when the collums was sorted before
         }
+
     }
 
     void addNewItem()
     {
-        QStandardItem* id = new QStandardItem();
-        QStandardItem* value = new QStandardItem();
-        QList<QStandardItem*> list {id, value};
+
+        QList<QStandardItem*> list{};
         tvModel.appendRow(list);
+        auto newLine = std::make_unique<NewLineManager>(q_ptr, simulationState);
+        for (NewLineManager::ColName ii : NewLineManager::ColNameIterator()) {
+            mUi->setIndexWidget(tvModel.index(tvModel.rowCount() - 1, static_cast<int>(ii)), newLine->GetColsWidget(ii));
+        }
+        lines.push_back(std::move(newLine));
 
-        QPushButton* pbSend = new QPushButton("Send");
-        ui->tv->setIndexWidget(tvModel.index(tvModel.rowCount() - 1, 2), pbSend);
-
-        connect(pbSend, &QPushButton::pressed, this, [this, id, value] {
-            Q_Q(CanRawSender);
-
-            if (id->text().size() && value->text().size()) {
-                quint32 val;
-                if (id->text().startsWith("0x"))
-                    val = id->text().toUInt(nullptr, 16);
-                else
-                    val = id->text().toUInt(nullptr, 10);
-
-                QCanBusFrame frame;
-                frame.setFrameId(val);
-                frame.setPayload(QByteArray::fromHex(value->text().toUtf8()));
-                emit q->sendFrame(frame);
-            }
-        });
     }
 
     void dockUndock()
