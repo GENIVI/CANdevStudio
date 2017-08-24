@@ -10,6 +10,7 @@
 
 class QCanBusFrame;
 class QWidget;
+class QCloseEvent;
 
 class CanRawView : public QObject {
     Q_OBJECT
