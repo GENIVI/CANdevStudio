@@ -1,7 +1,7 @@
 
-#include <catch.hpp>
 #include "candevice/candeviceqt.hpp"
 #include "candevice/canfactoryqt.hpp"
+#include <catch.hpp>
 
 TEST_CASE("Invalid parameters throws an exception", "[candeviceqt]")
 {
