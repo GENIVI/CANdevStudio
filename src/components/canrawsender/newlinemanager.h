@@ -2,6 +2,7 @@
 #define NEWLINEMANAGER_H
 
 #include "nlmfactory.hpp"
+#include <QJsonObject>
 #include <QTimer>
 #include <QValidator>
 #include <QtSerialBus/QCanBusFrame>
@@ -82,6 +83,10 @@ public:
     /// internal timer (if was started before)
     /// \param[in] state Actual simulator state
     void SetSimulationState(bool state);
+
+    /// \brief The function is responsible for convert line content to json format
+    /// \param[in] json Json object
+    void Line2Json(QJsonObject& json) const;
 
 private:
     /// \brief This function performs the necessary things when the meter stops

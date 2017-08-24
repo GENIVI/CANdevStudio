@@ -5,6 +5,8 @@
 #include "crsgui.hpp"
 #include "newlinemanager.h"
 #include "ui_canrawsender.h"
+#include <QJsonArray>
+#include <QJsonObject>
 #include <QtGui/QStandardItemModel>
 #include <memory>
 
@@ -22,12 +24,13 @@ public:
     {
     }
 
-    CanRawSenderPrivate(CanRawSender* q,  CRSFactoryInterface& factory)
+    CanRawSenderPrivate(CanRawSender* q, CRSFactoryInterface& factory)
         : mFactory(factory)
         , q_ptr(q)
         , simulationState(false)
+        , columnsOrder({ "Id", "Data", "Loop", "Interval", "" })
     {
-        tvModel.setHorizontalHeaderLabels({ "Id", "Data", "Loop", "Interval", "" });
+        tvModel.setHorizontalHeaderLabels(columnsOrder);
 
         mUi.reset(mFactory.createGui());
         mUi->initTableView(tvModel);
@@ -47,6 +50,22 @@ public:
         }
     }
 
+    void saveSettings(QJsonObject& json) const
+    {
+        QJsonObject jSortingObject;
+        QJsonArray lineArray;
+        writeColumnsOrder(json);
+        writeSortingRules(jSortingObject);
+        json["Sorting"] = std::move(jSortingObject);
+
+        for (const auto& lineItem : lines) {
+            QJsonObject lineObject;
+            lineItem->Line2Json(lineObject);
+            lineArray.append(std::move(lineObject));
+        }
+        json["Content"] = std::move(lineArray);
+    }
+
     CRSFactoryInterface& mFactory;
     std::unique_ptr<CRSGuiInterface> mUi;
 
@@ -56,7 +75,19 @@ private:
     CanRawSender* q_ptr;
     bool simulationState;
     CRSFactory mDefFactory;
+    int currentIndex;
+    QStringList columnsOrder;
 
+    void writeColumnsOrder(QJsonObject& json) const
+    {
+        QJsonArray columnList;
+        for (const auto& column : columnsOrder) {
+            columnList.append(column);
+        }
+        json["Columns"] = std::move(columnList);
+    }
+
+    void writeSortingRules(QJsonObject& json) const { json["currentIndex"] = currentIndex; }
 
 private slots:
     /**
@@ -77,7 +108,6 @@ private slots:
             lines.erase(lines.begin() + n.row()); // Delete lines also from collection
             // TODO: check if works when the collums was sorted before
         }
-
     }
 
     void addNewItem()
@@ -87,10 +117,10 @@ private slots:
         tvModel.appendRow(list);
         auto newLine = std::make_unique<NewLineManager>(q_ptr, simulationState);
         for (NewLineManager::ColName ii : NewLineManager::ColNameIterator()) {
-            mUi->setIndexWidget(tvModel.index(tvModel.rowCount() - 1, static_cast<int>(ii)), newLine->GetColsWidget(ii));
+            mUi->setIndexWidget(
+                tvModel.index(tvModel.rowCount() - 1, static_cast<int>(ii)), newLine->GetColsWidget(ii));
         }
         lines.push_back(std::move(newLine));
-
     }
 
     void dockUndock()
