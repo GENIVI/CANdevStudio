@@ -9,7 +9,7 @@ public:
     explicit UniqueFilterModel(QObject* parent = 0);
 
     void updateFilter(int frameID, double time, QString direction);
-       void clearFilter();
+    void clearFilter();
     bool isFilterActive();
 
 protected:
@@ -21,8 +21,7 @@ public slots:
     void toggleFilter();
 
 private:
-    QMap<QPair <int,QString>, double> uniques;
+    QMap<QPair<int, QString>, double> uniques;
     bool filterActive = false;
-
 };
 #endif

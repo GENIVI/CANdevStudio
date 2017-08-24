@@ -7,38 +7,31 @@ UniqueFilterModel::UniqueFilterModel(QObject* parent)
 
 void UniqueFilterModel::updateFilter(int frameID, double time, QString direction)
 {
-    QPair< int, QString> value(frameID, direction);
+    QPair<int, QString> value(frameID, direction);
 
-    if ((!uniques.contains(value)) || (time > uniques[value]))
-    {
+    if ((!uniques.contains(value)) || (time > uniques[value])) {
         uniques[value] = time;
     }
 
     invalidateFilter();
 }
 
-bool UniqueFilterModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
+bool UniqueFilterModel::filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const
 {
     int frameID = sourceModel()->index(sourceRow, 3, sourceParent).data().toInt();
     double time = sourceModel()->index(sourceRow, 1, sourceParent).data().toDouble();
     QString direction = sourceModel()->index(sourceRow, 5, sourceParent).data().toString();
 
-    QPair< int, QString> value(frameID,direction);
+    QPair<int, QString> value(frameID, direction);
 
-    if ((uniques[value] == time) || (filterActive == false))
-    {
+    if ((uniques[value] == time) || (filterActive == false)) {
         return true;
-    }
-    else
-    {
+    } else {
         return false;
     }
 }
 
-void UniqueFilterModel::clearFilter()
-{
-    uniques.clear();
-}
+void UniqueFilterModel::clearFilter() { uniques.clear(); }
 
 void UniqueFilterModel::toggleFilter()
 {
@@ -46,7 +39,4 @@ void UniqueFilterModel::toggleFilter()
     invalidateFilter();
 }
 
-bool UniqueFilterModel::isFilterActive()
-{
-    return filterActive;
-}
+bool UniqueFilterModel::isFilterActive() { return filterActive; }

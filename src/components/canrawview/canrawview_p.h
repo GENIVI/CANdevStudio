@@ -5,6 +5,7 @@
 #include "ui_canrawview.h"
 #include <QDebug>
 //#include <QFile>
+#include "uniquefiltermodel.h"
 #include <QHeaderView>
 #include <QJsonArray>
 #include <QJsonDocument>
@@ -12,7 +13,6 @@
 #include <QtCore/QElapsedTimer>
 #include <QtGui/QStandardItemModel>
 #include <QtSerialBus/QCanBusFrame>
-#include "uniquefiltermodel.h"
 
 namespace Ui {
 class CanRawViewPrivate;
@@ -103,9 +103,9 @@ public:
 
         QList<QVariant> qvList;
         QList<QStandardItem*> list;
-    
+
         int frameID = frame.frameId();
-        QString time = QString::number((double)timer->elapsed() / 1000, 'f', 2);        
+        QString time = QString::number((double)timer->elapsed() / 1000, 'f', 2);
 
         qvList.append(rowID++);
         qvList.append(time.toDouble());
@@ -128,7 +128,7 @@ public:
         auto currentSortIndicator = ui->tv->horizontalHeader()->sortIndicatorSection();
         ui->tv->sortByColumn(sortIndex, currentSortOrder);
         ui->tv->horizontalHeader()->setSortIndicator(currentSortIndicator, currentSortOrder);
-   
+
         uniqueModel.updateFilter(frameID, time.toDouble(), direction);
 
         if (ui->freezeBox->isChecked() == false) {
@@ -198,8 +198,8 @@ private slots:
      *
      * This function is used to clear data and filter models
      */
-    void clear() 
-    { 
+    void clear()
+    {
         tvModel.removeRows(0, tvModel.rowCount());
         uniqueModel.clearFilter();
     }
@@ -231,18 +231,16 @@ private slots:
             prevIndex = clickedIndex;
         }
     }
+
     void setFilter()
     {
         uniqueModel.toggleFilter();
-        if (uniqueModel.isFilterActive() == true)
-        {
+
+        if (uniqueModel.isFilterActive() == true) {
             ui->pbToggleFilter->setText("Combined view");
-        }
-        else
-        {
+        } else {
             ui->pbToggleFilter->setText("Free view");
         }
     }
-
 };
 #endif // CANRAWVIEW_P_H
