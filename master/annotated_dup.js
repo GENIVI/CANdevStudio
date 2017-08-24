@@ -16,6 +16,7 @@ var annotated_dup =
     [ "CanRawView", "class_can_raw_view.html", "class_can_raw_view" ],
     [ "CanRawViewModel", "class_can_raw_view_model.html", "class_can_raw_view_model" ],
     [ "CanRawViewPrivate", "class_can_raw_view_private.html", "class_can_raw_view_private" ],
+    [ "CDSWidget", "struct_c_d_s_widget.html", "struct_c_d_s_widget" ],
     [ "CRSFactory", "struct_c_r_s_factory.html", "struct_c_r_s_factory" ],
     [ "CRSFactoryInterface", "struct_c_r_s_factory_interface.html", "struct_c_r_s_factory_interface" ],
     [ "CRSGui", "struct_c_r_s_gui.html", "struct_c_r_s_gui" ],

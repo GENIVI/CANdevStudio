@@ -38,7 +38,8 @@ var hierarchy =
     ] ],
     [ "QWidget", null, [
       [ "CanRawView", "class_can_raw_view.html", null ],
-      [ "CanRawViewPrivate", "class_can_raw_view_private.html", null ]
+      [ "CanRawViewPrivate", "class_can_raw_view_private.html", null ],
+      [ "CDSWidget", "struct_c_d_s_widget.html", null ]
     ] ],
     [ "VisitableWith< Visitor >", "struct_visitable_with.html", null ],
     [ "NodeData", null, [
