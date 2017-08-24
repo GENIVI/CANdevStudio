@@ -12,6 +12,7 @@
 #include <QtCore/QElapsedTimer>
 #include <QtGui/QStandardItemModel>
 #include <QtSerialBus/QCanBusFrame>
+#include "uniquefiltermodel.h"
 
 namespace Ui {
 class CanRawViewPrivate;
@@ -35,6 +36,8 @@ public:
 
         tvModel.setHorizontalHeaderLabels(columnsOrder);
         ui->tv->setModel(&tvModel);
+        uniqueModel.setSourceModel(&tvModel);
+        ui->tv->setModel(&uniqueModel);
         ui->tv->horizontalHeader()->setSectionsMovable(true);
         ui->tv->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
         ui->tv->setColumnHidden(0, true);
@@ -43,6 +46,7 @@ public:
 
         connect(ui->pbClear, &QPushButton::pressed, this, &CanRawViewPrivate::clear);
         connect(ui->pbDockUndock, &QPushButton::pressed, this, &CanRawViewPrivate::dockUndock);
+        connect(ui->pbToggleFilter, &QPushButton::pressed, this, &CanRawViewPrivate::setFilter);
 
         connect(
             ui->tv->horizontalHeader(), &QHeaderView::sectionClicked, [=](int logicalIndex) { sort(logicalIndex); });
@@ -99,12 +103,15 @@ public:
 
         QList<QVariant> qvList;
         QList<QStandardItem*> list;
+    
+        int frameID = frame.frameId();
+        QString time = QString::number((double)timer->elapsed() / 1000, 'f', 2);        
 
         qvList.append(rowID++);
-        qvList.append(QString::number((double)timer->elapsed() / 1000, 'f', 2).toDouble());
-        qvList.append(QString::number((double)timer->elapsed() / 1000, 'f', 2));
-        qvList.append(frame.frameId());
-        qvList.append(QString("0x" + QString::number(frame.frameId(), 16)));
+        qvList.append(time.toDouble());
+        qvList.append(time);
+        qvList.append(frameID);
+        qvList.append(QString("0x" + QString::number(frameID, 16)));
         qvList.append(direction);
         qvList.append(QString::number(frame.payload().size()).toInt());
         qvList.append(QString::fromUtf8(payHex.data(), payHex.size()));
@@ -121,6 +128,8 @@ public:
         auto currentSortIndicator = ui->tv->horizontalHeader()->sortIndicatorSection();
         ui->tv->sortByColumn(sortIndex, currentSortOrder);
         ui->tv->horizontalHeader()->setSortIndicator(currentSortIndicator, currentSortOrder);
+   
+        uniqueModel.updateFilter(frameID, time.toDouble(), direction);
 
         if (ui->freezeBox->isChecked() == false) {
             ui->tv->scrollToBottom();
@@ -130,14 +139,12 @@ public:
     std::unique_ptr<Ui::CanRawViewPrivate> ui;
     std::unique_ptr<QElapsedTimer> timer;
     QStandardItemModel tvModel;
+    UniqueFilterModel uniqueModel;
     bool simStarted;
 
 private:
     CanRawView* q_ptr;
-    int prevIndex = 0;
-    int sortIndex = 0;
-    Qt::SortOrder currentSortOrder = Qt::AscendingOrder;
-    QStringList columnsOrder;
+
 
     void writeSortingRules(QJsonObject& json) const
     {
@@ -179,13 +186,23 @@ private:
         }
     }
 
+    int rowID = 0;
+    int prevIndex = 0;
+    int sortIndex = 0;
+    int currentSortIndicator = 0;
+    Qt::SortOrder currentSortOrder = Qt::AscendingOrder;
+
 private slots:
     /**
      * @brief clear
      *
-     * This function is used to clear whole table
+     * This function is used to clear data and filter models
      */
-    void clear() { tvModel.removeRows(0, tvModel.rowCount()); }
+    void clear() 
+    { 
+        tvModel.removeRows(0, tvModel.rowCount());
+        uniqueModel.clearFilter();
+    }
 
     void dockUndock()
     {
@@ -195,8 +212,8 @@ private slots:
 
     void sort(const int clickedIndex)
     {
-        int currentSortOrder = ui->tv->horizontalHeader()->sortIndicatorOrder();
-        int sortIndex = clickedIndex;
+        currentSortOrder = ui->tv->horizontalHeader()->sortIndicatorOrder();
+        sortIndex = clickedIndex;
 
         if (prevIndex == clickedIndex) {
             if (currentSortOrder == Qt::DescendingOrder) {
@@ -214,5 +231,18 @@ private slots:
             prevIndex = clickedIndex;
         }
     }
+    void setFilter()
+    {
+        uniqueModel.toggleFilter();
+        if (uniqueModel.isFilterActive() == true)
+        {
+            ui->pbToggleFilter->setText("Combined view");
+        }
+        else
+        {
+            ui->pbToggleFilter->setText("Free view");
+        }
+    }
+
 };
 #endif // CANRAWVIEW_P_H
