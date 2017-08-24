@@ -1,6 +1,9 @@
 #ifndef CANDEVICEMODEL_H
 #define CANDEVICEMODEL_H
 
+#include "modelvisitor.h"  // CanNodeDataModelVisitor
+#include "visitablewith.h"
+
 #include <QtCore/QObject>
 #include <QtWidgets/QLabel>
 
@@ -22,13 +25,19 @@ enum class Direction;
 /**
 *   @brief The class provides node graphical representation of CanDevice
 */
-class CanDeviceModel : public NodeDataModel {
+class CanDeviceModel
+  : public NodeDataModel
+  , public VisitableWith<CanNodeDataModelVisitor>
+{
     Q_OBJECT
 
 public:
     CanDeviceModel();
 
 public:
+    /** @see VisitableWith */
+    virtual void visit(CanNodeDataModelVisitor& v) override { v(*this); }
+
     /**
     *   @brief  Used to get node caption
     *   @return Node caption

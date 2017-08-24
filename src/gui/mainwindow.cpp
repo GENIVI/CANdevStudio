@@ -1,7 +1,8 @@
-#include "ui_mainwindow.h"
+
 #include "log.hpp"
 #include "mainwindow.h"
 #include "modelvisitor.h"  // apply_model_visitor
+#include "ui_mainwindow.h"
 
 #include <QCloseEvent>
 #include <QtCore/QFile>
@@ -68,7 +69,8 @@ void MainWindow::nodeCreatedCallback(QtNodes::Node& node)
             connect(&rawSender, &CanRawSender::dockUndock, this, [this, crsWidget] { handleDock(crsWidget, ui->mdiArea); });
             connect(ui->actionstart, &QAction::triggered, &rawSender, &CanRawSender::startSimulation);
             connect(ui->actionstop, &QAction::triggered, &rawSender, &CanRawSender::stopSimulation);
-          });
+          }
+        , [this](CanDeviceModel&) {});
 }
 
 void handleWidgetDeletion(QWidget* widget)
@@ -94,7 +96,9 @@ void MainWindow::nodeDeletedCallback(QtNodes::Node& node)
         , [this, dataModel](CanRawSenderModel& m)
           {
             handleWidgetDeletion(m.canRawSender.getMainWidget());
-          });
+          }
+        , [this](CanDeviceModel&) {});
+
 }
 
 void handleWidgetShowing(QWidget* widget)
@@ -122,7 +126,8 @@ void MainWindow::nodeDoubleClickedCallback(QtNodes::Node& node)
         , [this, dataModel](CanRawSenderModel& m)
           {
             handleWidgetShowing(m.canRawSender.getMainWidget());
-          });
+          }
+        , [this](CanDeviceModel&) {});
 }
 
 void MainWindow::handleDock(QWidget* component, QMdiArea* mdi)
