@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['savesettings',['saveSettings',['../class_can_raw_view_private.html#a165c282c952acf5d31853a4c9cd74c40',1,'CanRawViewPrivate']]],
   ['sendbutton',['SendButton',['../class_new_line_manager.html#a69f0c8e8a1213f641d43b7aa019e87dca50e95d533a998dcfd6c4614c140997a0',1,'NewLineManager']]],
   ['sendframe',['sendFrame',['../class_can_device.html#a6ebe57b42df5fb0d0673e652e081c2b0',1,'CanDevice::sendFrame()'],['../class_can_raw_sender.html#a0e6950f7ee975ad8ae200b4bff32614d',1,'CanRawSender::sendFrame()'],['../class_can_raw_sender_model.html#ad6cf38b39e63426d3efb9afcdf05c255',1,'CanRawSenderModel::sendFrame()']]],
   ['setaddcbk',['setAddCbk',['../struct_c_r_s_gui.html#a95dbcd8e18bdad0e7ec59488fde3ce52',1,'CRSGui::setAddCbk()'],['../struct_c_r_s_gui_interface.html#a5e1e2e35d5f155f5abbd8e84538f088b',1,'CRSGuiInterface::setAddCbk()']]],
