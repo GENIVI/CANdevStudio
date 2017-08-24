@@ -4,6 +4,7 @@
 #include "crsguiinterface.hpp"
 #include "ui_canrawsender.h"
 #include <memory>
+#include <cdswidget.h>
 
 namespace Ui {
 class CanRawSenderPrivate;
@@ -12,7 +13,7 @@ class CanRawSenderPrivate;
 struct CRSGui : public CRSGuiInterface {
     CRSGui()
         : ui(new Ui::CanRawSenderPrivate)
-        , widget(new QWidget)
+        , widget(new CDSWidget)
     {
         ui->setupUi(widget);
     }
@@ -41,6 +42,6 @@ struct CRSGui : public CRSGuiInterface {
 
 private:
     Ui::CanRawSenderPrivate* ui;
-    QWidget* widget;
+    CDSWidget* widget;
 };
 #endif // CRSGUI_HPP
