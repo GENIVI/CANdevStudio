@@ -60,7 +60,6 @@ private:
     UIBackend<CanRawView>* uiHandle;
     /** @} */
 
-    int prevIndex = 0;
     int rowID = 0;
     int prevIndex = 0;
     int sortIndex = 0;
