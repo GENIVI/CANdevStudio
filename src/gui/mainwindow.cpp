@@ -1,6 +1,7 @@
-#include "mainwindow.h"
-#include "log.hpp"
 #include "ui_mainwindow.h"
+#include "log.hpp"
+#include "mainwindow.h"
+#include "modelvisitor.h"  // apply_model_visitor
 
 #include <QCloseEvent>
 #include <QtCore/QFile>
@@ -8,6 +9,8 @@
 #include <QtWidgets/QMdiArea>
 #include <QtWidgets/QMdiSubWindow>
 #include <QtWidgets/QMessageBox>
+
+#include <cassert> // assert
 #include <iostream>
 
 #include <candevice/candevicemodel.h>
@@ -46,20 +49,26 @@ void MainWindow::nodeCreatedCallback(QtNodes::Node& node)
 {
     auto dataModel = node.nodeDataModel();
 
-    if (dataModel->name() == "CanRawSenderModel") {
-        QWidget* crsWidget = static_cast<CanRawSenderModel*>(dataModel)->canRawSender.getMainWidget();
-        auto& rawSender = static_cast<CanRawSenderModel*>(dataModel)->canRawSender;
-        ui->mdiArea->addSubWindow(crsWidget);
-        connect(&rawSender, &CanRawSender::dockUndock, this, [this, crsWidget] { handleDock(crsWidget, ui->mdiArea); });
-        connect(ui->actionstart, &QAction::triggered, &rawSender, &CanRawSender::startSimulation);
-        connect(ui->actionstop, &QAction::triggered, &rawSender, &CanRawSender::stopSimulation);
-    } else if (dataModel->name() == "CanRawViewModel") {
-        auto rawView = &static_cast<CanRawViewModel*>(dataModel)->canRawView;
-        ui->mdiArea->addSubWindow(rawView);
-        connect(ui->actionstart, &QAction::triggered, rawView, &CanRawView::startSimulation);
-        connect(ui->actionstop, &QAction::triggered, rawView, &CanRawView::stopSimulation);
-        connect(rawView, &CanRawView::dockUndock, this, [this, rawView] { handleDock(rawView, ui->mdiArea); });
-    }
+    assert(nullptr != dataModel);
+
+    apply_model_visitor(*dataModel
+        , [this, dataModel](CanRawViewModel& m)
+          {
+            auto rawView = &m.canRawView;
+            ui->mdiArea->addSubWindow(rawView);
+            connect(ui->actionstart, &QAction::triggered, rawView, &CanRawView::startSimulation);
+            connect(ui->actionstop, &QAction::triggered, rawView, &CanRawView::stopSimulation);
+            connect(rawView, &CanRawView::dockUndock, this, [this, rawView] { handleDock(rawView, ui->mdiArea); });
+          }
+        , [this, dataModel](CanRawSenderModel& m)
+          {
+            QWidget* crsWidget = m.canRawSender.getMainWidget();
+            auto& rawSender = m.canRawSender;
+            ui->mdiArea->addSubWindow(crsWidget);
+            connect(&rawSender, &CanRawSender::dockUndock, this, [this, crsWidget] { handleDock(crsWidget, ui->mdiArea); });
+            connect(ui->actionstart, &QAction::triggered, &rawSender, &CanRawSender::startSimulation);
+            connect(ui->actionstop, &QAction::triggered, &rawSender, &CanRawSender::stopSimulation);
+          });
 }
 
 void handleWidgetDeletion(QWidget* widget)
@@ -75,11 +84,17 @@ void MainWindow::nodeDeletedCallback(QtNodes::Node& node)
 {
     auto dataModel = node.nodeDataModel();
 
-    if (dataModel->name() == "CanRawSenderModel") {
-        handleWidgetDeletion(static_cast<CanRawSenderModel*>(dataModel)->canRawSender.getMainWidget());
-    } else if (dataModel->name() == "CanRawViewModel") {
-        handleWidgetDeletion(&static_cast<CanRawViewModel*>(dataModel)->canRawView);
-    }
+    assert(nullptr != dataModel);
+
+    apply_model_visitor(*dataModel
+        , [this, dataModel](CanRawViewModel& m)
+          {
+            handleWidgetDeletion(&m.canRawView);
+          }
+        , [this, dataModel](CanRawSenderModel& m)
+          {
+            handleWidgetDeletion(m.canRawSender.getMainWidget());
+          });
 }
 
 void handleWidgetShowing(QWidget* widget)
@@ -97,11 +112,17 @@ void MainWindow::nodeDoubleClickedCallback(QtNodes::Node& node)
 {
     auto dataModel = node.nodeDataModel();
 
-    if (dataModel->name() == "CanRawSenderModel") {
-        handleWidgetShowing(static_cast<CanRawSenderModel*>(dataModel)->canRawSender.getMainWidget());
-    } else if (dataModel->name() == "CanRawViewModel") {
-        handleWidgetShowing(&static_cast<CanRawViewModel*>(dataModel)->canRawView);
-    }
+    assert(nullptr != dataModel);
+
+    apply_model_visitor(*dataModel
+        , [this, dataModel](CanRawViewModel& m)
+          {
+            handleWidgetShowing(&m.canRawView);
+          }
+        , [this, dataModel](CanRawSenderModel& m)
+          {
+            handleWidgetShowing(m.canRawSender.getMainWidget());
+          });
 }
 
 void MainWindow::handleDock(QWidget* component, QMdiArea* mdi)
