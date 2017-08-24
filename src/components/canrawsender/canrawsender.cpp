@@ -16,19 +16,6 @@ CanRawSender::CanRawSender(CRSFactoryInterface& factory)
 
 CanRawSender::~CanRawSender() {}
 
-void CanRawSender::closeEvent(QCloseEvent* e)
-{
-    auto parentWidget = getMainWidget();
-    if (parentWidget) {
-        parentWidget->hide();
-    }
-/*
-    } else {
-        hide();
-    }
-*/
-    e->ignore();
-}
 void CanRawSender::startSimulation()
 {
     assert(d_ptr != nullptr);

@@ -44,9 +44,6 @@ private:
     void nodeDoubleClickedCallback(QtNodes::Node& node);
     void handleLoadAction();
     void handleSaveAction();
-
-private slots:
-    void handleExitAction(void);
 };
 
 #endif // MAINWINDOW_H
