@@ -1,15 +1,36 @@
 #include "canrawsender.h"
 #include "canrawsender_p.h"
+#include <cassert>
 
-CanRawSender::CanRawSender(QWidget* parent)
-    : QWidget(parent)
-    , d_ptr(new CanRawSenderPrivate(this))
+CanRawSender::CanRawSender()
+    : d_ptr(new CanRawSenderPrivate(this))
+{
+    Q_D(CanRawSender);
+}
+
+CanRawSender::CanRawSender(CRSFactoryInterface& factory)
+    : d_ptr(new CanRawSenderPrivate(this, factory))
+{
+    Q_D(CanRawSender);
+}
+
+CanRawSender::~CanRawSender() {}
+
+void CanRawSender::startSimulation()
+{
+    assert(d_ptr != nullptr);
+    d_ptr->SetSimulationState(true);
+}
+
+void CanRawSender::stopSimulation()
+{
+    assert(d_ptr != nullptr);
+    d_ptr->SetSimulationState(false);
+}
+
+QWidget* CanRawSender::getMainWidget()
 {
     Q_D(CanRawSender);
 
-    setLayout(d->ui->layout);
-}
-
-CanRawSender::~CanRawSender()
-{
+    return d->mUi->getMainWidget();
 }

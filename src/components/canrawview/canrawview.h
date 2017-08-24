@@ -23,6 +23,8 @@ public:
 
     QWidget* getMainWidget();
 
+    void closeEvent(QCloseEvent* e);
+
 signals:
     void dockUndock();
 

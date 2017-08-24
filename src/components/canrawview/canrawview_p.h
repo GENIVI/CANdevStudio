@@ -4,6 +4,7 @@
 #include "canrawviewbackend.hpp"
 #include "uibackend.hpp"
 
+#include <QtCore/QStringList>
 #include <QtCore/QElapsedTimer>
 #include <QtGui/QStandardItemModel>
 
@@ -12,6 +13,8 @@
 class CanRawView;
 class QCanBusFrame;
 class QString;
+class QJsonObject;
+class QJsonArray;
 
 namespace Ui { class CanRawViewPrivate; }
 
@@ -32,6 +35,8 @@ public:
 
     UIBackend<CanRawView>& backend();
     const UIBackend<CanRawView>& backend() const;
+
+    void saveSettings(QJsonObject& json);
 
     std::unique_ptr<QElapsedTimer> timer;
     bool simStarted = false;
@@ -57,6 +62,17 @@ private:
 
     int prevIndex = 0;
     int rowID = 0;
+    int prevIndex = 0;
+    int sortIndex = 0;
+    Qt::SortOrder currentSortOrder = Qt::AscendingOrder;
+    
+    QStringList columnsOrder;
+
+    void writeSortingRules(QJsonObject& json) const;
+    
+    void writeColumnsOrder(QJsonObject& json) const;
+
+    void writeViewModel(QJsonArray& jsonArray) const;
 
 private slots:
 

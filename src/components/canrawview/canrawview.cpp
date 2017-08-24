@@ -5,6 +5,7 @@
 #include "log.hpp"
 #include "uibackend.hpp"
 
+#include <QCloseEvent>
 #include <QtCore/QElapsedTimer>
 #include <QtCore/QList>
 #include <QtCore/QString>
@@ -75,6 +76,17 @@ QWidget* CanRawView::getMainWidget()
 
     return d->backend().getMainWidget();
 }
+
+void CanRawView::closeEvent(QCloseEvent* e)
+{
+    if (parentWidget()) {
+        parentWidget()->hide();
+    } else {
+        hide();
+    }
+    e->ignore();
+}
+
 
 #include "canrawview_p.cpp" // FIXME: once cmake macros get ready
 #include "canrawviewbackend.cpp" // FIXME: once cmake macros get ready
