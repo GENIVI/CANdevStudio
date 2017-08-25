@@ -1,3 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$class_can_device_private.html" title="CanDevicePrivate" alt="" coords="5,5,140,32"/>
+<area shape="rect" id="node1" href="$struct_can_factory_interface.html" title="CanFactoryInterface" alt="" coords="5,5,155,32"/>
+<area shape="rect" id="node2" href="$struct_can_factory_qt.html" title="CanFactoryQt" alt="" coords="203,5,311,32"/>
 </map>

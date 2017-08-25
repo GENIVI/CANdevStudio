@@ -1,8 +1,12 @@
 var NAVTREEINDEX1 =
 {
+"mainwindow_8cpp.html#a3b9d464ad39a8ef55e15b34582f02194":[2,0,0,2,1,0],
+"mainwindow_8cpp.html#acef5b97894bfa7c1f3a144b55f17d8f6":[2,0,0,2,1,1],
+"mainwindow_8h.html":[2,0,0,2,2],
+"mainwindow_8h_source.html":[2,0,0,2,2],
 "modelvisitor_8h.html":[2,0,0,0,3],
-"modelvisitor_8h.html#aa19366a130b49a19a1fe77c776028305":[2,0,0,0,3,1],
-"modelvisitor_8h.html#ac1e2935cd45bc1edae0b250659222e1b":[2,0,0,0,3,2],
+"modelvisitor_8h.html#a3f0b12d06c46bd1ae981eaa43f3bd3fc":[2,0,0,0,3,1],
+"modelvisitor_8h.html#a64f8e8125af0f8f89abc6a7dd286025d":[2,0,0,0,3,2],
 "modelvisitor_8h_source.html":[2,0,0,0,3],
 "namespace_ui.html":[0,0,0],
 "namespaces.html":[0,0],

@@ -1,3 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node2" href="$class_main_window.html" title="MainWindow" alt="" coords="163,5,261,32"/>
+<area shape="rect" id="node1" href="$struct_n_l_m_check_box_interface.html" title="NLMCheckBoxInterface" alt="" coords="5,5,175,32"/>
+<area shape="rect" id="node2" href="$struct_n_l_m_check_box.html" title="NLMCheckBox" alt="" coords="223,5,336,32"/>
 </map>

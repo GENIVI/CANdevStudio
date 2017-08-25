@@ -124,6 +124,7 @@ Inheritance diagram for CanDeviceModel:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_can_device_model__inherit__graph.png" border="0" usemap="#_can_device_model_inherit__map" alt="Inheritance graph"/></div>
 <map name="_can_device_model_inherit__map" id="_can_device_model_inherit__map">
+<area shape="rect" id="node3" href="struct_visitable_with.html" title="VisitableWith\&lt; CanNodeData\lModelVisitor \&gt;" alt="" coords="155,5,363,47"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
@@ -131,6 +132,7 @@ Collaboration diagram for CanDeviceModel:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_can_device_model__coll__graph.png" border="0" usemap="#_can_device_model_coll__map" alt="Collaboration graph"/></div>
 <map name="_can_device_model_coll__map" id="_can_device_model_coll__map">
+<area shape="rect" id="node3" href="struct_visitable_with.html" title="VisitableWith\&lt; CanNodeData\lModelVisitor \&gt;" alt="" coords="155,5,363,47"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -147,6 +149,8 @@ Public Slots</h2></td></tr>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:add5985ec6435f710acc0b0b14c560dd1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_device_model.html#add5985ec6435f710acc0b0b14c560dd1">CanDeviceModel</a> ()</td></tr>
 <tr class="separator:add5985ec6435f710acc0b0b14c560dd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61d3c749e0b9a6c0656d150e66877eea"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_device_model.html#a61d3c749e0b9a6c0656d150e66877eea">visit</a> (<a class="el" href="class_can_node_data_model_visitor.html">CanNodeDataModelVisitor</a> &amp;v) override</td></tr>
+<tr class="separator:a61d3c749e0b9a6c0656d150e66877eea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5ed0f335aa7537aa9d61a2080738b6b2"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_device_model.html#a5ed0f335aa7537aa9d61a2080738b6b2">caption</a> () const override</td></tr>
 <tr class="memdesc:a5ed0f335aa7537aa9d61a2080738b6b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to get node caption.  <a href="#a5ed0f335aa7537aa9d61a2080738b6b2">More...</a><br /></td></tr>
 <tr class="separator:a5ed0f335aa7537aa9d61a2080738b6b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -179,6 +183,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a44f295e8d6bb766aa35bdf6d592d7af0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_device_model.html#a44f295e8d6bb766aa35bdf6d592d7af0">frameOnQueue</a> ()</td></tr>
 <tr class="memdesc:a44f295e8d6bb766aa35bdf6d592d7af0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to send frames that were put in queue.  <a href="#a44f295e8d6bb766aa35bdf6d592d7af0">More...</a><br /></td></tr>
 <tr class="separator:a44f295e8d6bb766aa35bdf6d592d7af0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_struct_visitable_with"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_struct_visitable_with')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="struct_visitable_with.html">VisitableWith&lt; CanNodeDataModelVisitor &gt;</a></td></tr>
+<tr class="memitem:ab2e0db5aafe8a68cfd40280714577ad8 inherit pub_methods_struct_visitable_with"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_visitable_with.html#ab2e0db5aafe8a68cfd40280714577ad8">~VisitableWith</a> ()=default</td></tr>
+<tr class="separator:ab2e0db5aafe8a68cfd40280714577ad8 inherit pub_methods_struct_visitable_with"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The class provides node graphical representation of <a class="el" href="class_can_device.html" title="The class provides abstraction layer for CAN BUS hardware. ">CanDevice</a>. </p>
@@ -593,6 +600,33 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a class="anchor" id="a61d3c749e0b9a6c0656d150e66877eea"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void CanDeviceModel::visit </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_can_node_data_model_visitor.html">CanNodeDataModelVisitor</a> &amp;&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="struct_visitable_with.html">VisitableWith</a> </dd></dl>
+
+<p>Implements <a class="el" href="struct_visitable_with.html#aca174dd95107d63283ec978cf93ec017">VisitableWith&lt; CanNodeDataModelVisitor &gt;</a>.</p>
 
 </div>
 </div>

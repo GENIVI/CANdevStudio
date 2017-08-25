@@ -42,6 +42,11 @@ var hierarchy =
       [ "CDSWidget", "struct_c_d_s_widget.html", null ]
     ] ],
     [ "VisitableWith< Visitor >", "struct_visitable_with.html", null ],
+    [ "VisitableWith< CanNodeDataModelVisitor >", "struct_visitable_with.html", [
+      [ "CanDeviceModel", "class_can_device_model.html", null ],
+      [ "CanRawSenderModel", "class_can_raw_sender_model.html", null ],
+      [ "CanRawViewModel", "class_can_raw_view_model.html", null ]
+    ] ],
     [ "NodeData", null, [
       [ "CanDeviceDataIn", "class_can_device_data_in.html", null ],
       [ "CanDeviceDataOut", "class_can_device_data_out.html", null ]

@@ -1,3 +1,4 @@
 <map id="CanRawViewModel" name="CanRawViewModel">
-<area shape="rect" id="node3" href="$class_can_raw_view.html" title="CanRawView" alt="" coords="155,81,256,108"/>
+<area shape="rect" id="node3" href="$struct_visitable_with.html" title="VisitableWith\&lt; CanNodeData\lModelVisitor \&gt;" alt="" coords="155,81,363,123"/>
+<area shape="rect" id="node4" href="$class_can_raw_view.html" title="CanRawView" alt="" coords="387,89,488,115"/>
 </map>
