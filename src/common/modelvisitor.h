@@ -12,6 +12,7 @@
 
 class CanRawViewModel;
 class CanRawSenderModel;
+class CanDeviceModel;
 //class FooModel;
 
 /**
@@ -37,37 +38,42 @@ class CanNodeDataModelVisitor
 
     void operator()(CanRawViewModel& a)   { _f(a); }
     void operator()(CanRawSenderModel& a) { _g(a); }
-//    void operator()(FooModel& a)          { _h(a); }
+    void operator()(CanDeviceModel& a)    { _h(a); }
+//    void operator()(FooModel& a)          { _i(a); }
 
     // TODO: make apply_* insensitive to order of actions (using tuple indexed by type?)
 
     template<
         class CanRawViewModelAction
       , class CanRawSenderModelAction
+      , class CanDeviceModelAction
 //      , class FooModelAction
       >
     CanNodeDataModelVisitor(CanRawViewModelAction f
                           , CanRawSenderModelAction g
-//                          , FooModelAction h
+                          , CanDeviceModelAction h
+//                          , FooModelAction i
                            )
       :
         _f{std::move(f)}
       , _g{std::move(g)}
-//      , _h{std::move(h)}
+      , _h{std::move(h)}
+//      , _i{std::move(i)}
     {}
 
  private:
 
     std::function<void (CanRawViewModel&)>   _f;
     std::function<void (CanRawSenderModel&)> _g;
-//    std::function<void (FooModel&)> _h;
+    std::function<void (CanDeviceModel&)>    _h;
+//    std::function<void (FooModel&)> _i;
 
 };
 
 
 
 /** @throws bad_cast if object under @c m is not visitable with @c v. */
-inline void apply_model_visitor(NodeDataModel& m, CanNodeDataModelVisitor v)
+inline void apply_model_visitor(QtNodes::NodeDataModel& m, CanNodeDataModelVisitor v)
 {
     // NOTE: Cannot use static_cast since NodeDataModel and VisitableWith
     //       are not in direct inheritance relation, i.e. only type derived
@@ -78,7 +84,7 @@ inline void apply_model_visitor(NodeDataModel& m, CanNodeDataModelVisitor v)
 
 /** @throws bad_cast if object under @c m is not visitable with @c v. */
 template<class... Actions>
-inline void apply_model_visitor(NodeDataModel& m, Actions... actions)
+inline void apply_model_visitor(QtNodes::NodeDataModel& m, Actions... actions)
 {
     CanNodeDataModelVisitor v{std::move(actions)...};
 

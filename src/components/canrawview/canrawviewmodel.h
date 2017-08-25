@@ -1,6 +1,9 @@
 #ifndef CANRAWVIEWMODEL_H
 #define CANRAWVIEWMODEL_H
 
+#include "modelvisitor.h"  // CanNodeDataModelVisitor
+#include "visitablewith.h"
+
 #include <QtCore/QObject>
 #include <QtWidgets/QLabel>
 
@@ -20,13 +23,16 @@ using QtNodes::NodeValidationState;
 /**
 *   @brief The class provides node graphical representation of CanRawView
 */
-class CanRawViewModel : public NodeDataModel {
+class CanRawViewModel
+  : public NodeDataModel
+  , public VisitableWith<CanNodeDataModelVisitor>
+{
     Q_OBJECT
 
 public:
     CanRawViewModel();
 
-    virtual ~CanRawViewModel() {}
+    virtual ~CanRawViewModel() = default;
 
 public:
     /**
@@ -44,6 +50,9 @@ public:
     std::unique_ptr<NodeDataModel> clone() const override { return std::make_unique<CanRawViewModel>(); }
 
 public:
+    /** @see VisitableWith */
+    virtual void visit(CanNodeDataModelVisitor& v) override { v(*this); }
+
     /**
     *   @brief  Used to get model name
     *   @return Model name
