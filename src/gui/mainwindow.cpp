@@ -30,6 +30,8 @@ MainWindow::MainWindow(QWidget* parent)
     modelRegistry->registerModel<CanRawSenderModel>();
     modelRegistry->registerModel<CanRawViewModel>();
 
+    canDevice = std::make_shared<CanDevice>();
+    canRawView = std::make_shared<CanRawView>();
     canRawSender = std::make_shared<CanRawSender>();
     graphScene = std::make_shared<QtNodes::FlowScene>(modelRegistry);
 
@@ -229,6 +231,16 @@ void MainWindow::connectMenuSignals()
 
 void MainWindow::setupMdiArea()
 {
+    QWidget* crvWidget = canRawView->getMainWidget();
+
+    connect(canDevice.get(), &CanDevice::frameReceived, canRawView.get(), &CanRawView::frameReceived);
+    connect(canDevice.get(), &CanDevice::frameSent, canRawView.get(), &CanRawView::frameSent);
+    connect(ui->actionstart, &QAction::triggered, canRawView.get(), &CanRawView::startSimulation);
+    connect(ui->actionstop, &QAction::triggered, canRawView.get(), &CanRawView::stopSimulation);
+    crvWidget->setWindowTitle("CANrawView");
+    connect(canRawView.get(), &CanRawView::dockUndock, this, [this, crvWidget] { handleDock(crvWidget, ui->mdiArea); });
+    ui->mdiArea->addSubWindow(crvWidget);
+  
     graphView = new QtNodes::FlowView(graphScene.get());
     graphView->setWindowTitle("Project Configuration");
     ui->mdiArea->addSubWindow(graphView);

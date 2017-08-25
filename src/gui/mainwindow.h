@@ -30,6 +30,8 @@ public:
 
 private:
     std::unique_ptr<Ui::MainWindow> ui;
+    std::shared_ptr<CanRawView> canRawView;
+    std::shared_ptr<CanDevice> canDevice;
     std::shared_ptr<CanRawSender> canRawSender;
     std::shared_ptr<QtNodes::FlowScene> graphScene;
     QtNodes::FlowView* graphView;

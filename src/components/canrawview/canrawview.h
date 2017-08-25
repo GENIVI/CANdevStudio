@@ -1,21 +1,29 @@
 #ifndef CANRAWVIEW_H
 #define CANRAWVIEW_H
 
-#include <QCloseEvent>
+#include "canrawview_p.h"
+
 #include <QtCore/QScopedPointer>
-#include <QtWidgets/QWidget>
-#include <memory>
+#include <QtCore/QObject>
+
+#include "uibackend.hpp"
 
 class QCanBusFrame;
-class CanRawViewPrivate;
+class QWidget;
+class QCloseEvent;
 
-class CanRawView : public QWidget {
+class CanRawView : public QObject {
     Q_OBJECT
     Q_DECLARE_PRIVATE(CanRawView)
 
 public:
-    explicit CanRawView(QWidget* parent = nullptr);
-    ~CanRawView();
+    explicit CanRawView();
+    explicit CanRawView(UIBackend<CanRawView>& backend);
+
+    ~CanRawView() = default;
+
+    QWidget* getMainWidget();
+
     void closeEvent(QCloseEvent* e);
 
 signals:
