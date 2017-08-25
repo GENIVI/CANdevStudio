@@ -12,6 +12,7 @@ endfunction()
 
 set(CANRAWSENDER_FILES
     canrawsender/canrawsender.cpp
+    canrawsender/canrawsender_p.cpp
     canrawsender/canrawsendermodel.cpp
     canrawsender/canrawsender.ui
     canrawsender/newlinemanager.cpp
