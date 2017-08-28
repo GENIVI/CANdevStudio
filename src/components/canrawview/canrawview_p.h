@@ -3,9 +3,8 @@
 
 #include "log.hpp"
 #include "ui_canrawview.h"
-#include <QDebug>
-//#include <QFile>
 #include "uniquefiltermodel.h"
+#include <QDebug>
 #include <QHeaderView>
 #include <QJsonArray>
 #include <QJsonDocument>
@@ -96,7 +95,7 @@ public:
         }
 
         auto payHex = frame.payload().toHex();
-        // inster space between bytes, skip the end
+        // insert space between bytes, skip the end
         for (int ii = payHex.size() - 2; ii >= 2; ii -= 2) {
             payHex.insert(ii, ' ');
         }
@@ -105,7 +104,7 @@ public:
         QList<QStandardItem*> list;
 
         int frameID = frame.frameId();
-        double time = static_cast<double>(timer->elapsed()) / 1000.0; //check if cast is necessary
+        double time = timer->elapsed() / 1000.0;
 
         qvList.append(rowID++);
         qvList.append(std::move(time));
@@ -124,6 +123,7 @@ public:
 
         tvModel.appendRow(list);
 
+        // Sort after reception of each frame and appending it to tvModel
         currentSortOrder = ui->tv->horizontalHeader()->sortIndicatorOrder();
         auto currentSortIndicator = ui->tv->horizontalHeader()->sortIndicatorSection();
         ui->tv->sortByColumn(sortIndex, currentSortOrder);
@@ -189,8 +189,6 @@ private:
             jsonArray.append(std::move(lineIter));
         }
     }
-
-
 
 private slots:
     /**

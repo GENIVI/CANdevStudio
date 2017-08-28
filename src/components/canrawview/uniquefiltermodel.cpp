@@ -24,8 +24,7 @@ bool UniqueFilterModel::filterAcceptsRow(int sourceRow, const QModelIndex& sourc
 
     QPair<int, QString> value(std::move(frameID), std::move(direction));
 
-    return ((uniques[value] == time) || (false == filterActive ));
-
+    return ((uniques[value] == time) || (false == filterActive));
 }
 
 void UniqueFilterModel::clearFilter() { uniques.clear(); }
