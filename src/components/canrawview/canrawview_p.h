@@ -105,12 +105,12 @@ public:
         QList<QStandardItem*> list;
 
         int frameID = frame.frameId();
-        QString time = QString::number((double)timer->elapsed() / 1000, 'f', 2);
+        double time = static_cast<double>(timer->elapsed()) / 1000.0; //check if cast is necessary
 
         qvList.append(rowID++);
-        qvList.append(time.toDouble());
-        qvList.append(time);
-        qvList.append(frameID);
+        qvList.append(std::move(time));
+        qvList.append(QString::number(time, 'f', 2));
+        qvList.append(std::move(frameID));
         qvList.append(QString("0x" + QString::number(frameID, 16)));
         qvList.append(direction);
         qvList.append(QString::number(frame.payload().size()).toInt());
@@ -129,7 +129,7 @@ public:
         ui->tv->sortByColumn(sortIndex, currentSortOrder);
         ui->tv->horizontalHeader()->setSortIndicator(currentSortIndicator, currentSortOrder);
 
-        uniqueModel.updateFilter(frameID, time.toDouble(), direction);
+        uniqueModel.updateFilter(frameID, time, direction);
 
         if (ui->freezeBox->isChecked() == false) {
             ui->tv->scrollToBottom();
@@ -144,7 +144,11 @@ public:
 
 private:
     CanRawView* q_ptr;
-
+    int rowID = 0;
+    int prevIndex = 0;
+    int sortIndex = 0;
+    Qt::SortOrder currentSortOrder = Qt::AscendingOrder;
+    QStringList columnsOrder;
 
     void writeSortingRules(QJsonObject& json) const
     {
@@ -186,11 +190,7 @@ private:
         }
     }
 
-    int rowID = 0;
-    int prevIndex = 0;
-    int sortIndex = 0;
-    int currentSortIndicator = 0;
-    Qt::SortOrder currentSortOrder = Qt::AscendingOrder;
+
 
 private slots:
     /**

@@ -10,7 +10,7 @@ void UniqueFilterModel::updateFilter(int frameID, double time, QString direction
     QPair<int, QString> value(frameID, direction);
 
     if ((!uniques.contains(value)) || (time > uniques[value])) {
-        uniques[value] = time;
+        uniques[std::move(value)] = time;
     }
 
     invalidateFilter();
@@ -18,17 +18,14 @@ void UniqueFilterModel::updateFilter(int frameID, double time, QString direction
 
 bool UniqueFilterModel::filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const
 {
-    int frameID = sourceModel()->index(sourceRow, 3, sourceParent).data().toInt();
-    double time = sourceModel()->index(sourceRow, 1, sourceParent).data().toDouble();
-    QString direction = sourceModel()->index(sourceRow, 5, sourceParent).data().toString();
+    const int frameID = sourceModel()->index(sourceRow, 3, sourceParent).data().toInt();
+    const double time = sourceModel()->index(sourceRow, 1, sourceParent).data().toDouble();
+    const QString direction = sourceModel()->index(sourceRow, 5, sourceParent).data().toString();
 
-    QPair<int, QString> value(frameID, direction);
+    QPair<int, QString> value(std::move(frameID), std::move(direction));
 
-    if ((uniques[value] == time) || (filterActive == false)) {
-        return true;
-    } else {
-        return false;
-    }
+    return ((uniques[value] == time) || (false == filterActive ));
+
 }
 
 void UniqueFilterModel::clearFilter() { uniques.clear(); }

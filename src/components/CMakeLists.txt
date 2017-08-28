@@ -23,11 +23,7 @@ function(add_component_ui_dir componentName srcfiles)
     target_include_directories(${componentName} INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
 endfunction()
 
-function(add_component_blah componentName)
-    add_library(${componentName} ${componentName}/${componentName}.cpp ${componentName}/uniquefiltermodel.cpp)
-    target_link_libraries(${componentName} Qt5::Widgets Qt5::Core Qt5::SerialBus cds-common)
-    target_include_directories(${componentName} INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}  )
-endfunction()
+
 
 add_component(candevice candevicemodel)
 add_component_ui(canrawview canrawviewmodel)
