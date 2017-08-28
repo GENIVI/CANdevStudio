@@ -1,8 +1,5 @@
 #include "canrawsendermodel.h"
 #include "datamodeltypes/canrawsenderdata.h"
-#include <QtCore/QDir>
-#include <QtCore/QEvent>
-#include <QtWidgets/QFileDialog>
 #include <nodes/DataModelRegistry>
 
 CanRawSenderModel::CanRawSenderModel()
@@ -28,8 +25,6 @@ std::shared_ptr<NodeData> CanRawSenderModel::outData(PortIndex)
 {
     return std::make_shared<CanRawSenderDataOut>(_frame);
 }
-
-void CanRawSenderModel::setInData(std::shared_ptr<NodeData>, PortIndex) {}
 
 void CanRawSenderModel::sendFrame(const QCanBusFrame& frame)
 {

@@ -1,11 +1,7 @@
 #include "candevicemodel.h"
-#include <QtCore/QDir>
-#include <QtCore/QEvent>
 
 #include "log.hpp"
 #include <assert.h>
-
-#include <QtWidgets/QFileDialog>
 
 #include "datamodeltypes/candevicedata.h"
 #include <nodes/DataModelRegistry>
@@ -22,6 +18,7 @@ CanDeviceModel::CanDeviceModel()
 
     connect(canDevice.get(), &CanDevice::frameSent, this, &CanDeviceModel::frameSent);
     connect(canDevice.get(), &CanDevice::frameReceived, this, &CanDeviceModel::frameReceived);
+    connect(this, &CanDeviceModel::sendFrame, canDevice.get(), &CanDevice::sendFrame);
 
     canDevice->init("socketcan", "can0"); // TODO
     canDevice->start();
@@ -69,7 +66,7 @@ void CanDeviceModel::setInData(std::shared_ptr<NodeData> nodeData, PortIndex)
     if (nodeData) {
         auto d = std::dynamic_pointer_cast<CanDeviceDataIn>(nodeData);
         assert(nullptr != d);
-        canDevice->sendFrame(d->frame());
+        emit sendFrame(d->frame());
     } else {
         cds_warn("Incorrect nodeData");
     }
