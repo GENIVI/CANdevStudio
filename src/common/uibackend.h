@@ -21,8 +21,12 @@ class QWidget;
 
 /**
  * All the UI backends per given subject must derive from UIBackend<Subject> interface.
- *
- * User must implement at least one UI backend per used Subject, i.e. UIBackendDefault.
+ * User must implement at least one derived UIBackend type per unique Subject, i.e.
+ * UIBackendDefault. If it is not desirable to use virtual member functions (as it
+ * could be used in the UIBackend<Subject>), then UIBackend<Subject> shall implement
+ * all the non-virtual functions *and* UIBackendDefault shall be empty and derive from
+ * it publicly and use constructor inheritance. That's due to fact, that the following
+ * implementation uses a reference to the object of type UIBackend<Subject> everywhere.
  *
  * NOTE: The actual shape, number of ctors, args taken by ctors is not forced by this
  *       implementation. Instances of UIBackend<> and the derived types can take any
@@ -59,6 +63,9 @@ static constexpr bool IsUIBackendSelector =
               >::value;
 
 
+
+template<class UIBackendUser, class Subject = UIBackendUser>
+class WithUIBackend;
 
 
 /**
@@ -149,9 +156,9 @@ class UsesUIBackend
     QScopedPointer<PrivateWithUIBackend> d_ptr;
 
 
-    static_assert(std::is_base_of<UIBackend<Subject>
+    static_assert(std::is_base_of<WithUIBackend<Derived, Subject>
                                 , PrivateWithUIBackend>::value
-                , "Impl does not match interface");
+                , "PrivateWithUIBackend must be derived from WithUIBackend");
 };
 
 
@@ -271,7 +278,7 @@ class WithUIBackend
 
 
 template<>
-struct UIBackend<CanRawView>
+struct UIBackend<CanRawView>  // polymorphic as an example, but it's optional, see the note on top
 {
     virtual QString getClickedColumn(int ndx) = 0;
     virtual QWidget* getMainWidget() = 0;
