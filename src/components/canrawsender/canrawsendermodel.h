@@ -10,7 +10,7 @@
 #include <nodes/DataModelRegistry>
 #include <nodes/NodeDataModel>
 
-#include <canrawsender/canrawsender.h>
+#include <canrawsender.h>
 
 #include <QCanBusFrame>
 

@@ -14,9 +14,9 @@
 #include <cassert> // assert
 #include <iostream>
 
-#include <candevice/candevicemodel.h>
-#include <canrawsender/canrawsendermodel.h>
-#include <canrawview/canrawviewmodel.h>
+#include <candevicemodel.h>
+#include <canrawsendermodel.h>
+#include <canrawviewmodel.h>
 
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent)
