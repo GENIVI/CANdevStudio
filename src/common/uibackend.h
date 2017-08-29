@@ -391,6 +391,7 @@ struct UIBackend<CanRawView>  // polymorphic as an example, but it's optional, s
     virtual QString getClickedColumn(int ndx) = 0;
     virtual QWidget* getMainWidget() = 0;
     virtual bool isColumnHidden(int column) = 0;
+    virtual bool isFrozen() = 0;
     virtual int getSortIndicator() = 0;
     virtual int getSortOrder() = 0;
     virtual void initTableView(QAbstractItemModel& tvModel) = 0;
