@@ -2,7 +2,7 @@
 #define CRSFACTORY_HPP
 
 #include "crsfactoryinterface.hpp"
-#include "crsgui.hpp"
+#include "gui/crsgui.hpp"
 
 struct CRSFactory : public CRSFactoryInterface {
     virtual ~CRSFactory() {}

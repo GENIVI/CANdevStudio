@@ -1,7 +1,7 @@
 #ifndef CRSGUI_HPP
 #define CRSGUI_HPP
 
-#include "crsguiinterface.hpp"
+#include "../crsguiinterface.hpp"
 #include "ui_canrawsender.h"
 #include <memory>
 #include <cdswidget.h>

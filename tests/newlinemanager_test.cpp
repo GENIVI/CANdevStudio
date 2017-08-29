@@ -55,9 +55,9 @@ TEST_CASE("Constructor with correct arguments", "[newlinemanager]")
     CanRawSender canRawSender{ factoryMock.get() };
 
     Mock<NLMFactoryInterface> nlmFactoryMock;
-    Mock<NLMCheckBoxInterface> nlmCheckBoxMock;
-    Mock<NLMLineEditInterface> nlmLineEditMock;
-    Mock<NLMPushButtonInterface> nlmPushButtonMock;
+    Mock<CheckBoxInterface> nlmCheckBoxMock;
+    Mock<LineEditInterface> nlmLineEditMock;
+    Mock<PushButtonInterface> nlmPushButtonMock;
 
     Fake(Dtor(nlmLineEditMock));
     Fake(Method(nlmLineEditMock, textChangedCbk));
@@ -83,11 +83,11 @@ TEST_CASE("Send button clicked - send one frame test", "[newlinemanager]")
     using namespace fakeit;
     Mock<CRSFactoryInterface> factoryMock;
     Mock<CRSGuiInterface> crsMock;
-    NLMPushButtonInterface::pressed_t pressedCbk;
+    PushButtonInterface::pressed_t pressedCbk;
     Mock<NLMFactoryInterface> nlmFactoryMock;
-    Mock<NLMCheckBoxInterface> nlmCheckBoxMock;
-    Mock<NLMLineEditInterface> nlmLineEditMock;
-    Mock<NLMPushButtonInterface> nlmPushButtonMock;
+    Mock<CheckBoxInterface> nlmCheckBoxMock;
+    Mock<LineEditInterface> nlmLineEditMock;
+    Mock<PushButtonInterface> nlmPushButtonMock;
 
     Fake(Dtor(crsMock));
     Fake(Method(crsMock, setAddCbk));
@@ -140,11 +140,11 @@ TEST_CASE("Send button clicked - send several frame test", "[newlinemanager]")
     using namespace fakeit;
     Mock<CRSFactoryInterface> factoryMock;
     Mock<CRSGuiInterface> crsMock;
-    NLMPushButtonInterface::pressed_t pressedCbk;
+    PushButtonInterface::pressed_t pressedCbk;
     Mock<NLMFactoryInterface> nlmFactoryMock;
-    Mock<NLMCheckBoxInterface> nlmCheckBoxMock;
-    Mock<NLMLineEditInterface> nlmLineEditMock;
-    Mock<NLMPushButtonInterface> nlmPushButtonMock;
+    Mock<CheckBoxInterface> nlmCheckBoxMock;
+    Mock<LineEditInterface> nlmLineEditMock;
+    Mock<PushButtonInterface> nlmPushButtonMock;
 
     Fake(Dtor(crsMock));
     Fake(Method(crsMock, setAddCbk));
@@ -212,9 +212,9 @@ TEST_CASE("Get columns wigdet test", "[newlinemanager]")
     CanRawSender canRawSender{ factoryMock.get() };
 
     Mock<NLMFactoryInterface> nlmFactoryMock;
-    Mock<NLMCheckBoxInterface> nlmCheckBoxMock;
-    Mock<NLMLineEditInterface> nlmLineEditMock;
-    Mock<NLMPushButtonInterface> nlmPushButtonMock;
+    Mock<CheckBoxInterface> nlmCheckBoxMock;
+    Mock<LineEditInterface> nlmLineEditMock;
+    Mock<PushButtonInterface> nlmPushButtonMock;
 
     Fake(Dtor(nlmLineEditMock));
     Fake(Method(nlmLineEditMock, textChangedCbk));
