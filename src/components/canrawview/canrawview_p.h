@@ -5,6 +5,8 @@
 
 #include "uibackend.h" // WithUIBackend
 
+#include <QJsonArray>
+#include <QJsonObject>
 #include <QtCore/QElapsedTimer>
 #include <QtCore/QStringList>
 #include <QtCore/Qt>  // SortOrder
@@ -15,7 +17,6 @@
 
 class CanRawView;
 class QCanBusFrame;
-class QJsonObject;
 class QString;
 
 
@@ -71,9 +72,9 @@ class CanRawViewPrivate
 
  private:
 
-    void writeSortingRules(QJsonObject& json) const;
-    void writeColumnsOrder(QJsonObject& json) const;
-    void writeViewModel(QJsonArray& jsonArray) const;
+    QJsonObject makeSortingRules() const;
+    QJsonObject makeColumnsOrder() const;
+    QJsonArray makeViewModel() const;
 
 
     int _rowID     = 0;
