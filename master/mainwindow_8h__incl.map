@@ -1,9 +1,9 @@
 <map id="src/gui/mainwindow.h" name="src/gui/mainwindow.h">
-<area shape="rect" id="node4" href="$candevice_8h.html" title="candevice/candevice.h" alt="" coords="738,80,905,107"/>
-<area shape="rect" id="node9" href="$canfactoryqt_8hpp.html" title="candevice/canfactoryqt.hpp" alt="" coords="929,80,1127,107"/>
-<area shape="rect" id="node17" href="$canrawsender_8h.html" title="canrawsender/canrawsender.h" alt="" coords="487,80,702,107"/>
-<area shape="rect" id="node20" href="$canrawview_8h.html" title="canrawview/canrawview.h" alt="" coords="259,80,440,107"/>
-<area shape="rect" id="node10" href="$candeviceqt_8hpp.html" title="candeviceqt.hpp" alt="" coords="1135,155,1262,181"/>
-<area shape="rect" id="node15" href="$canfactory_8hpp.html" title="canfactory.hpp" alt="" coords="1467,155,1581,181"/>
-<area shape="rect" id="node11" href="$candeviceinterface_8hpp.html" title="candeviceinterface.hpp" alt="" coords="1376,229,1547,256"/>
+<area shape="rect" id="node4" href="$candevice_8h.html" title="candevice.h" alt="" coords="686,80,785,107"/>
+<area shape="rect" id="node9" href="$canfactoryqt_8hpp.html" title="canfactoryqt.hpp" alt="" coords="809,80,939,107"/>
+<area shape="rect" id="node17" href="$canrawsender_8h.html" title="canrawsender.h" alt="" coords="523,80,646,107"/>
+<area shape="rect" id="node20" href="$canrawview_8h.html" title="canrawview.h" alt="" coords="363,80,468,107"/>
+<area shape="rect" id="node10" href="$candeviceqt_8hpp.html" title="candeviceqt.hpp" alt="" coords="1117,155,1244,181"/>
+<area shape="rect" id="node15" href="$canfactory_8hpp.html" title="canfactory.hpp" alt="" coords="1449,155,1563,181"/>
+<area shape="rect" id="node11" href="$candeviceinterface_8hpp.html" title="candeviceinterface.hpp" alt="" coords="1358,229,1529,256"/>
 </map>
