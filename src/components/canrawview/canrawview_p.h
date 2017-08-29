@@ -3,8 +3,8 @@
 
 #include "log.hpp"
 #include "ui_canrawview.h"
+#include "uniquefiltermodel.h"
 #include <QDebug>
-//#include <QFile>
 #include <QHeaderView>
 #include <QJsonArray>
 #include <QJsonDocument>
@@ -35,6 +35,8 @@ public:
 
         tvModel.setHorizontalHeaderLabels(columnsOrder);
         ui->tv->setModel(&tvModel);
+        uniqueModel.setSourceModel(&tvModel);
+        ui->tv->setModel(&uniqueModel);
         ui->tv->horizontalHeader()->setSectionsMovable(true);
         ui->tv->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
         ui->tv->setColumnHidden(0, true);
@@ -43,6 +45,7 @@ public:
 
         connect(ui->pbClear, &QPushButton::pressed, this, &CanRawViewPrivate::clear);
         connect(ui->pbDockUndock, &QPushButton::pressed, this, &CanRawViewPrivate::dockUndock);
+        connect(ui->pbToggleFilter, &QPushButton::pressed, this, &CanRawViewPrivate::setFilter);
 
         connect(
             ui->tv->horizontalHeader(), &QHeaderView::sectionClicked, [=](int logicalIndex) { sort(logicalIndex); });
@@ -92,7 +95,7 @@ public:
         }
 
         auto payHex = frame.payload().toHex();
-        // inster space between bytes, skip the end
+        // insert space between bytes, skip the end
         for (int ii = payHex.size() - 2; ii >= 2; ii -= 2) {
             payHex.insert(ii, ' ');
         }
@@ -100,11 +103,14 @@ public:
         QList<QVariant> qvList;
         QList<QStandardItem*> list;
 
+        int frameID = frame.frameId();
+        double time = timer->elapsed() / 1000.0;
+
         qvList.append(rowID++);
-        qvList.append(QString::number((double)timer->elapsed() / 1000, 'f', 2).toDouble());
-        qvList.append(QString::number((double)timer->elapsed() / 1000, 'f', 2));
-        qvList.append(frame.frameId());
-        qvList.append(QString("0x" + QString::number(frame.frameId(), 16)));
+        qvList.append(std::move(time));
+        qvList.append(QString::number(time, 'f', 2));
+        qvList.append(std::move(frameID));
+        qvList.append(QString("0x" + QString::number(frameID, 16)));
         qvList.append(direction);
         qvList.append(QString::number(frame.payload().size()).toInt());
         qvList.append(QString::fromUtf8(payHex.data(), payHex.size()));
@@ -117,10 +123,13 @@ public:
 
         tvModel.appendRow(list);
 
+        // Sort after reception of each frame and appending it to tvModel
         currentSortOrder = ui->tv->horizontalHeader()->sortIndicatorOrder();
         auto currentSortIndicator = ui->tv->horizontalHeader()->sortIndicatorSection();
         ui->tv->sortByColumn(sortIndex, currentSortOrder);
         ui->tv->horizontalHeader()->setSortIndicator(currentSortIndicator, currentSortOrder);
+
+        uniqueModel.updateFilter(frameID, time, direction);
 
         if (ui->freezeBox->isChecked() == false) {
             ui->tv->scrollToBottom();
@@ -130,6 +139,7 @@ public:
     std::unique_ptr<Ui::CanRawViewPrivate> ui;
     std::unique_ptr<QElapsedTimer> timer;
     QStandardItemModel tvModel;
+    UniqueFilterModel uniqueModel;
     bool simStarted;
 
 private:
@@ -184,9 +194,13 @@ private slots:
     /**
      * @brief clear
      *
-     * This function is used to clear whole table
+     * This function is used to clear data and filter models
      */
-    void clear() { tvModel.removeRows(0, tvModel.rowCount()); }
+    void clear()
+    {
+        tvModel.removeRows(0, tvModel.rowCount());
+        uniqueModel.clearFilter();
+    }
 
     void dockUndock()
     {
@@ -219,6 +233,13 @@ private slots:
             ui->tv->horizontalHeader()->setSortIndicator(clickedIndex, Qt::AscendingOrder);
             prevIndex = clickedIndex;
         }
+    }
+
+    void setFilter()
+    {
+        uniqueModel.toggleFilter();
+        uniqueModel.isFilterActive() ? (ui->pbToggleFilter->setText("Combined view"))
+                                     : (ui->pbToggleFilter->setText("Free view"));
     }
 };
 #endif // CANRAWVIEW_P_H

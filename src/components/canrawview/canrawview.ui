@@ -56,6 +56,13 @@
       </spacer>
      </item>
      <item>
+      <widget class="QPushButton" name="pbToggleFilter">
+       <property name="text">
+        <string>Free view</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="pbDockUndock">
        <property name="text">
         <string>D/U</string>
