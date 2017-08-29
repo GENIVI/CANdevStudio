@@ -87,7 +87,7 @@ public:
     *   @param  data on port
     *   @param  port id
     */
-    void setInData(std::shared_ptr<NodeData>, PortIndex) override;
+    void setInData(std::shared_ptr<NodeData>, PortIndex) override {};
 
     /**
     *   @brief  Used to get widget embedded in Node
