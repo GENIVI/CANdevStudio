@@ -3,33 +3,26 @@
 #include "log.hpp"  // cds_debug
 
 #include <QHeaderView>
-#include <QJsonArray>
-#include <QJsonObject>
 #include <QtSerialBus/QCanBusFrame>
+
+#include <cassert>  // assert
 
 
 void CanRawViewPrivate::saveSettings(QJsonObject& json)
-{
-    Q_Q(CanRawView);
+{   
+    auto& ui = backend();
 
-    assert(ui->freezeBox != nullptr);
-    assert(q->windowTitle().toStdString().length() != 0);
+    const auto title = ui.getMainWindow()->windowTitle().toStdString();
+    assert(0 != title.length());
 
-    // FIXME: change write* function to make*: void(T&) => T()
+    json[title.c_str()]   = makeColumnsOrder();
+    jObjects["Sorting"]   = makeSortingRules();
+    jObjects["Models"]    = makeViewModel();
+    jObjects["Scrolling"] = ui.isFrozen() ? 1 : 0;
 
-    QJsonObject jObjects;
-    writeColumnsOrder(jObjects);
-    json[q->windowTitle().toStdString().c_str()] = std::move(jObjects); ////////////////////////////
-
-    QJsonObject jSortingObject;
-    writeSortingRules(jSortingObject);
-    jObjects["Sorting"] = std::move(jSortingObject);
-
-    QJsonArray viewModelsArray;
-    writeViewModel(viewModelsArray);
-    jObjects["Models"] = std::move(viewModelsArray);
-
-    jObjects["Scrolling"] = (ui->freezeBox->isChecked() == true) ? 1 : 0;  ///////////////////////
+/*  -- goes to CanRawViewBackend::isFrozen
+    ui->freezeBox->isChecked()
+*/
 }
 
 void CanRawViewPrivate::frameView(const QCanBusFrame& frame, const QString& direction)
@@ -48,6 +41,7 @@ void CanRawViewPrivate::frameView(const QCanBusFrame& frame, const QString& dire
 
     QList<QVariant> qvList;
 
+    // FIXME: too much conversions
     qvList.append(_rowID++);
     qvList.append(QString::number((double)_timer->elapsed() / 1000, 'f', 2).toDouble());
     qvList.append(QString::number((double)_timer->elapsed() / 1000, 'f', 2));
@@ -77,14 +71,14 @@ void CanRawViewPrivate::frameView(const QCanBusFrame& frame, const QString& dire
     ui.updateScroll();
 }
 
-void CanRawViewPrivate::writeSortingRules(QJsonObject& json) const
+QJsonObject CanRawViewPrivate::makeSortingRules() const
 {
-    json["prevIndex"] = _prevIndex;
-    json["sortIndex"] = _sortIndex;
-    json["currentSortOrder"] = _currentSortOrder;
+    return { {"prevIndex", _prevIndex}
+           , {"sortIndex", _sortIndex}
+           , {"currentSortOrder", _currentSortOrder} };
 }
 
-void CanRawViewPrivate::writeColumnsOrder(QJsonObject& json) const
+QJsonObject CanRawViewPrivate::makeColumnsOrder() const
 {
     auto& ui = backend();
 
@@ -96,23 +90,29 @@ void CanRawViewPrivate::writeColumnsOrder(QJsonObject& json) const
         }
         ++ii;
     }
-    json["Columns"] = std::move(columnList);
+
+    return {{"Columns"}, std::move(columnList)};
 }
 
-void CanRawViewPrivate::writeViewModel(QJsonArray& jsonArray) const
+QJsonArray CanRawViewPrivate::makeViewModel() const
 {
     auto& ui = backend();
 
+    QJsonArray items;
+    
     for (auto row = 0; row < _tvModel.rowCount(); ++row) {
-        QJsonArray lineIter;
-        for (auto column = 0; column < _tvModel.columnCount(); ++column) {
+        QJsonArray line;
+
+        for (auto col = 0; col < _tvModel.columnCount(); ++col) {
             if (ui.isColumnHidden(column) == false) {
-                auto pp = _tvModel.data(_tvModel.index(row, column));
-                lineIter.append(std::move(pp.toString()));
+                line.append(_tvModel.data(_tvModel.index(row, col)).toString());
             }
         }
-        jsonArray.append(std::move(lineIter));
+
+        items.append(std::move(line));
     }
+    
+    return items;
 }
 
 void CanRawViewPrivate::clear()
