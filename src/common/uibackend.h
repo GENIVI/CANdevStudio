@@ -64,7 +64,7 @@ static constexpr bool IsUIBackendSelector =
 
 // FIXME: extract first arg type instead of the following
 template<class Derived, class F>
-static constexpr bool IsUsesUIBackendInit =
+static constexpr bool IsUIBackendInit =
         std::is_same<std::result_of_t<F(D&)>, void>::value;
 
 
@@ -75,7 +75,7 @@ class WithUIBackend;
 
 
 /**
- * To be derived publicly by @c Dervied type that is going to be composed
+ * To be derived publicly by @c Derived type that is going to be composed
  * with the *Private type (as used in the Qt D-Pointer infrastructure).
  *
  * NOTE: This base class is not intended to be used in polymorphic delete.
@@ -155,7 +155,7 @@ class UsesUIBackend
         class F
       , class... As
       // just to disable this ctor for invalid F types
-      , class = std::enable_if_t<IsUsesUIBackendInit<D, F>, void>
+      , class = std::enable_if_t<IsUIBackendInit<Derived, F>, void>
       >
     explicit UsesUIBackend(F&& init, As&&... args)
       :
@@ -171,7 +171,7 @@ class UsesUIBackend
     template<
         class F
       // just to disable this ctor for invalid F types
-      , class = std::enable_if_t<IsUsesUIBackendInit<D, F>, void>
+      , class = std::enable_if_t<IsUIBackendInit<Derived, F>, void>
       >
     UsesUIBackend(F&& init, UIBackend<Subject>& backend)
       : d_ptr{new PrivateWithUIBackend{ * static_cast<Derived*>(this), backend}}
@@ -210,7 +210,7 @@ class UsesUIBackend
       // disables this ctor for non-selectors to enable ctor that takes args only
       , class = std::enable_if_t<IsUIBackendSelector<ImplSelector>, void>
       // just to disable this ctor for invalid F types
-      , class = std::enable_if_t<IsUsesUIBackendInit<D, F>, void>
+      , class = std::enable_if_t<IsUIBackendInit<Derived, F>, void>
       >
     UsesUIBackend(F&& init, ImplSelector&& selector, As&&... args)
       :
@@ -236,7 +236,8 @@ class UsesUIBackend
 
 /**
  * To be derived publicly by the *Private types (as used in the Qt D-Pointer
- * infrastructure).
+ * infrastructure). As in @c UsesUIBackend, there is a possiblity to pass
+ * @c init function object of signature @c void(Derived&).
  *
  * NOTE: This base class is not intended to be used in polymorphic delete.
  *
@@ -247,8 +248,9 @@ class UsesUIBackend
  * @code
  *  class CanRawViewPrivate
  *    : public WithUIBackend<
- *                  CanRawView  // type referenced by Q_DECLARE_PUBLIC()
- *                , CanRawView  // tag for UIBackend<>
+ *                  CanRawViewPrivate  // this type
+ *                , CanRawView         // type referenced by Q_DECLARE_PUBLIC()
+ *                , CanRawView         // tag for UIBackend<>
  *                >
  *    , public QObject
  *  {
@@ -271,11 +273,29 @@ class UsesUIBackend
  *  };
  * @endcode
  */
-template<class UIBackendUser, class Subject = UIBackendUser>
+template<class Derived, class UIBackendUser, class Subject = UIBackendUser>
 class WithUIBackend
 {
 
  public:
+
+    template<
+        class ImplSelector
+      , class... As
+      , class = std::enable_if_t<IsUIBackendSelector<ImplSelector>, void>
+      >
+    WithUIBackend(ImplSelector&&, UIBackendUser& user, As&&... args)
+      : WithUIBackend{ [](Derived&){}
+                     , std::forward<ImplSelector>(selector)
+                     , user
+                     , std::forward<As>(args)... }
+    {}
+
+    WithUIBackend(UIBackendUser& user, UIBackend<Subject>& backend)
+      : WithUIBackend{[](Derived&){}, user, backend}
+    {}
+
+
 
     /**
      * Creates an object with implementation of @c UIBackend<Subject>
@@ -286,11 +306,15 @@ class WithUIBackend
      * constructor.
      */
     template<
-        class ImplSelector
+        class F
+      , class ImplSelector
       , class... As
+      // disables this ctor for non-selectors
       , class = std::enable_if_t<IsUIBackendSelector<ImplSelector>, void>
+      // just to disable this ctor for invalid F types
+      , class = std::enable_if_t<IsUIBackendInit<Derived, F>, void>
       >
-    WithUIBackend(ImplSelector&&, UIBackendUser& user, As&&... args)
+    WithUIBackend(F&& init, ImplSelector&&, UIBackendUser& user, As&&... args)
       :
         uiRep{std::make_unique<
                     typename std::remove_reference_t<ImplSelector>::type
@@ -298,6 +322,8 @@ class WithUIBackend
       , uiHandle{uiRep.get()}
       , q_ptr{&user}
     {
+        init( * static_cast<Derived*>(this));
+
         static_assert(std::is_base_of< UIBackend<Subject>
                                      , typename std::remove_reference_t<ImplSelector>::type
                                      >::value
@@ -305,11 +331,20 @@ class WithUIBackend
     }
 
     /** DOES NOT manage lifetime of @c backend variable! */
-    WithUIBackend(UIBackendUser& user, UIBackend<Subject>& backend)
+    template<
+        class F
+      // just to disable this ctor for invalid F types
+      , class = std::enable_if_t<IsUIBackendInit<Derived, F>, void>
+      >
+    WithUIBackend(F&& init, UIBackendUser& user, UIBackend<Subject>& backend)
       :
         uiHandle{&backend}
       , q_ptr{&user}
-    {}
+    {
+        init( * static_cast<Derived*>(this));
+    }
+
+
 
     UIBackend<Subject>& backend()
     {
@@ -355,6 +390,8 @@ struct UIBackend<CanRawView>  // polymorphic as an example, but it's optional, s
 {
     virtual QString getClickedColumn(int ndx) = 0;
     virtual QWidget* getMainWidget() = 0;
+    virtual bool isColumnHidden(int column) = 0;
+    virtual int getSortIndicator() = 0;
     virtual int getSortOrder() = 0;
     virtual void initTableView(QAbstractItemModel& tvModel) = 0;
     virtual void setClearCbk(std::function<void ()> cb) = 0;
