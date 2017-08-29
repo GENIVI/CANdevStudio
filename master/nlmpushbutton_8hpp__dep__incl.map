@@ -1,4 +1,4 @@
-<map id="src/components/canrawsender/nlmpushbutton.hpp" name="src/components/canrawsender/nlmpushbutton.hpp">
+<map id="src/components/canrawsender/gui/nlmpushbutton.hpp" name="src/components/canrawsender/gui/nlmpushbutton.hpp">
 <area shape="rect" id="node2" href="$nlmfactory_8hpp.html" title="src/components/canrawsender\l/nlmfactory.hpp" alt="" coords="127,95,345,136"/>
 <area shape="rect" id="node3" href="$newlinemanager_8h.html" title="src/components/canrawsender\l/newlinemanager.h" alt="" coords="127,184,345,225"/>
 <area shape="rect" id="node4" href="$canrawsender__p_8h.html" title="src/components/canrawsender\l/canrawsender_p.h" alt="" coords="5,273,224,315"/>

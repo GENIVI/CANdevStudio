@@ -8,6 +8,9 @@ var hierarchy =
       [ "CanFactoryQt", "struct_can_factory_qt.html", null ]
     ] ],
     [ "CanNodeDataModelVisitor", "class_can_node_data_model_visitor.html", null ],
+    [ "CheckBoxInterface", "struct_check_box_interface.html", [
+      [ "NLMCheckBox", "struct_n_l_m_check_box.html", null ]
+    ] ],
     [ "CRSFactoryInterface", "struct_c_r_s_factory_interface.html", [
       [ "CRSFactory", "struct_c_r_s_factory.html", null ]
     ] ],
@@ -15,16 +18,13 @@ var hierarchy =
       [ "CRSGui", "struct_c_r_s_gui.html", null ]
     ] ],
     [ "Iterator< typeName, beginVal, endVal >", "class_iterator.html", null ],
-    [ "NLMCheckBoxInterface", "struct_n_l_m_check_box_interface.html", [
-      [ "NLMCheckBox", "struct_n_l_m_check_box.html", null ]
+    [ "LineEditInterface", "struct_line_edit_interface.html", [
+      [ "NLMLineEdit", "struct_n_l_m_line_edit.html", null ]
     ] ],
     [ "NLMFactoryInterface", "struct_n_l_m_factory_interface.html", [
       [ "NLMFactory", "struct_n_l_m_factory.html", null ]
     ] ],
-    [ "NLMLineEditInterface", "struct_n_l_m_line_edit_interface.html", [
-      [ "NLMLineEdit", "struct_n_l_m_line_edit.html", null ]
-    ] ],
-    [ "NLMPushButtonInterface", "struct_n_l_m_push_button_interface.html", [
+    [ "PushButtonInterface", "struct_push_button_interface.html", [
       [ "NLMPushButton", "struct_n_l_m_push_button.html", null ]
     ] ],
     [ "QMainWindow", null, [

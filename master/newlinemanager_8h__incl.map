@@ -1,10 +1,10 @@
 <map id="src/components/canrawsender/newlinemanager.h" name="src/components/canrawsender/newlinemanager.h">
-<area shape="rect" id="node2" href="$nlmfactory_8hpp.html" title="nlmfactory.hpp" alt="" coords="623,95,739,121"/>
-<area shape="rect" id="node3" href="$nlmcheckbox_8hpp.html" title="nlmcheckbox.hpp" alt="" coords="693,169,827,196"/>
-<area shape="rect" id="node9" href="$nlmfactoryinterface_8hpp.html" title="nlmfactoryinterface.hpp" alt="" coords="851,169,1026,196"/>
-<area shape="rect" id="node10" href="$nlmlineedit_8hpp.html" title="nlmlineedit.hpp" alt="" coords="544,169,664,196"/>
-<area shape="rect" id="node13" href="$nlmpushbutton_8hpp.html" title="nlmpushbutton.hpp" alt="" coords="164,169,311,196"/>
-<area shape="rect" id="node4" href="$nlmcheckboxinterface_8hpp.html" title="nlmcheckboxinterface.hpp" alt="" coords="670,244,861,271"/>
-<area shape="rect" id="node11" href="$nlmlineeditinterface_8hpp.html" title="nlmlineeditinterface.hpp" alt="" coords="363,244,539,271"/>
-<area shape="rect" id="node14" href="$nlmpushbuttoninterface_8hpp.html" title="nlmpushbuttoninterface.hpp" alt="" coords="136,244,339,271"/>
+<area shape="rect" id="node2" href="$nlmfactory_8hpp.html" title="nlmfactory.hpp" alt="" coords="749,95,865,121"/>
+<area shape="rect" id="node3" href="$nlmcheckbox_8hpp.html" title="gui/nlmcheckbox.hpp" alt="" coords="819,169,976,196"/>
+<area shape="rect" id="node9" href="$nlmfactoryinterface_8hpp.html" title="nlmfactoryinterface.hpp" alt="" coords="1001,169,1175,196"/>
+<area shape="rect" id="node10" href="$nlmlineedit_8hpp.html" title="gui/nlmlineedit.hpp" alt="" coords="645,169,787,196"/>
+<area shape="rect" id="node13" href="$nlmpushbutton_8hpp.html" title="gui/nlmpushbutton.hpp" alt="" coords="180,169,351,196"/>
+<area shape="rect" id="node4" href="$checkboxinterface_8hpp.html" title="guiinterface/checkboxinterface.hpp" alt="" coords="781,244,1027,271"/>
+<area shape="rect" id="node11" href="$lineeditinterface_8hpp.html" title="guiinterface/lineeditinterface.hpp" alt="" coords="419,244,650,271"/>
+<area shape="rect" id="node14" href="$pushbuttoninterface_8hpp.html" title="guiinterface/pushbuttoninterface.hpp" alt="" coords="136,244,395,271"/>
 </map>
