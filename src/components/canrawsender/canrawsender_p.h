@@ -4,6 +4,7 @@
 #include "crsfactory.hpp"
 #include "crsgui.hpp"
 #include "newlinemanager.h"
+#include "ui_canrawsender.h"
 #include <QJsonObject>
 #include <QtGui/QStandardItemModel>
 #include <memory>

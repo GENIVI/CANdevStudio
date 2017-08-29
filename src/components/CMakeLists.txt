@@ -11,10 +11,10 @@ function(add_component_ui componentName componentModelName)
 endfunction()
 
 set(CANRAWSENDER_FILES
+    canrawsender/canrawsender.ui
     canrawsender/canrawsender.cpp
     canrawsender/canrawsender_p.cpp
     canrawsender/canrawsendermodel.cpp
-    canrawsender/canrawsender.ui
     canrawsender/newlinemanager.cpp
 )
 
