@@ -100,7 +100,7 @@ class WithUIBackend;
  *
  *   public:
  *
- *      using UsesUIBackend::UsesUIBackend;  // brings two ctors in scope
+ *      using UsesUIBackend::UsesUIBackend;  // brings ctors in scope
  *
  *      void foo()
  *      {
@@ -157,7 +157,7 @@ class UsesUIBackend
       // just to disable this ctor for invalid F types
       , class = std::enable_if_t<IsUsesUIBackendInit<D, F>, void>
       >
-    UsesUIBackend(F&& init, As&&... args)
+    explicit UsesUIBackend(F&& init, As&&... args)
       :
         UsesUIBackend{ std::forward<F>(init)
                      , UIBackendSelector<UIBackendDefault<Subject>>
@@ -290,7 +290,7 @@ class WithUIBackend
       , class... As
       , class = std::enable_if_t<IsUIBackendSelector<ImplSelector>, void>
       >
-    explicit WithUIBackend(ImplSelector&&, UIBackendUser& user, As&&... args)
+    WithUIBackend(ImplSelector&&, UIBackendUser& user, As&&... args)
       :
         uiRep{std::make_unique<
                     typename std::remove_reference_t<ImplSelector>::type
