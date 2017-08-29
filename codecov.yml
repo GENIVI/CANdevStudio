@@ -1,0 +1,6 @@
+coverage:
+    ignore:
+        - "src/components/canrawsender/gui"
+        - "src/gui/main.cpp"
+        - "src/common/guiinterface"
+        - "tests"

@@ -1,12 +1,12 @@
 #ifndef NLMCHECKBOX_HPP
 #define NLMCHECKBOX_HPP
 
-#include "nlmcheckboxinterface.hpp"
+#include <guiinterface/checkboxinterface.hpp>
 #include <QCheckBox>
 #include <QHBoxLayout>
 #include <QLineEdit>
 
-struct NLMCheckBox : public NLMCheckBoxInterface {
+struct NLMCheckBox : public CheckBoxInterface {
 
     NLMCheckBox()
         : qWidget(new QWidget)
