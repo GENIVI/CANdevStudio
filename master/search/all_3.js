@@ -49,6 +49,7 @@ var searchData=
   ['cdswidget_2eh',['cdswidget.h',['../cdswidget_8h.html',1,'']]],
   ['checkboxinterface',['CheckBoxInterface',['../struct_check_box_interface.html',1,'']]],
   ['checkboxinterface_2ehpp',['checkboxinterface.hpp',['../checkboxinterface_8hpp.html',1,'']]],
+  ['clearfilter',['clearFilter',['../class_unique_filter_model.html#a242df2f42ae90d16e12c2d5c71e5caa4',1,'UniqueFilterModel']]],
   ['clone',['clone',['../class_can_device_model.html#a7a5964b08ad2f87cbe66140614630119',1,'CanDeviceModel::clone()'],['../class_can_raw_sender_model.html#a3990e03d399f3bc74322dc2abc95ab47',1,'CanRawSenderModel::clone()'],['../class_can_raw_view_model.html#a4eb4bec3a55a029b42e2267890ba40fe',1,'CanRawViewModel::clone()']]],
   ['closeevent',['closeEvent',['../struct_c_d_s_widget.html#a31a7025014c0541b31277cf97495477f',1,'CDSWidget::closeEvent()'],['../class_can_raw_sender.html#af5293830e94800dd049e1d9a8d988f1d',1,'CanRawSender::closeEvent()'],['../class_can_raw_view.html#a74dd2495a7ba54df9cdf4ae60726f300',1,'CanRawView::closeEvent()']]],
   ['colname',['ColName',['../class_new_line_manager.html#a69f0c8e8a1213f641d43b7aa019e87dc',1,'NewLineManager']]],

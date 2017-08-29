@@ -7,5 +7,6 @@ var class_can_raw_view_private =
     [ "simStarted", "class_can_raw_view_private.html#a1773e4feac7c9c06eeb7076855ca5fd8", null ],
     [ "timer", "class_can_raw_view_private.html#a0d9238e0c786981ae30c5564ca4edcf0", null ],
     [ "tvModel", "class_can_raw_view_private.html#acc80cef35de6b73126143cb55708db59", null ],
-    [ "ui", "class_can_raw_view_private.html#a0cd07a1650068bde6fe2e6a59dd60b0f", null ]
+    [ "ui", "class_can_raw_view_private.html#a0cd07a1650068bde6fe2e6a59dd60b0f", null ],
+    [ "uniqueModel", "class_can_raw_view_private.html#a8b845dd6fd24cfc38900ed1d5085ed47", null ]
 ];

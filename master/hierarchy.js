@@ -36,6 +36,9 @@ var hierarchy =
       [ "CanRawSenderPrivate", "class_can_raw_sender_private.html", null ],
       [ "NewLineManager", "class_new_line_manager.html", null ]
     ] ],
+    [ "QSortFilterProxyModel", null, [
+      [ "UniqueFilterModel", "class_unique_filter_model.html", null ]
+    ] ],
     [ "QWidget", null, [
       [ "CanRawView", "class_can_raw_view.html", null ],
       [ "CanRawViewPrivate", "class_can_raw_view_private.html", null ],

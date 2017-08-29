@@ -32,5 +32,6 @@ var annotated_dup =
     [ "NLMLineEdit", "struct_n_l_m_line_edit.html", "struct_n_l_m_line_edit" ],
     [ "NLMPushButton", "struct_n_l_m_push_button.html", "struct_n_l_m_push_button" ],
     [ "PushButtonInterface", "struct_push_button_interface.html", "struct_push_button_interface" ],
+    [ "UniqueFilterModel", "class_unique_filter_model.html", "class_unique_filter_model" ],
     [ "VisitableWith", "struct_visitable_with.html", "struct_visitable_with" ]
 ];
