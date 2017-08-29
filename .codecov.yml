@@ -1,2 +1,3 @@
-ignore:
-    - "/root/sources/src/components/canrawsender/gui"
+coverage:
+    ignore:
+        - "**/gui"
