@@ -132,7 +132,7 @@ TEST_CASE("Send button clicked - send one frame test", "[newlinemanager]")
     CHECK(canRawSenderSpy.count() > 0);
 }
 
-/*
+/* TODO
  * Problem with QTimer expired test
  * Debuger description: QObject::startTimer: Timers can only be used with threads started with QThread
 TEST_CASE("Send button clicked - send several frame test", "[newlinemanager]")
