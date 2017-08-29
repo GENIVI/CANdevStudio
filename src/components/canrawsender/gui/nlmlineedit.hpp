@@ -1,10 +1,10 @@
 #ifndef NLMLINEEDIT_HPP
 #define NLMLINEEDIT_HPP
 
-#include <guiinterface/nlmlineeditinterface.hpp>
+#include <guiinterface/lineeditinterface.hpp>
 #include <QLineEdit>
 
-struct NLMLineEdit : public NLMLineEditInterface {
+struct NLMLineEdit : public LineEditInterface {
 
     NLMLineEdit()
         : qLineEdit(new QLineEdit)

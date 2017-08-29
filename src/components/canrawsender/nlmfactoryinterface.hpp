@@ -1,13 +1,13 @@
 #ifndef NLMFACTORYINTERFACE_HPP
 #define NLMFACTORYINTERFACE_HPP
 
-class NLMCheckBoxInterface;
-class NLMLineEditInterface;
-class NLMPushButtonInterface;
+class CheckBoxInterface;
+class LineEditInterface;
+class PushButtonInterface;
 
 struct NLMFactoryInterface {
-    virtual NLMCheckBoxInterface* createCheckBox() = 0;
-    virtual NLMLineEditInterface* createLineEdit() = 0;
-    virtual NLMPushButtonInterface* createPushButton() = 0;
+    virtual CheckBoxInterface* createCheckBox() = 0;
+    virtual LineEditInterface* createLineEdit() = 0;
+    virtual PushButtonInterface* createPushButton() = 0;
 };
 #endif // NLMFACTORYINTERFACE_HPP

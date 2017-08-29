@@ -1,10 +1,10 @@
 #ifndef NLMPUSHBUTTON_HPP
 #define NLMPUSHBUTTON_HPP
 
-#include <guiinterface/nlmpushbuttoninterface.hpp>
+#include <guiinterface/pushbuttoninterface.hpp>
 #include <QPushButton>
 
-struct NLMPushButton : public NLMPushButtonInterface {
+struct NLMPushButton : public PushButtonInterface {
 
     NLMPushButton()
         : qPushButton(new QPushButton)

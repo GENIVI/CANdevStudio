@@ -9,8 +9,8 @@
 struct NLMFactory : public NLMFactoryInterface {
     virtual ~NLMFactory() {}
 
-    NLMCheckBoxInterface* createCheckBox() override { return new NLMCheckBox(); }
-    NLMLineEditInterface* createLineEdit() override { return new NLMLineEdit; }
-    NLMPushButtonInterface* createPushButton() override { return new NLMPushButton; }
+    CheckBoxInterface* createCheckBox() override { return new NLMCheckBox(); }
+    LineEditInterface* createLineEdit() override { return new NLMLineEdit; }
+    PushButtonInterface* createPushButton() override { return new NLMPushButton; }
 };
 #endif // NLMFACTORY_HPP

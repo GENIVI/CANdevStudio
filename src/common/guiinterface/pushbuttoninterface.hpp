@@ -1,12 +1,12 @@
-#ifndef NLMPUSHBUTTONINTERFACE_HPP
-#define NLMPUSHBUTTONINTERFACE_HPP
+#ifndef PUSHBUTTONINTERFACE_HPP
+#define PUSHBUTTONINTERFACE_HPP
 
 #include <QString>
 #include <functional>
 class QWidget;
 
-struct NLMPushButtonInterface {
-    virtual ~NLMPushButtonInterface() {}
+struct PushButtonInterface {
+    virtual ~PushButtonInterface() {}
 
     typedef std::function<void()> pressed_t;
     virtual void pressedCbk(const pressed_t& cb) = 0;
@@ -15,4 +15,4 @@ struct NLMPushButtonInterface {
     virtual void setDisabled(bool state) = 0;
     virtual bool isEnabled() = 0;
 };
-#endif // NLMPUSHBUTTONINTERFACE_HPP
+#endif // PUSHBUTTONINTERFACE_HPP

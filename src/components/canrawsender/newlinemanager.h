@@ -99,11 +99,11 @@ private:
 
     NLMFactory mDefFactory;
     NLMFactoryInterface& mFactory;
-    std::unique_ptr<NLMCheckBoxInterface> mCheckBox;
-    std::unique_ptr<NLMLineEditInterface> mId;
-    std::unique_ptr<NLMLineEditInterface> mData;
-    std::unique_ptr<NLMLineEditInterface> mInterval;
-    std::unique_ptr<NLMPushButtonInterface> mSend;
+    std::unique_ptr<CheckBoxInterface> mCheckBox;
+    std::unique_ptr<LineEditInterface> mId;
+    std::unique_ptr<LineEditInterface> mData;
+    std::unique_ptr<LineEditInterface> mInterval;
+    std::unique_ptr<PushButtonInterface> mSend;
 
 signals:
 
