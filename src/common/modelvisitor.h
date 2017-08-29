@@ -11,6 +11,31 @@
 
 #include "visitablewith.h" // VisitableWith
 
+
+
+/**
+ * Visitor type generator for types included in visitable_types.
+ * Produces type-safe instance of Visitor per given Tag. User
+ * shall derive publicly from Visitor<Tag> (tag can be the name
+ * of the derived type), define visitable_types tuple to contain
+ * allowed visitable types, and inherit Visitor constructor.
+ * Visitable types must be derived from VisitableWith<T> where
+ * T is the name of the visitor.
+ *
+ * Example
+ * @code
+ *  struct Example
+ *    : Visitor<Example>
+ *  {
+ *      using visitable_types = std::tuple<A, B, C, D>;
+ *
+ *      using Visitor::Visitor;
+ *  };
+ * @endcode
+ *
+ * @see CanNodeDataModelVisitor for an example
+ * @see http://insooth.github.io/visitor-pattern.md for an article
+ */
 template<class Tag>
 class Visitor
 {
