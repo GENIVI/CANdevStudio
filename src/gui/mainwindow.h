@@ -4,17 +4,8 @@
 #include <QtWidgets/QMainWindow>
 #include <memory>
 
-#include <candevice.h>
-#include <canfactoryqt.hpp>
-#include <canrawsender.h>
-#include <canrawview.h>
+#include "projectconfiguration/projectconfiguration.h"
 
-#include <nodes/FlowScene>
-#include <nodes/FlowView>
-#include <nodes/Node>
-#include <nodes/NodeData>
-
-class QMdiArea;
 class QCloseEvent;
 
 namespace Ui {
@@ -30,20 +21,18 @@ public:
 
 private:
     std::unique_ptr<Ui::MainWindow> ui;
-    std::shared_ptr<CanRawSender> canRawSender;
-    std::shared_ptr<QtNodes::FlowScene> graphScene;
-    QtNodes::FlowView* graphView;
+    std::unique_ptr<ProjectConfiguration> projectConfiguration;
 
-    void handleDock(QWidget* component, QMdiArea* mdi);
     void connectToolbarSignals();
     void connectMenuSignals();
     void setupMdiArea();
     void closeEvent(QCloseEvent* event);
-    void nodeCreatedCallback(QtNodes::Node& node);
-    void nodeDeletedCallback(QtNodes::Node& node);
-    void nodeDoubleClickedCallback(QtNodes::Node& node);
     void handleLoadAction();
     void handleSaveAction();
+
+public slots:
+    void handleDock(QWidget* component);
+    void componentWidgetCreated(QWidget* component);
 };
 
 #endif // MAINWINDOW_H
