@@ -1,3 +1,3 @@
 coverage:
     ignore:
-        - **/src/components/canrawsender
+        - **/components/canrawsender/gui
