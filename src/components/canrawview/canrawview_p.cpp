@@ -3,9 +3,17 @@
 #include "log.hpp"  // cds_debug
 
 #include <QHeaderView>
+#include <QStandardItem>
+#include <QtCore/QJsonArray>
+#include <QtCore/QJsonObject>
+#include <QtCore/QList>
+#include <QtCore/QString>
+#include <QtCore/Qt> // DisplayRole, SortOrder
+#include <QtCore/QVariant>
 #include <QtSerialBus/QCanBusFrame>
 
 #include <cassert>  // assert
+#include <utility>  // move
 
 
 void CanRawViewPrivate::saveSettings(QJsonObject& json)
@@ -39,12 +47,13 @@ void CanRawViewPrivate::frameView(const QCanBusFrame& frame, const QString& dire
         payHex.insert(ii, ' ');
     }
 
+    auto elapsed =
+        QString::number(static_cast<double>(_timer->elapsed()) / 1000.0, 'f', 2);
+    
     QList<QVariant> qvList;
-
-    // FIXME: too much conversions
     qvList.append(_rowID++);
-    qvList.append(QString::number((double)_timer->elapsed() / 1000, 'f', 2).toDouble());
-    qvList.append(QString::number((double)_timer->elapsed() / 1000, 'f', 2));
+    qvList.append(elapsed.toDouble());
+    qvList.append(std::move(elapsed));
     qvList.append(frame.frameId());
     qvList.append(QString("0x" + QString::number(frame.frameId(), 16)));
     qvList.append(direction);
@@ -54,12 +63,14 @@ void CanRawViewPrivate::frameView(const QCanBusFrame& frame, const QString& dire
     QList<QStandardItem*> list;
 
     for (QVariant qvitem : qvList) {
-        QStandardItem* item = new QStandardItem();
+        QStandardItem* item = new QStandardItem;
+        assert(nullptr != item);
+
         item->setData(qvitem, Qt::DisplayRole);
         list.append(item);
     }
 
-    _tvModel.appendRow(list);
+    _tvModel.appendRow(std::move(list));
 
     auto& ui = backend();
     _currentSortOrder = ui.getSortOrder();
@@ -91,7 +102,7 @@ QJsonObject CanRawViewPrivate::makeColumnsOrder() const
         ++ii;
     }
 
-    return {{"Columns"}, std::move(columnList)};
+    return {{"Columns", std::move(columnList)}};
 }
 
 QJsonArray CanRawViewPrivate::makeViewModel() const
