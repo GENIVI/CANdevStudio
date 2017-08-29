@@ -72,6 +72,8 @@ class WithUIBackend;
  * To be derived publicly by @c Dervied type that is going to be composed
  * with the *Private type (as used in the Qt D-Pointer infrastructure).
  *
+ * NOTE: This base class is not intended to be used in polymorphic delete.
+ *
  * @see https://wiki.qt.io/D-Pointer for @c d_ptr
  *
  * Example:
@@ -166,6 +168,8 @@ class UsesUIBackend
 /**
  * To be derived publicly by the *Private types (as used in the Qt D-Pointer
  * infrastructure).
+ *
+ * NOTE: This base class is not intended to be used in polymorphic delete.
  *
  * @see https://wiki.qt.io/D-Pointer for @c q_ptr
  *
