@@ -15,7 +15,6 @@ NewLineManager::NewLineManager(CanRawSender* q, bool simulationState, NLMFactory
     if (q == nullptr) {
         throw std::runtime_error("CanRawSender is nullptr");
     }
-
     // Id
     mId.reset(mFactory.createLineEdit());
     QRegExp qRegExp("[1]?[0-9A-Fa-f]{7}");
@@ -134,4 +133,12 @@ void NewLineManager::SetSimulationState(bool state)
         StopTimer();
         mInterval->setDisabled(false);
     }
+}
+
+void NewLineManager::Line2Json(QJsonObject& json) const
+{
+    json["Id"] = std::move(mId->getText());
+    json["Data"] = std::move(mData->getText());
+    json["Interval"] = std::move(mInterval->getText());
+    json["Loop"] = (mCheckBox->getState() == true) ? 1 : 0;
 }
