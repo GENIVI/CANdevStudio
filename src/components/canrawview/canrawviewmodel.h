@@ -7,7 +7,7 @@
 #include <QtCore/QObject>
 #include <QtWidgets/QLabel>
 
-#include <canrawview/canrawview.h>
+#include <canrawview.h>
 #include <nodes/DataModelRegistry>
 #include <nodes/NodeDataModel>
 

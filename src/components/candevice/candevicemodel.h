@@ -11,7 +11,7 @@
 #include <nodes/DataModelRegistry>
 #include <nodes/NodeDataModel>
 
-#include <candevice/candevice.h>
+#include <candevice.h>
 
 using QtNodes::PortType;
 using QtNodes::PortIndex;

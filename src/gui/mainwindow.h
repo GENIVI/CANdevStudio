@@ -4,10 +4,10 @@
 #include <QtWidgets/QMainWindow>
 #include <memory>
 
-#include "candevice/candevice.h"
-#include "candevice/canfactoryqt.hpp"
-#include "canrawsender/canrawsender.h"
-#include "canrawview/canrawview.h"
+#include <candevice.h>
+#include <canfactoryqt.hpp>
+#include <canrawsender.h>
+#include <canrawview.h>
 
 #include <nodes/FlowScene>
 #include <nodes/FlowView>

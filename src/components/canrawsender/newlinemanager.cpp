@@ -137,8 +137,8 @@ void NewLineManager::SetSimulationState(bool state)
 
 void NewLineManager::Line2Json(QJsonObject& json) const
 {
-    json["Id"] = std::move(mId->getText());
-    json["Data"] = std::move(mData->getText());
-    json["Interval"] = std::move(mInterval->getText());
+    json["Id"] = mId->getText();
+    json["Data"] = mData->getText();
+    json["Interval"] = mInterval->getText();
     json["Loop"] = (mCheckBox->getState() == true) ? 1 : 0;
 }
