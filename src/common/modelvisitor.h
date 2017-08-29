@@ -15,20 +15,22 @@
 
 /**
  * Visitor type generator for types included in visitable_types.
- * Produces type-safe instance of Visitor per given Tag. User
- * shall derive publicly from Visitor<Tag> (tag can be the name
- * of the derived type), define visitable_types tuple to contain
- * allowed visitable types, and inherit Visitor constructor.
+ * Produces type-safe instance of Visitor per given Tag and a
+ * type-list of Visitables (at least one). User shall derive
+ * publicly from this type Visitor<Tag, Vs...> (tag can be the
+ * name of the derived type), and inherit Visitor constructor.
  * Visitable types must be derived from VisitableWith<T> where
- * T is the name of the visitor.
+ * T is the name of the visitor. Do not pass references in
+ * Visitables type-list.
  *
  * Example
  * @code
  *  struct Example
- *    : Visitor<Example>
+ *    : Visitor<
+ *          Example      // tag
+ *        , A, B, C, D   // visitable types
+ *        >
  *  {
- *      using visitable_types = std::tuple<A, B, C, D>;
- *
  *      using Visitor::Visitor;
  *  };
  * @endcode
@@ -36,13 +38,13 @@
  * @see CanNodeDataModelVisitor for an example
  * @see http://insooth.github.io/visitor-pattern.md for an article
  */
-template<class Tag>
+template<class Tag, class... Visitables>
 class Visitor
 {
 
  public:
 
-    using visitable_types = std::tuple<>;  // DO NOT PASS REFERENCES
+    using visitable_types = std::tuple<Visitables...>;  // DO NOT PASS REFERENCES
 
  private:
 
@@ -220,15 +222,14 @@ class CanDeviceModel;
  * @endcode
  */
 struct CanNodeDataModelVisitor
-  : Visitor<CanNodeDataModelVisitor>
+  : Visitor<
+        CanNodeDataModelVisitor  // tag, not visitable type!
+      , CanRawViewModel
+      , CanRawSenderModel
+      , CanDeviceModel
+//    , Other
+      >
 {
-    using visitable_types =
-            std::tuple<
-                CanRawViewModel
-              , CanRawSenderModel
-              , CanDeviceModel
-              >;
-
     using Visitor::Visitor;
 };
 
