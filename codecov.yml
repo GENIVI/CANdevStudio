@@ -2,5 +2,5 @@ coverage:
     ignore:
         - "src/components/canrawsender/gui"
         - "src/gui/main.cpp"
-        - "common/guiinterface"
+        - "src/common/guiinterface"
         - "tests"
