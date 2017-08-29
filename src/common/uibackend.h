@@ -129,7 +129,7 @@ class UsesUIBackend
 
     /** Just references the UI backend object. */
     explicit UsesUIBackend(UIBackend<Subject>& backend)
-      : d_ptr{new PrivateWithUIBackend{&static_cast<Derived*>(this), backend}}
+      : d_ptr{new PrivateWithUIBackend{*static_cast<Derived*>(this), backend}}
     {}
 
 
@@ -147,7 +147,7 @@ class UsesUIBackend
     explicit UsesUIBackend(ImplSelector&& selector, As&&... args)
       :
         d_ptr{new PrivateWithUIBackend{ std::forward<ImplSelector>(selector)
-                                      , &static_cast<Derived*>(this)
+                                      , *static_cast<Derived*>(this)
                                       , std::forward<As>(args)... }}
     {}
 
