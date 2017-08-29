@@ -29,6 +29,7 @@ class UIBackendDefault<CanRawView> : public UIBackend<CanRawView>
     QString getClickedColumn(int ndx) override;
     QWidget* getMainWidget() override;
     bool isColumnHidden(int column) override;
+    bool isFrozen() override;
     int getSortIndicator() override;
     int getSortOrder() override;
     void initTableView(QAbstractItemModel& tvModel) override;
