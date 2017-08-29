@@ -1,7 +1,7 @@
 #ifndef NLMCHECKBOX_HPP
 #define NLMCHECKBOX_HPP
 
-#include "nlmcheckboxinterface.hpp"
+#include <guiinterface/nlmcheckboxinterface.hpp>
 #include <QCheckBox>
 #include <QHBoxLayout>
 #include <QLineEdit>

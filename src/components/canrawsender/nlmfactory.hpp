@@ -1,10 +1,10 @@
 #ifndef NLMFACTORY_HPP
 #define NLMFACTORY_HPP
 
-#include "nlmcheckbox.hpp"
+#include "gui/nlmcheckbox.hpp"
 #include "nlmfactoryinterface.hpp"
-#include "nlmlineedit.hpp"
-#include "nlmpushbutton.hpp"
+#include "gui/nlmlineedit.hpp"
+#include "gui/nlmpushbutton.hpp"
 
 struct NLMFactory : public NLMFactoryInterface {
     virtual ~NLMFactory() {}

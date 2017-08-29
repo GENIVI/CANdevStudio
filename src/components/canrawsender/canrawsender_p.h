@@ -2,7 +2,7 @@
 #define CANRAWSENDER_P_H
 
 #include "crsfactory.hpp"
-#include "crsgui.hpp"
+#include "gui/crsgui.hpp"
 #include "newlinemanager.h"
 #include "ui_canrawsender.h"
 #include <QtGui/QStandardItemModel>
