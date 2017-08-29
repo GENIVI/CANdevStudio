@@ -7,6 +7,7 @@
 #include <QtCore/QObject>
 #include <QtCore/QScopedPointer>
 
+
 class CanRawViewPrivate;
 class QCanBusFrame;
 class QCloseEvent;
