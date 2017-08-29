@@ -107,6 +107,7 @@ $(document).ready(function(){initNavTree('class_can_raw_view_model.html','');});
 
 <div class="header">
   <div class="summary">
+<a href="#signals">Signals</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="class_can_raw_view_model-members.html">List of all members</a>  </div>
@@ -137,6 +138,13 @@ Collaboration diagram for CanRawViewModel:</div>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="signals"></a>
+Signals</h2></td></tr>
+<tr class="memitem:aede030e9e9e724fa5e9e647153c6dcb5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_raw_view_model.html#aede030e9e9e724fa5e9e647153c6dcb5">frameReceived</a> (const QCanBusFrame &amp;frame)</td></tr>
+<tr class="separator:aede030e9e9e724fa5e9e647153c6dcb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20f7a50b12d0646d428e81b29f2bef31"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_raw_view_model.html#a20f7a50b12d0646d428e81b29f2bef31">frameSent</a> (bool status, const QCanBusFrame &amp;frame)</td></tr>
+<tr class="separator:a20f7a50b12d0646d428e81b29f2bef31"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a6b6d5041a5e7b2f7a3f78e771c3c1789"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_raw_view_model.html#a6b6d5041a5e7b2f7a3f78e771c3c1789">CanRawViewModel</a> ()</td></tr>
@@ -340,6 +348,64 @@ Public Attributes</h2></td></tr>
 
 <p>Used to get widget embedded in Node. </p>
 <dl class="section return"><dt>Returns</dt><dd>QLabel </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aede030e9e9e724fa5e9e647153c6dcb5"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CanRawViewModel::frameReceived </td>
+          <td>(</td>
+          <td class="paramtype">const QCanBusFrame &amp;&#160;</td>
+          <td class="paramname"><em>frame</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a20f7a50b12d0646d428e81b29f2bef31"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CanRawViewModel::frameSent </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>status</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QCanBusFrame &amp;&#160;</td>
+          <td class="paramname"><em>frame</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>

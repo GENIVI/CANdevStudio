@@ -108,6 +108,7 @@ $(document).ready(function(){initNavTree('class_can_device_model.html','');});
 <div class="header">
   <div class="summary">
 <a href="#pub-slots">Public Slots</a> &#124;
+<a href="#signals">Signals</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="class_can_device_model-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -144,6 +145,11 @@ Public Slots</h2></td></tr>
 <tr class="memitem:a467b122b1148c77be5c3f0b68b1b34a3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_device_model.html#a467b122b1148c77be5c3f0b68b1b34a3">frameSent</a> (bool status, const QCanBusFrame &amp;frame)</td></tr>
 <tr class="memdesc:a467b122b1148c77be5c3f0b68b1b34a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback, called when <a class="el" href="class_can_device.html" title="The class provides abstraction layer for CAN BUS hardware. ">CanDevice</a> emits signal frameReceived.  <a href="#a467b122b1148c77be5c3f0b68b1b34a3">More...</a><br /></td></tr>
 <tr class="separator:a467b122b1148c77be5c3f0b68b1b34a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="signals"></a>
+Signals</h2></td></tr>
+<tr class="memitem:af9435aa9857695f85df63561df301a5c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_device_model.html#af9435aa9857695f85df63561df301a5c">sendFrame</a> (const QCanBusFrame &amp;frame)</td></tr>
+<tr class="separator:af9435aa9857695f85df63561df301a5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -557,6 +563,30 @@ Public Member Functions</h2></td></tr>
 
 <p>Used to get information if node is resizable. </p>
 <dl class="section return"><dt>Returns</dt><dd>false </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="af9435aa9857695f85df63561df301a5c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CanDeviceModel::sendFrame </td>
+          <td>(</td>
+          <td class="paramtype">const QCanBusFrame &amp;&#160;</td>
+          <td class="paramname"><em>frame</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>

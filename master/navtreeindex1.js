@@ -1,5 +1,8 @@
 var NAVTREEINDEX1 =
 {
+"main_8cpp.html#a677cf1dd7db1d278155bd2637971a267":[2,0,0,2,0,2],
+"main_8cpp.html#ab4d70e8cf06e32830aaa27b5701a223d":[2,0,0,2,0,4],
+"mainwindow_8cpp.html":[2,0,0,2,1],
 "mainwindow_8cpp.html#a3b9d464ad39a8ef55e15b34582f02194":[2,0,0,2,1,0],
 "mainwindow_8cpp.html#acef5b97894bfa7c1f3a144b55f17d8f6":[2,0,0,2,1,1],
 "mainwindow_8h.html":[2,0,0,2,2],
