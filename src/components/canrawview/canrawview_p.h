@@ -213,6 +213,11 @@ private slots:
         currentSortOrder = ui->tv->horizontalHeader()->sortIndicatorOrder();
         sortIndex = clickedIndex;
 
+        if ((ui->tv->model()->headerData(clickedIndex, Qt::Horizontal).toString() == "time")
+            || (ui->tv->model()->headerData(clickedIndex, Qt::Horizontal).toString() == "id")) {
+            sortIndex = sortIndex - 1;
+        }
+
         if (prevIndex == clickedIndex) {
             if (currentSortOrder == Qt::DescendingOrder) {
                 ui->tv->sortByColumn(sortIndex, Qt::DescendingOrder);
@@ -233,12 +238,8 @@ private slots:
     void setFilter()
     {
         uniqueModel.toggleFilter();
-
-        if (uniqueModel.isFilterActive() == true) {
-            ui->pbToggleFilter->setText("Combined view");
-        } else {
-            ui->pbToggleFilter->setText("Free view");
-        }
+        uniqueModel.isFilterActive() ? (ui->pbToggleFilter->setText("Combined view"))
+                                     : (ui->pbToggleFilter->setText("Free view"));
     }
 };
 #endif // CANRAWVIEW_P_H
