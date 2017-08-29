@@ -1,22 +1,9 @@
+
 #include "canrawview.h"
-#include "canrawview_p.h"
-#include "log.hpp"
-#include <QtCore/QElapsedTimer>
-#include <QtCore/QList>
-#include <QtCore/QString>
-#include <QtCore/QStringList>
+
+#include <QCloseEvent>
 #include <QtSerialBus/QCanBusFrame>
 
-CanRawView::CanRawView(QWidget* parent)
-    : QWidget(parent)
-    , d_ptr(new CanRawViewPrivate(this))
-{
-    Q_D(CanRawView);
-
-    setLayout(d->ui->layout);
-}
-
-CanRawView::~CanRawView() {}
 
 void CanRawView::startSimulation()
 {
@@ -51,10 +38,16 @@ void CanRawView::frameSent(bool status, const QCanBusFrame& frame)
 
 void CanRawView::closeEvent(QCloseEvent* e)
 {
-    if (parentWidget()) {
-        parentWidget()->hide();
+    Q_D(CanRawView);
+
+    auto parent = d->backend().parentWidget();
+
+    if (parent) {
+        parent->hide();
     } else {
-        hide();
+        d->backend().hide();
     }
+
     e->ignore();
 }
+

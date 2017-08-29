@@ -9,7 +9,7 @@
 #include <cassert> // assert
 #include <functional>  // function
 #include <memory> // unique_ptr, make_unique
-#include <type_traits> // is_base_of, common_type, enable_if, is_same, remove_reference_t
+#include <type_traits> // is_{same,base_of}, common_type, enable_if, remove_reference, result_of
 #include <utility> // forward
 
 
@@ -62,6 +62,12 @@ static constexpr bool IsUIBackendSelector =
                           >)
               >::value;
 
+// FIXME: extract first arg type instead of the following
+template<class Derived, class F>
+static constexpr bool IsUsesUIBackendInit =
+        std::is_same<std::result_of_t<F(D&)>, void>::value;
+
+
 
 
 template<class UIBackendUser, class Subject = UIBackendUser>
@@ -108,13 +114,20 @@ class WithUIBackend;
  *  // two possible uses below, production and test:
  *
  *  CanRawView defaulted;
- *  CanRawView defaultedWithArgs{args...}; // args... are forwarded to UIBackend<Subject> type
+ *  CanRawView defaultedWithArgs {args...}; // args... are forwarded to UIBackend<Subject> type
  *
- *  CanRawView selected        {UIBackendSelector<other::CanRawView>};
- *  CanRawView selectedWithArgs{UIBackendSelector<other::CanRawView>, args...};
+ *  CanRawView selected         {UIBackendSelector<other::CanRawView>};
+ *  CanRawView selectedWithArgs {UIBackendSelector<other::CanRawView>, args...};
  *
  *  UIBackend<test::CanRawView> backend; // type derived from UIBackend<CanRawView>
- *  CanRawView                  injected{backend};
+ *  CanRawView                  injected         {backend};
+ *  CanRawView                  injectedWithInit {[](CanRawView&){}, backend};
+ *
+ *  CanRawView defaultedWithInit        {[](CanRawView&){}};
+ *  CanRawView defaultedWithArgsAndInit {[](CanRawView&){}, args...};
+ *
+ *  CanRawView selectedWithInit        {[](CanRawView&){}, UIBackendSelector<X>};
+ *  CanRawView selectedWithInitAndArgs {[](CanRawView&){}, UIBackendSelector<X>, args...};
  * @endcode
  */
 template<class Derived, class PrivateWithUIBackend, class Subject = Derived>
@@ -131,12 +144,44 @@ class UsesUIBackend
 
     /** Just references the UI backend object. */
     explicit UsesUIBackend(UIBackend<Subject>& backend)
-      : d_ptr{new PrivateWithUIBackend{*static_cast<Derived*>(this), backend}}
+      : UsesUIBackend{[](Derived&){}, backend}
     {}
+
+    /**
+     * Takes a user-specified action @c F of signature void(Derived&) that is
+     * executed in the constructor body. Uses default UI backend.
+     */
+    template<
+        class F
+      , class... As
+      // just to disable this ctor for invalid F types
+      , class = std::enable_if_t<IsUsesUIBackendInit<D, F>, void>
+      >
+    UsesUIBackend(F&& init, As&&... args)
+      :
+        UsesUIBackend{ std::forward<F>(init)
+                     , UIBackendSelector<UIBackendDefault<Subject>>
+                     , std::forward<As>(args)... }
+    {
+    }
+
+
+
+    /** Just references the UI backend object. */
+    template<
+        class F
+      // just to disable this ctor for invalid F types
+      , class = std::enable_if_t<IsUsesUIBackendInit<D, F>, void>
+      >
+    UsesUIBackend(F&& init, UIBackend<Subject>& backend)
+      : d_ptr{new PrivateWithUIBackend{ * static_cast<Derived*>(this), backend}}
+    {
+        init( * static_cast<Derived*>(this));
+    }
 
 
     /**
-     * Creates an manages UI backend object of given selected type accessible
+     * Creates and manages UI backend object of given selected type accessible
      * via @c ImplSelector::type nested typedef.
      */
     template<
@@ -149,9 +194,33 @@ class UsesUIBackend
     explicit UsesUIBackend(ImplSelector&& selector, As&&... args)
       :
         d_ptr{new PrivateWithUIBackend{ std::forward<ImplSelector>(selector)
-                                      , *static_cast<Derived*>(this)
+                                      , * static_cast<Derived*>(this)
                                       , std::forward<As>(args)... }}
     {}
+
+    /**
+     * Takes a user-specified action @c F of signature void(Derived&) that is
+     * executed in the body of the constructor and ImplSelector that chooses
+     * UI backend implementation to be created and managed.
+     */
+    template<
+        class F
+      , class ImplSelector
+      , class... As
+      // disables this ctor for non-selectors to enable ctor that takes args only
+      , class = std::enable_if_t<IsUIBackendSelector<ImplSelector>, void>
+      // just to disable this ctor for invalid F types
+      , class = std::enable_if_t<IsUsesUIBackendInit<D, F>, void>
+      >
+    UsesUIBackend(F&& init, ImplSelector&& selector, As&&... args)
+      :
+        d_ptr{new PrivateWithUIBackend{ std::forward<ImplSelector>(selector)
+                                      , * static_cast<Derived*>(this)
+                                      , std::forward<As>(args)... }}
+    {
+        init( * static_cast<Derived*>(this));
+    }
+
 
  protected:
 
