@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['savesettings',['saveSettings',['../class_can_raw_view_private.html#a165c282c952acf5d31853a4c9cd74c40',1,'CanRawViewPrivate']]],
+  ['savesettings',['saveSettings',['../class_can_raw_sender_private.html#a446f4670e21165dd75f2d75827130e07',1,'CanRawSenderPrivate::saveSettings()'],['../class_can_raw_view_private.html#a165c282c952acf5d31853a4c9cd74c40',1,'CanRawViewPrivate::saveSettings()']]],
   ['sendframe',['sendFrame',['../class_can_device.html#a6ebe57b42df5fb0d0673e652e081c2b0',1,'CanDevice::sendFrame()'],['../class_can_device_model.html#af9435aa9857695f85df63561df301a5c',1,'CanDeviceModel::sendFrame()'],['../class_can_raw_sender.html#a0e6950f7ee975ad8ae200b4bff32614d',1,'CanRawSender::sendFrame()'],['../class_can_raw_sender_model.html#ad6cf38b39e63426d3efb9afcdf05c255',1,'CanRawSenderModel::sendFrame()']]],
   ['setaddcbk',['setAddCbk',['../struct_c_r_s_gui_interface.html#a5e1e2e35d5f155f5abbd8e84538f088b',1,'CRSGuiInterface::setAddCbk()'],['../struct_c_r_s_gui.html#a95dbcd8e18bdad0e7ec59488fde3ce52',1,'CRSGui::setAddCbk()']]],
   ['setdisabled',['setDisabled',['../struct_line_edit_interface.html#aa3c79cb626314d653628c0715b64dbe0',1,'LineEditInterface::setDisabled()'],['../struct_push_button_interface.html#aa83e615fcb8d171501cb62caa57160fc',1,'PushButtonInterface::setDisabled()'],['../struct_n_l_m_line_edit.html#ad97ea8972842b65fa0ad4302bff71d6f',1,'NLMLineEdit::setDisabled()'],['../struct_n_l_m_push_button.html#a1e80b57559316151172b1a7fb7c6ff34',1,'NLMPushButton::setDisabled()']]],

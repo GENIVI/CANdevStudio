@@ -164,6 +164,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa9e40fb8bda738c509ab9b9df60f2de1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_new_line_manager.html#aa9e40fb8bda738c509ab9b9df60f2de1">SetSimulationState</a> (bool state)</td></tr>
 <tr class="memdesc:aa9e40fb8bda738c509ab9b9df60f2de1"><td class="mdescLeft">&#160;</td><td class="mdescRight">The function is responsible for set simulation state. The state influence for sending frame out and the internal timer (if was started before)  <a href="#aa9e40fb8bda738c509ab9b9df60f2de1">More...</a><br /></td></tr>
 <tr class="separator:aa9e40fb8bda738c509ab9b9df60f2de1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7d83fa77ccb7bc7b37ee6645117eb4a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_new_line_manager.html#aa7d83fa77ccb7bc7b37ee6645117eb4a">Line2Json</a> (QJsonObject &amp;json) const </td></tr>
+<tr class="memdesc:aa7d83fa77ccb7bc7b37ee6645117eb4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The function is responsible for convert line content to json format.  <a href="#aa7d83fa77ccb7bc7b37ee6645117eb4a">More...</a><br /></td></tr>
+<tr class="separator:aa7d83fa77ccb7bc7b37ee6645117eb4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This class holds informations about all the columns in line and relationships beteewn them. </p>
@@ -322,6 +325,30 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>QWidget pointer to the column information, nullptr otherwise </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aa7d83fa77ccb7bc7b37ee6645117eb4a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NewLineManager::Line2Json </td>
+          <td>(</td>
+          <td class="paramtype">QJsonObject &amp;&#160;</td>
+          <td class="paramname"><em>json</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The function is responsible for convert line content to json format. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">json</td><td>Json object </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

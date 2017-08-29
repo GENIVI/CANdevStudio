@@ -1,6 +1,7 @@
 <map id="src/components/canrawsender/crsguiinterface.hpp" name="src/components/canrawsender/crsguiinterface.hpp">
-<area shape="rect" id="node2" href="$crsgui_8hpp.html" title="src/components/canrawsender\l/gui/crsgui.hpp" alt="" coords="79,95,297,136"/>
-<area shape="rect" id="node3" href="$crsfactory_8hpp.html" title="src/components/canrawsender\l/crsfactory.hpp" alt="" coords="5,184,224,225"/>
-<area shape="rect" id="node4" href="$canrawsender__p_8h.html" title="src/components/canrawsender\l/canrawsender_p.h" alt="" coords="79,273,297,315"/>
-<area shape="rect" id="node5" href="$canrawsender_8cpp.html" title="src/components/canrawsender\l/canrawsender.cpp" alt="" coords="79,363,297,404"/>
+<area shape="rect" id="node2" href="$crsgui_8hpp.html" title="src/components/canrawsender\l/gui/crsgui.hpp" alt="" coords="127,95,345,136"/>
+<area shape="rect" id="node3" href="$crsfactory_8hpp.html" title="src/components/canrawsender\l/crsfactory.hpp" alt="" coords="53,184,272,225"/>
+<area shape="rect" id="node4" href="$canrawsender__p_8h.html" title="src/components/canrawsender\l/canrawsender_p.h" alt="" coords="127,273,345,315"/>
+<area shape="rect" id="node5" href="$canrawsender_8cpp.html" title="src/components/canrawsender\l/canrawsender.cpp" alt="" coords="5,363,224,404"/>
+<area shape="rect" id="node6" href="$canrawsender__p_8cpp.html" title="src/components/canrawsender\l/canrawsender_p.cpp" alt="" coords="248,363,467,404"/>
 </map>

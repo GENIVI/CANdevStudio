@@ -1,7 +1,8 @@
 <map id="src/components/canrawsender/gui/nlmlineedit.hpp" name="src/components/canrawsender/gui/nlmlineedit.hpp">
-<area shape="rect" id="node2" href="$nlmfactory_8hpp.html" title="src/components/canrawsender\l/nlmfactory.hpp" alt="" coords="127,95,345,136"/>
-<area shape="rect" id="node3" href="$newlinemanager_8h.html" title="src/components/canrawsender\l/newlinemanager.h" alt="" coords="127,184,345,225"/>
-<area shape="rect" id="node4" href="$canrawsender__p_8h.html" title="src/components/canrawsender\l/canrawsender_p.h" alt="" coords="5,273,224,315"/>
-<area shape="rect" id="node6" href="$newlinemanager_8cpp.html" title="src/components/canrawsender\l/newlinemanager.cpp" alt="" coords="248,273,467,315"/>
+<area shape="rect" id="node2" href="$nlmfactory_8hpp.html" title="src/components/canrawsender\l/nlmfactory.hpp" alt="" coords="248,95,467,136"/>
+<area shape="rect" id="node3" href="$newlinemanager_8h.html" title="src/components/canrawsender\l/newlinemanager.h" alt="" coords="248,184,467,225"/>
+<area shape="rect" id="node4" href="$canrawsender__p_8h.html" title="src/components/canrawsender\l/canrawsender_p.h" alt="" coords="127,273,345,315"/>
+<area shape="rect" id="node7" href="$newlinemanager_8cpp.html" title="src/components/canrawsender\l/newlinemanager.cpp" alt="" coords="369,273,588,315"/>
 <area shape="rect" id="node5" href="$canrawsender_8cpp.html" title="src/components/canrawsender\l/canrawsender.cpp" alt="" coords="5,363,224,404"/>
+<area shape="rect" id="node6" href="$canrawsender__p_8cpp.html" title="src/components/canrawsender\l/canrawsender_p.cpp" alt="" coords="248,363,467,404"/>
 </map>

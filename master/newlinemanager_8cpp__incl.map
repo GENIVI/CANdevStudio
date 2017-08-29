@@ -1,7 +1,7 @@
 <map id="src/components/canrawsender/newlinemanager.cpp" name="src/components/canrawsender/newlinemanager.cpp">
-<area shape="rect" id="node2" href="$newlinemanager_8h.html" title="newlinemanager.h" alt="" coords="901,95,1040,121"/>
-<area shape="rect" id="node21" href="$canrawsender_8h.html" title="canrawsender.h" alt="" coords="1385,95,1508,121"/>
-<area shape="rect" id="node3" href="$nlmfactory_8hpp.html" title="nlmfactory.hpp" alt="" coords="745,169,861,196"/>
+<area shape="rect" id="node2" href="$newlinemanager_8h.html" title="newlinemanager.h" alt="" coords="737,95,876,121"/>
+<area shape="rect" id="node22" href="$canrawsender_8h.html" title="canrawsender.h" alt="" coords="1176,95,1299,121"/>
+<area shape="rect" id="node3" href="$nlmfactory_8hpp.html" title="nlmfactory.hpp" alt="" coords="749,169,865,196"/>
 <area shape="rect" id="node4" href="$nlmcheckbox_8hpp.html" title="gui/nlmcheckbox.hpp" alt="" coords="819,244,976,271"/>
 <area shape="rect" id="node10" href="$nlmfactoryinterface_8hpp.html" title="nlmfactoryinterface.hpp" alt="" coords="1001,244,1175,271"/>
 <area shape="rect" id="node11" href="$nlmlineedit_8hpp.html" title="gui/nlmlineedit.hpp" alt="" coords="645,244,787,271"/>
