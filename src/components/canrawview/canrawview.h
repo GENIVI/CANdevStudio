@@ -2,8 +2,9 @@
 #ifndef CANRAWVIEW_H
 #define CANRAWVIEW_H
 
-#include "uibackend.h" // UsesUIBackend
+#include "canrawview_p.h" // CanRawViewPrivate
 #include "canrawviewbackend.hpp" // UIBackendDefault used in Uses...
+#include "uibackend.h" // UsesUIBackend
 
 #include <QtCore/QObject>
 #include <QtCore/QScopedPointer>
@@ -15,15 +16,16 @@ class QCloseEvent;
 
 
 class CanRawView
-  : public UsesUIBackend<
+  : public QObject  // moc assumes first inherited is a subclass of it
+  , public UsesUIBackend<
                 CanRawView
               , CanRawViewPrivate
               , CanRawView
               >
-  , public QObject
 {
     Q_OBJECT
-    Q_DECLARE_PRIVATE(CanRawView)
+    Q_DECLARE_PRIVATE_D(UsesUIBackend::d_ptr, CanRawView)
+//                   ^^^^^^^^^^^^^^^^^^^^^^^^
 
  public:
 

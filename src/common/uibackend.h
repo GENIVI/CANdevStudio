@@ -111,6 +111,8 @@ class WithUIBackend;
  * To be derived publicly by @c Derived type that is going to be composed
  * with the *Private type (as used in the Qt D-Pointer infrastructure).
  *
+ * @warning Q_DECLARE_PRIVATE_D macro is used (note the suffix @b _D).
+ *
  * NOTE: This base class is not intended to be used in polymorphic delete.
  *
  * @see https://wiki.qt.io/D-Pointer for @c d_ptr
@@ -121,15 +123,16 @@ class WithUIBackend;
  *
  * @code
  *  class CanRawView
- *    : public UsesUIBackend<
+ *    : public QObject                  // *MUST* be specified as a first one
+ *    , public UsesUIBackend<
  *                  CanRawView         // this type
- *                , CanRawViewPrivate  // type referenced by Q_DECLARE_PRIVATE()
+ *                , CanRawViewPrivate  // type referenced by Q_DECLARE_PRIVATE_D()
  *                , CanRawView         // tag for UIBackend<>
  *                >
- *    , public QObject
  *  {
  *      Q_OBJECT
- *      Q_DECLARE_PRIVATE(CanRawView)
+ *      Q_DECLARE_PRIVATE_D(UsesUIBackend::d_ptr, CanRawView)
+ *  //                   ^^^^^^^^^^^^^^^^^^^^^^^^
  *
  *   public:
  *
@@ -365,12 +368,12 @@ class UsesUIBackend
  *
  * @code
  *  class CanRawViewPrivate
- *    : public WithUIBackend<
+ *    : public QObject                  // *MUST* be specified as a first one
+ *    , public WithUIBackend<
  *                  CanRawViewPrivate  // this type
  *                , CanRawView         // type referenced by Q_DECLARE_PUBLIC()
  *                , CanRawView         // tag for UIBackend<>
  *                >
- *    , public QObject
  *  {
  *      Q_OBJECT
  *      Q_DECLARE_PUBLIC(CanRawView)

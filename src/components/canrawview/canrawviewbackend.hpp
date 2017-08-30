@@ -23,8 +23,8 @@ class UIBackendDefault<CanRawView> : public UIBackend<CanRawView>
 
  public:
 
-    CanRawViewBackend();
-    virtual ~CanRawViewBackend() = default;
+    UIBackendDefault();
+    virtual ~UIBackendDefault() = default;
 
     QString getClickedColumn(int ndx) override;
     QWidget* getMainWidget() override;
@@ -45,9 +45,7 @@ class UIBackendDefault<CanRawView> : public UIBackend<CanRawView>
     QWidget*               widget = nullptr;
 };
 
-
 using CanRawViewBackend = UIBackendDefault<CanRawView>;
-
 
 #endif // CANRAWVIEWBACKEND_H
 

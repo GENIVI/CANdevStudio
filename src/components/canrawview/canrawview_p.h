@@ -22,12 +22,12 @@ class QString;
 
 
 class CanRawViewPrivate
-  : public WithUIBackend<
+  : public QObject  // moc assumes first inherited is a subclass of it
+  , public WithUIBackend<
                 CanRawViewPrivate
               , CanRawView
               , CanRawView
               >
-  , public QObject
 {
     Q_OBJECT
     Q_DECLARE_PUBLIC(CanRawView)
