@@ -2,6 +2,7 @@
 #include "mainwindow.h"
 #include "log.hpp"
 #include "modelvisitor.h" // apply_model_visitor
+#include "subwindow.hpp"
 #include "ui_mainwindow.h"
 
 #include <QCloseEvent>
@@ -41,7 +42,7 @@ MainWindow::MainWindow(QWidget* parent)
     connectMenuSignals();
 }
 
-MainWindow::~MainWindow() { }
+MainWindow::~MainWindow() {}
 
 void MainWindow::closeEvent(QCloseEvent* e)
 {
@@ -64,7 +65,6 @@ void MainWindow::nodeCreatedCallback(QtNodes::Node& node)
     apply_model_visitor(*dataModel,
         [this, dataModel](CanRawViewModel& m) {
             auto rawView = &m.canRawView;
-            ui->mdiArea->addSubWindow(rawView);
             connect(ui->actionstart, &QAction::triggered, rawView, &CanRawView::startSimulation);
             connect(ui->actionstop, &QAction::triggered, rawView, &CanRawView::stopSimulation);
             connect(rawView, &CanRawView::dockUndock, this, [this, rawView] { handleDock(rawView, ui->mdiArea); });
@@ -72,7 +72,6 @@ void MainWindow::nodeCreatedCallback(QtNodes::Node& node)
         [this, dataModel](CanRawSenderModel& m) {
             QWidget* crsWidget = m.canRawSender.getMainWidget();
             auto& rawSender = m.canRawSender;
-            ui->mdiArea->addSubWindow(crsWidget);
             connect(
                 &rawSender, &CanRawSender::dockUndock, this, [this, crsWidget] { handleDock(crsWidget, ui->mdiArea); });
             connect(ui->actionstart, &QAction::triggered, &rawSender, &CanRawSender::startSimulation);
@@ -101,14 +100,39 @@ void MainWindow::nodeDeletedCallback(QtNodes::Node& node)
         [this](CanDeviceModel&) {});
 }
 
-void handleWidgetShowing(QWidget* widget)
+void handleWidgetShowing(QWidget* widget, QMdiArea* mdi)
 {
     assert(nullptr != widget);
-    if (widget->parentWidget()) {
+    cds_debug("Subwindows cnt: {}", mdi->subWindowList().size());
+    bool docked = false;
 
-        widget->parentWidget()->show();
-    } else {
+    // TODO: Temporary solution. To be changed once MainWindow is refactored
+    QPushButton *undockButton = widget->findChild<QPushButton*>("pbDockUndock");
+    if(undockButton) {
+        docked = !undockButton->isChecked();
+    }
+    else {
+        cds_debug("Undock button for '{}' widget not found", widget->windowTitle().toStdString());
+    }
+
+    // Add widget to MDI area when showing for the first time
+    // Widget will be also added to MDI area after closing it in undocked state
+    if (!widget->isVisible() && docked) {
+        cds_debug("Adding '{}' widget to MDI", widget->windowTitle().toStdString());
+        auto wnd = new SubWindow(widget);
+        // We need to delete the window to remove it from tabView when closed
+        wnd->setAttribute(Qt::WA_DeleteOnClose);
+        mdi->addSubWindow(wnd);
+    }
+
+    if (widget->parentWidget()) {
+        cds_debug("Widget is a part of MDI");
+        widget->hide();
         widget->show();
+    } else {
+        cds_debug("Widget not a part of MDI");
+        widget->show();
+        widget->activateWindow();
     }
 }
 
@@ -118,8 +142,9 @@ void MainWindow::nodeDoubleClickedCallback(QtNodes::Node& node)
 
     assert(nullptr != dataModel);
 
-    apply_model_visitor(*dataModel, [this, dataModel](CanRawViewModel& m) { handleWidgetShowing(&m.canRawView); },
-        [this, dataModel](CanRawSenderModel& m) { handleWidgetShowing(m.canRawSender.getMainWidget()); },
+    apply_model_visitor(*dataModel,
+        [this, dataModel](CanRawViewModel& m) { handleWidgetShowing(&m.canRawView, ui->mdiArea); },
+        [this, dataModel](CanRawSenderModel& m) { handleWidgetShowing(m.canRawSender.getMainWidget(), ui->mdiArea); },
         [this](CanDeviceModel&) {});
 }
 
@@ -215,6 +240,5 @@ void MainWindow::setupMdiArea()
     graphView = new QtNodes::FlowView(graphScene.get());
     graphView->setWindowTitle("Project Configuration");
     ui->mdiArea->addSubWindow(graphView);
-    ui->mdiArea->setAttribute(Qt::WA_DeleteOnClose, false);
-    ui->mdiArea->tileSubWindows();
+    ui->mdiArea->setViewMode(QMdiArea::TabbedView);
 }
