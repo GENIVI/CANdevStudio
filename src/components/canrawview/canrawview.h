@@ -28,7 +28,7 @@ class CanRawView
 
     using UsesUIBackend::UsesUIBackend;
 
-    virtual ~CANrawView() = default;  // if delete goes through QObject
+    virtual ~CanRawView() = default;  // if delete goes through QObject
 
     void closeEvent(QCloseEvent* e);
 

@@ -43,7 +43,10 @@ struct UIBackend;
 
 /** Default UIBackend for given Subject tag. */
 template<class Subject>
-struct UIBackendDefault : UIBackend<Subject>;
+struct UIBackendDefault : UIBackend<Subject>
+{
+    static_assert(false, "UIBackendDefault not implemented");
+};
 /** @} */
 
 
@@ -65,12 +68,12 @@ static constexpr bool IsUIBackendSelector =
 // FIXME: extract first arg type instead of the following
 template<class Derived, class F>
 static constexpr bool IsUIBackendInit =
-        std::is_same<std::result_of_t<F(D&)>, void>::value;
+        std::is_same<std::result_of_t<F(Derived&)>, void>::value;
 
 
 
 
-template<class UIBackendUser, class Subject = UIBackendUser>
+template<class Derived, class UIBackendUser, class Subject = UIBackendUser>
 class WithUIBackend;
 
 
@@ -195,7 +198,7 @@ class UsesUIBackend
       , class = std::enable_if_t<IsUIBackendInit<Derived, F>, void>
       , class = std::enable_if_t<IsUIBackendInit<PrivateWithUIBackend, G>, void>
       >
-    explicit UsesUIBackend(F&& init, G&& initMember, As&&... args)
+    UsesUIBackend(F&& init, G&& initMember, As&&... args)
       :
         UsesUIBackend{ std::forward<F>(init)
                      , std::forward<G>(initMember)
