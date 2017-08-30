@@ -13,7 +13,7 @@ CanRawViewModel::CanRawViewModel()
     label->setFixedSize(75, 25);
     label->setAttribute(Qt::WA_TranslucentBackground);
 
-    canRawView.setWindowTitle("CANrawView");
+    canRawView.getMainWidget()->setWindowTitle("CANrawView");
     connect(this, &CanRawViewModel::frameSent, &canRawView, &CanRawView::frameSent);
     connect(this, &CanRawViewModel::frameReceived, &canRawView, &CanRawView::frameReceived);
 }

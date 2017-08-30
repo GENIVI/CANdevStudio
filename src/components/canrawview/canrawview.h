@@ -1,22 +1,26 @@
 #ifndef CANRAWVIEW_H
 #define CANRAWVIEW_H
 
-#include <QCloseEvent>
 #include <QtCore/QScopedPointer>
+#include <QtCore/QObject>
 #include <QtWidgets/QWidget>
 #include <memory>
 
 class QCanBusFrame;
 class CanRawViewPrivate;
+struct CRVFactoryInterface;
+class QWidget;
 
-class CanRawView : public QWidget {
+class CanRawView : public QObject {
     Q_OBJECT
     Q_DECLARE_PRIVATE(CanRawView)
 
 public:
-    explicit CanRawView(QWidget* parent = nullptr);
+    explicit CanRawView();
+    explicit CanRawView(CRVFactoryInterface& factory);
     ~CanRawView();
-    void closeEvent(QCloseEvent* e);
+
+    QWidget* getMainWidget();
 
 signals:
     void dockUndock();
