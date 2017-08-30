@@ -12,6 +12,8 @@ var searchData=
   ['_7echeckboxinterface',['~CheckBoxInterface',['../struct_check_box_interface.html#abd2a5e5ed41427d37bb5fa47d6c7902f',1,'CheckBoxInterface']]],
   ['_7ecrsfactory',['~CRSFactory',['../struct_c_r_s_factory.html#a34da6892cc59fba96961a35065bc0e77',1,'CRSFactory']]],
   ['_7ecrsguiinterface',['~CRSGuiInterface',['../struct_c_r_s_gui_interface.html#adb4c73ffb72e5e0f15cf3a795ac45681',1,'CRSGuiInterface']]],
+  ['_7ecrvfactory',['~CRVFactory',['../struct_c_r_v_factory.html#a6d3dd02f70372423e6d1983f9970641e',1,'CRVFactory']]],
+  ['_7ecrvguiinterface',['~CRVGuiInterface',['../struct_c_r_v_gui_interface.html#a254b5911f8309e4231c37d07d854b0da',1,'CRVGuiInterface']]],
   ['_7elineeditinterface',['~LineEditInterface',['../struct_line_edit_interface.html#a0ab80a54979d5136225412b80d271630',1,'LineEditInterface']]],
   ['_7emainwindow',['~MainWindow',['../class_main_window.html#ae98d00a93bc118200eeef9f9bba1dba7',1,'MainWindow']]],
   ['_7enlmfactory',['~NLMFactory',['../struct_n_l_m_factory.html#a600ced51d576ba1af49d7f3c5d186d6f',1,'NLMFactory']]],

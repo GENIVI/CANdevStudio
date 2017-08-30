@@ -21,5 +21,9 @@ var searchData=
   ['crsfactory',['CRSFactory',['../struct_c_r_s_factory.html',1,'']]],
   ['crsfactoryinterface',['CRSFactoryInterface',['../struct_c_r_s_factory_interface.html',1,'']]],
   ['crsgui',['CRSGui',['../struct_c_r_s_gui.html',1,'']]],
-  ['crsguiinterface',['CRSGuiInterface',['../struct_c_r_s_gui_interface.html',1,'']]]
+  ['crsguiinterface',['CRSGuiInterface',['../struct_c_r_s_gui_interface.html',1,'']]],
+  ['crvfactory',['CRVFactory',['../struct_c_r_v_factory.html',1,'']]],
+  ['crvfactoryinterface',['CRVFactoryInterface',['../struct_c_r_v_factory_interface.html',1,'']]],
+  ['crvgui',['CRVGui',['../struct_c_r_v_gui.html',1,'']]],
+  ['crvguiinterface',['CRVGuiInterface',['../struct_c_r_v_gui_interface.html',1,'']]]
 ];

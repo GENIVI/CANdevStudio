@@ -17,6 +17,12 @@ var hierarchy =
     [ "CRSGuiInterface", "struct_c_r_s_gui_interface.html", [
       [ "CRSGui", "struct_c_r_s_gui.html", null ]
     ] ],
+    [ "CRVFactoryInterface", "struct_c_r_v_factory_interface.html", [
+      [ "CRVFactory", "struct_c_r_v_factory.html", null ]
+    ] ],
+    [ "CRVGuiInterface", "struct_c_r_v_gui_interface.html", [
+      [ "CRVGui", "struct_c_r_v_gui.html", null ]
+    ] ],
     [ "Iterator< typeName, beginVal, endVal >", "class_iterator.html", null ],
     [ "LineEditInterface", "struct_line_edit_interface.html", [
       [ "NLMLineEdit", "struct_n_l_m_line_edit.html", null ]
@@ -37,14 +43,14 @@ var hierarchy =
       [ "CanDevice", "class_can_device.html", null ],
       [ "CanRawSender", "class_can_raw_sender.html", null ],
       [ "CanRawSenderPrivate", "class_can_raw_sender_private.html", null ],
+      [ "CanRawView", "class_can_raw_view.html", null ],
+      [ "CanRawViewPrivate", "class_can_raw_view_private.html", null ],
       [ "NewLineManager", "class_new_line_manager.html", null ]
     ] ],
     [ "QSortFilterProxyModel", null, [
       [ "UniqueFilterModel", "class_unique_filter_model.html", null ]
     ] ],
     [ "QWidget", null, [
-      [ "CanRawView", "class_can_raw_view.html", null ],
-      [ "CanRawViewPrivate", "class_can_raw_view_private.html", null ],
       [ "CDSWidget", "struct_c_d_s_widget.html", null ]
     ] ],
     [ "VisitableWith< Visitor >", "struct_visitable_with.html", null ],

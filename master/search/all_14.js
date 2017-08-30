@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['ui',['Ui',['../namespace_ui.html',1,'Ui'],['../class_can_raw_view_private.html#a0cd07a1650068bde6fe2e6a59dd60b0f',1,'CanRawViewPrivate::ui()']]],
+  ['ui',['Ui',['../namespace_ui.html',1,'']]],
   ['uniquefiltermodel',['UniqueFilterModel',['../class_unique_filter_model.html',1,'UniqueFilterModel'],['../class_unique_filter_model.html#a7ac4f19713050a56a09e0be1a9e96f3c',1,'UniqueFilterModel::UniqueFilterModel()']]],
   ['uniquefiltermodel_2ecpp',['uniquefiltermodel.cpp',['../uniquefiltermodel_8cpp.html',1,'']]],
   ['uniquefiltermodel_2eh',['uniquefiltermodel.h',['../uniquefiltermodel_8h.html',1,'']]],
