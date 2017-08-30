@@ -162,10 +162,46 @@ class UsesUIBackend
         UsesUIBackend{ std::forward<F>(init)
                      , UIBackendSelector<UIBackendDefault<Subject>>
                      , std::forward<As>(args)... }
-    {
-    }
+    {}
 
+    /**
+     * Takes a user-specified action @c G of signature void(PrivateWithUIBackend&)
+     * that is executed in the @c d_[tr constructor body. Uses default UI backend.
+     */
+    template<
+        class G
+      , class... As
+      // just to disable this ctor for invalid F types
+      , class = std::enable_if_t<IsUIBackendInit<PrivateWithUIBackend, G>, void>
+      >
+    explicit UsesUIBackend(G&& initMember, As&&... args)
+      :
+        UsesUIBackend{ std::forward<G>(initMember)
+                     , UIBackendSelector<UIBackendDefault<Subject>>
+                     , std::forward<As>(args)... }
+    {}
 
+    /**
+     * Takes a user-specified actions @c F and @c G of types convertible to
+     * void(Derived&) and void(PrivateWithUIBackend&) respectively. Former is
+     * executed in the body of this constructor, second in the constructor of
+     * the @c d_ptr member. Default UI backend is used.
+     */
+    template<
+        class F
+      , class G
+      , class... As
+      // just to disable this ctor for invalid F types
+      , class = std::enable_if_t<IsUIBackendInit<Derived, F>, void>
+      , class = std::enable_if_t<IsUIBackendInit<PrivateWithUIBackend, G>, void>
+      >
+    explicit UsesUIBackend(F&& init, G&& initMember, As&&... args)
+      :
+        UsesUIBackend{ std::forward<F>(init)
+                     , std::forward<G>(initMember)
+                     , UIBackendSelector<UIBackendDefault<Subject>>
+                     , std::forward<As>(args)... }
+    {}
 
     /** Just references the UI backend object. */
     template<
@@ -178,7 +214,6 @@ class UsesUIBackend
     {
         init( * static_cast<Derived*>(this));
     }
-
 
     /**
      * Creates and manages UI backend object of given selected type accessible
@@ -193,9 +228,10 @@ class UsesUIBackend
       >
     explicit UsesUIBackend(ImplSelector&& selector, As&&... args)
       :
-        d_ptr{new PrivateWithUIBackend{ std::forward<ImplSelector>(selector)
-                                      , * static_cast<Derived*>(this)
-                                      , std::forward<As>(args)... }}
+        UsesUIBackend{ [](Derived&){}
+                     , [](PrivateWithUIBackend&){}
+                     , std::forward<ImplSelector>(selector)
+                     , std::forward<As>(args)... }
     {}
 
     /**
@@ -214,7 +250,56 @@ class UsesUIBackend
       >
     UsesUIBackend(F&& init, ImplSelector&& selector, As&&... args)
       :
-        d_ptr{new PrivateWithUIBackend{ std::forward<ImplSelector>(selector)
+        UsesUIBackend{ std::forward<F>(init)
+                     , [](PrivateWithUIBackend&){}
+                     , std::forward<ImplSelector>(selector)
+                     , std::forward<As>(args)... }
+    {}
+
+    /**
+     * Constructs @c d_ptr with @c initMember action (convertible to
+     * void(PrivateWithUIBackend&) type) passed to its constructor.
+     */
+    template<
+        class G
+      , class ImplSelector
+      , class... As
+      // disables this ctor for non-selectors to enable ctor that takes args only
+      , class = std::enable_if_t<IsUIBackendSelector<ImplSelector>, void>
+      // just to disable this ctor for invalid F types
+      , class = std::enable_if_t<IsUIBackendInit<PrivateWithUIBackend, G>, void>
+      >
+    UsesUIBackend(G&& initMember, ImplSelector&& selector, As&&... args)
+      :
+        UsesUIBackend{ [](Derived&){}
+                     , std::forward<G>(initMember)
+                     , std::forward<ImplSelector>(selector)
+                     , std::forward<As>(args)... }
+    {}
+
+
+
+    /**
+     * Constructs @c d_ptr with @c initMember action (convertible to
+     * void(PrivateWithUIBackend&) type) passed to its constructor, executes
+     * @c F action of type convertible to void(Derived&) in this constructor's
+     * body.
+     */
+    template<
+        class F
+      , class G
+      , class ImplSelector
+      , class... As
+      // disables this ctor for non-selectors to enable ctor that takes args only
+      , class = std::enable_if_t<IsUIBackendSelector<ImplSelector>, void>
+      // just to disable this ctor for invalid F types
+      , class = std::enable_if_t<IsUIBackendInit<Derived, F>, void>
+      , class = std::enable_if_t<IsUIBackendInit<PrivateWithUIBackend, G>, void>
+      >
+    UsesUIBackend(F&& init, G&& initMember, ImplSelector&& selector, As&&... args)
+      :
+        d_ptr{new PrivateWithUIBackend{ std::forward<G>(initMember)
+                                      , std::forward<ImplSelector>(selector)
                                       , * static_cast<Derived*>(this)
                                       , std::forward<As>(args)... }}
     {
