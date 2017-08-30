@@ -24,7 +24,7 @@ struct CRSGui : public CRSGuiInterface {
 
     void setDockUndockCbk(const dockUndock_t& cb) override
     {
-        QObject::connect(ui->pbDockUndock, &QPushButton::pressed, cb);
+        QObject::connect(ui->pbDockUndock, &QPushButton::toggled, cb);
     }
 
     QWidget* getMainWidget() override { return widget; }

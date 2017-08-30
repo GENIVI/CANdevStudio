@@ -44,8 +44,8 @@ public:
         ui->tv->setColumnHidden(3, true);
 
         connect(ui->pbClear, &QPushButton::pressed, this, &CanRawViewPrivate::clear);
-        connect(ui->pbDockUndock, &QPushButton::pressed, this, &CanRawViewPrivate::dockUndock);
-        connect(ui->pbToggleFilter, &QPushButton::pressed, this, &CanRawViewPrivate::setFilter);
+        connect(ui->pbDockUndock, &QPushButton::toggled, this, &CanRawViewPrivate::dockUndock);
+        connect(ui->pbToggleFilter, &QPushButton::toggled, this, &CanRawViewPrivate::setFilter);
 
         connect(
             ui->tv->horizontalHeader(), &QHeaderView::sectionClicked, [=](int logicalIndex) { sort(logicalIndex); });
@@ -238,8 +238,6 @@ private slots:
     void setFilter()
     {
         uniqueModel.toggleFilter();
-        uniqueModel.isFilterActive() ? (ui->pbToggleFilter->setText("Combined view"))
-                                     : (ui->pbToggleFilter->setText("Free view"));
     }
 };
 #endif // CANRAWVIEW_P_H
