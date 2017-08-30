@@ -402,7 +402,7 @@ class WithUIBackend
       , class... As
       , class = std::enable_if_t<IsUIBackendSelector<ImplSelector>, void>
       >
-    WithUIBackend(ImplSelector&&, UIBackendUser& user, As&&... args)
+    WithUIBackend(ImplSelector&& selector, UIBackendUser& user, As&&... args)
       : WithUIBackend{ [](Derived&){}
                      , std::forward<ImplSelector>(selector)
                      , user

@@ -5,20 +5,22 @@
 #include <QCloseEvent>
 #include <QtSerialBus/QCanBusFrame>
 
+#include <cassert> // assert
+
 
 void CanRawView::startSimulation()
 {
     Q_D(CanRawView);
 
-    d->timer->restart();
-    d->simStarted = true;
+    d->_timer->restart();
+    d->_simStarted = true;
 }
 
 void CanRawView::stopSimulation()
 {
     Q_D(CanRawView);
 
-    d->simStarted = false;
+    d->_simStarted = false;
 }
 
 void CanRawView::frameReceived(const QCanBusFrame& frame)
@@ -41,12 +43,15 @@ void CanRawView::closeEvent(QCloseEvent* e)
 {
     Q_D(CanRawView);
 
-    auto parent = d->backend().parentWidget();
+    assert(nullptr != d->backend().getMainWidget());
+
+    auto widget = d->backend().getMainWidget();
+    auto parent = widget->parentWidget();
 
     if (parent) {
         parent->hide();
     } else {
-        d->backend().hide();
+        widget->hide();
     }
 
     e->ignore();
