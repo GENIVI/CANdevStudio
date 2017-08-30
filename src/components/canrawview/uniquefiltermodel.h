@@ -14,20 +14,20 @@ public:
 
     /**
     *   @brief  Updates filter with unique values, on reception of each frame
-    *   @param  current frame ID
-    *   @param  time elapsed since simulation start
-    *   @param  direction of frame
+    *   @param  frameID current frame ID
+    *   @param  time elapsed time since simulation start
+    *   @param  direction TX or RX
     */
     void updateFilter(int frameID, double time, QString direction);
 
     /**
-    *   @brief  Clears unique value stored in filter
+    *   @brief  Clears unique values stored in filter
     */
     void clearFilter();
 
     /**
     *   @brief  Indicates whether filter is currently active
-    *   @return bool
+    *   @return true if active, false if inactive
     */
     bool isFilterActive();
 
@@ -35,9 +35,9 @@ protected:
     /**
     *   @brief  Function iterates whole data model row by row and indicates, if currently processed row should be
     *           displayed in table view or not
-    *   @param  currently processed model row number
-    *   @param  QModelIndex pointing at source data model
-    *   @return bool
+    *   @param  source_row currently processed model row index
+    *   @param  source_parent QModelIndex pointing at source data model
+    *   @return true if row is accepted by filter, false if not
     */
     bool filterAcceptsRow(int source_row, const QModelIndex& source_parent) const override;
 
