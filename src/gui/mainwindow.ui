@@ -30,7 +30,11 @@
     <item>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
-       <widget class="QMdiArea" name="mdiArea"/>
+       <widget class="QMdiArea" name="mdiArea">
+        <property name="tabsClosable">
+         <bool>true</bool>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>
@@ -55,7 +59,7 @@
      <x>0</x>
      <y>0</y>
      <width>1024</width>
-     <height>19</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuProject">
@@ -124,6 +128,9 @@
    <property name="checkable">
     <bool>true</bool>
    </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>TabView</string>
    </property>
@@ -138,7 +145,7 @@
     <bool>true</bool>
    </property>
    <property name="checked">
-    <bool>true</bool>
+    <bool>false</bool>
    </property>
    <property name="text">
     <string>SubWindowView</string>
