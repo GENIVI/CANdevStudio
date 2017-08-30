@@ -30,6 +30,9 @@ var hierarchy =
     [ "QMainWindow", null, [
       [ "MainWindow", "class_main_window.html", null ]
     ] ],
+    [ "QMdiSubWindow", null, [
+      [ "SubWindow", "struct_sub_window.html", null ]
+    ] ],
     [ "QObject", null, [
       [ "CanDevice", "class_can_device.html", null ],
       [ "CanRawSender", "class_can_raw_sender.html", null ],

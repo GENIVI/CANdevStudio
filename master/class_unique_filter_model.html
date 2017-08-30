@@ -116,6 +116,9 @@ $(document).ready(function(){initNavTree('class_unique_filter_model.html','');})
 </div><!--header-->
 <div class="contents">
 
+<p>This class provides a filter model between source model and table view, which passes through only frames with newest unique ID and direction values.  
+ <a href="class_unique_filter_model.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="uniquefiltermodel_8h_source.html">uniquefiltermodel.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for UniqueFilterModel:</div>
@@ -135,6 +138,7 @@ Collaboration diagram for UniqueFilterModel:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-slots"></a>
 Public Slots</h2></td></tr>
 <tr class="memitem:a0b328986c2b99138c4427e7bcef99adb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_unique_filter_model.html#a0b328986c2b99138c4427e7bcef99adb">toggleFilter</a> ()</td></tr>
+<tr class="memdesc:a0b328986c2b99138c4427e7bcef99adb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function toggles filter on/off.  <a href="#a0b328986c2b99138c4427e7bcef99adb">More...</a><br /></td></tr>
 <tr class="separator:a0b328986c2b99138c4427e7bcef99adb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -142,18 +146,24 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a7ac4f19713050a56a09e0be1a9e96f3c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_unique_filter_model.html#a7ac4f19713050a56a09e0be1a9e96f3c">UniqueFilterModel</a> (QObject *parent=0)</td></tr>
 <tr class="separator:a7ac4f19713050a56a09e0be1a9e96f3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a475d7f40fc5bc7a4154edbdb14072ebe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_unique_filter_model.html#a475d7f40fc5bc7a4154edbdb14072ebe">updateFilter</a> (int frameID, double time, QString direction)</td></tr>
+<tr class="memdesc:a475d7f40fc5bc7a4154edbdb14072ebe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates filter with unique values, on reception of each frame.  <a href="#a475d7f40fc5bc7a4154edbdb14072ebe">More...</a><br /></td></tr>
 <tr class="separator:a475d7f40fc5bc7a4154edbdb14072ebe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a242df2f42ae90d16e12c2d5c71e5caa4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_unique_filter_model.html#a242df2f42ae90d16e12c2d5c71e5caa4">clearFilter</a> ()</td></tr>
+<tr class="memdesc:a242df2f42ae90d16e12c2d5c71e5caa4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears unique values stored in filter.  <a href="#a242df2f42ae90d16e12c2d5c71e5caa4">More...</a><br /></td></tr>
 <tr class="separator:a242df2f42ae90d16e12c2d5c71e5caa4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaa04cca288af76b6949030e10287d85b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_unique_filter_model.html#aaa04cca288af76b6949030e10287d85b">isFilterActive</a> ()</td></tr>
+<tr class="memdesc:aaa04cca288af76b6949030e10287d85b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates whether filter is currently active.  <a href="#aaa04cca288af76b6949030e10287d85b">More...</a><br /></td></tr>
 <tr class="separator:aaa04cca288af76b6949030e10287d85b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:a4fae0e262713fe6c9709b93984dbbdf1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_unique_filter_model.html#a4fae0e262713fe6c9709b93984dbbdf1">filterAcceptsRow</a> (int source_row, const QModelIndex &amp;source_parent) const override</td></tr>
+<tr class="memdesc:a4fae0e262713fe6c9709b93984dbbdf1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function iterates whole data model row by row and indicates, if currently processed row should be displayed in table view or not.  <a href="#a4fae0e262713fe6c9709b93984dbbdf1">More...</a><br /></td></tr>
 <tr class="separator:a4fae0e262713fe6c9709b93984dbbdf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This class provides a filter model between source model and table view, which passes through only frames with newest unique ID and direction values. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a7ac4f19713050a56a09e0be1a9e96f3c"></a>
 <div class="memitem">
 <div class="memproto">
@@ -192,6 +202,8 @@ Protected Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Clears unique values stored in filter. </p>
+
 </div>
 </div>
 <a class="anchor" id="a4fae0e262713fe6c9709b93984dbbdf1"></a>
@@ -226,6 +238,16 @@ Protected Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Function iterates whole data model row by row and indicates, if currently processed row should be displayed in table view or not. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">source_row</td><td>currently processed model row index </td></tr>
+    <tr><td class="paramname">source_parent</td><td>QModelIndex pointing at source data model </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if row is accepted by filter, false if not </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="aaa04cca288af76b6949030e10287d85b"></a>
@@ -240,6 +262,9 @@ Protected Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Indicates whether filter is currently active. </p>
+<dl class="section return"><dt>Returns</dt><dd>true if active, false if inactive </dd></dl>
 
 </div>
 </div>
@@ -263,6 +288,8 @@ Protected Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Function toggles filter on/off. </p>
 
 </div>
 </div>
@@ -295,6 +322,16 @@ Protected Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Updates filter with unique values, on reception of each frame. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">frameID</td><td>current frame ID </td></tr>
+    <tr><td class="paramname">time</td><td>elapsed time since simulation start </td></tr>
+    <tr><td class="paramname">direction</td><td>TX or RX </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

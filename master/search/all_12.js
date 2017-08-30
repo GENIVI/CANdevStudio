@@ -19,5 +19,7 @@ var searchData=
   ['start',['start',['../class_can_device.html#a0ea42fef8feb27eeaa473260071e25c0',1,'CanDevice']]],
   ['startsimulation',['startSimulation',['../class_can_raw_sender.html#ab425e6f9434e44bf0acb557be17227e9',1,'CanRawSender::startSimulation()'],['../class_can_raw_view.html#acf78fa346b606b03632dd6fb47a5e48e',1,'CanRawView::startSimulation()']]],
   ['status',['status',['../class_can_device_data_out.html#aa58fee746094174d0927b1307d0597c3',1,'CanDeviceDataOut']]],
-  ['stopsimulation',['stopSimulation',['../class_can_raw_sender.html#ab7dd3217bef0f70cf9ba25be9018d4f4',1,'CanRawSender::stopSimulation()'],['../class_can_raw_view.html#a1e7ae58ba92cc0130e259ae089cc8456',1,'CanRawView::stopSimulation()']]]
+  ['stopsimulation',['stopSimulation',['../class_can_raw_sender.html#ab7dd3217bef0f70cf9ba25be9018d4f4',1,'CanRawSender::stopSimulation()'],['../class_can_raw_view.html#a1e7ae58ba92cc0130e259ae089cc8456',1,'CanRawView::stopSimulation()']]],
+  ['subwindow',['SubWindow',['../struct_sub_window.html',1,'SubWindow'],['../struct_sub_window.html#a43bed6cda66da5424f1e61996e88f322',1,'SubWindow::SubWindow()']]],
+  ['subwindow_2ehpp',['subwindow.hpp',['../subwindow_8hpp.html',1,'']]]
 ];
