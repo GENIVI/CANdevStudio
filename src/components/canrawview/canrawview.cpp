@@ -4,6 +4,7 @@
 
 #include <QCloseEvent>
 #include <QtSerialBus/QCanBusFrame>
+#include <QWidget>
 
 #include <cassert> // assert
 

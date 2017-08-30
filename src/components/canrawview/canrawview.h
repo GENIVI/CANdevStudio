@@ -3,6 +3,7 @@
 #define CANRAWVIEW_H
 
 #include "uibackend.h" // UsesUIBackend
+#include "canrawviewbackend.hpp" // UIBackendDefault used in Uses...
 
 #include <QtCore/QObject>
 #include <QtCore/QScopedPointer>

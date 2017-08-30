@@ -4,6 +4,7 @@
 
 
 #include "uibackend.h" // WithUIBackend
+#include "canrawviewbackend.hpp" // UIBackendDefault used in With...
 
 #include <QJsonArray>
 #include <QJsonObject>
