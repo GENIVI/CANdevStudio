@@ -14,16 +14,20 @@
 #include <nodes/Node>
 #include <nodes/NodeData>
 
-class ProjectConfiguration : public QObject {
+class ProjectConfigurationPrivate;
+
+class ProjectConfiguration : public QWidget {
     Q_OBJECT
+    Q_DECLARE_PRIVATE(ProjectConfiguration)
+
 private:
-    std::shared_ptr<QtNodes::FlowScene> graphScene;
-    QtNodes::FlowView* graphView; // FIXME
     QAction* _start;
     QAction* _stop;
+    QScopedPointer<ProjectConfigurationPrivate> d_ptr;
 
 public:
     explicit ProjectConfiguration(QAction* start, QAction* stop);
+    ~ProjectConfiguration();
     QWidget* getGraphView() const;
 
 signals:

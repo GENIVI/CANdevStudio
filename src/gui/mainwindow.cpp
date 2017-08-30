@@ -27,7 +27,7 @@ MainWindow::MainWindow(QWidget* parent)
     connectMenuSignals();
 }
 
-MainWindow::~MainWindow() { }
+MainWindow::~MainWindow() {}
 
 void MainWindow::closeEvent(QCloseEvent* e)
 {
@@ -132,7 +132,8 @@ void MainWindow::componentWidgetCreated(QWidget* component) { ui->mdiArea->addSu
 
 void MainWindow::setupMdiArea()
 {
-    ui->mdiArea->addSubWindow(projectConfiguration->getGraphView());
+    projectConfiguration->setWindowTitle("Project Configuration");
+    ui->mdiArea->addSubWindow(projectConfiguration.get());
     ui->mdiArea->setAttribute(Qt::WA_DeleteOnClose, false);
     ui->mdiArea->tileSubWindows();
     connect(projectConfiguration.get(), &ProjectConfiguration::componentWidgetCreated, this,
