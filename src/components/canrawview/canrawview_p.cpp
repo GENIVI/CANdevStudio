@@ -17,7 +17,7 @@
 
 
 void CanRawViewPrivate::saveSettings(QJsonObject& json)
-{   
+{
     auto& ui = backend();
 
     const auto title = ui.getMainWindow()->windowTitle().toStdString();
@@ -27,10 +27,6 @@ void CanRawViewPrivate::saveSettings(QJsonObject& json)
     jObjects["Sorting"]   = makeSortingRules();
     jObjects["Models"]    = makeViewModel();
     jObjects["Scrolling"] = ui.isFrozen() ? 1 : 0;
-
-/*  -- goes to CanRawViewBackend::isFrozen
-    ui->freezeBox->isChecked()
-*/
 }
 
 void CanRawViewPrivate::frameView(const QCanBusFrame& frame, const QString& direction)
@@ -42,14 +38,14 @@ void CanRawViewPrivate::frameView(const QCanBusFrame& frame, const QString& dire
     }
 
     auto payHex = frame.payload().toHex();
-    // inster space between bytes, skip the end
+    // insert space between bytes, skip the end
     for (int ii = payHex.size() - 2; ii >= 2; ii -= 2) {
         payHex.insert(ii, ' ');
     }
 
     auto elapsed =
         QString::number(static_cast<double>(_timer->elapsed()) / 1000.0, 'f', 2);
-    
+
     QList<QVariant> qvList;
     qvList.append(_rowID++);
     qvList.append(elapsed.toDouble());
@@ -73,11 +69,9 @@ void CanRawViewPrivate::frameView(const QCanBusFrame& frame, const QString& dire
     _tvModel.appendRow(std::move(list));
 
     auto& ui = backend();
+
     _currentSortOrder = ui.getSortOrder();
 
-/*  -- goes to CanRawViewBackend
-    auto currentSortIndicator = ui->tv->horizontalHeader()->sortIndicatorSection();
-*/
     ui.setSorting(sortIndex, ui.getSortIndicator(), _currentSortOrder);
     ui.updateScroll();
 }
@@ -110,7 +104,7 @@ QJsonArray CanRawViewPrivate::makeViewModel() const
     auto& ui = backend();
 
     QJsonArray items;
-    
+
     for (auto row = 0; row < _tvModel.rowCount(); ++row) {
         QJsonArray line;
 
@@ -122,7 +116,7 @@ QJsonArray CanRawViewPrivate::makeViewModel() const
 
         items.append(std::move(line));
     }
-    
+
     return items;
 }
 

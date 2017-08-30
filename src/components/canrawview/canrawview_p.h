@@ -20,26 +20,6 @@ class QCanBusFrame;
 class QString;
 
 
-/** -- this willgo through the ctor
-[](CanRawViewPrivate& v)
-{
-    v._tvModel.setHorizontalHeaderLabels(v._columnsOrder);
-
-    auto& ui = v.backend();
-
-    ui.initTableView(_tvModel);
-    ui.setClearCbk([&v]{ v.clear(); });
-    ui.setDockUndockCbk([&v]{ v.dockUndock(); });
-    ui.setSectionClikedCbk([&v](int index){ v.sort(index); });
-}
-*/
-/*
-was in CanRawViewPrivate(CanRawView* q):
-    now done in: ui->setupUi(this);  // done in UIBackend ctor
-
-*/
-
-
 class CanRawViewPrivate
   : public WithUIBackend<
                 CanRawViewPrivate

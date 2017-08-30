@@ -12,17 +12,6 @@ class CanRawViewPrivate;
 class QCanBusFrame;
 class QCloseEvent;
 
-/** -- this can go through the ctor if needed
-[](CanRawView& v)
-{
-    assert(nullptr != v.d_ptr);
-    auto widget = v.d_ptr->backend().getMainWidget();
-    assert(nullptr != widget);
-
-    widget->setLayout(widget->layout);
-}
-*/
-
 
 class CanRawView
   : public UsesUIBackend<
@@ -53,10 +42,6 @@ class CanRawView
     void frameSent(bool status, const QCanBusFrame& frame);
     void stopSimulation(void);
     void startSimulation(void);
-
- private:
-
-    QScopedPointer<CanRawViewPrivate> d_ptr;
 };
 
 #endif // CANRAWVIEW_H
