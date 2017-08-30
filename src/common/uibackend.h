@@ -52,6 +52,36 @@ struct UIBackendDefault : UIBackend<Subject>
 
 
 
+/** ----------------------- BACKEND INTERFACES FOLLOW ---------------------- */
+
+
+template<>
+struct UIBackend<CanRawView>  // polymorphic as an example, but it's optional, see the note on top
+{
+    virtual QString getClickedColumn(int ndx) = 0;
+    virtual QWidget* getMainWidget() = 0;
+    virtual bool isColumnHidden(int column) = 0;
+    virtual bool isFrozen() = 0;
+    virtual int getSortIndicator() = 0;
+    virtual int getSortOrder() = 0;
+    virtual void initTableView(QAbstractItemModel& tvModel) = 0;
+    virtual void setClearCbk(std::function<void ()> cb) = 0;
+    virtual void setDockUndockCbk(std::function<void ()> cb) = 0;
+    virtual void setSectionClikedCbk(std::function<void (int)> cb) = 0;
+    virtual void setSorting(int sortNdx, int clickedNdx, Qt::SortOrder order) = 0;
+    virtual void updateScroll() = 0;
+
+    virtual ~UIBackend() = default;
+};
+
+// include CanRawViewBackend
+
+/** ----------------------- BACKEND INTERFACES END ---------------------- */
+
+
+
+
+
 /** Tag generator used to select an implementation type to be created. */
 template<class Impl>
 static constexpr std::common_type<Impl> UIBackendSelector{};
@@ -73,7 +103,7 @@ static constexpr bool IsUIBackendInit =
 
 
 
-template<class Derived, class UIBackendUser, class Subject = UIBackendUser>
+template<class Derived, class UIBackendUser, class Subject>
 class WithUIBackend;
 
 
@@ -315,7 +345,7 @@ class UsesUIBackend
     QScopedPointer<PrivateWithUIBackend> d_ptr;
 
 
-    static_assert(std::is_base_of<WithUIBackend<Derived, Subject>
+    static_assert(std::is_base_of<WithUIBackend<PrivateWithUIBackend, Derived, Subject>
                                 , PrivateWithUIBackend>::value
                 , "PrivateWithUIBackend must be derived from WithUIBackend");
 };
@@ -464,34 +494,6 @@ class WithUIBackend
 
     UIBackendUser* const q_ptr; /**< Respective *Public type for the *Private one. */
 };
-
-
-
-
-
-
-/** ----------------------- BACKEND INTERFACES FOLLOW ---------------------- */
-
-
-template<>
-struct UIBackend<CanRawView>  // polymorphic as an example, but it's optional, see the note on top
-{
-    virtual QString getClickedColumn(int ndx) = 0;
-    virtual QWidget* getMainWidget() = 0;
-    virtual bool isColumnHidden(int column) = 0;
-    virtual bool isFrozen() = 0;
-    virtual int getSortIndicator() = 0;
-    virtual int getSortOrder() = 0;
-    virtual void initTableView(QAbstractItemModel& tvModel) = 0;
-    virtual void setClearCbk(std::function<void ()> cb) = 0;
-    virtual void setDockUndockCbk(std::function<void ()> cb) = 0;
-    virtual void setSectionClikedCbk(std::function<void (int)> cb) = 0;
-    virtual void setSorting(int sortNdx, int clickedNdx, Qt::SortOrder order) = 0;
-    virtual void updateScroll() = 0;
-
-    virtual ~UIBackend() = default;
-};
-
 
 #endif
 

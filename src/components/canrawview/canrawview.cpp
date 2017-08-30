@@ -1,5 +1,6 @@
 
 #include "canrawview.h"
+#include "canrawview_p.h"
 
 #include <QCloseEvent>
 #include <QtSerialBus/QCanBusFrame>
