@@ -12,7 +12,9 @@ CanRawSender::CanRawSender(CRSFactoryInterface& factory)
 {
 }
 
-CanRawSender::~CanRawSender() {}
+CanRawSender::~CanRawSender()
+{
+}
 
 void CanRawSender::startSimulation()
 {

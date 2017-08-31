@@ -1,7 +1,7 @@
 #ifndef CANRAWVIEWMODEL_H
 #define CANRAWVIEWMODEL_H
 
-#include "modelvisitor.h"  // CanNodeDataModelVisitor
+#include "modelvisitor.h" // CanNodeDataModelVisitor
 #include "visitablewith.h"
 
 #include <QtCore/QObject>
@@ -23,10 +23,7 @@ using QtNodes::NodeValidationState;
 /**
 *   @brief The class provides node graphical representation of CanRawView
 */
-class CanRawViewModel
-  : public NodeDataModel
-  , public VisitableWith<CanNodeDataModelVisitor>
-{
+class CanRawViewModel : public NodeDataModel, public VisitableWith<CanNodeDataModelVisitor> {
     Q_OBJECT
 
 public:
@@ -39,25 +36,40 @@ public:
     *   @brief  Used to get node caption
     *   @return Node caption
     */
-    QString caption() const override { return QString("CanRawView Node"); } // TODO
+    QString caption() const override
+    {
+        return QString("CanRawView Node");
+    } // TODO
 
     /**
     *   @brief  Used to identify model by data model name
     *   @return Node model name
     */
-    QString name() const override { return QString("CanRawViewModel"); }
+    QString name() const override
+    {
+        return QString("CanRawViewModel");
+    }
 
-    std::unique_ptr<NodeDataModel> clone() const override { return std::make_unique<CanRawViewModel>(); }
+    std::unique_ptr<NodeDataModel> clone() const override
+    {
+        return std::make_unique<CanRawViewModel>();
+    }
 
 public:
     /** @see VisitableWith */
-    virtual void visit(CanNodeDataModelVisitor& v) override { v(*this); }
+    virtual void visit(CanNodeDataModelVisitor& v) override
+    {
+        v(*this);
+    }
 
     /**
     *   @brief  Used to get model name
     *   @return Model name
     */
-    virtual QString modelName() const { return QString("Raw view"); }
+    virtual QString modelName() const
+    {
+        return QString("Raw view");
+    }
 
     /**
     *   @brief  Used to get number of ports of each type used by model
@@ -92,13 +104,19 @@ public:
     *   @brief  Used to get widget embedded in Node
     *   @return QLabel
     */
-    QWidget* embeddedWidget() override { return label; }
+    QWidget* embeddedWidget() override
+    {
+        return label;
+    }
 
     /**
     *   @brief  Used to get information if node is resizable
     *   @return false
     */
-    bool resizable() const override { return false; }
+    bool resizable() const override
+    {
+        return false;
+    }
 
     CanRawView canRawView;
 

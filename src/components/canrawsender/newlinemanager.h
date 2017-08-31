@@ -32,14 +32,23 @@ public:
         ++val;
         return *this;
     }
-    typeName operator*() { return static_cast<typeName>(val); }
-    Iterator begin() { return *this; }
+    typeName operator*()
+    {
+        return static_cast<typeName>(val);
+    }
+    Iterator begin()
+    {
+        return *this;
+    }
     Iterator end()
     {
         static const Iterator endIter = ++Iterator(endVal);
         return endIter;
     }
-    bool operator!=(const Iterator& f) { return val != f.val; }
+    bool operator!=(const Iterator& f)
+    {
+        return val != f.val;
+    }
 };
 
 /// \class NewLineManager

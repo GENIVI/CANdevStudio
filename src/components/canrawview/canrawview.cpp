@@ -17,7 +17,9 @@ CanRawView::CanRawView(CRVFactoryInterface& factory)
 {
 }
 
-CanRawView::~CanRawView() {}
+CanRawView::~CanRawView()
+{
+}
 
 void CanRawView::startSimulation()
 {

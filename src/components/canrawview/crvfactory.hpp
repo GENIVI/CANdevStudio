@@ -5,8 +5,11 @@
 #include "crvgui.hpp"
 
 struct CRVFactory : public CRVFactoryInterface {
-    virtual ~CRVFactory() {}
-    virtual CRVGuiInterface* createGui() override {
+    virtual ~CRVFactory()
+    {
+    }
+    virtual CRVGuiInterface* createGui() override
+    {
         return new CRVGui;
     }
 };

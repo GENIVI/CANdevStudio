@@ -56,7 +56,10 @@ void CanRawSenderPrivate::writeColumnsOrder(QJsonObject& json) const
     json["Columns"] = std::move(columnList);
 }
 
-void CanRawSenderPrivate::writeSortingRules(QJsonObject& json) const { json["currentIndex"] = currentIndex; }
+void CanRawSenderPrivate::writeSortingRules(QJsonObject& json) const
+{
+    json["currentIndex"] = currentIndex;
+}
 
 void CanRawSenderPrivate::removeRowsSelectedByMouse()
 {
@@ -84,4 +87,7 @@ void CanRawSenderPrivate::addNewItem()
     lines.push_back(std::move(newLine));
 }
 
-void CanRawSenderPrivate::dockUndock() { emit canRawSender->dockUndock(); }
+void CanRawSenderPrivate::dockUndock()
+{
+    emit canRawSender->dockUndock();
+}

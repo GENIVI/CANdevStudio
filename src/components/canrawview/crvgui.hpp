@@ -18,7 +18,10 @@ struct CRVGui : public CRVGuiInterface {
         ui->setupUi(widget);
     }
 
-    virtual void setClearCbk(const clear_t& cb) override { QObject::connect(ui->pbClear, &QPushButton::pressed, cb); }
+    virtual void setClearCbk(const clear_t& cb) override
+    {
+        QObject::connect(ui->pbClear, &QPushButton::pressed, cb);
+    }
 
     virtual void setDockUndockCbk(const dockUndock_t& cb) override
     {
@@ -35,9 +38,15 @@ struct CRVGui : public CRVGuiInterface {
         QObject::connect(ui->pbToggleFilter, &QPushButton::toggled, cb);
     }
 
-    virtual QWidget* getMainWidget() override { return widget; }
+    virtual QWidget* getMainWidget() override
+    {
+        return widget;
+    }
 
-    virtual void setModel(QAbstractItemModel* model) override { ui->tv->setModel(model); }
+    virtual void setModel(QAbstractItemModel* model) override
+    {
+        ui->tv->setModel(model);
+    }
 
     virtual void initTableView(QAbstractItemModel& tvModel) override
     {
@@ -49,13 +58,25 @@ struct CRVGui : public CRVGuiInterface {
         ui->tv->setColumnHidden(3, true);
     }
 
-    virtual bool isViewFrozen() override { return ui->freezeBox->isChecked(); }
+    virtual bool isViewFrozen() override
+    {
+        return ui->freezeBox->isChecked();
+    }
 
-    virtual void scrollToBottom() override { ui->tv->scrollToBottom(); }
+    virtual void scrollToBottom() override
+    {
+        ui->tv->scrollToBottom();
+    }
 
-    virtual Qt::SortOrder getSortOrder() override { return ui->tv->horizontalHeader()->sortIndicatorOrder(); }
+    virtual Qt::SortOrder getSortOrder() override
+    {
+        return ui->tv->horizontalHeader()->sortIndicatorOrder();
+    }
 
-    virtual int getSortSection() override { return ui->tv->horizontalHeader()->sortIndicatorSection(); }
+    virtual int getSortSection() override
+    {
+        return ui->tv->horizontalHeader()->sortIndicatorSection();
+    }
 
     virtual QString getClickedColumn(int ndx) override
     {
@@ -68,9 +89,15 @@ struct CRVGui : public CRVGuiInterface {
         ui->tv->horizontalHeader()->setSortIndicator(clickedNdx, order);
     }
 
-    virtual QString getWindowTitle() override { return widget->windowTitle(); }
+    virtual QString getWindowTitle() override
+    {
+        return widget->windowTitle();
+    }
 
-    virtual bool isColumnHidden(int ndx) override { return ui->tv->isColumnHidden(ndx); }
+    virtual bool isColumnHidden(int ndx) override
+    {
+        return ui->tv->isColumnHidden(ndx);
+    }
 
 private:
     Ui::CanRawViewPrivate* ui;

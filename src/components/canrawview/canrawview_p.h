@@ -52,7 +52,9 @@ public:
         mUi->setFilterCbk(std::bind(&CanRawViewPrivate::setFilter, this));
     }
 
-    ~CanRawViewPrivate() {}
+    ~CanRawViewPrivate()
+    {
+    }
 
     void saveSettings(QJsonObject& json)
     {
@@ -225,6 +227,9 @@ private slots:
         }
     }
 
-    void setFilter() { uniqueModel.toggleFilter(); }
+    void setFilter()
+    {
+        uniqueModel.toggleFilter();
+    }
 };
 #endif // CANRAWVIEW_P_H

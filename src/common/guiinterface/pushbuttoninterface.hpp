@@ -6,7 +6,9 @@
 class QWidget;
 
 struct PushButtonInterface {
-    virtual ~PushButtonInterface() {}
+    virtual ~PushButtonInterface()
+    {
+    }
 
     typedef std::function<void()> pressed_t;
     virtual void pressedCbk(const pressed_t& cb) = 0;

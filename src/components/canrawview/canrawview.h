@@ -1,8 +1,8 @@
 #ifndef CANRAWVIEW_H
 #define CANRAWVIEW_H
 
-#include <QtCore/QScopedPointer>
 #include <QtCore/QObject>
+#include <QtCore/QScopedPointer>
 #include <QtWidgets/QWidget>
 #include <memory>
 
