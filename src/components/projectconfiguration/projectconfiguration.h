@@ -20,15 +20,20 @@ class ProjectConfiguration : public QWidget {
     Q_OBJECT
     Q_DECLARE_PRIVATE(ProjectConfiguration)
 
-private:
+public:
     QAction* _start;
     QAction* _stop;
+
+private:
     QScopedPointer<ProjectConfigurationPrivate> d_ptr;
 
 public:
     explicit ProjectConfiguration(QAction* start, QAction* stop);
     ~ProjectConfiguration();
-    QWidget* getGraphView() const;
+    void closeEvent(QCloseEvent* e);
+    QByteArray save();
+    void load(const QByteArray& data);
+    void clearGraphView();
 
 signals:
     void handleDock(QWidget* component);

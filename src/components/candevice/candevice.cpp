@@ -1,8 +1,7 @@
 #include "candevice.h"
 #include "candevice_p.h"
-#include <QtCore/QQueue>
-
 #include "canfactory.hpp"
+#include <QtCore/QQueue>
 
 CanDevice::CanDevice()
     : d_ptr(new CanDevicePrivate)
@@ -74,12 +73,17 @@ bool CanDevice::start()
 
 void CanDevice::framesReceived()
 {
+
     Q_D(CanDevice);
 
-    while (static_cast<bool>(d->canDevice->framesAvailable())) {
-        const QCanBusFrame frame = d->canDevice->readFrame();
-        emit frameReceived(frame);
+    if (!d->canDevice) {
+        return;
     }
+    /*
+        while (static_cast<bool>(d->canDevice->framesAvailable())) {
+            const QCanBusFrame frame = d->canDevice->readFrame();
+            emit frameReceived(frame);
+        }*/
 }
 
 void CanDevice::framesWritten(qint64)

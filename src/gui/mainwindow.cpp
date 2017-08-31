@@ -84,7 +84,7 @@ void MainWindow::handleSaveAction()
 
         QFile file(fileName);
         if (file.open(QIODevice::WriteOnly)) {
-            //      file.write(graphScene->saveToMemory()); // FIXME
+            file.write(projectConfiguration->save()); // FIXME
         }
     } else {
         cds_error("File name empty");
@@ -93,7 +93,7 @@ void MainWindow::handleSaveAction()
 
 void MainWindow::handleLoadAction()
 {
-    // graphScene->clearScene();
+    projectConfiguration->clearGraphView();
 
     QString fileName
         = QFileDialog::getOpenFileName(nullptr, "Project Configuration", QDir::homePath(), "CANdevStudio (*.cds)");
@@ -115,7 +115,7 @@ void MainWindow::handleLoadAction()
     // TODO check if file is correct, nodeeditor library does not provide it and will crash if incorrect file is
     // supplied
 
-    // graphScene->loadFromMemory(wholeFile); // FIXME
+    projectConfiguration->load(wholeFile); // FIXME
 }
 
 void MainWindow::connectMenuSignals()
