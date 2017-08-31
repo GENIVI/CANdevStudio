@@ -3,7 +3,7 @@
 #include "canrawview_p.h"
 #include "canrawviewbackend.hpp"
 #include "ui_canrawview.h"
-#include "uibackendiface.hpp"
+#include "uibackendiface.h"
 
 #include <QHeaderView>
 #include <QtWidgets/QWidget>
@@ -15,7 +15,7 @@
 #include <utility> // move
 
 
-CanRawViewBackend::CanRawViewBackend()
+UIBackendDefault<CanRawView>::UIBackendDefault()
     : ui(new Ui::CanRawViewPrivate)
     , widget(new QWidget)
 {
@@ -24,21 +24,21 @@ CanRawViewBackend::CanRawViewBackend()
     ui->setupUi(widget);
 }
 
-void CanRawViewBackend::setClearCbk(std::function<void ()> cb)
+void UIBackendDefault<CanRawView>::setClearCbk(std::function<void ()> cb)
 {
     assert(nullptr != ui);
 
     QObject::connect(ui->pbClear, &QPushButton::pressed, std::move(cb));
 }
 
-void CanRawViewBackend::setDockUndockCbk(std::function<void ()> cb)
+void UIBackendDefault<CanRawView>::setDockUndockCbk(std::function<void ()> cb)
 {
     assert(nullptr != ui);
 
     QObject::connect(ui->pbDockUndock, &QPushButton::pressed, std::move(cb));
 }
 
-void CanRawViewBackend::setSectionClikedCbk(std::function<void (int)> cb)
+void UIBackendDefault<CanRawView>::setSectionClikedCbk(std::function<void (int)> cb)
 {
     assert(nullptr != ui);
     assert(nullptr != ui->tv);
@@ -47,12 +47,12 @@ void CanRawViewBackend::setSectionClikedCbk(std::function<void (int)> cb)
     QObject::connect(ui->tv->horizontalHeader(), &QHeaderView::sectionClicked, std::move(cb));
 }
 
-QWidget* CanRawViewBackend::getMainWidget()
+QWidget* UIBackendDefault<CanRawView>::getMainWidget()
 {
     return widget;
 }
 
-void CanRawViewBackend::initTableView(QAbstractItemModel& tvModel)
+void UIBackendDefault<CanRawView>::initTableView(QAbstractItemModel& tvModel)
 {
     assert(nullptr != ui);
     assert(nullptr != ui->tv);
@@ -66,7 +66,7 @@ void CanRawViewBackend::initTableView(QAbstractItemModel& tvModel)
     ui->tv->setColumnHidden(3, true);
 }
 
-void CanRawViewBackend::updateScroll()
+void UIBackendDefault<CanRawView>::updateScroll()
 {
     assert(nullptr != ui);
 
@@ -79,7 +79,7 @@ void CanRawViewBackend::updateScroll()
     /* else: noop*/
 }
 
-int CanRawViewBackend::getSortOrder()
+Qt::SortOrder UIBackendDefault<CanRawView>::getSortOrder()
 {
     assert(nullptr != ui);
     assert(nullptr != ui->tv);
@@ -87,7 +87,7 @@ int CanRawViewBackend::getSortOrder()
     return ui->tv->horizontalHeader()->sortIndicatorOrder();
 }
 
-QString CanRawViewBackend::getClickedColumn(int ndx)
+QString UIBackendDefault<CanRawView>::getClickedColumn(int ndx)
 {
     assert(nullptr != ui);
     assert(nullptr != ui->tv);
@@ -96,7 +96,7 @@ QString CanRawViewBackend::getClickedColumn(int ndx)
     return ui->tv->model()->headerData(ndx, Qt::Horizontal).toString();
 }
 
-void CanRawViewBackend::setSorting(int sortNdx, int clickedNdx, Qt::SortOrder order)
+void UIBackendDefault<CanRawView>::setSorting(int sortNdx, int clickedNdx, Qt::SortOrder order)
 {
     assert(nullptr != ui);
     assert(nullptr != ui->tv);
@@ -106,7 +106,7 @@ void CanRawViewBackend::setSorting(int sortNdx, int clickedNdx, Qt::SortOrder or
     ui->tv->horizontalHeader()->setSortIndicator(clickedNdx, order);
 }
 
-bool CanRawViewBackend::isColumnHidden(int column)
+bool UIBackendDefault<CanRawView>::isColumnHidden(int column) const
 {
     assert(nullptr != ui);
     assert(nullptr != ui->tv);
@@ -114,14 +114,14 @@ bool CanRawViewBackend::isColumnHidden(int column)
     return ui->tv->isColumnHidden(column);
 }
 
-bool CanRawViewBackend::isFrozen()
+bool UIBackendDefault<CanRawView>::isFrozen() const
 {
     assert(nullptr != ui);
 
     return ui->freezeBox->isChecked();
 }
 
-int CanRawViewBackend::getSortIndicator()
+int UIBackendDefault<CanRawView>::getSortIndicator()
 {
     assert(nullptr != ui);
     assert(nullptr != ui->tv);

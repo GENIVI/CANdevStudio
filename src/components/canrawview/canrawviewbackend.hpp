@@ -23,10 +23,10 @@ struct UIBackend<CanRawView>  // polymorphic as an example, but it's optional, s
 {
     virtual QString getClickedColumn(int ndx) = 0;
     virtual QWidget* getMainWidget() = 0;
-    virtual bool isColumnHidden(int column) = 0;
-    virtual bool isFrozen() = 0;
+    virtual bool isColumnHidden(int column) const = 0;
+    virtual bool isFrozen() const = 0;
     virtual int getSortIndicator() = 0;
-    virtual int getSortOrder() = 0;
+    virtual Qt::SortOrder getSortOrder() = 0;
     virtual void initTableView(QAbstractItemModel& tvModel) = 0;
     virtual void setClearCbk(std::function<void ()> cb) = 0;
     virtual void setDockUndockCbk(std::function<void ()> cb) = 0;
@@ -49,10 +49,10 @@ class UIBackendDefault<CanRawView> : public UIBackend<CanRawView>
 
     QString getClickedColumn(int ndx) override;
     QWidget* getMainWidget() override;
-    bool isColumnHidden(int column) override;
-    bool isFrozen() override;
+    bool isColumnHidden(int column) const override;
+    bool isFrozen() const override;
     int getSortIndicator() override;
-    int getSortOrder() override;
+    Qt::SortOrder getSortOrder() override;
     void initTableView(QAbstractItemModel& tvModel) override;
     void setClearCbk(std::function<void ()> cb) override;
     void setDockUndockCbk(std::function<void ()> cb) override;

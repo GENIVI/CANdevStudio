@@ -1,5 +1,7 @@
 
+#include "canrawview.h"
 #include "canrawview_p.h"
+#include "canrawviewbackend.hpp"
 #include "log.hpp"  // cds_debug
 
 #include <QHeaderView>
@@ -20,13 +22,14 @@ void CanRawViewPrivate::saveSettings(QJsonObject& json)
 {
     auto& ui = backend();
 
-    const auto title = ui.getMainWindow()->windowTitle().toStdString();
+//    const auto title = ui.getMainWidget()->getMainWindow()->windowTitle().toStdString();
+    std::string title = "!!! FIXME !!!";
     assert(0 != title.length());
 
-    json[title.c_str()]   = makeColumnsOrder();
-    jObjects["Sorting"]   = makeSortingRules();
-    jObjects["Models"]    = makeViewModel();
-    jObjects["Scrolling"] = ui.isFrozen() ? 1 : 0;
+    json[title.c_str()] = makeColumnsOrder();
+    json["Sorting"]     = makeSortingRules();
+    json["Models"]      = makeViewModel();
+    json["Scrolling"]   = ui.isFrozen() ? 1 : 0;
 }
 
 void CanRawViewPrivate::frameView(const QCanBusFrame& frame, const QString& direction)
@@ -72,7 +75,7 @@ void CanRawViewPrivate::frameView(const QCanBusFrame& frame, const QString& dire
 
     _currentSortOrder = ui.getSortOrder();
 
-    ui.setSorting(sortIndex, ui.getSortIndicator(), _currentSortOrder);
+    ui.setSorting(_sortIndex, ui.getSortIndicator(), _currentSortOrder);
     ui.updateScroll();
 }
 
@@ -109,7 +112,7 @@ QJsonArray CanRawViewPrivate::makeViewModel() const
         QJsonArray line;
 
         for (auto col = 0; col < _tvModel.columnCount(); ++col) {
-            if (ui.isColumnHidden(column) == false) {
+            if (ui.isColumnHidden(col) == false) {
                 line.append(_tvModel.data(_tvModel.index(row, col)).toString());
             }
         }
