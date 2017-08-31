@@ -55,6 +55,11 @@ struct CRSGui : public CRSGuiInterface {
         ui->tv->setIndexWidget(index, widget);
     }
 
+    std::unique_ptr<NewLineManager> newLine(CanRawSender* q_ptr, bool simulationState) override
+    {
+        return std::make_unique<NewLineManager>(q_ptr, simulationState);
+    }
+
 private:
     Ui::CanRawSenderPrivate* ui;
     CDSWidget* widget;
