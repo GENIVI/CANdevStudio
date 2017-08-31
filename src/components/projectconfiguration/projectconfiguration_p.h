@@ -71,6 +71,12 @@ private:
     }
 
 public:
+    QByteArray save() const { return graphScene->saveToMemory(); }
+
+    void load(const QByteArray& data) { return graphScene->loadFromMemory(data); }
+
+    void clearGraphView() { return graphScene->clearScene(); };
+
     void nodeCreatedCallback(QtNodes::Node& node)
     {
         auto dataModel = node.nodeDataModel();
@@ -83,18 +89,18 @@ public:
             [this, dataModel, q](CanRawViewModel& m) {
                 auto rawView = &m.canRawView;
                 emit q->componentWidgetCreated(rawView);
-                // connect(_start, &QAction::triggered, rawView, &CanRawView::startSimulation);
-                // connect(_stop, &QAction::triggered, rawView, &CanRawView::stopSimulation);
+                connect(q->_start, &QAction::triggered, rawView, &CanRawView::startSimulation);
+                connect(q->_stop, &QAction::triggered, rawView, &CanRawView::stopSimulation);
                 connect(rawView, &CanRawView::dockUndock, this, [this, rawView, q] { emit q->handleDock(rawView); });
             },
             [this, dataModel, q](CanRawSenderModel& m) {
                 QWidget* crsWidget = m.canRawSender.getMainWidget();
                 auto& rawSender = m.canRawSender;
                 emit q->componentWidgetCreated(crsWidget);
+                connect(q->_start, &QAction::triggered, &rawSender, &CanRawSender::startSimulation);
+                connect(q->_stop, &QAction::triggered, &rawSender, &CanRawSender::stopSimulation);
                 connect(&rawSender, &CanRawSender::dockUndock, this,
                     [this, crsWidget, q] { emit q->handleDock(crsWidget); });
-                // connect(_start, &QAction::triggered, &rawSender, &CanRawSender::startSimulation);
-                // connect(_stop, &QAction::triggered, &rawSender, &CanRawSender::stopSimulation);
             },
             [this](CanDeviceModel&) {});
     }

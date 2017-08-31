@@ -38,3 +38,23 @@ void ProjectConfiguration::nodeDoubleClickedCallback(QtNodes::Node& node)
     Q_D(ProjectConfiguration);
     d->nodeDoubleClickedCallback(node);
 }
+
+void ProjectConfiguration::closeEvent(QCloseEvent* e) { e->ignore(); }
+
+QByteArray ProjectConfiguration::save()
+{
+    Q_D(ProjectConfiguration);
+    return d->save();
+}
+
+void ProjectConfiguration::load(const QByteArray& data)
+{
+    Q_D(ProjectConfiguration);
+    return d->load(data);
+}
+
+void ProjectConfiguration::clearGraphView()
+{
+    Q_D(ProjectConfiguration);
+    return d->clearGraphView();
+}

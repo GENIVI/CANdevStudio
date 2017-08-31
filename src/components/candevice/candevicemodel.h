@@ -1,7 +1,7 @@
 #ifndef CANDEVICEMODEL_H
 #define CANDEVICEMODEL_H
 
-#include "modelvisitor.h"  // CanNodeDataModelVisitor
+#include "modelvisitor.h" // CanNodeDataModelVisitor
 #include "visitablewith.h"
 
 #include <QtCore/QObject>
@@ -25,10 +25,7 @@ enum class Direction;
 /**
 *   @brief The class provides node graphical representation of CanDevice
 */
-class CanDeviceModel
-  : public NodeDataModel
-  , public VisitableWith<CanNodeDataModelVisitor>
-{
+class CanDeviceModel : public NodeDataModel, public VisitableWith<CanNodeDataModelVisitor> {
     Q_OBJECT
 
 public:
@@ -133,7 +130,7 @@ private:
 
     QCanBusFrame _frame;
 
-    std::unique_ptr<CanDevice> canDevice;
+    CanDevice canDevice;
 
 signals:
     void sendFrame(const QCanBusFrame& frame);
