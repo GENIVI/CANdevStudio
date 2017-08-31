@@ -1,6 +1,6 @@
 #include "projectconfiguration.h"
-#include "modelvisitor.h" // apply_model_visitor
 #include "projectconfiguration_p.h"
+#include "modelvisitor.h" // apply_model_visitor
 #include <cassert> // assert
 
 #include <QAction>

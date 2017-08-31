@@ -1,8 +1,11 @@
 #ifndef PROJECTCONFIGURATION_P_H
 #define PROJECTCONFIGURATION_P_H
+
+#include <cassert> // assert
 #include "modelvisitor.h" // apply_model_visitor
 #include "ui_projectconfiguration.h"
-#include <cassert> // assert
+#include "flowviewwrapper.h"
+#include "modeltoolbutton.h"
 
 #include <QAction>
 
@@ -31,7 +34,7 @@ public:
         modelRegistry->registerModel<CanRawViewModel>();
 
         graphScene = std::make_shared<QtNodes::FlowScene>(modelRegistry);
-        graphView = new QtNodes::FlowView(graphScene.get());
+        graphView = new FlowViewWrapper(graphScene.get());
 
         connect(graphScene.get(), &QtNodes::FlowScene::nodeCreated, this,
             &ProjectConfigurationPrivate::nodeCreatedCallback);
@@ -42,13 +45,14 @@ public:
 
         ui->setupUi(this);
         ui->layout->addWidget(graphView);
+	//ui->layout->toolbar->addWidget(.....);
     }
     ~ProjectConfigurationPrivate() {}
     std::unique_ptr<Ui::ProjectConfigurationPrivate> ui;
 
 private:
     std::shared_ptr<QtNodes::FlowScene> graphScene;
-    QtNodes::FlowView* graphView; // FIXME
+    FlowViewWrapper* graphView; // FIXME
 
     void handleWidgetDeletion(QWidget* widget)
     {
