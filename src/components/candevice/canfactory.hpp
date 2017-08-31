@@ -5,7 +5,9 @@
 
 struct CanDeviceInterface;
 struct CanFactoryInterface {
-    virtual ~CanFactoryInterface() {}
+    virtual ~CanFactoryInterface()
+    {
+    }
     virtual CanDeviceInterface* create(const QString& backend, const QString& iface) = 0;
 };
 

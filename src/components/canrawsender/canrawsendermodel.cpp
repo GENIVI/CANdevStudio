@@ -17,9 +17,15 @@ CanRawSenderModel::CanRawSenderModel()
     connect(&canRawSender, &CanRawSender::sendFrame, this, &CanRawSenderModel::sendFrame);
 }
 
-unsigned int CanRawSenderModel::nPorts(PortType portType) const { return (PortType::Out == portType) ? 1 : 0; }
+unsigned int CanRawSenderModel::nPorts(PortType portType) const
+{
+    return (PortType::Out == portType) ? 1 : 0;
+}
 
-NodeDataType CanRawSenderModel::dataType(PortType, PortIndex) const { return CanRawSenderDataOut().type(); }
+NodeDataType CanRawSenderModel::dataType(PortType, PortIndex) const
+{
+    return CanRawSenderDataOut().type();
+}
 
 std::shared_ptr<NodeData> CanRawSenderModel::outData(PortIndex)
 {

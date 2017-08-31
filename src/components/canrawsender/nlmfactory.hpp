@@ -2,15 +2,26 @@
 #define NLMFACTORY_HPP
 
 #include "gui/nlmcheckbox.hpp"
-#include "nlmfactoryinterface.hpp"
 #include "gui/nlmlineedit.hpp"
 #include "gui/nlmpushbutton.hpp"
+#include "nlmfactoryinterface.hpp"
 
 struct NLMFactory : public NLMFactoryInterface {
-    virtual ~NLMFactory() {}
+    virtual ~NLMFactory()
+    {
+    }
 
-    CheckBoxInterface* createCheckBox() override { return new NLMCheckBox(); }
-    LineEditInterface* createLineEdit() override { return new NLMLineEdit; }
-    PushButtonInterface* createPushButton() override { return new NLMPushButton; }
+    CheckBoxInterface* createCheckBox() override
+    {
+        return new NLMCheckBox();
+    }
+    LineEditInterface* createLineEdit() override
+    {
+        return new NLMLineEdit;
+    }
+    PushButtonInterface* createPushButton() override
+    {
+        return new NLMPushButton;
+    }
 };
 #endif // NLMFACTORY_HPP

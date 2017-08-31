@@ -40,7 +40,8 @@ TEST_CASE("Calling sendFrame emits dataUpdated and outData returns that frame", 
     QSignalSpy dataUpdatedSpy(&canRawSenderModel, &CanRawSenderModel::dataUpdated);
     canRawSenderModel.sendFrame(testFrame);
     CHECK(dataUpdatedSpy.count() == 1);
-    CHECK(std::dynamic_pointer_cast<CanRawSenderDataOut>(canRawSenderModel.outData(0))->frame().frameId() == testFrame.frameId());
+    CHECK(std::dynamic_pointer_cast<CanRawSenderDataOut>(canRawSenderModel.outData(0))->frame().frameId()
+        == testFrame.frameId());
 }
 
 int main(int argc, char* argv[])

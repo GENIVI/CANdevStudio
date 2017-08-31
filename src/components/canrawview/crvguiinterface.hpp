@@ -18,7 +18,9 @@ struct CRVGuiInterface {
     virtual void setSectionClikedCbk(const sectionClicked_t& cb) = 0;
     virtual void setFilterCbk(const filter_t& cb) = 0;
 
-    virtual ~CRVGuiInterface() {}
+    virtual ~CRVGuiInterface()
+    {
+    }
 
     virtual QWidget* getMainWidget() = 0;
     virtual void setModel(QAbstractItemModel* model) = 0;

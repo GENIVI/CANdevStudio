@@ -2,8 +2,8 @@
 #define CANRAWSENDER_H
 
 #include <QCloseEvent>
-#include <QtCore/QScopedPointer>
 #include <QtCore/QObject>
+#include <QtCore/QScopedPointer>
 
 class QCanBusFrame;
 class CanRawSenderPrivate;

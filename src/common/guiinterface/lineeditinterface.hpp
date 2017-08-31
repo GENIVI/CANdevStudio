@@ -6,7 +6,9 @@
 class QWidget;
 
 struct LineEditInterface {
-    virtual ~LineEditInterface() {}
+    virtual ~LineEditInterface()
+    {
+    }
 
     typedef std::function<void()> textChanged_t;
     virtual void textChangedCbk(const textChanged_t& cb) = 0;

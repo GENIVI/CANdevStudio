@@ -3,8 +3,8 @@
 
 #include "../crsguiinterface.hpp"
 #include "ui_canrawsender.h"
-#include <memory>
 #include <cdswidget.h>
+#include <memory>
 
 namespace Ui {
 class CanRawSenderPrivate;
@@ -18,16 +18,25 @@ struct CRSGui : public CRSGuiInterface {
         ui->setupUi(widget);
     }
 
-    void setAddCbk(const add_t& cb) override { QObject::connect(ui->pbAdd, &QPushButton::pressed, cb); }
+    void setAddCbk(const add_t& cb) override
+    {
+        QObject::connect(ui->pbAdd, &QPushButton::pressed, cb);
+    }
 
-    void setRemoveCbk(const remove_t& cb) override { QObject::connect(ui->pbRemove, &QPushButton::pressed, cb); }
+    void setRemoveCbk(const remove_t& cb) override
+    {
+        QObject::connect(ui->pbRemove, &QPushButton::pressed, cb);
+    }
 
     void setDockUndockCbk(const dockUndock_t& cb) override
     {
         QObject::connect(ui->pbDockUndock, &QPushButton::toggled, cb);
     }
 
-    QWidget* getMainWidget() override { return widget; }
+    QWidget* getMainWidget() override
+    {
+        return widget;
+    }
 
     void initTableView(QAbstractItemModel& tvModel) override
     {
@@ -36,9 +45,15 @@ struct CRSGui : public CRSGuiInterface {
         ui->tv->setSelectionBehavior(QAbstractItemView::SelectRows);
     }
 
-    QModelIndexList getSelectedRows() override { return ui->tv->selectionModel()->selectedRows(); }
+    QModelIndexList getSelectedRows() override
+    {
+        return ui->tv->selectionModel()->selectedRows();
+    }
 
-    void setIndexWidget(const QModelIndex& index, QWidget* widget) override { ui->tv->setIndexWidget(index, widget); }
+    void setIndexWidget(const QModelIndex& index, QWidget* widget) override
+    {
+        ui->tv->setIndexWidget(index, widget);
+    }
 
 private:
     Ui::CanRawSenderPrivate* ui;

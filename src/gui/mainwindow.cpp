@@ -42,7 +42,9 @@ MainWindow::MainWindow(QWidget* parent)
     connectMenuSignals();
 }
 
-MainWindow::~MainWindow() {}
+MainWindow::~MainWindow()
+{
+}
 
 void MainWindow::closeEvent(QCloseEvent* e)
 {
@@ -96,7 +98,8 @@ void MainWindow::nodeDeletedCallback(QtNodes::Node& node)
 
     assert(nullptr != dataModel);
 
-    apply_model_visitor(*dataModel, [this, dataModel](CanRawViewModel& m) { handleWidgetDeletion(m.canRawView.getMainWidget()); },
+    apply_model_visitor(*dataModel,
+        [this, dataModel](CanRawViewModel& m) { handleWidgetDeletion(m.canRawView.getMainWidget()); },
         [this, dataModel](CanRawSenderModel& m) { handleWidgetDeletion(m.canRawSender.getMainWidget()); },
         [this](CanDeviceModel&) {});
 }
@@ -108,11 +111,10 @@ void handleWidgetShowing(QWidget* widget, QMdiArea* mdi)
     bool docked = false;
 
     // TODO: Temporary solution. To be changed once MainWindow is refactored
-    QPushButton *undockButton = widget->findChild<QPushButton*>("pbDockUndock");
-    if(undockButton) {
+    QPushButton* undockButton = widget->findChild<QPushButton*>("pbDockUndock");
+    if (undockButton) {
         docked = !undockButton->isChecked();
-    }
-    else {
+    } else {
         cds_debug("Undock button for '{}' widget not found", widget->windowTitle().toStdString());
     }
 

@@ -27,7 +27,10 @@ bool UniqueFilterModel::filterAcceptsRow(int sourceRow, const QModelIndex& sourc
     return ((uniques[value] == time) || (false == filterActive));
 }
 
-void UniqueFilterModel::clearFilter() { uniques.clear(); }
+void UniqueFilterModel::clearFilter()
+{
+    uniques.clear();
+}
 
 void UniqueFilterModel::toggleFilter()
 {
@@ -35,4 +38,7 @@ void UniqueFilterModel::toggleFilter()
     invalidateFilter();
 }
 
-bool UniqueFilterModel::isFilterActive() { return filterActive; }
+bool UniqueFilterModel::isFilterActive()
+{
+    return filterActive;
+}

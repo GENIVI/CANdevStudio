@@ -105,7 +105,10 @@ void NewLineManager::SendButtonPressed()
     }
 }
 
-void NewLineManager::TimerExpired() { emit canRawSender->sendFrame(frame); }
+void NewLineManager::TimerExpired()
+{
+    emit canRawSender->sendFrame(frame);
+}
 
 QWidget* NewLineManager::GetColsWidget(ColNameIterator name)
 {

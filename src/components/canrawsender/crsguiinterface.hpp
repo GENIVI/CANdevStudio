@@ -7,7 +7,9 @@ class QWidget;
 class QAbstractItemModel;
 
 struct CRSGuiInterface {
-    virtual ~CRSGuiInterface() {}
+    virtual ~CRSGuiInterface()
+    {
+    }
 
     typedef std::function<void()> add_t;
     typedef std::function<void()> remove_t;

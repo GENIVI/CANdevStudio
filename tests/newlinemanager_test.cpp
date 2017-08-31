@@ -1,8 +1,8 @@
 #define CATCH_CONFIG_RUNNER
-#include "canrawsender/newlinemanager.h"
 #include "canrawsender/canrawsender.h"
 #include "canrawsender/crsfactoryinterface.hpp"
 #include "canrawsender/crsguiinterface.hpp"
+#include "canrawsender/newlinemanager.h"
 #include <catch.hpp>
 #include <fakeit.hpp>
 

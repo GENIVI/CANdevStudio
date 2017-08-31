@@ -1,8 +1,8 @@
 #ifndef NLMLINEEDIT_HPP
 #define NLMLINEEDIT_HPP
 
-#include <guiinterface/lineeditinterface.hpp>
 #include <QLineEdit>
+#include <guiinterface/lineeditinterface.hpp>
 
 struct NLMLineEdit : public LineEditInterface {
 
@@ -11,9 +11,15 @@ struct NLMLineEdit : public LineEditInterface {
     {
     }
 
-    void textChangedCbk(const textChanged_t& cb) override { QObject::connect(qLineEdit, &QLineEdit::textChanged, cb); }
+    void textChangedCbk(const textChanged_t& cb) override
+    {
+        QObject::connect(qLineEdit, &QLineEdit::textChanged, cb);
+    }
 
-    QWidget* getMainWidget() override { return qLineEdit; }
+    QWidget* getMainWidget() override
+    {
+        return qLineEdit;
+    }
 
     void init(const QString& placeholderText, QValidator* qValidator) override
     {
@@ -25,13 +31,25 @@ struct NLMLineEdit : public LineEditInterface {
         }
     }
 
-    void setPlaceholderText(const QString& placeholderText) override { qLineEdit->setPlaceholderText(placeholderText); }
+    void setPlaceholderText(const QString& placeholderText) override
+    {
+        qLineEdit->setPlaceholderText(placeholderText);
+    }
 
-    void setDisabled(bool state) override { qLineEdit->setDisabled(state); }
+    void setDisabled(bool state) override
+    {
+        qLineEdit->setDisabled(state);
+    }
 
-    int getTextLength() override { return qLineEdit->text().length(); }
+    int getTextLength() override
+    {
+        return qLineEdit->text().length();
+    }
 
-    const QString getText() override { return qLineEdit->text(); }
+    const QString getText() override
+    {
+        return qLineEdit->text();
+    }
 
 private:
     QLineEdit* qLineEdit;

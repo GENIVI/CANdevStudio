@@ -5,7 +5,9 @@
 class QWidget;
 
 struct CheckBoxInterface {
-    virtual ~CheckBoxInterface() {}
+    virtual ~CheckBoxInterface()
+    {
+    }
 
     typedef std::function<void()> released_t;
     virtual void releasedCbk(const released_t& cb) = 0;
