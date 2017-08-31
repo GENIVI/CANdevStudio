@@ -34,7 +34,7 @@ bool CanDevice::init(const QString& backend, const QString& interface)
     d->canDevice->setFramesReceivedCbk(std::bind(&CanDevice::framesReceived, this));
     d->canDevice->setErrorOccurredCbk(std::bind(&CanDevice::errorOccurred, this, std::placeholders::_1));
 
-    // connect
+    initialized = true;
 
     return true;
 }
@@ -73,7 +73,7 @@ bool CanDevice::start()
 
 void CanDevice::framesReceived()
 {
-
+    if(!initialized) { return; }
     Q_D(CanDevice);
 
         while (static_cast<bool>(d->canDevice->framesAvailable())) {
