@@ -44,6 +44,8 @@ class CanRawViewPrivate
     QStandardItemModel             _tvModel;
     std::unique_ptr<QElapsedTimer> _timer = std::make_unique<QElapsedTimer>();
     bool                           _simStarted = false;
+    QStringList                    _columnsOrder =
+        { "rowID", "timeDouble", "time", "idInt", "id", "dir", "dlc", "data" };
 
  public slots:
 
@@ -62,8 +64,6 @@ class CanRawViewPrivate
     int _prevIndex = 0;
     int _sortIndex = 0;
     Qt::SortOrder _currentSortOrder = Qt::AscendingOrder;
-    QStringList   _columnsOrder =
-        { "rowID", "timeDouble", "time", "idInt", "id", "dir", "dlc", "data" };
 };
 
 #endif // CANRAWVIEW_P_H

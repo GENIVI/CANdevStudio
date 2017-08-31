@@ -32,5 +32,28 @@ struct UIBackendDefault;/* : UIBackend<Subject>*/
 //};
 /** @} */
 
+
+/** Tag generator used to select an implementation type to be created. @{ */
+template<class T>
+struct UIBackendSelectorTag { using type = T; };
+
+template<class Impl>
+static constexpr UIBackendSelectorTag<Impl> UIBackendSelector{};
+/** @}  */
+
+/** Tags usesd to select given UsesUIBackend constructor. @{ */
+template<unsigned> struct UsesUIBackendCtorTag {};
+
+using UsesUIBackendCtorTag_Explicit = UsesUIBackendCtorTag<111>;
+using UsesUIBackendCtorTag_ActionOrSelector = UsesUIBackendCtorTag<222>;
+using UsesUIBackendCtorTag_Actions = UsesUIBackendCtorTag<333>;
+using UsesUIBackendCtorTag_Args = UsesUIBackendCtorTag<444>;
+
+static constexpr UsesUIBackendCtorTag_Explicit         UsesUIBackendCtor_Explicit{};
+static constexpr UsesUIBackendCtorTag_ActionOrSelector UsesUIBackendCtor_ActionOrSelector{};
+static constexpr UsesUIBackendCtorTag_Actions          UsesUIBackendCtor_Actions{};
+static constexpr UsesUIBackendCtorTag_Args             UsesUIBackendCtor_Args{};
+/** @} */
+
 #endif
 

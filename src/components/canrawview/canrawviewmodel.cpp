@@ -13,15 +13,16 @@
 
 CanRawViewModel::CanRawViewModel()
   :
-    CanRawView
+    canRawView
     {
-        [](CanRawView& v)
+        UsesUIBackendCtor_Actions
+      , [](CanRawView& v)
         {
-            assert(nullptr != v.d_ptr);
-            auto widget = v.d_ptr->backend().getMainWidget();
+            assert(nullptr != v.impl());
+            auto widget = v.impl()->backend().getMainWidget();
             assert(nullptr != widget);
 
-            widget->setLayout(widget->layout);
+            widget->setLayout(widget->layout());
         }
       , [](CanRawViewPrivate& v)
         {
@@ -29,7 +30,7 @@ CanRawViewModel::CanRawViewModel()
 
             auto& ui = v.backend();
 
-            ui.initTableView(_tvModel);
+            ui.initTableView(v._tvModel);
             ui.setClearCbk([&v]{ v.clear(); });
             ui.setDockUndockCbk([&v]{ v.dockUndock(); });
             ui.setSectionClikedCbk([&v](int index){ v.sort(index); });
@@ -41,10 +42,10 @@ CanRawViewModel::CanRawViewModel()
     label->setFixedSize(75, 25);
     label->setAttribute(Qt::WA_TranslucentBackground);
 
-    assert(nullptr != canRawView.d_ptr());
-    assert(nullptr != canRawView.d_ptr()->backend().getMainWindow());
+    assert(nullptr != canRawView.impl());
+    assert(nullptr != canRawView.impl()->backend().getMainWidget());
 
-    canRawView.d_ptr->backend().getMainWindow()->setWindowTitle("CANrawView");
+    canRawView.impl()->backend().getMainWidget()->setWindowTitle("CANrawView");
     connect(this, &CanRawViewModel::frameSent, &canRawView, &CanRawView::frameSent);
     connect(this, &CanRawViewModel::frameReceived, &canRawView, &CanRawView::frameReceived);
 }
