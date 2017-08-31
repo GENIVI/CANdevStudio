@@ -74,14 +74,10 @@ void CanDevice::framesReceived()
 
     Q_D(CanDevice);
 
-    if (!d->canDevice) {
-        return;
-    }
-    /*
         while (static_cast<bool>(d->canDevice->framesAvailable())) {
             const QCanBusFrame frame = d->canDevice->readFrame();
             emit frameReceived(frame);
-        }*/
+        }
 }
 
 void CanDevice::framesWritten(qint64)
