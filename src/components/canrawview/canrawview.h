@@ -24,8 +24,8 @@ class CanRawView
               >
 {
     Q_OBJECT
-    Q_DECLARE_PRIVATE_D(UsesUIBackend::d_ptr, CanRawView)
-//                   ^^^^^^^^^^^^^^^^^^^^^^^^
+    Q_DECLARE_PRIVATE_D(UsesUIBackend::d_ptr.data(), CanRawView)
+//                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
  public:
 

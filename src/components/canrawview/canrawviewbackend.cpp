@@ -3,7 +3,7 @@
 #include "canrawview_p.h"
 #include "canrawviewbackend.hpp"
 #include "ui_canrawview.h"
-#include "uibackend.hpp"
+#include "uibackendiface.hpp"
 
 #include <QHeaderView>
 #include <QtWidgets/QWidget>
