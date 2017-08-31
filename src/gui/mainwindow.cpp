@@ -85,8 +85,6 @@ void MainWindow::handleSaveAction()
 
 void MainWindow::handleLoadAction()
 {
-    projectConfiguration->clearGraphView();
-
     QString fileName
         = QFileDialog::getOpenFileName(nullptr, "Project Configuration", QDir::homePath(), "CANdevStudio (*.cds)");
 
@@ -107,6 +105,7 @@ void MainWindow::handleLoadAction()
     // TODO check if file is correct, nodeeditor library does not provide it and will crash if incorrect file is
     // supplied
 
+    projectConfiguration->clearGraphView();
     projectConfiguration->load(wholeFile); // FIXME
 }
 
