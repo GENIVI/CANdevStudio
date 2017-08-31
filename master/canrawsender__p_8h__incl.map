@@ -1,16 +1,16 @@
 <map id="src/components/canrawsender/canrawsender_p.h" name="src/components/canrawsender/canrawsender_p.h">
-<area shape="rect" id="node2" href="$crsfactory_8hpp.html" title="crsfactory.hpp" alt="" coords="383,95,493,121"/>
-<area shape="rect" id="node4" href="$crsgui_8hpp.html" title="gui/crsgui.hpp" alt="" coords="433,169,544,196"/>
-<area shape="rect" id="node13" href="$newlinemanager_8h.html" title="newlinemanager.h" alt="" coords="750,95,889,121"/>
-<area shape="rect" id="node3" href="$crsfactoryinterface_8hpp.html" title="crsfactoryinterface.hpp" alt="" coords="240,169,409,196"/>
-<area shape="rect" id="node5" href="$crsguiinterface_8hpp.html" title="../crsguiinterface.hpp" alt="" coords="251,244,407,271"/>
-<area shape="rect" id="node10" href="$cdswidget_8h.html" title="cdswidget.h" alt="" coords="121,244,219,271"/>
-<area shape="rect" id="node14" href="$nlmfactory_8hpp.html" title="nlmfactory.hpp" alt="" coords="844,169,960,196"/>
-<area shape="rect" id="node15" href="$nlmcheckbox_8hpp.html" title="gui/nlmcheckbox.hpp" alt="" coords="695,244,853,271"/>
-<area shape="rect" id="node20" href="$nlmfactoryinterface_8hpp.html" title="nlmfactoryinterface.hpp" alt="" coords="877,244,1052,271"/>
-<area shape="rect" id="node21" href="$nlmlineedit_8hpp.html" title="gui/nlmlineedit.hpp" alt="" coords="1076,244,1219,271"/>
-<area shape="rect" id="node24" href="$nlmpushbutton_8hpp.html" title="gui/nlmpushbutton.hpp" alt="" coords="1339,244,1510,271"/>
-<area shape="rect" id="node16" href="$checkboxinterface_8hpp.html" title="guiinterface/checkboxinterface.hpp" alt="" coords="410,319,655,345"/>
-<area shape="rect" id="node22" href="$lineeditinterface_8hpp.html" title="guiinterface/lineeditinterface.hpp" alt="" coords="1040,319,1271,345"/>
-<area shape="rect" id="node25" href="$pushbuttoninterface_8hpp.html" title="guiinterface/pushbuttoninterface.hpp" alt="" coords="1295,319,1554,345"/>
+<area shape="rect" id="node2" href="$crsfactory_8hpp.html" title="crsfactory.hpp" alt="" coords="450,95,561,121"/>
+<area shape="rect" id="node4" href="$crsgui_8hpp.html" title="gui/crsgui.hpp" alt="" coords="501,169,611,196"/>
+<area shape="rect" id="node13" href="$newlinemanager_8h.html" title="newlinemanager.h" alt="" coords="817,95,956,121"/>
+<area shape="rect" id="node3" href="$crsfactoryinterface_8hpp.html" title="crsfactoryinterface.hpp" alt="" coords="307,169,477,196"/>
+<area shape="rect" id="node5" href="$crsguiinterface_8hpp.html" title="../crsguiinterface.hpp" alt="" coords="295,244,451,271"/>
+<area shape="rect" id="node9" href="$cdswidget_8h.html" title="cdswidget.h" alt="" coords="107,244,205,271"/>
+<area shape="rect" id="node14" href="$nlmfactory_8hpp.html" title="nlmfactory.hpp" alt="" coords="911,169,1027,196"/>
+<area shape="rect" id="node15" href="$nlmcheckbox_8hpp.html" title="gui/nlmcheckbox.hpp" alt="" coords="769,244,927,271"/>
+<area shape="rect" id="node20" href="$nlmlineedit_8hpp.html" title="gui/nlmlineedit.hpp" alt="" coords="951,244,1094,271"/>
+<area shape="rect" id="node23" href="$nlmpushbutton_8hpp.html" title="gui/nlmpushbutton.hpp" alt="" coords="1232,244,1403,271"/>
+<area shape="rect" id="node26" href="$nlmfactoryinterface_8hpp.html" title="nlmfactoryinterface.hpp" alt="" coords="1427,244,1602,271"/>
+<area shape="rect" id="node19" href="$checkboxinterface_8hpp.html" title="guiinterface/checkboxinterface.hpp" alt="" coords="411,319,656,345"/>
+<area shape="rect" id="node21" href="$lineeditinterface_8hpp.html" title="guiinterface/lineeditinterface.hpp" alt="" coords="1041,319,1271,345"/>
+<area shape="rect" id="node25" href="$pushbuttoninterface_8hpp.html" title="guiinterface/pushbuttoninterface.hpp" alt="" coords="1296,319,1555,345"/>
 </map>
