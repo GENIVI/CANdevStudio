@@ -22,11 +22,11 @@
  */
 /** UIBackend for given Subject tag (can be any type). */
 template<class Subject>
-struct UIBackend;
+class UIBackend;
 
 /** Default UIBackend for given Subject tag, must be derived from UIBackend<Subject>. */
 template<class Subject>
-struct UIBackendDefault;/* : UIBackend<Subject>
+class UIBackendDefault;/* : public UIBackend<Subject>
 {
     static_assert(false, "UIBackendDefault not implemented");
 };*/
@@ -49,7 +49,7 @@ using UsesUIBackendCtorTag_ActionQ  = UsesUIBackendCtorTag<222>;
 using UsesUIBackendCtorTag_ActionD  = UsesUIBackendCtorTag<333>;
 using UsesUIBackendCtorTag_Selector = UsesUIBackendCtorTag<444>;
 using UsesUIBackendCtorTag_Actions  = UsesUIBackendCtorTag<556>;
-using UsesUIBackendCtorTag_Args     = UsesUIBackendCtorTag<666>;
+using UsesUIBackendCtorTag_Args     = UsesUIBackendCtorTag<666>;  // fallback: fully variadic
 
 static constexpr UsesUIBackendCtorTag_Explicit UsesUIBackendCtor_Explicit{};
 static constexpr UsesUIBackendCtorTag_ActionQ  UsesUIBackendCtor_ActionQ{};  // run "in" q_ptr ctor

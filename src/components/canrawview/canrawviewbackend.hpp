@@ -20,8 +20,11 @@ namespace Ui { class CanRawViewPrivate; }
 
 
 template<>
-struct UIBackend<CanRawView>  // polymorphic as an example, but it's optional, see the note on top
+class UIBackend<CanRawView>  // polymorphic as an example, but it's optional, see the note on top
 {
+
+ public:
+
     virtual QString getClickedColumn(int ndx) = 0;
     virtual QString getWindowTitle() = 0;
     virtual QWidget* getMainWidget() = 0;

@@ -111,6 +111,8 @@ class UsesUIBackend
   : public WithExplicitInit<Derived>
 {
 
+ public:
+
     template<class A, class F>
     static constexpr bool is_init_v =
             UIBackendTraits::template is_init< std::remove_reference_t<A>
@@ -120,7 +122,7 @@ class UsesUIBackend
     static constexpr bool is_selector_v =
             UIBackendTraits::template is_selector<std::remove_reference_t<T>>::value;
 
- public:
+
 
     /** Acceses d_ptr from the actions passed to constructors. @{ */
     QScopedPointer<PrivateWithUIBackend>&       impl()       { return d_ptr; }
@@ -342,6 +344,8 @@ class WithUIBackend
   : public WithExplicitInit<Derived>
 {
 
+ public:
+
     template<class A, class F>
     static constexpr bool is_init_v =
             UIBackendTraits::template is_init< std::remove_reference_t<A>
@@ -351,7 +355,7 @@ class WithUIBackend
     static constexpr bool is_selector_v =
             UIBackendTraits::template is_selector<std::remove_reference_t<T>>::value;
 
- public:
+
 
     template<
         class ImplSelector
