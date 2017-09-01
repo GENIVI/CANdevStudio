@@ -4,6 +4,7 @@
 
 #include "uibackend.h" // WithUIBackend
 #include "canrawviewbackend.hpp" // UIBackendDefault used in With...
+#include "uniquefiltermodel.h"
 #include "withexplicitinit.h" // EXPLICIT_INIT
 
 #include <QJsonArray>
@@ -41,7 +42,9 @@ class CanRawViewPrivate
     void saveSettings(QJsonObject& json);
     void frameView(const QCanBusFrame& frame, const QString& direction);
 
-    QStandardItemModel             _tvModel{this};
+
+    QStandardItemModel             _tvModel;
+    UniqueFilterModel              _uniqueModel;
     std::unique_ptr<QElapsedTimer> _timer = std::make_unique<QElapsedTimer>();
     bool                           _simStarted = false;
     QStringList                    _columnsOrder =
@@ -52,6 +55,7 @@ class CanRawViewPrivate
     void clear();
     void dockUndock();
     void sort(int index);
+    void setFilter();
 
  private:
 

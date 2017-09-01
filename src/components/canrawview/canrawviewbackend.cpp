@@ -6,8 +6,9 @@
 #include "uibackendiface.h"
 
 #include <QHeaderView>
-#include <QtWidgets/QWidget>
+#include <QtCore/QAbstractItemModel>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QWidget>
 
 #include <cassert> // assert
 #include <functional> // function
@@ -35,7 +36,7 @@ void UIBackendDefault<CanRawView>::setDockUndockCbk(std::function<void ()> cb)
 {
     assert(nullptr != ui);
 
-    QObject::connect(ui->pbDockUndock, &QPushButton::pressed, std::move(cb));
+    QObject::connect(ui->pbDockUndock, &QPushButton::toggled, std::move(cb));
 }
 
 void UIBackendDefault<CanRawView>::setSectionClikedCbk(std::function<void (int)> cb)
@@ -114,19 +115,50 @@ bool UIBackendDefault<CanRawView>::isColumnHidden(int column) const
     return ui->tv->isColumnHidden(column);
 }
 
-bool UIBackendDefault<CanRawView>::isFrozen() const
+bool UIBackendDefault<CanRawView>::isViewFrozen() const
 {
     assert(nullptr != ui);
 
     return ui->freezeBox->isChecked();
 }
 
-int UIBackendDefault<CanRawView>::getSortIndicator()
+int UIBackendDefault<CanRawView>::getSortSection()
 {
     assert(nullptr != ui);
     assert(nullptr != ui->tv);
     assert(nullptr != ui->tv->horizontalHeader());
 
     return ui->tv->horizontalHeader()->sortIndicatorSection();
+}
+
+void UIBackendDefault<CanRawView>::scrollToBottom()
+{
+    assert(nullptr != ui);
+    assert(nullptr != ui->tv);
+
+    ui->tv->scrollToBottom();
+}
+
+QString UIBackendDefault<CanRawView>::getWindowTitle()
+{
+    assert(nullptr != widget);
+
+    return widget->windowTitle();
+}
+
+void UIBackendDefault<CanRawView>::setModel(QAbstractItemModel* model)
+{
+    assert(nullptr != model);
+    assert(nullptr != ui);
+    assert(nullptr != ui->tv);
+
+    ui->tv->setModel(model);
+}
+
+void UIBackendDefault<CanRawView>::setFilterCbk(std::function<void()> cb)
+{
+    assert(nullptr != ui);
+
+    QObject::connect(ui->pbToggleFilter, &QPushButton::toggled, std::move(cb));
 }
 

@@ -22,14 +22,13 @@ void CanRawViewPrivate::saveSettings(QJsonObject& json)
 {
     auto& ui = backend();
 
-//    const auto title = ui.getMainWidget()->getMainWindow()->windowTitle().toStdString();
-    std::string title = "!!! FIXME !!!";
+    auto title = ui.getWindowTitle().toStdString();
     assert(0 != title.length());
 
     json[title.c_str()] = makeColumnsOrder();
     json["Sorting"]     = makeSortingRules();
     json["Models"]      = makeViewModel();
-    json["Scrolling"]   = ui.isFrozen() ? 1 : 0;
+    json["Scrolling"]   = ui.isViewFrozen() ? 1 : 0;
 }
 
 void CanRawViewPrivate::frameView(const QCanBusFrame& frame, const QString& direction)
@@ -46,14 +45,15 @@ void CanRawViewPrivate::frameView(const QCanBusFrame& frame, const QString& dire
         payHex.insert(ii, ' ');
     }
 
-    auto elapsed =
-        QString::number(static_cast<double>(_timer->elapsed()) / 1000.0, 'f', 2);
+    const auto frameID = frame.frameId();
+    const auto elapsedMs = static_cast<double>(_timer->elapsed()) / 1000.0;
+    auto elapsed = QString::number(elapsedMs, 'f', 2);
 
     QList<QVariant> qvList;
     qvList.append(_rowID++);
-    qvList.append(elapsed.toDouble());
+    qvList.append(elapsed.toDouble());  // TODO: or just pass elapsedMs?
     qvList.append(std::move(elapsed));
-    qvList.append(frame.frameId());
+    qvList.append(frameId);
     qvList.append(QString("0x" + QString::number(frame.frameId(), 16)));
     qvList.append(direction);
     qvList.append(QString::number(frame.payload().size()).toInt());
@@ -75,8 +75,11 @@ void CanRawViewPrivate::frameView(const QCanBusFrame& frame, const QString& dire
 
     _currentSortOrder = ui.getSortOrder();
 
-    ui.setSorting(_sortIndex, ui.getSortIndicator(), _currentSortOrder);
-    ui.updateScroll();
+    ui.setSorting(_sortIndex, ui.getSortSection(), _currentSortOrder);
+
+    _uniqueModel.updateFilter(frameID, elapsedMs, direction);
+
+    if ( ! ui.isViewFrozen()) { ui.scrollToBottom(); }
 }
 
 QJsonObject CanRawViewPrivate::makeSortingRules() const
@@ -126,6 +129,7 @@ QJsonArray CanRawViewPrivate::makeViewModel() const
 void CanRawViewPrivate::clear()
 {
     _tvModel.removeRows(0, _tvModel.rowCount());
+    _uniqueModel.clearFilter();
 }
 
 void CanRawViewPrivate::dockUndock()
@@ -142,7 +146,9 @@ void CanRawViewPrivate::sort(int index)
     _currentSortOrder = ui.getSortOrder();
     _sortIndex = index;
 
-    if (("time" == ui.getClickedColumn(index)) || ("id" == ui.getClickedColumn(index)))
+    const auto clickedCol =ui.getClickedColumn(index);
+
+    if (("time" == clickedCol) || ("id" == clickedCol))
     {
         _sortIndex = _sortIndex - 1;  // FIXME: below 0 acceptable?
     }
@@ -160,4 +166,10 @@ void CanRawViewPrivate::sort(int index)
         _prevIndex = index;
     }
 }
+
+void CanRawViewPrivate::setFilter()
+{
+    _uniqueModel.toggleFilter();
+}
+
 

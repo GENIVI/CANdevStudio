@@ -15,15 +15,15 @@ CanRawViewModel::CanRawViewModel()
   :
     canRawView
     {
-        UsesUIBackendCtor_Actions
-      , [](CanRawView& v)
+        UsesUIBackendCtor_ActionOrSelector
+/*      , [](CanRawView& v)
         {
             assert(nullptr != v.impl());
             auto widget = v.impl()->backend().getMainWidget();
             assert(nullptr != widget);
 
             widget->setLayout(widget->layout());
-        }
+        }*/
       , [](CanRawViewPrivate& v)
         {
             v._tvModel.setHorizontalHeaderLabels(v._columnsOrder);
@@ -31,9 +31,14 @@ CanRawViewModel::CanRawViewModel()
             auto& ui = v.backend();
 
             ui.initTableView(v._tvModel);
+
+            v._uniqueModel.setSourceModel(&v._tvModel);
+            ui.setModel(&v._uniqueModel);
+
             ui.setClearCbk([&v]{ v.clear(); });
             ui.setDockUndockCbk([&v]{ v.dockUndock(); });
             ui.setSectionClikedCbk([&v](int index){ v.sort(index); });
+            ui.setFilterCbk([&v]{ v.setFilter(); });
         }
     }
   , label(new QLabel())
