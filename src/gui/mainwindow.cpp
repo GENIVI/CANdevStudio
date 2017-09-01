@@ -21,14 +21,16 @@ MainWindow::MainWindow(QWidget* parent)
     ui->setupUi(this);
     ui->centralWidget->layout()->setContentsMargins(0, 0, 0, 0);
 
-    projectConfiguration = std::make_unique<ProjectConfiguration>(ui->actionstart, ui->actionstop);
+    projectConfiguration = std::make_unique<ProjectConfiguration>(ui->actionstart, ui->actionstop); //FIXME actions
 
     setupMdiArea();
     connectToolbarSignals();
     connectMenuSignals();
 }
 
-MainWindow::~MainWindow() {}
+MainWindow::~MainWindow()
+{
+}
 
 void MainWindow::closeEvent(QCloseEvent* e)
 {
@@ -128,12 +130,12 @@ void MainWindow::connectMenuSignals()
         [this] { ui->mdiArea->setViewMode(QMdiArea::SubWindowView); });
 }
 
-void MainWindow::componentWidgetCreated(QWidget* component) 
-{ 
-	auto wnd = new SubWindow(component);
-	// We need to delete the window to remove it from tabView when closed
-	wnd->setAttribute(Qt::WA_DeleteOnClose);
-	ui->mdiArea->addSubWindow(wnd); 
+void MainWindow::componentWidgetCreated(QWidget* component)
+{
+    auto wnd = new SubWindow(component);
+    // We need to delete the window to remove it from tabView when closed
+    wnd->setAttribute(Qt::WA_DeleteOnClose);
+    ui->mdiArea->addSubWindow(wnd);
 }
 
 void MainWindow::setupMdiArea()

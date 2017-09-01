@@ -2,16 +2,16 @@
 #define FLOWVIEWWRAPPER_H
 
 struct FlowViewWrapper : public QtNodes::FlowView {
-	    FlowViewWrapper(QtNodes::FlowScene* scene)
-		        : QtNodes::FlowView(scene)
-		        , _scene(scene)
+    FlowViewWrapper(QtNodes::FlowScene* scene)
+        : QtNodes::FlowView(scene)
+        , _scene(scene)
 
     {
-	        setAcceptDrops(true);
-	    }
+        setAcceptDrops(true);
+    }
 
-private :
-	QtNodes::FlowScene* _scene;
+private:
+    QtNodes::FlowScene* _scene;
 };
 
 #endif // FLOWVIEWWRAPPER_H

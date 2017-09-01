@@ -49,7 +49,9 @@ public:
         ui->layout->addWidget(graphView);
         // ui->layout->toolbar->addWidget(.....);
     }
-    ~ProjectConfigurationPrivate() {}
+    ~ProjectConfigurationPrivate()
+    {
+    }
     std::unique_ptr<Ui::ProjectConfigurationPrivate> ui;
 
 private:
@@ -68,7 +70,7 @@ private:
     void handleWidgetShowing(QWidget* widget)
     {
         assert(nullptr != widget);
-	Q_Q(ProjectConfiguration);
+        Q_Q(ProjectConfiguration);
         bool docked = false;
         // TODO: Temporary solution. To be changed once MainWindow is refactored
         QPushButton* undockButton = widget->findChild<QPushButton*>("pbDockUndock");
@@ -97,11 +99,20 @@ private:
     }
 
 public:
-    QByteArray save() const { return graphScene->saveToMemory(); }
+    QByteArray save() const
+    {
+        return graphScene->saveToMemory();
+    }
 
-    void load(const QByteArray& data) { return graphScene->loadFromMemory(data); }
+    void load(const QByteArray& data)
+    {
+        return graphScene->loadFromMemory(data);
+    }
 
-    void clearGraphView() { return graphScene->clearScene(); };
+    void clearGraphView()
+    {
+        return graphScene->clearScene();
+    };
 
     void nodeCreatedCallback(QtNodes::Node& node)
     {

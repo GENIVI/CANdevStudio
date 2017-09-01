@@ -1,6 +1,6 @@
 #include "projectconfiguration.h"
-#include "projectconfiguration_p.h"
 #include "modelvisitor.h" // apply_model_visitor
+#include "projectconfiguration_p.h"
 #include <cassert> // assert
 
 #include <QAction>
@@ -9,7 +9,7 @@
 #include <canrawsender/canrawsendermodel.h>
 #include <canrawview/canrawviewmodel.h>
 
-ProjectConfiguration::ProjectConfiguration(QAction* start, QAction* stop)
+ProjectConfiguration::ProjectConfiguration(QAction* start, QAction* stop) //FIXME actions
     : _start(start)
     , _stop(stop)
     , d_ptr(new ProjectConfigurationPrivate(this))
@@ -19,7 +19,9 @@ ProjectConfiguration::ProjectConfiguration(QAction* start, QAction* stop)
     setLayout(d->ui->layout);
 }
 
-ProjectConfiguration::~ProjectConfiguration() {}
+ProjectConfiguration::~ProjectConfiguration()
+{
+}
 
 void ProjectConfiguration::nodeCreatedCallback(QtNodes::Node& node)
 {
@@ -39,7 +41,10 @@ void ProjectConfiguration::nodeDoubleClickedCallback(QtNodes::Node& node)
     d->nodeDoubleClickedCallback(node);
 }
 
-void ProjectConfiguration::closeEvent(QCloseEvent* e) { e->ignore(); }
+void ProjectConfiguration::closeEvent(QCloseEvent* e)
+{
+    e->ignore();
+}
 
 QByteArray ProjectConfiguration::save()
 {
