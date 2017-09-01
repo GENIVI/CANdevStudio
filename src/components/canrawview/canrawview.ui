@@ -58,7 +58,7 @@
      <item>
       <widget class="QPushButton" name="pbToggleFilter">
        <property name="text">
-        <string>Combained</string>
+        <string>Combined</string>
        </property>
        <property name="checkable">
         <bool>true</bool>

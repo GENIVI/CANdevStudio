@@ -129,14 +129,20 @@ void MainWindow::connectMenuSignals()
         [this] { ui->mdiArea->setViewMode(QMdiArea::SubWindowView); });
 }
 
-void MainWindow::componentWidgetCreated(QWidget* component) { ui->mdiArea->addSubWindow(component); }
+void MainWindow::componentWidgetCreated(QWidget* component) 
+{ 
+	auto wnd = new SubWindow(component);
+	// We need to delete the window to remove it from tabView when closed
+	wnd->setAttribute(Qt::WA_DeleteOnClose);
+	ui->mdiArea->addSubWindow(wnd); 
+}
 
 void MainWindow::setupMdiArea()
 {
     projectConfiguration->setWindowTitle("Project Configuration");
     ui->mdiArea->addSubWindow(projectConfiguration.get());
     ui->mdiArea->setAttribute(Qt::WA_DeleteOnClose, false);
-    ui->mdiArea->tileSubWindows();
+    ui->mdiArea->setViewMode(QMdiArea::TabbedView);
     connect(projectConfiguration.get(), &ProjectConfiguration::componentWidgetCreated, this,
         &MainWindow::componentWidgetCreated);
     connect(projectConfiguration.get(), &ProjectConfiguration::handleDock, this, &MainWindow::handleDock);

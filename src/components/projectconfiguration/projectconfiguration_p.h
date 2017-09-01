@@ -70,6 +70,7 @@ private:
     void handleWidgetShowing(QWidget* widget)
     {
         assert(nullptr != widget);
+	Q_Q(ProjectConfiguration);
         bool docked = false;
         // TODO: Temporary solution. To be changed once MainWindow is refactored
         QPushButton* undockButton = widget->findChild<QPushButton*>("pbDockUndock");
@@ -83,9 +84,7 @@ private:
         // Widget will be also added to MDI area after closing it in undocked state
         if (!widget->isVisible() && docked) {
             cds_debug("Adding '{}' widget to MDI", widget->windowTitle().toStdString());
-            //auto wnd = new SubWindow(widget);
-            // We need to delete the window to remove it from tabView when closed
-            //wnd->setAttribute(Qt::WA_DeleteOnClose);
+            emit q->componentWidgetCreated(widget);
         }
 
         if (widget->parentWidget()) {
@@ -135,7 +134,6 @@ public:
             [this, dataModel, q](CanRawSenderModel& m) {
                 QWidget* crsWidget = m.canRawSender.getMainWidget();
                 auto& rawSender = m.canRawSender;
-                emit q->componentWidgetCreated(crsWidget);
                 connect(q->_start, &QAction::triggered, &rawSender, &CanRawSender::startSimulation);
                 connect(q->_stop, &QAction::triggered, &rawSender, &CanRawSender::stopSimulation);
                 connect(&rawSender, &CanRawSender::dockUndock, this,
