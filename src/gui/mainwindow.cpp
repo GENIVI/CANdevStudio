@@ -42,7 +42,6 @@ void MainWindow::closeEvent(QCloseEvent* e)
     }
 }
 
-
 void MainWindow::handleDock(QWidget* component)
 {
     // check if component is already displayed by mdi area

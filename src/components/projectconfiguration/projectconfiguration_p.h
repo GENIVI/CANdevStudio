@@ -49,9 +49,7 @@ public:
         ui->layout->addWidget(graphView);
         // ui->layout->toolbar->addWidget(.....);
     }
-    ~ProjectConfigurationPrivate()
-    {
-    }
+    ~ProjectConfigurationPrivate() {}
     std::unique_ptr<Ui::ProjectConfigurationPrivate> ui;
 
 private:
@@ -99,20 +97,11 @@ private:
     }
 
 public:
-    QByteArray save() const
-    {
-        return graphScene->saveToMemory();
-    }
+    QByteArray save() const { return graphScene->saveToMemory(); }
 
-    void load(const QByteArray& data)
-    {
-        return graphScene->loadFromMemory(data);
-    }
+    void load(const QByteArray& data) { return graphScene->loadFromMemory(data); }
 
-    void clearGraphView()
-    {
-        return graphScene->clearScene();
-    };
+    void clearGraphView() { return graphScene->clearScene(); };
 
     void nodeCreatedCallback(QtNodes::Node& node)
     {
