@@ -140,35 +140,67 @@ class UsesUIBackend
 
     /** Just references the UI backend object. */
     explicit UsesUIBackend(UIBackend<Subject>& backend)
-      : UsesUIBackend{[](Derived&){}, backend}
+      :
+        UsesUIBackend{ [](Derived&){}, backend }
     {}
 
     /**
-     * Creates and manages UI backend object of given selected UI backend passed as @c T,
-     * or runs a passed action of siganture convertible to void(Derived&) type in this
-     * constructor's body, or in the d_ptr constructor's body if @c T is convertible to
-     * void(PrivateWithUIBackend&) type.
+     * Creates and manages UI backend object of default UI backend type and runs the passed
+     * action of siganture convertible to void(Derived&) type in this constructor's body,
+     * or in the d_ptr constructor's body if @c T is convertible to void(PrivateWithUIBackend&)
+     * type.
+     *
+     * @{
      */
     template<
         class T
       , class... As
-      , class = std::enable_if_t< is_init_v<Derived, T>
-                                  || is_init_v<PrivateWithUIBackend, T>
-                                  || is_selector_v<T> >
+      , class = std::enable_if_t<is_init_v<Derived, T>>
       >
-    explicit UsesUIBackend(const UsesUIBackendCtorTag_ActionOrSelector&
+    explicit UsesUIBackend(const UsesUIBackendCtorTag_ActionQ&
+//                                                    ^^^^^^^ runs "in" the q_ptr ctor body
                          , T&& t, As&&... args)
       :
         UsesUIBackend{ UsesUIBackendCtor_Explicit
-                     , is_init_v<Derived, T>
-                            ? std::forward<T>(t)
-                            : [](Derived&){}
-                     , is_init_v<PrivateWithUIBackend, T>
-                            ? std::forward<T>(t)
-                            : [](PrivateWithUIBackend&){}
-                     , is_selector_v<T>
-                            ? std::forward<T>(t)
-                            : UIBackendSelector<UIBackendDefault<Subject>>
+                     , std::forward<T>(t)
+                     , [](PrivateWithUIBackend&){}
+                     , UIBackendSelector<UIBackendDefault<Subject>>
+                     , std::forward<As>(args)... }
+    {}
+
+    template<
+        class T
+      , class... As
+      , class = std::enable_if_t<is_init_v<PrivateWithUIBackend, T>>
+      >
+    explicit UsesUIBackend(const UsesUIBackendCtorTag_ActionD&
+//                                                    ^^^^^^^ runs "in" the d_ptr ctor body
+                         , T&& t, As&&... args)
+      :
+        UsesUIBackend{ UsesUIBackendCtor_Explicit
+                     , [](Derived&){}
+                     , std::forward<T>(t)
+                     , UIBackendSelector<UIBackendDefault<Subject>>
+                     , std::forward<As>(args)... }
+    {}
+
+    /** @} */
+
+    /**
+     * Creates and manages UI backend object of given selected UI backend passed as @c T.
+     */
+    template<
+        class T
+      , class... As
+      , class = std::enable_if_t<is_selector_v<T>>
+      >
+    explicit UsesUIBackend(const UsesUIBackendCtorTag_Selector&
+                         , T&& t, As&&... args)
+      :
+        UsesUIBackend{ UsesUIBackendCtor_Explicit
+                     , [](Derived&){}
+                     , [](PrivateWithUIBackend&){}
+                     , std::forward<T>(t)
                      , std::forward<As>(args)... }
     {}
 

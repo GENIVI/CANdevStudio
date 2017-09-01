@@ -6,7 +6,9 @@
 #include <functional>
 
 struct CanDeviceInterface {
-    virtual ~CanDeviceInterface() {}
+    virtual ~CanDeviceInterface()
+    {
+    }
 
     typedef std::function<void(qint64)> framesWritten_t;
     typedef std::function<void()> framesReceived_t;

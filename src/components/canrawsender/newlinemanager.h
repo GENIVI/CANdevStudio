@@ -2,6 +2,7 @@
 #define NEWLINEMANAGER_H
 
 #include "nlmfactory.hpp"
+#include <QJsonObject>
 #include <QTimer>
 #include <QValidator>
 #include <QtSerialBus/QCanBusFrame>
@@ -31,14 +32,23 @@ public:
         ++val;
         return *this;
     }
-    typeName operator*() { return static_cast<typeName>(val); }
-    Iterator begin() { return *this; }
+    typeName operator*()
+    {
+        return static_cast<typeName>(val);
+    }
+    Iterator begin()
+    {
+        return *this;
+    }
     Iterator end()
     {
         static const Iterator endIter = ++Iterator(endVal);
         return endIter;
     }
-    bool operator!=(const Iterator& f) { return val != f.val; }
+    bool operator!=(const Iterator& f)
+    {
+        return val != f.val;
+    }
 };
 
 /// \class NewLineManager
@@ -83,6 +93,10 @@ public:
     /// \param[in] state Actual simulator state
     void SetSimulationState(bool state);
 
+    /// \brief The function is responsible for convert line content to json format
+    /// \param[in] json Json object
+    void Line2Json(QJsonObject& json) const;
+
 private:
     /// \brief This function performs the necessary things when the meter stops
     void StopTimer();
@@ -99,11 +113,11 @@ private:
 
     NLMFactory mDefFactory;
     NLMFactoryInterface& mFactory;
-    std::unique_ptr<NLMCheckBoxInterface> mCheckBox;
-    std::unique_ptr<NLMLineEditInterface> mId;
-    std::unique_ptr<NLMLineEditInterface> mData;
-    std::unique_ptr<NLMLineEditInterface> mInterval;
-    std::unique_ptr<NLMPushButtonInterface> mSend;
+    std::unique_ptr<CheckBoxInterface> mCheckBox;
+    std::unique_ptr<LineEditInterface> mId;
+    std::unique_ptr<LineEditInterface> mData;
+    std::unique_ptr<LineEditInterface> mInterval;
+    std::unique_ptr<PushButtonInterface> mSend;
 
 signals:
 

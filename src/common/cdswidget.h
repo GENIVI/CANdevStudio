@@ -1,5 +1,6 @@
 #ifndef CDSWIDGET_H
 #define CDSWIDGET_H
+#include <QCloseEvent>
 #include <QWidget>
 
 struct CDSWidget : public QWidget {

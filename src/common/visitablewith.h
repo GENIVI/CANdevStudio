@@ -46,13 +46,10 @@
  * B
  *
  */
-template<class Visitor>
-struct VisitableWith
-{
+template <class Visitor> struct VisitableWith {
     virtual void visit(Visitor& visitor) = 0;
 
     virtual ~VisitableWith() = default;
 };
 
 #endif
-

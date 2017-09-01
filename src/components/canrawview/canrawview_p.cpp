@@ -45,7 +45,7 @@ void CanRawViewPrivate::frameView(const QCanBusFrame& frame, const QString& dire
         payHex.insert(ii, ' ');
     }
 
-    const auto frameID = frame.frameId();
+    const auto frameId = frame.frameId();
     const auto elapsedMs = static_cast<double>(_timer->elapsed()) / 1000.0;
     auto elapsed = QString::number(elapsedMs, 'f', 2);
 
@@ -54,7 +54,7 @@ void CanRawViewPrivate::frameView(const QCanBusFrame& frame, const QString& dire
     qvList.append(elapsed.toDouble());  // TODO: or just pass elapsedMs?
     qvList.append(std::move(elapsed));
     qvList.append(frameId);
-    qvList.append(QString("0x" + QString::number(frame.frameId(), 16)));
+    qvList.append(QString("0x" + QString::number(frameId, 16)));
     qvList.append(direction);
     qvList.append(QString::number(frame.payload().size()).toInt());
     qvList.append(QString::fromUtf8(payHex.data(), payHex.size()));
@@ -77,7 +77,7 @@ void CanRawViewPrivate::frameView(const QCanBusFrame& frame, const QString& dire
 
     ui.setSorting(_sortIndex, ui.getSortSection(), _currentSortOrder);
 
-    _uniqueModel.updateFilter(frameID, elapsedMs, direction);
+    _uniqueModel.updateFilter(frameId, elapsedMs, direction);
 
     if ( ! ui.isViewFrozen()) { ui.scrollToBottom(); }
 }

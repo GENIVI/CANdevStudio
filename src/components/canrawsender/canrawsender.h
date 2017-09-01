@@ -2,12 +2,12 @@
 #define CANRAWSENDER_H
 
 #include <QCloseEvent>
-#include <QtCore/QScopedPointer>
 #include <QtCore/QObject>
+#include <QtCore/QScopedPointer>
 
 class QCanBusFrame;
 class CanRawSenderPrivate;
-class CRSFactoryInterface;
+struct CRSFactoryInterface;
 class QWidget;
 
 class CanRawSender : public QObject {

@@ -14,7 +14,9 @@ CanDevice::CanDevice(CanFactoryInterface& factory)
 {
 }
 
-CanDevice::~CanDevice() {}
+CanDevice::~CanDevice()
+{
+}
 
 bool CanDevice::init(const QString& backend, const QString& interface)
 {

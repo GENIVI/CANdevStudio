@@ -56,9 +56,22 @@
       </spacer>
      </item>
      <item>
+      <widget class="QPushButton" name="pbToggleFilter">
+       <property name="text">
+        <string>Combained</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="pbDockUndock">
        <property name="text">
-        <string>D/U</string>
+        <string>Undock</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
        </property>
       </widget>
      </item>

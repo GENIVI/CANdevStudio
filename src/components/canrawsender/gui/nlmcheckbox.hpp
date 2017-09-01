@@ -1,12 +1,12 @@
 #ifndef NLMCHECKBOX_HPP
 #define NLMCHECKBOX_HPP
 
-#include "nlmcheckboxinterface.hpp"
 #include <QCheckBox>
 #include <QHBoxLayout>
 #include <QLineEdit>
+#include <guiinterface/checkboxinterface.hpp>
 
-struct NLMCheckBox : public NLMCheckBoxInterface {
+struct NLMCheckBox : public CheckBoxInterface {
 
     NLMCheckBox()
         : qWidget(new QWidget)
@@ -16,11 +16,20 @@ struct NLMCheckBox : public NLMCheckBoxInterface {
         init();
     }
 
-    void releasedCbk(const released_t& cb) override { QObject::connect(qCheckBox, &QCheckBox::released, cb); }
+    void releasedCbk(const released_t& cb) override
+    {
+        QObject::connect(qCheckBox, &QCheckBox::released, cb);
+    }
 
-    QWidget* getMainWidget() override { return qWidget; }
+    QWidget* getMainWidget() override
+    {
+        return qWidget;
+    }
 
-    bool getState() override { return qCheckBox->isChecked(); }
+    bool getState() override
+    {
+        return qCheckBox->isChecked();
+    }
 
     void init()
     {

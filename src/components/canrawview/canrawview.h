@@ -44,8 +44,8 @@ class CanRawView
 
     void frameReceived(const QCanBusFrame& frame);
     void frameSent(bool status, const QCanBusFrame& frame);
-    void stopSimulation(void);
-    void startSimulation(void);
+    void stopSimulation();
+    void startSimulation();
 
  private:
 

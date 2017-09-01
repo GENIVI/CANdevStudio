@@ -58,7 +58,13 @@
      <item>
       <widget class="QPushButton" name="pbDockUndock">
        <property name="text">
-        <string>D/U</string>
+        <string>Undock</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
        </property>
       </widget>
      </item>

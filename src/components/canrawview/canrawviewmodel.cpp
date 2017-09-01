@@ -15,7 +15,7 @@ CanRawViewModel::CanRawViewModel()
   :
     canRawView
     {
-        UsesUIBackendCtor_ActionOrSelector
+        UsesUIBackendCtor_ActionD
 /*      , [](CanRawView& v)
         {
             assert(nullptr != v.impl());
@@ -55,11 +55,20 @@ CanRawViewModel::CanRawViewModel()
     connect(this, &CanRawViewModel::frameReceived, &canRawView, &CanRawView::frameReceived);
 }
 
-unsigned int CanRawViewModel::nPorts(PortType portType) const { return (PortType::In == portType) ? 1 : 0; }
+unsigned int CanRawViewModel::nPorts(PortType portType) const
+{
+    return (PortType::In == portType) ? 1 : 0;
+}
 
-NodeDataType CanRawViewModel::dataType(PortType, PortIndex) const { return CanRawViewDataIn().type(); }
+NodeDataType CanRawViewModel::dataType(PortType, PortIndex) const
+{
+    return CanRawViewDataIn().type();
+}
 
-std::shared_ptr<NodeData> CanRawViewModel::outData(PortIndex) { return std::make_shared<CanRawViewDataIn>(); }
+std::shared_ptr<NodeData> CanRawViewModel::outData(PortIndex)
+{
+    return std::make_shared<CanRawViewDataIn>();
+}
 
 void CanRawViewModel::setInData(std::shared_ptr<NodeData> nodeData, PortIndex)
 {
