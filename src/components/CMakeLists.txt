@@ -4,12 +4,11 @@
     #target_include_directories(${componentName} INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
 #endfunction()
 
-function(add_component_ui componentName)
-	add_library(${componentName} ${componentName}/${componentName}.cpp  ${componentName}/${componentName}.ui)
-	include_directories("${CMAKE_CURRENT_SOURCE_DIR}")
-    target_link_libraries(${componentName} Qt5::Widgets Qt5::Core Qt5::SerialBus nodes candevice canrawsender canrawview cds-common)
-    target_include_directories(${componentName} INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
-endfunction()
+#function(add_component_ui componentName)
+        #add_library(${componentName} ${componentName}/${componentName}.cpp  ${componentName}/${componentName}.ui)
+    #target_link_libraries(${componentName} Qt5::Widgets Qt5::Core Qt5::SerialBus nodes candevice canrawsender canrawview cds-common)
+    #target_include_directories(${componentName} INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
+#endfunction()
 
 #add_component(candevice candevicemodel)
 #add_component_ui(canrawview canrawviewmodel)
