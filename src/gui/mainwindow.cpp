@@ -28,13 +28,7 @@ MainWindow::MainWindow(QWidget* parent)
     connectMenuSignals();
 }
 
-<<<<<<< HEAD
-MainWindow::~MainWindow()
-{
-}
-=======
 MainWindow::~MainWindow() {}
->>>>>>> refactor wip
 
 void MainWindow::closeEvent(QCloseEvent* e)
 {

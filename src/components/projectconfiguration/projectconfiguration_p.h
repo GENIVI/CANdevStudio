@@ -1,15 +1,17 @@
 #ifndef PROJECTCONFIGURATION_P_H
 #define PROJECTCONFIGURATION_P_H
 
-#include <cassert> // assert
-#include "modelvisitor.h" // apply_model_visitor
-#include "ui_projectconfiguration.h"
 #include "flowviewwrapper.h"
 #include "modeltoolbutton.h"
+#include "modelvisitor.h" // apply_model_visitor
+#include "ui_projectconfiguration.h"
+#include <cassert> // assert
+
+#include "log.hpp"
 
 #include <QAction>
 
-#include <QLabel>
+#include <QPushButton>
 
 #include <candevice/candevicemodel.h>
 #include <canrawsender/canrawsendermodel.h>
@@ -45,9 +47,11 @@ public:
 
         ui->setupUi(this);
         ui->layout->addWidget(graphView);
-	//ui->layout->toolbar->addWidget(.....);
+        // ui->layout->toolbar->addWidget(.....);
     }
-    ~ProjectConfigurationPrivate() {}
+    ~ProjectConfigurationPrivate()
+    {
+    }
     std::unique_ptr<Ui::ProjectConfigurationPrivate> ui;
 
 private:
@@ -66,20 +70,50 @@ private:
     void handleWidgetShowing(QWidget* widget)
     {
         assert(nullptr != widget);
-        if (widget->parentWidget()) {
-
-            widget->parentWidget()->show();
+        bool docked = false;
+        // TODO: Temporary solution. To be changed once MainWindow is refactored
+        QPushButton* undockButton = widget->findChild<QPushButton*>("pbDockUndock");
+        if (undockButton) {
+            docked = !undockButton->isChecked();
         } else {
+            cds_debug("Undock button for '{}' widget not found", widget->windowTitle().toStdString());
+        }
+
+        // Add widget to MDI area when showing for the first time
+        // Widget will be also added to MDI area after closing it in undocked state
+        if (!widget->isVisible() && docked) {
+            cds_debug("Adding '{}' widget to MDI", widget->windowTitle().toStdString());
+            //auto wnd = new SubWindow(widget);
+            // We need to delete the window to remove it from tabView when closed
+            //wnd->setAttribute(Qt::WA_DeleteOnClose);
+        }
+
+        if (widget->parentWidget()) {
+            cds_debug("Widget is a part of MDI");
+            widget->hide();
             widget->show();
+        } else {
+            cds_debug("Widget not a part of MDI");
+            widget->show();
+            widget->activateWindow();
         }
     }
 
 public:
-    QByteArray save() const { return graphScene->saveToMemory(); }
+    QByteArray save() const
+    {
+        return graphScene->saveToMemory();
+    }
 
-    void load(const QByteArray& data) { return graphScene->loadFromMemory(data); }
+    void load(const QByteArray& data)
+    {
+        return graphScene->loadFromMemory(data);
+    }
 
-    void clearGraphView() { return graphScene->clearScene(); };
+    void clearGraphView()
+    {
+        return graphScene->clearScene();
+    };
 
     void nodeCreatedCallback(QtNodes::Node& node)
     {
@@ -92,10 +126,11 @@ public:
         apply_model_visitor(*dataModel,
             [this, dataModel, q](CanRawViewModel& m) {
                 auto rawView = &m.canRawView;
-                emit q->componentWidgetCreated(rawView);
+                QWidget* crvWidget = rawView->getMainWidget();
                 connect(q->_start, &QAction::triggered, rawView, &CanRawView::startSimulation);
                 connect(q->_stop, &QAction::triggered, rawView, &CanRawView::stopSimulation);
-                connect(rawView, &CanRawView::dockUndock, this, [this, rawView, q] { emit q->handleDock(rawView); });
+                connect(
+                    rawView, &CanRawView::dockUndock, this, [this, crvWidget, q] { emit q->handleDock(crvWidget); });
             },
             [this, dataModel, q](CanRawSenderModel& m) {
                 QWidget* crsWidget = m.canRawSender.getMainWidget();
@@ -115,7 +150,8 @@ public:
 
         assert(nullptr != dataModel);
 
-        apply_model_visitor(*dataModel, [this, dataModel](CanRawViewModel& m) { handleWidgetDeletion(&m.canRawView); },
+        apply_model_visitor(*dataModel,
+            [this, dataModel](CanRawViewModel& m) { handleWidgetDeletion(m.canRawView.getMainWidget()); },
             [this, dataModel](CanRawSenderModel& m) { handleWidgetDeletion(m.canRawSender.getMainWidget()); },
             [this](CanDeviceModel&) {});
     }
@@ -126,7 +162,8 @@ public:
 
         assert(nullptr != dataModel);
 
-        apply_model_visitor(*dataModel, [this, dataModel](CanRawViewModel& m) { handleWidgetShowing(&m.canRawView); },
+        apply_model_visitor(*dataModel,
+            [this, dataModel](CanRawViewModel& m) { handleWidgetShowing(m.canRawView.getMainWidget()); },
             [this, dataModel](CanRawSenderModel& m) { handleWidgetShowing(m.canRawSender.getMainWidget()); },
             [this](CanDeviceModel&) {});
     }

@@ -4,11 +4,6 @@
 #include <QtCore/QObject>
 #include <memory>
 
-#include "candevice/candevice.h"
-#include "candevice/canfactoryqt.hpp"
-#include "canrawsender/canrawsender.h"
-#include "canrawview/canrawview.h"
-
 #include <nodes/FlowScene>
 #include <nodes/FlowView>
 #include <nodes/Node>
