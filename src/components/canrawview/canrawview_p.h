@@ -1,10 +1,12 @@
 #ifndef CANRAWVIEW_P_H
 #define CANRAWVIEW_P_H
 
+#include "crvfactory.hpp"
+#include "crvgui.hpp"
 #include "log.hpp"
 #include "ui_canrawview.h"
+#include "uniquefiltermodel.h"
 #include <QDebug>
-//#include <QFile>
 #include <QHeaderView>
 #include <QJsonArray>
 #include <QJsonDocument>
@@ -12,6 +14,7 @@
 #include <QtCore/QElapsedTimer>
 #include <QtGui/QStandardItemModel>
 #include <QtSerialBus/QCanBusFrame>
+#include <memory>
 
 namespace Ui {
 class CanRawViewPrivate;
@@ -19,36 +22,39 @@ class CanRawViewPrivate;
 
 class QElapsedTimer;
 
-class CanRawViewPrivate : public QWidget {
+class CanRawViewPrivate : public QObject {
     Q_OBJECT
     Q_DECLARE_PUBLIC(CanRawView)
 
 public:
     CanRawViewPrivate(CanRawView* q)
-        : ui(std::make_unique<Ui::CanRawViewPrivate>())
-        , timer(std::make_unique<QElapsedTimer>())
+        : CanRawViewPrivate(q, mDefFactory)
+    {
+    }
+
+    CanRawViewPrivate(CanRawView* q, CRVFactoryInterface& factory)
+        : timer(std::make_unique<QElapsedTimer>())
         , simStarted(false)
+        , mFactory(factory)
         , q_ptr(q)
         , columnsOrder({ "rowID", "timeDouble", "time", "idInt", "id", "dir", "dlc", "data" })
     {
-        ui->setupUi(this);
-
         tvModel.setHorizontalHeaderLabels(columnsOrder);
-        ui->tv->setModel(&tvModel);
-        ui->tv->horizontalHeader()->setSectionsMovable(true);
-        ui->tv->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
-        ui->tv->setColumnHidden(0, true);
-        ui->tv->setColumnHidden(1, true);
-        ui->tv->setColumnHidden(3, true);
 
-        connect(ui->pbClear, &QPushButton::pressed, this, &CanRawViewPrivate::clear);
-        connect(ui->pbDockUndock, &QPushButton::pressed, this, &CanRawViewPrivate::dockUndock);
+        mUi.reset(mFactory.createGui());
+        mUi->initTableView(tvModel);
+        uniqueModel.setSourceModel(&tvModel);
+        mUi->setModel(&uniqueModel);
 
-        connect(
-            ui->tv->horizontalHeader(), &QHeaderView::sectionClicked, [=](int logicalIndex) { sort(logicalIndex); });
+        mUi->setClearCbk(std::bind(&CanRawViewPrivate::clear, this));
+        mUi->setDockUndockCbk(std::bind(&CanRawViewPrivate::dockUndock, this));
+        mUi->setSectionClikedCbk(std::bind(&CanRawViewPrivate::sort, this, std::placeholders::_1));
+        mUi->setFilterCbk(std::bind(&CanRawViewPrivate::setFilter, this));
     }
 
-    ~CanRawViewPrivate() {}
+    ~CanRawViewPrivate()
+    {
+    }
 
     void saveSettings(QJsonObject& json)
     {
@@ -66,18 +72,15 @@ public:
             return;
         }
         */
-        assert(ui != nullptr);
-        assert(ui->freezeBox != nullptr);
-        assert(q_ptr != nullptr);
-        assert(q_ptr->windowTitle().toStdString().length() != 0);
+        assert(mUi->getWindowTitle().toStdString().length() != 0);
 
         writeColumnsOrder(jObjects);
         writeSortingRules(jSortingObject);
         jObjects["Sorting"] = std::move(jSortingObject);
-        jObjects["Scrolling"] = (ui->freezeBox->isChecked() == true) ? 1 : 0;
+        jObjects["Scrolling"] = mUi->isViewFrozen();
         writeViewModel(viewModelsArray);
         jObjects["Models"] = std::move(viewModelsArray);
-        json[q_ptr->windowTitle().toStdString().c_str()] = std::move(jObjects);
+        json[mUi->getWindowTitle().toStdString().c_str()] = std::move(jObjects);
         /*
         QJsonDocument saveDoc(json);
         saveFile.write(saveDoc.toJson());
@@ -92,7 +95,7 @@ public:
         }
 
         auto payHex = frame.payload().toHex();
-        // inster space between bytes, skip the end
+        // insert space between bytes, skip the end
         for (int ii = payHex.size() - 2; ii >= 2; ii -= 2) {
             payHex.insert(ii, ' ');
         }
@@ -100,11 +103,14 @@ public:
         QList<QVariant> qvList;
         QList<QStandardItem*> list;
 
+        int frameID = frame.frameId();
+        double time = timer->elapsed() / 1000.0;
+
         qvList.append(rowID++);
-        qvList.append(QString::number((double)timer->elapsed() / 1000, 'f', 2).toDouble());
-        qvList.append(QString::number((double)timer->elapsed() / 1000, 'f', 2));
-        qvList.append(frame.frameId());
-        qvList.append(QString("0x" + QString::number(frame.frameId(), 16)));
+        qvList.append(std::move(time));
+        qvList.append(QString::number(time, 'f', 2));
+        qvList.append(std::move(frameID));
+        qvList.append(QString("0x" + QString::number(frameID, 16)));
         qvList.append(direction);
         qvList.append(QString::number(frame.payload().size()).toInt());
         qvList.append(QString::fromUtf8(payHex.data(), payHex.size()));
@@ -117,20 +123,24 @@ public:
 
         tvModel.appendRow(list);
 
-        currentSortOrder = ui->tv->horizontalHeader()->sortIndicatorOrder();
-        auto currentSortIndicator = ui->tv->horizontalHeader()->sortIndicatorSection();
-        ui->tv->sortByColumn(sortIndex, currentSortOrder);
-        ui->tv->horizontalHeader()->setSortIndicator(currentSortIndicator, currentSortOrder);
+        // Sort after reception of each frame and appending it to tvModel
+        currentSortOrder = mUi->getSortOrder();
+        int currentSortIndicator = mUi->getSortSection();
+        mUi->setSorting(sortIndex, currentSortIndicator, currentSortOrder);
 
-        if (ui->freezeBox->isChecked() == false) {
-            ui->tv->scrollToBottom();
+        uniqueModel.updateFilter(frameID, time, direction);
+
+        if (!mUi->isViewFrozen()) {
+            mUi->scrollToBottom();
         }
     }
 
-    std::unique_ptr<Ui::CanRawViewPrivate> ui;
     std::unique_ptr<QElapsedTimer> timer;
     QStandardItemModel tvModel;
+    UniqueFilterModel uniqueModel;
     bool simStarted;
+    CRVFactoryInterface& mFactory;
+    std::unique_ptr<CRVGuiInterface> mUi;
 
 private:
     CanRawView* q_ptr;
@@ -139,6 +149,7 @@ private:
     int sortIndex = 0;
     Qt::SortOrder currentSortOrder = Qt::AscendingOrder;
     QStringList columnsOrder;
+    CRVFactory mDefFactory;
 
     void writeSortingRules(QJsonObject& json) const
     {
@@ -149,13 +160,10 @@ private:
 
     void writeColumnsOrder(QJsonObject& json) const
     {
-        assert(ui != nullptr);
-        assert(ui->tv != nullptr);
-
         int ii = 0;
         QJsonArray columnList;
         for (const auto& column : columnsOrder) {
-            if (ui->tv->isColumnHidden(ii) == false) {
+            if (mUi->isColumnHidden(ii) == false) {
                 columnList.append(column);
             }
             ++ii;
@@ -165,13 +173,10 @@ private:
 
     void writeViewModel(QJsonArray& jsonArray) const
     {
-        assert(ui != nullptr);
-        assert(ui->tv != nullptr);
-
         for (auto row = 0; row < tvModel.rowCount(); ++row) {
             QJsonArray lineIter;
             for (auto column = 0; column < tvModel.columnCount(); ++column) {
-                if (ui->tv->isColumnHidden(column) == false) {
+                if (mUi->isColumnHidden(column) == false) {
                     auto pp = tvModel.data(tvModel.index(row, column));
                     lineIter.append(std::move(pp.toString()));
                 }
@@ -184,9 +189,13 @@ private slots:
     /**
      * @brief clear
      *
-     * This function is used to clear whole table
+     * This function is used to clear data and filter models
      */
-    void clear() { tvModel.removeRows(0, tvModel.rowCount()); }
+    void clear()
+    {
+        tvModel.removeRows(0, tvModel.rowCount());
+        uniqueModel.clearFilter();
+    }
 
     void dockUndock()
     {
@@ -196,29 +205,31 @@ private slots:
 
     void sort(const int clickedIndex)
     {
-        currentSortOrder = ui->tv->horizontalHeader()->sortIndicatorOrder();
+        currentSortOrder = mUi->getSortOrder();
         sortIndex = clickedIndex;
+        QString clickedColumn = mUi->getClickedColumn(clickedIndex);
 
-        if ((ui->tv->model()->headerData(clickedIndex, Qt::Horizontal).toString() == "time")
-            || (ui->tv->model()->headerData(clickedIndex, Qt::Horizontal).toString() == "id")) {
+        if ((clickedColumn == "time") || (clickedColumn == "id")) {
             sortIndex = sortIndex - 1;
         }
 
         if (prevIndex == clickedIndex) {
             if (currentSortOrder == Qt::DescendingOrder) {
-                ui->tv->sortByColumn(sortIndex, Qt::DescendingOrder);
-                ui->tv->horizontalHeader()->setSortIndicator(clickedIndex, Qt::DescendingOrder);
+                mUi->setSorting(sortIndex, clickedIndex, Qt::DescendingOrder);
             } else {
-                ui->tv->sortByColumn(0, Qt::AscendingOrder);
-                ui->tv->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
+                mUi->setSorting(0, 0, Qt::AscendingOrder);
                 prevIndex = 0;
                 sortIndex = 0;
             }
         } else {
-            ui->tv->sortByColumn(sortIndex, Qt::AscendingOrder);
-            ui->tv->horizontalHeader()->setSortIndicator(clickedIndex, Qt::AscendingOrder);
+            mUi->setSorting(sortIndex, clickedIndex, Qt::AscendingOrder);
             prevIndex = clickedIndex;
         }
+    }
+
+    void setFilter()
+    {
+        uniqueModel.toggleFilter();
     }
 };
 #endif // CANRAWVIEW_P_H

@@ -26,11 +26,17 @@ public:
     *   @brief  Used to get data type id and displayed text for ports
     *   @return NodeDataType of rawsender
     */
-    NodeDataType type() const override { return NodeDataType{ "rawsender", "Raw" }; }
+    NodeDataType type() const override
+    {
+        return NodeDataType{ "rawsender", "Raw" };
+    }
     /**
     *   @brief  Used to get frame
     */
-    QCanBusFrame frame() const { return _frame; };
+    QCanBusFrame frame() const
+    {
+        return _frame;
+    };
 
 private:
     QCanBusFrame _frame;
@@ -52,22 +58,34 @@ public:
     *   @brief  Used to get data type id and displayed text for ports
     *   @return NodeDataType of rawview
     */
-    NodeDataType type() const override { return NodeDataType{ "rawview", "Raw" }; }
+    NodeDataType type() const override
+    {
+        return NodeDataType{ "rawview", "Raw" };
+    }
 
     /**
     *   @brief  Used to get frame
     */
-    QCanBusFrame frame() const { return _frame; };
+    QCanBusFrame frame() const
+    {
+        return _frame;
+    };
 
     /**
     *   @brief  Used to get direction
     */
-    Direction direction() const { return _direction; };
+    Direction direction() const
+    {
+        return _direction;
+    };
 
     /**
     *   @brief  Used to get status
     */
-    bool status() const { return _status; };
+    bool status() const
+    {
+        return _status;
+    };
 
 private:
     QCanBusFrame _frame;

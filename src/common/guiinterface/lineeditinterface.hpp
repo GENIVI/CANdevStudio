@@ -1,12 +1,14 @@
-#ifndef NLMLINEEDITINTERFACE_HPP
-#define NLMLINEEDITINTERFACE_HPP
+#ifndef LINEEDITINTERFACE_HPP
+#define LINEEDITINTERFACE_HPP
 
 #include <QString>
 #include <functional>
 class QWidget;
 
-struct NLMLineEditInterface {
-    virtual ~NLMLineEditInterface() {}
+struct LineEditInterface {
+    virtual ~LineEditInterface()
+    {
+    }
 
     typedef std::function<void()> textChanged_t;
     virtual void textChangedCbk(const textChanged_t& cb) = 0;
@@ -17,4 +19,4 @@ struct NLMLineEditInterface {
     virtual int getTextLength() = 0;
     virtual const QString getText() = 0;
 };
-#endif // NLMLINEEDITINTERFACE_HPP
+#endif // LINEEDITINTERFACE_HPP

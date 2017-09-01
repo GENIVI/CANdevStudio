@@ -5,16 +5,16 @@
 CanRawSender::CanRawSender()
     : d_ptr(new CanRawSenderPrivate(this))
 {
-    Q_D(CanRawSender);
 }
 
 CanRawSender::CanRawSender(CRSFactoryInterface& factory)
     : d_ptr(new CanRawSenderPrivate(this, factory))
 {
-    Q_D(CanRawSender);
 }
 
-CanRawSender::~CanRawSender() {}
+CanRawSender::~CanRawSender()
+{
+}
 
 void CanRawSender::startSimulation()
 {
