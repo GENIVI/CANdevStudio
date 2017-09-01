@@ -345,7 +345,7 @@ class WithUIBackend
     template<class A, class F>
     static constexpr bool is_init_v =
             UIBackendTraits::template is_init< std::remove_reference_t<A>
-                                    , std::remove_reference_t<F> >::value;
+                                             , std::remove_reference_t<F> >::value;
 
     template<class T>
     static constexpr bool is_selector_v =

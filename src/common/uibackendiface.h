@@ -26,10 +26,10 @@ struct UIBackend;
 
 /** Default UIBackend for given Subject tag, must be derived from UIBackend<Subject>. */
 template<class Subject>
-struct UIBackendDefault;/* : UIBackend<Subject>*/
-//{
-//    static_assert(false, "UIBackendDefault not implemented");
-//};
+struct UIBackendDefault;/* : UIBackend<Subject>
+{
+    static_assert(false, "UIBackendDefault not implemented");
+};*/
 /** @} */
 
 
