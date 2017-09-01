@@ -4,6 +4,7 @@
 
 #include "uibackendiface.h" // UIBackend{,Default}, UsesUIBackendCtor*
 #include "uibackendimpls.h" // UIBackend, UIBackendDefault specialisatons
+#include "withexplicitinit.h" // WithExplicitInit
 
 #include <QtCore/QScopedPointer>
 #include <QtCore/QString>
@@ -31,7 +32,7 @@ struct UIBackendTraits
             decltype(std::declval<F>()(std::declval<A>()))
         >> : std::true_type {};
 #else
- #define void_t std::void_t
+ #define void_t       std::void_t
  #define is_invocable std::is_invocable
 #endif
 
@@ -96,12 +97,18 @@ class WithUIBackend;
  *
  *          d->bar(); // calls CanRawViewPrivate::bar
  *      }
+ *
+ *   private:
+ *
+ *      EXPLICIT_INIT  // MUST be at the very end of the class!
+ *  //  ^^^^^^^^^^^^^
  *  };
  *
  * @endcode
  */
 template<class Derived, class PrivateWithUIBackend, class Subject = Derived>
 class UsesUIBackend
+  : public WithExplicitInit<Derived>
 {
 
     template<class A, class F>
@@ -115,9 +122,8 @@ class UsesUIBackend
 
  public:
 
-
     /** Acceses d_ptr from the actions passed to constructors. @{ */
-    QScopedPointer<PrivateWithUIBackend>& impl() { return d_ptr; }
+    QScopedPointer<PrivateWithUIBackend>&       impl()       { return d_ptr; }
     const QScopedPointer<PrivateWithUIBackend>& impl() const { return d_ptr; }
     /** @} */
 
@@ -199,10 +205,10 @@ class UsesUIBackend
       , class = std::enable_if_t<is_init_v<Derived, F>>
       >
     UsesUIBackend(F&& init, UIBackend<Subject>& backend)
-      : d_ptr{new PrivateWithUIBackend{ * static_cast<Derived*>(this), backend}}
-    {
-        init( * static_cast<Derived*>(this));
-    }
+      :
+        WithExplicitInit<Derived>{std::forward<F>(init)}
+      , d_ptr{new PrivateWithUIBackend{ * static_cast<Derived*>(this), backend}}
+    {}
 
     /**
      * Constructs @c d_ptr with @c initMember action (convertible to
@@ -222,13 +228,12 @@ class UsesUIBackend
     UsesUIBackend(const UsesUIBackendCtorTag_Explicit&
                 , F&& init, G&& initMember, const ImplSelector& selector, As&&... args)
       :
-        d_ptr{new PrivateWithUIBackend{ std::forward<G>(initMember)
+        WithExplicitInit<Derived>{std::forward<F>(init)}
+      , d_ptr{new PrivateWithUIBackend{ std::forward<G>(initMember)
                                       , selector
                                       , * static_cast<Derived*>(this)
                                       , std::forward<As>(args)... }}
-    {
-        init( * static_cast<Derived*>(this));
-    }
+    {}
 
     /** Creates an manages UI backend object of the default type. */
     template<class... As>
@@ -291,11 +296,18 @@ class UsesUIBackend
  *
  *          backend().updateScroll();  // calls function from UIBackend<Subject> or from dervied
  *      }
+ *
+ *
+ *   private:
+ *
+ *      EXPLICIT_INIT  // MUST be at the very end of the class!
+ *  //  ^^^^^^^^^^^^^
  *  };
  * @endcode
  */
 template<class Derived, class UIBackendUser, class Subject = UIBackendUser>
 class WithUIBackend
+  : public WithExplicitInit<Derived>
 {
 
     template<class A, class F>
@@ -343,14 +355,13 @@ class WithUIBackend
       >
     WithUIBackend(F&& init, const ImplSelector&, UIBackendUser& user, As&&... args)
       :
-        uiRep{std::make_unique<
+        WithExplicitInit<Derived>{std::forward<F>(init)}
+      , uiRep{std::make_unique<
                     typename std::remove_reference_t<ImplSelector>::type
                   >(std::forward<As>(args)...)}
       , uiHandle{uiRep.get()}
       , q_ptr{&user}
     {
-        init( * static_cast<Derived*>(this));
-
         static_assert(std::is_base_of< UIBackend<Subject>
                                      , typename std::remove_reference_t<ImplSelector>::type
                                      >::value
@@ -364,11 +375,10 @@ class WithUIBackend
       >
     WithUIBackend(F&& init, UIBackendUser& user, UIBackend<Subject>& backend)
       :
-        uiHandle{&backend}
+        WithExplicitInit<Derived>{std::forward<F>(init)}
+      , uiHandle{&backend}
       , q_ptr{&user}
-    {
-        init( * static_cast<Derived*>(this));
-    }
+    {}
 
 
 

@@ -2,9 +2,9 @@
 #ifndef CANRAWVIEW_P_H
 #define CANRAWVIEW_P_H
 
-
 #include "uibackend.h" // WithUIBackend
 #include "canrawviewbackend.hpp" // UIBackendDefault used in With...
+#include "withexplicitinit.h" // EXPLICIT_INIT
 
 #include <QJsonArray>
 #include <QJsonObject>
@@ -41,7 +41,7 @@ class CanRawViewPrivate
     void saveSettings(QJsonObject& json);
     void frameView(const QCanBusFrame& frame, const QString& direction);
 
-    QStandardItemModel             _tvModel;
+    QStandardItemModel             _tvModel{this};
     std::unique_ptr<QElapsedTimer> _timer = std::make_unique<QElapsedTimer>();
     bool                           _simStarted = false;
     QStringList                    _columnsOrder =
@@ -64,6 +64,10 @@ class CanRawViewPrivate
     int _prevIndex = 0;
     int _sortIndex = 0;
     Qt::SortOrder _currentSortOrder = Qt::AscendingOrder;
+
+
+    EXPLICIT_INIT  // MUST be at the very end of the class!
+//  ^^^^^^^^^^^^^
 };
 
 #endif // CANRAWVIEW_P_H

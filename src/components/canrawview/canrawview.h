@@ -5,6 +5,7 @@
 #include "canrawview_p.h" // CanRawViewPrivate
 #include "canrawviewbackend.hpp" // UIBackendDefault used in Uses...
 #include "uibackend.h" // UsesUIBackend
+#include "withexplicitinit.h" // EXPLICIT_INIT
 
 #include <QtCore/QObject>
 #include <QtCore/QScopedPointer>
@@ -45,6 +46,11 @@ class CanRawView
     void frameSent(bool status, const QCanBusFrame& frame);
     void stopSimulation(void);
     void startSimulation(void);
+
+ private:
+
+    EXPLICIT_INIT  // MUST be at the very end of the class!
+//  ^^^^^^^^^^^^^
 };
 
 #endif // CANRAWVIEW_H
