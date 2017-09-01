@@ -79,8 +79,7 @@ void MainWindow::nodeCreatedCallback(QtNodes::Node& node)
                 &rawSender, &CanRawSender::dockUndock, this, [this, crsWidget] { handleDock(crsWidget, ui->mdiArea); });
             connect(ui->actionstart, &QAction::triggered, &rawSender, &CanRawSender::startSimulation);
             connect(ui->actionstop, &QAction::triggered, &rawSender, &CanRawSender::stopSimulation);
-        },
-        [this](CanDeviceModel&) {});
+        });
 }
 
 void handleWidgetDeletion(QWidget* widget)
@@ -100,8 +99,7 @@ void MainWindow::nodeDeletedCallback(QtNodes::Node& node)
 
     apply_model_visitor(*dataModel,
         [this, dataModel](CanRawViewModel& m) { handleWidgetDeletion(m.canRawView.getMainWidget()); },
-        [this, dataModel](CanRawSenderModel& m) { handleWidgetDeletion(m.canRawSender.getMainWidget()); },
-        [this](CanDeviceModel&) {});
+        [this, dataModel](CanRawSenderModel& m) { handleWidgetDeletion(m.canRawSender.getMainWidget()); });
 }
 
 void handleWidgetShowing(QWidget* widget, QMdiArea* mdi)
@@ -147,8 +145,7 @@ void MainWindow::nodeDoubleClickedCallback(QtNodes::Node& node)
 
     apply_model_visitor(*dataModel,
         [this, dataModel](CanRawViewModel& m) { handleWidgetShowing(m.canRawView.getMainWidget(), ui->mdiArea); },
-        [this, dataModel](CanRawSenderModel& m) { handleWidgetShowing(m.canRawSender.getMainWidget(), ui->mdiArea); },
-        [this](CanDeviceModel&) {});
+        [this, dataModel](CanRawSenderModel& m) { handleWidgetShowing(m.canRawSender.getMainWidget(), ui->mdiArea); });
 }
 
 void MainWindow::handleDock(QWidget* component, QMdiArea* mdi)
