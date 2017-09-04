@@ -40,21 +40,10 @@ void CanRawView::frameSent(bool status, const QCanBusFrame& frame)
     }
 }
 
-void CanRawView::closeEvent(QCloseEvent* e)
+QWidget* CanRawView::getMainWidget()
 {
     Q_D(CanRawView);
 
-    assert(nullptr != d->backend().getMainWidget());
-
-    auto widget = d->backend().getMainWidget();
-    auto parent = widget->parentWidget();
-
-    if (parent) {
-        parent->hide();
-    } else {
-        widget->hide();
-    }
-
-    e->ignore();
+    return d->backend().getMainWidget();
 }
 

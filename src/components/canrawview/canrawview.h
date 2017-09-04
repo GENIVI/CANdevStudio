@@ -14,6 +14,7 @@
 class CanRawViewPrivate;
 class QCanBusFrame;
 class QCloseEvent;
+class QWidget;
 
 
 class CanRawView
@@ -35,6 +36,7 @@ class CanRawView
     virtual ~CanRawView() = default;  // if delete goes through QObject
 
     void closeEvent(QCloseEvent* e);
+    QWidget* getMainWidget();
 
  signals:
 
@@ -49,8 +51,8 @@ class CanRawView
 
  private:
 
-    EXPLICIT_INIT  // MUST be at the very end of the class!
-//  ^^^^^^^^^^^^^
+    EXPLICIT_INIT(CanRawView)  // MUST be at the very end of the class!
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^
 };
 
 #endif // CANRAWVIEW_H

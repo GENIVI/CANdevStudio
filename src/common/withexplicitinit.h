@@ -2,7 +2,14 @@
 #ifndef WITHEXPLICITINIT_H
 #define WITHEXPLICITINIT_H
 
+#include <cassert> // assert
 #include <functional>  // function
+#include <type_traits> // is_same, add_pointer
+
+
+
+template<class WithExplicitInitType>
+class ExplicitInitialiser;
 
 
 /**
@@ -11,7 +18,7 @@
  * Derived type @c T may redefine @c init function template, and if such is present,
  * it will be selected.
  *
- * This type is useful if the construct of the type @c T does or cannot perform
+ * This type is useful if the constructor of the type @c T does or cannot perform
  * full initialisation of the object of type @c T, i.e. object is @e not fully
  * usable after its constructor finishes.
  *
@@ -19,9 +26,15 @@
  * at the @b VERY end of the class, that is as the last member, preferably private.
  * Otherwise, runtime crashes may occur.
  * */
-template<class T, class R = void>
+template<class T, class Tag = T, class R = void>
 class WithExplicitInit
 {
+
+    using base_type   = T;
+    using tag_type    = Tag;
+    using result_type = R;
+
+    friend class ExplicitInitialiser<WithExplicitInit<T, Tag, R>>;
 
  public:
 
@@ -56,12 +69,97 @@ class WithExplicitInit
 };
 
 
+/**
+ * Ensures that explicit initialisation using @c WithExplicitInitType that is an instance
+ * of @c WithExplicitInit is performed upon copy and move of an object of this type.
+ *
+ * Instances of this type must be friends of the respective @c WithExplicitInit type.
+ *
+ * Use EXPLICIT_INIT or EXPLICIT_INIT_THROUGH macros to construct objects of this type.
+ */
+template<class WithExplicitInitType>
+class ExplicitInitialiser
+{
+
+ public:
+
+    ExplicitInitialiser(WithExplicitInitType& base)
+      : _base{&base}
+    {
+        init();
+    }
+
+    ExplicitInitialiser(const ExplicitInitialiser& other)
+      : _base{other._base}
+    {
+        init();
+    }
+
+    ExplicitInitialiser& operator=(const ExplicitInitialiser& other)
+    {
+        _base = other._base;
+
+        init();
+    }
+
+    /** Does not performe init, object is already inited @{ */
+    ExplicitInitialiser& operator=(ExplicitInitialiser&& other)
+    {
+        _base = other._base;
+    }
+
+    ExplicitInitialiser(ExplicitInitialiser&& other)
+      : _base{other._base}
+    {}
+    /** @} */
+
+    /**
+     * This constructor is provided @b ONLY to make EXPLICIT_INIT macros-generated code
+     * compile. Note, calling @c init for a default constructed object of this type causes
+     * assertion if NDEBUG is off, and a segmentation fault otherwise.
+     */
+    ExplicitInitialiser() = default;
+
+    ~ExplicitInitialiser() = default;  // no de-init
+
+ private:
+
+    void init()  //< @see WithExplicitInit::prepare
+    {
+        assert(nullptr != _base);
+
+        using D = std::add_pointer_t<typename WithExplicitInitType::base_type>; // most-derived
+
+        static_cast<D>(_base)->init(_base->_body);
+    }
+
+
+    WithExplicitInitType* const _base = nullptr;
+
+
+
+    static_assert(std::is_same<WithExplicitInitType
+                             , WithExplicitInit<
+                                  typename WithExplicitInitType::base_type
+                                , typename WithExplicitInitType::tag_type
+                                , typename WithExplicitInitType::result_type
+                                >
+                             >::value
+            , "Parameter not an instance of WithExplicitInit");
+};
+
+
+
 #define CONCAT1(a, b) a ## b
 #define CONCAT(a, b)  CONCAT1(a, b)
 
-#define EXPLICIT_INIT            bool _initialised = (prepare(), true);
+/** Uses init action from @c WithExplicitInit<T> base class. */
+#define EXPLICIT_INIT(T)            \
+  ExplicitInitialiser<WithExplicitInit<T>> _initialised { * this};
 
-#define EXPLICIT_INIT_THROUGH(T) bool CONCAT(_initialised, __LINE__) = (T::prepare(), true);
+/** Does init using action from @c WithExplicitInit base class @c U explicitly. */
+#define EXPLICIT_INIT_THROUGH(U) \
+  ExplicitInitialiser<U> CONCAT(_initialised, __LINE__) { * static_cast<U*>(this)};
 
 #endif
 

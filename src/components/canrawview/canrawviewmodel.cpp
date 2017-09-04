@@ -10,6 +10,8 @@
 #include <nodes/DataModelRegistry>
 
 #include <cassert> // assert
+#include <memory> // make_unique
+
 
 CanRawViewModel::CanRawViewModel()
   :
@@ -36,9 +38,9 @@ CanRawViewModel::CanRawViewModel()
             ui.setModel(&v._uniqueModel);
 
             ui.setClearCbk([&v]{ v.clear(); });
-            ui.setDockUndockCbk([&v]{ v.dockUndock(); });
             ui.setSectionClikedCbk([&v](int index){ v.sort(index); });
             ui.setFilterCbk([&v]{ v.setFilter(); });
+            ui.setDockUndockCbk([&v]{ v.dockUndock(); });
         }
     }
   , label(new QLabel())
@@ -47,10 +49,9 @@ CanRawViewModel::CanRawViewModel()
     label->setFixedSize(75, 25);
     label->setAttribute(Qt::WA_TranslucentBackground);
 
-    assert(nullptr != canRawView.impl());
-    assert(nullptr != canRawView.impl()->backend().getMainWidget());
+    assert(nullptr != canRawView.getMainWidget());
 
-    canRawView.impl()->backend().getMainWidget()->setWindowTitle("CANrawView");
+    canRawView.getMainWidget()->setWindowTitle("CANrawView");
     connect(this, &CanRawViewModel::frameSent, &canRawView, &CanRawView::frameSent);
     connect(this, &CanRawViewModel::frameReceived, &canRawView, &CanRawView::frameReceived);
 }

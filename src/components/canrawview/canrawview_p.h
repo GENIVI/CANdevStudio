@@ -70,8 +70,8 @@ class CanRawViewPrivate
     Qt::SortOrder _currentSortOrder = Qt::AscendingOrder;
 
 
-    EXPLICIT_INIT  // MUST be at the very end of the class!
-//  ^^^^^^^^^^^^^
+    EXPLICIT_INIT(CanRawViewPrivate)  // MUST be at the very end of the class!
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 };
 
 #endif // CANRAWVIEW_P_H

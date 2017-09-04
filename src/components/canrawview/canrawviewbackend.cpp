@@ -16,6 +16,7 @@
 #include <utility> // move
 
 
+
 UIBackendDefault<CanRawView>::UIBackendDefault()
     : ui(new Ui::CanRawViewPrivate)
     , widget(new QWidget)

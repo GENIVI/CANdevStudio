@@ -17,6 +17,7 @@
 #include <utility> // forward, declval
 
 
+
 struct UIBackendTraits
 {
 #if __cplusplus <= 201402L  // not in C++17?
@@ -100,8 +101,8 @@ class WithUIBackend;
  *
  *   private:
  *
- *      EXPLICIT_INIT  // MUST be at the very end of the class!
- *  //  ^^^^^^^^^^^^^
+ *      EXPLICIT_INIT(CanRawView)  // MUST be at the very end of the class!
+ *  //  ^^^^^^^^^^^^^^^^^^^^^^^^^
  *  };
  *
  * @endcode
@@ -334,8 +335,8 @@ class UsesUIBackend
  *
  *   private:
  *
- *      EXPLICIT_INIT  // MUST be at the very end of the class!
- *  //  ^^^^^^^^^^^^^
+ *      EXPLICIT_INIT(CanRawViewPrivate)  // MUST be at the very end of the class!
+ *  //  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
  *  };
  * @endcode
  */
