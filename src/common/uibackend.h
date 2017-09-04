@@ -299,7 +299,7 @@ class UsesUIBackend
     constexpr auto makeSelector() const
     {
 #if defined(_MSC_VER)
-        return UIBackendSelectorTag<T>{}
+        return UIBackendSelectorTag<T>{};
 #else
         return  UIBackendSelector<T>;
 #endif
