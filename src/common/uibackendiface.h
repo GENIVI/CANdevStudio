@@ -37,8 +37,10 @@ class UIBackendDefault;/* : public UIBackend<Subject>
 template<class T>
 struct UIBackendSelectorTag { using type = T; };
 
+#if ! defined(_MSC_VER)  // error C3376: only static data member templates are allowed
 template<class Impl>
 constexpr UIBackendSelectorTag<Impl> UIBackendSelector{};
+#endif
 /** @}  */
 
 /** Tags usesd to select given UsesUIBackend constructor. @{ */

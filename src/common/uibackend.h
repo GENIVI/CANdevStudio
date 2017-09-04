@@ -138,7 +138,7 @@ class UsesUIBackend
         UsesUIBackend{ UsesUIBackendCtor_Explicit
                      , [](Derived&){}
                      , [](PrivateWithUIBackend&){}
-                     , UIBackendSelector<UIBackendDefault<Subject>> }
+                     , makeSelector<UIBackendDefault<Subject>>() }
     {}
 
     /** Just references the UI backend object. */
@@ -167,7 +167,7 @@ class UsesUIBackend
         UsesUIBackend{ UsesUIBackendCtor_Explicit
                      , std::forward<T>(t)
                      , [](PrivateWithUIBackend&){}
-                     , UIBackendSelector<UIBackendDefault<Subject>>
+                     , makeSelector<UIBackendDefault<Subject>>()
                      , std::forward<As>(args)... }
     {}
 
@@ -183,7 +183,7 @@ class UsesUIBackend
         UsesUIBackend{ UsesUIBackendCtor_Explicit
                      , [](Derived&){}
                      , std::forward<T>(t)
-                     , UIBackendSelector<UIBackendDefault<Subject>>
+                     , makeSelector<UIBackendDefault<Subject>>()
                      , std::forward<As>(args)... }
     {}
 
@@ -227,7 +227,7 @@ class UsesUIBackend
         UsesUIBackend{ UsesUIBackendCtor_Explicit
                      , std::forward<F>(init)
                      , std::forward<G>(initMember)
-                     , UIBackendSelector<UIBackendDefault<Subject>>
+                     , makeSelector<UIBackendDefault<Subject>>()
                      , std::forward<As>(args)... }
     {}
 
@@ -278,7 +278,7 @@ class UsesUIBackend
         UsesUIBackend{ UsesUIBackendCtor_Explicit
                      , [](Derived&){}
                      , [](PrivateWithUIBackend&){}
-                     , UIBackendSelector<UIBackendDefault<Subject>>
+                     , makeSelector<UIBackendDefault<Subject>>()
                      , std::forward<As>(args)... }
     {}
 
@@ -291,6 +291,19 @@ class UsesUIBackend
     static_assert(std::is_base_of<WithUIBackend<PrivateWithUIBackend, Derived, Subject>
                                 , PrivateWithUIBackend>::value
                 , "PrivateWithUIBackend must be derived from WithUIBackend");
+
+ private:
+
+    /** @see uibackendiface.h */
+    template<class T>
+    constexpr auto makeSelector()
+    {
+#if defined(_MSC_VER)
+        return UIBackendSelectorTag<T>{}
+#else
+        return  UIBackendSelector<T>;
+#endif
+    }
 };
 
 
