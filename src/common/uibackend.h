@@ -160,9 +160,9 @@ class UsesUIBackend
       , class... As
       , class = std::enable_if_t<is_init_v<Derived, T>>
       >
-    explicit UsesUIBackend(const UsesUIBackendCtorTag_ActionQ&
-//                                                    ^^^^^^^ runs "in" the q_ptr ctor body
-                         , T&& t, As&&... args)
+    UsesUIBackend(const UsesUIBackendCtorTag_ActionQ&
+//                                           ^^^^^^^ runs "in" the q_ptr ctor body
+                , T&& t, As&&... args)
       :
         UsesUIBackend{ UsesUIBackendCtor_Explicit
                      , std::forward<T>(t)
@@ -176,9 +176,9 @@ class UsesUIBackend
       , class... As
       , class = std::enable_if_t<is_init_v<PrivateWithUIBackend, T>>
       >
-    explicit UsesUIBackend(const UsesUIBackendCtorTag_ActionD&
-//                                                    ^^^^^^^ runs "in" the d_ptr ctor body
-                         , T&& t, As&&... args)
+    UsesUIBackend(const UsesUIBackendCtorTag_ActionD&
+//                                           ^^^^^^^ runs "in" the d_ptr ctor body
+                , T&& t, As&&... args)
       :
         UsesUIBackend{ UsesUIBackendCtor_Explicit
                      , [](Derived&){}
@@ -197,8 +197,8 @@ class UsesUIBackend
       , class... As
       , class = std::enable_if_t<is_selector_v<T>>
       >
-    explicit UsesUIBackend(const UsesUIBackendCtorTag_Selector&
-                         , T&& t, As&&... args)
+    UsesUIBackend(const UsesUIBackendCtorTag_Selector&
+                , T&& t, As&&... args)
       :
         UsesUIBackend{ UsesUIBackendCtor_Explicit
                      , [](Derived&){}

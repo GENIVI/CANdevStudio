@@ -38,7 +38,7 @@ template<class T>
 struct UIBackendSelectorTag { using type = T; };
 
 template<class Impl>
-static constexpr UIBackendSelectorTag<Impl> UIBackendSelector{};
+constexpr UIBackendSelectorTag<Impl> UIBackendSelector{};
 /** @}  */
 
 /** Tags usesd to select given UsesUIBackend constructor. @{ */
@@ -51,12 +51,12 @@ using UsesUIBackendCtorTag_Selector = UsesUIBackendCtorTag<444>;
 using UsesUIBackendCtorTag_Actions  = UsesUIBackendCtorTag<556>;
 using UsesUIBackendCtorTag_Args     = UsesUIBackendCtorTag<666>;  // fallback: fully variadic
 
-static constexpr UsesUIBackendCtorTag_Explicit UsesUIBackendCtor_Explicit{};
-static constexpr UsesUIBackendCtorTag_ActionQ  UsesUIBackendCtor_ActionQ{};  // run "in" q_ptr ctor
-static constexpr UsesUIBackendCtorTag_ActionD  UsesUIBackendCtor_ActionD{};  // runs "in" d_ptr ctor
-static constexpr UsesUIBackendCtorTag_Selector UsesUIBackendCtor_Selector{};
-static constexpr UsesUIBackendCtorTag_Actions  UsesUIBackendCtor_Actions{};
-static constexpr UsesUIBackendCtorTag_Args     UsesUIBackendCtor_Args{};
+constexpr UsesUIBackendCtorTag_Explicit UsesUIBackendCtor_Explicit{};
+constexpr UsesUIBackendCtorTag_ActionQ  UsesUIBackendCtor_ActionQ{};  // runs "in" q_ptr ctor
+constexpr UsesUIBackendCtorTag_ActionD  UsesUIBackendCtor_ActionD{};  // runs "in" d_ptr ctor
+constexpr UsesUIBackendCtorTag_Selector UsesUIBackendCtor_Selector{};
+constexpr UsesUIBackendCtorTag_Actions  UsesUIBackendCtor_Actions{};
+constexpr UsesUIBackendCtorTag_Args     UsesUIBackendCtor_Args{};
 /** @} */
 
 #endif
