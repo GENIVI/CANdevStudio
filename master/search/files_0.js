@@ -23,7 +23,6 @@ var searchData=
   ['canrawviewdata_2eh',['canrawviewdata.h',['../canrawviewdata_8h.html',1,'']]],
   ['canrawviewmodel_2ecpp',['canrawviewmodel.cpp',['../canrawviewmodel_8cpp.html',1,'']]],
   ['canrawviewmodel_2eh',['canrawviewmodel.h',['../canrawviewmodel_8h.html',1,'']]],
-  ['cdswidget_2eh',['cdswidget.h',['../cdswidget_8h.html',1,'']]],
   ['checkboxinterface_2ehpp',['checkboxinterface.hpp',['../checkboxinterface_8hpp.html',1,'']]],
   ['crsfactory_2ehpp',['crsfactory.hpp',['../crsfactory_8hpp.html',1,'']]],
   ['crsfactoryinterface_2ehpp',['crsfactoryinterface.hpp',['../crsfactoryinterface_8hpp.html',1,'']]],

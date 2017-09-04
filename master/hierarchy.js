@@ -57,7 +57,6 @@ var hierarchy =
       [ "ModelToolButton", "struct_model_tool_button.html", null ]
     ] ],
     [ "QWidget", null, [
-      [ "CDSWidget", "struct_c_d_s_widget.html", null ],
       [ "ProjectConfiguration", "class_project_configuration.html", null ],
       [ "ProjectConfigurationPrivate", "class_project_configuration_private.html", null ]
     ] ],
