@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['handlewidgetdeletion',['handleWidgetDeletion',['../mainwindow_8cpp.html#a3b9d464ad39a8ef55e15b34582f02194',1,'mainwindow.cpp']]],
-  ['handlewidgetshowing',['handleWidgetShowing',['../mainwindow_8cpp.html#a9e792656d5ef3f1f42bbd3b10ae96df8',1,'mainwindow.cpp']]]
+  ['handledock',['handleDock',['../class_project_configuration.html#ad12776e8d1ff08fbae352e01ab65d825',1,'ProjectConfiguration::handleDock()'],['../class_main_window.html#a7bc48d33a8a24a54b39bf0a6be1b3a2b',1,'MainWindow::handleDock()']]]
 ];

@@ -23,6 +23,9 @@ var hierarchy =
     [ "CRVGuiInterface", "struct_c_r_v_gui_interface.html", [
       [ "CRVGui", "struct_c_r_v_gui.html", null ]
     ] ],
+    [ "FlowView", null, [
+      [ "FlowViewWrapper", "struct_flow_view_wrapper.html", null ]
+    ] ],
     [ "Iterator< typeName, beginVal, endVal >", "class_iterator.html", null ],
     [ "LineEditInterface", "struct_line_edit_interface.html", [
       [ "NLMLineEdit", "struct_n_l_m_line_edit.html", null ]
@@ -50,8 +53,13 @@ var hierarchy =
     [ "QSortFilterProxyModel", null, [
       [ "UniqueFilterModel", "class_unique_filter_model.html", null ]
     ] ],
+    [ "QToolButton", null, [
+      [ "ModelToolButton", "struct_model_tool_button.html", null ]
+    ] ],
     [ "QWidget", null, [
-      [ "CDSWidget", "struct_c_d_s_widget.html", null ]
+      [ "CDSWidget", "struct_c_d_s_widget.html", null ],
+      [ "ProjectConfiguration", "class_project_configuration.html", null ],
+      [ "ProjectConfigurationPrivate", "class_project_configuration_private.html", null ]
     ] ],
     [ "VisitableWith< Visitor >", "struct_visitable_with.html", null ],
     [ "VisitableWith< CanNodeDataModelVisitor >", "struct_visitable_with.html", [

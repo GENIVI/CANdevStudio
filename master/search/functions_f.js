@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['save',['save',['../class_project_configuration.html#aa3bef07e6b8c6cccb7008ac8c48def1a',1,'ProjectConfiguration::save()'],['../class_project_configuration_private.html#aacee66916a26efd464427a1f620929c4',1,'ProjectConfigurationPrivate::save()']]],
   ['savesettings',['saveSettings',['../class_can_raw_sender_private.html#a446f4670e21165dd75f2d75827130e07',1,'CanRawSenderPrivate::saveSettings()'],['../class_can_raw_view_private.html#a165c282c952acf5d31853a4c9cd74c40',1,'CanRawViewPrivate::saveSettings()']]],
   ['scrolltobottom',['scrollToBottom',['../struct_c_r_v_gui.html#a56b80c2f8822d81914f67a4d18abdad0',1,'CRVGui::scrollToBottom()'],['../struct_c_r_v_gui_interface.html#a3992c5bc5a18ecc27f8c1ab16fc95f43',1,'CRVGuiInterface::scrollToBottom()']]],
   ['sendframe',['sendFrame',['../class_can_device.html#a6ebe57b42df5fb0d0673e652e081c2b0',1,'CanDevice::sendFrame()'],['../class_can_device_model.html#af9435aa9857695f85df63561df301a5c',1,'CanDeviceModel::sendFrame()'],['../class_can_raw_sender.html#a0e6950f7ee975ad8ae200b4bff32614d',1,'CanRawSender::sendFrame()'],['../class_can_raw_sender_model.html#ad6cf38b39e63426d3efb9afcdf05c255',1,'CanRawSenderModel::sendFrame()']]],
@@ -17,7 +18,7 @@ var searchData=
   ['setplaceholdertext',['setPlaceholderText',['../struct_line_edit_interface.html#a30729d6560fdfb00a5e75309c14c2b82',1,'LineEditInterface::setPlaceholderText()'],['../struct_n_l_m_line_edit.html#ad41467e46c39359a61167bbb9c64299f',1,'NLMLineEdit::setPlaceholderText()']]],
   ['setremovecbk',['setRemoveCbk',['../struct_c_r_s_gui_interface.html#aa78f9ad14e3b1dab6069779e67654e2d',1,'CRSGuiInterface::setRemoveCbk()'],['../struct_c_r_s_gui.html#a9e8f6452b3c9aaac5cf9f6ad3ff76f03',1,'CRSGui::setRemoveCbk()']]],
   ['setsectionclikedcbk',['setSectionClikedCbk',['../struct_c_r_v_gui.html#a8ab65b21d578369200f5c8d27fd509ba',1,'CRVGui::setSectionClikedCbk()'],['../struct_c_r_v_gui_interface.html#a88ad20480f5ed0f24ef7c1d92ecebda5',1,'CRVGuiInterface::setSectionClikedCbk()']]],
-  ['setsimulationstate',['setSimulationState',['../class_can_raw_sender_private.html#ac2fd241370f1045c3735cb32d670eb31',1,'CanRawSenderPrivate::setSimulationState()'],['../class_new_line_manager.html#aa9e40fb8bda738c509ab9b9df60f2de1',1,'NewLineManager::SetSimulationState()']]],
+  ['setsimulationstate',['SetSimulationState',['../class_new_line_manager.html#aa9e40fb8bda738c509ab9b9df60f2de1',1,'NewLineManager::SetSimulationState()'],['../class_can_raw_sender_private.html#ac2fd241370f1045c3735cb32d670eb31',1,'CanRawSenderPrivate::setSimulationState()']]],
   ['setsorting',['setSorting',['../struct_c_r_v_gui.html#ac9a2e89fe88079cbe80d6fd07d601f64',1,'CRVGui::setSorting()'],['../struct_c_r_v_gui_interface.html#aa11fdbb5d6e2a29997354b9537bda56a',1,'CRVGuiInterface::setSorting()']]],
   ['setuplogger',['setupLogger',['../main_8cpp.html#a677cf1dd7db1d278155bd2637971a267',1,'main.cpp']]],
   ['start',['start',['../class_can_device.html#a0ea42fef8feb27eeaa473260071e25c0',1,'CanDevice']]],

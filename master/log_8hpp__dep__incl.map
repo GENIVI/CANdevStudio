@@ -3,6 +3,8 @@
 <area shape="rect" id="node3" href="$canrawview__p_8h.html" title="src/components/canrawview\l/canrawview_p.h" alt="" coords="223,80,424,121"/>
 <area shape="rect" id="node4" href="$canrawview_8cpp.html" title="src/components/canrawview\l/canrawview.cpp" alt="" coords="292,169,493,211"/>
 <area shape="rect" id="node5" href="$canrawviewmodel_8cpp.html" title="src/components/canrawview\l/canrawviewmodel.cpp" alt="" coords="500,80,701,121"/>
-<area shape="rect" id="node6" href="$main_8cpp.html" title="src/gui/main.cpp" alt="" coords="725,87,852,114"/>
-<area shape="rect" id="node7" href="$mainwindow_8cpp.html" title="src/gui/mainwindow.cpp" alt="" coords="877,87,1047,114"/>
+<area shape="rect" id="node6" href="$projectconfiguration__p_8h.html" title="src/components/projectconfiguration\l/projectconfiguration_p.h" alt="" coords="726,80,982,121"/>
+<area shape="rect" id="node8" href="$main_8cpp.html" title="src/gui/main.cpp" alt="" coords="1007,87,1133,114"/>
+<area shape="rect" id="node9" href="$mainwindow_8cpp.html" title="src/gui/mainwindow.cpp" alt="" coords="1158,87,1329,114"/>
+<area shape="rect" id="node7" href="$projectconfiguration_8cpp.html" title="src/components/projectconfiguration\l/projectconfiguration.cpp" alt="" coords="726,169,982,211"/>
 </map>

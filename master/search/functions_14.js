@@ -17,6 +17,8 @@ var searchData=
   ['_7elineeditinterface',['~LineEditInterface',['../struct_line_edit_interface.html#a0ab80a54979d5136225412b80d271630',1,'LineEditInterface']]],
   ['_7emainwindow',['~MainWindow',['../class_main_window.html#ae98d00a93bc118200eeef9f9bba1dba7',1,'MainWindow']]],
   ['_7enlmfactory',['~NLMFactory',['../struct_n_l_m_factory.html#a600ced51d576ba1af49d7f3c5d186d6f',1,'NLMFactory']]],
+  ['_7eprojectconfiguration',['~ProjectConfiguration',['../class_project_configuration.html#a08a0a1f4dc08a60a6049c04c4ba73160',1,'ProjectConfiguration']]],
+  ['_7eprojectconfigurationprivate',['~ProjectConfigurationPrivate',['../class_project_configuration_private.html#a671c81e550646ed3c152b7697e7c9851',1,'ProjectConfigurationPrivate']]],
   ['_7epushbuttoninterface',['~PushButtonInterface',['../struct_push_button_interface.html#a7bf56e794ede03743939cd6afb2f7994',1,'PushButtonInterface']]],
   ['_7evisitablewith',['~VisitableWith',['../struct_visitable_with.html#ab2e0db5aafe8a68cfd40280714577ad8',1,'VisitableWith']]]
 ];

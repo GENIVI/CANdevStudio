@@ -2,9 +2,12 @@
 <area shape="rect" id="node2" href="$canrawsender_8cpp.html" title="src/components/canrawsender\l/canrawsender.cpp" alt="" coords="5,95,224,136"/>
 <area shape="rect" id="node3" href="$canrawsender__p_8cpp.html" title="src/components/canrawsender\l/canrawsender_p.cpp" alt="" coords="248,95,467,136"/>
 <area shape="rect" id="node4" href="$canrawsendermodel_8h.html" title="src/components/canrawsender\l/canrawsendermodel.h" alt="" coords="491,95,709,136"/>
-<area shape="rect" id="node7" href="$newlinemanager_8cpp.html" title="src/components/canrawsender\l/newlinemanager.cpp" alt="" coords="733,95,952,136"/>
-<area shape="rect" id="node8" href="$mainwindow_8h.html" title="src/gui/mainwindow.h" alt="" coords="977,102,1133,129"/>
-<area shape="rect" id="node5" href="$canrawsendermodel_8cpp.html" title="src/components/canrawsender\l/canrawsendermodel.cpp" alt="" coords="491,184,709,225"/>
-<area shape="rect" id="node6" href="$mainwindow_8cpp.html" title="src/gui/mainwindow.cpp" alt="" coords="764,191,935,218"/>
-<area shape="rect" id="node9" href="$main_8cpp.html" title="src/gui/main.cpp" alt="" coords="991,191,1118,218"/>
+<area shape="rect" id="node8" href="$newlinemanager_8cpp.html" title="src/components/canrawsender\l/newlinemanager.cpp" alt="" coords="733,95,952,136"/>
+<area shape="rect" id="node9" href="$projectconfiguration_8h.html" title="src/components/projectconfiguration\l/projectconfiguration.h" alt="" coords="976,95,1232,136"/>
+<area shape="rect" id="node5" href="$canrawsendermodel_8cpp.html" title="src/components/canrawsender\l/canrawsendermodel.cpp" alt="" coords="272,184,491,225"/>
+<area shape="rect" id="node6" href="$projectconfiguration__p_8h.html" title="src/components/projectconfiguration\l/projectconfiguration_p.h" alt="" coords="515,184,771,225"/>
+<area shape="rect" id="node7" href="$projectconfiguration_8cpp.html" title="src/components/projectconfiguration\l/projectconfiguration.cpp" alt="" coords="680,273,936,315"/>
+<area shape="rect" id="node10" href="$mainwindow_8h.html" title="src/gui/mainwindow.h" alt="" coords="1026,191,1182,218"/>
+<area shape="rect" id="node11" href="$main_8cpp.html" title="src/gui/main.cpp" alt="" coords="1001,281,1127,307"/>
+<area shape="rect" id="node12" href="$mainwindow_8cpp.html" title="src/gui/mainwindow.cpp" alt="" coords="1152,281,1323,307"/>
 </map>
