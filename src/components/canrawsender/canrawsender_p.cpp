@@ -23,7 +23,7 @@ CanRawSenderPrivate::CanRawSenderPrivate(CanRawSender* q, CRSFactoryInterface& f
     mUi->setDockUndockCbk(std::bind(&CanRawSenderPrivate::dockUndock, this));
 }
 
-void CanRawSenderPrivate::SetSimulationState(bool state)
+void CanRawSenderPrivate::setSimulationState(bool state)
 {
     simulationState = state;
     for (auto& iter : lines) {
@@ -45,6 +45,11 @@ void CanRawSenderPrivate::saveSettings(QJsonObject& json) const
         lineArray.append(std::move(lineObject));
     }
     json["Content"] = std::move(lineArray);
+}
+
+int CanRawSenderPrivate::getLineCount() const
+{
+    return lines.size();
 }
 
 void CanRawSenderPrivate::writeColumnsOrder(QJsonObject& json) const
@@ -80,7 +85,7 @@ void CanRawSenderPrivate::addNewItem()
 {
     QList<QStandardItem*> list{};
     tvModel.appendRow(list);
-    auto newLine = std::make_unique<NewLineManager>(canRawSender, simulationState);
+    auto newLine = mUi->newLine(canRawSender, simulationState);
     for (NewLineManager::ColName ii : NewLineManager::ColNameIterator()) {
         mUi->setIndexWidget(tvModel.index(tvModel.rowCount() - 1, static_cast<int>(ii)), newLine->GetColsWidget(ii));
     }

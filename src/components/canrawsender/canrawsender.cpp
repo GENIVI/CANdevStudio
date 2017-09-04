@@ -19,13 +19,13 @@ CanRawSender::~CanRawSender()
 void CanRawSender::startSimulation()
 {
     assert(d_ptr != nullptr);
-    d_ptr->SetSimulationState(true);
+    d_ptr->setSimulationState(true);
 }
 
 void CanRawSender::stopSimulation()
 {
     assert(d_ptr != nullptr);
-    d_ptr->SetSimulationState(false);
+    d_ptr->setSimulationState(false);
 }
 
 QWidget* CanRawSender::getMainWidget()
@@ -33,4 +33,9 @@ QWidget* CanRawSender::getMainWidget()
     Q_D(CanRawSender);
 
     return d->mUi->getMainWidget();
+}
+int CanRawSender::getLineCount() const
+{
+    assert(d_ptr != nullptr);
+    return d_ptr->getLineCount();
 }
