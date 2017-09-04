@@ -59,12 +59,9 @@ class WithExplicitInit
 #define CONCAT1(a, b) a ## b
 #define CONCAT(a, b)  CONCAT1(a, b)
 
-#define EXPLICIT_INIT           bool _initialised = (prepare(), true);
+#define EXPLICIT_INIT            bool _initialised = (prepare(), true);
 
-#define EXPLICIT_INIT_TAGGED(T) bool CONCAT(_initialised, __LINE__) = (T::prepare(), true);
-
-#undef CONCAT1
-#undef CONCAT
+#define EXPLICIT_INIT_THROUGH(T) bool CONCAT(_initialised, __LINE__) = (T::prepare(), true);
 
 #endif
 
