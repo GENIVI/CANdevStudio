@@ -152,6 +152,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a57d24dfc861a062d58611458416781ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab0b278932220a48af2857ad4c45401f5"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_c_r_s_gui_interface.html#ab0b278932220a48af2857ad4c45401f5">setIndexWidget</a> (const QModelIndex &amp;index, QWidget *widget)=0</td></tr>
 <tr class="separator:ab0b278932220a48af2857ad4c45401f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7885e8f6c90ba75cdf06b5daa516bf75"><td class="memItemLeft" align="right" valign="top">virtual std::unique_ptr&lt; <a class="el" href="class_new_line_manager.html">NewLineManager</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_c_r_s_gui_interface.html#a7885e8f6c90ba75cdf06b5daa516bf75">newLine</a> (<a class="el" href="class_can_raw_sender.html">CanRawSender</a> *q_ptr, bool simulationState)=0</td></tr>
+<tr class="separator:a7885e8f6c90ba75cdf06b5daa516bf75"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Typedef Documentation</h2>
 <a class="anchor" id="a65be092539c47022491b57cc8c581e8f"></a>
@@ -288,6 +290,42 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implemented in <a class="el" href="struct_c_r_s_gui.html#a061b21e358ddea13ca8d6fc3e0a72bb1">CRSGui</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7885e8f6c90ba75cdf06b5daa516bf75"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual std::unique_ptr&lt;<a class="el" href="class_new_line_manager.html">NewLineManager</a>&gt; CRSGuiInterface::newLine </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_can_raw_sender.html">CanRawSender</a> *&#160;</td>
+          <td class="paramname"><em>q_ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>simulationState</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="struct_c_r_s_gui.html#a0bab62897b55cacda204aab024e8a876">CRSGui</a>.</p>
 
 </div>
 </div>

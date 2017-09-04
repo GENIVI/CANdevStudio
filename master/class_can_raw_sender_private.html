@@ -146,12 +146,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:adac9fe1bd5c5fcb73d58a5df120b025a"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_raw_sender_private.html#adac9fe1bd5c5fcb73d58a5df120b025a">~CanRawSenderPrivate</a> ()=default</td></tr>
 <tr class="memdesc:adac9fe1bd5c5fcb73d58a5df120b025a"><td class="mdescLeft">&#160;</td><td class="mdescRight">destructor  <a href="#adac9fe1bd5c5fcb73d58a5df120b025a">More...</a><br /></td></tr>
 <tr class="separator:adac9fe1bd5c5fcb73d58a5df120b025a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a167e59b80f45fe90c43ad7e072ae9a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_raw_sender_private.html#a4a167e59b80f45fe90c43ad7e072ae9a">SetSimulationState</a> (bool state)</td></tr>
-<tr class="memdesc:a4a167e59b80f45fe90c43ad7e072ae9a"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method propagates the system simulator state.  <a href="#a4a167e59b80f45fe90c43ad7e072ae9a">More...</a><br /></td></tr>
-<tr class="separator:a4a167e59b80f45fe90c43ad7e072ae9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2fd241370f1045c3735cb32d670eb31"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_raw_sender_private.html#ac2fd241370f1045c3735cb32d670eb31">setSimulationState</a> (bool state)</td></tr>
+<tr class="memdesc:ac2fd241370f1045c3735cb32d670eb31"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method propagates the system simulator state.  <a href="#ac2fd241370f1045c3735cb32d670eb31">More...</a><br /></td></tr>
+<tr class="separator:ac2fd241370f1045c3735cb32d670eb31"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a446f4670e21165dd75f2d75827130e07"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_raw_sender_private.html#a446f4670e21165dd75f2d75827130e07">saveSettings</a> (QJsonObject &amp;json) const </td></tr>
 <tr class="memdesc:a446f4670e21165dd75f2d75827130e07"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method writes to json format actual can raw senred window properties.  <a href="#a446f4670e21165dd75f2d75827130e07">More...</a><br /></td></tr>
 <tr class="separator:a446f4670e21165dd75f2d75827130e07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2665355ba83ae2c7d56c6047f1ba979f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_raw_sender_private.html#a2665355ba83ae2c7d56c6047f1ba979f">getLineCount</a> () const </td></tr>
+<tr class="memdesc:a2665355ba83ae2c7d56c6047f1ba979f"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method return actual number of lines in table.  <a href="#a2665355ba83ae2c7d56c6047f1ba979f">More...</a><br /></td></tr>
+<tr class="separator:a2665355ba83ae2c7d56c6047f1ba979f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -248,6 +251,24 @@ Public Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a2665355ba83ae2c7d56c6047f1ba979f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CanRawSenderPrivate::getLineCount </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This method return actual number of lines in table. </p>
+<dl class="section return"><dt>Returns</dt><dd>Line count </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="a446f4670e21165dd75f2d75827130e07"></a>
 <div class="memitem">
 <div class="memproto">
@@ -272,12 +293,12 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a4a167e59b80f45fe90c43ad7e072ae9a"></a>
+<a class="anchor" id="ac2fd241370f1045c3735cb32d670eb31"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void CanRawSenderPrivate::SetSimulationState </td>
+          <td class="memname">void CanRawSenderPrivate::setSimulationState </td>
           <td>(</td>
           <td class="paramtype">bool&#160;</td>
           <td class="paramname"><em>state</em></td><td>)</td>
