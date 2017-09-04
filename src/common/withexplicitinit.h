@@ -3,6 +3,7 @@
 #define WITHEXPLICITINIT_H
 
 #include <cassert> // assert
+#include <atomic>
 #include <functional>  // function
 #include <type_traits> // is_same, add_pointer
 
@@ -76,6 +77,8 @@ class WithExplicitInit
  * Instances of this type must be friends of the respective @c WithExplicitInit type.
  *
  * Use EXPLICIT_INIT or EXPLICIT_INIT_THROUGH macros to construct objects of this type.
+ *
+ * @warning This implementation is not thread safe.
  */
 template<class WithExplicitInitType>
 class ExplicitInitialiser
@@ -89,23 +92,31 @@ class ExplicitInitialiser
         init();
     }
 
+    /** Copy and assignment require re-applying the init action. @{ */
     ExplicitInitialiser(const ExplicitInitialiser& other)
       : _base{other._base}
     {
-        init();
+        if (&other != this)  // prevents from double-init
+        {
+            init();
+        }
     }
 
     ExplicitInitialiser& operator=(const ExplicitInitialiser& other)
     {
-        _base = other._base;
+        if (&other != this)  // prevents from double-init
+        {
+            _base = other._base;
 
-        init();
+            init();
+        }
     }
+    /* @} */
 
-    /** Does not performe init, object is already inited @{ */
+    /** Does not perform init, the passed object is already inited. @{ */
     ExplicitInitialiser& operator=(ExplicitInitialiser&& other)
     {
-        _base = other._base;
+        _base = other._base;  // self-assignment is OK
     }
 
     ExplicitInitialiser(ExplicitInitialiser&& other)
