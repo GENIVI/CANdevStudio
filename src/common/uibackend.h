@@ -296,7 +296,7 @@ class UsesUIBackend
 
     /** @see uibackendiface.h */
     template<class T>
-    constexpr auto makeSelector()
+    constexpr auto makeSelector() const
     {
 #if defined(_MSC_VER)
         return UIBackendSelectorTag<T>{}
