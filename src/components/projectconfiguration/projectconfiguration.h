@@ -21,14 +21,14 @@ class ProjectConfiguration : public QWidget {
     Q_DECLARE_PRIVATE(ProjectConfiguration)
 
 public:
-    QAction* _start; //FIXME
-    QAction* _stop;  // FIXME
+    QAction* _start; // FIXME
+    QAction* _stop; // FIXME
 
 private:
     QScopedPointer<ProjectConfigurationPrivate> d_ptr;
 
 public:
-    explicit ProjectConfiguration(QAction* start, QAction* stop); //FIXME actions
+    explicit ProjectConfiguration(QAction* start, QAction* stop); // FIXME actions
     ~ProjectConfiguration();
     void closeEvent(QCloseEvent* e);
     QByteArray save();

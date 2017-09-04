@@ -21,7 +21,7 @@ MainWindow::MainWindow(QWidget* parent)
     ui->setupUi(this);
     ui->centralWidget->layout()->setContentsMargins(0, 0, 0, 0);
 
-    projectConfiguration = std::make_unique<ProjectConfiguration>(ui->actionstart, ui->actionstop); //FIXME actions
+    projectConfiguration = std::make_unique<ProjectConfiguration>(ui->actionstart, ui->actionstop); // FIXME actions
 
     setupMdiArea();
     connectToolbarSignals();
@@ -47,16 +47,17 @@ void MainWindow::closeEvent(QCloseEvent* e)
 void MainWindow::handleDock(QWidget* component)
 {
     // check if component is already displayed by mdi area
-    if (ui->mdiArea->subWindowList().contains(static_cast<QMdiSubWindow*>(component->parentWidget()))) {
-        // undock
+    if (component->parentWidget()
+        && ui->mdiArea->subWindowList().contains(static_cast<QMdiSubWindow*>(component->parentWidget()))) {
+        cds_debug("Undock action");
         auto parent = component->parentWidget();
         ui->mdiArea->removeSubWindow(component); // removeSubwWndow only removes widget, not window
 
         component->show();
         parent->close();
     } else {
-        // dock
-        ui->mdiArea->addSubWindow(component)->show();
+        cds_debug("Dock action");
+        componentWidgetCreated(component);
     }
 }
 
@@ -132,10 +133,12 @@ void MainWindow::connectMenuSignals()
 
 void MainWindow::componentWidgetCreated(QWidget* component)
 {
-    auto wnd = new SubWindow(component);
+    auto wnd = new SubWindow;
+    // It seems we need to add Window first before setting the widget
+    ui->mdiArea->addSubWindow(wnd);
+    wnd->setWidget(component);
     // We need to delete the window to remove it from tabView when closed
     wnd->setAttribute(Qt::WA_DeleteOnClose);
-    ui->mdiArea->addSubWindow(wnd);
 }
 
 void MainWindow::setupMdiArea()

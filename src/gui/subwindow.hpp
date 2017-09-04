@@ -5,12 +5,6 @@
 #include <QPushButton>
 
 struct SubWindow : public QMdiSubWindow {
-    SubWindow(QWidget* widget)
-        : QMdiSubWindow()
-    {
-        setWidget(widget);
-    }
-
     virtual void closeEvent(QCloseEvent* event) override
     {
         cds_debug("On closing");

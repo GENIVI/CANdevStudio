@@ -18,7 +18,6 @@ public:
     explicit CanRawSender();
     explicit CanRawSender(CRSFactoryInterface& factory);
     ~CanRawSender();
-    void closeEvent(QCloseEvent* e);
     int getLineCount() const;
 
     QWidget* getMainWidget();

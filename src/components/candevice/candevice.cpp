@@ -73,13 +73,15 @@ bool CanDevice::start()
 
 void CanDevice::framesReceived()
 {
-    if(!initialized) { return; }
+    if (!initialized) {
+        return;
+    }
     Q_D(CanDevice);
 
-        while (static_cast<bool>(d->canDevice->framesAvailable())) {
-            const QCanBusFrame frame = d->canDevice->readFrame();
-            emit frameReceived(frame);
-        }
+    while (static_cast<bool>(d->canDevice->framesAvailable())) {
+        const QCanBusFrame frame = d->canDevice->readFrame();
+        emit frameReceived(frame);
+    }
 }
 
 void CanDevice::framesWritten(qint64)
