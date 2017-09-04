@@ -151,7 +151,7 @@ private:
 
     QCanBusFrame _frame;
 
-    std::unique_ptr<CanDevice> canDevice;
+    CanDevice canDevice;
 
 signals:
     void sendFrame(const QCanBusFrame& frame);
