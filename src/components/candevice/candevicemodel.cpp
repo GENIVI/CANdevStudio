@@ -8,7 +8,6 @@
 
 CanDeviceModel::CanDeviceModel()
     : label(new QLabel())
-    , canDevice(std::make_unique<CanDevice>())
 {
     label->setAlignment(Qt::AlignVCenter | Qt::AlignHCenter);
 
@@ -16,12 +15,12 @@ CanDeviceModel::CanDeviceModel()
 
     label->setAttribute(Qt::WA_TranslucentBackground);
 
-    connect(canDevice.get(), &CanDevice::frameSent, this, &CanDeviceModel::frameSent);
-    connect(canDevice.get(), &CanDevice::frameReceived, this, &CanDeviceModel::frameReceived);
-    connect(this, &CanDeviceModel::sendFrame, canDevice.get(), &CanDevice::sendFrame);
+    connect(&canDevice, &CanDevice::frameSent, this, &CanDeviceModel::frameSent);
+    connect(&canDevice, &CanDevice::frameReceived, this, &CanDeviceModel::frameReceived);
+    connect(this, &CanDeviceModel::sendFrame, &canDevice, &CanDevice::sendFrame);
 
-    canDevice->init("socketcan", "can0"); // TODO
-    canDevice->start();
+    canDevice.init("socketcan", "can0"); // TODO
+    canDevice.start();
 }
 
 unsigned int CanDeviceModel::nPorts(PortType portType) const
