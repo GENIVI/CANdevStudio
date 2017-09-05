@@ -37,11 +37,15 @@ public:
 
     /// \brief This method propagates the system simulator state
     /// \param[in] state Actual simulator state
-    void SetSimulationState(bool state);
+    void setSimulationState(bool state);
 
     /// \brief This method writes to json format actual can raw senred window properties
     /// \param[in] json Json object
     void saveSettings(QJsonObject& json) const;
+
+    /// \brief This method return actual number of lines in table
+    /// \return Line count
+    int getLineCount() const;
 
 private:
     /// \brief This method writes columns order

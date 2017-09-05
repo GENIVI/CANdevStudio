@@ -3,7 +3,6 @@
 
 #include "../crsguiinterface.hpp"
 #include "ui_canrawsender.h"
-#include <cdswidget.h>
 #include <memory>
 
 namespace Ui {
@@ -13,7 +12,7 @@ class CanRawSenderPrivate;
 struct CRSGui : public CRSGuiInterface {
     CRSGui()
         : ui(new Ui::CanRawSenderPrivate)
-        , widget(new CDSWidget)
+        , widget(new QWidget)
     {
         ui->setupUi(widget);
     }
@@ -55,8 +54,13 @@ struct CRSGui : public CRSGuiInterface {
         ui->tv->setIndexWidget(index, widget);
     }
 
+    std::unique_ptr<NewLineManager> newLine(CanRawSender* q_ptr, bool simulationState) override
+    {
+        return std::make_unique<NewLineManager>(q_ptr, simulationState);
+    }
+
 private:
     Ui::CanRawSenderPrivate* ui;
-    CDSWidget* widget;
+    QWidget* widget;
 };
 #endif // CRSGUI_HPP
