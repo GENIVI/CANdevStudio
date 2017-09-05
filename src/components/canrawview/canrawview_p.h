@@ -58,33 +58,15 @@ public:
 
     void saveSettings(QJsonObject& json)
     {
-        QJsonObject jObjects;
         QJsonObject jSortingObject;
         QJsonArray viewModelsArray;
-        /*
-         * Temporary below code comments use for test during debug and do possibility to write settings to file
-         *
-        QString fileName("viewSave.cds");
-        QFile saveFile(fileName);
 
-        if (saveFile.open(QIODevice::WriteOnly) == false) {
-            cds_debug("Problem with open the file {0} to write confiruration", fileName.toStdString());
-            return;
-        }
-        */
-        assert(mUi->getWindowTitle().toStdString().length() != 0);
-
-        writeColumnsOrder(jObjects);
+        writeColumnsOrder(json);
         writeSortingRules(jSortingObject);
-        jObjects["Sorting"] = std::move(jSortingObject);
-        jObjects["Scrolling"] = mUi->isViewFrozen();
+        json["sorting"] = std::move(jSortingObject);
+        json["scrolling"] = mUi->isViewFrozen();
         writeViewModel(viewModelsArray);
-        jObjects["Models"] = std::move(viewModelsArray);
-        json[mUi->getWindowTitle().toStdString().c_str()] = std::move(jObjects);
-        /*
-        QJsonDocument saveDoc(json);
-        saveFile.write(saveDoc.toJson());
-        */
+        json["models"] = std::move(viewModelsArray);
     }
 
     void frameView(const QCanBusFrame& frame, const QString& direction)
@@ -168,7 +150,7 @@ private:
             }
             ++ii;
         }
-        json["Columns"] = std::move(columnList);
+        json["columns"] = std::move(columnList);
     }
 
     void writeViewModel(QJsonArray& jsonArray) const

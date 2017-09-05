@@ -37,3 +37,10 @@ void CanRawSenderModel::sendFrame(const QCanBusFrame& frame)
     _frame = frame;
     emit dataUpdated(0); // Data ready on port 0
 }
+
+QJsonObject CanRawSenderModel::save() const {
+    QJsonObject json;
+    json["name"] = name();
+    canRawSender.saveSettings(json);
+    return json;
+}

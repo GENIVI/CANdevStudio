@@ -55,6 +55,12 @@ public:
         return std::make_unique<CanRawViewModel>();
     }
 
+    /**
+     * @brief Possibility to save node properties
+     * @return json object
+     */
+    QJsonObject save() const override;
+
 public:
     /** @see VisitableWith */
     virtual void visit(CanNodeDataModelVisitor& v) override

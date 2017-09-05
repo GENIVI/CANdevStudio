@@ -44,6 +44,16 @@ TEST_CASE("Calling sendFrame emits dataUpdated and outData returns that frame", 
         == testFrame.frameId());
 }
 
+TEST_CASE("Test save configuration", "[canrawsender]")
+{
+    CanRawSenderModel canRawSenderModel;
+    QJsonObject json = canRawSenderModel.save();
+    CHECK(json.find("name") != json.end());
+    CHECK(json.find("columns") != json.end());
+    CHECK(json.find("content") != json.end());
+    CHECK(json.find("sorting") != json.end());
+}
+
 int main(int argc, char* argv[])
 {
     bool haveDebug = std::getenv("CDS_DEBUG") != nullptr;

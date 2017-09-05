@@ -20,6 +20,7 @@ public:
     explicit CanRawView(CRVFactoryInterface& factory);
     ~CanRawView();
 
+    void saveSettings(QJsonObject& json) const;
     QWidget* getMainWidget();
 
 signals:
