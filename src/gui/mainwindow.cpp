@@ -1,9 +1,9 @@
 
-#include "mainwindow.h"
-#include "log.hpp"
-#include "modelvisitor.h" // apply_model_visitor
-#include "subwindow.hpp"
 #include "ui_mainwindow.h"
+#include "mainwindow.h"
+#include "modelvisitor.h" // apply_model_visitor
+#include "log.hpp"
+#include "subwindow.hpp"
 
 #include <QCloseEvent>
 #include <QtCore/QFile>
@@ -12,7 +12,6 @@
 #include <QtWidgets/QMdiSubWindow>
 #include <QtWidgets/QMessageBox>
 
-#include <cassert> // assert
 
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent)
@@ -28,9 +27,7 @@ MainWindow::MainWindow(QWidget* parent)
     connectMenuSignals();
 }
 
-MainWindow::~MainWindow()
-{
-}
+MainWindow::~MainWindow() {}  // NOTE: Qt MOC requires this code
 
 void MainWindow::closeEvent(QCloseEvent* e)
 {

@@ -1,17 +1,55 @@
+
 #include "canrawviewmodel.h"
+#include "canrawviewbackend.hpp"
 #include "datamodeltypes/canrawviewdata.h"
 #include "log.hpp"
+
 #include <QtCore/QDir>
 #include <QtCore/QEvent>
 #include <QtWidgets/QFileDialog>
 #include <nodes/DataModelRegistry>
 
+#include <cassert> // assert
+#include <memory> // make_unique
+
+
 CanRawViewModel::CanRawViewModel()
-    : label(new QLabel())
+  :
+    canRawView
+    {
+        UsesUIBackendCtor_ActionD
+/*      , [](CanRawView& v)
+        {
+            assert(nullptr != v.impl());
+            auto widget = v.impl()->backend().getMainWidget();
+            assert(nullptr != widget);
+
+            widget->setLayout(widget->layout());
+        }*/
+      , [](CanRawViewPrivate& v)
+        {
+            v._tvModel.setHorizontalHeaderLabels(v._columnsOrder);
+
+            auto& ui = v.backend();
+
+            ui.initTableView(v._tvModel);
+
+            v._uniqueModel.setSourceModel(&v._tvModel);
+            ui.setModel(&v._uniqueModel);
+
+            ui.setClearCbk([&v]{ v.clear(); });
+            ui.setSectionClikedCbk([&v](int index){ v.sort(index); });
+            ui.setFilterCbk([&v]{ v.setFilter(); });
+            ui.setDockUndockCbk([&v]{ v.dockUndock(); });
+        }
+    }
+  , label(new QLabel())
 {
     label->setAlignment(Qt::AlignVCenter | Qt::AlignHCenter);
     label->setFixedSize(75, 25);
     label->setAttribute(Qt::WA_TranslucentBackground);
+
+    assert(nullptr != canRawView.getMainWidget());
 
     canRawView.getMainWidget()->setWindowTitle("CANrawView");
     connect(this, &CanRawViewModel::frameSent, &canRawView, &CanRawView::frameSent);

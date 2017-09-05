@@ -13,6 +13,7 @@
 
 #include <QCanBusFrame>
 
+
 using QtNodes::PortType;
 using QtNodes::PortIndex;
 using QtNodes::NodeData;
@@ -23,7 +24,11 @@ using QtNodes::NodeValidationState;
 /**
 *   @brief The class provides node graphical representation of CanRawView
 */
-class CanRawViewModel : public NodeDataModel, public VisitableWith<CanNodeDataModelVisitor> {
+class CanRawViewModel
+  :
+    public NodeDataModel
+  , public VisitableWith<CanNodeDataModelVisitor>
+{
     Q_OBJECT
 
 public:
@@ -123,7 +128,6 @@ public:
 private:
     QLabel* label;
     QCanBusFrame _frame;
-    CanRawView viewWindow;
 
 signals:
     void frameReceived(const QCanBusFrame& frame);

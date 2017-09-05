@@ -2,9 +2,11 @@ set(COMPONENT_NAME canrawview)
 
 set(SRC
     canrawview.ui
+    canrawviewbackend.cpp
     canrawview.cpp
     canrawviewmodel.cpp
-    uniquefiltermodel.cpp    
+    canrawview_p.cpp
+    uniquefiltermodel.cpp
 )
 
 add_library(${COMPONENT_NAME} ${SRC})

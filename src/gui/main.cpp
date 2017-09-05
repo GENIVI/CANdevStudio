@@ -1,3 +1,4 @@
+
 #include "mainwindow.h"
 #include <QtCore/QtDebug>
 #include <QtCore/QtGlobal>
@@ -57,7 +58,7 @@ int main(int argc, char* argv[])
     // CDS_DEBUG is set automatically in CMakeLists.txt based on build type (i.e. false for Release, true for Debug)
     setupLogger(CDS_DEBUG);
 
-    cds_debug("Staring CANdevStudio");
+    cds_debug("Starting CANdevStudio");
 
     qDebug() << "Qt message ";
 

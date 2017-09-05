@@ -1,38 +1,59 @@
+
 #ifndef CANRAWVIEW_H
 #define CANRAWVIEW_H
 
+#include "canrawview_p.h" // CanRawViewPrivate
+#include "canrawviewbackend.hpp" // UIBackendDefault used in Uses...
+#include "uibackend.h" // UsesUIBackend
+#include "withexplicitinit.h" // EXPLICIT_INIT
+
 #include <QtCore/QObject>
 #include <QtCore/QScopedPointer>
-#include <QtWidgets/QWidget>
-#include <memory>
 
-class QCanBusFrame;
+
 class CanRawViewPrivate;
-struct CRVFactoryInterface;
+class QCanBusFrame;
+class QCloseEvent;
 class QWidget;
 
-class CanRawView : public QObject {
+
+class CanRawView
+  : public QObject  // moc assumes first inherited is a subclass of it
+  , public UsesUIBackend<
+                CanRawView
+              , CanRawViewPrivate
+              , CanRawView
+              >
+{
     Q_OBJECT
-    Q_DECLARE_PRIVATE(CanRawView)
+    Q_DECLARE_PRIVATE_D(UsesUIBackend::d_ptr.data(), CanRawView)
+//                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-public:
-    explicit CanRawView();
-    explicit CanRawView(CRVFactoryInterface& factory);
-    ~CanRawView();
+ public:
 
+    using UsesUIBackend::UsesUIBackend;
+
+    virtual ~CanRawView() = default;  // if delete goes through QObject
+
+    void closeEvent(QCloseEvent* e);
     QWidget* getMainWidget();
 
-signals:
+ signals:
+
     void dockUndock();
 
-public Q_SLOTS:
+ public slots:
+
     void frameReceived(const QCanBusFrame& frame);
     void frameSent(bool status, const QCanBusFrame& frame);
-    void stopSimulation(void);
-    void startSimulation(void);
+    void stopSimulation();
+    void startSimulation();
 
-private:
-    QScopedPointer<CanRawViewPrivate> d_ptr;
+ private:
+
+    EXPLICIT_INIT(CanRawView)  // MUST be at the very end of the class!
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^
 };
 
 #endif // CANRAWVIEW_H
+
