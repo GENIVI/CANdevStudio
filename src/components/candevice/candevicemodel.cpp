@@ -70,3 +70,13 @@ void CanDeviceModel::setInData(std::shared_ptr<NodeData> nodeData, PortIndex)
         cds_warn("Incorrect nodeData");
     }
 }
+
+QJsonObject CanDeviceModel::save() const {
+    QJsonObject json;
+    json["name"] = name();
+
+    // TODO save can device settings
+    //canDevice->saveSettings(json);
+
+    return json;
+}

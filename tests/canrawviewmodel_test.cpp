@@ -62,6 +62,17 @@ TEST_CASE("Calling setInData with direction RX will result in frameReceived bein
     CHECK(qvariant_cast<QCanBusFrame>(frameReceivedSpy.takeFirst().at(0)).frameId() == testFrame.frameId());
 }
 
+TEST_CASE("Test save configuration", "[canrawview]")
+{
+    CanRawViewModel canRawViewModel;
+    QJsonObject json = canRawViewModel.save();
+    CHECK(json.find("name") != json.end());
+    CHECK(json.find("columns") != json.end());
+    CHECK(json.find("scrolling") != json.end());
+    CHECK(json.find("models") != json.end());
+    CHECK(json.find("sorting") != json.end());
+}
+
 int main(int argc, char* argv[])
 {
     bool haveDebug = std::getenv("CDS_DEBUG") != nullptr;

@@ -49,3 +49,10 @@ void CanRawViewModel::setInData(std::shared_ptr<NodeData> nodeData, PortIndex)
         cds_warn("Incorrect nodeData");
     }
 }
+
+QJsonObject CanRawViewModel::save() const {
+    QJsonObject json;
+    json["name"] = name();
+    canRawView.saveSettings(json);
+    return json;
+}
