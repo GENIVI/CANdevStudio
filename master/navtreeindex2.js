@@ -1,5 +1,6 @@
 var NAVTREEINDEX2 =
 {
+"struct_n_l_m_line_edit.html#ad41467e46c39359a61167bbb9c64299f":[1,0,34,6],
 "struct_n_l_m_line_edit.html#ad97ea8972842b65fa0ad4302bff71d6f":[1,0,34,5],
 "struct_n_l_m_push_button.html":[1,0,35],
 "struct_n_l_m_push_button.html#a0beb86df623ae29bc247436f47a5471e":[1,0,35,2],

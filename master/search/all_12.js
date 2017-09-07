@@ -1,7 +1,7 @@
 var searchData=
 [
   ['save',['save',['../class_project_configuration.html#aa3bef07e6b8c6cccb7008ac8c48def1a',1,'ProjectConfiguration::save()'],['../class_project_configuration_private.html#aacee66916a26efd464427a1f620929c4',1,'ProjectConfigurationPrivate::save()']]],
-  ['savesettings',['saveSettings',['../class_can_raw_sender_private.html#a446f4670e21165dd75f2d75827130e07',1,'CanRawSenderPrivate::saveSettings()'],['../class_can_raw_view_private.html#a165c282c952acf5d31853a4c9cd74c40',1,'CanRawViewPrivate::saveSettings()']]],
+  ['savesettings',['saveSettings',['../class_can_raw_sender.html#acdfe8a1a7004206d7a2103e158e4a91a',1,'CanRawSender::saveSettings()'],['../class_can_raw_sender_private.html#a446f4670e21165dd75f2d75827130e07',1,'CanRawSenderPrivate::saveSettings()'],['../class_can_raw_view_private.html#a165c282c952acf5d31853a4c9cd74c40',1,'CanRawViewPrivate::saveSettings()']]],
   ['scrolltobottom',['scrollToBottom',['../struct_c_r_v_gui.html#a56b80c2f8822d81914f67a4d18abdad0',1,'CRVGui::scrollToBottom()'],['../struct_c_r_v_gui_interface.html#a3992c5bc5a18ecc27f8c1ab16fc95f43',1,'CRVGuiInterface::scrollToBottom()']]],
   ['sectionclicked_5ft',['sectionClicked_t',['../struct_c_r_v_gui_interface.html#a6d1d02d38e185b0ba783aa8a9ef0affa',1,'CRVGuiInterface']]],
   ['sendbutton',['SendButton',['../class_new_line_manager.html#a69f0c8e8a1213f641d43b7aa019e87dca50e95d533a998dcfd6c4614c140997a0',1,'NewLineManager']]],
