@@ -12,12 +12,6 @@
 #include <QtWidgets/QMdiSubWindow>
 #include <QtWidgets/QMessageBox>
 
-#include <cassert> // assert
-#include <iostream>
-
-#include <candevicemodel.h>
-#include <canrawsendermodel.h>
-#include <canrawviewmodel.h>
 
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent)
@@ -26,25 +20,14 @@ MainWindow::MainWindow(QWidget* parent)
     ui->setupUi(this);
     ui->centralWidget->layout()->setContentsMargins(0, 0, 0, 0);
 
-    auto modelRegistry = std::make_shared<QtNodes::DataModelRegistry>();
-    modelRegistry->registerModel<CanDeviceModel>();
-    modelRegistry->registerModel<CanRawSenderModel>();
-    modelRegistry->registerModel<CanRawViewModel>();
-
-    graphScene = std::make_shared<QtNodes::FlowScene>(modelRegistry);
-
-    connect(graphScene.get(), &QtNodes::FlowScene::nodeCreated, this, &MainWindow::nodeCreatedCallback);
-    connect(graphScene.get(), &QtNodes::FlowScene::nodeDeleted, this, &MainWindow::nodeDeletedCallback);
-    connect(graphScene.get(), &QtNodes::FlowScene::nodeDoubleClicked, this, &MainWindow::nodeDoubleClickedCallback);
+    projectConfiguration = std::make_unique<ProjectConfiguration>(ui->actionstart, ui->actionstop); // FIXME actions
 
     setupMdiArea();
     connectToolbarSignals();
     connectMenuSignals();
 }
 
-MainWindow::~MainWindow()
-{
-}
+MainWindow::~MainWindow() {}  // NOTE: Qt MOC requires this code
 
 void MainWindow::closeEvent(QCloseEvent* e)
 {
@@ -58,112 +41,20 @@ void MainWindow::closeEvent(QCloseEvent* e)
     }
 }
 
-void MainWindow::nodeCreatedCallback(QtNodes::Node& node)
-{
-    auto dataModel = node.nodeDataModel();
-
-    assert(nullptr != dataModel);
-
-    apply_model_visitor(*dataModel,
-        [this, dataModel](CanRawViewModel& m) {
-            auto rawView = &m.canRawView;
-            QWidget* crvWidget = rawView->getMainWidget();
-            connect(ui->actionstart, &QAction::triggered, rawView, &CanRawView::startSimulation);
-            connect(ui->actionstop, &QAction::triggered, rawView, &CanRawView::stopSimulation);
-            connect(rawView, &CanRawView::dockUndock, this, [this, crvWidget] { handleDock(crvWidget, ui->mdiArea); });
-        },
-        [this, dataModel](CanRawSenderModel& m) {
-            QWidget* crsWidget = m.canRawSender.getMainWidget();
-            auto& rawSender = m.canRawSender;
-            connect(
-                &rawSender, &CanRawSender::dockUndock, this, [this, crsWidget] { handleDock(crsWidget, ui->mdiArea); });
-            connect(ui->actionstart, &QAction::triggered, &rawSender, &CanRawSender::startSimulation);
-            connect(ui->actionstop, &QAction::triggered, &rawSender, &CanRawSender::stopSimulation);
-        },
-        [this](CanDeviceModel&) {});
-}
-
-void handleWidgetDeletion(QWidget* widget)
-{
-    assert(nullptr != widget);
-    if (widget->parentWidget()) {
-
-        widget->parentWidget()->close();
-    } // else path not needed
-}
-
-void MainWindow::nodeDeletedCallback(QtNodes::Node& node)
-{
-    auto dataModel = node.nodeDataModel();
-
-    assert(nullptr != dataModel);
-
-    apply_model_visitor(*dataModel,
-        [this, dataModel](CanRawViewModel& m) { handleWidgetDeletion(m.canRawView.getMainWidget()); },
-        [this, dataModel](CanRawSenderModel& m) { handleWidgetDeletion(m.canRawSender.getMainWidget()); },
-        [this](CanDeviceModel&) {});
-}
-
-void handleWidgetShowing(QWidget* widget, QMdiArea* mdi)
-{
-    assert(nullptr != widget);
-    cds_debug("Subwindows cnt: {}", mdi->subWindowList().size());
-    bool docked = false;
-
-    // TODO: Temporary solution. To be changed once MainWindow is refactored
-    QPushButton* undockButton = widget->findChild<QPushButton*>("pbDockUndock");
-    if (undockButton) {
-        docked = !undockButton->isChecked();
-    } else {
-        cds_debug("Undock button for '{}' widget not found", widget->windowTitle().toStdString());
-    }
-
-    // Add widget to MDI area when showing for the first time
-    // Widget will be also added to MDI area after closing it in undocked state
-    if (!widget->isVisible() && docked) {
-        cds_debug("Adding '{}' widget to MDI", widget->windowTitle().toStdString());
-        auto wnd = new SubWindow(widget);
-        // We need to delete the window to remove it from tabView when closed
-        wnd->setAttribute(Qt::WA_DeleteOnClose);
-        mdi->addSubWindow(wnd);
-    }
-
-    if (widget->parentWidget()) {
-        cds_debug("Widget is a part of MDI");
-        widget->hide();
-        widget->show();
-    } else {
-        cds_debug("Widget not a part of MDI");
-        widget->show();
-        widget->activateWindow();
-    }
-}
-
-void MainWindow::nodeDoubleClickedCallback(QtNodes::Node& node)
-{
-    auto dataModel = node.nodeDataModel();
-
-    assert(nullptr != dataModel);
-
-    apply_model_visitor(*dataModel,
-        [this, dataModel](CanRawViewModel& m) { handleWidgetShowing(m.canRawView.getMainWidget(), ui->mdiArea); },
-        [this, dataModel](CanRawSenderModel& m) { handleWidgetShowing(m.canRawSender.getMainWidget(), ui->mdiArea); },
-        [this](CanDeviceModel&) {});
-}
-
-void MainWindow::handleDock(QWidget* component, QMdiArea* mdi)
+void MainWindow::handleDock(QWidget* component)
 {
     // check if component is already displayed by mdi area
-    if (mdi->subWindowList().contains(static_cast<QMdiSubWindow*>(component->parentWidget()))) {
-        // undock
+    if (component->parentWidget()
+        && ui->mdiArea->subWindowList().contains(static_cast<QMdiSubWindow*>(component->parentWidget()))) {
+        cds_debug("Undock action");
         auto parent = component->parentWidget();
-        mdi->removeSubWindow(component); // removeSubwWndow only removes widget, not window
+        ui->mdiArea->removeSubWindow(component); // removeSubwWndow only removes widget, not window
 
         component->show();
         parent->close();
     } else {
-        // dock
-        mdi->addSubWindow(component)->show();
+        cds_debug("Dock action");
+        componentWidgetCreated(component);
     }
 }
 
@@ -186,7 +77,7 @@ void MainWindow::handleSaveAction()
 
         QFile file(fileName);
         if (file.open(QIODevice::WriteOnly)) {
-            file.write(graphScene->saveToMemory()); // FIXME
+            file.write(projectConfiguration->save()); // FIXME
         }
     } else {
         cds_error("File name empty");
@@ -195,8 +86,6 @@ void MainWindow::handleSaveAction()
 
 void MainWindow::handleLoadAction()
 {
-    graphScene->clearScene();
-
     QString fileName
         = QFileDialog::getOpenFileName(nullptr, "Project Configuration", QDir::homePath(), "CANdevStudio (*.cds)");
 
@@ -217,7 +106,8 @@ void MainWindow::handleLoadAction()
     // TODO check if file is correct, nodeeditor library does not provide it and will crash if incorrect file is
     // supplied
 
-    graphScene->loadFromMemory(wholeFile); // FIXME
+    projectConfiguration->clearGraphView();
+    projectConfiguration->load(wholeFile); // FIXME
 }
 
 void MainWindow::connectMenuSignals()
@@ -238,10 +128,23 @@ void MainWindow::connectMenuSignals()
         [this] { ui->mdiArea->setViewMode(QMdiArea::SubWindowView); });
 }
 
+void MainWindow::componentWidgetCreated(QWidget* component)
+{
+    auto wnd = new SubWindow;
+    // It seems we need to add Window first before setting the widget
+    ui->mdiArea->addSubWindow(wnd);
+    wnd->setWidget(component);
+    // We need to delete the window to remove it from tabView when closed
+    wnd->setAttribute(Qt::WA_DeleteOnClose);
+}
+
 void MainWindow::setupMdiArea()
 {
-    graphView = new QtNodes::FlowView(graphScene.get());
-    graphView->setWindowTitle("Project Configuration");
-    ui->mdiArea->addSubWindow(graphView);
+    projectConfiguration->setWindowTitle("Project Configuration");
+    ui->mdiArea->addSubWindow(projectConfiguration.get());
+    ui->mdiArea->setAttribute(Qt::WA_DeleteOnClose, false);
     ui->mdiArea->setViewMode(QMdiArea::TabbedView);
+    connect(projectConfiguration.get(), &ProjectConfiguration::componentWidgetCreated, this,
+        &MainWindow::componentWidgetCreated);
+    connect(projectConfiguration.get(), &ProjectConfiguration::handleDock, this, &MainWindow::handleDock);
 }

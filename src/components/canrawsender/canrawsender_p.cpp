@@ -37,14 +37,14 @@ void CanRawSenderPrivate::saveSettings(QJsonObject& json) const
     QJsonArray lineArray;
     writeColumnsOrder(json);
     writeSortingRules(jSortingObject);
-    json["Sorting"] = std::move(jSortingObject);
+    json["sorting"] = std::move(jSortingObject);
 
     for (const auto& lineItem : lines) {
         QJsonObject lineObject;
         lineItem->Line2Json(lineObject);
         lineArray.append(std::move(lineObject));
     }
-    json["Content"] = std::move(lineArray);
+    json["content"] = std::move(lineArray);
 }
 
 int CanRawSenderPrivate::getLineCount() const
@@ -58,7 +58,7 @@ void CanRawSenderPrivate::writeColumnsOrder(QJsonObject& json) const
     for (const auto& column : columnsOrder) {
         columnList.append(column);
     }
-    json["Columns"] = std::move(columnList);
+    json["columns"] = std::move(columnList);
 }
 
 void CanRawSenderPrivate::writeSortingRules(QJsonObject& json) const

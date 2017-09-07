@@ -6,6 +6,7 @@
 #include <catch.hpp>
 #include <fakeit.hpp>
 #include <memory>
+#include<QJsonArray>
 
 TEST_CASE("Add and remove frame test", "[canrawsender]")
 {
@@ -83,4 +84,47 @@ TEST_CASE("Add and remove frame test", "[canrawsender]")
     CHECK(canRawSender.getLineCount() == 1);
     removeLineCbk();
     CHECK(canRawSender.getLineCount() == 0);
+}
+
+TEST_CASE("Can raw sender save configuration test", "[newlinemanager]")
+{
+    using namespace fakeit;
+    Mock<CRSFactoryInterface> factoryMock;
+    Mock<CRSGuiInterface> crsMock;
+
+    Fake(Dtor(crsMock));
+    Fake(Method(crsMock, setAddCbk));
+    Fake(Method(crsMock, setRemoveCbk));
+    Fake(Method(crsMock, setDockUndockCbk));
+    Fake(Method(crsMock, getMainWidget));
+    Fake(Method(crsMock, initTableView));
+    Fake(Method(crsMock, getSelectedRows));
+    Fake(Method(crsMock, setIndexWidget));
+
+    When(Method(factoryMock, createGui)).Return(&crsMock.get());
+    CanRawSender canRawSender{ factoryMock.get() };
+
+    QJsonObject json;
+    canRawSender.saveSettings(json);
+
+    CHECK(json.empty() == false);
+    CHECK(json.count() == 3);
+    const auto colIter = json.find("columns");
+    CHECK(colIter != json.end());
+    CHECK(colIter.value().type() == QJsonValue::Array);
+    const auto colArray = json["columns"].toArray();
+    CHECK(colArray.empty() == false);
+    CHECK(colArray.size() == 5);
+    CHECK(colArray.contains("Id") == true);
+    CHECK(colArray.contains("Data") == true);
+    CHECK(colArray.contains("Loop") == true);
+    CHECK(colArray.contains("Interval") == true);
+
+    CHECK(json.contains("content") == true);
+
+    const auto sortIter = json.find("sorting");
+    CHECK(sortIter != json.end());
+    CHECK(sortIter.value().type() == QJsonValue::Object);
+    const auto sortObj = json["sorting"].toObject();
+    CHECK(sortObj.contains("currentIndex") == true);
 }

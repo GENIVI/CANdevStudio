@@ -47,6 +47,7 @@ private Q_SLOTS:
 
 private:
     QScopedPointer<CanDevicePrivate> d_ptr;
+    bool initialized = false;
 };
 
 #endif /* !__CANDEVICE_H */

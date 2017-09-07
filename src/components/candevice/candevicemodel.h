@@ -61,6 +61,12 @@ public:
         return std::make_unique<CanDeviceModel>();
     }
 
+    /**
+     * @brief Possibility to save node properties
+     * @return json object
+     */
+    QJsonObject save() const override;
+
 public:
     /**
     *   @brief  Used to get model name
@@ -151,7 +157,7 @@ private:
 
     QCanBusFrame _frame;
 
-    std::unique_ptr<CanDevice> canDevice;
+    CanDevice canDevice;
 
 signals:
     void sendFrame(const QCanBusFrame& frame);

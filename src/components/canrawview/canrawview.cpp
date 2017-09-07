@@ -58,3 +58,10 @@ QWidget* CanRawView::getMainWidget()
 
     return d->mUi->getMainWidget();
 }
+
+
+void CanRawView::saveSettings(QJsonObject& json) const
+{
+    assert(d_ptr != nullptr);
+    return d_ptr->saveSettings(json);
+}

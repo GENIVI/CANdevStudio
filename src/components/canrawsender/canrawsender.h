@@ -18,8 +18,8 @@ public:
     explicit CanRawSender();
     explicit CanRawSender(CRSFactoryInterface& factory);
     ~CanRawSender();
-    void closeEvent(QCloseEvent* e);
     int getLineCount() const;
+    void saveSettings(QJsonObject& json) const;
 
     QWidget* getMainWidget();
 
