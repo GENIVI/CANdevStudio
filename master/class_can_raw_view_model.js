@@ -13,6 +13,7 @@ var class_can_raw_view_model =
     [ "nPorts", "class_can_raw_view_model.html#a9e366286e6593bf14168da1cadbd8654", null ],
     [ "outData", "class_can_raw_view_model.html#a761476647fc9e0290f9b89e60c921bb3", null ],
     [ "resizable", "class_can_raw_view_model.html#a7854dc6622631c5b4273f56ee455e300", null ],
+    [ "save", "class_can_raw_view_model.html#af5437a433685252ff1378ea187f55d21", null ],
     [ "setInData", "class_can_raw_view_model.html#ab6783235e23112e049953083998df571", null ],
     [ "visit", "class_can_raw_view_model.html#a8604f1fa754fc1e93e0936caf8045238", null ],
     [ "canRawView", "class_can_raw_view_model.html#a7952c838642e09d78f5680e9745c6b2d", null ]

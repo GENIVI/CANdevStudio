@@ -7,6 +7,7 @@ var class_can_raw_view =
     [ "frameReceived", "class_can_raw_view.html#ace7bb231aa483369b389d02b353a8a17", null ],
     [ "frameSent", "class_can_raw_view.html#a81d095b9dfd03fbc2f53ca8c298abf4f", null ],
     [ "getMainWidget", "class_can_raw_view.html#a736d909606755d3fe2fd86adba6d702e", null ],
+    [ "saveSettings", "class_can_raw_view.html#a0ac02f4731b1a4196916f99adffcd381", null ],
     [ "startSimulation", "class_can_raw_view.html#acf78fa346b606b03632dd6fb47a5e48e", null ],
     [ "stopSimulation", "class_can_raw_view.html#a1e7ae58ba92cc0130e259ae089cc8456", null ]
 ];

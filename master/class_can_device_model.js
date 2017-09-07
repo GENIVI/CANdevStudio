@@ -13,6 +13,7 @@ var class_can_device_model =
     [ "nPorts", "class_can_device_model.html#ad02c6e46e947211afb068f202faa9e4b", null ],
     [ "outData", "class_can_device_model.html#ad077ccb7d83c94b603f804bef2b57aac", null ],
     [ "resizable", "class_can_device_model.html#a07bc58b09f98ad65c4b54b001a34ae25", null ],
+    [ "save", "class_can_device_model.html#aed5343c1b62b369412460503e45f1bd8", null ],
     [ "sendFrame", "class_can_device_model.html#af9435aa9857695f85df63561df301a5c", null ],
     [ "setInData", "class_can_device_model.html#a7e7fd2ddd6e47f134741ed4b0b7ce821", null ],
     [ "visit", "class_can_device_model.html#a61d3c749e0b9a6c0656d150e66877eea", null ]

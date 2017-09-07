@@ -11,6 +11,7 @@ var class_can_raw_sender_model =
     [ "nPorts", "class_can_raw_sender_model.html#ad2b2ba0baf9826b9b781f8d05fbefdc0", null ],
     [ "outData", "class_can_raw_sender_model.html#a5f9f15ca57fcd463dbfbcf549e1c4a88", null ],
     [ "resizable", "class_can_raw_sender_model.html#a27622d070cdda3d6bc79ff24377097d7", null ],
+    [ "save", "class_can_raw_sender_model.html#a8c4345be76be71dd86a099dc71d535b4", null ],
     [ "sendFrame", "class_can_raw_sender_model.html#ad6cf38b39e63426d3efb9afcdf05c255", null ],
     [ "setInData", "class_can_raw_sender_model.html#a491777ddd4abae9dcd9a501abf7705a6", null ],
     [ "visit", "class_can_raw_sender_model.html#a7c184c43aa00a8ef68e0578d2bba990d", null ],
