@@ -39,3 +39,9 @@ int CanRawSender::getLineCount() const
     assert(d_ptr != nullptr);
     return d_ptr->getLineCount();
 }
+
+void CanRawSender::saveSettings(QJsonObject& json) const
+{
+    assert(d_ptr != nullptr);
+    return d_ptr->saveSettings(json);
+}
