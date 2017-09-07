@@ -8,6 +8,7 @@
 #include <QtGui/QStandardItemModel>
 #include <memory>
 #include <context.h>
+#include <nlmfactory.hpp>
 
 namespace Ui {
 class CanRawSenderPrivate;
@@ -25,7 +26,7 @@ public:
     /// \brief Create new CanRawSenderPrivate class
     /// \param[in] q Pointer to CanRawSender class
     /// \param[in] ctx CanRawSender context
-    CanRawSenderPrivate(CanRawSender* q, CanRawSenderCtx *ctx = new CanRawSenderCtx(new CRSGui));
+    CanRawSenderPrivate(CanRawSender* q, CanRawSenderCtx *ctx = new CanRawSenderCtx(new CRSGui, new NLMFactory));
 
     /// \brief destructor
     virtual ~CanRawSenderPrivate() = default;
@@ -63,6 +64,7 @@ private slots:
 
 public:
     CRSGuiInterface &mUi;
+    NLMFactoryInterface &nlmFactory;
 
 private:
     std::unique_ptr<CanRawSenderCtx> _ctx;

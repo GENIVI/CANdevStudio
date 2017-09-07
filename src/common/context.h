@@ -17,13 +17,14 @@ template <typename... Args> struct Context {
     }
 
 private:
-    std::tuple<std::unique_ptr<Args...>> _implsPtr;
+    std::tuple<std::unique_ptr<Args>...> _implsPtr;
 };
 
 class CanDeviceInterface;
 typedef Context<CanDeviceInterface> CanDeviceCtx;
 
 class CRSGuiInterface;
-typedef Context<CRSGuiInterface> CanRawSenderCtx;
+class NLMFactoryInterface;
+typedef Context<CRSGuiInterface, NLMFactoryInterface> CanRawSenderCtx;
 
 #endif /* !__CONTEXT_H */

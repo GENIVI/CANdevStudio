@@ -111,7 +111,6 @@ private:
     QValidator* vIdHex;
     QValidator* vDataHex;
 
-    NLMFactory mDefFactory;
     NLMFactoryInterface& mFactory;
     std::unique_ptr<CheckBoxInterface> mCheckBox;
     std::unique_ptr<LineEditInterface> mId;

@@ -4,6 +4,7 @@
 
 CanRawSenderPrivate::CanRawSenderPrivate(CanRawSender* q, CanRawSenderCtx *ctx)
     : mUi(ctx->get<CRSGuiInterface>())
+    , nlmFactory(ctx->get<NLMFactoryInterface>())
     , _ctx(ctx)
     , canRawSender(q)
     , simulationState(false)
@@ -80,7 +81,7 @@ void CanRawSenderPrivate::addNewItem()
 {
     QList<QStandardItem*> list{};
     tvModel.appendRow(list);
-    auto newLine = mUi.newLine(canRawSender, simulationState);
+    auto newLine = std::make_unique<NewLineManager>(canRawSender, simulationState, _ctx->get<NLMFactoryInterface>());
     for (NewLineManager::ColName ii : NewLineManager::ColNameIterator()) {
         mUi.setIndexWidget(tvModel.index(tvModel.rowCount() - 1, static_cast<int>(ii)), newLine->GetColsWidget(ii));
     }
