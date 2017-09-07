@@ -7,7 +7,6 @@ var hierarchy =
     [ "CanFactoryInterface", "struct_can_factory_interface.html", [
       [ "CanFactoryQt", "struct_can_factory_qt.html", null ]
     ] ],
-    [ "CanNodeDataModelVisitor", "class_can_node_data_model_visitor.html", null ],
     [ "CheckBoxInterface", "struct_check_box_interface.html", [
       [ "NLMCheckBox", "struct_n_l_m_check_box.html", null ]
     ] ],
@@ -65,6 +64,10 @@ var hierarchy =
       [ "CanDeviceModel", "class_can_device_model.html", null ],
       [ "CanRawSenderModel", "class_can_raw_sender_model.html", null ],
       [ "CanRawViewModel", "class_can_raw_view_model.html", null ]
+    ] ],
+    [ "Visitor< Tag, Visitables >", "class_visitor.html", null ],
+    [ "Visitor< CanNodeDataModelVisitor, CanRawViewModel, CanRawSenderModel, CanDeviceModel >", "class_visitor.html", [
+      [ "CanNodeDataModelVisitor", "struct_can_node_data_model_visitor.html", null ]
     ] ],
     [ "NodeData", null, [
       [ "CanDeviceDataIn", "class_can_device_data_in.html", null ],

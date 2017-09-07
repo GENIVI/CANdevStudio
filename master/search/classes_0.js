@@ -9,7 +9,7 @@ var searchData=
   ['candeviceqt',['CanDeviceQt',['../struct_can_device_qt.html',1,'']]],
   ['canfactoryinterface',['CanFactoryInterface',['../struct_can_factory_interface.html',1,'']]],
   ['canfactoryqt',['CanFactoryQt',['../struct_can_factory_qt.html',1,'']]],
-  ['cannodedatamodelvisitor',['CanNodeDataModelVisitor',['../class_can_node_data_model_visitor.html',1,'']]],
+  ['cannodedatamodelvisitor',['CanNodeDataModelVisitor',['../struct_can_node_data_model_visitor.html',1,'']]],
   ['canrawsender',['CanRawSender',['../class_can_raw_sender.html',1,'']]],
   ['canrawsendermodel',['CanRawSenderModel',['../class_can_raw_sender_model.html',1,'']]],
   ['canrawsenderprivate',['CanRawSenderPrivate',['../class_can_raw_sender_private.html',1,'']]],

@@ -27,5 +27,7 @@ var NAVTREEINDEX2 =
 "uniquefiltermodel_8h.html":[2,0,0,1,2,10],
 "uniquefiltermodel_8h_source.html":[2,0,0,1,2,10],
 "visitablewith_8h.html":[2,0,0,0,4],
-"visitablewith_8h_source.html":[2,0,0,0,4]
+"visitablewith_8h_source.html":[2,0,0,0,4],
+"visitor_8h.html":[2,0,0,0,5],
+"visitor_8h_source.html":[2,0,0,0,5]
 };

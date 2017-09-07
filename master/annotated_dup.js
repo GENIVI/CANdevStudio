@@ -9,7 +9,7 @@ var annotated_dup =
     [ "CanDeviceQt", "struct_can_device_qt.html", "struct_can_device_qt" ],
     [ "CanFactoryInterface", "struct_can_factory_interface.html", "struct_can_factory_interface" ],
     [ "CanFactoryQt", "struct_can_factory_qt.html", "struct_can_factory_qt" ],
-    [ "CanNodeDataModelVisitor", "class_can_node_data_model_visitor.html", "class_can_node_data_model_visitor" ],
+    [ "CanNodeDataModelVisitor", "struct_can_node_data_model_visitor.html", null ],
     [ "CanRawSender", "class_can_raw_sender.html", "class_can_raw_sender" ],
     [ "CanRawSenderModel", "class_can_raw_sender_model.html", "class_can_raw_sender_model" ],
     [ "CanRawSenderPrivate", "class_can_raw_sender_private.html", "class_can_raw_sender_private" ],
@@ -41,5 +41,6 @@ var annotated_dup =
     [ "PushButtonInterface", "struct_push_button_interface.html", "struct_push_button_interface" ],
     [ "SubWindow", "struct_sub_window.html", "struct_sub_window" ],
     [ "UniqueFilterModel", "class_unique_filter_model.html", "class_unique_filter_model" ],
-    [ "VisitableWith", "struct_visitable_with.html", "struct_visitable_with" ]
+    [ "VisitableWith", "struct_visitable_with.html", "struct_visitable_with" ],
+    [ "Visitor", "class_visitor.html", "class_visitor" ]
 ];

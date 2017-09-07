@@ -1,6 +1,5 @@
 var NAVTREEINDEX1 =
 {
-"dir_bdfef683cdcec59763063a4d6a2f152c.html":[2,0,0,1,2],
 "dir_c3a04f334b303e0e7484d59fef452afc.html":[2,0,0,1,0],
 "dir_fc49f290eb36fbf76bbbaaad5c93f265.html":[2,0,0,1,3],
 "dir_fdedb0aba14d44ce9d99bc100e026e6a.html":[2,0,0,0],
@@ -85,7 +84,7 @@ var NAVTREEINDEX1 =
 "modeltoolbutton_8h_source.html":[2,0,0,1,3,1],
 "modelvisitor_8h.html":[2,0,0,0,3],
 "modelvisitor_8h.html#a3f0b12d06c46bd1ae981eaa43f3bd3fc":[2,0,0,0,3,1],
-"modelvisitor_8h.html#a64f8e8125af0f8f89abc6a7dd286025d":[2,0,0,0,3,2],
+"modelvisitor_8h.html#ae6d8d219e9ab208c433804e0c33d9ae9":[2,0,0,0,3,2],
 "modelvisitor_8h_source.html":[2,0,0,0,3],
 "namespace_ui.html":[0,0,0],
 "namespaces.html":[0,0],
@@ -207,6 +206,7 @@ var NAVTREEINDEX1 =
 "struct_can_factory_interface.html#a98a610c45c2aeba0c2ccb93dbc084407":[1,0,7,1],
 "struct_can_factory_qt.html":[1,0,8],
 "struct_can_factory_qt.html#a44a10b6d673174712ec2c0c49bedb9a1":[1,0,8,0],
+"struct_can_node_data_model_visitor.html":[1,0,9],
 "struct_check_box_interface.html":[1,0,16],
 "struct_check_box_interface.html#a0a1251c13142b0f0aafcdc125e51d046":[1,0,16,3],
 "struct_check_box_interface.html#a3dacdbcd890c288f6c9ff061463c683e":[1,0,16,2],

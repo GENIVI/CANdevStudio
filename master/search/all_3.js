@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['candevice',['CanDevice',['../class_can_device.html',1,'CanDevice'],['../class_can_device.html#a7c6081d39cd9f440147686aabe156682',1,'CanDevice::CanDevice()'],['../class_can_device.html#a694c6a1ba7457a1bc68f11683f61bdd4',1,'CanDevice::CanDevice(CanFactoryInterface &amp;factory)'],['../class_can_device_private.html#a22c3020712af344e4326866e5b17614d',1,'CanDevicePrivate::canDevice()']]],
+  ['candevice',['CanDevice',['../class_can_device.html',1,'CanDevice'],['../class_can_device_private.html#a22c3020712af344e4326866e5b17614d',1,'CanDevicePrivate::canDevice()'],['../class_can_device.html#a7c6081d39cd9f440147686aabe156682',1,'CanDevice::CanDevice()'],['../class_can_device.html#a694c6a1ba7457a1bc68f11683f61bdd4',1,'CanDevice::CanDevice(CanFactoryInterface &amp;factory)']]],
   ['candevice_2ecpp',['candevice.cpp',['../candevice_8cpp.html',1,'']]],
   ['candevice_2eh',['candevice.h',['../candevice_8h.html',1,'']]],
   ['candevice_5fp_2eh',['candevice_p.h',['../candevice__p_8h.html',1,'']]],
@@ -19,7 +19,7 @@ var searchData=
   ['canfactoryinterface',['CanFactoryInterface',['../struct_can_factory_interface.html',1,'']]],
   ['canfactoryqt',['CanFactoryQt',['../struct_can_factory_qt.html',1,'']]],
   ['canfactoryqt_2ehpp',['canfactoryqt.hpp',['../canfactoryqt_8hpp.html',1,'']]],
-  ['cannodedatamodelvisitor',['CanNodeDataModelVisitor',['../class_can_node_data_model_visitor.html',1,'CanNodeDataModelVisitor'],['../class_can_node_data_model_visitor.html#ab54352387cc7cb75c1425ba12563ac70',1,'CanNodeDataModelVisitor::CanNodeDataModelVisitor()']]],
+  ['cannodedatamodelvisitor',['CanNodeDataModelVisitor',['../struct_can_node_data_model_visitor.html',1,'']]],
   ['canrawsender',['CanRawSender',['../class_can_raw_sender.html',1,'CanRawSender'],['../class_can_raw_sender.html#a3e5c79c8702f9e6947697086c04f3c05',1,'CanRawSender::CanRawSender()'],['../class_can_raw_sender.html#aa6fe04d5d0198d63fe15779049e01c34',1,'CanRawSender::CanRawSender(CRSFactoryInterface &amp;factory)'],['../class_can_raw_sender_model.html#a00f571255855b52bec4f69c912759160',1,'CanRawSenderModel::canRawSender()']]],
   ['canrawsender_2ecpp',['canrawsender.cpp',['../canrawsender_8cpp.html',1,'']]],
   ['canrawsender_2eh',['canrawsender.h',['../canrawsender_8h.html',1,'']]],

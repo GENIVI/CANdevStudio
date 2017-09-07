@@ -111,16 +111,17 @@ $(document).ready(function(){initNavTree('modelvisitor_8h.html','');});
 <div class="title">modelvisitor.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;functional&gt;</code><br />
-<code>#include &lt;utility&gt;</code><br />
+<div class="textblock"><code>#include &lt;utility&gt;</code><br />
 <code>#include &lt;nodes/NodeDataModel&gt;</code><br />
+<code>#include &quot;<a class="el" href="visitor_8h_source.html">visitor.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="visitablewith_8h_source.html">visitablewith.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for modelvisitor.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="modelvisitor_8h__incl.png" border="0" usemap="#src_2common_2modelvisitor_8h" alt=""/></div>
 <map name="src_2common_2modelvisitor_8h" id="src_2common_2modelvisitor_8h">
-<area shape="rect" id="node5" href="visitablewith_8h.html" title="visitablewith.h" alt="" coords="387,80,497,107"/>
+<area shape="rect" id="node4" href="visitor_8h.html" title="visitor.h" alt="" coords="263,80,334,107"/>
+<area shape="rect" id="node8" href="visitablewith_8h.html" title="visitablewith.h" alt="" coords="389,155,499,181"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -144,16 +145,16 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_node_data_model_visitor.html">CanNodeDataModelVisitor</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_can_node_data_model_visitor.html">CanNodeDataModelVisitor</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a3f0b12d06c46bd1ae981eaa43f3bd3fc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="modelvisitor_8h.html#a3f0b12d06c46bd1ae981eaa43f3bd3fc">apply_model_visitor</a> (QtNodes::NodeDataModel &amp;m, <a class="el" href="class_can_node_data_model_visitor.html">CanNodeDataModelVisitor</a> v)</td></tr>
+<tr class="memitem:a3f0b12d06c46bd1ae981eaa43f3bd3fc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="modelvisitor_8h.html#a3f0b12d06c46bd1ae981eaa43f3bd3fc">apply_model_visitor</a> (QtNodes::NodeDataModel &amp;m, <a class="el" href="struct_can_node_data_model_visitor.html">CanNodeDataModelVisitor</a> v)</td></tr>
 <tr class="separator:a3f0b12d06c46bd1ae981eaa43f3bd3fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a64f8e8125af0f8f89abc6a7dd286025d"><td class="memTemplParams" colspan="2">template&lt;class... Actions&gt; </td></tr>
-<tr class="memitem:a64f8e8125af0f8f89abc6a7dd286025d"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="modelvisitor_8h.html#a64f8e8125af0f8f89abc6a7dd286025d">apply_model_visitor</a> (QtNodes::NodeDataModel &amp;m, Actions...actions)</td></tr>
-<tr class="separator:a64f8e8125af0f8f89abc6a7dd286025d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6d8d219e9ab208c433804e0c33d9ae9"><td class="memTemplParams" colspan="2">template&lt;class... Actions&gt; </td></tr>
+<tr class="memitem:ae6d8d219e9ab208c433804e0c33d9ae9"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="modelvisitor_8h.html#ae6d8d219e9ab208c433804e0c33d9ae9">apply_model_visitor</a> (QtNodes::NodeDataModel &amp;m, Actions &amp;&amp;...actions)</td></tr>
+<tr class="separator:ae6d8d219e9ab208c433804e0c33d9ae9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a class="anchor" id="a3f0b12d06c46bd1ae981eaa43f3bd3fc"></a>
@@ -172,7 +173,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="class_can_node_data_model_visitor.html">CanNodeDataModelVisitor</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="struct_can_node_data_model_visitor.html">CanNodeDataModelVisitor</a>&#160;</td>
           <td class="paramname"><em>v</em>&#160;</td>
         </tr>
         <tr>
@@ -196,7 +197,7 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a64f8e8125af0f8f89abc6a7dd286025d"></a>
+<a class="anchor" id="ae6d8d219e9ab208c433804e0c33d9ae9"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -214,7 +215,7 @@ template&lt;class... Actions&gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">Actions...&#160;</td>
+          <td class="paramtype">Actions &amp;&amp;...&#160;</td>
           <td class="paramname"><em>actions</em>&#160;</td>
         </tr>
         <tr>
