@@ -23,4 +23,7 @@ private:
 class CanDeviceInterface;
 typedef Context<CanDeviceInterface> CanDeviceCtx;
 
+class CRSGuiInterface;
+typedef Context<CRSGuiInterface> CanRawSenderCtx;
+
 #endif /* !__CONTEXT_H */

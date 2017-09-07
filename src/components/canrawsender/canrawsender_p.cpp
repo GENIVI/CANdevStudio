@@ -2,25 +2,20 @@
 #include "canrawsender.h"
 #include <QJsonArray>
 
-CanRawSenderPrivate::CanRawSenderPrivate(CanRawSender* q)
-    : CanRawSenderPrivate(q, mDefFactory)
-{
-}
-
-CanRawSenderPrivate::CanRawSenderPrivate(CanRawSender* q, CRSFactoryInterface& factory)
-    : mFactory(factory)
+CanRawSenderPrivate::CanRawSenderPrivate(CanRawSender* q, CanRawSenderCtx *ctx)
+    : mUi(ctx->get<CRSGuiInterface>())
+    , _ctx(ctx)
     , canRawSender(q)
     , simulationState(false)
     , columnsOrder({ "Id", "Data", "Loop", "Interval", "" })
 {
     tvModel.setHorizontalHeaderLabels(columnsOrder);
 
-    mUi.reset(mFactory.createGui());
-    mUi->initTableView(tvModel);
+    mUi.initTableView(tvModel);
 
-    mUi->setAddCbk(std::bind(&CanRawSenderPrivate::addNewItem, this));
-    mUi->setRemoveCbk(std::bind(&CanRawSenderPrivate::removeRowsSelectedByMouse, this));
-    mUi->setDockUndockCbk(std::bind(&CanRawSenderPrivate::dockUndock, this));
+    mUi.setAddCbk(std::bind(&CanRawSenderPrivate::addNewItem, this));
+    mUi.setRemoveCbk(std::bind(&CanRawSenderPrivate::removeRowsSelectedByMouse, this));
+    mUi.setDockUndockCbk(std::bind(&CanRawSenderPrivate::dockUndock, this));
 }
 
 void CanRawSenderPrivate::setSimulationState(bool state)
@@ -68,7 +63,7 @@ void CanRawSenderPrivate::writeSortingRules(QJsonObject& json) const
 
 void CanRawSenderPrivate::removeRowsSelectedByMouse()
 {
-    QModelIndexList IndexList = mUi->getSelectedRows();
+    QModelIndexList IndexList = mUi.getSelectedRows();
     std::list<QModelIndex> tmp = IndexList.toStdList();
 
     tmp.sort(); // List must to be sorted and reversed because erasing started from last row
@@ -85,9 +80,9 @@ void CanRawSenderPrivate::addNewItem()
 {
     QList<QStandardItem*> list{};
     tvModel.appendRow(list);
-    auto newLine = mUi->newLine(canRawSender, simulationState);
+    auto newLine = mUi.newLine(canRawSender, simulationState);
     for (NewLineManager::ColName ii : NewLineManager::ColNameIterator()) {
-        mUi->setIndexWidget(tvModel.index(tvModel.rowCount() - 1, static_cast<int>(ii)), newLine->GetColsWidget(ii));
+        mUi.setIndexWidget(tvModel.index(tvModel.rowCount() - 1, static_cast<int>(ii)), newLine->GetColsWidget(ii));
     }
     lines.push_back(std::move(newLine));
 }

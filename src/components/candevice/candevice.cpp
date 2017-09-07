@@ -3,6 +3,11 @@
 #include "canfactory.hpp"
 #include <QtCore/QQueue>
 
+CanDevice::CanDevice()
+    : d_ptr(new CanDevicePrivate())
+{
+}
+
 CanDevice::CanDevice(CanDeviceCtx *ctx)
     : d_ptr(new CanDevicePrivate(ctx))
 {

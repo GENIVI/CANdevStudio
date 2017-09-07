@@ -1,13 +1,13 @@
 #ifndef CANRAWSENDER_P_H
 #define CANRAWSENDER_P_H
 
-#include "crsfactory.hpp"
 #include "gui/crsgui.hpp"
 #include "newlinemanager.h"
 #include "ui_canrawsender.h"
 #include <QJsonObject>
 #include <QtGui/QStandardItemModel>
 #include <memory>
+#include <context.h>
 
 namespace Ui {
 class CanRawSenderPrivate;
@@ -24,13 +24,8 @@ public:
     /// \brief constructor
     /// \brief Create new CanRawSenderPrivate class
     /// \param[in] q Pointer to CanRawSender class
-    CanRawSenderPrivate(CanRawSender* q);
-
-    /// \brief constructor
-    /// \brief Create new CanRawSenderPrivate class
-    /// \param[in] q Pointer to CanRawSender class
-    /// \param[in] factory Reference to factory inteface
-    CanRawSenderPrivate(CanRawSender* q, CRSFactoryInterface& factory);
+    /// \param[in] ctx CanRawSender context
+    CanRawSenderPrivate(CanRawSender* q, CanRawSenderCtx *ctx = new CanRawSenderCtx(new CRSGui));
 
     /// \brief destructor
     virtual ~CanRawSenderPrivate() = default;
@@ -67,15 +62,14 @@ private slots:
     void dockUndock();
 
 public:
-    CRSFactoryInterface& mFactory;
-    std::unique_ptr<CRSGuiInterface> mUi;
+    CRSGuiInterface &mUi;
 
 private:
+    std::unique_ptr<CanRawSenderCtx> _ctx;
     std::vector<std::unique_ptr<NewLineManager>> lines;
     QStandardItemModel tvModel;
     CanRawSender* canRawSender;
     bool simulationState;
-    CRSFactory mDefFactory;
     int currentIndex;
     QStringList columnsOrder;
 };

@@ -1,7 +1,7 @@
 #ifndef __CANDEVICE_P_H
 #define __CANDEVICE_P_H
 
-#include "candeviceinterface.hpp"
+#include "candeviceqt.hpp"
 #include <QtCore/QObject>
 #include <QtCore/QScopedPointer>
 #include <QtCore/QVariant>
@@ -15,7 +15,6 @@ public:
     CanDevicePrivate(CanDeviceCtx *ctx = new CanDeviceCtx(new CanDeviceQt))
         : canDevice(ctx->get<CanDeviceInterface>())
         , _ctx(ctx)
-          
     {
     }
 

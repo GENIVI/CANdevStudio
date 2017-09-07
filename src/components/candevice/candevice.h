@@ -6,7 +6,6 @@
 #include <QtSerialBus/QCanBusDevice>
 #include <QtSerialBus/QCanBusFrame>
 #include <context.h>
-#include "candeviceqt.hpp"
 
 class CanDevicePrivate;
 struct CanFactoryInterface;
@@ -19,7 +18,8 @@ class CanDevice : public QObject {
     Q_DECLARE_PRIVATE(CanDevice)
 
 public:
-    CanDevice(CanDeviceCtx *ctx = new CanDeviceCtx(new CanDeviceQt));
+    CanDevice();
+    CanDevice(CanDeviceCtx *ctx);
     ~CanDevice();
 
     /**
