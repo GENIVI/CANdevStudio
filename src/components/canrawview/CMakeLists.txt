@@ -1,7 +1,8 @@
 set(COMPONENT_NAME canrawview)
 
 set(SRC
-    canrawview.ui
+    gui/canrawview.ui
+    gui/crvgui.hpp
     canrawview.cpp
     canrawviewmodel.cpp
     uniquefiltermodel.cpp    

@@ -5,10 +5,6 @@
 #include "ui_canrawview.h"
 #include <memory>
 
-namespace Ui {
-class CanRawViewPrivate;
-}
-
 struct CRVGui : public CRVGuiInterface {
 
     CRVGui()

@@ -1,13 +1,13 @@
 #define CATCH_CONFIG_RUNNER
 #include <QSignalSpy>
+#include <QtWidgets/QApplication>
 #include <canrawsender.h>
 #include <catch.hpp>
 #include <context.h>
-#include <crsguiinterface.hpp>
 #include <fakeit.hpp>
+#include <gui/crsguiinterface.hpp>
 #include <log.hpp>
 #include <newlinemanager.h>
-#include <QtWidgets/QApplication>
 
 std::shared_ptr<spdlog::logger> kDefaultLogger;
 int id = qRegisterMetaType<QCanBusFrame>("QCanBusFrame");
@@ -160,10 +160,10 @@ TEST_CASE("Send button clicked - send several frame test", "[newlinemanager]")
     Fake(Method(nlmLineEditMock, init));
     Fake(Method(nlmLineEditMock, setPlaceholderText));
     Fake(Method(nlmLineEditMock, setDisabled));
-    When(Method(nlmLineEditMock, getTextLength)).AlwaysDo([&]() {return 2;});
-    //When(Method(nlmLineEditMock, getText)).AlwaysDo([&]() {return "22";});
+    When(Method(nlmLineEditMock, getTextLength)).AlwaysDo([&]() { return 2; });
+    // When(Method(nlmLineEditMock, getText)).AlwaysDo([&]() {return "22";});
     When(Method(nlmLineEditMock, getText)).Return("2", "2", "1");
-    When(Method(nlmFactoryMock, createLineEdit)).AlwaysDo([&]() {return &nlmLineEditMock.get();});
+    When(Method(nlmFactoryMock, createLineEdit)).AlwaysDo([&]() { return &nlmLineEditMock.get(); });
 
     Mock<CheckBoxInterface> nlmCheckBoxMock;
     Fake(Dtor(nlmCheckBoxMock));
@@ -175,14 +175,15 @@ TEST_CASE("Send button clicked - send several frame test", "[newlinemanager]")
     Mock<PushButtonInterface> nlmPushButtonMock;
     Fake(Dtor(nlmPushButtonMock));
     Fake(Method(nlmPushButtonMock, init));
-    When(Method(nlmPushButtonMock, pressedCbk)).Do([&](auto&& fn) { pressedCbk = fn; });;
+    When(Method(nlmPushButtonMock, pressedCbk)).Do([&](auto&& fn) { pressedCbk = fn; });
+    ;
     Fake(Method(nlmPushButtonMock, getMainWidget));
     Fake(Method(nlmPushButtonMock, setDisabled));
     Fake(Method(nlmPushButtonMock, isEnabled));
     When(Method(nlmFactoryMock, createPushButton)).Return(&nlmPushButtonMock.get());
 
     CanRawSender canRawSender(CanRawSenderCtx(&crsMock.get(), &nlmFactoryMock.get()));
-    NewLineManager newLineMgr{ &canRawSender, true, nlmFactoryMock.get()};
+    NewLineManager newLineMgr{ &canRawSender, true, nlmFactoryMock.get() };
     QSignalSpy canRawSenderSpy(&canRawSender, &CanRawSender::sendFrame);
     pressedCbk();
     CHECK(canRawSenderSpy.count() == 1);

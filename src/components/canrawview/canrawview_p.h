@@ -2,7 +2,6 @@
 #define CANRAWVIEW_P_H
 
 #include "gui/crvgui.hpp"
-#include "ui_canrawview.h"
 #include "uniquefiltermodel.h"
 #include <QtCore/QElapsedTimer>
 #include <QtCore/QJsonArray>

@@ -2,11 +2,11 @@
 #include <QStandardItemModel>
 #include <canrawsender.h>
 #include <catch.hpp>
-#include <crsguiinterface.hpp>
+#include <context.h>
 #include <fakeit.hpp>
+#include <gui/crsguiinterface.hpp>
 #include <memory>
 #include <newlinemanager.h>
-#include <context.h>
 
 TEST_CASE("Add and remove frame test", "[canrawsender]")
 {

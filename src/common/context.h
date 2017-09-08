@@ -37,14 +37,14 @@ private:
     std::tuple<std::unique_ptr<Args>...> _implsPtr;
 };
 
-class CanDeviceInterface;
+struct CanDeviceInterface;
 typedef Context<CanDeviceInterface> CanDeviceCtx;
 
-class CRSGuiInterface;
-class NLMFactoryInterface;
+struct CRSGuiInterface;
+struct NLMFactoryInterface;
 typedef Context<CRSGuiInterface, NLMFactoryInterface> CanRawSenderCtx;
 
-class CRVGuiInterface;
+struct CRVGuiInterface;
 typedef Context<CRVGuiInterface> CanRawViewCtx;
 
 #endif /* !__CONTEXT_H */
