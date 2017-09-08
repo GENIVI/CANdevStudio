@@ -16,8 +16,8 @@ class CanRawSender : public QObject {
     Q_DECLARE_PRIVATE(CanRawSender)
 
 public:
-    explicit CanRawSender();
-    explicit CanRawSender(CanRawSenderCtx *ctx);
+    CanRawSender();
+    explicit CanRawSender(CanRawSenderCtx &&ctx);
     ~CanRawSender();
     int getLineCount() const;
     void saveSettings(QJsonObject& json) const;

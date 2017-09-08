@@ -26,7 +26,7 @@ public:
     /// \brief Create new CanRawSenderPrivate class
     /// \param[in] q Pointer to CanRawSender class
     /// \param[in] ctx CanRawSender context
-    CanRawSenderPrivate(CanRawSender* q, CanRawSenderCtx *ctx = new CanRawSenderCtx(new CRSGui, new NLMFactory));
+    CanRawSenderPrivate(CanRawSender* q, CanRawSenderCtx &&ctx = CanRawSenderCtx(new CRSGui, new NLMFactory));
 
     /// \brief destructor
     virtual ~CanRawSenderPrivate() = default;
@@ -63,11 +63,11 @@ private slots:
     void dockUndock();
 
 public:
+    CanRawSenderCtx _ctx;
     CRSGuiInterface &mUi;
     NLMFactoryInterface &nlmFactory;
 
 private:
-    std::unique_ptr<CanRawSenderCtx> _ctx;
     std::vector<std::unique_ptr<NewLineManager>> lines;
     QStandardItemModel tvModel;
     CanRawSender* canRawSender;

@@ -7,8 +7,8 @@ CanRawSender::CanRawSender()
 {
 }
 
-CanRawSender::CanRawSender(CanRawSenderCtx *ctx)
-    : d_ptr(new CanRawSenderPrivate(this, ctx))
+CanRawSender::CanRawSender(CanRawSenderCtx &&ctx)
+    : d_ptr(new CanRawSenderPrivate(this, std::move(ctx)))
 {
 }
 

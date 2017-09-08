@@ -2,10 +2,10 @@
 #include "canrawsender.h"
 #include <QJsonArray>
 
-CanRawSenderPrivate::CanRawSenderPrivate(CanRawSender* q, CanRawSenderCtx *ctx)
-    : mUi(ctx->get<CRSGuiInterface>())
-    , nlmFactory(ctx->get<NLMFactoryInterface>())
-    , _ctx(ctx)
+CanRawSenderPrivate::CanRawSenderPrivate(CanRawSender* q, CanRawSenderCtx &&ctx)
+    : _ctx(std::move(ctx))
+    , mUi(_ctx.get<CRSGuiInterface>())
+    , nlmFactory(_ctx.get<NLMFactoryInterface>())
     , canRawSender(q)
     , simulationState(false)
     , columnsOrder({ "Id", "Data", "Loop", "Interval", "" })
@@ -81,7 +81,7 @@ void CanRawSenderPrivate::addNewItem()
 {
     QList<QStandardItem*> list{};
     tvModel.appendRow(list);
-    auto newLine = std::make_unique<NewLineManager>(canRawSender, simulationState, _ctx->get<NLMFactoryInterface>());
+    auto newLine = std::make_unique<NewLineManager>(canRawSender, simulationState, nlmFactory);
     for (NewLineManager::ColName ii : NewLineManager::ColNameIterator()) {
         mUi.setIndexWidget(tvModel.index(tvModel.rowCount() - 1, static_cast<int>(ii)), newLine->GetColsWidget(ii));
     }
