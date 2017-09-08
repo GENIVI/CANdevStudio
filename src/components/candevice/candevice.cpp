@@ -7,7 +7,7 @@ CanDevice::CanDevice()
 {
 }
 
-CanDevice::CanDevice(CanDeviceCtx &&ctx)
+CanDevice::CanDevice(CanDeviceCtx&& ctx)
     : d_ptr(new CanDevicePrivate(std::move(ctx)))
 {
 }
@@ -21,15 +21,17 @@ bool CanDevice::init(const QString& backend, const QString& interface)
     Q_D(CanDevice);
     QString errorString;
 
-    d->_canDevice.init(backend, interface);
+    d->_initialized = false;
 
-    d->_canDevice.setFramesWrittenCbk(std::bind(&CanDevice::framesWritten, this, std::placeholders::_1));
-    d->_canDevice.setFramesReceivedCbk(std::bind(&CanDevice::framesReceived, this));
-    d->_canDevice.setErrorOccurredCbk(std::bind(&CanDevice::errorOccurred, this, std::placeholders::_1));
+    if (d->_canDevice.init(backend, interface)) {
+        d->_canDevice.setFramesWrittenCbk(std::bind(&CanDevice::framesWritten, this, std::placeholders::_1));
+        d->_canDevice.setFramesReceivedCbk(std::bind(&CanDevice::framesReceived, this));
+        d->_canDevice.setErrorOccurredCbk(std::bind(&CanDevice::errorOccurred, this, std::placeholders::_1));
 
-    initialized = true;
+        d->_initialized = true;
+    }
 
-    return true;
+    return d->_initialized;
 }
 
 void CanDevice::sendFrame(const QCanBusFrame& frame)
@@ -37,7 +39,7 @@ void CanDevice::sendFrame(const QCanBusFrame& frame)
     Q_D(CanDevice);
     bool status = false;
 
-    if (!initialized) {
+    if (!d->_initialized) {
         return;
     }
 
@@ -57,7 +59,7 @@ bool CanDevice::start()
 {
     Q_D(CanDevice);
 
-    if (!initialized) {
+    if (!d->_initialized) {
         return false;
     }
 
@@ -66,10 +68,11 @@ bool CanDevice::start()
 
 void CanDevice::framesReceived()
 {
-    if (!initialized) {
+    Q_D(CanDevice);
+
+    if (!d->_initialized) {
         return;
     }
-    Q_D(CanDevice);
 
     while (static_cast<bool>(d->_canDevice.framesAvailable())) {
         const QCanBusFrame frame = d->_canDevice.readFrame();

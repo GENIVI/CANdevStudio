@@ -15,6 +15,7 @@ public:
     CanDeviceCtx _ctx;
     QVector<QCanBusFrame> _sendQueue;
     CanDeviceInterface &_canDevice;
+    bool _initialized = false;
 };
 
 #endif /* !__CANDEVICE_P_H */

@@ -43,7 +43,8 @@ struct CanDeviceQt : public CanDeviceInterface {
 
         if (!_device) {
             cds_error("Failed to create candevice");
-            throw std::runtime_error("Unable to create candevice");
+
+            return false;
         }
 
         return true;
