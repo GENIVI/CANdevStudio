@@ -7,6 +7,7 @@
 #include <fakeit.hpp>
 #include <log.hpp>
 #include <newlinemanager.h>
+#include <QtWidgets/QApplication>
 
 std::shared_ptr<spdlog::logger> kDefaultLogger;
 int id = qRegisterMetaType<QCanBusFrame>("QCanBusFrame");
@@ -134,20 +135,15 @@ TEST_CASE("Send button clicked - send one frame test", "[newlinemanager]")
     CHECK(canRawSenderSpy.count() > 0);
 }
 
-/* TODO
- * Problem with QTimer expired test
- * Debuger description: QObject::startTimer: Timers can only be used with threads started with QThread
 TEST_CASE("Send button clicked - send several frame test", "[newlinemanager]")
 {
     using namespace fakeit;
-    Mock<CRSFactoryInterface> factoryMock;
-    Mock<CRSGuiInterface> crsMock;
     PushButtonInterface::pressed_t pressedCbk;
-    Mock<NLMFactoryInterface> nlmFactoryMock;
-    Mock<CheckBoxInterface> nlmCheckBoxMock;
-    Mock<LineEditInterface> nlmLineEditMock;
-    Mock<PushButtonInterface> nlmPushButtonMock;
 
+    Mock<NLMFactoryInterface> nlmFactoryMock;
+    Fake(Dtor(nlmFactoryMock));
+
+    Mock<CRSGuiInterface> crsMock;
     Fake(Dtor(crsMock));
     Fake(Method(crsMock, setAddCbk));
     Fake(Method(crsMock, setRemoveCbk));
@@ -157,9 +153,7 @@ TEST_CASE("Send button clicked - send several frame test", "[newlinemanager]")
     Fake(Method(crsMock, getSelectedRows));
     Fake(Method(crsMock, setIndexWidget));
 
-    When(Method(factoryMock, createGui)).Return(&crsMock.get());
-    CanRawSender canRawSender{ factoryMock.get() };
-
+    Mock<LineEditInterface> nlmLineEditMock;
     Fake(Dtor(nlmLineEditMock));
     Fake(Method(nlmLineEditMock, textChangedCbk));
     Fake(Method(nlmLineEditMock, getMainWidget));
@@ -171,12 +165,14 @@ TEST_CASE("Send button clicked - send several frame test", "[newlinemanager]")
     When(Method(nlmLineEditMock, getText)).Return("2", "2", "1");
     When(Method(nlmFactoryMock, createLineEdit)).AlwaysDo([&]() {return &nlmLineEditMock.get();});
 
+    Mock<CheckBoxInterface> nlmCheckBoxMock;
     Fake(Dtor(nlmCheckBoxMock));
     Fake(Method(nlmCheckBoxMock, releasedCbk));
     Fake(Method(nlmCheckBoxMock, getMainWidget));
     When(Method(nlmCheckBoxMock, getState)).Return(true);
     When(Method(nlmFactoryMock, createCheckBox)).Return(&nlmCheckBoxMock.get());
 
+    Mock<PushButtonInterface> nlmPushButtonMock;
     Fake(Dtor(nlmPushButtonMock));
     Fake(Method(nlmPushButtonMock, init));
     When(Method(nlmPushButtonMock, pressedCbk)).Do([&](auto&& fn) { pressedCbk = fn; });;
@@ -185,16 +181,15 @@ TEST_CASE("Send button clicked - send several frame test", "[newlinemanager]")
     Fake(Method(nlmPushButtonMock, isEnabled));
     When(Method(nlmFactoryMock, createPushButton)).Return(&nlmPushButtonMock.get());
 
+    CanRawSender canRawSender(CanRawSenderCtx(&crsMock.get(), &nlmFactoryMock.get()));
     NewLineManager newLineMgr{ &canRawSender, true, nlmFactoryMock.get()};
     QSignalSpy canRawSenderSpy(&canRawSender, &CanRawSender::sendFrame);
     pressedCbk();
     CHECK(canRawSenderSpy.count() == 1);
-    //sleep(1);
-    //canRawSenderSpy.wait(1000);
-    //while (canRawSenderSpy.count() < 2) { QThread::msleep(100);}
+    canRawSenderSpy.wait(100);
     CHECK(canRawSenderSpy.count() > 1);
 }
-*/
+
 TEST_CASE("Get columns wigdet test", "[newlinemanager]")
 {
     using namespace fakeit;
@@ -254,5 +249,6 @@ int main(int argc, char* argv[])
         kDefaultLogger->set_level(spdlog::level::debug);
     }
     cds_debug("Staring canrawsender unit tests");
+    QApplication a(argc, argv); // QApplication must exist when contructing QWidgets TODO check QTest
     return Catch::Session().run(argc, argv);
 }
