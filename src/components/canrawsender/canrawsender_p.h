@@ -34,6 +34,8 @@ public:
         , simulationState(false)
         , columnsOrder({ "Id", "Data", "Loop", "Interval", "" })
     {
+        // NOTE: Implementation must be kept here. Otherwise VS2015 fails to link.
+
         tvModel.setHorizontalHeaderLabels(columnsOrder);
 
         mUi.initTableView(tvModel);
