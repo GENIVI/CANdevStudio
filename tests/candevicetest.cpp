@@ -1,15 +1,16 @@
-
+#define private public
 #include <candevice/candevice.h>
+#undef private
+
 #define CATCH_CONFIG_RUNNER
 #include <QtSerialBus/QCanBusDevice>
 #include <candeviceinterface.hpp>
 #include <context.h>
 #include <fakeit.hpp>
-
 #include "log.hpp"
-std::shared_ptr<spdlog::logger> kDefaultLogger;
-
 #include <QSignalSpy>
+
+std::shared_ptr<spdlog::logger> kDefaultLogger;
 // needed for QSignalSpy cause according to qtbug 49623 comments
 // automatic detection of types is "flawed" in moc
 Q_DECLARE_METATYPE(QCanBusFrame);
@@ -26,7 +27,13 @@ bool isEqual(const QCanBusFrame& f1, const QCanBusFrame& f2)
 TEST_CASE("Initialization failed", "[candevice]")
 {
     CanDevice canDevice;
+    QCanBusFrame frame;
+
     CHECK(canDevice.init("", "") == false);
+
+    REQUIRE_NOTHROW(canDevice.framesReceived());
+    REQUIRE_NOTHROW(canDevice.start());
+    REQUIRE_NOTHROW(canDevice.sendFrame(frame));
 }
 
 TEST_CASE("Initialization succedded", "[candevice]")

@@ -1,18 +1,15 @@
 #include <QtWidgets/QApplication>
 #include <candevice/candevicemodel.h>
-
 #define CATCH_CONFIG_RUNNER
+#include "log.hpp"
+#include <QSignalSpy>
+#include <datamodeltypes/candevicedata.h>
 #include <fakeit.hpp>
 
-#include "log.hpp"
 std::shared_ptr<spdlog::logger> kDefaultLogger;
-
-#include <QSignalSpy>
 // needed for QSignalSpy cause according to qtbug 49623 comments
 // automatic detection of types is "flawed" in moc
 Q_DECLARE_METATYPE(QCanBusFrame);
-
-#include <datamodeltypes/candevicedata.h>
 
 TEST_CASE("Test basic functionality", "[candevice]")
 {
@@ -24,6 +21,8 @@ TEST_CASE("Test basic functionality", "[candevice]")
     CHECK(canDeviceModel.resizable() == false);
     CHECK(dynamic_cast<CanDeviceModel*>(canDeviceModel.clone().get()) != nullptr);
     CHECK(dynamic_cast<QLabel*>(canDeviceModel.embeddedWidget()) != nullptr);
+
+    apply_model_visitor(canDeviceModel, [](CanDeviceModel& m) { m.caption(); });
 }
 
 TEST_CASE("Port information", "[candevice]")
@@ -38,6 +37,7 @@ TEST_CASE("Port information", "[candevice]")
     CHECK(canDeviceModel.dataType(PortType::Out, 0).name == canDeviceDataOut.type().name);
     CHECK(canDeviceModel.dataType(PortType::In, 0).id == canDeviceDataIn.type().id);
     CHECK(canDeviceModel.dataType(PortType::In, 0).name == canDeviceDataIn.type().name);
+    REQUIRE_NOTHROW(canDeviceModel.setInData(nullptr, 0));
 }
 
 TEST_CASE("Calling frameReceived emits dataUpdated and outData returns that frame", "[candevice]")
