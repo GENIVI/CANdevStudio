@@ -1,13 +1,14 @@
 #ifndef CANRAWSENDER_P_H
 #define CANRAWSENDER_P_H
 
-#include "crsfactory.hpp"
 #include "gui/crsgui.hpp"
 #include "newlinemanager.h"
 #include "ui_canrawsender.h"
 #include <QJsonObject>
 #include <QtGui/QStandardItemModel>
+#include <context.h>
 #include <memory>
+#include <nlmfactory.hpp>
 
 namespace Ui {
 class CanRawSenderPrivate;
@@ -24,13 +25,25 @@ public:
     /// \brief constructor
     /// \brief Create new CanRawSenderPrivate class
     /// \param[in] q Pointer to CanRawSender class
-    CanRawSenderPrivate(CanRawSender* q);
+    /// \param[in] ctx CanRawSender context
+    CanRawSenderPrivate(CanRawSender* q, CanRawSenderCtx&& ctx = CanRawSenderCtx(new CRSGui, new NLMFactory))
+        : _ctx(std::move(ctx))
+        , mUi(_ctx.get<CRSGuiInterface>())
+        , nlmFactory(_ctx.get<NLMFactoryInterface>())
+        , canRawSender(q)
+        , simulationState(false)
+        , columnsOrder({ "Id", "Data", "Loop", "Interval", "" })
+    {
+        // NOTE: Implementation must be kept here. Otherwise VS2015 fails to link.
 
-    /// \brief constructor
-    /// \brief Create new CanRawSenderPrivate class
-    /// \param[in] q Pointer to CanRawSender class
-    /// \param[in] factory Reference to factory inteface
-    CanRawSenderPrivate(CanRawSender* q, CRSFactoryInterface& factory);
+        tvModel.setHorizontalHeaderLabels(columnsOrder);
+
+        mUi.initTableView(tvModel);
+
+        mUi.setAddCbk(std::bind(&CanRawSenderPrivate::addNewItem, this));
+        mUi.setRemoveCbk(std::bind(&CanRawSenderPrivate::removeRowsSelectedByMouse, this));
+        mUi.setDockUndockCbk(std::bind(&CanRawSenderPrivate::dockUndock, this));
+    }
 
     /// \brief destructor
     virtual ~CanRawSenderPrivate() = default;
@@ -67,15 +80,15 @@ private slots:
     void dockUndock();
 
 public:
-    CRSFactoryInterface& mFactory;
-    std::unique_ptr<CRSGuiInterface> mUi;
+    CanRawSenderCtx _ctx;
+    CRSGuiInterface& mUi;
+    NLMFactoryInterface& nlmFactory;
 
 private:
     std::vector<std::unique_ptr<NewLineManager>> lines;
     QStandardItemModel tvModel;
     CanRawSender* canRawSender;
     bool simulationState;
-    CRSFactory mDefFactory;
     int currentIndex;
     QStringList columnsOrder;
 };

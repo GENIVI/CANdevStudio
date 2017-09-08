@@ -2,55 +2,97 @@
 #define CANDEVICEQT_HPP_JYBV8GIQ
 
 #include "candeviceinterface.hpp"
-
 #include <QtSerialBus/QCanBus>
 #include <QtSerialBus/QCanBusDevice>
+#include <log.hpp>
 
 struct CanDeviceQt : public CanDeviceInterface {
-    CanDeviceQt(const QString& backend, const QString& iface)
-    {
-        _device = QCanBus::instance()->createDevice(backend.toUtf8(), iface);
-        if (!_device) {
-            throw std::runtime_error("Unable to create candevice");
-        }
-    }
-
     virtual void setFramesWrittenCbk(const framesWritten_t& cb) override
     {
-        QObject::connect(_device, &QCanBusDevice::framesWritten, cb);
+        if (_device) {
+            QObject::connect(_device.get(), &QCanBusDevice::framesWritten, cb);
+        } else {
+            cds_error("Calling connect on null CAN device");
+            throw std::runtime_error("Calling connect on null CAN device");
+        }
     }
 
     virtual void setFramesReceivedCbk(const framesReceived_t& cb) override
     {
-        QObject::connect(_device, &QCanBusDevice::framesReceived, cb);
+        if (_device) {
+            QObject::connect(_device.get(), &QCanBusDevice::framesReceived, cb);
+        } else {
+            cds_error("Calling connect on null CAN device");
+            throw std::runtime_error("Calling connect on null CAN device");
+        }
     }
 
     virtual void setErrorOccurredCbk(const errorOccurred_t& cb) override
     {
-        QObject::connect(_device, &QCanBusDevice::errorOccurred, cb);
+        if (_device) {
+            QObject::connect(_device.get(), &QCanBusDevice::errorOccurred, cb);
+        } else {
+            cds_error("Calling connect on null CAN device");
+            throw std::runtime_error("Calling connect on null CAN device");
+        }
+    }
+
+    virtual bool init(const QString& backend, const QString& iface) override
+    {
+        _device.reset(QCanBus::instance()->createDevice(backend.toUtf8(), iface));
+
+        if (!_device) {
+            cds_error("Failed to create candevice");
+
+            return false;
+        }
+
+        return true;
     }
 
     virtual bool writeFrame(const QCanBusFrame& frame) override
     {
-        return _device->writeFrame(frame);
+        if (_device) {
+            return _device->writeFrame(frame);
+        } else {
+            cds_error("candevice is null. Call init firts!");
+            throw std::runtime_error("candevice is null. Call init first!");
+        }
+
+        return false;
     }
 
     virtual bool connectDevice() override
     {
-        return _device->connectDevice();
+        if (_device) {
+            return _device->connectDevice();
+        } else {
+            cds_error("candevice is null. Call init firts!");
+            throw std::runtime_error("candevice is null. Call init first!");
+        }
     }
     virtual qint64 framesAvailable() override
     {
-        return _device->framesAvailable();
+        if (_device) {
+            return _device->framesAvailable();
+        } else {
+            cds_error("candevice is null. Call init firts!");
+            throw std::runtime_error("candevice is null. Call init first!");
+        }
     }
 
-    virtual QCanBusFrame readFrame() noexcept override
+    virtual QCanBusFrame readFrame() override
     {
-        return _device->readFrame();
+        if (_device) {
+            return _device->readFrame();
+        } else {
+            cds_error("candevice is null. Call init firts!");
+            throw std::runtime_error("candevice is null. Call init first!");
+        }
     }
 
 private:
-    QCanBusDevice* _device = nullptr;
+    std::unique_ptr<QCanBusDevice> _device;
 };
 
 #endif /* end of include guard: CANDEVICEQT_HPP_JYBV8GIQ */

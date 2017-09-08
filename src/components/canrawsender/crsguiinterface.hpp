@@ -25,6 +25,5 @@ struct CRSGuiInterface {
     virtual void initTableView(QAbstractItemModel& tvModel) = 0;
     virtual QModelIndexList getSelectedRows() = 0;
     virtual void setIndexWidget(const QModelIndex& index, QWidget* widget) = 0;
-    virtual std::unique_ptr<NewLineManager> newLine(CanRawSender* q_ptr, bool simulationState) = 0;
 };
 #endif // CRSGUIINTERFACE_HPP

@@ -60,12 +60,6 @@ public:
     /// \brief Create new line manager class
     /// \param[in] q Pointer to CanRawSender class
     /// \param[in] simulationState Actual simulation state
-    NewLineManager(CanRawSender* q, bool simulationState);
-
-    /// \brief constructor
-    /// \brief Create new line manager class
-    /// \param[in] q Pointer to CanRawSender class
-    /// \param[in] simulationState Actual simulation state
     /// \param[in] factory Reference to the factory interface
     /// \throw if CanRawSender pointer not exist
     NewLineManager(CanRawSender* q, bool simulationState, NLMFactoryInterface& factory);
@@ -111,7 +105,6 @@ private:
     QValidator* vIdHex;
     QValidator* vDataHex;
 
-    NLMFactory mDefFactory;
     NLMFactoryInterface& mFactory;
     std::unique_ptr<CheckBoxInterface> mCheckBox;
     std::unique_ptr<LineEditInterface> mId;

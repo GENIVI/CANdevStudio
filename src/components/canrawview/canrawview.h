@@ -3,12 +3,11 @@
 
 #include <QtCore/QObject>
 #include <QtCore/QScopedPointer>
-#include <QtWidgets/QWidget>
 #include <memory>
+#include <context.h>
 
 class QCanBusFrame;
 class CanRawViewPrivate;
-struct CRVFactoryInterface;
 class QWidget;
 
 class CanRawView : public QObject {
@@ -16,8 +15,8 @@ class CanRawView : public QObject {
     Q_DECLARE_PRIVATE(CanRawView)
 
 public:
-    explicit CanRawView();
-    explicit CanRawView(CRVFactoryInterface& factory);
+    CanRawView();
+    explicit CanRawView(CanRawViewCtx &&ctx);
     ~CanRawView();
 
     void saveSettings(QJsonObject& json) const;
@@ -26,7 +25,7 @@ public:
 signals:
     void dockUndock();
 
-public Q_SLOTS:
+public slots:
     void frameReceived(const QCanBusFrame& frame);
     void frameSent(bool status, const QCanBusFrame& frame);
     void stopSimulation(void);
