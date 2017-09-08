@@ -8,7 +8,6 @@
 
 class QCanBusFrame;
 class CanRawSenderPrivate;
-struct CRSFactoryInterface;
 class QWidget;
 
 class CanRawSender : public QObject {
