@@ -13,12 +13,6 @@ var dir_94e65932f1e05d44d79da8e98a8aee4c =
     [ "canrawsendermodel.h", "canrawsendermodel_8h.html", [
       [ "CanRawSenderModel", "class_can_raw_sender_model.html", "class_can_raw_sender_model" ]
     ] ],
-    [ "crsfactory.hpp", "crsfactory_8hpp.html", [
-      [ "CRSFactory", "struct_c_r_s_factory.html", "struct_c_r_s_factory" ]
-    ] ],
-    [ "crsfactoryinterface.hpp", "crsfactoryinterface_8hpp.html", [
-      [ "CRSFactoryInterface", "struct_c_r_s_factory_interface.html", "struct_c_r_s_factory_interface" ]
-    ] ],
     [ "crsguiinterface.hpp", "crsguiinterface_8hpp.html", [
       [ "CRSGuiInterface", "struct_c_r_s_gui_interface.html", "struct_c_r_s_gui_interface" ]
     ] ],

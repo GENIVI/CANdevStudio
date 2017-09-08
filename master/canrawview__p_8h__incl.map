@@ -1,8 +1,6 @@
 <map id="src/components/canrawview/canrawview_p.h" name="src/components/canrawview/canrawview_p.h">
-<area shape="rect" id="node2" href="$crvfactory_8hpp.html" title="crvfactory.hpp" alt="" coords="125,95,236,121"/>
-<area shape="rect" id="node4" href="$crvgui_8hpp.html" title="crvgui.hpp" alt="" coords="199,169,287,196"/>
-<area shape="rect" id="node10" href="$log_8hpp.html" title="log.hpp" alt="" coords="437,95,506,121"/>
-<area shape="rect" id="node15" href="$uniquefiltermodel_8h.html" title="uniquefiltermodel.h" alt="" coords="531,95,676,121"/>
-<area shape="rect" id="node3" href="$crvfactoryinterface_8hpp.html" title="crvfactoryinterface.hpp" alt="" coords="5,169,175,196"/>
-<area shape="rect" id="node5" href="$crvguiinterface_8hpp.html" title="crvguiinterface.hpp" alt="" coords="47,244,191,271"/>
+<area shape="rect" id="node2" href="$crvgui_8hpp.html" title="gui/crvgui.hpp" alt="" coords="189,95,299,121"/>
+<area shape="rect" id="node8" href="$uniquefiltermodel_8h.html" title="uniquefiltermodel.h" alt="" coords="513,95,658,121"/>
+<area shape="rect" id="node15" href="$log_8hpp.html" title="log.hpp" alt="" coords="419,95,488,121"/>
+<area shape="rect" id="node3" href="$crvguiinterface_8hpp.html" title="crvguiinterface.hpp" alt="" coords="152,169,296,196"/>
 </map>

@@ -1,3 +1,5 @@
 <map id="CanRawSenderPrivate" name="CanRawSenderPrivate">
-<area shape="rect" id="node3" href="$struct_c_r_s_factory_interface.html" title="CRSFactoryInterface" alt="" coords="103,5,253,32"/>
+<area shape="rect" id="node3" href="$struct_c_r_s_gui_interface.html" title="CRSGuiInterface" alt="" coords="40,56,165,83"/>
+<area shape="rect" id="node4" href="$struct_context.html" title="Context\&lt; CRSGuiInterface,\l NLMFactoryInterface \&gt;" alt="" coords="5,107,200,149"/>
+<area shape="rect" id="node5" href="$struct_n_l_m_factory_interface.html" title="NLMFactoryInterface" alt="" coords="27,173,179,200"/>
 </map>

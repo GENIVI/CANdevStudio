@@ -1,7 +1,7 @@
 var class_can_raw_view =
 [
     [ "CanRawView", "class_can_raw_view.html#a750e40a125bcaa35794cb82fc18ede00", null ],
-    [ "CanRawView", "class_can_raw_view.html#a8f6a27e713b7b90f0f5cf37698400246", null ],
+    [ "CanRawView", "class_can_raw_view.html#a04031807543a5932a28acc3375cf807c", null ],
     [ "~CanRawView", "class_can_raw_view.html#a61e97fe7ae8b79740408311f4a243f82", null ],
     [ "dockUndock", "class_can_raw_view.html#aeda778fc33282d5380f9676ebfabf5dd", null ],
     [ "frameReceived", "class_can_raw_view.html#ace7bb231aa483369b389d02b353a8a17", null ],

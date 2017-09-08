@@ -8,7 +8,6 @@ var class_new_line_manager =
       [ "IntervalLine", "class_new_line_manager.html#a69f0c8e8a1213f641d43b7aa019e87dca346e881b63154e5471f78b7708e6a1f4", null ],
       [ "SendButton", "class_new_line_manager.html#a69f0c8e8a1213f641d43b7aa019e87dca50e95d533a998dcfd6c4614c140997a0", null ]
     ] ],
-    [ "NewLineManager", "class_new_line_manager.html#a4299add56da0cbcb7381d7763b4d1982", null ],
     [ "NewLineManager", "class_new_line_manager.html#a00ff5b0ab566bad65bbc95bbfcc20029", null ],
     [ "GetColsWidget", "class_new_line_manager.html#a6c1bc00584da388c96113a07886297a8", null ],
     [ "Line2Json", "class_new_line_manager.html#aa7d83fa77ccb7bc7b37ee6645117eb4a", null ],

@@ -1,6 +1,5 @@
 <map id="src/components/candevice/candevice_p.h" name="src/components/candevice/candevice_p.h">
-<area shape="rect" id="node2" href="$candeviceinterface_8hpp.html" title="candeviceinterface.hpp" alt="" coords="149,244,319,271"/>
-<area shape="rect" id="node6" href="$canfactoryqt_8hpp.html" title="canfactoryqt.hpp" alt="" coords="175,95,306,121"/>
-<area shape="rect" id="node7" href="$candeviceqt_8hpp.html" title="candeviceqt.hpp" alt="" coords="381,169,508,196"/>
-<area shape="rect" id="node10" href="$canfactory_8hpp.html" title="canfactory.hpp" alt="" coords="95,169,210,196"/>
+<area shape="rect" id="node2" href="$candeviceqt_8hpp.html" title="candeviceqt.hpp" alt="" coords="485,95,612,121"/>
+<area shape="rect" id="node3" href="$candeviceinterface_8hpp.html" title="candeviceinterface.hpp" alt="" coords="171,169,342,196"/>
+<area shape="rect" id="node9" href="$log_8hpp.html" title="log.hpp" alt="" coords="777,169,846,196"/>
 </map>

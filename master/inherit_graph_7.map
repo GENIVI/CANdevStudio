@@ -1,4 +1,3 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$struct_c_r_s_gui_interface.html" title="CRSGuiInterface" alt="" coords="5,5,131,32"/>
-<area shape="rect" id="node2" href="$struct_c_r_s_gui.html" title="CRSGui" alt="" coords="179,5,248,32"/>
+<area shape="rect" id="node1" href="$struct_context.html" title="Context\&lt; CRSGuiInterface,\l NLMFactoryInterface \&gt;" alt="" coords="5,5,200,47"/>
 </map>

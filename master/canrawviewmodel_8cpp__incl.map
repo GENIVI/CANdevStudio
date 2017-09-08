@@ -1,10 +1,11 @@
 <map id="src/components/canrawview/canrawviewmodel.cpp" name="src/components/canrawview/canrawviewmodel.cpp">
-<area shape="rect" id="node2" href="$canrawviewmodel_8h.html" title="canrawviewmodel.h" alt="" coords="615,95,761,121"/>
-<area shape="rect" id="node19" href="$canrawviewdata_8h.html" title="datamodeltypes/canrawviewdata.h" alt="" coords="331,95,573,121"/>
-<area shape="rect" id="node21" href="$log_8hpp.html" title="log.hpp" alt="" coords="1236,95,1305,121"/>
-<area shape="rect" id="node3" href="$modelvisitor_8h.html" title="modelvisitor.h" alt="" coords="193,169,303,196"/>
-<area shape="rect" id="node10" href="$visitablewith_8h.html" title="visitablewith.h" alt="" coords="389,319,499,345"/>
-<area shape="rect" id="node13" href="$canrawview_8h.html" title="canrawview.h" alt="" coords="726,169,831,196"/>
-<area shape="rect" id="node6" href="$visitor_8h.html" title="visitor.h" alt="" coords="139,244,210,271"/>
-<area shape="rect" id="node20" href="$candevicedata_8h.html" title="candevicedata.h" alt="" coords="371,169,498,196"/>
+<area shape="rect" id="node2" href="$canrawviewmodel_8h.html" title="canrawviewmodel.h" alt="" coords="1153,95,1299,121"/>
+<area shape="rect" id="node19" href="$canrawviewdata_8h.html" title="datamodeltypes/canrawviewdata.h" alt="" coords="1489,95,1731,121"/>
+<area shape="rect" id="node21" href="$log_8hpp.html" title="log.hpp" alt="" coords="339,95,409,121"/>
+<area shape="rect" id="node3" href="$modelvisitor_8h.html" title="modelvisitor.h" alt="" coords="1027,169,1137,196"/>
+<area shape="rect" id="node10" href="$visitablewith_8h.html" title="visitablewith.h" alt="" coords="1121,319,1232,345"/>
+<area shape="rect" id="node13" href="$canrawview_8h.html" title="canrawview.h" alt="" coords="700,169,805,196"/>
+<area shape="rect" id="node6" href="$visitor_8h.html" title="visitor.h" alt="" coords="1016,244,1087,271"/>
+<area shape="rect" id="node16" href="$context_8h.html" title="context.h" alt="" coords="711,244,794,271"/>
+<area shape="rect" id="node20" href="$candevicedata_8h.html" title="candevicedata.h" alt="" coords="1683,169,1809,196"/>
 </map>

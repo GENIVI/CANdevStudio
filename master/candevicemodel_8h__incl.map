@@ -1,6 +1,7 @@
 <map id="src/components/candevice/candevicemodel.h" name="src/components/candevice/candevicemodel.h">
-<area shape="rect" id="node2" href="$modelvisitor_8h.html" title="modelvisitor.h" alt="" coords="229,95,339,121"/>
-<area shape="rect" id="node9" href="$visitablewith_8h.html" title="visitablewith.h" alt="" coords="403,244,514,271"/>
-<area shape="rect" id="node14" href="$candevice_8h.html" title="candevice.h" alt="" coords="1009,95,1108,121"/>
-<area shape="rect" id="node5" href="$visitor_8h.html" title="visitor.h" alt="" coords="249,169,319,196"/>
+<area shape="rect" id="node2" href="$modelvisitor_8h.html" title="modelvisitor.h" alt="" coords="149,95,259,121"/>
+<area shape="rect" id="node9" href="$visitablewith_8h.html" title="visitablewith.h" alt="" coords="309,244,419,271"/>
+<area shape="rect" id="node14" href="$candevice_8h.html" title="candevice.h" alt="" coords="497,95,596,121"/>
+<area shape="rect" id="node5" href="$visitor_8h.html" title="visitor.h" alt="" coords="95,169,166,196"/>
+<area shape="rect" id="node16" href="$context_8h.html" title="context.h" alt="" coords="633,169,716,196"/>
 </map>

@@ -1,10 +1,7 @@
 <map id="src/gui/mainwindow.h" name="src/gui/mainwindow.h">
-<area shape="rect" id="node4" href="$projectconfiguration_8h.html" title="projectconfiguration\l/projectconfiguration.h" alt="" coords="1153,80,1319,121"/>
-<area shape="rect" id="node6" href="$candevice_8h.html" title="candevice/candevice.h" alt="" coords="223,169,390,196"/>
-<area shape="rect" id="node10" href="$canfactoryqt_8hpp.html" title="candevice/canfactoryqt.hpp" alt="" coords="505,169,703,196"/>
-<area shape="rect" id="node18" href="$canrawsender_8h.html" title="canrawsender/canrawsender.h" alt="" coords="778,169,993,196"/>
-<area shape="rect" id="node21" href="$canrawview_8h.html" title="canrawview/canrawview.h" alt="" coords="1017,169,1199,196"/>
-<area shape="rect" id="node11" href="$candeviceqt_8hpp.html" title="candeviceqt.hpp" alt="" coords="397,244,523,271"/>
-<area shape="rect" id="node16" href="$canfactory_8hpp.html" title="canfactory.hpp" alt="" coords="548,244,663,271"/>
-<area shape="rect" id="node12" href="$candeviceinterface_8hpp.html" title="candeviceinterface.hpp" alt="" coords="616,319,787,345"/>
+<area shape="rect" id="node4" href="$projectconfiguration_8h.html" title="projectconfiguration\l/projectconfiguration.h" alt="" coords="651,80,816,121"/>
+<area shape="rect" id="node6" href="$candevice_8h.html" title="candevice/candevice.h" alt="" coords="361,169,527,196"/>
+<area shape="rect" id="node10" href="$canrawsender_8h.html" title="canrawsender/canrawsender.h" alt="" coords="1338,169,1553,196"/>
+<area shape="rect" id="node13" href="$canrawview_8h.html" title="canrawview/canrawview.h" alt="" coords="552,169,733,196"/>
+<area shape="rect" id="node8" href="$context_8h.html" title="context.h" alt="" coords="656,244,739,271"/>
 </map>
