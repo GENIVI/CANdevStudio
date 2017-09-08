@@ -2,23 +2,6 @@
 #include "canrawsender.h"
 #include <QJsonArray>
 
-CanRawSenderPrivate::CanRawSenderPrivate(CanRawSender* q, CanRawSenderCtx &&ctx)
-    : _ctx(std::move(ctx))
-    , mUi(_ctx.get<CRSGuiInterface>())
-    , nlmFactory(_ctx.get<NLMFactoryInterface>())
-    , canRawSender(q)
-    , simulationState(false)
-    , columnsOrder({ "Id", "Data", "Loop", "Interval", "" })
-{
-    tvModel.setHorizontalHeaderLabels(columnsOrder);
-
-    mUi.initTableView(tvModel);
-
-    mUi.setAddCbk(std::bind(&CanRawSenderPrivate::addNewItem, this));
-    mUi.setRemoveCbk(std::bind(&CanRawSenderPrivate::removeRowsSelectedByMouse, this));
-    mUi.setDockUndockCbk(std::bind(&CanRawSenderPrivate::dockUndock, this));
-}
-
 void CanRawSenderPrivate::setSimulationState(bool state)
 {
     simulationState = state;

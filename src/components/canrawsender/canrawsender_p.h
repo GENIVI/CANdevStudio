@@ -6,8 +6,8 @@
 #include "ui_canrawsender.h"
 #include <QJsonObject>
 #include <QtGui/QStandardItemModel>
-#include <memory>
 #include <context.h>
+#include <memory>
 #include <nlmfactory.hpp>
 
 namespace Ui {
@@ -26,7 +26,22 @@ public:
     /// \brief Create new CanRawSenderPrivate class
     /// \param[in] q Pointer to CanRawSender class
     /// \param[in] ctx CanRawSender context
-    CanRawSenderPrivate(CanRawSender* q, CanRawSenderCtx &&ctx = CanRawSenderCtx(new CRSGui, new NLMFactory));
+    CanRawSenderPrivate(CanRawSender* q, CanRawSenderCtx&& ctx = CanRawSenderCtx(new CRSGui, new NLMFactory))
+        : _ctx(std::move(ctx))
+        , mUi(_ctx.get<CRSGuiInterface>())
+        , nlmFactory(_ctx.get<NLMFactoryInterface>())
+        , canRawSender(q)
+        , simulationState(false)
+        , columnsOrder({ "Id", "Data", "Loop", "Interval", "" })
+    {
+        tvModel.setHorizontalHeaderLabels(columnsOrder);
+
+        mUi.initTableView(tvModel);
+
+        mUi.setAddCbk(std::bind(&CanRawSenderPrivate::addNewItem, this));
+        mUi.setRemoveCbk(std::bind(&CanRawSenderPrivate::removeRowsSelectedByMouse, this));
+        mUi.setDockUndockCbk(std::bind(&CanRawSenderPrivate::dockUndock, this));
+    }
 
     /// \brief destructor
     virtual ~CanRawSenderPrivate() = default;
@@ -64,8 +79,8 @@ private slots:
 
 public:
     CanRawSenderCtx _ctx;
-    CRSGuiInterface &mUi;
-    NLMFactoryInterface &nlmFactory;
+    CRSGuiInterface& mUi;
+    NLMFactoryInterface& nlmFactory;
 
 private:
     std::vector<std::unique_ptr<NewLineManager>> lines;
