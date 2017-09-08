@@ -3,6 +3,9 @@ var dir_0831a5814d290cf7e92d9593b826bbf3 =
     [ "crsgui.hpp", "crsgui_8hpp.html", [
       [ "CRSGui", "struct_c_r_s_gui.html", "struct_c_r_s_gui" ]
     ] ],
+    [ "crsguiinterface.hpp", "crsguiinterface_8hpp.html", [
+      [ "CRSGuiInterface", "struct_c_r_s_gui_interface.html", "struct_c_r_s_gui_interface" ]
+    ] ],
     [ "nlmcheckbox.hpp", "nlmcheckbox_8hpp.html", [
       [ "NLMCheckBox", "struct_n_l_m_check_box.html", "struct_n_l_m_check_box" ]
     ] ],
