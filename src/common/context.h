@@ -27,4 +27,7 @@ class CRSGuiInterface;
 class NLMFactoryInterface;
 typedef Context<CRSGuiInterface, NLMFactoryInterface> CanRawSenderCtx;
 
+class CRVGuiInterface;
+typedef Context<CRVGuiInterface> CanRawViewCtx;
+
 #endif /* !__CONTEXT_H */

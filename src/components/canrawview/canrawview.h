@@ -5,6 +5,7 @@
 #include <QtCore/QScopedPointer>
 #include <QtWidgets/QWidget>
 #include <memory>
+#include <context.h>
 
 class QCanBusFrame;
 class CanRawViewPrivate;
@@ -17,7 +18,7 @@ class CanRawView : public QObject {
 
 public:
     explicit CanRawView();
-    explicit CanRawView(CRVFactoryInterface& factory);
+    explicit CanRawView(CanRawViewCtx *ctx);
     ~CanRawView();
 
     void saveSettings(QJsonObject& json) const;

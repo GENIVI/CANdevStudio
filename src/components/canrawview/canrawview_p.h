@@ -1,9 +1,7 @@
 #ifndef CANRAWVIEW_P_H
 #define CANRAWVIEW_P_H
 
-#include "crvfactory.hpp"
-#include "crvgui.hpp"
-#include "log.hpp"
+#include <log.hpp>
 #include "ui_canrawview.h"
 #include "uniquefiltermodel.h"
 #include <QDebug>
@@ -15,6 +13,7 @@
 #include <QtGui/QStandardItemModel>
 #include <QtSerialBus/QCanBusFrame>
 #include <memory>
+#include "gui/crvgui.hpp"
 
 namespace Ui {
 class CanRawViewPrivate;
@@ -27,29 +26,24 @@ class CanRawViewPrivate : public QObject {
     Q_DECLARE_PUBLIC(CanRawView)
 
 public:
-    CanRawViewPrivate(CanRawView* q)
-        : CanRawViewPrivate(q, mDefFactory)
-    {
-    }
-
-    CanRawViewPrivate(CanRawView* q, CRVFactoryInterface& factory)
+    CanRawViewPrivate(CanRawView* q, CanRawViewCtx *ctx = new CanRawViewCtx(new CRVGui))
         : timer(std::make_unique<QElapsedTimer>())
         , simStarted(false)
-        , mFactory(factory)
+        , mUi(ctx->get<CRVGuiInterface>())
+        , _ctx(ctx)
         , q_ptr(q)
         , columnsOrder({ "rowID", "timeDouble", "time", "idInt", "id", "dir", "dlc", "data" })
     {
         tvModel.setHorizontalHeaderLabels(columnsOrder);
 
-        mUi.reset(mFactory.createGui());
-        mUi->initTableView(tvModel);
+        mUi.initTableView(tvModel);
         uniqueModel.setSourceModel(&tvModel);
-        mUi->setModel(&uniqueModel);
+        mUi.setModel(&uniqueModel);
 
-        mUi->setClearCbk(std::bind(&CanRawViewPrivate::clear, this));
-        mUi->setDockUndockCbk(std::bind(&CanRawViewPrivate::dockUndock, this));
-        mUi->setSectionClikedCbk(std::bind(&CanRawViewPrivate::sort, this, std::placeholders::_1));
-        mUi->setFilterCbk(std::bind(&CanRawViewPrivate::setFilter, this));
+        mUi.setClearCbk(std::bind(&CanRawViewPrivate::clear, this));
+        mUi.setDockUndockCbk(std::bind(&CanRawViewPrivate::dockUndock, this));
+        mUi.setSectionClikedCbk(std::bind(&CanRawViewPrivate::sort, this, std::placeholders::_1));
+        mUi.setFilterCbk(std::bind(&CanRawViewPrivate::setFilter, this));
     }
 
     ~CanRawViewPrivate()
@@ -64,7 +58,7 @@ public:
         writeColumnsOrder(json);
         writeSortingRules(jSortingObject);
         json["sorting"] = std::move(jSortingObject);
-        json["scrolling"] = mUi->isViewFrozen();
+        json["scrolling"] = mUi.isViewFrozen();
         writeViewModel(viewModelsArray);
         json["models"] = std::move(viewModelsArray);
     }
@@ -106,32 +100,18 @@ public:
         tvModel.appendRow(list);
 
         // Sort after reception of each frame and appending it to tvModel
-        currentSortOrder = mUi->getSortOrder();
-        int currentSortIndicator = mUi->getSortSection();
-        mUi->setSorting(sortIndex, currentSortIndicator, currentSortOrder);
+        currentSortOrder = mUi.getSortOrder();
+        int currentSortIndicator = mUi.getSortSection();
+        mUi.setSorting(sortIndex, currentSortIndicator, currentSortOrder);
 
         uniqueModel.updateFilter(frameID, time, direction);
 
-        if (!mUi->isViewFrozen()) {
-            mUi->scrollToBottom();
+        if (!mUi.isViewFrozen()) {
+            mUi.scrollToBottom();
         }
     }
 
-    std::unique_ptr<QElapsedTimer> timer;
-    QStandardItemModel tvModel;
-    UniqueFilterModel uniqueModel;
-    bool simStarted;
-    CRVFactoryInterface& mFactory;
-    std::unique_ptr<CRVGuiInterface> mUi;
-
 private:
-    CanRawView* q_ptr;
-    int rowID = 0;
-    int prevIndex = 0;
-    int sortIndex = 0;
-    Qt::SortOrder currentSortOrder = Qt::AscendingOrder;
-    QStringList columnsOrder;
-    CRVFactory mDefFactory;
 
     void writeSortingRules(QJsonObject& json) const
     {
@@ -145,7 +125,7 @@ private:
         int ii = 0;
         QJsonArray columnList;
         for (const auto& column : columnsOrder) {
-            if (mUi->isColumnHidden(ii) == false) {
+            if (mUi.isColumnHidden(ii) == false) {
                 columnList.append(column);
             }
             ++ii;
@@ -158,7 +138,7 @@ private:
         for (auto row = 0; row < tvModel.rowCount(); ++row) {
             QJsonArray lineIter;
             for (auto column = 0; column < tvModel.columnCount(); ++column) {
-                if (mUi->isColumnHidden(column) == false) {
+                if (mUi.isColumnHidden(column) == false) {
                     auto pp = tvModel.data(tvModel.index(row, column));
                     lineIter.append(std::move(pp.toString()));
                 }
@@ -187,9 +167,9 @@ private slots:
 
     void sort(const int clickedIndex)
     {
-        currentSortOrder = mUi->getSortOrder();
+        currentSortOrder = mUi.getSortOrder();
         sortIndex = clickedIndex;
-        QString clickedColumn = mUi->getClickedColumn(clickedIndex);
+        QString clickedColumn = mUi.getClickedColumn(clickedIndex);
 
         if ((clickedColumn == "time") || (clickedColumn == "id")) {
             sortIndex = sortIndex - 1;
@@ -197,14 +177,14 @@ private slots:
 
         if (prevIndex == clickedIndex) {
             if (currentSortOrder == Qt::DescendingOrder) {
-                mUi->setSorting(sortIndex, clickedIndex, Qt::DescendingOrder);
+                mUi.setSorting(sortIndex, clickedIndex, Qt::DescendingOrder);
             } else {
-                mUi->setSorting(0, 0, Qt::AscendingOrder);
+                mUi.setSorting(0, 0, Qt::AscendingOrder);
                 prevIndex = 0;
                 sortIndex = 0;
             }
         } else {
-            mUi->setSorting(sortIndex, clickedIndex, Qt::AscendingOrder);
+            mUi.setSorting(sortIndex, clickedIndex, Qt::AscendingOrder);
             prevIndex = clickedIndex;
         }
     }
@@ -213,5 +193,21 @@ private slots:
     {
         uniqueModel.toggleFilter();
     }
+
+public:
+    std::unique_ptr<QElapsedTimer> timer;
+    QStandardItemModel tvModel;
+    UniqueFilterModel uniqueModel;
+    bool simStarted;
+    CRVGuiInterface &mUi;
+
+private:
+    std::unique_ptr<CanRawViewCtx> _ctx;
+    CanRawView* q_ptr;
+    int rowID = 0;
+    int prevIndex = 0;
+    int sortIndex = 0;
+    Qt::SortOrder currentSortOrder = Qt::AscendingOrder;
+    QStringList columnsOrder;
 };
 #endif // CANRAWVIEW_P_H

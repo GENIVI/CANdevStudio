@@ -12,8 +12,8 @@ CanRawView::CanRawView()
 {
 }
 
-CanRawView::CanRawView(CRVFactoryInterface& factory)
-    : d_ptr(new CanRawViewPrivate(this, factory))
+CanRawView::CanRawView(CanRawViewCtx *ctx)
+    : d_ptr(new CanRawViewPrivate(this, ctx))
 {
 }
 
@@ -56,7 +56,7 @@ QWidget* CanRawView::getMainWidget()
 {
     Q_D(CanRawView);
 
-    return d->mUi->getMainWidget();
+    return d->mUi.getMainWidget();
 }
 
 
