@@ -1,9 +1,9 @@
 var dir_35521d952c268d36e988db3208872fa0 =
 [
-    [ "crvgui.hpp", "crvgui_8hpp.html", [
+    [ "crvgui.h", "crvgui_8h.html", [
       [ "CRVGui", "struct_c_r_v_gui.html", "struct_c_r_v_gui" ]
     ] ],
-    [ "crvguiinterface.hpp", "crvguiinterface_8hpp.html", [
+    [ "crvguiinterface.h", "crvguiinterface_8h.html", [
       [ "CRVGuiInterface", "struct_c_r_v_gui_interface.html", "struct_c_r_v_gui_interface" ]
     ] ]
 ];

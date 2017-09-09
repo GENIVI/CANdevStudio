@@ -18,10 +18,10 @@ var dir_94e65932f1e05d44d79da8e98a8aee4c =
       [ "Iterator", "class_iterator.html", "class_iterator" ],
       [ "NewLineManager", "class_new_line_manager.html", "class_new_line_manager" ]
     ] ],
-    [ "nlmfactory.hpp", "nlmfactory_8hpp.html", [
+    [ "nlmfactory.h", "nlmfactory_8h.html", [
       [ "NLMFactory", "struct_n_l_m_factory.html", "struct_n_l_m_factory" ]
     ] ],
-    [ "nlmfactoryinterface.hpp", "nlmfactoryinterface_8hpp.html", [
+    [ "nlmfactoryinterface.h", "nlmfactoryinterface_8h.html", [
       [ "NLMFactoryInterface", "struct_n_l_m_factory_interface.html", "struct_n_l_m_factory_interface" ]
     ] ]
 ];

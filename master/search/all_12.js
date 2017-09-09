@@ -28,5 +28,5 @@ var searchData=
   ['status',['status',['../class_can_device_data_out.html#aa58fee746094174d0927b1307d0597c3',1,'CanDeviceDataOut']]],
   ['stopsimulation',['stopSimulation',['../class_can_raw_sender.html#ab7dd3217bef0f70cf9ba25be9018d4f4',1,'CanRawSender::stopSimulation()'],['../class_can_raw_view.html#a1e7ae58ba92cc0130e259ae089cc8456',1,'CanRawView::stopSimulation()']]],
   ['subwindow',['SubWindow',['../struct_sub_window.html',1,'']]],
-  ['subwindow_2ehpp',['subwindow.hpp',['../subwindow_8hpp.html',1,'']]]
+  ['subwindow_2eh',['subwindow.h',['../subwindow_8h.html',1,'']]]
 ];
