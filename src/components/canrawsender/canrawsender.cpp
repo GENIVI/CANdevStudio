@@ -7,7 +7,7 @@ CanRawSender::CanRawSender()
 {
 }
 
-CanRawSender::CanRawSender(CanRawSenderCtx &&ctx)
+CanRawSender::CanRawSender(CanRawSenderCtx&& ctx)
     : d_ptr(new CanRawSenderPrivate(this, std::move(ctx)))
 {
 }
@@ -32,7 +32,7 @@ QWidget* CanRawSender::getMainWidget()
 {
     Q_D(CanRawSender);
 
-    return d->mUi.getMainWidget();
+    return d->_ui.getMainWidget();
 }
 int CanRawSender::getLineCount() const
 {

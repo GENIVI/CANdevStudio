@@ -6,7 +6,7 @@
 
 class CanDevicePrivate {
 public:
-    CanDevicePrivate(CanDeviceCtx &&ctx = CanDeviceCtx(new CanDeviceQt))
+    CanDevicePrivate(CanDeviceCtx&& ctx = CanDeviceCtx(new CanDeviceQt))
         : _ctx(std::move(ctx))
         , _canDevice(_ctx.get<CanDeviceInterface>())
     {
@@ -14,8 +14,8 @@ public:
 
     CanDeviceCtx _ctx;
     QVector<QCanBusFrame> _sendQueue;
-    CanDeviceInterface &_canDevice;
-    bool _initialized { false };
+    CanDeviceInterface& _canDevice;
+    bool _initialized{ false };
 };
 
 #endif /* !__CANDEVICE_P_H */

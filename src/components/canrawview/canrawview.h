@@ -3,8 +3,8 @@
 
 #include <QtCore/QObject>
 #include <QtCore/QScopedPointer>
-#include <memory>
 #include <context.h>
+#include <memory>
 
 class QCanBusFrame;
 class CanRawViewPrivate;
@@ -16,7 +16,7 @@ class CanRawView : public QObject {
 
 public:
     CanRawView();
-    explicit CanRawView(CanRawViewCtx &&ctx);
+    explicit CanRawView(CanRawViewCtx&& ctx);
     ~CanRawView();
 
     void saveSettings(QJsonObject& json) const;

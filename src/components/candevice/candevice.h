@@ -17,7 +17,7 @@ class CanDevice : public QObject {
 
 public:
     CanDevice();
-    CanDevice(CanDeviceCtx &&ctx);
+    CanDevice(CanDeviceCtx&& ctx);
     ~CanDevice();
 
     /**

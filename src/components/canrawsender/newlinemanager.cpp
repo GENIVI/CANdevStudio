@@ -2,9 +2,9 @@
 #include "canrawsender.h"
 #include <QRegExpValidator>
 
-NewLineManager::NewLineManager(CanRawSender* q, bool simulationState, NLMFactoryInterface& factory)
+NewLineManager::NewLineManager(CanRawSender* q, bool _simulationState, NLMFactoryInterface& factory)
     : canRawSender(q)
-    , simState(simulationState)
+    , simState(_simulationState)
     , mFactory(factory)
 {
     if (q == nullptr) {

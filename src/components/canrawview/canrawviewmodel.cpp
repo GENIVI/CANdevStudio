@@ -50,7 +50,8 @@ void CanRawViewModel::setInData(std::shared_ptr<NodeData> nodeData, PortIndex)
     }
 }
 
-QJsonObject CanRawViewModel::save() const {
+QJsonObject CanRawViewModel::save() const
+{
     QJsonObject json;
     json["name"] = name();
     canRawView.saveSettings(json);

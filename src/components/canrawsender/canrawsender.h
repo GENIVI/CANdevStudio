@@ -1,7 +1,6 @@
 #ifndef CANRAWSENDER_H
 #define CANRAWSENDER_H
 
-#include <QCloseEvent>
 #include <QtCore/QObject>
 #include <QtCore/QScopedPointer>
 #include <context.h>
@@ -16,7 +15,7 @@ class CanRawSender : public QObject {
 
 public:
     CanRawSender();
-    explicit CanRawSender(CanRawSenderCtx &&ctx);
+    explicit CanRawSender(CanRawSenderCtx&& ctx);
     ~CanRawSender();
     int getLineCount() const;
     void saveSettings(QJsonObject& json) const;

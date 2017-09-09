@@ -37,10 +37,10 @@ struct CRSGui : public CRSGuiInterface {
         return widget;
     }
 
-    void initTableView(QAbstractItemModel& tvModel) override
+    void initTableView(QAbstractItemModel& _tvModel) override
     {
 
-        ui->tv->setModel(&tvModel);
+        ui->tv->setModel(&_tvModel);
         ui->tv->setSelectionBehavior(QAbstractItemView::SelectRows);
     }
 

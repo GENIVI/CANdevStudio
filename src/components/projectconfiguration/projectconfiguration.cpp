@@ -2,7 +2,7 @@
 #include "modelvisitor.h" // apply_model_visitor
 #include "projectconfiguration_p.h"
 #include <cassert> // assert
-
+#include <QCloseEvent>
 #include <QAction>
 
 #include <candevice/candevicemodel.h>

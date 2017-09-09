@@ -12,7 +12,7 @@ CanRawView::CanRawView()
 {
 }
 
-CanRawView::CanRawView(CanRawViewCtx &&ctx)
+CanRawView::CanRawView(CanRawViewCtx&& ctx)
     : d_ptr(new CanRawViewPrivate(this, std::move(ctx)))
 {
 }
@@ -58,7 +58,6 @@ QWidget* CanRawView::getMainWidget()
 
     return d->_ui.getMainWidget();
 }
-
 
 void CanRawView::saveSettings(QJsonObject& json) const
 {

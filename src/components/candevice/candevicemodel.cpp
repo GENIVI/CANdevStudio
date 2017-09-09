@@ -71,12 +71,13 @@ void CanDeviceModel::setInData(std::shared_ptr<NodeData> nodeData, PortIndex)
     }
 }
 
-QJsonObject CanDeviceModel::save() const {
+QJsonObject CanDeviceModel::save() const
+{
     QJsonObject json;
     json["name"] = name();
 
     // TODO save can device settings
-    //canDevice->saveSettings(json);
+    // canDevice->saveSettings(json);
 
     return json;
 }

@@ -27,21 +27,21 @@ public:
     /// \param[in] ctx CanRawSender context
     CanRawSenderPrivate(CanRawSender* q, CanRawSenderCtx&& ctx = CanRawSenderCtx(new CRSGui, new NLMFactory))
         : _ctx(std::move(ctx))
-        , mUi(_ctx.get<CRSGuiInterface>())
-        , nlmFactory(_ctx.get<NLMFactoryInterface>())
-        , canRawSender(q)
-        , simulationState(false)
-        , columnsOrder({ "Id", "Data", "Loop", "Interval", "" })
+        , _ui(_ctx.get<CRSGuiInterface>())
+        , _nlmFactory(_ctx.get<NLMFactoryInterface>())
+        , _simulationState(false)
+        , _columnsOrder({ "Id", "Data", "Loop", "Interval", "" })
+        , q_ptr(q)
     {
         // NOTE: Implementation must be kept here. Otherwise VS2015 fails to link.
 
-        tvModel.setHorizontalHeaderLabels(columnsOrder);
+        _tvModel.setHorizontalHeaderLabels(_columnsOrder);
 
-        mUi.initTableView(tvModel);
+        _ui.initTableView(_tvModel);
 
-        mUi.setAddCbk(std::bind(&CanRawSenderPrivate::addNewItem, this));
-        mUi.setRemoveCbk(std::bind(&CanRawSenderPrivate::removeRowsSelectedByMouse, this));
-        mUi.setDockUndockCbk(std::bind(&CanRawSenderPrivate::dockUndock, this));
+        _ui.setAddCbk(std::bind(&CanRawSenderPrivate::addNewItem, this));
+        _ui.setRemoveCbk(std::bind(&CanRawSenderPrivate::removeRowsSelectedByMouse, this));
+        _ui.setDockUndockCbk(std::bind(&CanRawSenderPrivate::dockUndock, this));
     }
 
     /// \brief destructor
@@ -80,16 +80,16 @@ private slots:
 
 public:
     CanRawSenderCtx _ctx;
-    CRSGuiInterface& mUi;
-    NLMFactoryInterface& nlmFactory;
+    CRSGuiInterface& _ui;
+    NLMFactoryInterface& _nlmFactory;
 
 private:
-    std::vector<std::unique_ptr<NewLineManager>> lines;
-    QStandardItemModel tvModel;
-    CanRawSender* canRawSender;
-    bool simulationState;
-    int currentIndex;
-    QStringList columnsOrder;
+    std::vector<std::unique_ptr<NewLineManager>> _lines;
+    QStandardItemModel _tvModel;
+    bool _simulationState;
+    int _currentIndex;
+    QStringList _columnsOrder;
+    CanRawSender* q_ptr;
 };
 
 #endif // CANRAWSENDER_P_H
