@@ -149,28 +149,30 @@ Public Slots</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="signals"></a>
 Signals</h2></td></tr>
 <tr class="memitem:af9435aa9857695f85df63561df301a5c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_device_model.html#af9435aa9857695f85df63561df301a5c">sendFrame</a> (const QCanBusFrame &amp;frame)</td></tr>
+<tr class="memdesc:af9435aa9857695f85df63561df301a5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to send a frame.  <a href="#af9435aa9857695f85df63561df301a5c">More...</a><br /></td></tr>
 <tr class="separator:af9435aa9857695f85df63561df301a5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:add5985ec6435f710acc0b0b14c560dd1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_device_model.html#add5985ec6435f710acc0b0b14c560dd1">CanDeviceModel</a> ()</td></tr>
 <tr class="separator:add5985ec6435f710acc0b0b14c560dd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a61d3c749e0b9a6c0656d150e66877eea"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_device_model.html#a61d3c749e0b9a6c0656d150e66877eea">visit</a> (<a class="el" href="struct_can_node_data_model_visitor.html">CanNodeDataModelVisitor</a> &amp;v) override</td></tr>
-<tr class="separator:a61d3c749e0b9a6c0656d150e66877eea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4550c0e59a4d6a6ca9ea953a3081e8e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_device_model.html#ab4550c0e59a4d6a6ca9ea953a3081e8e">visit</a> (<a class="el" href="struct_can_node_data_model_visitor.html">CanNodeDataModelVisitor</a> &amp;v) override</td></tr>
+<tr class="separator:ab4550c0e59a4d6a6ca9ea953a3081e8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5ed0f335aa7537aa9d61a2080738b6b2"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_device_model.html#a5ed0f335aa7537aa9d61a2080738b6b2">caption</a> () const override</td></tr>
 <tr class="memdesc:a5ed0f335aa7537aa9d61a2080738b6b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to get node caption.  <a href="#a5ed0f335aa7537aa9d61a2080738b6b2">More...</a><br /></td></tr>
 <tr class="separator:a5ed0f335aa7537aa9d61a2080738b6b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a23c811773e449cb11429031ca6034b12"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_device_model.html#a23c811773e449cb11429031ca6034b12">name</a> () const override</td></tr>
 <tr class="memdesc:a23c811773e449cb11429031ca6034b12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to identify model by data model name.  <a href="#a23c811773e449cb11429031ca6034b12">More...</a><br /></td></tr>
 <tr class="separator:a23c811773e449cb11429031ca6034b12"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7a5964b08ad2f87cbe66140614630119"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; NodeDataModel &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_device_model.html#a7a5964b08ad2f87cbe66140614630119">clone</a> () const override</td></tr>
-<tr class="separator:a7a5964b08ad2f87cbe66140614630119"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aebc588c4a200356661e102e51ad24796"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; NodeDataModel &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_device_model.html#aebc588c4a200356661e102e51ad24796">clone</a> () const override</td></tr>
+<tr class="memdesc:aebc588c4a200356661e102e51ad24796"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates new node of the same type.  <a href="#aebc588c4a200356661e102e51ad24796">More...</a><br /></td></tr>
+<tr class="separator:aebc588c4a200356661e102e51ad24796"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aed5343c1b62b369412460503e45f1bd8"><td class="memItemLeft" align="right" valign="top">QJsonObject&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_device_model.html#aed5343c1b62b369412460503e45f1bd8">save</a> () const override</td></tr>
 <tr class="memdesc:aed5343c1b62b369412460503e45f1bd8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Possibility to save node properties.  <a href="#aed5343c1b62b369412460503e45f1bd8">More...</a><br /></td></tr>
 <tr class="separator:aed5343c1b62b369412460503e45f1bd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5aa2d2d64f1c36926e94782b682e4113"><td class="memItemLeft" align="right" valign="top">virtual QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_device_model.html#a5aa2d2d64f1c36926e94782b682e4113">modelName</a> () const </td></tr>
-<tr class="memdesc:a5aa2d2d64f1c36926e94782b682e4113"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to get model name.  <a href="#a5aa2d2d64f1c36926e94782b682e4113">More...</a><br /></td></tr>
-<tr class="separator:a5aa2d2d64f1c36926e94782b682e4113"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37d618fee40f4b39c36b9f65b034f776"><td class="memItemLeft" align="right" valign="top">virtual QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_device_model.html#a37d618fee40f4b39c36b9f65b034f776">modelName</a> () const </td></tr>
+<tr class="memdesc:a37d618fee40f4b39c36b9f65b034f776"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to get model name.  <a href="#a37d618fee40f4b39c36b9f65b034f776">More...</a><br /></td></tr>
+<tr class="separator:a37d618fee40f4b39c36b9f65b034f776"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad02c6e46e947211afb068f202faa9e4b"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_device_model.html#ad02c6e46e947211afb068f202faa9e4b">nPorts</a> (PortType portType) const override</td></tr>
 <tr class="memdesc:ad02c6e46e947211afb068f202faa9e4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to get number of ports of each type used by model.  <a href="#ad02c6e46e947211afb068f202faa9e4b">More...</a><br /></td></tr>
 <tr class="separator:ad02c6e46e947211afb068f202faa9e4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -183,9 +185,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a7e7fd2ddd6e47f134741ed4b0b7ce821"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_device_model.html#a7e7fd2ddd6e47f134741ed4b0b7ce821">setInData</a> (std::shared_ptr&lt; NodeData &gt; nodeData, PortIndex port) override</td></tr>
 <tr class="memdesc:a7e7fd2ddd6e47f134741ed4b0b7ce821"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles data on input port, sends frame if correct.  <a href="#a7e7fd2ddd6e47f134741ed4b0b7ce821">More...</a><br /></td></tr>
 <tr class="separator:a7e7fd2ddd6e47f134741ed4b0b7ce821"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2fca5ceed7bd75de14a83bea8d8fa6a0"><td class="memItemLeft" align="right" valign="top">QWidget *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_device_model.html#a2fca5ceed7bd75de14a83bea8d8fa6a0">embeddedWidget</a> () override</td></tr>
-<tr class="memdesc:a2fca5ceed7bd75de14a83bea8d8fa6a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to get widget embedded in Node.  <a href="#a2fca5ceed7bd75de14a83bea8d8fa6a0">More...</a><br /></td></tr>
-<tr class="separator:a2fca5ceed7bd75de14a83bea8d8fa6a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6379ed1296670ee787e715c7ba25d200"><td class="memItemLeft" align="right" valign="top">QWidget *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_device_model.html#a6379ed1296670ee787e715c7ba25d200">embeddedWidget</a> () override</td></tr>
+<tr class="memdesc:a6379ed1296670ee787e715c7ba25d200"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to get widget embedded in Node.  <a href="#a6379ed1296670ee787e715c7ba25d200">More...</a><br /></td></tr>
+<tr class="separator:a6379ed1296670ee787e715c7ba25d200"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a07bc58b09f98ad65c4b54b001a34ae25"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_device_model.html#a07bc58b09f98ad65c4b54b001a34ae25">resizable</a> () const override</td></tr>
 <tr class="memdesc:a07bc58b09f98ad65c4b54b001a34ae25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to get information if node is resizable.  <a href="#a07bc58b09f98ad65c4b54b001a34ae25">More...</a><br /></td></tr>
 <tr class="separator:a07bc58b09f98ad65c4b54b001a34ae25"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -231,7 +233,7 @@ Public Member Functions</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span></span>  </td>
+<span class="mlabels"><span class="mlabel">override</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -241,7 +243,7 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a7a5964b08ad2f87cbe66140614630119"></a>
+<a class="anchor" id="aebc588c4a200356661e102e51ad24796"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -249,7 +251,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::unique_ptr&lt;NodeDataModel&gt; CanDeviceModel::clone </td>
+          <td class="memname">std::unique_ptr&lt; NodeDataModel &gt; CanDeviceModel::clone </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -257,10 +259,13 @@ Public Member Functions</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span></span>  </td>
+<span class="mlabels"><span class="mlabel">override</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Creates new node of the same type. </p>
+<dl class="section return"><dt>Returns</dt><dd>cloned node </dd></dl>
 
 </div>
 </div>
@@ -307,7 +312,7 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a2fca5ceed7bd75de14a83bea8d8fa6a0"></a>
+<a class="anchor" id="a6379ed1296670ee787e715c7ba25d200"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -315,7 +320,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">QWidget* CanDeviceModel::embeddedWidget </td>
+          <td class="memname">QWidget * CanDeviceModel::embeddedWidget </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -323,7 +328,7 @@ Public Member Functions</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span></span>  </td>
+<span class="mlabels"><span class="mlabel">override</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -425,7 +430,7 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a5aa2d2d64f1c36926e94782b682e4113"></a>
+<a class="anchor" id="a37d618fee40f4b39c36b9f65b034f776"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -433,7 +438,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual QString CanDeviceModel::modelName </td>
+          <td class="memname">QString CanDeviceModel::modelName </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -441,7 +446,7 @@ Public Member Functions</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -467,7 +472,7 @@ Public Member Functions</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span></span>  </td>
+<span class="mlabels"><span class="mlabel">override</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -559,7 +564,7 @@ Public Member Functions</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span></span>  </td>
+<span class="mlabels"><span class="mlabel">override</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -617,6 +622,14 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Used to send a frame. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">frame</td><td>Frame to be sent </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="a7e7fd2ddd6e47f134741ed4b0b7ce821"></a>
@@ -662,7 +675,7 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a61d3c749e0b9a6c0656d150e66877eea"></a>
+<a class="anchor" id="ab4550c0e59a4d6a6ca9ea953a3081e8e"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -670,7 +683,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void CanDeviceModel::visit </td>
+          <td class="memname">void CanDeviceModel::visit </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="struct_can_node_data_model_visitor.html">CanNodeDataModelVisitor</a> &amp;&#160;</td>
           <td class="paramname"><em>v</em></td><td>)</td>
@@ -679,7 +692,7 @@ Public Member Functions</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">

@@ -1,7 +1,7 @@
 <map id="src/components/canrawsender/canrawsendermodel.h" name="src/components/canrawsender/canrawsendermodel.h">
-<area shape="rect" id="node2" href="$modelvisitor_8h.html" title="modelvisitor.h" alt="" coords="149,95,259,121"/>
-<area shape="rect" id="node9" href="$visitablewith_8h.html" title="visitablewith.h" alt="" coords="309,244,419,271"/>
-<area shape="rect" id="node13" href="$canrawsender_8h.html" title="canrawsender.h" alt="" coords="511,95,633,121"/>
-<area shape="rect" id="node5" href="$visitor_8h.html" title="visitor.h" alt="" coords="95,169,166,196"/>
-<area shape="rect" id="node15" href="$context_8h.html" title="context.h" alt="" coords="684,169,767,196"/>
+<area shape="rect" id="node5" href="$canrawsender_8h.html" title="canrawsender.h" alt="" coords="275,95,397,121"/>
+<area shape="rect" id="node10" href="$modelvisitor_8h.html" title="modelvisitor.h" alt="" coords="563,95,674,121"/>
+<area shape="rect" id="node16" href="$visitablewith_8h.html" title="visitablewith.h" alt="" coords="749,244,859,271"/>
+<area shape="rect" id="node7" href="$context_8h.html" title="context.h" alt="" coords="352,169,435,196"/>
+<area shape="rect" id="node13" href="$visitor_8h.html" title="visitor.h" alt="" coords="510,169,581,196"/>
 </map>
