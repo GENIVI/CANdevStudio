@@ -52,8 +52,8 @@ var hierarchy =
       [ "ModelToolButton", "struct_model_tool_button.html", null ]
     ] ],
     [ "QWidget", null, [
-      [ "ProjectConfiguration", "class_project_configuration.html", null ],
-      [ "ProjectConfigurationPrivate", "class_project_configuration_private.html", null ]
+      [ "ProjectConfig", "class_project_config.html", null ],
+      [ "ProjectConfigPrivate", "class_project_config_private.html", null ]
     ] ],
     [ "VisitableWith< Visitor >", "struct_visitable_with.html", null ],
     [ "VisitableWith< CanNodeDataModelVisitor >", "struct_visitable_with.html", [

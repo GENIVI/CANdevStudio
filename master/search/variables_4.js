@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ui',['ui',['../class_project_configuration_private.html#a16ea7bb320801cf0dec3789fb89d3b8d',1,'ProjectConfigurationPrivate']]]
+  ['ui',['ui',['../class_project_config_private.html#a2e6da574fca48c45beceda39f3bc7df5',1,'ProjectConfigPrivate']]]
 ];
