@@ -1,5 +1,5 @@
-#ifndef PROJECTCONFIGURATION_H
-#define PROJECTCONFIGURATION_H
+#ifndef PROJECTCONFIG_H
+#define PROJECTCONFIG_H
 
 #include <QtCore/QObject>
 #include <memory>
@@ -13,15 +13,15 @@
 #include <nodes/Node>
 #include <nodes/NodeData>
 
-class ProjectConfigurationPrivate;
+class ProjectConfigPrivate;
 
-class ProjectConfiguration : public QWidget {
+class ProjectConfig : public QWidget {
     Q_OBJECT
-    Q_DECLARE_PRIVATE(ProjectConfiguration)
+    Q_DECLARE_PRIVATE(ProjectConfig)
 
 public:
-    explicit ProjectConfiguration();
-    ~ProjectConfiguration();
+    explicit ProjectConfig();
+    ~ProjectConfig();
     void closeEvent(QCloseEvent* e);
     QByteArray save();
     void load(const QByteArray& data);
@@ -39,7 +39,7 @@ private slots:
     void nodeDoubleClickedCallback(QtNodes::Node& node);
 
 private:
-    QScopedPointer<ProjectConfigurationPrivate> d_ptr;
+    QScopedPointer<ProjectConfigPrivate> d_ptr;
 };
 
-#endif // PROJECTCONFIGURATION_H
+#endif // PROJECTCONFIG_H

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>ProjectConfigurationPrivate</class>
- <widget class="QWidget" name="ProjectConfigurationPrivate">
+ <class>ProjectConfigPrivate</class>
+ <widget class="QWidget" name="ProjectConfigPrivate">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -23,7 +23,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>ProjectConfiguration</string>
+   <string>ProjectConfig</string>
   </property>
   <layout class="QHBoxLayout" name="layout">
    <item>

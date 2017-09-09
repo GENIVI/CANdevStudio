@@ -4,7 +4,7 @@
 #include <QtWidgets/QMainWindow>
 #include <memory>
 
-#include "projectconfiguration/projectconfiguration.h"
+#include "projectconfig/projectconfig.h"
 
 class QCloseEvent;
 
@@ -21,7 +21,7 @@ public:
 
 private:
     std::unique_ptr<Ui::MainWindow> ui;
-    std::unique_ptr<ProjectConfiguration> projectConfiguration;
+    std::unique_ptr<ProjectConfig> projectConfig;
 
     void connectToolbarSignals();
     void connectMenuSignals();

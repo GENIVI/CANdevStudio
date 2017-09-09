@@ -1,10 +1,10 @@
-#ifndef PROJECTCONFIGURATION_P_H
-#define PROJECTCONFIGURATION_P_H
+#ifndef PROJECTCONFIG_P_H
+#define PROJECTCONFIG_P_H
 
 #include "flowviewwrapper.h"
 #include "modeltoolbutton.h"
 #include "modelvisitor.h" // apply_model_visitor
-#include "ui_projectconfiguration.h"
+#include "ui_projectconfig.h"
 #include <cassert> // assert
 
 #include "log.h"
@@ -18,16 +18,16 @@
 #include <canrawview/canrawviewmodel.h>
 
 namespace Ui {
-class ProjectConfigurationPrivate;
+class ProjectConfigPrivate;
 }
 
-class ProjectConfigurationPrivate : public QWidget {
+class ProjectConfigPrivate : public QWidget {
     Q_OBJECT
-    Q_DECLARE_PUBLIC(ProjectConfiguration)
+    Q_DECLARE_PUBLIC(ProjectConfig)
 
 public:
-    ProjectConfigurationPrivate(ProjectConfiguration* q)
-        : ui(std::make_unique<Ui::ProjectConfigurationPrivate>())
+    ProjectConfigPrivate(ProjectConfig* q)
+        : ui(std::make_unique<Ui::ProjectConfigPrivate>())
         , q_ptr(q)
     {
         auto modelRegistry = std::make_shared<QtNodes::DataModelRegistry>();
@@ -39,22 +39,22 @@ public:
         graphView = new FlowViewWrapper(graphScene.get());
 
         connect(graphScene.get(), &QtNodes::FlowScene::nodeCreated, this,
-            &ProjectConfigurationPrivate::nodeCreatedCallback);
+            &ProjectConfigPrivate::nodeCreatedCallback);
         connect(graphScene.get(), &QtNodes::FlowScene::nodeDeleted, this,
-            &ProjectConfigurationPrivate::nodeDeletedCallback);
+            &ProjectConfigPrivate::nodeDeletedCallback);
         connect(graphScene.get(), &QtNodes::FlowScene::nodeDoubleClicked, this,
-            &ProjectConfigurationPrivate::nodeDoubleClickedCallback);
+            &ProjectConfigPrivate::nodeDoubleClickedCallback);
 
         ui->setupUi(this);
         ui->layout->addWidget(graphView);
         // ui->layout->toolbar->addWidget(.....);
     }
 
-    ~ProjectConfigurationPrivate()
+    ~ProjectConfigPrivate()
     {
     }
 
-    std::unique_ptr<Ui::ProjectConfigurationPrivate> ui;
+    std::unique_ptr<Ui::ProjectConfigPrivate> ui;
 
 private:
     std::shared_ptr<QtNodes::FlowScene> graphScene;
@@ -72,7 +72,7 @@ private:
     void handleWidgetShowing(QWidget* widget)
     {
         assert(nullptr != widget);
-        Q_Q(ProjectConfiguration);
+        Q_Q(ProjectConfig);
         bool docked = false;
         // TODO: Temporary solution. To be changed once MainWindow is refactored
         QPushButton* undockButton = widget->findChild<QPushButton*>("pbDockUndock");
@@ -102,11 +102,11 @@ private:
 
     template <typename T> void handleWidgetCreation(T& view)
     {
-        Q_Q(ProjectConfiguration);
+        Q_Q(ProjectConfig);
 
         QWidget* widget = view.getMainWidget();
-        connect(q, &ProjectConfiguration::startSimulation, &view, &T::startSimulation);
-        connect(q, &ProjectConfiguration::stopSimulation, &view, &T::stopSimulation);
+        connect(q, &ProjectConfig::startSimulation, &view, &T::startSimulation);
+        connect(q, &ProjectConfig::stopSimulation, &view, &T::stopSimulation);
         connect(&view, &T::dockUndock, this, [this, widget, q] { emit q->handleDock(widget); });
     }
 
@@ -132,7 +132,7 @@ public:
 
         assert(nullptr != dataModel);
 
-        Q_Q(ProjectConfiguration);
+        Q_Q(ProjectConfig);
 
         apply_model_visitor(*dataModel, [this](CanRawViewModel& m) { handleWidgetCreation(m.canRawView); },
             [this, dataModel, q](CanRawSenderModel& m) { handleWidgetCreation(m.canRawSender); },
@@ -164,6 +164,6 @@ public:
     }
 
 private:
-    ProjectConfiguration* q_ptr;
+    ProjectConfig* q_ptr;
 };
-#endif // PROJECTCONFIGURATION_P_H
+#endif // PROJECTCONFIG_P_H
