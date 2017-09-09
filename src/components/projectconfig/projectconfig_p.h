@@ -67,7 +67,7 @@ public:
 
         Q_Q(ProjectConfig);
 
-        apply_model_visitor(*dataModel, [this](CanRawViewModel& m) { handleWidgetCreation(m.canRawView); },
+        apply_model_visitor(*dataModel, [this](CanRawViewModel& m) { handleWidgetCreation(m.getComponent()); },
             [this, dataModel, q](CanRawSenderModel& m) { handleWidgetCreation(m.canRawSender); },
             [this](CanDeviceModel&) {});
     }
@@ -79,7 +79,7 @@ public:
         assert(nullptr != dataModel);
 
         apply_model_visitor(*dataModel,
-            [this, dataModel](CanRawViewModel& m) { handleWidgetDeletion(m.canRawView.getMainWidget()); },
+            [this, dataModel](CanRawViewModel& m) { handleWidgetDeletion(m.getComponent().getMainWidget()); },
             [this, dataModel](CanRawSenderModel& m) { handleWidgetDeletion(m.canRawSender.getMainWidget()); },
             [this](CanDeviceModel&) {});
     }
@@ -91,7 +91,7 @@ public:
         assert(nullptr != dataModel);
 
         apply_model_visitor(*dataModel,
-            [this, dataModel](CanRawViewModel& m) { handleWidgetShowing(m.canRawView.getMainWidget()); },
+            [this, dataModel](CanRawViewModel& m) { handleWidgetShowing(m.getComponent().getMainWidget()); },
             [this, dataModel](CanRawSenderModel& m) { handleWidgetShowing(m.canRawSender.getMainWidget()); },
             [this](CanDeviceModel&) {});
     }
