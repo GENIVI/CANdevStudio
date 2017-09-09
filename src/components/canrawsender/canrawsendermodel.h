@@ -1,18 +1,14 @@
 #ifndef CANRAWSENDERMODEL_H
 #define CANRAWSENDERMODEL_H
 
-#include "modelvisitor.h" // CanNodeDataModelVisitor
-#include "visitablewith.h"
-
 #include <QtCore/QObject>
+#include <QtSerialBus/QCanBusFrame>
 #include <QtWidgets/QLabel>
-
+#include <canrawsender.h>
+#include <modelvisitor.h>
 #include <nodes/DataModelRegistry>
 #include <nodes/NodeDataModel>
-
-#include <canrawsender.h>
-
-#include <QCanBusFrame>
+#include <visitablewith.h>
 
 using QtNodes::PortType;
 using QtNodes::PortIndex;
@@ -29,32 +25,25 @@ class CanRawSenderModel : public NodeDataModel, public VisitableWith<CanNodeData
 
 public:
     CanRawSenderModel();
-
     virtual ~CanRawSenderModel() = default;
 
-public:
     /**
     *   @brief  Used to get node caption
     *   @return Node caption
     */
-    QString caption() const override
-    {
-        return QString("CanRawSender Node");
-    } // TODO
+    QString caption() const override;
 
     /**
     *   @brief  Used to identify model by data model name
     *   @return Node model name
     */
-    QString name() const override
-    {
-        return QString("CanRawSenderModel");
-    }
+    QString name() const override;
 
-    std::unique_ptr<NodeDataModel> clone() const override
-    {
-        return std::make_unique<CanRawSenderModel>();
-    }
+    /**
+    *   @brief Creates new node of the same type
+    *   @return cloned node
+    */
+    std::unique_ptr<NodeDataModel> clone() const override;
 
     /**
      * @brief Possibility to save node properties
@@ -62,21 +51,14 @@ public:
      */
     QJsonObject save() const override;
 
-public:
     /** @see VisitableWith */
-    virtual void visit(CanNodeDataModelVisitor& v) override
-    {
-        v(*this);
-    }
+    virtual void visit(CanNodeDataModelVisitor& v) override;
 
     /**
     *   @brief  Used to get model name
     *   @return Model name
     */
-    virtual QString modelName() const
-    {
-        return QString("Raw sender");
-    }
+    virtual QString modelName() const;
 
     /**
     *   @brief  Used to get number of ports of each type used by model
@@ -111,25 +93,19 @@ public:
     *   @brief  Used to get widget embedded in Node
     *   @return QLabel
     */
-    QWidget* embeddedWidget() override
-    {
-        return label;
-    }
+    QWidget* embeddedWidget() override;
 
     /**
     *   @brief  Used to get information if node is resizable
     *   @return false
     */
-    bool resizable() const override
-    {
-        return false;
-    }
+    bool resizable() const override;
 
-    CanRawSender canRawSender;
-
-private:
-    QLabel* label;
-    QCanBusFrame _frame;
+    /**
+    *   @brief Component getter
+    *   @return Component managed by model
+    */
+    CanRawSender& getComponent();
 
 public slots:
 
@@ -138,6 +114,11 @@ public slots:
     *   @param  received frame
     */
     void sendFrame(const QCanBusFrame& frame);
+
+private:
+    CanRawSender _component;
+    QLabel* _label;
+    QCanBusFrame _frame;
 };
 
 #endif // CANRAWSENDERMODEL_H
