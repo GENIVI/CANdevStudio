@@ -1,6 +1,6 @@
 #include "candevicemodel.h"
 
-#include "log.hpp"
+#include "log.h"
 #include <assert.h>
 
 #include "datamodeltypes/candevicedata.h"

@@ -1,7 +1,7 @@
 #ifndef NEWLINEMANAGER_H
 #define NEWLINEMANAGER_H
 
-#include "nlmfactory.hpp"
+#include "nlmfactory.h"
 #include <QJsonObject>
 #include <QTimer>
 #include <QValidator>

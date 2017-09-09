@@ -1,14 +1,12 @@
 #include <QtWidgets/QApplication>
 #include <canrawsender/canrawsendermodel.h>
 #include <datamodeltypes/canrawsenderdata.h>
-
 #define CATCH_CONFIG_RUNNER
-#include <fakeit.hpp>
-
-#include "log.hpp"
-std::shared_ptr<spdlog::logger> kDefaultLogger;
-
 #include <QSignalSpy>
+#include <fakeit.hpp>
+#include <log.h>
+
+std::shared_ptr<spdlog::logger> kDefaultLogger;
 
 TEST_CASE("Test basic functionality", "[canrawsender]")
 {

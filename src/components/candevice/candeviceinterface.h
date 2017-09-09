@@ -1,5 +1,5 @@
-#ifndef CANDEVICEINTERFACE_HPP_DNXOI7PW
-#define CANDEVICEINTERFACE_HPP_DNXOI7PW
+#ifndef CANDEVICEINTERFACE_H_DNXOI7PW
+#define CANDEVICEINTERFACE_H_DNXOI7PW
 
 #include <QtCore/QtGlobal>
 #include <QtSerialBus/QCanBusFrame>
@@ -26,4 +26,4 @@ struct CanDeviceInterface {
     virtual QCanBusFrame readFrame() = 0;
 };
 
-#endif /* end of include guard: CANDEVICEINTERFACE_HPP_DNXOI7PW */
+#endif /* end of include guard: CANDEVICEINTERFACE_H_DNXOI7PW */

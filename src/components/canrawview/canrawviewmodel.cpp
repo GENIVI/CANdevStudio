@@ -1,6 +1,6 @@
 #include "canrawviewmodel.h"
 #include "datamodeltypes/canrawviewdata.h"
-#include "log.hpp"
+#include "log.h"
 #include <QtCore/QDir>
 #include <QtCore/QEvent>
 #include <QtWidgets/QFileDialog>

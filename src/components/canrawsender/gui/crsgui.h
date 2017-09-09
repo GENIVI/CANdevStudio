@@ -1,7 +1,7 @@
-#ifndef CRSGUI_HPP
-#define CRSGUI_HPP
+#ifndef CRSGUI_H
+#define CRSGUI_H
 
-#include "crsguiinterface.hpp"
+#include "crsguiinterface.h"
 #include "ui_canrawsender.h"
 #include <memory>
 
@@ -58,4 +58,4 @@ private:
     Ui::CanRawSenderPrivate* ui;
     QWidget* widget;
 };
-#endif // CRSGUI_HPP
+#endif // CRSGUI_H

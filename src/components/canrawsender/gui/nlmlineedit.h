@@ -1,8 +1,8 @@
-#ifndef NLMLINEEDIT_HPP
-#define NLMLINEEDIT_HPP
+#ifndef NLMLINEEDIT_H
+#define NLMLINEEDIT_H
 
 #include <QLineEdit>
-#include <guiinterface/lineeditinterface.hpp>
+#include <guiinterface/lineeditinterface.h>
 
 struct NLMLineEdit : public LineEditInterface {
 
@@ -55,4 +55,4 @@ private:
     QLineEdit* qLineEdit;
 };
 
-#endif // NLMLINEEDIT_HPP
+#endif // NLMLINEEDIT_H

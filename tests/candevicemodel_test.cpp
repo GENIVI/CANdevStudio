@@ -1,7 +1,7 @@
 #include <QtWidgets/QApplication>
 #include <candevice/candevicemodel.h>
 #define CATCH_CONFIG_RUNNER
-#include "log.hpp"
+#include "log.h"
 #include <QSignalSpy>
 #include <datamodeltypes/candevicedata.h>
 #include <fakeit.hpp>

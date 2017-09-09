@@ -1,7 +1,7 @@
 #ifndef __CANDEVICE_P_H
 #define __CANDEVICE_P_H
 
-#include "candeviceqt.hpp"
+#include "candeviceqt.h"
 #include <QtCore/QVector>
 
 class CanDevicePrivate {

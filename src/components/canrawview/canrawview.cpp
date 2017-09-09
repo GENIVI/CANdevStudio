@@ -1,6 +1,6 @@
 #include "canrawview.h"
 #include "canrawview_p.h"
-#include "log.hpp"
+#include "log.h"
 #include <QtCore/QElapsedTimer>
 #include <QtCore/QList>
 #include <QtCore/QString>

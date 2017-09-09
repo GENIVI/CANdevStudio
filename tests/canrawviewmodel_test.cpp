@@ -1,14 +1,12 @@
 #include <QtWidgets/QApplication>
 #include <canrawview/canrawviewmodel.h>
 #include <datamodeltypes/canrawviewdata.h>
-
 #define CATCH_CONFIG_RUNNER
-#include <fakeit.hpp>
-
-#include "log.hpp"
-std::shared_ptr<spdlog::logger> kDefaultLogger;
-
 #include <QSignalSpy>
+#include <fakeit.hpp>
+#include <log.h>
+
+std::shared_ptr<spdlog::logger> kDefaultLogger;
 // needed for QSignalSpy cause according to qtbug 49623 comments
 // automatic detection of types is "flawed" in moc
 Q_DECLARE_METATYPE(QCanBusFrame);

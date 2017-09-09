@@ -1,8 +1,8 @@
 
 #include "mainwindow.h"
-#include "log.hpp"
+#include "log.h"
 #include "modelvisitor.h" // apply_model_visitor
-#include "subwindow.hpp"
+#include "subwindow.h"
 #include "ui_mainwindow.h"
 
 #include <QCloseEvent>

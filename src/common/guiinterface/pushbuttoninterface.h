@@ -1,5 +1,5 @@
-#ifndef PUSHBUTTONINTERFACE_HPP
-#define PUSHBUTTONINTERFACE_HPP
+#ifndef PUSHBUTTONINTERFACE_H
+#define PUSHBUTTONINTERFACE_H
 
 #include <QString>
 #include <functional>
@@ -17,4 +17,4 @@ struct PushButtonInterface {
     virtual void setDisabled(bool state) = 0;
     virtual bool isEnabled() = 0;
 };
-#endif // PUSHBUTTONINTERFACE_HPP
+#endif // PUSHBUTTONINTERFACE_H

@@ -3,12 +3,12 @@
 #undef private
 
 #define CATCH_CONFIG_RUNNER
+#include <QSignalSpy>
 #include <QtSerialBus/QCanBusDevice>
-#include <candeviceinterface.hpp>
+#include <candeviceinterface.h>
 #include <context.h>
 #include <fakeit.hpp>
-#include "log.hpp"
-#include <QSignalSpy>
+#include <log.h>
 
 std::shared_ptr<spdlog::logger> kDefaultLogger;
 // needed for QSignalSpy cause according to qtbug 49623 comments

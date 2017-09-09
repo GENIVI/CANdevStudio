@@ -1,13 +1,13 @@
 #ifndef CANRAWSENDER_P_H
 #define CANRAWSENDER_P_H
 
-#include "gui/crsgui.hpp"
+#include "gui/crsgui.h"
 #include "newlinemanager.h"
 #include <QJsonObject>
 #include <QtGui/QStandardItemModel>
 #include <context.h>
 #include <memory>
-#include <nlmfactory.hpp>
+#include <nlmfactory.h>
 
 namespace Ui {
 class CanRawSenderPrivate;

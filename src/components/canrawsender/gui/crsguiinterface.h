@@ -1,5 +1,5 @@
-#ifndef CRSGUIINTERFACE_HPP
-#define CRSGUIINTERFACE_HPP
+#ifndef CRSGUIINTERFACE_H
+#define CRSGUIINTERFACE_H
 
 #include <QModelIndex>
 #include <functional>
@@ -26,4 +26,4 @@ struct CRSGuiInterface {
     virtual QModelIndexList getSelectedRows() = 0;
     virtual void setIndexWidget(const QModelIndex& index, QWidget* widget) = 0;
 };
-#endif // CRSGUIINTERFACE_HPP
+#endif // CRSGUIINTERFACE_H

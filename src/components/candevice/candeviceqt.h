@@ -1,10 +1,10 @@
-#ifndef CANDEVICEQT_HPP_JYBV8GIQ
-#define CANDEVICEQT_HPP_JYBV8GIQ
+#ifndef CANDEVICEQT_H_JYBV8GIQ
+#define CANDEVICEQT_H_JYBV8GIQ
 
-#include "candeviceinterface.hpp"
+#include "candeviceinterface.h"
 #include <QtSerialBus/QCanBus>
 #include <QtSerialBus/QCanBusDevice>
-#include <log.hpp>
+#include <log.h>
 
 struct CanDeviceQt : public CanDeviceInterface {
     virtual void setFramesWrittenCbk(const framesWritten_t& cb) override
@@ -95,4 +95,4 @@ private:
     std::unique_ptr<QCanBusDevice> _device;
 };
 
-#endif /* end of include guard: CANDEVICEQT_HPP_JYBV8GIQ */
+#endif /* end of include guard: CANDEVICEQT_H_JYBV8GIQ */

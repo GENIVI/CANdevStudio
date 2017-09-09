@@ -1,14 +1,14 @@
 #ifndef CANRAWVIEW_P_H
 #define CANRAWVIEW_P_H
 
-#include "gui/crvgui.hpp"
+#include "gui/crvgui.h"
 #include "uniquefiltermodel.h"
 #include <QtCore/QElapsedTimer>
 #include <QtCore/QJsonArray>
 #include <QtCore/QJsonObject>
 #include <QtGui/QStandardItemModel>
 #include <QtSerialBus/QCanBusFrame>
-#include <log.hpp>
+#include <log.h>
 #include <memory>
 
 class CanRawViewPrivate : public QObject {

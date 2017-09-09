@@ -1,10 +1,9 @@
 #include <QJsonArray>
 #include <QStandardItemModel>
 #include <canrawsender.h>
-#include <catch.hpp>
 #include <context.h>
 #include <fakeit.hpp>
-#include <gui/crsguiinterface.hpp>
+#include <gui/crsguiinterface.h>
 #include <memory>
 #include <newlinemanager.h>
 

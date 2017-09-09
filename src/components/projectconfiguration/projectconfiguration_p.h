@@ -7,7 +7,7 @@
 #include "ui_projectconfiguration.h"
 #include <cassert> // assert
 
-#include "log.hpp"
+#include "log.h"
 
 #include <QAction>
 

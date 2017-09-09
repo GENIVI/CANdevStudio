@@ -2,11 +2,10 @@
 #include <QSignalSpy>
 #include <QtWidgets/QApplication>
 #include <canrawsender.h>
-#include <catch.hpp>
 #include <context.h>
 #include <fakeit.hpp>
-#include <gui/crsguiinterface.hpp>
-#include <log.hpp>
+#include <gui/crsguiinterface.h>
+#include <log.h>
 #include <newlinemanager.h>
 
 std::shared_ptr<spdlog::logger> kDefaultLogger;
