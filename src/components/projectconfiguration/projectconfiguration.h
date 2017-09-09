@@ -20,14 +20,7 @@ class ProjectConfiguration : public QWidget {
     Q_DECLARE_PRIVATE(ProjectConfiguration)
 
 public:
-    QAction* _start; // FIXME
-    QAction* _stop; // FIXME
-
-private:
-    QScopedPointer<ProjectConfigurationPrivate> d_ptr;
-
-public:
-    explicit ProjectConfiguration(QAction* start, QAction* stop); // FIXME actions
+    explicit ProjectConfiguration();
     ~ProjectConfiguration();
     void closeEvent(QCloseEvent* e);
     QByteArray save();
@@ -37,11 +30,16 @@ public:
 signals:
     void handleDock(QWidget* component);
     void componentWidgetCreated(QWidget* component);
+    void stopSimulation();
+    void startSimulation();
 
 private slots:
     void nodeCreatedCallback(QtNodes::Node& node);
     void nodeDeletedCallback(QtNodes::Node& node);
     void nodeDoubleClickedCallback(QtNodes::Node& node);
+
+private:
+    QScopedPointer<ProjectConfigurationPrivate> d_ptr;
 };
 
 #endif // PROJECTCONFIGURATION_H

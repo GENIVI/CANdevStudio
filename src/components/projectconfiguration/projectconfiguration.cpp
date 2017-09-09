@@ -9,10 +9,8 @@
 #include <canrawsender/canrawsendermodel.h>
 #include <canrawview/canrawviewmodel.h>
 
-ProjectConfiguration::ProjectConfiguration(QAction* start, QAction* stop) // FIXME actions
-    : _start(start)
-    , _stop(stop)
-    , d_ptr(new ProjectConfigurationPrivate(this))
+ProjectConfiguration::ProjectConfiguration()
+    : d_ptr(new ProjectConfigurationPrivate(this))
 {
     Q_D(ProjectConfiguration);
 

@@ -129,7 +129,6 @@ public:
 private:
     QLabel* label;
     QCanBusFrame _frame;
-    CanRawView viewWindow;
 
 signals:
     void frameReceived(const QCanBusFrame& frame);

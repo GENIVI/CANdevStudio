@@ -49,9 +49,11 @@ public:
         ui->layout->addWidget(graphView);
         // ui->layout->toolbar->addWidget(.....);
     }
+
     ~ProjectConfigurationPrivate()
     {
     }
+
     std::unique_ptr<Ui::ProjectConfigurationPrivate> ui;
 
 private:
@@ -98,6 +100,16 @@ private:
         }
     }
 
+    template <typename T> void handleWidgetCreation(T& view)
+    {
+        Q_Q(ProjectConfiguration);
+
+        QWidget* widget = view.getMainWidget();
+        connect(q, &ProjectConfiguration::startSimulation, &view, &T::startSimulation);
+        connect(q, &ProjectConfiguration::stopSimulation, &view, &T::stopSimulation);
+        connect(&view, &T::dockUndock, this, [this, widget, q] { emit q->handleDock(widget); });
+    }
+
 public:
     QByteArray save() const
     {
@@ -122,23 +134,8 @@ public:
 
         Q_Q(ProjectConfiguration);
 
-        apply_model_visitor(*dataModel,
-            [this, dataModel, q](CanRawViewModel& m) {
-                auto rawView = &m.canRawView;
-                QWidget* crvWidget = rawView->getMainWidget();
-                connect(q->_start, &QAction::triggered, rawView, &CanRawView::startSimulation);
-                connect(q->_stop, &QAction::triggered, rawView, &CanRawView::stopSimulation);
-                connect(
-                    rawView, &CanRawView::dockUndock, this, [this, crvWidget, q] { emit q->handleDock(crvWidget); });
-            },
-            [this, dataModel, q](CanRawSenderModel& m) {
-                QWidget* crsWidget = m.canRawSender.getMainWidget();
-                auto& rawSender = m.canRawSender;
-                connect(q->_start, &QAction::triggered, &rawSender, &CanRawSender::startSimulation);
-                connect(q->_stop, &QAction::triggered, &rawSender, &CanRawSender::stopSimulation);
-                connect(&rawSender, &CanRawSender::dockUndock, this,
-                    [this, crsWidget, q] { emit q->handleDock(crsWidget); });
-            },
+        apply_model_visitor(*dataModel, [this](CanRawViewModel& m) { handleWidgetCreation(m.canRawView); },
+            [this, dataModel, q](CanRawSenderModel& m) { handleWidgetCreation(m.canRawSender); },
             [this](CanDeviceModel&) {});
     }
 

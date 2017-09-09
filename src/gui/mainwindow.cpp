@@ -20,7 +20,7 @@ MainWindow::MainWindow(QWidget* parent)
     ui->setupUi(this);
     ui->centralWidget->layout()->setContentsMargins(0, 0, 0, 0);
 
-    projectConfiguration = std::make_unique<ProjectConfiguration>(ui->actionstart, ui->actionstop); // FIXME actions
+    projectConfiguration = std::make_unique<ProjectConfiguration>();
 
     setupMdiArea();
     connectToolbarSignals();
@@ -62,8 +62,10 @@ void MainWindow::connectToolbarSignals()
 {
     connect(ui->actionstart, &QAction::triggered, ui->actionstop, &QAction::setDisabled);
     connect(ui->actionstart, &QAction::triggered, ui->actionstart, &QAction::setEnabled);
+    connect(ui->actionstart, &QAction::triggered, projectConfiguration.get(), &ProjectConfiguration::startSimulation);
     connect(ui->actionstop, &QAction::triggered, ui->actionstop, &QAction::setEnabled);
     connect(ui->actionstop, &QAction::triggered, ui->actionstart, &QAction::setDisabled);
+    connect(ui->actionstop, &QAction::triggered, projectConfiguration.get(), &ProjectConfiguration::stopSimulation);
 }
 
 void MainWindow::handleSaveAction()
