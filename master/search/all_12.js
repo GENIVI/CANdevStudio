@@ -24,9 +24,9 @@ var searchData=
   ['setsorting',['setSorting',['../struct_c_r_v_gui.html#ac9a2e89fe88079cbe80d6fd07d601f64',1,'CRVGui::setSorting()'],['../struct_c_r_v_gui_interface.html#aa11fdbb5d6e2a29997354b9537bda56a',1,'CRVGuiInterface::setSorting()']]],
   ['setuplogger',['setupLogger',['../main_8cpp.html#a677cf1dd7db1d278155bd2637971a267',1,'main.cpp']]],
   ['start',['start',['../class_can_device.html#a0ea42fef8feb27eeaa473260071e25c0',1,'CanDevice']]],
-  ['startsimulation',['startSimulation',['../class_can_raw_sender.html#ab425e6f9434e44bf0acb557be17227e9',1,'CanRawSender::startSimulation()'],['../class_can_raw_view.html#acf78fa346b606b03632dd6fb47a5e48e',1,'CanRawView::startSimulation()']]],
+  ['startsimulation',['startSimulation',['../class_can_raw_sender.html#ab425e6f9434e44bf0acb557be17227e9',1,'CanRawSender::startSimulation()'],['../class_can_raw_view.html#acf78fa346b606b03632dd6fb47a5e48e',1,'CanRawView::startSimulation()'],['../class_project_configuration.html#a77c44937ae4d27e44bb670e908068b18',1,'ProjectConfiguration::startSimulation()']]],
   ['status',['status',['../class_can_device_data_out.html#aa58fee746094174d0927b1307d0597c3',1,'CanDeviceDataOut']]],
-  ['stopsimulation',['stopSimulation',['../class_can_raw_sender.html#ab7dd3217bef0f70cf9ba25be9018d4f4',1,'CanRawSender::stopSimulation()'],['../class_can_raw_view.html#a1e7ae58ba92cc0130e259ae089cc8456',1,'CanRawView::stopSimulation()']]],
+  ['stopsimulation',['stopSimulation',['../class_can_raw_sender.html#ab7dd3217bef0f70cf9ba25be9018d4f4',1,'CanRawSender::stopSimulation()'],['../class_can_raw_view.html#a1e7ae58ba92cc0130e259ae089cc8456',1,'CanRawView::stopSimulation()'],['../class_project_configuration.html#aa87e5cbb874fc6d52abf7101ee350d7d',1,'ProjectConfiguration::stopSimulation()']]],
   ['subwindow',['SubWindow',['../struct_sub_window.html',1,'']]],
   ['subwindow_2eh',['subwindow.h',['../subwindow_8h.html',1,'']]]
 ];

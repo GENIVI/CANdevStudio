@@ -6,8 +6,6 @@ var searchData=
   ['_5fnlmfactory',['_nlmFactory',['../class_can_raw_sender_private.html#aa543a815fbc1d7de277100ba88e8b33e',1,'CanRawSenderPrivate']]],
   ['_5fsendqueue',['_sendQueue',['../class_can_device_private.html#a3c82b49d7e18f6de1bbe995fc6c79c3b',1,'CanDevicePrivate']]],
   ['_5fsimstarted',['_simStarted',['../class_can_raw_view_private.html#a1064b20d356ab769c8e583e56dccebb5',1,'CanRawViewPrivate']]],
-  ['_5fstart',['_start',['../class_project_configuration.html#aec3a4bf63ec8e18dd3d1302ace09e926',1,'ProjectConfiguration']]],
-  ['_5fstop',['_stop',['../class_project_configuration.html#aed3c6ac560a76348421a18b7390d8b38',1,'ProjectConfiguration']]],
   ['_5ftimer',['_timer',['../class_can_raw_view_private.html#a44915d7e6ebceb2fc65b25c2d725f5f4',1,'CanRawViewPrivate']]],
   ['_5ftvmodel',['_tvModel',['../class_can_raw_view_private.html#a597e0b4695ac16e64c42ab6b00359836',1,'CanRawViewPrivate']]],
   ['_5fui',['_ui',['../class_can_raw_sender_private.html#a218cdc83f7aae5aacd3f4fdacb4d3df6',1,'CanRawSenderPrivate::_ui()'],['../class_can_raw_view_private.html#ade10e0a061d9f71118f185218e0cecc7',1,'CanRawViewPrivate::_ui()']]],
