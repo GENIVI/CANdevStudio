@@ -1,20 +1,13 @@
 #include "projectconfig.h"
-#include "modelvisitor.h" // apply_model_visitor
 #include "projectconfig_p.h"
-#include <cassert> // assert
 #include <QCloseEvent>
-#include <QAction>
-
-#include <candevice/candevicemodel.h>
-#include <canrawsender/canrawsendermodel.h>
-#include <canrawview/canrawviewmodel.h>
 
 ProjectConfig::ProjectConfig()
     : d_ptr(new ProjectConfigPrivate(this))
 {
     Q_D(ProjectConfig);
 
-    setLayout(d->ui->layout);
+    setLayout(d->_ui->layout);
 }
 
 ProjectConfig::~ProjectConfig()

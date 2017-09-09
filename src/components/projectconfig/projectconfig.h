@@ -1,17 +1,11 @@
 #ifndef PROJECTCONFIG_H
 #define PROJECTCONFIG_H
 
-#include <QtCore/QObject>
-#include <memory>
+#include <QtWidgets/QWidget>
 
-#include "candevice/candevice.h"
-#include "canrawsender/canrawsender.h"
-#include "canrawview/canrawview.h"
-
-#include <nodes/FlowScene>
-#include <nodes/FlowView>
-#include <nodes/Node>
-#include <nodes/NodeData>
+namespace QtNodes {
+class Node;
+}
 
 class ProjectConfigPrivate;
 
