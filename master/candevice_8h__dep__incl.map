@@ -1,11 +1,7 @@
 <map id="src/components/candevice/candevice.h" name="src/components/candevice/candevice.h">
-<area shape="rect" id="node2" href="$candevice_8cpp.html" title="src/components/candevice\l/candevice.cpp" alt="" coords="15,95,208,136"/>
-<area shape="rect" id="node3" href="$candevicemodel_8h.html" title="src/components/candevice\l/candevicemodel.h" alt="" coords="232,95,425,136"/>
-<area shape="rect" id="node7" href="$projectconfig_8h.html" title="src/components/projectconfig\l/projectconfig.h" alt="" coords="450,95,661,136"/>
-<area shape="rect" id="node4" href="$candevicemodel_8cpp.html" title="src/components/candevice\l/candevicemodel.cpp" alt="" coords="5,184,199,225"/>
-<area shape="rect" id="node5" href="$projectconfig__p_8h.html" title="src/components/projectconfig\l/projectconfig_p.h" alt="" coords="223,184,434,225"/>
-<area shape="rect" id="node6" href="$projectconfig_8cpp.html" title="src/components/projectconfig\l/projectconfig.cpp" alt="" coords="359,273,570,315"/>
-<area shape="rect" id="node8" href="$mainwindow_8h.html" title="src/gui/mainwindow.h" alt="" coords="580,191,736,218"/>
-<area shape="rect" id="node9" href="$main_8cpp.html" title="src/gui/main.cpp" alt="" coords="595,281,721,307"/>
-<area shape="rect" id="node10" href="$mainwindow_8cpp.html" title="src/gui/mainwindow.cpp" alt="" coords="746,281,917,307"/>
+<area shape="rect" id="node2" href="$candevice_8cpp.html" title="src/components/candevice\l/candevice.cpp" alt="" coords="5,95,199,136"/>
+<area shape="rect" id="node3" href="$candevicemodel_8h.html" title="src/components/candevice\l/candevicemodel.h" alt="" coords="223,95,416,136"/>
+<area shape="rect" id="node4" href="$candevicemodel_8cpp.html" title="src/components/candevice\l/candevicemodel.cpp" alt="" coords="109,184,303,225"/>
+<area shape="rect" id="node5" href="$projectconfig__p_8h.html" title="src/components/projectconfig\l/projectconfig_p.h" alt="" coords="327,184,538,225"/>
+<area shape="rect" id="node6" href="$projectconfig_8cpp.html" title="src/components/projectconfig\l/projectconfig.cpp" alt="" coords="327,273,538,315"/>
 </map>

@@ -1,6 +1,5 @@
 var NAVTREEINDEX1 =
 {
-"files.html":[2,0],
 "flowviewwrapper_8h.html":[2,0,0,1,3,0],
 "flowviewwrapper_8h_source.html":[2,0,0,1,3,0],
 "functions.html":[1,3,0],
@@ -83,7 +82,8 @@ var NAVTREEINDEX1 =
 "modelvisitor_8h.html#a3f0b12d06c46bd1ae981eaa43f3bd3fc":[2,0,0,0,4,1],
 "modelvisitor_8h.html#ae6d8d219e9ab208c433804e0c33d9ae9":[2,0,0,0,4,2],
 "modelvisitor_8h_source.html":[2,0,0,0,4],
-"namespace_ui.html":[0,0,0],
+"namespace_qt_nodes.html":[0,0,0],
+"namespace_ui.html":[0,0,1],
 "namespaces.html":[0,0],
 "newlinemanager_8cpp.html":[2,0,0,1,1,7],
 "newlinemanager_8h.html":[2,0,0,1,1,8],

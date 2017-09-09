@@ -7,6 +7,5 @@ var class_project_config_private =
     [ "nodeCreatedCallback", "class_project_config_private.html#a944a2e96dbb65c4ae62a2eb91f7fd379", null ],
     [ "nodeDeletedCallback", "class_project_config_private.html#a42fc95f0c72d4b373f034fa9ae48af4f", null ],
     [ "nodeDoubleClickedCallback", "class_project_config_private.html#a0af542815bcee52c8db3c4d9849f3597", null ],
-    [ "save", "class_project_config_private.html#afec09471360417056bbfbd0f2dbf954b", null ],
-    [ "ui", "class_project_config_private.html#a2e6da574fca48c45beceda39f3bc7df5", null ]
+    [ "save", "class_project_config_private.html#afec09471360417056bbfbd0f2dbf954b", null ]
 ];

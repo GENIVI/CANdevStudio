@@ -33,7 +33,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"files.html",
+"flowviewwrapper_8h.html",
 "struct_push_button_interface.html#aa83e615fcb8d171501cb62caa57160fc"
 ];
 
