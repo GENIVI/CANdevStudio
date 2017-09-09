@@ -6,7 +6,7 @@ var struct_c_r_s_gui_interface =
     [ "~CRSGuiInterface", "struct_c_r_s_gui_interface.html#adb4c73ffb72e5e0f15cf3a795ac45681", null ],
     [ "getMainWidget", "struct_c_r_s_gui_interface.html#a570d3e7d22f3383f9ade65c6c63bad10", null ],
     [ "getSelectedRows", "struct_c_r_s_gui_interface.html#a57d24dfc861a062d58611458416781ae", null ],
-    [ "initTableView", "struct_c_r_s_gui_interface.html#a792674989f2628c1a39c005e2586362d", null ],
+    [ "initTableView", "struct_c_r_s_gui_interface.html#a467b63ed974cdc169b3601735143a201", null ],
     [ "setAddCbk", "struct_c_r_s_gui_interface.html#a5e1e2e35d5f155f5abbd8e84538f088b", null ],
     [ "setDockUndockCbk", "struct_c_r_s_gui_interface.html#ac2affd7ddc7971603659a2f337c3b6f8", null ],
     [ "setIndexWidget", "struct_c_r_s_gui_interface.html#ab0b278932220a48af2857ad4c45401f5", null ],

@@ -1,6 +1,6 @@
 <map id="src/components/projectconfiguration/projectconfiguration.h" name="src/components/projectconfiguration/projectconfiguration.h">
-<area shape="rect" id="node4" href="$candevice_8h.html" title="candevice/candevice.h" alt="" coords="40,95,207,121"/>
-<area shape="rect" id="node8" href="$canrawsender_8h.html" title="canrawsender/canrawsender.h" alt="" coords="488,95,703,121"/>
-<area shape="rect" id="node11" href="$canrawview_8h.html" title="canrawview/canrawview.h" alt="" coords="282,95,463,121"/>
-<area shape="rect" id="node6" href="$context_8h.html" title="context.h" alt="" coords="386,169,469,196"/>
+<area shape="rect" id="node4" href="$candevice_8h.html" title="candevice/candevice.h" alt="" coords="77,95,244,121"/>
+<area shape="rect" id="node8" href="$canrawsender_8h.html" title="canrawsender/canrawsender.h" alt="" coords="268,95,483,121"/>
+<area shape="rect" id="node10" href="$canrawview_8h.html" title="canrawview/canrawview.h" alt="" coords="507,95,689,121"/>
+<area shape="rect" id="node6" href="$context_8h.html" title="context.h" alt="" coords="327,169,410,196"/>
 </map>

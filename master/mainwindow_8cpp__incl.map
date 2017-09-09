@@ -1,13 +1,13 @@
 <map id="src/gui/mainwindow.cpp" name="src/gui/mainwindow.cpp">
-<area shape="rect" id="node2" href="$mainwindow_8h.html" title="mainwindow.h" alt="" coords="405,80,515,107"/>
-<area shape="rect" id="node19" href="$log_8hpp.html" title="log.hpp" alt="" coords="1837,80,1907,107"/>
-<area shape="rect" id="node24" href="$modelvisitor_8h.html" title="modelvisitor.h" alt="" coords="2346,80,2457,107"/>
-<area shape="rect" id="node31" href="$subwindow_8hpp.html" title="subwindow.hpp" alt="" coords="2481,80,2599,107"/>
-<area shape="rect" id="node5" href="$projectconfiguration_8h.html" title="projectconfiguration\l/projectconfiguration.h" alt="" coords="616,155,781,196"/>
-<area shape="rect" id="node7" href="$candevice_8h.html" title="candevice/candevice.h" alt="" coords="515,244,682,271"/>
-<area shape="rect" id="node11" href="$canrawsender_8h.html" title="canrawsender/canrawsender.h" alt="" coords="1338,244,1553,271"/>
-<area shape="rect" id="node14" href="$canrawview_8h.html" title="canrawview/canrawview.h" alt="" coords="707,244,888,271"/>
-<area shape="rect" id="node9" href="$context_8h.html" title="context.h" alt="" coords="835,319,917,345"/>
-<area shape="rect" id="node27" href="$visitor_8h.html" title="visitor.h" alt="" coords="2366,162,2437,189"/>
-<area shape="rect" id="node30" href="$visitablewith_8h.html" title="visitablewith.h" alt="" coords="2390,244,2501,271"/>
+<area shape="rect" id="node2" href="$mainwindow_8h.html" title="mainwindow.h" alt="" coords="566,80,677,107"/>
+<area shape="rect" id="node18" href="$log_8hpp.html" title="log.hpp" alt="" coords="1312,80,1381,107"/>
+<area shape="rect" id="node23" href="$modelvisitor_8h.html" title="modelvisitor.h" alt="" coords="1694,80,1805,107"/>
+<area shape="rect" id="node30" href="$subwindow_8hpp.html" title="subwindow.hpp" alt="" coords="1829,80,1947,107"/>
+<area shape="rect" id="node5" href="$projectconfiguration_8h.html" title="projectconfiguration\l/projectconfiguration.h" alt="" coords="440,155,605,196"/>
+<area shape="rect" id="node7" href="$candevice_8h.html" title="candevice/candevice.h" alt="" coords="1057,244,1223,271"/>
+<area shape="rect" id="node11" href="$canrawsender_8h.html" title="canrawsender/canrawsender.h" alt="" coords="818,244,1033,271"/>
+<area shape="rect" id="node13" href="$canrawview_8h.html" title="canrawview/canrawview.h" alt="" coords="612,244,793,271"/>
+<area shape="rect" id="node9" href="$context_8h.html" title="context.h" alt="" coords="884,319,967,345"/>
+<area shape="rect" id="node26" href="$visitor_8h.html" title="visitor.h" alt="" coords="1786,162,1857,189"/>
+<area shape="rect" id="node29" href="$visitablewith_8h.html" title="visitablewith.h" alt="" coords="1871,244,1982,271"/>
 </map>
