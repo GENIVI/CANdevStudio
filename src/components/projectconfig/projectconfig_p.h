@@ -1,16 +1,16 @@
 #ifndef PROJECTCONFIG_P_H
 #define PROJECTCONFIG_P_H
 
+#include "canrawsendermodel.h"
+#include "canrawviewmodel.h"
 #include "flowviewwrapper.h"
 #include "modeltoolbutton.h"
 #include "ui_projectconfig.h"
 #include <QtWidgets/QPushButton>
-#include <candevice/candevicemodel.h>
-#include <canrawsender/canrawsendermodel.h>
-#include <canrawview/canrawviewmodel.h>
 #include <log.h>
 #include <modelvisitor.h> // apply_model_visitor
 #include <nodes/Node>
+#include <projectconfig/candevicemodel.h>
 
 namespace Ui {
 class ProjectConfigPrivate;

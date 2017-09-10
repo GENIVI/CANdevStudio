@@ -1,5 +1,5 @@
 #include <QtWidgets/QApplication>
-#include <candevice/candevicemodel.h>
+#include <projectconfig/candevicemodel.h>
 #define CATCH_CONFIG_RUNNER
 #include "log.h"
 #include <QSignalSpy>

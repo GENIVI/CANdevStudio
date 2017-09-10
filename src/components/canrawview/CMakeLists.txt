@@ -4,7 +4,6 @@ set(SRC
     gui/canrawview.ui
     gui/crvgui.h
     canrawview.cpp
-    canrawviewmodel.cpp
     uniquefiltermodel.cpp    
 )
 

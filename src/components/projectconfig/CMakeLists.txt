@@ -3,6 +3,9 @@ set(COMPONENT_NAME projectconfig)
 set(SRC
     projectconfig.ui
     projectconfig.cpp    
+    canrawviewmodel.cpp
+    canrawsendermodel.cpp
+    candevicemodel.cpp
 )
 
 add_library(${COMPONENT_NAME} ${SRC})
