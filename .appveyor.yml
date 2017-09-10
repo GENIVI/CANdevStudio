@@ -17,17 +17,17 @@ clone_script:
 image: Visual Studio 2015
 environment:
   matrix:
-  - GENERATOR: '"MinGW Makefiles"'
-    BUILD_TYPE: Debug
-    QT_PATH: C:\Qt\5.9\mingw53_32
-  - GENERATOR: '"MinGW Makefiles"'
-    BUILD_TYPE: Release
-    QT_PATH: C:\Qt\5.9\mingw53_32
   - GENERATOR: '"Visual Studio 14 2015"'
-    BUILD_TYPE: Debug
+    BUILD_TYPE: Release
     QT_PATH: C:\Qt\5.6\msvc2015
-  - GENERATOR: '"Visual Studio 14 2015"'
+  - GENERATOR: '"MinGW Makefiles"'
     BUILD_TYPE: Release
+    QT_PATH: C:\Qt\5.9\mingw53_32
+  - GENERATOR: '"MinGW Makefiles"'
+    BUILD_TYPE: Debug
+    QT_PATH: C:\Qt\5.9\mingw53_32
+  - GENERATOR: '"Visual Studio 14 2015"'
+    BUILD_TYPE: Debug
     QT_PATH: C:\Qt\5.6\msvc2015
   - GENERATOR: '"Visual Studio 14 2015 Win64"'
     BUILD_TYPE: Debug

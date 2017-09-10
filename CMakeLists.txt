@@ -10,7 +10,13 @@ set(CMAKE_CXX_STANDARD 14)
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/Modules)
 
 option(WITH_COVERAGE "Build with coverage" OFF)
-option(WITH_TESTS "Build with test" ON)
+
+if(NOT MSVC)
+    option(WITH_TESTS "Build with test" ON)
+else()
+    # TODO: MSVC does not like "#define private public" need to find a way to disable it.
+    option(WITH_TESTS "Build with test" OFF)
+endif()
 
 set(QT_REQUIRED_VERSION "5.6")
 find_package(Qt5Core ${QT_REQUIRED_VERSION} REQUIRED)

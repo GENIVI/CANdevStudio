@@ -1,5 +1,3 @@
-// VS2015 forbids to redefine keywords by default. This disables the check
-#define _XKEYCHECK_H
 #define private public
 #include <candevice/candevice.h>
 #undef private
