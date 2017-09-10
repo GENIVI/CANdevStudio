@@ -1,10 +1,10 @@
-#ifndef NLMCHECKBOX_HPP
-#define NLMCHECKBOX_HPP
+#ifndef NLMCHECKBOX_H
+#define NLMCHECKBOX_H
 
 #include <QCheckBox>
 #include <QHBoxLayout>
 #include <QLineEdit>
-#include <guiinterface/checkboxinterface.hpp>
+#include <guiinterface/checkboxinterface.h>
 
 struct NLMCheckBox : public CheckBoxInterface {
 
@@ -46,4 +46,4 @@ private:
     QHBoxLayout* qLayout;
 };
 
-#endif // NLMCHECKBOX_HPP
+#endif // NLMCHECKBOX_H

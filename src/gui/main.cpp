@@ -3,7 +3,7 @@
 #include <QtCore/QtGlobal>
 #include <QtWidgets/QApplication>
 
-#include "log.hpp"
+#include "log.h"
 
 std::shared_ptr<spdlog::logger> kDefaultLogger;
 std::shared_ptr<spdlog::logger> qtDefaultLogger;

@@ -1,5 +1,5 @@
-#ifndef CHECKBOXINTERFACE_HPP
-#define CHECKBOXINTERFACE_HPP
+#ifndef CHECKBOXINTERFACE_H
+#define CHECKBOXINTERFACE_H
 
 #include <functional>
 class QWidget;
@@ -14,4 +14,4 @@ struct CheckBoxInterface {
     virtual QWidget* getMainWidget() = 0;
     virtual bool getState() = 0;
 };
-#endif // CHECKBOXINTERFACE_HPP
+#endif // CHECKBOXINTERFACE_H

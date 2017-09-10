@@ -1,8 +1,8 @@
-#ifndef NLMPUSHBUTTON_HPP
-#define NLMPUSHBUTTON_HPP
+#ifndef NLMPUSHBUTTON_H
+#define NLMPUSHBUTTON_H
 
 #include <QPushButton>
-#include <guiinterface/pushbuttoninterface.hpp>
+#include <guiinterface/pushbuttoninterface.h>
 
 struct NLMPushButton : public PushButtonInterface {
 
@@ -40,4 +40,4 @@ struct NLMPushButton : public PushButtonInterface {
 private:
     QPushButton* qPushButton;
 };
-#endif // NLMPUSHBUTTON_HPP
+#endif // NLMPUSHBUTTON_H

@@ -1,7 +1,8 @@
 set(COMPONENT_NAME canrawsender)
 
 set(SRC
-    canrawsender.ui
+    gui/canrawsender.ui
+    gui/crsgui.h
     canrawsender.cpp
     canrawsender_p.cpp
     canrawsendermodel.cpp

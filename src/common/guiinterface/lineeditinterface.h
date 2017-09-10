@@ -1,5 +1,5 @@
-#ifndef LINEEDITINTERFACE_HPP
-#define LINEEDITINTERFACE_HPP
+#ifndef LINEEDITINTERFACE_H
+#define LINEEDITINTERFACE_H
 
 #include <QString>
 #include <functional>
@@ -19,4 +19,4 @@ struct LineEditInterface {
     virtual int getTextLength() = 0;
     virtual const QString getText() = 0;
 };
-#endif // LINEEDITINTERFACE_HPP
+#endif // LINEEDITINTERFACE_H

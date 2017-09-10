@@ -1,6 +1,6 @@
 #include "canrawview.h"
 #include "canrawview_p.h"
-#include "log.hpp"
+#include "log.h"
 #include <QtCore/QElapsedTimer>
 #include <QtCore/QList>
 #include <QtCore/QString>
@@ -12,8 +12,8 @@ CanRawView::CanRawView()
 {
 }
 
-CanRawView::CanRawView(CRVFactoryInterface& factory)
-    : d_ptr(new CanRawViewPrivate(this, factory))
+CanRawView::CanRawView(CanRawViewCtx&& ctx)
+    : d_ptr(new CanRawViewPrivate(this, std::move(ctx)))
 {
 }
 
@@ -25,15 +25,15 @@ void CanRawView::startSimulation()
 {
     Q_D(CanRawView);
 
-    d->timer->restart();
-    d->simStarted = true;
+    d->_timer.restart();
+    d->_simStarted = true;
 }
 
 void CanRawView::stopSimulation()
 {
     Q_D(CanRawView);
 
-    d->simStarted = false;
+    d->_simStarted = false;
 }
 
 void CanRawView::frameReceived(const QCanBusFrame& frame)
@@ -56,9 +56,8 @@ QWidget* CanRawView::getMainWidget()
 {
     Q_D(CanRawView);
 
-    return d->mUi->getMainWidget();
+    return d->_ui.getMainWidget();
 }
-
 
 void CanRawView::saveSettings(QJsonObject& json) const
 {

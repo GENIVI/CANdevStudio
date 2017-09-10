@@ -1,15 +1,22 @@
-
-#include "candevice/candeviceqt.hpp"
-#include "candevice/canfactoryqt.hpp"
+#include <candevice/candeviceqt.h>
 #include <catch.hpp>
 
-TEST_CASE("Invalid parameters throws an exception", "[candeviceqt]")
+TEST_CASE("Invalid parameters init fails", "[candeviceqt]")
 {
-    auto fn = []() { CanDeviceQt{ "", "" }; };
-    REQUIRE_THROWS(fn());
+    CanDeviceQt dev;
+    CHECK(dev.init("", "") == false);
 }
-TEST_CASE("Interface invalid parameters throws an exception", "[candeviceqt]")
+
+TEST_CASE("Uninitialized device", "[candeviceqt]")
 {
-    CanFactoryQt factory;
-    REQUIRE_THROWS(factory.create("", ""));
+    CanDeviceQt dev;
+    QCanBusFrame frame;
+
+    REQUIRE_THROWS(dev.setFramesWrittenCbk({}));
+    REQUIRE_THROWS(dev.setFramesReceivedCbk({}));
+    REQUIRE_THROWS(dev.setErrorOccurredCbk({}));
+    REQUIRE_THROWS(dev.writeFrame(frame));
+    REQUIRE_THROWS(dev.connectDevice());
+    REQUIRE_THROWS(dev.readFrame());
+    REQUIRE_THROWS(dev.framesAvailable());
 }

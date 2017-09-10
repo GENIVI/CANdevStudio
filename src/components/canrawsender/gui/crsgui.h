@@ -1,7 +1,7 @@
-#ifndef CRSGUI_HPP
-#define CRSGUI_HPP
+#ifndef CRSGUI_H
+#define CRSGUI_H
 
-#include "../crsguiinterface.hpp"
+#include "crsguiinterface.h"
 #include "ui_canrawsender.h"
 #include <memory>
 
@@ -37,10 +37,10 @@ struct CRSGui : public CRSGuiInterface {
         return widget;
     }
 
-    void initTableView(QAbstractItemModel& tvModel) override
+    void initTableView(QAbstractItemModel& _tvModel) override
     {
 
-        ui->tv->setModel(&tvModel);
+        ui->tv->setModel(&_tvModel);
         ui->tv->setSelectionBehavior(QAbstractItemView::SelectRows);
     }
 
@@ -54,13 +54,8 @@ struct CRSGui : public CRSGuiInterface {
         ui->tv->setIndexWidget(index, widget);
     }
 
-    std::unique_ptr<NewLineManager> newLine(CanRawSender* q_ptr, bool simulationState) override
-    {
-        return std::make_unique<NewLineManager>(q_ptr, simulationState);
-    }
-
 private:
     Ui::CanRawSenderPrivate* ui;
     QWidget* widget;
 };
-#endif // CRSGUI_HPP
+#endif // CRSGUI_H

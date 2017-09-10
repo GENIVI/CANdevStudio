@@ -1,26 +1,22 @@
 #include "candevicemodel.h"
-
-#include "log.hpp"
 #include <assert.h>
-
-#include "datamodeltypes/candevicedata.h"
+#include <datamodeltypes/candevicedata.h>
+#include <log.h>
 #include <nodes/DataModelRegistry>
 
 CanDeviceModel::CanDeviceModel()
-    : label(new QLabel())
+    : _label(new QLabel())
 {
-    label->setAlignment(Qt::AlignVCenter | Qt::AlignHCenter);
+    _label->setAlignment(Qt::AlignVCenter | Qt::AlignHCenter);
+    _label->setFixedSize(75, 25);
+    _label->setAttribute(Qt::WA_TranslucentBackground);
 
-    label->setFixedSize(75, 25);
+    connect(&_component, &CanDevice::frameSent, this, &CanDeviceModel::frameSent);
+    connect(&_component, &CanDevice::frameReceived, this, &CanDeviceModel::frameReceived);
+    connect(this, &CanDeviceModel::sendFrame, &_component, &CanDevice::sendFrame);
 
-    label->setAttribute(Qt::WA_TranslucentBackground);
-
-    connect(&canDevice, &CanDevice::frameSent, this, &CanDeviceModel::frameSent);
-    connect(&canDevice, &CanDevice::frameReceived, this, &CanDeviceModel::frameReceived);
-    connect(this, &CanDeviceModel::sendFrame, &canDevice, &CanDevice::sendFrame);
-
-    canDevice.init("socketcan", "can0"); // TODO
-    canDevice.start();
+    _component.init("socketcan", "can0"); // TODO
+    _component.start();
 }
 
 unsigned int CanDeviceModel::nPorts(PortType portType) const
@@ -32,19 +28,19 @@ unsigned int CanDeviceModel::nPorts(PortType portType) const
 
 void CanDeviceModel::frameOnQueue()
 {
-    std::tie(_frame, _direction, _status) = frameQueue.takeFirst();
+    std::tie(_frame, _direction, _status) = _frameQueue.takeFirst();
     emit dataUpdated(0); // Data ready on port 0
 }
 
 void CanDeviceModel::frameReceived(const QCanBusFrame& frame)
 {
-    frameQueue.push_back(std::make_tuple(frame, Direction::RX, false));
+    _frameQueue.push_back(std::make_tuple(frame, Direction::RX, false));
     frameOnQueue();
 }
 
 void CanDeviceModel::frameSent(bool status, const QCanBusFrame& frame)
 {
-    frameQueue.push_back(std::make_tuple(frame, Direction::TX, status));
+    _frameQueue.push_back(std::make_tuple(frame, Direction::TX, status));
     frameOnQueue();
 }
 
@@ -71,12 +67,48 @@ void CanDeviceModel::setInData(std::shared_ptr<NodeData> nodeData, PortIndex)
     }
 }
 
-QJsonObject CanDeviceModel::save() const {
+QJsonObject CanDeviceModel::save() const
+{
     QJsonObject json;
     json["name"] = name();
 
     // TODO save can device settings
-    //canDevice->saveSettings(json);
+    // _component->saveSettings(json);
 
     return json;
+}
+
+void CanDeviceModel::visit(CanNodeDataModelVisitor& v)
+{
+    v(*this);
+}
+
+QString CanDeviceModel::caption() const
+{
+    return QString("CanDevice Node");
+} // TODO
+
+QString CanDeviceModel::name() const
+{
+    return QString("CanDeviceModel");
+}
+
+std::unique_ptr<NodeDataModel> CanDeviceModel::clone() const
+{
+    return std::make_unique<CanDeviceModel>();
+}
+
+QString CanDeviceModel::modelName() const
+{
+    return QString("CAN device");
+}
+
+QWidget* CanDeviceModel::embeddedWidget()
+{
+    return _label;
+}
+
+bool CanDeviceModel::resizable() const
+{
+    return false;
 }

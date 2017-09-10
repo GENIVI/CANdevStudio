@@ -1,13 +1,9 @@
 #ifndef CRVGUI_H
 #define CRVGUI_H
 
-#include "crvguiinterface.hpp"
+#include "crvguiinterface.h"
 #include "ui_canrawview.h"
 #include <memory>
-
-namespace Ui {
-class CanRawViewPrivate;
-}
 
 struct CRVGui : public CRVGuiInterface {
 

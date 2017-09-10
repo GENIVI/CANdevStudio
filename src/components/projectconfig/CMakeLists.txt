@@ -1,8 +1,8 @@
-set(COMPONENT_NAME projectconfiguration)
+set(COMPONENT_NAME projectconfig)
 
 set(SRC
-    projectconfiguration.ui
-    projectconfiguration.cpp    
+    projectconfig.ui
+    projectconfig.cpp    
 )
 
 add_library(${COMPONENT_NAME} ${SRC})

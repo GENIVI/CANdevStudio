@@ -1,5 +1,5 @@
-#ifndef CANDEVICEINTERFACE_HPP_DNXOI7PW
-#define CANDEVICEINTERFACE_HPP_DNXOI7PW
+#ifndef CANDEVICEINTERFACE_H_DNXOI7PW
+#define CANDEVICEINTERFACE_H_DNXOI7PW
 
 #include <QtCore/QtGlobal>
 #include <QtSerialBus/QCanBusFrame>
@@ -18,11 +18,12 @@ struct CanDeviceInterface {
     virtual void setFramesReceivedCbk(const framesReceived_t& cb) = 0;
     virtual void setErrorOccurredCbk(const errorOccurred_t& cb) = 0;
 
+    virtual bool init(const QString& backend, const QString& iface) = 0;
     virtual bool writeFrame(const QCanBusFrame& frame) = 0;
     virtual bool connectDevice() = 0;
     virtual qint64 framesAvailable() = 0;
 
-    virtual QCanBusFrame readFrame() noexcept = 0;
+    virtual QCanBusFrame readFrame() = 0;
 };
 
-#endif /* end of include guard: CANDEVICEINTERFACE_HPP_DNXOI7PW */
+#endif /* end of include guard: CANDEVICEINTERFACE_H_DNXOI7PW */

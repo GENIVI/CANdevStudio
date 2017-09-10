@@ -3,11 +3,10 @@
 
 #include <QScopedPointer>
 #include <QtCore/QObject>
-#include <QtSerialBus/QCanBusDevice>
-#include <QtSerialBus/QCanBusFrame>
+#include <context.h>
 
 class CanDevicePrivate;
-struct CanFactoryInterface;
+class QCanBusFrame;
 
 /**
 *   @brief The class provides abstraction layer for CAN BUS hardware
@@ -18,7 +17,7 @@ class CanDevice : public QObject {
 
 public:
     CanDevice();
-    CanDevice(CanFactoryInterface& factory);
+    CanDevice(CanDeviceCtx&& ctx);
     ~CanDevice();
 
     /**
@@ -33,21 +32,20 @@ public:
     bool init(const QString& backend, const QString& iface);
     bool start();
 
-Q_SIGNALS:
+signals:
     void frameReceived(const QCanBusFrame& frame);
     void frameSent(bool status, const QCanBusFrame& frame);
 
-public Q_SLOTS:
+public slots:
     void sendFrame(const QCanBusFrame& frame);
 
-private Q_SLOTS:
+private slots:
     void errorOccurred(int error);
     void framesWritten(qint64 framesCnt);
     void framesReceived();
 
 private:
     QScopedPointer<CanDevicePrivate> d_ptr;
-    bool initialized = false;
 };
 
 #endif /* !__CANDEVICE_H */

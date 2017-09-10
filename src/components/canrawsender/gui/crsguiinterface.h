@@ -1,5 +1,5 @@
-#ifndef CRSGUIINTERFACE_HPP
-#define CRSGUIINTERFACE_HPP
+#ifndef CRSGUIINTERFACE_H
+#define CRSGUIINTERFACE_H
 
 #include <QModelIndex>
 #include <functional>
@@ -22,9 +22,8 @@ struct CRSGuiInterface {
     virtual void setDockUndockCbk(const dockUndock_t& cb) = 0;
 
     virtual QWidget* getMainWidget() = 0;
-    virtual void initTableView(QAbstractItemModel& tvModel) = 0;
+    virtual void initTableView(QAbstractItemModel& _tvModel) = 0;
     virtual QModelIndexList getSelectedRows() = 0;
     virtual void setIndexWidget(const QModelIndex& index, QWidget* widget) = 0;
-    virtual std::unique_ptr<NewLineManager> newLine(CanRawSender* q_ptr, bool simulationState) = 0;
 };
-#endif // CRSGUIINTERFACE_HPP
+#endif // CRSGUIINTERFACE_H

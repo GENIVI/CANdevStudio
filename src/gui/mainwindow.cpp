@@ -1,8 +1,8 @@
 
 #include "mainwindow.h"
-#include "log.hpp"
+#include "log.h"
 #include "modelvisitor.h" // apply_model_visitor
-#include "subwindow.hpp"
+#include "subwindow.h"
 #include "ui_mainwindow.h"
 
 #include <QCloseEvent>
@@ -20,7 +20,7 @@ MainWindow::MainWindow(QWidget* parent)
     ui->setupUi(this);
     ui->centralWidget->layout()->setContentsMargins(0, 0, 0, 0);
 
-    projectConfiguration = std::make_unique<ProjectConfiguration>(ui->actionstart, ui->actionstop); // FIXME actions
+    projectConfig = std::make_unique<ProjectConfig>();
 
     setupMdiArea();
     connectToolbarSignals();
@@ -62,8 +62,10 @@ void MainWindow::connectToolbarSignals()
 {
     connect(ui->actionstart, &QAction::triggered, ui->actionstop, &QAction::setDisabled);
     connect(ui->actionstart, &QAction::triggered, ui->actionstart, &QAction::setEnabled);
+    connect(ui->actionstart, &QAction::triggered, projectConfig.get(), &ProjectConfig::startSimulation);
     connect(ui->actionstop, &QAction::triggered, ui->actionstop, &QAction::setEnabled);
     connect(ui->actionstop, &QAction::triggered, ui->actionstart, &QAction::setDisabled);
+    connect(ui->actionstop, &QAction::triggered, projectConfig.get(), &ProjectConfig::stopSimulation);
 }
 
 void MainWindow::handleSaveAction()
@@ -77,7 +79,7 @@ void MainWindow::handleSaveAction()
 
         QFile file(fileName);
         if (file.open(QIODevice::WriteOnly)) {
-            file.write(projectConfiguration->save()); // FIXME
+            file.write(projectConfig->save()); // FIXME
         }
     } else {
         cds_error("File name empty");
@@ -106,8 +108,8 @@ void MainWindow::handleLoadAction()
     // TODO check if file is correct, nodeeditor library does not provide it and will crash if incorrect file is
     // supplied
 
-    projectConfiguration->clearGraphView();
-    projectConfiguration->load(wholeFile); // FIXME
+    projectConfig->clearGraphView();
+    projectConfig->load(wholeFile); // FIXME
 }
 
 void MainWindow::connectMenuSignals()
@@ -140,11 +142,11 @@ void MainWindow::componentWidgetCreated(QWidget* component)
 
 void MainWindow::setupMdiArea()
 {
-    projectConfiguration->setWindowTitle("Project Configuration");
-    ui->mdiArea->addSubWindow(projectConfiguration.get());
+    projectConfig->setWindowTitle("Project Configuration");
+    ui->mdiArea->addSubWindow(projectConfig.get());
     ui->mdiArea->setAttribute(Qt::WA_DeleteOnClose, false);
     ui->mdiArea->setViewMode(QMdiArea::TabbedView);
-    connect(projectConfiguration.get(), &ProjectConfiguration::componentWidgetCreated, this,
+    connect(projectConfig.get(), &ProjectConfig::componentWidgetCreated, this,
         &MainWindow::componentWidgetCreated);
-    connect(projectConfiguration.get(), &ProjectConfiguration::handleDock, this, &MainWindow::handleDock);
+    connect(projectConfig.get(), &ProjectConfig::handleDock, this, &MainWindow::handleDock);
 }

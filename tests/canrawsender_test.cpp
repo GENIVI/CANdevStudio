@@ -1,16 +1,14 @@
-#include "canrawsender/canrawsender.h"
-#include "canrawsender/crsfactoryinterface.hpp"
-#include "canrawsender/crsguiinterface.hpp"
-#include "canrawsender/newlinemanager.h"
+#include <QJsonArray>
 #include <QStandardItemModel>
-#include <catch.hpp>
+#include <canrawsender.h>
+#include <context.h>
 #include <fakeit.hpp>
+#include <gui/crsguiinterface.h>
 #include <memory>
-#include<QJsonArray>
+#include <newlinemanager.h>
 
 TEST_CASE("Add and remove frame test", "[canrawsender]")
 {
-
     class helpTestClass {
     public:
         helpTestClass()
@@ -20,7 +18,10 @@ TEST_CASE("Add and remove frame test", "[canrawsender]")
             auto idx = tvModel.indexFromItem(list.at(0));
             indexList.append(idx);
         }
-        QModelIndexList getList() { return indexList; }
+        QModelIndexList getList()
+        {
+            return indexList;
+        }
 
     private:
         QStandardItemModel tvModel;
@@ -33,7 +34,6 @@ TEST_CASE("Add and remove frame test", "[canrawsender]")
     CRSGuiInterface::add_t addLineCbk;
     CRSGuiInterface::remove_t removeLineCbk;
 
-    Mock<CRSFactoryInterface> factoryMock;
     Mock<CRSGuiInterface> crsMock;
 
     Mock<CheckBoxInterface> nlmCheckBoxMock;
@@ -41,6 +41,7 @@ TEST_CASE("Add and remove frame test", "[canrawsender]")
     Mock<PushButtonInterface> nlmPushButtonMock;
 
     Mock<NLMFactoryInterface> nlmFactoryMock;
+    Fake(Dtor(nlmFactoryMock));
     helpTestClass mHelp;
 
     Fake(Dtor(nlmLineEditMock));
@@ -72,12 +73,8 @@ TEST_CASE("Add and remove frame test", "[canrawsender]")
     Fake(Method(crsMock, initTableView));
     When(Method(crsMock, getSelectedRows)).Do([&]() { return mHelp.getList(); });
     Fake(Method(crsMock, setIndexWidget));
-    When(Method(crsMock, newLine)).Do([&](auto& _ptr, auto& _flag) {
-        return std::make_unique<NewLineManager>(_ptr, _flag, nlmFactoryMock.get());
-    });
 
-    When(Method(factoryMock, createGui)).Return(&crsMock.get());
-    CanRawSender canRawSender{ factoryMock.get() };
+    CanRawSender canRawSender{ CanRawSenderCtx(&crsMock.get(), &nlmFactoryMock.get()) };
 
     CHECK(canRawSender.getLineCount() == 0);
     addLineCbk();
@@ -89,9 +86,8 @@ TEST_CASE("Add and remove frame test", "[canrawsender]")
 TEST_CASE("Can raw sender save configuration test", "[newlinemanager]")
 {
     using namespace fakeit;
-    Mock<CRSFactoryInterface> factoryMock;
-    Mock<CRSGuiInterface> crsMock;
 
+    Mock<CRSGuiInterface> crsMock;
     Fake(Dtor(crsMock));
     Fake(Method(crsMock, setAddCbk));
     Fake(Method(crsMock, setRemoveCbk));
@@ -101,8 +97,10 @@ TEST_CASE("Can raw sender save configuration test", "[newlinemanager]")
     Fake(Method(crsMock, getSelectedRows));
     Fake(Method(crsMock, setIndexWidget));
 
-    When(Method(factoryMock, createGui)).Return(&crsMock.get());
-    CanRawSender canRawSender{ factoryMock.get() };
+    Mock<NLMFactoryInterface> nlmFactoryMock;
+    Fake(Dtor(nlmFactoryMock));
+
+    CanRawSender canRawSender{ CanRawSenderCtx(&crsMock.get(), &nlmFactoryMock.get()) };
 
     QJsonObject json;
     canRawSender.saveSettings(json);

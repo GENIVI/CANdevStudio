@@ -1,5 +1,5 @@
-#ifndef __SUBWINDOW_HPP
-#define __SUBWINDOW_HPP
+#ifndef __SUBWINDOW_H
+#define __SUBWINDOW_H
 
 #include <QMdiSubWindow>
 #include <QPushButton>
@@ -15,4 +15,4 @@ struct SubWindow : public QMdiSubWindow {
     }
 };
 
-#endif /* !__SUBWINDOW_HPP */
+#endif /* !__SUBWINDOW_H */

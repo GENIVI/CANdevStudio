@@ -1,36 +1,21 @@
 #ifndef __CANDEVICE_P_H
 #define __CANDEVICE_P_H
 
-#include "candeviceinterface.hpp"
-#include "canfactoryqt.hpp"
-#include <QtCore/QObject>
-#include <QtCore/QScopedPointer>
-#include <QtCore/QVariant>
+#include "candeviceqt.h"
 #include <QtCore/QVector>
-#include <QtSerialBus/QCanBus>
-#include <QtSerialBus/QCanBusFrame>
-#include <memory>
 
 class CanDevicePrivate {
 public:
-    CanDevicePrivate()
-        : CanDevicePrivate(mDefFactory)
+    CanDevicePrivate(CanDeviceCtx&& ctx = CanDeviceCtx(new CanDeviceQt))
+        : _ctx(std::move(ctx))
+        , _canDevice(_ctx.get<CanDeviceInterface>())
     {
     }
 
-    CanDevicePrivate(CanFactoryInterface& factory)
-        : mFactory(factory)
-    {
-    }
-
-    QString mBackend;
-    QString mInterface;
-    QVector<QCanBusFrame> mSendQueue;
-    std::unique_ptr<CanDeviceInterface> canDevice;
-    CanFactoryInterface& mFactory;
-
-private:
-    CanFactoryQt mDefFactory;
+    CanDeviceCtx _ctx;
+    QVector<QCanBusFrame> _sendQueue;
+    CanDeviceInterface& _canDevice;
+    bool _initialized{ false };
 };
 
 #endif /* !__CANDEVICE_P_H */
