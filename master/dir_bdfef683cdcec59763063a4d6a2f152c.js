@@ -8,10 +8,6 @@ var dir_bdfef683cdcec59763063a4d6a2f152c =
     [ "canrawview_p.h", "canrawview__p_8h.html", [
       [ "CanRawViewPrivate", "class_can_raw_view_private.html", "class_can_raw_view_private" ]
     ] ],
-    [ "canrawviewmodel.cpp", "canrawviewmodel_8cpp.html", null ],
-    [ "canrawviewmodel.h", "canrawviewmodel_8h.html", [
-      [ "CanRawViewModel", "class_can_raw_view_model.html", "class_can_raw_view_model" ]
-    ] ],
     [ "crvfactoryinterface.h", "crvfactoryinterface_8h.html", [
       [ "CRVFactoryInterface", "struct_c_r_v_factory_interface.html", "struct_c_r_v_factory_interface" ]
     ] ],

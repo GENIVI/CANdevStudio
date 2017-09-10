@@ -1,4 +1,4 @@
-<map id="src/components/candevice/candevicemodel.h" name="src/components/candevice/candevicemodel.h">
+<map id="src/components/projectconfig/candevicemodel.h" name="src/components/projectconfig/candevicemodel.h">
 <area shape="rect" id="node5" href="$modelvisitor_8h.html" title="modelvisitor.h" alt="" coords="513,95,623,121"/>
 <area shape="rect" id="node12" href="$visitablewith_8h.html" title="visitablewith.h" alt="" coords="698,244,809,271"/>
 <area shape="rect" id="node14" href="$candevice_8h.html" title="candevice.h" alt="" coords="247,95,345,121"/>

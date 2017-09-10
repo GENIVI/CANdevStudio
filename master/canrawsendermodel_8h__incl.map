@@ -1,4 +1,4 @@
-<map id="src/components/canrawsender/canrawsendermodel.h" name="src/components/canrawsender/canrawsendermodel.h">
+<map id="src/components/projectconfig/canrawsendermodel.h" name="src/components/projectconfig/canrawsendermodel.h">
 <area shape="rect" id="node5" href="$canrawsender_8h.html" title="canrawsender.h" alt="" coords="275,95,397,121"/>
 <area shape="rect" id="node10" href="$modelvisitor_8h.html" title="modelvisitor.h" alt="" coords="563,95,674,121"/>
 <area shape="rect" id="node16" href="$visitablewith_8h.html" title="visitablewith.h" alt="" coords="749,244,859,271"/>

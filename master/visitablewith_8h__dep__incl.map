@@ -1,13 +1,13 @@
 <map id="src/common/visitablewith.h" name="src/common/visitablewith.h">
-<area shape="rect" id="node2" href="$visitor_8h.html" title="src/common/visitor.h" alt="" coords="335,80,490,107"/>
-<area shape="rect" id="node3" href="$modelvisitor_8h.html" title="src/common/modelvisitor.h" alt="" coords="334,155,529,181"/>
-<area shape="rect" id="node4" href="$candevicemodel_8h.html" title="src/components/candevice\l/candevicemodel.h" alt="" coords="5,229,199,271"/>
-<area shape="rect" id="node8" href="$canrawsendermodel_8h.html" title="src/components/canrawsender\l/canrawsendermodel.h" alt="" coords="469,229,687,271"/>
-<area shape="rect" id="node10" href="$canrawviewmodel_8h.html" title="src/components/canrawview\l/canrawviewmodel.h" alt="" coords="712,229,913,271"/>
-<area shape="rect" id="node6" href="$projectconfig__p_8h.html" title="src/components/projectconfig\l/projectconfig_p.h" alt="" coords="279,319,490,360"/>
-<area shape="rect" id="node12" href="$mainwindow_8cpp.html" title="src/gui/mainwindow.cpp" alt="" coords="223,237,394,263"/>
-<area shape="rect" id="node5" href="$candevicemodel_8cpp.html" title="src/components/candevice\l/candevicemodel.cpp" alt="" coords="5,319,199,360"/>
-<area shape="rect" id="node7" href="$projectconfig_8cpp.html" title="src/components/projectconfig\l/projectconfig.cpp" alt="" coords="279,408,490,449"/>
-<area shape="rect" id="node9" href="$canrawsendermodel_8cpp.html" title="src/components/canrawsender\l/canrawsendermodel.cpp" alt="" coords="514,319,733,360"/>
-<area shape="rect" id="node11" href="$canrawviewmodel_8cpp.html" title="src/components/canrawview\l/canrawviewmodel.cpp" alt="" coords="757,319,959,360"/>
+<area shape="rect" id="node2" href="$visitor_8h.html" title="src/common/visitor.h" alt="" coords="348,80,503,107"/>
+<area shape="rect" id="node3" href="$modelvisitor_8h.html" title="src/common/modelvisitor.h" alt="" coords="351,155,545,181"/>
+<area shape="rect" id="node4" href="$candevicemodel_8h.html" title="src/components/projectconfig\l/candevicemodel.h" alt="" coords="5,229,216,271"/>
+<area shape="rect" id="node8" href="$canrawsendermodel_8h.html" title="src/components/projectconfig\l/canrawsendermodel.h" alt="" coords="485,229,696,271"/>
+<area shape="rect" id="node10" href="$canrawviewmodel_8h.html" title="src/components/projectconfig\l/canrawviewmodel.h" alt="" coords="720,229,931,271"/>
+<area shape="rect" id="node6" href="$projectconfig__p_8h.html" title="src/components/projectconfig\l/projectconfig_p.h" alt="" coords="296,319,507,360"/>
+<area shape="rect" id="node12" href="$mainwindow_8cpp.html" title="src/gui/mainwindow.cpp" alt="" coords="240,237,411,263"/>
+<area shape="rect" id="node5" href="$candevicemodel_8cpp.html" title="src/components/projectconfig\l/candevicemodel.cpp" alt="" coords="5,319,216,360"/>
+<area shape="rect" id="node7" href="$projectconfig_8cpp.html" title="src/components/projectconfig\l/projectconfig.cpp" alt="" coords="296,408,507,449"/>
+<area shape="rect" id="node9" href="$canrawsendermodel_8cpp.html" title="src/components/projectconfig\l/canrawsendermodel.cpp" alt="" coords="531,319,741,360"/>
+<area shape="rect" id="node11" href="$canrawviewmodel_8cpp.html" title="src/components/projectconfig\l/canrawviewmodel.cpp" alt="" coords="765,319,976,360"/>
 </map>

@@ -1,4 +1,4 @@
-<map id="src/components/canrawsender/canrawsendermodel.cpp" name="src/components/canrawsender/canrawsendermodel.cpp">
+<map id="src/components/projectconfig/canrawsendermodel.cpp" name="src/components/projectconfig/canrawsendermodel.cpp">
 <area shape="rect" id="node2" href="$canrawsendermodel_8h.html" title="canrawsendermodel.h" alt="" coords="608,95,771,121"/>
 <area shape="rect" id="node19" href="$canrawsenderdata_8h.html" title="datamodeltypes/canrawsenderdata.h" alt="" coords="1006,95,1266,121"/>
 <area shape="rect" id="node6" href="$canrawsender_8h.html" title="canrawsender.h" alt="" coords="104,169,227,196"/>
