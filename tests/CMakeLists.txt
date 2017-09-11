@@ -26,3 +26,9 @@ add_executable(candevicemodel_test candevicemodel_test.cpp)
 target_link_libraries(candevicemodel_test candevice Qt5::Core Qt5::SerialBus Qt5::Test nodes cds-common projectconfig)
 target_compile_options(candevicemodel_test PRIVATE $<$<CXX_COMPILER_ID:GNU>:-fno-devirtualize>)
 add_test( NAME CanDeviceModelTest COMMAND candevicemodel_test)
+
+add_executable(common_test common_test.cpp)
+target_link_libraries(common_test candevice Qt5::Core Qt5::SerialBus Qt5::Test nodes cds-common projectconfig)
+target_compile_options(common_test PRIVATE $<$<CXX_COMPILER_ID:GNU>:-fno-devirtualize>)
+add_test( NAME CommonTest COMMAND common_test)
+
