@@ -29,7 +29,8 @@ QVariant PropertyModel::data(const QModelIndex& index, int role) const
         else if (index.column() == 1)
             return propertySource->property(properties[index.row()].toStdString().c_str());
     }
-    return QVariant();
+
+    return {};
 }
 
 Qt::ItemFlags PropertyModel::flags(const QModelIndex& index) const
@@ -52,13 +53,17 @@ void PropertyModel::setPropertySource(QObject* propertySource_)
         return;
 
     for (const auto& p: prop.toStringList())
-        properties.push_back(p);
+        if (!p.isEmpty())
+            properties.push_back(p);
 }
 
 bool PropertyModel::setData(const QModelIndex& index, const QVariant& value, int role)
 {
-    if (role == Qt::EditRole)
+    int size = properties.size();
+    if (role == Qt::EditRole && index.row() < size)
+    {
         propertySource->setProperty(properties[index.row()].toStdString().c_str(), value);
+    }
 
     return true;
 }
