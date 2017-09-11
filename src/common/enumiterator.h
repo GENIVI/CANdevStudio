@@ -72,14 +72,26 @@ class EnumIterator
     }
     // }
 
-    // EqualityComparable concept {
+    // EqualityComparable concept -- no floating points {
     bool operator==(EnumIterator rhs) const { return _current == rhs._current; }
     bool operator!=(EnumIterator rhs) const { return ! (*this == rhs);         }
     // }
 
     // InputIterator concept {
-    EnumIterator& operator++()         { ++_current; return *this;     }
-    EnumIterator operator++(int) const { return ++EnumIterator{*this}; }
+    EnumIterator& operator++()
+    {
+        if (*this != end())  // no point to advance
+        {
+            ++_current;
+        }
+
+        return *this;
+    }
+
+    EnumIterator operator++(int) const
+    {
+        return ++EnumIterator{*this};
+    }
     // }
 
     EnumIterator begin() const { return {start}; }
@@ -89,14 +101,14 @@ class EnumIterator
     {
         assert(dereferencable());
 
-        return *reinterpret_cast<pointer>(&_current);
+        return *reinterpret_cast<pointer>(&_current);  // FIXME
     }
 
     const reference operator*() const
     {
         assert(dereferencable());
 
-        return *reinterpret_cast<pointer>(&_current);
+        return *reinterpret_cast<pointer>(&_current); // FIXME
     }
 
  private:
@@ -115,7 +127,7 @@ class EnumIterator
     static_assert(std::is_enum<T>::value, "Enum expected");
     static_assert(static_cast<raw_type>(stop) >= static_cast<raw_type>(start), "Invalid range");
     static_assert(static_cast<raw_type>(stop) < makeEnd(), "Past-the-end value impossible");
-
+    static_assert( ! std::is_floating_point<raw_type>::value, "Floating points not allowed");
 
 
     // singular guarantee -- initialised to the past-the-end on value-init
