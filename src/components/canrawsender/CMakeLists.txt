@@ -5,7 +5,6 @@ set(SRC
     gui/crsgui.h
     canrawsender.cpp
     canrawsender_p.cpp
-    canrawsendermodel.cpp
     newlinemanager.cpp
 )
 

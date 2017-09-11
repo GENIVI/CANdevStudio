@@ -1,5 +1,5 @@
 #include <QtWidgets/QApplication>
-#include <canrawview/canrawviewmodel.h>
+#include <projectconfig/canrawviewmodel.h>
 #include <datamodeltypes/canrawviewdata.h>
 #define CATCH_CONFIG_RUNNER
 #include <QSignalSpy>

@@ -2,7 +2,6 @@ set(COMPONENT_NAME candevice)
 
 set(SRC
     candevice.cpp
-    candevicemodel.cpp
 )
 
 add_library(${COMPONENT_NAME} ${SRC})
