@@ -102,8 +102,7 @@ TEST_CASE("Can raw sender save configuration test", "[newlinemanager]")
 
     CanRawSender canRawSender{ CanRawSenderCtx(&crsMock.get(), &nlmFactoryMock.get()) };
 
-    QJsonObject json;
-    canRawSender.saveSettings(json);
+    QJsonObject json = canRawSender.getConfig();
 
     CHECK(json.empty() == false);
     CHECK(json.count() == 3);

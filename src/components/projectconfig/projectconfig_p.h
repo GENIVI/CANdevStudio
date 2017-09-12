@@ -62,62 +62,54 @@ public:
     void nodeCreatedCallback(QtNodes::Node& node)
     {
         auto dataModel = node.nodeDataModel();
-
         assert(nullptr != dataModel);
 
-        Q_Q(ProjectConfig);
+        auto iface = dynamic_cast<ComponentModelInterface*>(dataModel);
+        auto& component = iface->getComponent();
 
-        apply_model_visitor(*dataModel, [this](CanRawViewModel& m) { handleWidgetCreation(m.getComponent()); },
-            [this, dataModel, q](CanRawSenderModel& m) { handleWidgetCreation(m.getComponent()); },
-            [this](CanDeviceModel&) {});
+        handleWidgetCreation(component);
     }
 
     void nodeDeletedCallback(QtNodes::Node& node)
     {
         auto dataModel = node.nodeDataModel();
-
         assert(nullptr != dataModel);
 
-        apply_model_visitor(*dataModel,
-            [this, dataModel](CanRawViewModel& m) { handleWidgetDeletion(m.getComponent().getMainWidget()); },
-            [this, dataModel](CanRawSenderModel& m) { handleWidgetDeletion(m.getComponent().getMainWidget()); },
-            [this](CanDeviceModel&) {});
+        auto iface = dynamic_cast<ComponentModelInterface*>(dataModel);
+        auto& component = iface->getComponent();
+
+        handleWidgetDeletion(component.getMainWidget());
     }
 
     void nodeDoubleClickedCallback(QtNodes::Node& node)
     {
         auto dataModel = node.nodeDataModel();
-
         assert(nullptr != dataModel);
 
-        apply_model_visitor(*dataModel,
-            [this, dataModel](CanRawViewModel& m) { handleWidgetShowing(m.getComponent().getMainWidget()); },
-            [this, dataModel](CanRawSenderModel& m) { handleWidgetShowing(m.getComponent().getMainWidget()); },
-            [this](CanDeviceModel&) {});
+        auto iface = dynamic_cast<ComponentModelInterface*>(dataModel);
+        auto& component = iface->getComponent();
+
+        handleWidgetShowing(component.getMainWidget(), component.mainWidgetDocked());
     }
 
 private:
     void handleWidgetDeletion(QWidget* widget)
     {
-        assert(nullptr != widget);
+        if (!widget)
+            return;
+
         if (widget->parentWidget()) {
 
             widget->parentWidget()->close();
         } // else path not needed
     }
 
-    void handleWidgetShowing(QWidget* widget)
+    void handleWidgetShowing(QWidget* widget, bool docked)
     {
-        assert(nullptr != widget);
         Q_Q(ProjectConfig);
-        bool docked = false;
-        // TODO: Temporary solution. To be changed once MainWindow is refactored
-        QPushButton* undockButton = widget->findChild<QPushButton*>("pbDockUndock");
-        if (undockButton) {
-            docked = !undockButton->isChecked();
-        } else {
-            cds_debug("Undock button for '{}' widget not found", widget->windowTitle().toStdString());
-        }
+
+        if (!widget)
+            return;
 
         // Add widget to MDI area when showing for the first time
         // Widget will be also added to MDI area after closing it in undocked state
@@ -137,14 +129,14 @@ private:
         }
     }
 
-    template <typename T> void handleWidgetCreation(T& view)
+    void handleWidgetCreation(ComponentInterface& view)
     {
         Q_Q(ProjectConfig);
 
         QWidget* widget = view.getMainWidget();
-        connect(q, &ProjectConfig::startSimulation, &view, &T::startSimulation);
-        connect(q, &ProjectConfig::stopSimulation, &view, &T::stopSimulation);
-        connect(&view, &T::dockUndock, this, [this, widget, q] { emit q->handleDock(widget); });
+        connect(q, &ProjectConfig::startSimulation, std::bind(&ComponentInterface::startSimulation, &view));
+        connect(q, &ProjectConfig::stopSimulation, std::bind(&ComponentInterface::stopSimulation, &view));
+        view.setDockUndockClbk([widget, q] { emit q->handleDock(widget); });
     }
 
     QtNodes::FlowScene _graphScene;

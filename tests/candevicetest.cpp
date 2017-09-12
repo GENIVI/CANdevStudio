@@ -32,7 +32,7 @@ TEST_CASE("Initialization failed", "[candevice]")
     CHECK(canDevice.init("", "") == false);
 
     REQUIRE_NOTHROW(canDevice.framesReceived());
-    REQUIRE_NOTHROW(canDevice.start());
+    REQUIRE_NOTHROW(canDevice.startSimulation());
     REQUIRE_NOTHROW(canDevice.sendFrame(frame));
 }
 
@@ -64,7 +64,7 @@ TEST_CASE("Start failed", "[candevice]")
 
     CanDevice canDevice{ CanDeviceCtx(&deviceMock.get()) };
     CHECK(canDevice.init("", "") == false);
-    CHECK(canDevice.start() == false);
+    REQUIRE_NOTHROW(canDevice.startSimulation());
 }
 
 TEST_CASE("Start failed - could not connect to device", "[candevice]")
@@ -81,7 +81,7 @@ TEST_CASE("Start failed - could not connect to device", "[candevice]")
 
     CanDevice canDevice{ CanDeviceCtx(&deviceMock.get()) };
     CHECK(canDevice.init("", "") == true);
-    CHECK(canDevice.start() == false);
+    REQUIRE_NOTHROW(canDevice.startSimulation());
 }
 
 TEST_CASE("Start succeeded", "[candevice]")
@@ -98,7 +98,7 @@ TEST_CASE("Start succeeded", "[candevice]")
 
     CanDevice canDevice{ CanDeviceCtx(&deviceMock.get()) };
     CHECK(canDevice.init("", "") == true);
-    CHECK(canDevice.start() == true);
+    REQUIRE_NOTHROW(canDevice.startSimulation());
 }
 
 TEST_CASE("sendFrame results in frameSent being emitted and writeFrame being called", "[candevice]")

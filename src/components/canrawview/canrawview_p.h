@@ -30,9 +30,9 @@ public:
         _ui.setModel(&_uniqueModel);
 
         _ui.setClearCbk(std::bind(&CanRawViewPrivate::clear, this));
-        _ui.setDockUndockCbk(std::bind(&CanRawViewPrivate::dockUndock, this));
         _ui.setSectionClikedCbk(std::bind(&CanRawViewPrivate::sort, this, std::placeholders::_1));
         _ui.setFilterCbk(std::bind(&CanRawViewPrivate::setFilter, this));
+        _ui.setDockUndockCbk([this] { docked = !docked; });
     }
 
     ~CanRawViewPrivate()
@@ -147,12 +147,6 @@ private slots:
         _uniqueModel.clearFilter();
     }
 
-    void dockUndock()
-    {
-        Q_Q(CanRawView);
-        emit q->dockUndock();
-    }
-
     void sort(const int clickedIndex)
     {
         _currentSortOrder = _ui.getSortOrder();
@@ -189,6 +183,7 @@ public:
     UniqueFilterModel _uniqueModel;
     bool _simStarted;
     CRVGuiInterface& _ui;
+    bool docked{ true };
 
 private:
     int _rowID{ 0 };

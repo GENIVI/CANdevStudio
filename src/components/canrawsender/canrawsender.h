@@ -3,13 +3,14 @@
 
 #include <QtCore/QObject>
 #include <QtCore/QScopedPointer>
+#include <componentinterface.h>
 #include <context.h>
 
 class QCanBusFrame;
 class CanRawSenderPrivate;
 class QWidget;
 
-class CanRawSender : public QObject {
+class CanRawSender : public QObject, public ComponentInterface {
     Q_OBJECT
     Q_DECLARE_PRIVATE(CanRawSender)
 
@@ -18,13 +19,34 @@ public:
     explicit CanRawSender(CanRawSenderCtx&& ctx);
     ~CanRawSender();
     int getLineCount() const;
-    void saveSettings(QJsonObject& json) const;
 
-    QWidget* getMainWidget();
+    /**
+    *   @see ComponentInterface
+    */
+    QWidget* getMainWidget() override;
+
+    /**
+    *   @see ComponentInterface
+    */
+    void setConfig(QJsonObject& json) override;
+
+    /**
+    *   @see ComponentInterface
+    */
+    QJsonObject getConfig() const override;
+
+    /**
+    *   @see ComponentInterface
+    */
+    void setDockUndockClbk(const std::function<void()>& cb) override;
+
+    /**
+    *   @see ComponentInterface
+    */
+    bool mainWidgetDocked() const override;
 
 signals:
     void sendFrame(const QCanBusFrame& frame);
-    void dockUndock();
 
 public slots:
     void stopSimulation(void);

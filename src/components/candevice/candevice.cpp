@@ -55,17 +55,6 @@ void CanDevice::sendFrame(const QCanBusFrame& frame)
     }
 }
 
-bool CanDevice::start()
-{
-    Q_D(CanDevice);
-
-    if (!d->_initialized) {
-        return false;
-    }
-
-    return d->_canDevice.connectDevice();
-}
-
 void CanDevice::framesReceived()
 {
     Q_D(CanDevice);
@@ -98,4 +87,41 @@ void CanDevice::errorOccurred(int error)
         auto sendItem = d->_sendQueue.takeFirst();
         emit frameSent(false, sendItem);
     }
+}
+
+void CanDevice::setConfig(QJsonObject&)
+{
+    // TODO
+}
+
+QJsonObject CanDevice::getConfig() const
+{
+    // TODO
+    return {};
+}
+
+void CanDevice::startSimulation()
+{
+    Q_D(CanDevice);
+
+    if (!d->_initialized) {
+        cds_info("CanDevice not initialized");
+        return;
+    }
+
+    if (!d->_canDevice.connectDevice()) {
+        cds_error("Failed to connect device");
+    }
+}
+
+void CanDevice::stopSimulation()
+{
+    Q_D(CanDevice);
+
+    if (!d->_initialized) {
+        cds_info("CanDevice not initialized");
+        return;
+    }
+
+    d->_canDevice.disconnectDevice();
 }

@@ -3,6 +3,7 @@
 
 #include <QScopedPointer>
 #include <QtCore/QObject>
+#include <componentinterface.h>
 #include <context.h>
 
 class CanDevicePrivate;
@@ -11,7 +12,7 @@ class QCanBusFrame;
 /**
 *   @brief The class provides abstraction layer for CAN BUS hardware
 */
-class CanDevice : public QObject {
+class CanDevice : public QObject, public ComponentInterface {
     Q_OBJECT
     Q_DECLARE_PRIVATE(CanDevice)
 
@@ -30,7 +31,16 @@ public:
     *   @return true on success, false of failure
     */
     bool init(const QString& backend, const QString& iface);
-    bool start();
+
+    /**
+    *   @see ComponentInterface
+    */
+    void setConfig(QJsonObject& json) override;
+
+    /**
+    *   @see ComponentInterface
+    */
+    QJsonObject getConfig() const override;
 
 signals:
     void frameReceived(const QCanBusFrame& frame);
@@ -43,6 +53,8 @@ private slots:
     void errorOccurred(int error);
     void framesWritten(qint64 framesCnt);
     void framesReceived();
+    void startSimulation();
+    void stopSimulation();
 
 private:
     QScopedPointer<CanDevicePrivate> d_ptr;

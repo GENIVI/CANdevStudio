@@ -21,8 +21,6 @@ TEST_CASE("Test basic functionality", "[candevice]")
     CHECK(canDeviceModel.resizable() == false);
     CHECK(dynamic_cast<CanDeviceModel*>(canDeviceModel.clone().get()) != nullptr);
     CHECK(dynamic_cast<QLabel*>(canDeviceModel.embeddedWidget()) != nullptr);
-
-    apply_model_visitor(canDeviceModel, [](CanDeviceModel& m) { m.caption(); });
 }
 
 TEST_CASE("Port information", "[candevice]")

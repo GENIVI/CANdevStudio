@@ -2,10 +2,8 @@
 #include <assert.h>
 #include <datamodeltypes/candevicedata.h>
 #include <log.h>
-#include <nodes/DataModelRegistry>
 
 CanDeviceModel::CanDeviceModel()
-    : _label(new QLabel())
 {
     _label->setAlignment(Qt::AlignVCenter | Qt::AlignHCenter);
     _label->setFixedSize(75, 25);
@@ -15,8 +13,11 @@ CanDeviceModel::CanDeviceModel()
     connect(&_component, &CanDevice::frameReceived, this, &CanDeviceModel::frameReceived);
     connect(this, &CanDeviceModel::sendFrame, &_component, &CanDevice::sendFrame);
 
+    _caption = "CanDevice Node";
+    _name = "CanDeviceModel";
+    _modelName = "CAN device";
+
     _component.init("socketcan", "can0"); // TODO
-    _component.start();
 }
 
 unsigned int CanDeviceModel::nPorts(PortType portType) const
@@ -65,50 +66,4 @@ void CanDeviceModel::setInData(std::shared_ptr<NodeData> nodeData, PortIndex)
     } else {
         cds_warn("Incorrect nodeData");
     }
-}
-
-QJsonObject CanDeviceModel::save() const
-{
-    QJsonObject json;
-    json["name"] = name();
-
-    // TODO save can device settings
-    // _component->saveSettings(json);
-
-    return json;
-}
-
-void CanDeviceModel::visit(CanNodeDataModelVisitor& v)
-{
-    v(*this);
-}
-
-QString CanDeviceModel::caption() const
-{
-    return QString("CanDevice Node");
-} // TODO
-
-QString CanDeviceModel::name() const
-{
-    return QString("CanDeviceModel");
-}
-
-std::unique_ptr<NodeDataModel> CanDeviceModel::clone() const
-{
-    return std::make_unique<CanDeviceModel>();
-}
-
-QString CanDeviceModel::modelName() const
-{
-    return QString("CAN device");
-}
-
-QWidget* CanDeviceModel::embeddedWidget()
-{
-    return _label;
-}
-
-bool CanDeviceModel::resizable() const
-{
-    return false;
 }
