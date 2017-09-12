@@ -32,22 +32,23 @@ class EnumIterator
      * of size_t or ssize_t depending on the sign of the value_type.
      *
      * Value of stop equal to selected MAX is not allowed!
-     */
-    static constexpr auto makeEnd()
-    {
-        return std::numeric_limits<
-                    std::common_type_t<
-                        raw_type
-                      , std::conditional_t<
-                            std::is_signed<raw_type>::value
-                          , std::ptrdiff_t // FIXME: ssize_t?
-                          , std::size_t
-                          >
-                      >
-                >::max();
-    }
+     *
+     * @{ */
+    using stored_type =
+            std::common_type_t<
+                raw_type
+              , std::conditional_t<
+                    std::is_signed<raw_type>::value
+                  , std::ptrdiff_t // FIXME: ssize_t?
+                  , std::size_t
+                  >
+              >;
 
-    using stored_type = decltype(makeEnd());
+    static constexpr stored_type makeEnd()
+    {
+        return std::numeric_limits<stored_type>::max();
+    }
+    /* @} */
 
  public:
 
