@@ -108,7 +108,6 @@ $(document).ready(function(){initNavTree('class_can_raw_view.html','');});
 <div class="header">
   <div class="summary">
 <a href="#pub-slots">Public Slots</a> &#124;
-<a href="#signals">Signals</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="class_can_raw_view-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -122,6 +121,7 @@ Inheritance diagram for CanRawView:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_can_raw_view__inherit__graph.png" border="0" usemap="#_can_raw_view_inherit__map" alt="Inheritance graph"/></div>
 <map name="_can_raw_view_inherit__map" id="_can_raw_view_inherit__map">
+<area shape="rect" id="node3" href="struct_component_interface.html" title="Interface to be implemented by every component. " alt="" coords="103,5,256,32"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
@@ -129,6 +129,7 @@ Collaboration diagram for CanRawView:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_can_raw_view__coll__graph.png" border="0" usemap="#_can_raw_view_coll__map" alt="Collaboration graph"/></div>
 <map name="_can_raw_view_coll__map" id="_can_raw_view_coll__map">
+<area shape="rect" id="node3" href="struct_component_interface.html" title="Interface to be implemented by every component. " alt="" coords="103,5,256,32"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -143,11 +144,6 @@ Public Slots</h2></td></tr>
 <tr class="memitem:acf78fa346b606b03632dd6fb47a5e48e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_raw_view.html#acf78fa346b606b03632dd6fb47a5e48e">startSimulation</a> (void)</td></tr>
 <tr class="separator:acf78fa346b606b03632dd6fb47a5e48e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="signals"></a>
-Signals</h2></td></tr>
-<tr class="memitem:aeda778fc33282d5380f9676ebfabf5dd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_raw_view.html#aeda778fc33282d5380f9676ebfabf5dd">dockUndock</a> ()</td></tr>
-<tr class="separator:aeda778fc33282d5380f9676ebfabf5dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a750e40a125bcaa35794cb82fc18ede00"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_raw_view.html#a750e40a125bcaa35794cb82fc18ede00">CanRawView</a> ()</td></tr>
@@ -156,10 +152,25 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a04031807543a5932a28acc3375cf807c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a61e97fe7ae8b79740408311f4a243f82"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_raw_view.html#a61e97fe7ae8b79740408311f4a243f82">~CanRawView</a> ()</td></tr>
 <tr class="separator:a61e97fe7ae8b79740408311f4a243f82"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0ac02f4731b1a4196916f99adffcd381"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_raw_view.html#a0ac02f4731b1a4196916f99adffcd381">saveSettings</a> (QJsonObject &amp;json) const </td></tr>
-<tr class="separator:a0ac02f4731b1a4196916f99adffcd381"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a736d909606755d3fe2fd86adba6d702e"><td class="memItemLeft" align="right" valign="top">QWidget *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_raw_view.html#a736d909606755d3fe2fd86adba6d702e">getMainWidget</a> ()</td></tr>
-<tr class="separator:a736d909606755d3fe2fd86adba6d702e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11939e9d18975a83e4cb5eeab4467893"><td class="memItemLeft" align="right" valign="top">QWidget *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_raw_view.html#a11939e9d18975a83e4cb5eeab4467893">getMainWidget</a> () override</td></tr>
+<tr class="separator:a11939e9d18975a83e4cb5eeab4467893"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf7c53972bbccc0514bbe74719300479"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_raw_view.html#abf7c53972bbccc0514bbe74719300479">setConfig</a> (QJsonObject &amp;json) override</td></tr>
+<tr class="separator:abf7c53972bbccc0514bbe74719300479"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff603c7645cc138a8eb690cae7be452d"><td class="memItemLeft" align="right" valign="top">QJsonObject&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_raw_view.html#aff603c7645cc138a8eb690cae7be452d">getConfig</a> () const override</td></tr>
+<tr class="separator:aff603c7645cc138a8eb690cae7be452d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a006d0932e5026b4c943660e585a883f2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_raw_view.html#a006d0932e5026b4c943660e585a883f2">setDockUndockClbk</a> (const std::function&lt; void()&gt; &amp;cb) override</td></tr>
+<tr class="separator:a006d0932e5026b4c943660e585a883f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aecdd9f260504d86551091a5eeb110d2b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_raw_view.html#aecdd9f260504d86551091a5eeb110d2b">mainWidgetDocked</a> () const override</td></tr>
+<tr class="separator:aecdd9f260504d86551091a5eeb110d2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_struct_component_interface"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_struct_component_interface')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="struct_component_interface.html">ComponentInterface</a></td></tr>
+<tr class="memitem:a3886256e350e41fe89687a5497308333 inherit pub_methods_struct_component_interface"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_component_interface.html#a3886256e350e41fe89687a5497308333">~ComponentInterface</a> ()</td></tr>
+<tr class="separator:a3886256e350e41fe89687a5497308333 inherit pub_methods_struct_component_interface"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5a20c5ff68df62ff745cae181d75772 inherit pub_methods_struct_component_interface"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_component_interface.html#ae5a20c5ff68df62ff745cae181d75772">stopSimulation</a> ()=0</td></tr>
+<tr class="memdesc:ae5a20c5ff68df62ff745cae181d75772 inherit pub_methods_struct_component_interface"><td class="mdescLeft">&#160;</td><td class="mdescRight">Action to be taken on simulation stop.  <a href="#ae5a20c5ff68df62ff745cae181d75772">More...</a><br /></td></tr>
+<tr class="separator:ae5a20c5ff68df62ff745cae181d75772 inherit pub_methods_struct_component_interface"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a011c8464c9d77dcfd57f968655a05a19 inherit pub_methods_struct_component_interface"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_component_interface.html#a011c8464c9d77dcfd57f968655a05a19">startSimulation</a> ()=0</td></tr>
+<tr class="memdesc:a011c8464c9d77dcfd57f968655a05a19 inherit pub_methods_struct_component_interface"><td class="mdescLeft">&#160;</td><td class="mdescRight">Action to be taken on simulation start.  <a href="#a011c8464c9d77dcfd57f968655a05a19">More...</a><br /></td></tr>
+<tr class="separator:a011c8464c9d77dcfd57f968655a05a19 inherit pub_methods_struct_component_interface"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a750e40a125bcaa35794cb82fc18ede00"></a>
@@ -217,29 +228,6 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="aeda778fc33282d5380f9676ebfabf5dd"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void CanRawView::dockUndock </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a class="anchor" id="ace7bb231aa483369b389d02b353a8a17"></a>
 <div class="memitem">
 <div class="memproto">
@@ -298,9 +286,38 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a736d909606755d3fe2fd86adba6d702e"></a>
+<a class="anchor" id="aff603c7645cc138a8eb690cae7be452d"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QJsonObject CanRawView::getConfig </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="struct_component_interface.html" title="Interface to be implemented by every component. ">ComponentInterface</a> </dd></dl>
+
+<p>Implements <a class="el" href="struct_component_interface.html#ac3cefe894fe3e7d69888b04e4cbcab9d">ComponentInterface</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a11939e9d18975a83e4cb5eeab4467893"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">QWidget * CanRawView::getMainWidget </td>
@@ -309,23 +326,95 @@ Public Member Functions</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="struct_component_interface.html" title="Interface to be implemented by every component. ">ComponentInterface</a> </dd></dl>
+
+<p>Reimplemented from <a class="el" href="struct_component_interface.html#a64f6e4808031fa7448ca4bdfe0bae685">ComponentInterface</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a0ac02f4731b1a4196916f99adffcd381"></a>
+<a class="anchor" id="aecdd9f260504d86551091a5eeb110d2b"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void CanRawView::saveSettings </td>
+          <td class="memname">bool CanRawView::mainWidgetDocked </td>
           <td>(</td>
-          <td class="paramtype">QJsonObject &amp;&#160;</td>
-          <td class="paramname"><em>json</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="struct_component_interface.html" title="Interface to be implemented by every component. ">ComponentInterface</a> </dd></dl>
+
+<p>Reimplemented from <a class="el" href="struct_component_interface.html#ac474226b319146fd59625fe0d6cb4885">ComponentInterface</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="abf7c53972bbccc0514bbe74719300479"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CanRawView::setConfig </td>
+          <td>(</td>
+          <td class="paramtype">QJsonObject &amp;&#160;</td>
+          <td class="paramname"><em>json</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="struct_component_interface.html" title="Interface to be implemented by every component. ">ComponentInterface</a> </dd></dl>
+
+<p>Implements <a class="el" href="struct_component_interface.html#acdecba7cb5e449d794cfc0175ccef78f">ComponentInterface</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a006d0932e5026b4c943660e585a883f2"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CanRawView::setDockUndockClbk </td>
+          <td>(</td>
+          <td class="paramtype">const std::function&lt; void()&gt; &amp;&#160;</td>
+          <td class="paramname"><em>cb</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="struct_component_interface.html" title="Interface to be implemented by every component. ">ComponentInterface</a> </dd></dl>
+
+<p>Reimplemented from <a class="el" href="struct_component_interface.html#a66c0ec1f6d3892531621d4922dead9ee">ComponentInterface</a>.</p>
 
 </div>
 </div>

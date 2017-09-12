@@ -7,6 +7,23 @@ var hierarchy =
     [ "CheckBoxInterface", "struct_check_box_interface.html", [
       [ "NLMCheckBox", "struct_n_l_m_check_box.html", null ]
     ] ],
+    [ "ComponentInterface", "struct_component_interface.html", [
+      [ "CanDevice", "class_can_device.html", null ],
+      [ "CanRawSender", "class_can_raw_sender.html", null ],
+      [ "CanRawView", "class_can_raw_view.html", null ]
+    ] ],
+    [ "ComponentModelInterface", "struct_component_model_interface.html", [
+      [ "ComponentModel< C, Derived >", "class_component_model.html", null ],
+      [ "ComponentModel< CanDevice, CanDeviceModel >", "class_component_model.html", [
+        [ "CanDeviceModel", "class_can_device_model.html", null ]
+      ] ],
+      [ "ComponentModel< CanRawSender, CanRawSenderModel >", "class_component_model.html", [
+        [ "CanRawSenderModel", "class_can_raw_sender_model.html", null ]
+      ] ],
+      [ "ComponentModel< CanRawView, CanRawViewModel >", "class_component_model.html", [
+        [ "CanRawViewModel", "class_can_raw_view_model.html", null ]
+      ] ]
+    ] ],
     [ "Context< Args >", "struct_context.html", null ],
     [ "Context< CanDeviceInterface >", "struct_context.html", null ],
     [ "Context< CRSGuiInterface, NLMFactoryInterface >", "struct_context.html", null ],
@@ -14,7 +31,6 @@ var hierarchy =
     [ "CRSGuiInterface", "struct_c_r_s_gui_interface.html", [
       [ "CRSGui", "struct_c_r_s_gui.html", null ]
     ] ],
-    [ "CRVFactoryInterface", "struct_c_r_v_factory_interface.html", null ],
     [ "CRVGuiInterface", "struct_c_r_v_gui_interface.html", [
       [ "CRVGui", "struct_c_r_v_gui.html", null ]
     ] ],
@@ -27,6 +43,12 @@ var hierarchy =
     ] ],
     [ "NLMFactoryInterface", "struct_n_l_m_factory_interface.html", [
       [ "NLMFactory", "struct_n_l_m_factory.html", null ]
+    ] ],
+    [ "NodeDataModel", null, [
+      [ "ComponentModel< C, Derived >", "class_component_model.html", null ],
+      [ "ComponentModel< CanDevice, CanDeviceModel >", "class_component_model.html", null ],
+      [ "ComponentModel< CanRawSender, CanRawSenderModel >", "class_component_model.html", null ],
+      [ "ComponentModel< CanRawView, CanRawViewModel >", "class_component_model.html", null ]
     ] ],
     [ "PushButtonInterface", "struct_push_button_interface.html", [
       [ "NLMPushButton", "struct_n_l_m_push_button.html", null ]
@@ -56,11 +78,6 @@ var hierarchy =
       [ "ProjectConfigPrivate", "class_project_config_private.html", null ]
     ] ],
     [ "VisitableWith< Visitor >", "struct_visitable_with.html", null ],
-    [ "VisitableWith< CanNodeDataModelVisitor >", "struct_visitable_with.html", [
-      [ "CanDeviceModel", "class_can_device_model.html", null ],
-      [ "CanRawSenderModel", "class_can_raw_sender_model.html", null ],
-      [ "CanRawViewModel", "class_can_raw_view_model.html", null ]
-    ] ],
     [ "Visitor< Tag, Visitables >", "class_visitor.html", null ],
     [ "Visitor< CanNodeDataModelVisitor, CanRawViewModel, CanRawSenderModel, CanDeviceModel >", "class_visitor.html", [
       [ "CanNodeDataModelVisitor", "struct_can_node_data_model_visitor.html", null ]
@@ -68,10 +85,5 @@ var hierarchy =
     [ "NodeData", null, [
       [ "CanDeviceDataIn", "class_can_device_data_in.html", null ],
       [ "CanDeviceDataOut", "class_can_device_data_out.html", null ]
-    ] ],
-    [ "NodeDataModel", null, [
-      [ "CanDeviceModel", "class_can_device_model.html", null ],
-      [ "CanRawSenderModel", "class_can_raw_sender_model.html", null ],
-      [ "CanRawViewModel", "class_can_raw_view_model.html", null ]
     ] ]
 ];

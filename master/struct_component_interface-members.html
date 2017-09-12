@@ -88,7 +88,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
 </div>
 <script type="text/javascript">
-$(document).ready(function(){initNavTree('struct_c_r_v_factory_interface.html','');});
+$(document).ready(function(){initNavTree('struct_component_interface.html','');});
 </script>
 <div id="doc-content">
 <!-- window showing the filter options -->
@@ -107,13 +107,20 @@ $(document).ready(function(){initNavTree('struct_c_r_v_factory_interface.html','
 
 <div class="header">
   <div class="headertitle">
-<div class="title">CRVFactoryInterface Member List</div>  </div>
+<div class="title">ComponentInterface Member List</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>This is the complete list of members for <a class="el" href="struct_c_r_v_factory_interface.html">CRVFactoryInterface</a>, including all inherited members.</p>
+<p>This is the complete list of members for <a class="el" href="struct_component_interface.html">ComponentInterface</a>, including all inherited members.</p>
 <table class="directory">
-  <tr class="even"><td class="entry"><a class="el" href="struct_c_r_v_factory_interface.html#a06692bb1ddcccc4f46f2f86cb87d6392">createGui</a>()=0</td><td class="entry"><a class="el" href="struct_c_r_v_factory_interface.html">CRVFactoryInterface</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="struct_component_interface.html#ac3cefe894fe3e7d69888b04e4cbcab9d">getConfig</a>() const =0</td><td class="entry"><a class="el" href="struct_component_interface.html">ComponentInterface</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
+  <tr><td class="entry"><a class="el" href="struct_component_interface.html#a64f6e4808031fa7448ca4bdfe0bae685">getMainWidget</a>()</td><td class="entry"><a class="el" href="struct_component_interface.html">ComponentInterface</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">virtual</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="struct_component_interface.html#ac474226b319146fd59625fe0d6cb4885">mainWidgetDocked</a>() const </td><td class="entry"><a class="el" href="struct_component_interface.html">ComponentInterface</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">virtual</span></td></tr>
+  <tr><td class="entry"><a class="el" href="struct_component_interface.html#acdecba7cb5e449d794cfc0175ccef78f">setConfig</a>(QJsonObject &amp;json)=0</td><td class="entry"><a class="el" href="struct_component_interface.html">ComponentInterface</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="struct_component_interface.html#a66c0ec1f6d3892531621d4922dead9ee">setDockUndockClbk</a>(const std::function&lt; void()&gt; &amp;)</td><td class="entry"><a class="el" href="struct_component_interface.html">ComponentInterface</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">virtual</span></td></tr>
+  <tr><td class="entry"><a class="el" href="struct_component_interface.html#a011c8464c9d77dcfd57f968655a05a19">startSimulation</a>()=0</td><td class="entry"><a class="el" href="struct_component_interface.html">ComponentInterface</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="struct_component_interface.html#ae5a20c5ff68df62ff745cae181d75772">stopSimulation</a>()=0</td><td class="entry"><a class="el" href="struct_component_interface.html">ComponentInterface</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
+  <tr><td class="entry"><a class="el" href="struct_component_interface.html#a3886256e350e41fe89687a5497308333">~ComponentInterface</a>()</td><td class="entry"><a class="el" href="struct_component_interface.html">ComponentInterface</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">virtual</span></td></tr>
 </table></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

@@ -1,9 +1,15 @@
 var searchData=
 [
   ['_5fcandevice',['_canDevice',['../class_can_device_private.html#a318ae2da3aedb5e84b53eac29cf19a9c',1,'CanDevicePrivate']]],
+  ['_5fcaption',['_caption',['../class_component_model.html#a7c8c6b188ad1ecf31ffde72668f42486',1,'ComponentModel']]],
+  ['_5fcomponent',['_component',['../class_component_model.html#a54cb9d46c790d31e7679bdfaf463ae61',1,'ComponentModel']]],
   ['_5fctx',['_ctx',['../class_can_device_private.html#a01062d474bca898c296bbbb94212a6a1',1,'CanDevicePrivate::_ctx()'],['../class_can_raw_sender_private.html#ac95344e059c267bc9d4fc7fcb0aa4664',1,'CanRawSenderPrivate::_ctx()'],['../class_can_raw_view_private.html#a1a74a505fd90dafd95c2f7e9f003bc67',1,'CanRawViewPrivate::_ctx()']]],
   ['_5finitialized',['_initialized',['../class_can_device_private.html#a177efe7dfca88905f362d88f9ea0d088',1,'CanDevicePrivate']]],
+  ['_5flabel',['_label',['../class_component_model.html#a0f52cf3cdf6d8b30414d88dd64398f5a',1,'ComponentModel']]],
+  ['_5fmodelname',['_modelName',['../class_component_model.html#a8fe5293ea622b6c04bb4a15eba6daddb',1,'ComponentModel']]],
+  ['_5fname',['_name',['../class_component_model.html#afd064c889d85b05d77d164c80651cacc',1,'ComponentModel']]],
   ['_5fnlmfactory',['_nlmFactory',['../class_can_raw_sender_private.html#aa543a815fbc1d7de277100ba88e8b33e',1,'CanRawSenderPrivate']]],
+  ['_5fresizable',['_resizable',['../class_component_model.html#a6a688b4830a2bbf90cdc730a2f109d25',1,'ComponentModel']]],
   ['_5fsendqueue',['_sendQueue',['../class_can_device_private.html#a3c82b49d7e18f6de1bbe995fc6c79c3b',1,'CanDevicePrivate']]],
   ['_5fsimstarted',['_simStarted',['../class_can_raw_view_private.html#a1064b20d356ab769c8e583e56dccebb5',1,'CanRawViewPrivate']]],
   ['_5ftimer',['_timer',['../class_can_raw_view_private.html#a44915d7e6ebceb2fc65b25c2d725f5f4',1,'CanRawViewPrivate']]],

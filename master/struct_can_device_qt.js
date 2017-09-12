@@ -1,6 +1,7 @@
 var struct_can_device_qt =
 [
     [ "connectDevice", "struct_can_device_qt.html#a3217273ad521531a3250d35974e100c7", null ],
+    [ "disconnectDevice", "struct_can_device_qt.html#a3fc650e1cd77766eb2c77bd52e02275a", null ],
     [ "framesAvailable", "struct_can_device_qt.html#af1bf6677b8ac4ebade2396c2eaa75f68", null ],
     [ "init", "struct_can_device_qt.html#ae991500c57b2d44383ff09dd32b04d53", null ],
     [ "readFrame", "struct_can_device_qt.html#a0b6d47f675f874fa3d018df00db2754d", null ],

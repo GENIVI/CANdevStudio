@@ -5,6 +5,7 @@ var struct_can_device_interface =
     [ "framesWritten_t", "struct_can_device_interface.html#a7297a3f6cbb3f1ba6f87c28c04df03a1", null ],
     [ "~CanDeviceInterface", "struct_can_device_interface.html#ad81788df9251ba0fa9a6b3cd854c9836", null ],
     [ "connectDevice", "struct_can_device_interface.html#ae93401fab526dc31098998e15baba1be", null ],
+    [ "disconnectDevice", "struct_can_device_interface.html#a74c2c1e6158bf16ce936caf7838efca8", null ],
     [ "framesAvailable", "struct_can_device_interface.html#a20961a2ad09942ba9f847bd465201cba", null ],
     [ "init", "struct_can_device_interface.html#adba5940f8acc8cfaa0f194ea03d772e8", null ],
     [ "readFrame", "struct_can_device_interface.html#a9330aecfade232b28e5351ae5d55f817", null ],

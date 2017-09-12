@@ -22,10 +22,11 @@ var searchData=
   ['canrawviewmodel_2ecpp',['canrawviewmodel.cpp',['../canrawviewmodel_8cpp.html',1,'']]],
   ['canrawviewmodel_2eh',['canrawviewmodel.h',['../canrawviewmodel_8h.html',1,'']]],
   ['checkboxinterface_2eh',['checkboxinterface.h',['../checkboxinterface_8h.html',1,'']]],
+  ['componentinterface_2eh',['componentinterface.h',['../componentinterface_8h.html',1,'']]],
+  ['componentmodel_2eh',['componentmodel.h',['../componentmodel_8h.html',1,'']]],
   ['context_2eh',['context.h',['../context_8h.html',1,'']]],
   ['crsgui_2eh',['crsgui.h',['../crsgui_8h.html',1,'']]],
   ['crsguiinterface_2eh',['crsguiinterface.h',['../crsguiinterface_8h.html',1,'']]],
-  ['crvfactoryinterface_2eh',['crvfactoryinterface.h',['../crvfactoryinterface_8h.html',1,'']]],
   ['crvgui_2eh',['crvgui.h',['../crvgui_8h.html',1,'']]],
   ['crvguiinterface_2eh',['crvguiinterface.h',['../crvguiinterface_8h.html',1,'']]]
 ];

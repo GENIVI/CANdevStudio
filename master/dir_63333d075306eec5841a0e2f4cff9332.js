@@ -12,6 +12,10 @@ var dir_63333d075306eec5841a0e2f4cff9332 =
     [ "canrawviewmodel.h", "canrawviewmodel_8h.html", [
       [ "CanRawViewModel", "class_can_raw_view_model.html", "class_can_raw_view_model" ]
     ] ],
+    [ "componentmodel.h", "componentmodel_8h.html", [
+      [ "ComponentModelInterface", "struct_component_model_interface.html", "struct_component_model_interface" ],
+      [ "ComponentModel", "class_component_model.html", "class_component_model" ]
+    ] ],
     [ "flowviewwrapper.h", "flowviewwrapper_8h.html", [
       [ "FlowViewWrapper", "struct_flow_view_wrapper.html", "struct_flow_view_wrapper" ]
     ] ],

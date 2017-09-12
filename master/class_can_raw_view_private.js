@@ -9,5 +9,6 @@ var class_can_raw_view_private =
     [ "_timer", "class_can_raw_view_private.html#a44915d7e6ebceb2fc65b25c2d725f5f4", null ],
     [ "_tvModel", "class_can_raw_view_private.html#a597e0b4695ac16e64c42ab6b00359836", null ],
     [ "_ui", "class_can_raw_view_private.html#ade10e0a061d9f71118f185218e0cecc7", null ],
-    [ "_uniqueModel", "class_can_raw_view_private.html#a4572535f14200f94c01d3f8f532e9a4b", null ]
+    [ "_uniqueModel", "class_can_raw_view_private.html#a4572535f14200f94c01d3f8f532e9a4b", null ],
+    [ "docked", "class_can_raw_view_private.html#afd4693b0bb8f1654d92d65fbb4a291be", null ]
 ];

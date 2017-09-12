@@ -34,7 +34,7 @@ var NAVTREEINDEX =
 [
 "annotated.html",
 "flowviewwrapper_8h.html",
-"struct_push_button_interface.html#aa83e615fcb8d171501cb62caa57160fc"
+"struct_n_l_m_push_button.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

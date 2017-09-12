@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['kdefaultlogger',['kDefaultLogger',['../log_8h.html#a20e4133288a6dd5e9b289bf4407d57d6',1,'kDefaultLogger():&#160;main.cpp'],['../main_8cpp.html#a20e4133288a6dd5e9b289bf4407d57d6',1,'kDefaultLogger():&#160;main.cpp']]]
+  ['docked',['docked',['../class_can_raw_sender_private.html#a9009d78ec2f03f80cac9fe70bce6235c',1,'CanRawSenderPrivate::docked()'],['../class_can_raw_view_private.html#afd4693b0bb8f1654d92d65fbb4a291be',1,'CanRawViewPrivate::docked()']]]
 ];

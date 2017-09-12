@@ -8,9 +8,6 @@ var dir_bdfef683cdcec59763063a4d6a2f152c =
     [ "canrawview_p.h", "canrawview__p_8h.html", [
       [ "CanRawViewPrivate", "class_can_raw_view_private.html", "class_can_raw_view_private" ]
     ] ],
-    [ "crvfactoryinterface.h", "crvfactoryinterface_8h.html", [
-      [ "CRVFactoryInterface", "struct_c_r_v_factory_interface.html", "struct_c_r_v_factory_interface" ]
-    ] ],
     [ "uniquefiltermodel.cpp", "uniquefiltermodel_8cpp.html", null ],
     [ "uniquefiltermodel.h", "uniquefiltermodel_8h.html", [
       [ "UniqueFilterModel", "class_unique_filter_model.html", "class_unique_filter_model" ]

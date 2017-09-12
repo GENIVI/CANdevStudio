@@ -5,7 +5,8 @@ var class_can_device =
     [ "~CanDevice", "class_can_device.html#a4a1a39d39f0de37d5a94acdb4ace1b34", null ],
     [ "frameReceived", "class_can_device.html#a883d4ce76d9c7329e0d3718b7aa5589c", null ],
     [ "frameSent", "class_can_device.html#aac8ab09993968f767c9013b9891c4312", null ],
+    [ "getConfig", "class_can_device.html#a9fe8dfa884eb777130c506181ee8dc52", null ],
     [ "init", "class_can_device.html#a12e2fa84b063097485058cc18bf5b31a", null ],
     [ "sendFrame", "class_can_device.html#a6ebe57b42df5fb0d0673e652e081c2b0", null ],
-    [ "start", "class_can_device.html#a0ea42fef8feb27eeaa473260071e25c0", null ]
+    [ "setConfig", "class_can_device.html#ae5df50063ab4b0cbcbc9d29040170c48", null ]
 ];
