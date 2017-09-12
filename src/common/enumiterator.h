@@ -7,12 +7,16 @@
 #include <iterator> // forward_iterator_tag
 #include <memory> // unique_ptr
 #include <limits> // numeric_limits
-#include <type_traits> // {common,underlying}_type, is_enum, add_{pointer,lvalue_reference}, conditional
+#include <type_traits> // {common,underlying}_type, is_enum, add_{pointer,lvalue_reference,const}, conditional
 #include <utility> // swap
+
 
 /**
  * Iterator for an enum of type @c T that starts with an item @c start
  * and ends *after* the item @c stop. Models ForwardIterator concept.
+ *
+ * @warning Following iterator DOES NOT WORK for non-contiguous enumerations
+ *          like "enum class E { A = 100, B = 200, C == 300 }".
  *
  * @see http://en.cppreference.com/w/cpp/concept/ForwardIterator
  */
@@ -34,8 +38,8 @@ class EnumIterator
                     std::common_type_t<
                         raw_type
                       , std::conditional_t<
-                            std::is_signed<value_type>::value
-                          , std::ptrdiff_t  // FIXME: ssize_t?
+                            std::is_signed<raw_type>::value
+                          , std::ptrdiff_t // FIXME: ssize_t?
                           , std::size_t
                           >
                       >
@@ -60,6 +64,10 @@ class EnumIterator
     using reference         = std::add_lvalue_reference_t<value_type>;
     using iterator_category = std::forward_iterator_tag;
 
+    // extra two:
+    using const_reference   = std::add_lvalue_reference_t<std::add_const_t<value_type>>;
+    using const_pointer     = std::add_pointer_t<std::add_const_t<value_type>>;
+
     EnumIterator(const EnumIterator&)            = default;
     EnumIterator(EnumIterator&&)                 = default;
     EnumIterator& operator=(const EnumIterator&) = default;
@@ -80,9 +88,9 @@ class EnumIterator
     // InputIterator concept {
     EnumIterator& operator++()
     {
-        if (*this != end())  // no point to advance
+        if (makeEnd() != _current)  // no point to advance if at the end
         {
-            ++_current;
+            _current = (_current < static_cast<stored_type>(stop)) ? ++_current : makeEnd();
         }
 
         return *this;
@@ -90,7 +98,7 @@ class EnumIterator
 
     EnumIterator operator++(int) const
     {
-        return ++EnumIterator{*this};
+        return (makeEnd() != _current) ? ++EnumIterator{*this} : EnumIterator{};
     }
     // }
 
@@ -99,21 +107,21 @@ class EnumIterator
 
     reference operator*()
     {
-        assert(dereferencable());
+        assert(derefable());
 
         return *reinterpret_cast<pointer>(&_current);  // FIXME
     }
 
-    const reference operator*() const
+    const_reference operator*() const
     {
-        assert(dereferencable());
+        assert(derefable());
 
-        return *reinterpret_cast<pointer>(&_current); // FIXME
+        return *reinterpret_cast<const_pointer>(&_current); // FIXME
     }
 
  private:
 
-    bool dereferencable()
+    bool derefable() const
     {
         return
             (*this != end()) // not past-the-end?
