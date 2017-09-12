@@ -4,8 +4,9 @@ set(srcs
     main.cpp
     mainwindow.cpp
     mainwindow.ui
-    PropertyModel.cpp
-    PropertyEditor.cpp
+    propertyeditordialog.ui
+    propertymodel.cpp
+    propertyeditordialog.cpp
 )
 
 add_executable(CANdevStudio ${srcs})

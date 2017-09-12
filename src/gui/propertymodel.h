@@ -6,21 +6,20 @@
 /**
  * Model class used internally by PropertyEditor Dialog
  */
-class PropertyModel: public QAbstractTableModel
-{
+class PropertyModel : public QAbstractTableModel {
     Q_OBJECT
 
 public:
     PropertyModel(QObject* parent = nullptr);
-    virtual ~PropertyModel();
+    virtual ~PropertyModel() = default;
 
     int rowCount(const QModelIndex& parent = QModelIndex()) const override;
     int columnCount(const QModelIndex& parent = QModelIndex()) const override;
     QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
-    Qt::ItemFlags flags(const QModelIndex & index) const override;
+    Qt::ItemFlags flags(const QModelIndex& index) const override;
 
     void setPropertySource(QObject* propertySource_);
-    bool setData(const QModelIndex & index, const QVariant & value, int role = Qt::EditRole) override;
+    bool setData(const QModelIndex& index, const QVariant& value, int role = Qt::EditRole) override;
 
 private:
     QObject* propertySource = nullptr;
