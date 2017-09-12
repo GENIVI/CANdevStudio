@@ -11,6 +11,7 @@
 #include <utility> // swap
 
 
+
 /**
  * Iterator for an enum of type @c T that starts with an item @c start
  * and ends *after* the item @c stop. Models ForwardIterator concept.
@@ -53,7 +54,7 @@ class EnumIterator
     /** Creates a singular iterator. */
     EnumIterator() = default;
 
-    EnumIterator(T t)
+    explicit EnumIterator(T t)
       : _current{static_cast<stored_type>(t)}
     {}
 
@@ -90,7 +91,14 @@ class EnumIterator
     {
         if (makeEnd() != _current)  // no point to advance if at the end
         {
-            _current = (_current < static_cast<stored_type>(stop)) ? ++_current : makeEnd();
+            if (_current < static_cast<stored_type>(stop))
+            {
+                ++_current;
+            }
+            else
+            {
+                _current = makeEnd();
+            }
         }
 
         return *this;
@@ -102,7 +110,7 @@ class EnumIterator
     }
     // }
 
-    EnumIterator begin() const { return {start}; }
+    EnumIterator begin() const { return EnumIterator{start}; }
     EnumIterator end()   const { return {};      } // value-initialised singular is past-the-end
 
     reference operator*()

@@ -33,7 +33,7 @@ public:
         DataLine,
         LoopCheckBox,
         IntervalLine,
-        SendButton,
+        SendButton
     };
     /// \typedef ColNameIterator
     /// \brief Iteratot through ColName content

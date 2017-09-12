@@ -65,8 +65,13 @@ void CanRawSenderPrivate::addNewItem()
     QList<QStandardItem*> list{};
     _tvModel.appendRow(list);
     auto newLine = std::make_unique<NewLineManager>(q_ptr, _simulationState, _nlmFactory);
-    for (NewLineManager::ColName ii : NewLineManager::ColNameIterator{NewLineManager::ColName::IdLine}) {
-        _ui.setIndexWidget(_tvModel.index(_tvModel.rowCount() - 1, static_cast<int>(ii)), newLine->GetColsWidget(ii));
+
+    using It = NewLineManager::ColNameIterator;
+
+    for (NewLineManager::ColName ii : It{NewLineManager::ColName::IdLine}) {
+        _ui.setIndexWidget(_tvModel.index(_tvModel.rowCount() - 1
+                                        , static_cast<int>(ii))
+                                        , newLine->GetColsWidget(It{ii}));
     }
     _lines.push_back(std::move(newLine));
 }

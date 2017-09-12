@@ -15,6 +15,8 @@
 
 enum class Trivial { A, B, C };
 
+enum class TrivialStart { A = 0, B, C, D, E };
+
 enum class NonTrivial : std::uint16_t { A = 100, B = 101, C = 102  };
 
 enum class NoPastTheEndUnsigned : std::size_t
@@ -161,7 +163,7 @@ TEST_CASE("EnumIterator next", "[common]")
     CHECK(it.end() == it);
 }
 
-TEST_CASE("EnumIterator range-based-for", "[common]")
+TEST_CASE("EnumIterator range-based-for non-trivial", "[common]")
 {
     using namespace fakeit;
 
@@ -178,6 +180,40 @@ TEST_CASE("EnumIterator range-based-for", "[common]")
     CHECK(a == b);
 }
 
+TEST_CASE("EnumIterator range-based-for trivial", "[common]")
+{
+    using namespace fakeit;
+
+    using I = EnumIterator<Trivial, Trivial::A, Trivial::C>;
+
+    const std::vector<Trivial> a = { Trivial::A, Trivial::B, Trivial::C };
+    std::vector<Trivial> b;
+
+    for (auto&& i : I{Trivial::A})
+    {
+        b.emplace_back(i);
+    }
+
+    CHECK(a == b);
+}
+
+TEST_CASE("EnumIterator range-based-for trivial-start", "[common]")
+{
+    using namespace fakeit;
+
+    using I = EnumIterator<TrivialStart, TrivialStart::A, TrivialStart::E>;
+
+    const std::vector<TrivialStart> a = { TrivialStart::A, TrivialStart::B, TrivialStart::C
+                                        , TrivialStart::D, TrivialStart::E };
+    std::vector<TrivialStart> b;
+
+    for (auto&& i : I{TrivialStart::A})
+    {
+        b.emplace_back(i);
+    }
+
+    CHECK(a == b);
+}
 // -- compile-time errors:
 /*
 TEST_CASE("EnumIterator invalid-value", "[common]")
