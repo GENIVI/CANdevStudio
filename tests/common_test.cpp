@@ -7,6 +7,7 @@
 #include <cstddef>  // size_t, ptrdiff_t
 #include <cstdint> // uint16_t
 #include <iterator> // iterator_traits, begin, end
+#include <limits> // numeric_limits
 #include <type_traits> // is_same
 #include <utility> // swap, next, advance
 #include <vector> // vector
