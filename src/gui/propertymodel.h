@@ -4,7 +4,7 @@
 #include <QAbstractTableModel>
 
 /**
- * Model class used internally by PropertyEditor Dialog
+ * Model class used internally by PropertyEditorDialog
  */
 class PropertyModel : public QAbstractTableModel {
     Q_OBJECT
