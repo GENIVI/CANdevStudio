@@ -36,6 +36,8 @@ var annotated_dup =
     [ "NLMPushButton", "struct_n_l_m_push_button.html", "struct_n_l_m_push_button" ],
     [ "ProjectConfig", "class_project_config.html", "class_project_config" ],
     [ "ProjectConfigPrivate", "class_project_config_private.html", "class_project_config_private" ],
+    [ "PropertyEditorDialog", "class_property_editor_dialog.html", "class_property_editor_dialog" ],
+    [ "PropertyModel", "class_property_model.html", "class_property_model" ],
     [ "PushButtonInterface", "struct_push_button_interface.html", "struct_push_button_interface" ],
     [ "SubWindow", "struct_sub_window.html", "struct_sub_window" ],
     [ "UniqueFilterModel", "class_unique_filter_model.html", "class_unique_filter_model" ],

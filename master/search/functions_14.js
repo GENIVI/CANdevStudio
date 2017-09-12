@@ -20,6 +20,8 @@ var searchData=
   ['_7enlmfactoryinterface',['~NLMFactoryInterface',['../struct_n_l_m_factory_interface.html#a217f14adc09c34b22ce116da1adc63dc',1,'NLMFactoryInterface']]],
   ['_7eprojectconfig',['~ProjectConfig',['../class_project_config.html#a8581ca85aa5805e78bc493f04123b7a5',1,'ProjectConfig']]],
   ['_7eprojectconfigprivate',['~ProjectConfigPrivate',['../class_project_config_private.html#af458ae70e9b85a9755aeec050a20bea1',1,'ProjectConfigPrivate']]],
+  ['_7epropertyeditordialog',['~PropertyEditorDialog',['../class_property_editor_dialog.html#affc5a406f9e129e898c18ef7d32cc0a7',1,'PropertyEditorDialog']]],
+  ['_7epropertymodel',['~PropertyModel',['../class_property_model.html#a2cf2f73cd7509bc1fb77282105b55c96',1,'PropertyModel']]],
   ['_7epushbuttoninterface',['~PushButtonInterface',['../struct_push_button_interface.html#a7bf56e794ede03743939cd6afb2f7994',1,'PushButtonInterface']]],
   ['_7evisitablewith',['~VisitableWith',['../struct_visitable_with.html#ab2e0db5aafe8a68cfd40280714577ad8',1,'VisitableWith']]]
 ];
