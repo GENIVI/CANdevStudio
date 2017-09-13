@@ -34,10 +34,10 @@ var hierarchy =
     [ "CRVGuiInterface", "struct_c_r_v_gui_interface.html", [
       [ "CRVGui", "struct_c_r_v_gui.html", null ]
     ] ],
+    [ "EnumIterator< T, start, stop >", "class_enum_iterator.html", null ],
     [ "FlowView", null, [
       [ "FlowViewWrapper", "struct_flow_view_wrapper.html", null ]
     ] ],
-    [ "Iterator< typeName, beginVal, endVal >", "class_iterator.html", null ],
     [ "LineEditInterface", "struct_line_edit_interface.html", [
       [ "NLMLineEdit", "struct_n_l_m_line_edit.html", null ]
     ] ],

@@ -8,5 +8,5 @@ var searchData=
   ['isenabled',['isEnabled',['../struct_push_button_interface.html#ab29a5cff947b0c08bacfa611eec0a814',1,'PushButtonInterface::isEnabled()'],['../struct_n_l_m_push_button.html#a235c1e1060d132bdc759ebb5bb7774cd',1,'NLMPushButton::isEnabled()']]],
   ['isfilteractive',['isFilterActive',['../class_unique_filter_model.html#aaa04cca288af76b6949030e10287d85b',1,'UniqueFilterModel']]],
   ['isviewfrozen',['isViewFrozen',['../struct_c_r_v_gui.html#a2c99ac6ad5307ebdf232f1847a9aa843',1,'CRVGui::isViewFrozen()'],['../struct_c_r_v_gui_interface.html#a6725e4eeaa56fec55b8aeb97f5b248f6',1,'CRVGuiInterface::isViewFrozen()']]],
-  ['iterator',['Iterator',['../class_iterator.html',1,'Iterator&lt; typeName, beginVal, endVal &gt;'],['../class_iterator.html#a906b16a3e15fde77bef2582a3a54225b',1,'Iterator::Iterator(const typeName &amp;f)'],['../class_iterator.html#a1dc93ebcf8b06d3167b20077684f730c',1,'Iterator::Iterator()']]]
+  ['iterator_5fcategory',['iterator_category',['../class_enum_iterator.html#ab54baf4008839326bb0194bfdc39beff',1,'EnumIterator']]]
 ];

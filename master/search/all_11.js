@@ -2,6 +2,7 @@ var searchData=
 [
   ['readframe',['readFrame',['../struct_can_device_interface.html#a9330aecfade232b28e5351ae5d55f817',1,'CanDeviceInterface::readFrame()'],['../struct_can_device_qt.html#a0b6d47f675f874fa3d018df00db2754d',1,'CanDeviceQt::readFrame()']]],
   ['readme_2emd',['README.md',['../_r_e_a_d_m_e_8md.html',1,'']]],
+  ['reference',['reference',['../class_enum_iterator.html#ac2d65a060d24c7e93a2911716d8ec41e',1,'EnumIterator']]],
   ['released_5ft',['released_t',['../struct_check_box_interface.html#a528f7a009803dd253a89a1ca697c6508',1,'CheckBoxInterface']]],
   ['releasedcbk',['releasedCbk',['../struct_check_box_interface.html#a9dada01aa9c8faeb8d957831652b2339',1,'CheckBoxInterface::releasedCbk()'],['../struct_n_l_m_check_box.html#acb17acc3107b8735e8d3dfca89a9ab7e',1,'NLMCheckBox::releasedCbk()']]],
   ['remove_5ft',['remove_t',['../struct_c_r_s_gui_interface.html#a340a5fff9ec838a61b37a27139909e91',1,'CRSGuiInterface']]],

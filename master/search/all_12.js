@@ -24,12 +24,13 @@ var searchData=
   ['setpropertysource',['setPropertySource',['../class_property_model.html#ada2be09d2dee64923ff52be371637fb3',1,'PropertyModel']]],
   ['setremovecbk',['setRemoveCbk',['../struct_c_r_s_gui.html#a9e8f6452b3c9aaac5cf9f6ad3ff76f03',1,'CRSGui::setRemoveCbk()'],['../struct_c_r_s_gui_interface.html#aa78f9ad14e3b1dab6069779e67654e2d',1,'CRSGuiInterface::setRemoveCbk()']]],
   ['setsectionclikedcbk',['setSectionClikedCbk',['../struct_c_r_v_gui.html#a8ab65b21d578369200f5c8d27fd509ba',1,'CRVGui::setSectionClikedCbk()'],['../struct_c_r_v_gui_interface.html#a88ad20480f5ed0f24ef7c1d92ecebda5',1,'CRVGuiInterface::setSectionClikedCbk()']]],
-  ['setsimulationstate',['setSimulationState',['../class_can_raw_sender_private.html#ac2fd241370f1045c3735cb32d670eb31',1,'CanRawSenderPrivate::setSimulationState()'],['../class_new_line_manager.html#aa9e40fb8bda738c509ab9b9df60f2de1',1,'NewLineManager::SetSimulationState()']]],
+  ['setsimulationstate',['SetSimulationState',['../class_new_line_manager.html#aa9e40fb8bda738c509ab9b9df60f2de1',1,'NewLineManager::SetSimulationState()'],['../class_can_raw_sender_private.html#ac2fd241370f1045c3735cb32d670eb31',1,'CanRawSenderPrivate::setSimulationState()']]],
   ['setsorting',['setSorting',['../struct_c_r_v_gui.html#ac9a2e89fe88079cbe80d6fd07d601f64',1,'CRVGui::setSorting()'],['../struct_c_r_v_gui_interface.html#aa11fdbb5d6e2a29997354b9537bda56a',1,'CRVGuiInterface::setSorting()']]],
   ['setuplogger',['setupLogger',['../main_8cpp.html#a677cf1dd7db1d278155bd2637971a267',1,'main.cpp']]],
   ['startsimulation',['startSimulation',['../struct_component_interface.html#a011c8464c9d77dcfd57f968655a05a19',1,'ComponentInterface::startSimulation()'],['../class_can_raw_sender.html#ab425e6f9434e44bf0acb557be17227e9',1,'CanRawSender::startSimulation()'],['../class_can_raw_view.html#acf78fa346b606b03632dd6fb47a5e48e',1,'CanRawView::startSimulation()'],['../class_project_config.html#a18f37c77fc6bc6840e9131c4f172c1fc',1,'ProjectConfig::startSimulation()']]],
   ['status',['status',['../class_can_device_data_out.html#aa58fee746094174d0927b1307d0597c3',1,'CanDeviceDataOut']]],
   ['stopsimulation',['stopSimulation',['../struct_component_interface.html#ae5a20c5ff68df62ff745cae181d75772',1,'ComponentInterface::stopSimulation()'],['../class_can_raw_sender.html#ab7dd3217bef0f70cf9ba25be9018d4f4',1,'CanRawSender::stopSimulation()'],['../class_can_raw_view.html#a1e7ae58ba92cc0130e259ae089cc8456',1,'CanRawView::stopSimulation()'],['../class_project_config.html#a9a43e8a6f85ee87ac61799a8a9918772',1,'ProjectConfig::stopSimulation()']]],
   ['subwindow',['SubWindow',['../struct_sub_window.html',1,'']]],
-  ['subwindow_2eh',['subwindow.h',['../subwindow_8h.html',1,'']]]
+  ['subwindow_2eh',['subwindow.h',['../subwindow_8h.html',1,'']]],
+  ['swap',['swap',['../class_enum_iterator.html#a48c1f507be738412e5a54628f69c403d',1,'EnumIterator']]]
 ];

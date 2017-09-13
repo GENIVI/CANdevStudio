@@ -11,7 +11,6 @@ var dir_94e65932f1e05d44d79da8e98a8aee4c =
     ] ],
     [ "newlinemanager.cpp", "newlinemanager_8cpp.html", null ],
     [ "newlinemanager.h", "newlinemanager_8h.html", [
-      [ "Iterator", "class_iterator.html", "class_iterator" ],
       [ "NewLineManager", "class_new_line_manager.html", "class_new_line_manager" ]
     ] ],
     [ "nlmfactory.h", "nlmfactory_8h.html", [
