@@ -88,6 +88,9 @@ class EnumIterator
     // }
 
     // InputIterator concept {
+    reference operator->()             { return operator*(); }
+    const_reference operator->() const { return operator*(); }
+
     EnumIterator& operator++()
     {
         if (makeEnd() != _current)  // no point to advance if at the end

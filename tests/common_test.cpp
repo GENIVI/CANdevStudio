@@ -74,6 +74,26 @@ TEST_CASE("EnumIterator operator*", "[common]")
     CHECK(it.begin() == it1);
 }
 
+TEST_CASE("EnumIterator operator->", "[common]")
+{
+    using namespace fakeit;
+
+    using I = EnumIterator<Trivial, Trivial::A, Trivial::C>;
+
+    I it{Trivial::A};
+    CHECK(it.end() != it);
+
+    CHECK(I{Trivial::B} == ++it);
+    CHECK(Trivial::B == it.operator->());
+    CHECK(I{Trivial::C} == ++it);
+    CHECK(Trivial::C == it.operator->());
+
+    const I it1{Trivial::A};
+    CHECK(it1.end() != it1);
+    CHECK(Trivial::A == it1.operator->());
+    CHECK(it.begin() == it1);
+}
+
 TEST_CASE("EnumIterator operator++", "[common]")
 {
     using namespace fakeit;
