@@ -12,7 +12,6 @@
 #include <QtWidgets/QMdiSubWindow>
 #include <QtWidgets/QMessageBox>
 
-
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent)
     , ui(std::make_unique<Ui::MainWindow>())
@@ -27,7 +26,9 @@ MainWindow::MainWindow(QWidget* parent)
     connectMenuSignals();
 }
 
-MainWindow::~MainWindow() {}  // NOTE: Qt MOC requires this code
+MainWindow::~MainWindow()
+{
+} // NOTE: Qt MOC requires this code
 
 void MainWindow::closeEvent(QCloseEvent* e)
 {
@@ -146,7 +147,6 @@ void MainWindow::setupMdiArea()
     ui->mdiArea->addSubWindow(projectConfig.get());
     ui->mdiArea->setAttribute(Qt::WA_DeleteOnClose, false);
     ui->mdiArea->setViewMode(QMdiArea::TabbedView);
-    connect(projectConfig.get(), &ProjectConfig::componentWidgetCreated, this,
-        &MainWindow::componentWidgetCreated);
+    connect(projectConfig.get(), &ProjectConfig::componentWidgetCreated, this, &MainWindow::componentWidgetCreated);
     connect(projectConfig.get(), &ProjectConfig::handleDock, this, &MainWindow::handleDock);
 }

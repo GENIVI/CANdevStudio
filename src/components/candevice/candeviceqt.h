@@ -91,6 +91,16 @@ struct CanDeviceQt : public CanDeviceInterface {
         }
     }
 
+    virtual void disconnectDevice()
+    {
+        if (_device) {
+            return _device->disconnectDevice();
+        } else {
+            cds_error("candevice is null. Call init firts!");
+            throw std::runtime_error("candevice is null. Call init first!");
+        }
+    }
+
 private:
     std::unique_ptr<QCanBusDevice> _device;
 };

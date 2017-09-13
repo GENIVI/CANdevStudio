@@ -21,6 +21,7 @@ struct CanDeviceInterface {
     virtual bool init(const QString& backend, const QString& iface) = 0;
     virtual bool writeFrame(const QCanBusFrame& frame) = 0;
     virtual bool connectDevice() = 0;
+    virtual void disconnectDevice() = 0;
     virtual qint64 framesAvailable() = 0;
 
     virtual QCanBusFrame readFrame() = 0;

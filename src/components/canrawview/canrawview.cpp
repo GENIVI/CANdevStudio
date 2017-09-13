@@ -27,6 +27,7 @@ void CanRawView::startSimulation()
 
     d->_timer.restart();
     d->_simStarted = true;
+    d->clear();
 }
 
 void CanRawView::stopSimulation()
@@ -59,8 +60,29 @@ QWidget* CanRawView::getMainWidget()
     return d->_ui.getMainWidget();
 }
 
-void CanRawView::saveSettings(QJsonObject& json) const
+void CanRawView::setConfig(QJsonObject&)
 {
-    assert(d_ptr != nullptr);
-    return d_ptr->saveSettings(json);
+    // TODO
+}
+
+QJsonObject CanRawView::getConfig() const
+{
+    // Q_D(CanRawView);
+    QJsonObject config;
+
+    d_ptr->saveSettings(config);
+
+    return config;
+}
+
+void CanRawView::setDockUndockClbk(const std::function<void()>& cb)
+{
+    Q_D(CanRawView);
+
+    d->_ui.setDockUndockCbk(cb);
+}
+
+bool CanRawView::mainWidgetDocked() const
+{
+    return d_ptr->docked;
 }

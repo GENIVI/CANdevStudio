@@ -40,8 +40,28 @@ int CanRawSender::getLineCount() const
     return d_ptr->getLineCount();
 }
 
-void CanRawSender::saveSettings(QJsonObject& json) const
+void CanRawSender::setConfig(QJsonObject&)
 {
-    assert(d_ptr != nullptr);
-    return d_ptr->saveSettings(json);
+    // TODO
+}
+
+QJsonObject CanRawSender::getConfig() const
+{
+    QJsonObject config;
+
+    d_ptr->saveSettings(config);
+
+    return config;
+}
+
+void CanRawSender::setDockUndockClbk(const std::function<void()>& cb)
+{
+    Q_D(CanRawSender);
+
+    d->_ui.setDockUndockCbk(cb);
+}
+
+bool CanRawSender::mainWidgetDocked() const
+{
+    return d_ptr->docked;
 }
