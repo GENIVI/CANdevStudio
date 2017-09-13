@@ -83,7 +83,7 @@ class EnumIterator
     // }
 
     // EqualityComparable concept -- no floating points {
-    bool operator==(EnumIterator rhs) const { return _current == rhs._current; }
+    bool operator==(EnumIterator rhs) const { return _current.s == rhs._current.s; }
     bool operator!=(EnumIterator rhs) const { return ! (*this == rhs);         }
     // }
 
@@ -93,15 +93,15 @@ class EnumIterator
 
     EnumIterator& operator++()
     {
-        if (makeEnd() != _current)  // no point to advance if at the end
+        if (makeEnd() != _current.s)  // no point to advance if at the end
         {
-            if (_current < static_cast<stored_type>(stop))
+            if (_current.s < static_cast<stored_type>(stop))
             {
-                ++_current;
+                ++_current.s;
             }
             else
             {
-                _current = makeEnd();
+                _current.s = makeEnd();
             }
         }
 
@@ -110,7 +110,7 @@ class EnumIterator
 
     EnumIterator operator++(int) const
     {
-        return (makeEnd() != _current) ? ++EnumIterator{*this} : EnumIterator{};
+        return (makeEnd() != _current.s) ? ++EnumIterator{*this} : EnumIterator{};
     }
     // }
 
@@ -121,14 +121,14 @@ class EnumIterator
     {
         assert(derefable());
 
-        return *reinterpret_cast<pointer>(&_current);  // FIXME
+        return *reinterpret_cast<pointer>(&_current.r);
     }
 
     const_reference operator*() const
     {
         assert(derefable());
 
-        return *reinterpret_cast<const_pointer>(&_current); // FIXME
+        return *reinterpret_cast<const_pointer>(&_current.r);
     }
 
  private:
@@ -137,10 +137,10 @@ class EnumIterator
     {
         return
             (*this != end()) // not past-the-end?
-         && (_current <= static_cast<stored_type>(std::numeric_limits<raw_type>::max())) // binary conversion possible?
-         && (_current >= static_cast<stored_type>(std::numeric_limits<raw_type>::min()))
-         && (_current <= static_cast<stored_type>(stop)) // fits into input domain?
-         && (_current >= static_cast<stored_type>(start));
+         && (_current.s <= static_cast<stored_type>(std::numeric_limits<raw_type>::max())) // binary conv possible?
+         && (_current.s >= static_cast<stored_type>(std::numeric_limits<raw_type>::min()))
+         && (_current.s <= static_cast<stored_type>(stop)) // fits into input domain?
+         && (_current.s >= static_cast<stored_type>(start));
 
     }
 
@@ -151,7 +151,7 @@ class EnumIterator
 
 
     // singular guarantee -- initialised to the past-the-end on value-init
-    stored_type _current = makeEnd();
+    union { stored_type s; raw_type r; } _current {makeEnd()};
 };
 
 #endif // ENUMITERATOR_H
