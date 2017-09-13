@@ -28,9 +28,8 @@ struct CRVGuiInterface {
     virtual bool isViewFrozen() = 0;
     virtual void scrollToBottom() = 0;
     virtual Qt::SortOrder getSortOrder() = 0;
-    virtual int getSortSection() = 0;
     virtual QString getClickedColumn(int ndx) = 0;
-    virtual void setSorting(int sortNdx, int clickedNdx, Qt::SortOrder order) = 0;
+    virtual void setSorting(int sortNdx, Qt::SortOrder order) = 0;
     virtual QString getWindowTitle() = 0;
     virtual bool isColumnHidden(int ndx) = 0;
 };

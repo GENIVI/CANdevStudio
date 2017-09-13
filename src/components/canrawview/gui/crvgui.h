@@ -50,8 +50,6 @@ struct CRVGui : public CRVGuiInterface {
         ui->tv->horizontalHeader()->setSectionsMovable(true);
         ui->tv->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
         ui->tv->setColumnHidden(0, true);
-        ui->tv->setColumnHidden(1, true);
-        ui->tv->setColumnHidden(3, true);
     }
 
     virtual bool isViewFrozen() override
@@ -69,20 +67,15 @@ struct CRVGui : public CRVGuiInterface {
         return ui->tv->horizontalHeader()->sortIndicatorOrder();
     }
 
-    virtual int getSortSection() override
-    {
-        return ui->tv->horizontalHeader()->sortIndicatorSection();
-    }
-
     virtual QString getClickedColumn(int ndx) override
     {
         return ui->tv->model()->headerData(ndx, Qt::Horizontal).toString();
     }
 
-    virtual void setSorting(int sortNdx, int clickedNdx, Qt::SortOrder order) override
+    virtual void setSorting(int sortNdx, Qt::SortOrder order) override
     {
         ui->tv->sortByColumn(sortNdx, order);
-        ui->tv->horizontalHeader()->setSortIndicator(clickedNdx, order);
+        ui->tv->horizontalHeader()->setSortIndicator(sortNdx, order);
     }
 
     virtual QString getWindowTitle() override

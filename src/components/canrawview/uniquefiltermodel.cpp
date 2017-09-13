@@ -5,12 +5,12 @@ UniqueFilterModel::UniqueFilterModel(QObject* parent)
 {
 }
 
-void UniqueFilterModel::updateFilter(int frameID, double time, QString direction)
+void UniqueFilterModel::updateFilter(QString frameID, QString time, QString direction)
 {
-    QPair<int, QString> value(frameID, direction);
+    QPair<QString, QString> value(frameID, direction);
 
-    if ((!uniques.contains(value)) || (time > uniques[value])) {
-        uniques[std::move(value)] = time;
+    if ((!_uniques.contains(value)) || (time.toDouble() > _uniques[value].toDouble())) {
+        _uniques[std::move(value)] = time;
     }
 
     invalidateFilter();
@@ -18,27 +18,45 @@ void UniqueFilterModel::updateFilter(int frameID, double time, QString direction
 
 bool UniqueFilterModel::filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const
 {
-    const int frameID = sourceModel()->index(sourceRow, 3, sourceParent).data().toInt();
-    const double time = sourceModel()->index(sourceRow, 1, sourceParent).data().toDouble();
-    const QString direction = sourceModel()->index(sourceRow, 5, sourceParent).data().toString();
+    QString time = sourceModel()->index(sourceRow, 1, sourceParent).data().toString();
+    QString frameID = sourceModel()->index(sourceRow, 2, sourceParent).data().toString();
+    QString direction = sourceModel()->index(sourceRow, 3, sourceParent).data().toString();
 
-    QPair<int, QString> value(std::move(frameID), std::move(direction));
+    QPair<QString, QString> value(std::move(frameID), std::move(direction));
 
-    return ((uniques[value] == time) || (false == filterActive));
+    return ((_uniques[value] == time) || (false == _filterActive));
+}
+
+bool UniqueFilterModel::lessThan(const QModelIndex& left, const QModelIndex& right) const
+{
+    QVariant leftData = sourceModel()->data(left);
+    QVariant rightData = sourceModel()->data(right);
+
+    QString clickedColumnName = sourceModel()->headerData(left.column(), Qt::Horizontal).toString();
+
+    if (clickedColumnName == "rowID" || clickedColumnName == "dlc") {
+        return (leftData.toUInt() < rightData.toUInt());
+    } else if (clickedColumnName == "time") {
+        return (leftData.toDouble() < rightData.toDouble());
+    } else if (clickedColumnName == "id") {
+        return ((leftData.toString().toUInt(nullptr, 16)) < (rightData.toString().toUInt(nullptr, 16)));
+    } else {
+        return (leftData < rightData);
+    }
 }
 
 void UniqueFilterModel::clearFilter()
 {
-    uniques.clear();
+    _uniques.clear();
 }
 
 void UniqueFilterModel::toggleFilter()
 {
-    filterActive = !filterActive;
+    _filterActive = !_filterActive;
     invalidateFilter();
 }
 
 bool UniqueFilterModel::isFilterActive()
 {
-    return filterActive;
+    return _filterActive;
 }
