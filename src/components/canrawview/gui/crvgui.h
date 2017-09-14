@@ -5,6 +5,8 @@
 #include "ui_canrawview.h"
 #include <memory>
 
+enum class ColName { rowID = 0, time, id, dir, dlc, data };
+
 struct CRVGui : public CRVGuiInterface {
 
     CRVGui()
@@ -50,6 +52,13 @@ struct CRVGui : public CRVGuiInterface {
         ui->tv->horizontalHeader()->setSectionsMovable(true);
         ui->tv->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
         ui->tv->setColumnHidden(0, true);
+
+        tvModel.setHeaderData(static_cast<int>(ColName::rowID), Qt::Horizontal, QVariant("uint"), Qt::UserRole);
+        tvModel.setHeaderData(static_cast<int>(ColName::time), Qt::Horizontal, QVariant("double"), Qt::UserRole);
+        tvModel.setHeaderData(static_cast<int>(ColName::id), Qt::Horizontal, QVariant("hex"), Qt::UserRole);
+        tvModel.setHeaderData(static_cast<int>(ColName::dir), Qt::Horizontal, QVariant("string"), Qt::UserRole);
+        tvModel.setHeaderData(static_cast<int>(ColName::dlc), Qt::Horizontal, QVariant("uint"), Qt::UserRole);
+        tvModel.setHeaderData(static_cast<int>(ColName::data), Qt::Horizontal, QVariant("string"), Qt::UserRole);
     }
 
     virtual bool isViewFrozen() override

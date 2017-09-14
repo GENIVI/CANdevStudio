@@ -33,12 +33,13 @@ bool UniqueFilterModel::lessThan(const QModelIndex& left, const QModelIndex& rig
     QVariant rightData = sourceModel()->data(right);
 
     QString clickedColumnName = sourceModel()->headerData(left.column(), Qt::Horizontal).toString();
+    QString userRole = sourceModel()->headerData(left.column(), Qt::Horizontal, Qt::UserRole).toString();
 
-    if (clickedColumnName == "rowID" || clickedColumnName == "dlc") {
+    if (userRole == "uint") {
         return (leftData.toUInt() < rightData.toUInt());
-    } else if (clickedColumnName == "time") {
+    } else if (userRole == "double") {
         return (leftData.toDouble() < rightData.toDouble());
-    } else if (clickedColumnName == "id") {
+    } else if (userRole == "hex") {
         return ((leftData.toString().toUInt(nullptr, 16)) < (rightData.toString().toUInt(nullptr, 16)));
     } else {
         return (leftData < rightData);
