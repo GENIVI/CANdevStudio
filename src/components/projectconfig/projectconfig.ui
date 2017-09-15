@@ -28,24 +28,49 @@
   <layout class="QHBoxLayout" name="layout">
    <item>
     <widget class="QToolBar" name="toolbar">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
      <property name="sizePolicy">
       <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
+     <property name="minimumSize">
+      <size>
+       <width>45</width>
+       <height>26</height>
+      </size>
+     </property>
+     <property name="movable">
+      <bool>true</bool>
+     </property>
+     <property name="allowedAreas">
+      <set>Qt::LeftToolBarArea|Qt::RightToolBarArea|Qt::TopToolBarArea</set>
+     </property>
      <property name="orientation">
       <enum>Qt::Vertical</enum>
      </property>
-     <attribute name="toolBarArea">
-      <enum>TopToolBarArea</enum>
-     </attribute>
-     <attribute name="toolBarBreak">
-      <bool>false</bool>
-     </attribute>
+     <property name="floatable">
+      <bool>true</bool>
+     </property>
+     <addaction name="actionCNCN"/>
+     <addaction name="actionCNRN"/>
+     <addaction name="separator"/>
     </widget>
    </item>
   </layout>
+  <action name="actionCNCN">
+   <property name="text">
+    <string>CNCN</string>
+   </property>
+  </action>
+  <action name="actionCNRN">
+   <property name="text">
+    <string>CNRN</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>
