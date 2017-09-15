@@ -3,9 +3,15 @@
 
 #include "crvguiinterface.h"
 #include "ui_canrawview.h"
+#include <iostream>
 #include <memory>
-
 enum class ColName { rowID = 0, time, id, dir, dlc, data };
+
+struct DataTypes {
+    enum class Type { uint = 0, hex, doubl, str };
+};
+
+Q_DECLARE_METATYPE(DataTypes::Type)
 
 struct CRVGui : public CRVGuiInterface {
 
@@ -53,12 +59,18 @@ struct CRVGui : public CRVGuiInterface {
         ui->tv->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
         ui->tv->setColumnHidden(0, true);
 
-        tvModel.setHeaderData(static_cast<int>(ColName::rowID), Qt::Horizontal, QVariant("uint"), Qt::UserRole);
-        tvModel.setHeaderData(static_cast<int>(ColName::time), Qt::Horizontal, QVariant("double"), Qt::UserRole);
-        tvModel.setHeaderData(static_cast<int>(ColName::id), Qt::Horizontal, QVariant("hex"), Qt::UserRole);
-        tvModel.setHeaderData(static_cast<int>(ColName::dir), Qt::Horizontal, QVariant("string"), Qt::UserRole);
-        tvModel.setHeaderData(static_cast<int>(ColName::dlc), Qt::Horizontal, QVariant("uint"), Qt::UserRole);
-        tvModel.setHeaderData(static_cast<int>(ColName::data), Qt::Horizontal, QVariant("string"), Qt::UserRole);
+        tvModel.setHeaderData(
+            static_cast<int>(ColName::rowID), Qt::Horizontal, QVariant::fromValue(DataTypes::Type::uint), Qt::UserRole);
+        tvModel.setHeaderData(
+            static_cast<int>(ColName::time), Qt::Horizontal, QVariant::fromValue(DataTypes::Type::doubl), Qt::UserRole);
+        tvModel.setHeaderData(
+            static_cast<int>(ColName::id), Qt::Horizontal, QVariant::fromValue(DataTypes::Type::hex), Qt::UserRole);
+        tvModel.setHeaderData(
+            static_cast<int>(ColName::dir), Qt::Horizontal, QVariant::fromValue(DataTypes::Type::str), Qt::UserRole);
+        tvModel.setHeaderData(
+            static_cast<int>(ColName::dlc), Qt::Horizontal, QVariant::fromValue(DataTypes::Type::uint), Qt::UserRole);
+        tvModel.setHeaderData(
+            static_cast<int>(ColName::data), Qt::Horizontal, QVariant::fromValue(DataTypes::Type::str), Qt::UserRole);
     }
 
     virtual bool isViewFrozen() override
