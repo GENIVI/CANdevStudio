@@ -55,20 +55,35 @@
      <property name="floatable">
       <bool>true</bool>
      </property>
-     <addaction name="actionCNCN"/>
-     <addaction name="actionCNRN"/>
+     <addaction name="actionCD"/>
+     <addaction name="actionCRS"/>
+     <addaction name="actionCRV"/>
      <addaction name="separator"/>
     </widget>
    </item>
   </layout>
-  <action name="actionCNCN">
+  <action name="actionCRS">
    <property name="text">
-    <string>CNCN</string>
+    <string>CRS</string>
+   </property>
+   <property name="toolTip">
+    <string>CanRawSender Node</string>
    </property>
   </action>
-  <action name="actionCNRN">
+  <action name="actionCD">
    <property name="text">
-    <string>CNRN</string>
+    <string>CD</string>
+   </property>
+   <property name="toolTip">
+    <string>CanDevice Node</string>
+   </property>
+  </action>
+  <action name="actionCRV">
+   <property name="text">
+    <string>CRV</string>
+   </property>
+   <property name="toolTip">
+    <string>CanRawView Node</string>
    </property>
   </action>
  </widget>
