@@ -1,10 +1,8 @@
 #include "uniquefiltermodel.h"
-#include <iostream>
 
-struct DataTypes {
-    enum class Type { uint = 0, hex, doubl, str };
-};
-Q_DECLARE_METATYPE(DataTypes::Type)
+enum class Type { uint = 0, hex, doubl, str };
+
+Q_DECLARE_METATYPE(Type)
 
 UniqueFilterModel::UniqueFilterModel(QObject* parent)
     : QSortFilterProxyModel(parent)
@@ -37,16 +35,15 @@ bool UniqueFilterModel::lessThan(const QModelIndex& left, const QModelIndex& rig
 {
     QVariant leftData = sourceModel()->data(left);
     QVariant rightData = sourceModel()->data(right);
-
     QVariant userRole = sourceModel()->headerData(left.column(), Qt::Horizontal, Qt::UserRole);
 
-    switch (userRole.value<DataTypes::Type>()) {
-    case DataTypes::Type::uint:
+    switch (userRole.value<Type>()) {
+    case Type::uint:
         return (leftData.toUInt() < rightData.toUInt());
-    case DataTypes::Type::doubl:
+    case Type::doubl:
         return (leftData.toDouble() < rightData.toDouble());
-    case DataTypes::Type::hex:
-        return ((leftData.toString().toUInt(nullptr, 16)) < (rightData.toString().toUInt(nullptr, 16)));
+    case Type::hex:
+        return ((leftData.toString().toUInt(nullptr, 16)) << (rightData.toString().toUInt(nullptr, 16)));
     default:
         return (leftData < rightData);
     }
