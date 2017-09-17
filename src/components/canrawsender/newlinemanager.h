@@ -12,7 +12,6 @@
 
 class CanRawSender;
 
-
 /// \class NewLineManager
 /// \brief This class holds informations about all the columns in line and relationships beteewn them
 class NewLineManager : public QObject {
@@ -33,7 +32,7 @@ public:
         DataLine,
         LoopCheckBox,
         IntervalLine,
-        SendButton
+        SendButton,
     };
     /// \typedef ColNameIterator
     /// \brief Iteratot through ColName content

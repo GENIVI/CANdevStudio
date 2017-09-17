@@ -21,7 +21,7 @@ struct NLMCheckBox : public CheckBoxInterface {
         QObject::connect(qCheckBox, &QCheckBox::released, cb);
     }
 
-    QWidget* getMainWidget() override
+    QWidget* mainWidget() override
     {
         return qWidget;
     }

@@ -16,7 +16,7 @@ struct NLMPushButton : public PushButtonInterface {
         QObject::connect(qPushButton, &QPushButton::pressed, cb);
     }
 
-    QWidget* getMainWidget() override
+    QWidget* mainWidget() override
     {
         return qPushButton;
     }

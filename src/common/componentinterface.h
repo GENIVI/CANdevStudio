@@ -15,12 +15,18 @@ struct ComponentInterface {
     }
 
     /**
-    *   @brief  Action to be taken on simulation stop
+    *   @brief  Signal to be implemented by Component. Indicates when dock/undock action was invoked. 
+    *   @param  widget Widget subjected to dock/undock action
+    */
+    virtual void mainWidgetDockToggled(QWidget* widget) = 0;
+
+    /**
+    *   @brief  Slot to be implemented by Component to execute simulation stop action
     */
     virtual void stopSimulation() = 0;
 
     /**
-    *   @brief  Action to be taken on simulation start
+    *   @brief  Slot to be implemented by Component to execute simulation start action
     */
     virtual void startSimulation() = 0;
 
@@ -40,26 +46,13 @@ struct ComponentInterface {
     *   @brief  Gets components's main widget
     *   @return Main widget or nullptr if component doesn't have it
     */
-    virtual QWidget* getMainWidget()
-    {
-        return nullptr;
-    }
-
-    /**
-    *   @brief  Callback, called when component requests dock/undock action
-    */
-    virtual void setDockUndockClbk(const std::function<void()>&)
-    {
-    }
+    virtual QWidget* mainWidget() = 0;
 
     /**
     *   @brief  Main widget docking status
     *   @return returns true if widget is docked (part of MDI) or undocked (separate window)
     */
-    virtual bool mainWidgetDocked() const
-    {
-        return true;
-    }
+    virtual bool mainWidgetDocked() const = 0;
 };
 
 #endif /* !__COMPONENTINTERFACE_H */

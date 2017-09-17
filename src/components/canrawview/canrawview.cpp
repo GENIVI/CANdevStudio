@@ -53,11 +53,11 @@ void CanRawView::frameSent(bool status, const QCanBusFrame& frame)
     }
 }
 
-QWidget* CanRawView::getMainWidget()
+QWidget* CanRawView::mainWidget()
 {
     Q_D(CanRawView);
 
-    return d->_ui.getMainWidget();
+    return d->_ui.mainWidget();
 }
 
 void CanRawView::setConfig(QJsonObject&)
@@ -73,13 +73,6 @@ QJsonObject CanRawView::getConfig() const
     d_ptr->saveSettings(config);
 
     return config;
-}
-
-void CanRawView::setDockUndockClbk(const std::function<void()>& cb)
-{
-    Q_D(CanRawView);
-
-    d->_ui.setDockUndockCbk(cb);
 }
 
 bool CanRawView::mainWidgetDocked() const

@@ -22,7 +22,7 @@ struct CRVGuiInterface {
     {
     }
 
-    virtual QWidget* getMainWidget() = 0;
+    virtual QWidget* mainWidget() = 0;
     virtual void setModel(QAbstractItemModel* model) = 0;
     virtual void initTableView(QAbstractItemModel& tvModel) = 0;
     virtual bool isViewFrozen() = 0;

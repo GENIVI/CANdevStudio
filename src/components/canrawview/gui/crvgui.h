@@ -34,7 +34,7 @@ struct CRVGui : public CRVGuiInterface {
         QObject::connect(ui->pbToggleFilter, &QPushButton::toggled, cb);
     }
 
-    virtual QWidget* getMainWidget() override
+    virtual QWidget* mainWidget() override
     {
         return widget;
     }

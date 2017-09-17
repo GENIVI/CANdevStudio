@@ -23,6 +23,7 @@ void CanRawSenderPrivate::saveSettings(QJsonObject& json) const
         lineItem->Line2Json(lineObject);
         lineArray.append(std::move(lineObject));
     }
+
     json["content"] = std::move(lineArray);
 }
 

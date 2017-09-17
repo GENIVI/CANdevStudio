@@ -1,6 +1,7 @@
 #ifndef CANRAWSENDER_P_H
 #define CANRAWSENDER_P_H
 
+#include "canrawsender.h"
 #include "gui/crsgui.h"
 #include "newlinemanager.h"
 #include <QJsonObject>
@@ -12,8 +13,6 @@
 namespace Ui {
 class CanRawSenderPrivate;
 }
-
-class CanRawSender;
 
 /// \class CanRawSenderPrivate
 /// \brief This class is responsible for manage can raw sender window
@@ -41,7 +40,11 @@ public:
 
         _ui.setAddCbk(std::bind(&CanRawSenderPrivate::addNewItem, this));
         _ui.setRemoveCbk(std::bind(&CanRawSenderPrivate::removeRowsSelectedByMouse, this));
-        _ui.setDockUndockCbk([this] { docked = !docked; });
+
+        _ui.setDockUndockCbk([this] {
+            docked = !docked;
+            emit q_ptr->mainWidgetDockToggled(_ui.mainWidget());
+        });
     }
 
     /// \brief destructor

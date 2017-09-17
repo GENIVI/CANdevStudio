@@ -32,7 +32,7 @@ struct CRSGui : public CRSGuiInterface {
         QObject::connect(ui->pbDockUndock, &QPushButton::toggled, cb);
     }
 
-    QWidget* getMainWidget() override
+    QWidget* mainWidget() override
     {
         return widget;
     }

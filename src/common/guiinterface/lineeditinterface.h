@@ -12,7 +12,7 @@ struct LineEditInterface {
 
     typedef std::function<void()> textChanged_t;
     virtual void textChangedCbk(const textChanged_t& cb) = 0;
-    virtual QWidget* getMainWidget() = 0;
+    virtual QWidget* mainWidget() = 0;
     virtual void init(const QString& placeholderText, QValidator* qValidator) = 0;
     virtual void setPlaceholderText(const QString& placeholderText) = 0;
     virtual void setDisabled(bool state) = 0;

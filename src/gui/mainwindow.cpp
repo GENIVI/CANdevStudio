@@ -55,7 +55,7 @@ void MainWindow::handleDock(QWidget* component)
         parent->close();
     } else {
         cds_debug("Dock action");
-        componentWidgetCreated(component);
+        addToMdi(component);
     }
 }
 
@@ -131,7 +131,7 @@ void MainWindow::connectMenuSignals()
         [this] { ui->mdiArea->setViewMode(QMdiArea::SubWindowView); });
 }
 
-void MainWindow::componentWidgetCreated(QWidget* component)
+void MainWindow::addToMdi(QWidget* component)
 {
     auto wnd = new SubWindow;
     // It seems we need to add Window first before setting the widget
@@ -147,6 +147,42 @@ void MainWindow::setupMdiArea()
     ui->mdiArea->addSubWindow(projectConfig.get());
     ui->mdiArea->setAttribute(Qt::WA_DeleteOnClose, false);
     ui->mdiArea->setViewMode(QMdiArea::TabbedView);
-    connect(projectConfig.get(), &ProjectConfig::componentWidgetCreated, this, &MainWindow::componentWidgetCreated);
     connect(projectConfig.get(), &ProjectConfig::handleDock, this, &MainWindow::handleDock);
+    connect(projectConfig.get(), &ProjectConfig::handleWidgetDeletion, this, &MainWindow::handleWidgetDeletion);
+    connect(projectConfig.get(), &ProjectConfig::handleWidgetShowing, this, &MainWindow::handleWidgetShowing);
+}
+
+void MainWindow::handleWidgetDeletion(QWidget* widget)
+{
+    if (!widget)
+        return;
+
+    if (widget->parentWidget()) {
+        widget->parentWidget()->close();
+    } else {
+        widget->close();
+    }
+}
+
+void MainWindow::handleWidgetShowing(QWidget* widget, bool docked)
+{
+    if (!widget)
+        return;
+
+    // Add widget to MDI area when showing for the first time
+    // Widget will be also added to MDI area after closing it in undocked state
+    if (!widget->isVisible() && docked) {
+        cds_debug("Adding '{}' widget to MDI", widget->windowTitle().toStdString());
+        addToMdi(widget);
+    }
+
+    if (widget->parentWidget()) {
+        cds_debug("Widget is a part of MDI");
+        widget->hide();
+        widget->show();
+    } else {
+        cds_debug("Widget not a part of MDI");
+        widget->show();
+        widget->activateWindow();
+    }
 }

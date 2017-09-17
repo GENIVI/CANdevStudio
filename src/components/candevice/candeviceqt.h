@@ -91,7 +91,7 @@ struct CanDeviceQt : public CanDeviceInterface {
         }
     }
 
-    virtual void disconnectDevice()
+    virtual void disconnectDevice() override
     {
         if (_device) {
             return _device->disconnectDevice();

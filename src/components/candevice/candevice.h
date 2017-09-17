@@ -35,6 +35,11 @@ public:
     /**
     *   @see ComponentInterface
     */
+    QWidget* mainWidget() override;
+
+    /**
+    *   @see ComponentInterface
+    */
     void setConfig(QJsonObject& json) override;
 
     /**
@@ -42,19 +47,37 @@ public:
     */
     QJsonObject getConfig() const override;
 
+    /**
+    *   @see ComponentInterface
+    */
+    bool mainWidgetDocked() const override;
+
 signals:
     void frameReceived(const QCanBusFrame& frame);
     void frameSent(bool status, const QCanBusFrame& frame);
 
+    /**
+    *   @see ComponentInterface
+    */
+    void mainWidgetDockToggled(QWidget* widget) override;
+
 public slots:
     void sendFrame(const QCanBusFrame& frame);
+
+    /**
+    *   @see ComponentInterface
+    */
+    void startSimulation() override;
+
+    /**
+    *   @see ComponentInterface
+    */
+    void stopSimulation() override;
 
 private slots:
     void errorOccurred(int error);
     void framesWritten(qint64 framesCnt);
     void framesReceived();
-    void startSimulation();
-    void stopSimulation();
 
 private:
     QScopedPointer<CanDevicePrivate> d_ptr;

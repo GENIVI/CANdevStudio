@@ -21,7 +21,7 @@ struct CRSGuiInterface {
     virtual void setRemoveCbk(const remove_t& cb) = 0;
     virtual void setDockUndockCbk(const dockUndock_t& cb) = 0;
 
-    virtual QWidget* getMainWidget() = 0;
+    virtual QWidget* mainWidget() = 0;
     virtual void initTableView(QAbstractItemModel& _tvModel) = 0;
     virtual QModelIndexList getSelectedRows() = 0;
     virtual void setIndexWidget(const QModelIndex& index, QWidget* widget) = 0;

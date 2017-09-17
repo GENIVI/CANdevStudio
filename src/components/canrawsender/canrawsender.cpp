@@ -28,11 +28,11 @@ void CanRawSender::stopSimulation()
     d_ptr->setSimulationState(false);
 }
 
-QWidget* CanRawSender::getMainWidget()
+QWidget* CanRawSender::mainWidget()
 {
     Q_D(CanRawSender);
 
-    return d->_ui.getMainWidget();
+    return d->_ui.mainWidget();
 }
 int CanRawSender::getLineCount() const
 {
@@ -52,13 +52,6 @@ QJsonObject CanRawSender::getConfig() const
     d_ptr->saveSettings(config);
 
     return config;
-}
-
-void CanRawSender::setDockUndockClbk(const std::function<void()>& cb)
-{
-    Q_D(CanRawSender);
-
-    d->_ui.setDockUndockCbk(cb);
 }
 
 bool CanRawSender::mainWidgetDocked() const

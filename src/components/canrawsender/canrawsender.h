@@ -18,12 +18,14 @@ public:
     CanRawSender();
     explicit CanRawSender(CanRawSenderCtx&& ctx);
     ~CanRawSender();
+
+    // TODO this should go as config parameter!
     int getLineCount() const;
 
     /**
     *   @see ComponentInterface
     */
-    QWidget* getMainWidget() override;
+    QWidget* mainWidget() override;
 
     /**
     *   @see ComponentInterface
@@ -38,19 +40,25 @@ public:
     /**
     *   @see ComponentInterface
     */
-    void setDockUndockClbk(const std::function<void()>& cb) override;
-
-    /**
-    *   @see ComponentInterface
-    */
     bool mainWidgetDocked() const override;
 
 signals:
     void sendFrame(const QCanBusFrame& frame);
 
+    /**
+    *   @see ComponentInterface
+    */
+    void mainWidgetDockToggled(QWidget* widget) override;
+
 public slots:
-    void stopSimulation(void);
-    void startSimulation(void);
+    /**
+    *   @see ComponentInterface
+    */
+    void stopSimulation() override;
+    /**
+    *   @see ComponentInterface
+    */
+    void startSimulation() override;
 
 private:
     QScopedPointer<CanRawSenderPrivate> d_ptr;

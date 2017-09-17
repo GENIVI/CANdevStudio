@@ -12,7 +12,7 @@ CanRawViewModel::CanRawViewModel()
     _name = "CanRawViewModel";
     _modelName = "Raw view";
 
-    _component.getMainWidget()->setWindowTitle("CANrawView");
+    _component.mainWidget()->setWindowTitle("CANrawView");
     connect(this, &CanRawViewModel::frameSent, &_component, &CanRawView::frameSent);
     connect(this, &CanRawViewModel::frameReceived, &_component, &CanRawView::frameReceived);
 }

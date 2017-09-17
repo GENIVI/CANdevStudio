@@ -1,8 +1,8 @@
 
 #include <cassert> // assert
 
-#include "newlinemanager.h"
 #include "canrawsender.h"
+#include "newlinemanager.h"
 #include <QRegExpValidator>
 
 NewLineManager::NewLineManager(CanRawSender* q, bool _simulationState, NLMFactoryInterface& factory)
@@ -110,19 +110,18 @@ void NewLineManager::TimerExpired()
 
 QWidget* NewLineManager::GetColsWidget(ColNameIterator name)
 {
-    if (name.end() != name)
-    {
+    if (name.end() != name) {
         switch (*name) {
         case ColName::IdLine:
-            return mId->getMainWidget();
+            return mId->mainWidget();
         case ColName::DataLine:
-            return mData->getMainWidget();
+            return mData->mainWidget();
         case ColName::IntervalLine:
-            return mInterval->getMainWidget();
+            return mInterval->mainWidget();
         case ColName::LoopCheckBox:
-            return mCheckBox->getMainWidget();
+            return mCheckBox->mainWidget();
         case ColName::SendButton:
-            return mSend->getMainWidget();
+            return mSend->mainWidget();
         default:
             assert(false); // BUG: impossible!
         }
