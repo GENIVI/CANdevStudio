@@ -34,6 +34,7 @@ void ProjectConfig::nodeDoubleClickedCallback(QtNodes::Node& node)
 
 void ProjectConfig::closeEvent(QCloseEvent* e)
 {
+    emit closeProject();
     e->ignore();
 }
 

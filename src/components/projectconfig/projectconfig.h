@@ -28,6 +28,7 @@ signals:
     void componentWidgetCreated(QWidget* component);
     void stopSimulation();
     void startSimulation();
+    void closeProject();
 
 private slots:
     void nodeCreatedCallback(QtNodes::Node& node);

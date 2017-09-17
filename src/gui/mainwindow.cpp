@@ -19,8 +19,6 @@ MainWindow::MainWindow(QWidget* parent)
     ui->setupUi(this);
     ui->centralWidget->layout()->setContentsMargins(0, 0, 0, 0);
 
-    projectConfig = std::make_unique<ProjectConfig>();
-
     setupMdiArea();
     connectToolbarSignals();
     connectMenuSignals();
@@ -61,16 +59,17 @@ void MainWindow::handleDock(QWidget* component)
 
 void MainWindow::connectToolbarSignals()
 {
-    connect(ui->actionstart, &QAction::triggered, ui->actionstop, &QAction::setDisabled);
-    connect(ui->actionstart, &QAction::triggered, ui->actionstart, &QAction::setEnabled);
-    connect(ui->actionstart, &QAction::triggered, projectConfig.get(), &ProjectConfig::startSimulation);
-    connect(ui->actionstop, &QAction::triggered, ui->actionstop, &QAction::setEnabled);
-    connect(ui->actionstop, &QAction::triggered, ui->actionstart, &QAction::setDisabled);
-    connect(ui->actionstop, &QAction::triggered, projectConfig.get(), &ProjectConfig::stopSimulation);
+    connect(ui->actionStart, &QAction::triggered, ui->actionStop, &QAction::setDisabled);
+    connect(ui->actionStart, &QAction::triggered, ui->actionStart, &QAction::setEnabled);
+    connect(ui->actionStop, &QAction::triggered, ui->actionStop, &QAction::setEnabled);
+    connect(ui->actionStop, &QAction::triggered, ui->actionStart, &QAction::setDisabled);
 }
 
 void MainWindow::handleSaveAction()
 {
+    if (!projectConfig)
+        return;
+
     QString fileName = QFileDialog::getSaveFileName(
         nullptr, "Project Configuration", QDir::homePath(), "CANdevStudio Files (*.cds)");
 
@@ -83,7 +82,7 @@ void MainWindow::handleSaveAction()
             file.write(projectConfig->save()); // FIXME
         }
     } else {
-        cds_error("File name empty");
+        cds_debug("Save action cancelled by the user");
     }
 }
 
@@ -92,8 +91,8 @@ void MainWindow::handleLoadAction()
     QString fileName
         = QFileDialog::getOpenFileName(nullptr, "Project Configuration", QDir::homePath(), "CANdevStudio (*.cds)");
 
-    if (!QFileInfo::exists(fileName)) {
-        cds_error("File does not exist");
+    if (fileName.isEmpty()) {
+        cds_debug("Load action cancelled by the user");
         return;
     }
 
@@ -109,8 +108,70 @@ void MainWindow::handleLoadAction()
     // TODO check if file is correct, nodeeditor library does not provide it and will crash if incorrect file is
     // supplied
 
-    projectConfig->clearGraphView();
-    projectConfig->load(wholeFile); // FIXME
+    // TODO: Customize project name
+    if (createProjectConfig("Project Config")) {
+        if (projectConfig) {
+            projectConfig->load(wholeFile); // FIXME
+        } else {
+            cds_error("Project config does not exist");
+        }
+    }
+}
+
+bool MainWindow::closeProjectConfig()
+{
+    if (projectConfig) {
+        // Ask the question only if projet is currently open
+        QMessageBox::StandardButton userReply;
+        userReply = QMessageBox::question(
+            this, "Close Project", "Do you want to close current project?", QMessageBox::Yes | QMessageBox::No);
+        if (userReply == QMessageBox::No) {
+            return false;
+        }
+
+        projectConfig->clearGraphView();
+        ui->mdiArea->removeSubWindow(projectConfig.get()->parentWidget());
+        projectConfig.reset();
+
+        ui->actionClose->setDisabled(true);
+        ui->actionStart->setDisabled(true);
+        ui->actionSave->setDisabled(true);
+        ui->actionStop->setDisabled(true);
+    }
+
+    return true;
+}
+
+bool MainWindow::createProjectConfig(const QString& name)
+{
+    if (!closeProjectConfig())
+        return false;
+
+    projectConfig = std::make_unique<ProjectConfig>();
+
+    if (projectConfig) {
+        projectConfig->setWindowTitle(name);
+        ui->mdiArea->addSubWindow(projectConfig.get());
+        projectConfig->show();
+
+        connect(ui->actionStop, &QAction::triggered, projectConfig.get(), &ProjectConfig::stopSimulation);
+        connect(ui->actionStart, &QAction::triggered, projectConfig.get(), &ProjectConfig::startSimulation);
+        connect(projectConfig.get(), &ProjectConfig::handleDock, this, &MainWindow::handleDock);
+        connect(projectConfig.get(), &ProjectConfig::handleWidgetDeletion, this, &MainWindow::handleWidgetDeletion);
+        connect(projectConfig.get(), &ProjectConfig::handleWidgetShowing, this, &MainWindow::handleWidgetShowing);
+        connect(projectConfig.get(), &ProjectConfig::closeProject, this, &MainWindow::closeProjectConfig);
+
+        ui->actionClose->setDisabled(false);
+        ui->actionStart->setDisabled(false);
+        ui->actionSave->setDisabled(false);
+        ui->actionStop->setDisabled(true);
+
+        return true;
+    } else {
+        cds_error("Failed to create project config");
+    }
+
+    return false;
 }
 
 void MainWindow::connectMenuSignals()
@@ -129,6 +190,8 @@ void MainWindow::connectMenuSignals()
     connect(ui->actionTabView, &QAction::toggled, ui->actionCascade, &QAction::setDisabled);
     connect(ui->actionSubWindowView, &QAction::triggered, this,
         [this] { ui->mdiArea->setViewMode(QMdiArea::SubWindowView); });
+    connect(ui->actionClose, &QAction::triggered, this, &MainWindow::closeProjectConfig);
+    connect(ui->actionNew, &QAction::triggered, [this] { createProjectConfig("Project Config"); });
 }
 
 void MainWindow::addToMdi(QWidget* component)
@@ -143,13 +206,8 @@ void MainWindow::addToMdi(QWidget* component)
 
 void MainWindow::setupMdiArea()
 {
-    projectConfig->setWindowTitle("Project Configuration");
-    ui->mdiArea->addSubWindow(projectConfig.get());
     ui->mdiArea->setAttribute(Qt::WA_DeleteOnClose, false);
     ui->mdiArea->setViewMode(QMdiArea::TabbedView);
-    connect(projectConfig.get(), &ProjectConfig::handleDock, this, &MainWindow::handleDock);
-    connect(projectConfig.get(), &ProjectConfig::handleWidgetDeletion, this, &MainWindow::handleWidgetDeletion);
-    connect(projectConfig.get(), &ProjectConfig::handleWidgetShowing, this, &MainWindow::handleWidgetShowing);
 }
 
 void MainWindow::handleWidgetDeletion(QWidget* widget)
