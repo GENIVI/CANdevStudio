@@ -16,6 +16,8 @@ var searchData=
   ['cleargraphview',['clearGraphView',['../class_project_config.html#a3247826951e3f4972d4b309467c5c87b',1,'ProjectConfig::clearGraphView()'],['../class_project_config_private.html#a5478ebc01faa31e431bf59735f79e4f0',1,'ProjectConfigPrivate::clearGraphView()']]],
   ['clone',['clone',['../class_component_model.html#a8a91bf58568283d1a48fdf80449532f4',1,'ComponentModel']]],
   ['closeevent',['closeEvent',['../class_project_config.html#a19151c1dd5cf6c3a99985c1c3aa6b4b5',1,'ProjectConfig::closeEvent()'],['../struct_sub_window.html#a1b4b2dec3bd9137440c809bde3447f0c',1,'SubWindow::closeEvent()']]],
+  ['closeproject',['closeProject',['../class_project_config.html#af229bb450c2e6e3971b34cfe91387659',1,'ProjectConfig']]],
+  ['closeprojectconfig',['closeProjectConfig',['../class_main_window.html#a3a91691c4879ced069c02b2a6a524ec4',1,'MainWindow']]],
   ['columncount',['columnCount',['../class_property_model.html#a5fdaf73fcd116cc51d84124e8d003cff',1,'PropertyModel']]],
   ['componentmodel',['ComponentModel',['../class_component_model.html#a2fb9e24a9ca0498cc6e67aa9d676e822',1,'ComponentModel']]],
   ['componentwidgetcreated',['componentWidgetCreated',['../class_project_config.html#aa58b2f890829fc2ab177578d5926d4b1',1,'ProjectConfig']]],
@@ -23,6 +25,7 @@ var searchData=
   ['context',['Context',['../struct_context.html#a9fac18dacfb21d02d9c95dab33a5e605',1,'Context']]],
   ['createcheckbox',['createCheckBox',['../struct_n_l_m_factory.html#a433a486cc1cc0e4412493734eb23d4f2',1,'NLMFactory::createCheckBox()'],['../struct_n_l_m_factory_interface.html#ac9ec50963e900d2172c098a6b419abd2',1,'NLMFactoryInterface::createCheckBox()']]],
   ['createlineedit',['createLineEdit',['../struct_n_l_m_factory.html#a9a2c71787872caa47353083640e64436',1,'NLMFactory::createLineEdit()'],['../struct_n_l_m_factory_interface.html#ae39bffe027fdbd7ad80044c739b427d9',1,'NLMFactoryInterface::createLineEdit()']]],
+  ['createprojectconfig',['createProjectConfig',['../class_main_window.html#a03ffc218341eec996463d79739b02e89',1,'MainWindow']]],
   ['createpushbutton',['createPushButton',['../struct_n_l_m_factory.html#ab2578c0dc5f31f397faad63aac30419b',1,'NLMFactory::createPushButton()'],['../struct_n_l_m_factory_interface.html#a6e6be93f1dd8b419baaf1e1de7f31005',1,'NLMFactoryInterface::createPushButton()']]],
   ['crsgui',['CRSGui',['../struct_c_r_s_gui.html#aa16dee0fca89a03a8749b924fb03851d',1,'CRSGui']]],
   ['crvgui',['CRVGui',['../struct_c_r_v_gui.html#a59e9be0249f8a0b880cf6de78ebebb68',1,'CRVGui']]]
