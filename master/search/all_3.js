@@ -63,7 +63,7 @@ var searchData=
   ['componentmodel_3c_20canrawsender_2c_20canrawsendermodel_20_3e',['ComponentModel&lt; CanRawSender, CanRawSenderModel &gt;',['../class_component_model.html',1,'']]],
   ['componentmodel_3c_20canrawview_2c_20canrawviewmodel_20_3e',['ComponentModel&lt; CanRawView, CanRawViewModel &gt;',['../class_component_model.html',1,'']]],
   ['componentmodelinterface',['ComponentModelInterface',['../struct_component_model_interface.html',1,'']]],
-  ['componentwidgetcreated',['componentWidgetCreated',['../class_project_config.html#aa58b2f890829fc2ab177578d5926d4b1',1,'ProjectConfig::componentWidgetCreated()'],['../class_main_window.html#a60f61b3e93df5b4da6ad94c0730164bd',1,'MainWindow::componentWidgetCreated()']]],
+  ['componentwidgetcreated',['componentWidgetCreated',['../class_project_config.html#aa58b2f890829fc2ab177578d5926d4b1',1,'ProjectConfig']]],
   ['connectdevice',['connectDevice',['../struct_can_device_interface.html#ae93401fab526dc31098998e15baba1be',1,'CanDeviceInterface::connectDevice()'],['../struct_can_device_qt.html#a3217273ad521531a3250d35974e100c7',1,'CanDeviceQt::connectDevice()']]],
   ['const_5fpointer',['const_pointer',['../class_enum_iterator.html#afad866db4d837e93586bbfb81a7974e2',1,'EnumIterator']]],
   ['const_5freference',['const_reference',['../class_enum_iterator.html#a73134eba8e622e35b7254247305420e7',1,'EnumIterator']]],

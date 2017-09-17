@@ -1,5 +1,6 @@
 var dir_63333d075306eec5841a0e2f4cff9332 =
 [
+    [ "datamodeltypes", "dir_62f97a503536ac85c2b09e663d236025.html", "dir_62f97a503536ac85c2b09e663d236025" ],
     [ "candevicemodel.cpp", "candevicemodel_8cpp.html", null ],
     [ "candevicemodel.h", "candevicemodel_8h.html", [
       [ "CanDeviceModel", "class_can_device_model.html", "class_can_device_model" ]

@@ -133,11 +133,14 @@ Inheritance diagram for ComponentInterface:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a3886256e350e41fe89687a5497308333"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_component_interface.html#a3886256e350e41fe89687a5497308333">~ComponentInterface</a> ()</td></tr>
 <tr class="separator:a3886256e350e41fe89687a5497308333"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ce5af2992a449a0b474fced56bbedd4"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_component_interface.html#a8ce5af2992a449a0b474fced56bbedd4">mainWidgetDockToggled</a> (QWidget *widget)=0</td></tr>
+<tr class="memdesc:a8ce5af2992a449a0b474fced56bbedd4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Signal to be implemented by Component. Indicates when dock/undock action was invoked.  <a href="#a8ce5af2992a449a0b474fced56bbedd4">More...</a><br /></td></tr>
+<tr class="separator:a8ce5af2992a449a0b474fced56bbedd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae5a20c5ff68df62ff745cae181d75772"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_component_interface.html#ae5a20c5ff68df62ff745cae181d75772">stopSimulation</a> ()=0</td></tr>
-<tr class="memdesc:ae5a20c5ff68df62ff745cae181d75772"><td class="mdescLeft">&#160;</td><td class="mdescRight">Action to be taken on simulation stop.  <a href="#ae5a20c5ff68df62ff745cae181d75772">More...</a><br /></td></tr>
+<tr class="memdesc:ae5a20c5ff68df62ff745cae181d75772"><td class="mdescLeft">&#160;</td><td class="mdescRight">Slot to be implemented by Component to execute simulation stop action.  <a href="#ae5a20c5ff68df62ff745cae181d75772">More...</a><br /></td></tr>
 <tr class="separator:ae5a20c5ff68df62ff745cae181d75772"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a011c8464c9d77dcfd57f968655a05a19"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_component_interface.html#a011c8464c9d77dcfd57f968655a05a19">startSimulation</a> ()=0</td></tr>
-<tr class="memdesc:a011c8464c9d77dcfd57f968655a05a19"><td class="mdescLeft">&#160;</td><td class="mdescRight">Action to be taken on simulation start.  <a href="#a011c8464c9d77dcfd57f968655a05a19">More...</a><br /></td></tr>
+<tr class="memdesc:a011c8464c9d77dcfd57f968655a05a19"><td class="mdescLeft">&#160;</td><td class="mdescRight">Slot to be implemented by Component to execute simulation start action.  <a href="#a011c8464c9d77dcfd57f968655a05a19">More...</a><br /></td></tr>
 <tr class="separator:a011c8464c9d77dcfd57f968655a05a19"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acdecba7cb5e449d794cfc0175ccef78f"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_component_interface.html#acdecba7cb5e449d794cfc0175ccef78f">setConfig</a> (QJsonObject &amp;json)=0</td></tr>
 <tr class="memdesc:acdecba7cb5e449d794cfc0175ccef78f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets configuration for component.  <a href="#acdecba7cb5e449d794cfc0175ccef78f">More...</a><br /></td></tr>
@@ -145,15 +148,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac3cefe894fe3e7d69888b04e4cbcab9d"><td class="memItemLeft" align="right" valign="top">virtual QJsonObject&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_component_interface.html#ac3cefe894fe3e7d69888b04e4cbcab9d">getConfig</a> () const =0</td></tr>
 <tr class="memdesc:ac3cefe894fe3e7d69888b04e4cbcab9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets current component configuation.  <a href="#ac3cefe894fe3e7d69888b04e4cbcab9d">More...</a><br /></td></tr>
 <tr class="separator:ac3cefe894fe3e7d69888b04e4cbcab9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a64f6e4808031fa7448ca4bdfe0bae685"><td class="memItemLeft" align="right" valign="top">virtual QWidget *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_component_interface.html#a64f6e4808031fa7448ca4bdfe0bae685">getMainWidget</a> ()</td></tr>
-<tr class="memdesc:a64f6e4808031fa7448ca4bdfe0bae685"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets components's main widget.  <a href="#a64f6e4808031fa7448ca4bdfe0bae685">More...</a><br /></td></tr>
-<tr class="separator:a64f6e4808031fa7448ca4bdfe0bae685"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a66c0ec1f6d3892531621d4922dead9ee"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_component_interface.html#a66c0ec1f6d3892531621d4922dead9ee">setDockUndockClbk</a> (const std::function&lt; void()&gt; &amp;)</td></tr>
-<tr class="memdesc:a66c0ec1f6d3892531621d4922dead9ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback, called when component requests dock/undock action.  <a href="#a66c0ec1f6d3892531621d4922dead9ee">More...</a><br /></td></tr>
-<tr class="separator:a66c0ec1f6d3892531621d4922dead9ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac474226b319146fd59625fe0d6cb4885"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_component_interface.html#ac474226b319146fd59625fe0d6cb4885">mainWidgetDocked</a> () const </td></tr>
-<tr class="memdesc:ac474226b319146fd59625fe0d6cb4885"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main widget docking status.  <a href="#ac474226b319146fd59625fe0d6cb4885">More...</a><br /></td></tr>
-<tr class="separator:ac474226b319146fd59625fe0d6cb4885"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80ad120ef1adf35f3d9e85ebd931d3dd"><td class="memItemLeft" align="right" valign="top">virtual QWidget *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_component_interface.html#a80ad120ef1adf35f3d9e85ebd931d3dd">mainWidget</a> ()=0</td></tr>
+<tr class="memdesc:a80ad120ef1adf35f3d9e85ebd931d3dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets components's main widget.  <a href="#a80ad120ef1adf35f3d9e85ebd931d3dd">More...</a><br /></td></tr>
+<tr class="separator:a80ad120ef1adf35f3d9e85ebd931d3dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a084214e8ffdc817fac7590940b20e1b6"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_component_interface.html#a084214e8ffdc817fac7590940b20e1b6">mainWidgetDocked</a> () const =0</td></tr>
+<tr class="memdesc:a084214e8ffdc817fac7590940b20e1b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main widget docking status.  <a href="#a084214e8ffdc817fac7590940b20e1b6">More...</a><br /></td></tr>
+<tr class="separator:a084214e8ffdc817fac7590940b20e1b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Interface to be implemented by every component. </p>
@@ -210,7 +210,7 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a64f6e4808031fa7448ca4bdfe0bae685"></a>
+<a class="anchor" id="a80ad120ef1adf35f3d9e85ebd931d3dd"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -218,7 +218,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual QWidget* ComponentInterface::getMainWidget </td>
+          <td class="memname">virtual QWidget* ComponentInterface::mainWidget </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -226,7 +226,7 @@ Public Member Functions</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -234,11 +234,11 @@ Public Member Functions</h2></td></tr>
 <p>Gets components's main widget. </p>
 <dl class="section return"><dt>Returns</dt><dd>Main widget or nullptr if component doesn't have it </dd></dl>
 
-<p>Reimplemented in <a class="el" href="class_can_raw_sender.html#a9963072715f29bbf80c10b982e78b272">CanRawSender</a>, and <a class="el" href="class_can_raw_view.html#a11939e9d18975a83e4cb5eeab4467893">CanRawView</a>.</p>
+<p>Implemented in <a class="el" href="class_can_device.html#aaa3e0bbf9db51ba30af4b07932fc63aa">CanDevice</a>, <a class="el" href="class_can_raw_sender.html#adf59153b3efd1cfab08dba4ec77647ca">CanRawSender</a>, and <a class="el" href="class_can_raw_view.html#a2240af6f7fb33b4c3e9a3e38b7c86968">CanRawView</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ac474226b319146fd59625fe0d6cb4885"></a>
+<a class="anchor" id="a084214e8ffdc817fac7590940b20e1b6"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -254,7 +254,7 @@ Public Member Functions</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -262,7 +262,39 @@ Public Member Functions</h2></td></tr>
 <p>Main widget docking status. </p>
 <dl class="section return"><dt>Returns</dt><dd>returns true if widget is docked (part of MDI) or undocked (separate window) </dd></dl>
 
-<p>Reimplemented in <a class="el" href="class_can_raw_sender.html#ab5c48722c605bef9e9c6ca1d7a9f3b97">CanRawSender</a>, and <a class="el" href="class_can_raw_view.html#aecdd9f260504d86551091a5eeb110d2b">CanRawView</a>.</p>
+<p>Implemented in <a class="el" href="class_can_device.html#a297ef1b08779b4f98b50970ec431d6fa">CanDevice</a>, <a class="el" href="class_can_raw_sender.html#ab5c48722c605bef9e9c6ca1d7a9f3b97">CanRawSender</a>, and <a class="el" href="class_can_raw_view.html#aecdd9f260504d86551091a5eeb110d2b">CanRawView</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8ce5af2992a449a0b474fced56bbedd4"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void ComponentInterface::mainWidgetDockToggled </td>
+          <td>(</td>
+          <td class="paramtype">QWidget *&#160;</td>
+          <td class="paramname"><em>widget</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Signal to be implemented by Component. Indicates when dock/undock action was invoked. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">widget</td><td>Widget subjected to dock/undock action </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -300,34 +332,6 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a66c0ec1f6d3892531621d4922dead9ee"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual void ComponentInterface::setDockUndockClbk </td>
-          <td>(</td>
-          <td class="paramtype">const std::function&lt; void()&gt; &amp;&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Callback, called when component requests dock/undock action. </p>
-
-<p>Reimplemented in <a class="el" href="class_can_raw_sender.html#a6a3667c16e7416d6b6612d0a98a49f62">CanRawSender</a>, and <a class="el" href="class_can_raw_view.html#a006d0932e5026b4c943660e585a883f2">CanRawView</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="a011c8464c9d77dcfd57f968655a05a19"></a>
 <div class="memitem">
 <div class="memproto">
@@ -349,7 +353,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Action to be taken on simulation start. </p>
+<p>Slot to be implemented by Component to execute simulation start action. </p>
 
 </div>
 </div>
@@ -374,7 +378,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Action to be taken on simulation stop. </p>
+<p>Slot to be implemented by Component to execute simulation stop action. </p>
 
 </div>
 </div>

@@ -18,7 +18,7 @@ var searchData=
   ['closeevent',['closeEvent',['../class_project_config.html#a19151c1dd5cf6c3a99985c1c3aa6b4b5',1,'ProjectConfig::closeEvent()'],['../struct_sub_window.html#a1b4b2dec3bd9137440c809bde3447f0c',1,'SubWindow::closeEvent()']]],
   ['columncount',['columnCount',['../class_property_model.html#a5fdaf73fcd116cc51d84124e8d003cff',1,'PropertyModel']]],
   ['componentmodel',['ComponentModel',['../class_component_model.html#a2fb9e24a9ca0498cc6e67aa9d676e822',1,'ComponentModel']]],
-  ['componentwidgetcreated',['componentWidgetCreated',['../class_project_config.html#aa58b2f890829fc2ab177578d5926d4b1',1,'ProjectConfig::componentWidgetCreated()'],['../class_main_window.html#a60f61b3e93df5b4da6ad94c0730164bd',1,'MainWindow::componentWidgetCreated()']]],
+  ['componentwidgetcreated',['componentWidgetCreated',['../class_project_config.html#aa58b2f890829fc2ab177578d5926d4b1',1,'ProjectConfig']]],
   ['connectdevice',['connectDevice',['../struct_can_device_interface.html#ae93401fab526dc31098998e15baba1be',1,'CanDeviceInterface::connectDevice()'],['../struct_can_device_qt.html#a3217273ad521531a3250d35974e100c7',1,'CanDeviceQt::connectDevice()']]],
   ['context',['Context',['../struct_context.html#a9fac18dacfb21d02d9c95dab33a5e605',1,'Context']]],
   ['createcheckbox',['createCheckBox',['../struct_n_l_m_factory.html#a433a486cc1cc0e4412493734eb23d4f2',1,'NLMFactory::createCheckBox()'],['../struct_n_l_m_factory_interface.html#ac9ec50963e900d2172c098a6b419abd2',1,'NLMFactoryInterface::createCheckBox()']]],

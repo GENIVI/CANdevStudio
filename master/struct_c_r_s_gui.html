@@ -142,8 +142,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a9e8f6452b3c9aaac5cf9f6ad3ff76f03"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a001840fd8ba2bff22eecf92b796c5ffa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_c_r_s_gui.html#a001840fd8ba2bff22eecf92b796c5ffa">setDockUndockCbk</a> (const <a class="el" href="struct_c_r_s_gui_interface.html#a6b6f93ad5f6eeed2f3ee4dd99278b75e">dockUndock_t</a> &amp;cb) override</td></tr>
 <tr class="separator:a001840fd8ba2bff22eecf92b796c5ffa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5763515db1d4c83d2f86df9941642aa0"><td class="memItemLeft" align="right" valign="top">QWidget *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_c_r_s_gui.html#a5763515db1d4c83d2f86df9941642aa0">getMainWidget</a> () override</td></tr>
-<tr class="separator:a5763515db1d4c83d2f86df9941642aa0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace05f4a3cffed3046bac43c866edbdba"><td class="memItemLeft" align="right" valign="top">QWidget *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_c_r_s_gui.html#ace05f4a3cffed3046bac43c866edbdba">mainWidget</a> () override</td></tr>
+<tr class="separator:ace05f4a3cffed3046bac43c866edbdba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a22057ae4b21aca098a97d188d4d528ab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_c_r_s_gui.html#a22057ae4b21aca098a97d188d4d528ab">initTableView</a> (QAbstractItemModel &amp;_tvModel) override</td></tr>
 <tr class="separator:a22057ae4b21aca098a97d188d4d528ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a59f1a1c5b336be19df60876537e31ece"><td class="memItemLeft" align="right" valign="top">QModelIndexList&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_c_r_s_gui.html#a59f1a1c5b336be19df60876537e31ece">getSelectedRows</a> () override</td></tr>
@@ -189,31 +189,6 @@ Additional Inherited Members</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a5763515db1d4c83d2f86df9941642aa0"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">QWidget* CRSGui::getMainWidget </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Implements <a class="el" href="struct_c_r_s_gui_interface.html#a570d3e7d22f3383f9ade65c6c63bad10">CRSGuiInterface</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="a59f1a1c5b336be19df60876537e31ece"></a>
 <div class="memitem">
 <div class="memproto">
@@ -262,6 +237,31 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implements <a class="el" href="struct_c_r_s_gui_interface.html#a467b63ed974cdc169b3601735143a201">CRSGuiInterface</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ace05f4a3cffed3046bac43c866edbdba"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QWidget* CRSGui::mainWidget </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="struct_c_r_s_gui_interface.html#ab6a0f3070d0ada41060b16f5a6a3612b">CRSGuiInterface</a>.</p>
 
 </div>
 </div>

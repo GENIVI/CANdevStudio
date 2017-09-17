@@ -144,8 +144,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aa78f9ad14e3b1dab6069779e67654e2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac2affd7ddc7971603659a2f337c3b6f8"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_c_r_s_gui_interface.html#ac2affd7ddc7971603659a2f337c3b6f8">setDockUndockCbk</a> (const <a class="el" href="struct_c_r_s_gui_interface.html#a6b6f93ad5f6eeed2f3ee4dd99278b75e">dockUndock_t</a> &amp;cb)=0</td></tr>
 <tr class="separator:ac2affd7ddc7971603659a2f337c3b6f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a570d3e7d22f3383f9ade65c6c63bad10"><td class="memItemLeft" align="right" valign="top">virtual QWidget *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_c_r_s_gui_interface.html#a570d3e7d22f3383f9ade65c6c63bad10">getMainWidget</a> ()=0</td></tr>
-<tr class="separator:a570d3e7d22f3383f9ade65c6c63bad10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6a0f3070d0ada41060b16f5a6a3612b"><td class="memItemLeft" align="right" valign="top">virtual QWidget *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_c_r_s_gui_interface.html#ab6a0f3070d0ada41060b16f5a6a3612b">mainWidget</a> ()=0</td></tr>
+<tr class="separator:ab6a0f3070d0ada41060b16f5a6a3612b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a467b63ed974cdc169b3601735143a201"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_c_r_s_gui_interface.html#a467b63ed974cdc169b3601735143a201">initTableView</a> (QAbstractItemModel &amp;_tvModel)=0</td></tr>
 <tr class="separator:a467b63ed974cdc169b3601735143a201"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a57d24dfc861a062d58611458416781ae"><td class="memItemLeft" align="right" valign="top">virtual QModelIndexList&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_c_r_s_gui_interface.html#a57d24dfc861a062d58611458416781ae">getSelectedRows</a> ()=0</td></tr>
@@ -215,31 +215,6 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a570d3e7d22f3383f9ade65c6c63bad10"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual QWidget* CRSGuiInterface::getMainWidget </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Implemented in <a class="el" href="struct_c_r_s_gui.html#a5763515db1d4c83d2f86df9941642aa0">CRSGui</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="a57d24dfc861a062d58611458416781ae"></a>
 <div class="memitem">
 <div class="memproto">
@@ -288,6 +263,31 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implemented in <a class="el" href="struct_c_r_s_gui.html#a22057ae4b21aca098a97d188d4d528ab">CRSGui</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab6a0f3070d0ada41060b16f5a6a3612b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual QWidget* CRSGuiInterface::mainWidget </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="struct_c_r_s_gui.html#ace05f4a3cffed3046bac43c866edbdba">CRSGui</a>.</p>
 
 </div>
 </div>

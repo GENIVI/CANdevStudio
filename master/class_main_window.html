@@ -135,8 +135,10 @@ Collaboration diagram for MainWindow:</div>
 Public Slots</h2></td></tr>
 <tr class="memitem:a7bc48d33a8a24a54b39bf0a6be1b3a2b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_main_window.html#a7bc48d33a8a24a54b39bf0a6be1b3a2b">handleDock</a> (QWidget *component)</td></tr>
 <tr class="separator:a7bc48d33a8a24a54b39bf0a6be1b3a2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a60f61b3e93df5b4da6ad94c0730164bd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_main_window.html#a60f61b3e93df5b4da6ad94c0730164bd">componentWidgetCreated</a> (QWidget *component)</td></tr>
-<tr class="separator:a60f61b3e93df5b4da6ad94c0730164bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0fa1be37085297adb3a4ebc899cb79fc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_main_window.html#a0fa1be37085297adb3a4ebc899cb79fc">handleWidgetDeletion</a> (QWidget *widget)</td></tr>
+<tr class="separator:a0fa1be37085297adb3a4ebc899cb79fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d96c759dcb9385d2ec1653cc4826f0b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_main_window.html#a0d96c759dcb9385d2ec1653cc4826f0b">handleWidgetShowing</a> (QWidget *widget, bool docked)</td></tr>
+<tr class="separator:a0d96c759dcb9385d2ec1653cc4826f0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -186,7 +188,7 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a60f61b3e93df5b4da6ad94c0730164bd"></a>
+<a class="anchor" id="a7bc48d33a8a24a54b39bf0a6be1b3a2b"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -194,7 +196,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void MainWindow::componentWidgetCreated </td>
+          <td class="memname">void MainWindow::handleDock </td>
           <td>(</td>
           <td class="paramtype">QWidget *&#160;</td>
           <td class="paramname"><em>component</em></td><td>)</td>
@@ -210,7 +212,7 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a7bc48d33a8a24a54b39bf0a6be1b3a2b"></a>
+<a class="anchor" id="a0fa1be37085297adb3a4ebc899cb79fc"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -218,11 +220,45 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void MainWindow::handleDock </td>
+          <td class="memname">void MainWindow::handleWidgetDeletion </td>
           <td>(</td>
           <td class="paramtype">QWidget *&#160;</td>
-          <td class="paramname"><em>component</em></td><td>)</td>
+          <td class="paramname"><em>widget</em></td><td>)</td>
           <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a0d96c759dcb9385d2ec1653cc4826f0b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MainWindow::handleWidgetShowing </td>
+          <td>(</td>
+          <td class="paramtype">QWidget *&#160;</td>
+          <td class="paramname"><em>widget</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>docked</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>

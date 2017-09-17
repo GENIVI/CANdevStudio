@@ -136,8 +136,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a0ab80a54979d5136225412b80d271630"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adac4da2674696f907166fa06bcafd350"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_line_edit_interface.html#adac4da2674696f907166fa06bcafd350">textChangedCbk</a> (const <a class="el" href="struct_line_edit_interface.html#a442df82a3c962f6d9e8fddeff07dcc95">textChanged_t</a> &amp;cb)=0</td></tr>
 <tr class="separator:adac4da2674696f907166fa06bcafd350"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a34439d3d0fa9f97ceead0a62a56e4842"><td class="memItemLeft" align="right" valign="top">virtual QWidget *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_line_edit_interface.html#a34439d3d0fa9f97ceead0a62a56e4842">getMainWidget</a> ()=0</td></tr>
-<tr class="separator:a34439d3d0fa9f97ceead0a62a56e4842"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a725993351a2e633b86e472709ea11b31"><td class="memItemLeft" align="right" valign="top">virtual QWidget *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_line_edit_interface.html#a725993351a2e633b86e472709ea11b31">mainWidget</a> ()=0</td></tr>
+<tr class="separator:a725993351a2e633b86e472709ea11b31"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:add7821bdfef7cfdef93b1a7d39aa4356"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_line_edit_interface.html#add7821bdfef7cfdef93b1a7d39aa4356">init</a> (const QString &amp;placeholderText, QValidator *qValidator)=0</td></tr>
 <tr class="separator:add7821bdfef7cfdef93b1a7d39aa4356"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a30729d6560fdfb00a5e75309c14c2b82"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_line_edit_interface.html#a30729d6560fdfb00a5e75309c14c2b82">setPlaceholderText</a> (const QString &amp;placeholderText)=0</td></tr>
@@ -187,31 +187,6 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a34439d3d0fa9f97ceead0a62a56e4842"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual QWidget* LineEditInterface::getMainWidget </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Implemented in <a class="el" href="struct_n_l_m_line_edit.html#abb3209e3d287ccacb4c81a90798da78c">NLMLineEdit</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="a2996e639b45ee8d4b368173c8cb377b1"></a>
 <div class="memitem">
 <div class="memproto">
@@ -295,6 +270,31 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implemented in <a class="el" href="struct_n_l_m_line_edit.html#aa44afafd4752f2b4733db9bbfb736121">NLMLineEdit</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a725993351a2e633b86e472709ea11b31"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual QWidget* LineEditInterface::mainWidget </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="struct_n_l_m_line_edit.html#a9ddf396d162288fc15eb5994cea91967">NLMLineEdit</a>.</p>
 
 </div>
 </div>
