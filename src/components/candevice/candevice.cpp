@@ -142,3 +142,15 @@ void CanDevice::stopSimulation()
 
     d->_canDevice.disconnectDevice();
 }
+
+QWidget* CanDevice::mainWidget()
+{
+    // Component does not have main widget
+    return nullptr;
+}
+
+bool CanDevice::mainWidgetDocked() const
+{
+    // Widget does not exist. Return always true
+    return true;
+}

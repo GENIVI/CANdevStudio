@@ -53,11 +53,11 @@ void CanRawView::frameSent(bool status, const QCanBusFrame& frame)
     }
 }
 
-QWidget* CanRawView::getMainWidget()
+QWidget* CanRawView::mainWidget()
 {
     Q_D(CanRawView);
 
-    return d->_ui.getMainWidget();
+    return d->_ui.mainWidget();
 }
 
 void CanRawView::setConfig(QJsonObject&)
@@ -83,13 +83,6 @@ void CanRawView::setConfig(const QObject& qobject)
 std::shared_ptr<QObject> CanRawView::getQConfig() const
 {
     throw std::runtime_error("Not implemented"); // FIXME: implement
-}
-
-void CanRawView::setDockUndockClbk(const std::function<void()>& cb)
-{
-    Q_D(CanRawView);
-
-    d->_ui.setDockUndockCbk(cb);
 }
 
 bool CanRawView::mainWidgetDocked() const

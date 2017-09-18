@@ -16,6 +16,7 @@ ProjectConfig::~ProjectConfig()
 
 void ProjectConfig::closeEvent(QCloseEvent* e)
 {
+    emit closeProject();
     e->ignore();
 }
 

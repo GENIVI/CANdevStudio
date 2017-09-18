@@ -29,10 +29,14 @@ private:
     void closeEvent(QCloseEvent* event);
     void handleLoadAction();
     void handleSaveAction();
+    void addToMdi(QWidget* component);
 
 public slots:
     void handleDock(QWidget* component);
-    void componentWidgetCreated(QWidget* component);
+    void handleWidgetDeletion(QWidget* widget);
+    void handleWidgetShowing(QWidget* widget, bool docked);
+    bool createProjectConfig(const QString &name);
+    bool closeProjectConfig();
 };
 
 #endif // MAINWINDOW_H

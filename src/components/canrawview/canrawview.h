@@ -23,7 +23,7 @@ public:
     /**
     *   @see ComponentInterface
     */
-    QWidget* getMainWidget() override;
+    QWidget* mainWidget() override;
 
     /**
     *   @see ComponentInterface
@@ -48,18 +48,27 @@ public:
     /**
     *   @see ComponentInterface
     */
-    void setDockUndockClbk(const std::function<void()>& cb) override;
+    bool mainWidgetDocked() const override;
 
+signals:
     /**
     *   @see ComponentInterface
     */
-    bool mainWidgetDocked() const override;
+    void mainWidgetDockToggled(QWidget* widget) override;
 
 public slots:
     void frameReceived(const QCanBusFrame& frame);
     void frameSent(bool status, const QCanBusFrame& frame);
-    void stopSimulation(void);
-    void startSimulation(void);
+
+    /**
+    *   @see ComponentInterface
+    */
+    void stopSimulation() override;
+
+    /**
+    *   @see ComponentInterface
+    */
+    void startSimulation() override;
 
 private:
     QScopedPointer<CanRawViewPrivate> d_ptr;

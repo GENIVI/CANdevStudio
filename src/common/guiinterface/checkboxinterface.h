@@ -11,7 +11,7 @@ struct CheckBoxInterface {
 
     typedef std::function<void()> released_t;
     virtual void releasedCbk(const released_t& cb) = 0;
-    virtual QWidget* getMainWidget() = 0;
+    virtual QWidget* mainWidget() = 0;
     virtual bool getState() = 0;
 };
 #endif // CHECKBOXINTERFACE_H

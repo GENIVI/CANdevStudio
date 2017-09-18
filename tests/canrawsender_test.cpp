@@ -49,27 +49,27 @@ TEST_CASE("Add and remove frame test", "[canrawsender]")
     Fake(Method(nlmLineEditMock, init));
     Fake(Method(nlmLineEditMock, setPlaceholderText));
     Fake(Method(nlmLineEditMock, setDisabled));
-    When(Method(nlmLineEditMock, getMainWidget)).AlwaysDo([&]() {
+    When(Method(nlmLineEditMock, mainWidget)).AlwaysDo([&]() {
         return reinterpret_cast<QWidget*>(&nlmLineEditMock.get());
     });
     When(Method(nlmFactoryMock, createLineEdit)).AlwaysDo([&]() { return &nlmLineEditMock.get(); });
 
     Fake(Dtor(nlmCheckBoxMock));
     Fake(Method(nlmCheckBoxMock, releasedCbk));
-    When(Method(nlmCheckBoxMock, getMainWidget)).Return(reinterpret_cast<QWidget*>(&nlmCheckBoxMock.get()));
+    When(Method(nlmCheckBoxMock, mainWidget)).Return(reinterpret_cast<QWidget*>(&nlmCheckBoxMock.get()));
     When(Method(nlmFactoryMock, createCheckBox)).Return(&nlmCheckBoxMock.get());
 
     Fake(Dtor(nlmPushButtonMock));
     Fake(Method(nlmPushButtonMock, init));
     Fake(Method(nlmPushButtonMock, pressedCbk));
-    When(Method(nlmPushButtonMock, getMainWidget)).Return(reinterpret_cast<QWidget*>(&nlmPushButtonMock.get()));
+    When(Method(nlmPushButtonMock, mainWidget)).Return(reinterpret_cast<QWidget*>(&nlmPushButtonMock.get()));
     When(Method(nlmFactoryMock, createPushButton)).Return(&nlmPushButtonMock.get());
 
     Fake(Dtor(crsMock));
     When(Method(crsMock, setAddCbk)).Do([&](auto&& fn) { addLineCbk = fn; });
     When(Method(crsMock, setRemoveCbk)).Do([&](auto&& fn) { removeLineCbk = fn; });
     Fake(Method(crsMock, setDockUndockCbk));
-    Fake(Method(crsMock, getMainWidget));
+    Fake(Method(crsMock, mainWidget));
     Fake(Method(crsMock, initTableView));
     When(Method(crsMock, getSelectedRows)).Do([&]() { return mHelp.getList(); });
     Fake(Method(crsMock, setIndexWidget));
@@ -92,7 +92,7 @@ TEST_CASE("Can raw sender save configuration test", "[newlinemanager]")
     Fake(Method(crsMock, setAddCbk));
     Fake(Method(crsMock, setRemoveCbk));
     Fake(Method(crsMock, setDockUndockCbk));
-    Fake(Method(crsMock, getMainWidget));
+    Fake(Method(crsMock, mainWidget));
     Fake(Method(crsMock, initTableView));
     Fake(Method(crsMock, getSelectedRows));
     Fake(Method(crsMock, setIndexWidget));

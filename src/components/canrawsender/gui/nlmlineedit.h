@@ -16,7 +16,7 @@ struct NLMLineEdit : public LineEditInterface {
         QObject::connect(qLineEdit, &QLineEdit::textChanged, cb);
     }
 
-    QWidget* getMainWidget() override
+    QWidget* mainWidget() override
     {
         return qLineEdit;
     }

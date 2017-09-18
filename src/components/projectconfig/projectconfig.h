@@ -23,9 +23,12 @@ public:
 
 signals:
     void handleDock(QWidget* component);
+    void handleWidgetDeletion(QWidget* widget);
+    void handleWidgetShowing(QWidget* widget, bool docked);
     void componentWidgetCreated(QWidget* component);
     void stopSimulation();
     void startSimulation();
+    void closeProject();
 
 private:
     QScopedPointer<ProjectConfigPrivate> d_ptr;
