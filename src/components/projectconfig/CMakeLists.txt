@@ -7,7 +7,7 @@ set(SRC
     canrawsendermodel.cpp
     candevicemodel.cpp
     dragwidget.cpp
-	/home/dasa/Dev/CANdevStudio/CANdevResources.qrc
+	../../../CANdevResources.qrc
 )
 
 add_library(${COMPONENT_NAME} ${SRC})
