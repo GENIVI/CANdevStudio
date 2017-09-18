@@ -54,6 +54,7 @@
    <addaction name="actionLoad"/>
    <addaction name="actionSave"/>
    <addaction name="separator"/>
+   <addaction name="actionSimulation"/>
    <addaction name="actionClose"/>
    <addaction name="separator"/>
    <addaction name="actionStart"/>
@@ -90,6 +91,8 @@
     <property name="title">
      <string>Window</string>
     </property>
+    <addaction name="actionSimulation"/>
+    <addaction name="separator"/>
     <addaction name="actionCascade"/>
     <addaction name="actionTile"/>
     <addaction name="separator"/>
@@ -194,6 +197,14 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+W</string>
+   </property>
+  </action>
+  <action name="actionSimulation">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Simulation Window</string>
    </property>
   </action>
  </widget>
