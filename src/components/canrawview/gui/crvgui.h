@@ -5,6 +5,12 @@
 #include "ui_canrawview.h"
 #include <memory>
 
+enum class ColName { rowID = 0, time, id, dir, dlc, data };
+
+enum class Type { uint = 0, hex, doubl, str };
+
+Q_DECLARE_METATYPE(Type)
+
 struct CRVGui : public CRVGuiInterface {
 
     CRVGui()
@@ -50,8 +56,19 @@ struct CRVGui : public CRVGuiInterface {
         ui->tv->horizontalHeader()->setSectionsMovable(true);
         ui->tv->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
         ui->tv->setColumnHidden(0, true);
-        ui->tv->setColumnHidden(1, true);
-        ui->tv->setColumnHidden(3, true);
+
+        tvModel.setHeaderData(
+            static_cast<int>(ColName::rowID), Qt::Horizontal, QVariant::fromValue(Type::uint), Qt::UserRole);
+        tvModel.setHeaderData(
+            static_cast<int>(ColName::time), Qt::Horizontal, QVariant::fromValue(Type::doubl), Qt::UserRole);
+        tvModel.setHeaderData(
+            static_cast<int>(ColName::id), Qt::Horizontal, QVariant::fromValue(Type::hex), Qt::UserRole);
+        tvModel.setHeaderData(
+            static_cast<int>(ColName::dir), Qt::Horizontal, QVariant::fromValue(Type::str), Qt::UserRole);
+        tvModel.setHeaderData(
+            static_cast<int>(ColName::dlc), Qt::Horizontal, QVariant::fromValue(Type::uint), Qt::UserRole);
+        tvModel.setHeaderData(
+            static_cast<int>(ColName::data), Qt::Horizontal, QVariant::fromValue(Type::str), Qt::UserRole);
     }
 
     virtual bool isViewFrozen() override
@@ -69,20 +86,15 @@ struct CRVGui : public CRVGuiInterface {
         return ui->tv->horizontalHeader()->sortIndicatorOrder();
     }
 
-    virtual int getSortSection() override
-    {
-        return ui->tv->horizontalHeader()->sortIndicatorSection();
-    }
-
     virtual QString getClickedColumn(int ndx) override
     {
         return ui->tv->model()->headerData(ndx, Qt::Horizontal).toString();
     }
 
-    virtual void setSorting(int sortNdx, int clickedNdx, Qt::SortOrder order) override
+    virtual void setSorting(int sortNdx, Qt::SortOrder order) override
     {
         ui->tv->sortByColumn(sortNdx, order);
-        ui->tv->horizontalHeader()->setSortIndicator(clickedNdx, order);
+        ui->tv->horizontalHeader()->setSortIndicator(sortNdx, order);
     }
 
     virtual QString getWindowTitle() override

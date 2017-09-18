@@ -20,7 +20,7 @@ public:
         : _ctx(std::move(ctx))
         , _simStarted(false)
         , _ui(_ctx.get<CRVGuiInterface>())
-        , _columnsOrder({ "rowID", "timeDouble", "time", "idInt", "id", "dir", "dlc", "data" })
+        , _columnsOrder({ "rowID", "time", "id", "dir", "dlc", "data" })
         , q_ptr(q)
     {
         _tvModel.setHorizontalHeaderLabels(_columnsOrder);
@@ -68,34 +68,22 @@ public:
             payHex.insert(ii, ' ');
         }
 
-        QList<QVariant> qvList;
         QList<QStandardItem*> list;
 
-        int frameID = frame.frameId();
-        double time = _timer.elapsed() / 1000.0;
+        QString frameID = QString("0x" + QString::number(frame.frameId(), 16));
+        QString time = QString::number((_timer.elapsed() / 1000.0), 'f', 2);
 
-        qvList.append(_rowID++);
-        qvList.append(std::move(time));
-        qvList.append(QString::number(time, 'f', 2));
-        qvList.append(std::move(frameID));
-        qvList.append(QString("0x" + QString::number(frameID, 16)));
-        qvList.append(direction);
-        qvList.append(QString::number(frame.payload().size()).toInt());
-        qvList.append(QString::fromUtf8(payHex.data(), payHex.size()));
-
-        for (QVariant qvitem : qvList) {
-            QStandardItem* item = new QStandardItem();
-            item->setData(qvitem, Qt::DisplayRole);
-            list.append(item);
-        }
+        list.append(new QStandardItem(QString::number(_rowID++)));
+        list.append(new QStandardItem(std::move(time)));
+        list.append(new QStandardItem(std::move(frameID)));
+        list.append(new QStandardItem(direction));
+        list.append(new QStandardItem(QString::number(frame.payload().size())));
+        list.append(new QStandardItem(QString::fromUtf8(payHex.data(), payHex.size())));
 
         _tvModel.appendRow(list);
 
-        // Sort after reception of each frame and appending it to _tvModel
-        _currentSortOrder = _ui.getSortOrder();
-        int currentSortIndicator = _ui.getSortSection();
-        _ui.setSorting(_sortIndex, currentSortIndicator, _currentSortOrder);
-
+        // Sort after reception of each frame and appending it to _tvModel and update filter
+        _ui.setSorting(_sortIndex, _ui.getSortOrder());
         _uniqueModel.updateFilter(frameID, time, direction);
 
         if (!_ui.isViewFrozen()) {
@@ -150,30 +138,32 @@ private slots:
         _uniqueModel.clearFilter();
     }
 
+    /**
+    *   @brief  Function sets current sort settings and calls actual sort function
+    *   @param  clickedIndex index of last clicked column
+    */
     void sort(const int clickedIndex)
     {
         _currentSortOrder = _ui.getSortOrder();
         _sortIndex = clickedIndex;
-        QString clickedColumn = _ui.getClickedColumn(clickedIndex);
-
-        if ((clickedColumn == "time") || (clickedColumn == "id")) {
-            _sortIndex = _sortIndex - 1;
-        }
 
         if (_prevIndex == clickedIndex) {
             if (_currentSortOrder == Qt::DescendingOrder) {
-                _ui.setSorting(_sortIndex, clickedIndex, Qt::DescendingOrder);
+                _ui.setSorting(_sortIndex, Qt::DescendingOrder);
             } else {
-                _ui.setSorting(0, 0, Qt::AscendingOrder);
+                _ui.setSorting(0, Qt::AscendingOrder);
                 _prevIndex = 0;
                 _sortIndex = 0;
             }
         } else {
-            _ui.setSorting(_sortIndex, clickedIndex, Qt::AscendingOrder);
+            _ui.setSorting(_sortIndex, Qt::AscendingOrder);
             _prevIndex = clickedIndex;
         }
     }
 
+    /**
+    *   @brief  Function call turns unique filter model on and off
+    */
     void setFilter()
     {
         _uniqueModel.toggleFilter();
