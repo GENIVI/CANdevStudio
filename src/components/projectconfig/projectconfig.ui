@@ -6,14 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>592</width>
+    <height>403</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>400</width>
-    <height>250</height>
+    <width>100</width>
+    <height>50</height>
    </size>
   </property>
   <property name="baseSize">
@@ -27,66 +27,99 @@
   </property>
   <layout class="QHBoxLayout" name="layout">
    <item>
-    <widget class="QToolBar" name="toolbar">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
+    <widget class="DragWidget" name="frame">
      <property name="minimumSize">
       <size>
-       <width>45</width>
-       <height>26</height>
+       <width>94</width>
+       <height>0</height>
       </size>
      </property>
-     <property name="movable">
-      <bool>true</bool>
+     <property name="maximumSize">
+      <size>
+       <width>94</width>
+       <height>16777215</height>
+      </size>
      </property>
-     <property name="allowedAreas">
-      <set>Qt::LeftToolBarArea|Qt::RightToolBarArea|Qt::TopToolBarArea</set>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
      </property>
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
      </property>
-     <property name="floatable">
-      <bool>true</bool>
+     <property name="lineWidth">
+      <number>1</number>
      </property>
-     <addaction name="actionCD"/>
-     <addaction name="actionCRS"/>
-     <addaction name="actionCRV"/>
-     <addaction name="separator"/>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>75</width>
+        <height>54</height>
+       </rect>
+      </property>
+      <property name="cursor">
+       <cursorShape>OpenHandCursor</cursorShape>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap resource="../../../resources.qrc">:/images/files/images/car.png</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>70</y>
+        <width>75</width>
+        <height>54</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap resource="../../../resources.qrc">:/images/files/images/boat.png</pixmap>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_3">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>130</y>
+        <width>75</width>
+        <height>54</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap resource="../../../resources.qrc">:/images/files/images/house.png</pixmap>
+      </property>
+     </widget>
+     <zorder>label_2</zorder>
+     <zorder>label_3</zorder>
+     <zorder>label</zorder>
     </widget>
    </item>
   </layout>
-  <action name="actionCRS">
-   <property name="text">
-    <string>CRS</string>
-   </property>
-   <property name="toolTip">
-    <string>CanRawSender Node</string>
-   </property>
-  </action>
-  <action name="actionCD">
-   <property name="text">
-    <string>CD</string>
-   </property>
-   <property name="toolTip">
-    <string>CanDevice Node</string>
-   </property>
-  </action>
-  <action name="actionCRV">
-   <property name="text">
-    <string>CRV</string>
-   </property>
-   <property name="toolTip">
-    <string>CanRawView Node</string>
-   </property>
-  </action>
  </widget>
- <resources/>
+ <customwidgets>
+  <customwidget>
+   <class>DragWidget</class>
+   <extends>QFrame</extends>
+   <header>dragwidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="../../../resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

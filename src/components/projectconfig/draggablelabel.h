@@ -1,0 +1,4 @@
+#ifndef DRAGGABLELABEL_H
+#define DRAGGABLELABEL_H
+
+#endif // DRAGGABLELABEL_H
