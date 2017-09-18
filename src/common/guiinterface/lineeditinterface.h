@@ -18,5 +18,6 @@ struct LineEditInterface {
     virtual void setDisabled(bool state) = 0;
     virtual int getTextLength() = 0;
     virtual const QString getText() = 0;
+    virtual void setText(QString& text) = 0;
 };
 #endif // LINEEDITINTERFACE_H

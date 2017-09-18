@@ -59,6 +59,13 @@ struct CRVGui : public CRVGuiInterface {
         return ui->freezeBox->isChecked();
     }
 
+    virtual void setViewFrozen(bool state) override
+    {
+        if (ui->freezeBox->isChecked() != state) {
+            ui->freezeBox->setChecked(state);
+        }
+    }
+
     virtual void scrollToBottom() override
     {
         ui->tv->scrollToBottom();
@@ -93,6 +100,20 @@ struct CRVGui : public CRVGuiInterface {
     virtual bool isColumnHidden(int ndx) override
     {
         return ui->tv->isColumnHidden(ndx);
+    }
+
+    virtual void getColumnProper(int ndx, int& vIdx, int& width) override
+    {
+        auto horHeader = ui->tv->horizontalHeader();
+        vIdx = horHeader->visualIndex(ndx);
+        width = ui->tv->columnWidth(ndx);
+    }
+
+    virtual void setColumnProper(int vIdxFrom, int vIdxTo, int width) override
+    {
+        auto horHeader = ui->tv->horizontalHeader();
+        ui->tv->setColumnWidth(horHeader->logicalIndex(vIdxFrom), width);
+        horHeader->moveSection(vIdxFrom, vIdxTo);
     }
 
 private:

@@ -67,8 +67,6 @@ TEST_CASE("Test save configuration", "[canrawview]")
     CHECK(json.find("name") != json.end());
     CHECK(json.find("columns") != json.end());
     CHECK(json.find("scrolling") != json.end());
-    CHECK(json.find("models") != json.end());
-    CHECK(json.find("sorting") != json.end());
 }
 
 int main(int argc, char* argv[])
