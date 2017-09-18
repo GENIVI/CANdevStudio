@@ -67,15 +67,15 @@ public:
     /// \enum CalName class enumeration
     /// \brief This is an enumeration used by functions reponsible for return columns information
     enum class ColName {
-        IdLine = 0,
-        DataLine,
-        LoopCheckBox,
-        IntervalLine,
+       // IdLine = 0,
+       // DataLine,
+        LoopCheckBox = 4,
+        //IntervalLine = 0,
         SendButton,
     };
     /// \typedef ColNameIterator
     /// \brief Iteratot through ColName content
-    typedef Iterator<ColName, ColName::IdLine, ColName::SendButton> ColNameIterator;
+    typedef Iterator<ColName, ColName::LoopCheckBox, ColName::SendButton> ColNameIterator;
 
     /// \brief The function return information about an appropriate column
     /// \param[in] name Column name iterator
@@ -107,9 +107,9 @@ private:
 
     NLMFactoryInterface& mFactory;
     std::unique_ptr<CheckBoxInterface> mCheckBox;
-    std::unique_ptr<LineEditInterface> mId;
-    std::unique_ptr<LineEditInterface> mData;
-    std::unique_ptr<LineEditInterface> mInterval;
+    //std::unique_ptr<LineEditInterface> mId;
+    //std::unique_ptr<LineEditInterface> mData;
+    //std::unique_ptr<LineEditInterface> mInterval;
     std::unique_ptr<PushButtonInterface> mSend;
 
 signals:

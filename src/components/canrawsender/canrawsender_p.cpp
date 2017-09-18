@@ -62,7 +62,15 @@ void CanRawSenderPrivate::removeRowsSelectedByMouse()
 
 void CanRawSenderPrivate::addNewItem()
 {
+    static int rowID = 0;
+    
+
     QList<QStandardItem*> list{};
+    list.append(new QStandardItem(QString::number(rowID++)));
+    list.append(new QStandardItem(QString::number(0)));
+    list.append(new QStandardItem(QString::number(0)));
+    list.append(new QStandardItem(QString::number(0)));
+
     _tvModel.appendRow(list);
     auto newLine = std::make_unique<NewLineManager>(q_ptr, _simulationState, _nlmFactory);
     for (NewLineManager::ColName ii : NewLineManager::ColNameIterator()) {

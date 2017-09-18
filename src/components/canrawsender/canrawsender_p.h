@@ -30,7 +30,7 @@ public:
         , _ui(_ctx.get<CRSGuiInterface>())
         , _nlmFactory(_ctx.get<NLMFactoryInterface>())
         , _simulationState(false)
-        , _columnsOrder({ "Id", "Data", "Loop", "Interval", "" })
+        , _columnsOrder({ "rowID", "Id", "Data", "Interval", "Loop", "" })
         , q_ptr(q)
     {
         // NOTE: Implementation must be kept here. Otherwise VS2015 fails to link.
