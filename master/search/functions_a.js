@@ -5,6 +5,7 @@ var searchData=
   ['mainwidgetdocked',['mainWidgetDocked',['../struct_component_interface.html#a084214e8ffdc817fac7590940b20e1b6',1,'ComponentInterface::mainWidgetDocked()'],['../class_can_device.html#a297ef1b08779b4f98b50970ec431d6fa',1,'CanDevice::mainWidgetDocked()'],['../class_can_raw_sender.html#ab5c48722c605bef9e9c6ca1d7a9f3b97',1,'CanRawSender::mainWidgetDocked()'],['../class_can_raw_view.html#aecdd9f260504d86551091a5eeb110d2b',1,'CanRawView::mainWidgetDocked()']]],
   ['mainwidgetdocktoggled',['mainWidgetDockToggled',['../struct_component_interface.html#a8ce5af2992a449a0b474fced56bbedd4',1,'ComponentInterface::mainWidgetDockToggled()'],['../class_can_device.html#aec4d227205310884966076083b349c52',1,'CanDevice::mainWidgetDockToggled()'],['../class_can_raw_sender.html#a5307741f87bef15571781f7b3d4a434f',1,'CanRawSender::mainWidgetDockToggled()'],['../class_can_raw_view.html#afa5d8fe52213a5aaa96dd125eda02e26',1,'CanRawView::mainWidgetDockToggled()']]],
   ['mainwindow',['MainWindow',['../class_main_window.html#a996c5a2b6f77944776856f08ec30858d',1,'MainWindow']]],
+  ['minimumsizehint',['minimumSizeHint',['../struct_sub_window.html#a81428e95192aa942f6a4b89e64b51b06',1,'SubWindow']]],
   ['modelname',['modelName',['../class_component_model.html#a4a66bba479200abb869f26d8fbc0be83',1,'ComponentModel']]],
   ['modeltoolbutton',['ModelToolButton',['../struct_model_tool_button.html#a32c697b0f109a436281eae609870668e',1,'ModelToolButton']]]
 ];
