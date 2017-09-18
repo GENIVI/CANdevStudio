@@ -38,9 +38,19 @@ public:
     void setConfig(QJsonObject& json) override;
 
     /**
+     *  @see ComponentInterface
+     */
+    void setConfig(const QObject& qobject) override;
+
+    /**
     *   @see ComponentInterface
     */
     QJsonObject getConfig() const override;
+
+    /**
+    *   @see ComponentInterface
+    */
+    std::shared_ptr<QObject> getQConfig() const override;
 
 signals:
     void frameReceived(const QCanBusFrame& frame);

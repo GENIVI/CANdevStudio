@@ -19,7 +19,7 @@ MainWindow::MainWindow(QWidget* parent)
     ui->setupUi(this);
     ui->centralWidget->layout()->setContentsMargins(0, 0, 0, 0);
 
-    projectConfig = std::make_unique<ProjectConfig>();
+    projectConfig = std::make_unique<ProjectConfig>(this);
 
     setupMdiArea();
     connectToolbarSignals();

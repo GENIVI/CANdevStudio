@@ -2,8 +2,8 @@
 #include "projectconfig_p.h"
 #include <QCloseEvent>
 
-ProjectConfig::ProjectConfig()
-    : d_ptr(new ProjectConfigPrivate(this))
+ProjectConfig::ProjectConfig(QWidget* parent_)
+    : QWidget(parent_), d_ptr(new ProjectConfigPrivate(this, this))
 {
     Q_D(ProjectConfig);
 
@@ -12,24 +12,6 @@ ProjectConfig::ProjectConfig()
 
 ProjectConfig::~ProjectConfig()
 {
-}
-
-void ProjectConfig::nodeCreatedCallback(QtNodes::Node& node)
-{
-    Q_D(ProjectConfig);
-    d->nodeCreatedCallback(node);
-}
-
-void ProjectConfig::nodeDeletedCallback(QtNodes::Node& node)
-{
-    Q_D(ProjectConfig);
-    d->nodeDeletedCallback(node);
-}
-
-void ProjectConfig::nodeDoubleClickedCallback(QtNodes::Node& node)
-{
-    Q_D(ProjectConfig);
-    d->nodeDoubleClickedCallback(node);
 }
 
 void ProjectConfig::closeEvent(QCloseEvent* e)

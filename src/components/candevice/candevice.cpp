@@ -1,6 +1,7 @@
 #include "candevice.h"
 #include "candevice_p.h"
 #include <QtCore/QQueue>
+#include <QVariant>
 
 CanDevice::CanDevice()
     : d_ptr(new CanDevicePrivate())
@@ -98,6 +99,22 @@ QJsonObject CanDevice::getConfig() const
 {
     // TODO
     return {};
+}
+
+void CanDevice::setConfig(const QObject& qobject)
+{
+
+}
+
+std::shared_ptr<QObject> CanDevice::getQConfig() const
+{
+//FIXME: implement something useful
+    std::shared_ptr<QObject> q = std::make_shared<QObject>();
+    QStringList props;
+    props.push_back("objectName");
+    q->setProperty("exposedProperties", props);
+
+    return q;
 }
 
 void CanDevice::startSimulation()

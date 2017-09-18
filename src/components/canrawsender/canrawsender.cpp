@@ -16,6 +16,16 @@ CanRawSender::~CanRawSender()
 {
 }
 
+void CanRawSender::setConfig(const QObject& qobject)
+{
+    // FIXME: implement
+}
+
+std::shared_ptr<QObject> CanRawSender::getQConfig() const
+{
+    throw std::runtime_error("Not implemented"); // FIXME: implement
+}
+
 void CanRawSender::startSimulation()
 {
     assert(d_ptr != nullptr);

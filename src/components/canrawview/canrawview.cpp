@@ -75,6 +75,16 @@ QJsonObject CanRawView::getConfig() const
     return config;
 }
 
+void CanRawView::setConfig(const QObject& qobject)
+{
+    // FIXME: implement
+}
+
+std::shared_ptr<QObject> CanRawView::getQConfig() const
+{
+    throw std::runtime_error("Not implemented"); // FIXME: implement
+}
+
 void CanRawView::setDockUndockClbk(const std::function<void()>& cb)
 {
     Q_D(CanRawView);
