@@ -42,10 +42,14 @@ void DragWidget::mousePressEvent(QMouseEvent *event)
     QMimeData *mimeData = new QMimeData;
     mimeData->setData("CANdevStudio/x-dnditemdata", itemData);
 
+    QPoint cursor = QPoint(10,10);
     QDrag *drag = new QDrag(this);
     drag->setMimeData(mimeData);
     drag->setPixmap(pixmap);
-    drag->setHotSpot(event->pos() - child->pos());
+    drag->setHotSpot((event->pos() - child->pos())/2);
+    cds_debug("QPoint event x:{} y:{}", event->pos().x(), event->pos().y());
+    cds_debug("QPoint child x:{} y:{}", child->pos().x(), child->pos().y());
+    cds_debug("QPoint       x:{} y:{}", (event->pos().x() - child->pos().x()), (event->pos().y() - child->pos().y()));
 
     QPixmap tempPixmap = pixmap;
     QPainter painter;
@@ -61,5 +65,4 @@ void DragWidget::mousePressEvent(QMouseEvent *event)
         child->show();
         child->setPixmap(pixmap);
     }
-
 }
