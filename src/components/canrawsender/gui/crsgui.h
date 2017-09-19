@@ -4,6 +4,7 @@
 #include "crsguiinterface.h"
 #include "ui_canrawsender.h"
 #include <memory>
+#include <editdelegate.h>
 
 namespace Ui {
 class CanRawSenderPrivate;
@@ -39,9 +40,13 @@ struct CRSGui : public CRSGuiInterface {
 
     void initTableView(QAbstractItemModel& _tvModel) override
     {
+        EditDelegate* delegate = new EditDelegate;
 
         ui->tv->setModel(&_tvModel);
         ui->tv->setSelectionBehavior(QAbstractItemView::SelectRows);
+        ui->tv->setItemDelegate(delegate);
+        ui->tv->setEditTriggers(QAbstractItemView::AllEditTriggers);
+        ui->tv->setItemDelegateForColumn(4, delegate);
     }
 
     QModelIndexList getSelectedRows() override
@@ -52,6 +57,11 @@ struct CRSGui : public CRSGuiInterface {
     void setIndexWidget(const QModelIndex& index, QWidget* widget) override
     {
         ui->tv->setIndexWidget(index, widget);
+    }
+    
+    void setWidgetPersistent(const QModelIndex& index) override
+    {
+        ui->tv->openPersistentEditor(index);
     }
 
 private:

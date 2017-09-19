@@ -12,6 +12,7 @@ void CanRawSenderPrivate::setSimulationState(bool state)
 
 void CanRawSenderPrivate::saveSettings(QJsonObject& json) const
 {
+/*
     QJsonObject jSortingObject;
     QJsonArray lineArray;
     writeColumnsOrder(json);
@@ -20,10 +21,11 @@ void CanRawSenderPrivate::saveSettings(QJsonObject& json) const
 
     for (const auto& lineItem : _lines) {
         QJsonObject lineObject;
-        lineItem->Line2Json(lineObject);
+        lineItem->Line2Json(lineObject);QCheckBox
         lineArray.append(std::move(lineObject));
     }
     json["content"] = std::move(lineArray);
+*/
 }
 
 int CanRawSenderPrivate::getLineCount() const
@@ -55,7 +57,7 @@ void CanRawSenderPrivate::removeRowsSelectedByMouse()
 
     for (QModelIndex n : tmp) {
         _tvModel.removeRow(n.row()); // Delete line from table view
-        _lines.erase(_lines.begin() + n.row()); // Delete lines also from collection
+        //_lines.erase(_lines.begin() + n.row()); // Delete lines also from collection
         // TODO: check if works when the collums was sorted before
     }
 }
@@ -66,15 +68,21 @@ void CanRawSenderPrivate::addNewItem()
     
 
     QList<QStandardItem*> list{};
-    list.append(new QStandardItem(QString::number(rowID++)));
+    list.append(new QStandardItem(QString::number(rowID)));
     list.append(new QStandardItem(QString::number(0)));
     list.append(new QStandardItem(QString::number(0)));
     list.append(new QStandardItem(QString::number(0)));
 
+
+    list.append(new QStandardItem(QString::number(0))); // checkbox
+    list.append(new QStandardItem(QString::number(9))); // send button
+    
     _tvModel.appendRow(list);
-    auto newLine = std::make_unique<NewLineManager>(q_ptr, _simulationState, _nlmFactory);
-    for (NewLineManager::ColName ii : NewLineManager::ColNameIterator()) {
-        _ui.setIndexWidget(_tvModel.index(_tvModel.rowCount() - 1, static_cast<int>(ii)), newLine->GetColsWidget(ii));
-    }
-    _lines.push_back(std::move(newLine));
+
+    int lastRowIndex = _tvModel.rowCount() - 1;
+    QModelIndex index1 = _tvModel.index(lastRowIndex,4);
+    QModelIndex index2 = _tvModel.index(lastRowIndex,5);
+    _ui.setWidgetPersistent(index1);
+    _ui.setWidgetPersistent(index2);
+    rowID++;
 }

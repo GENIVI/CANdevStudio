@@ -25,5 +25,6 @@ struct CRSGuiInterface {
     virtual void initTableView(QAbstractItemModel& _tvModel) = 0;
     virtual QModelIndexList getSelectedRows() = 0;
     virtual void setIndexWidget(const QModelIndex& index, QWidget* widget) = 0;
+    virtual void setWidgetPersistent(const QModelIndex& index) = 0;
 };
 #endif // CRSGUIINTERFACE_H

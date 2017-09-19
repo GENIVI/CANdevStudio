@@ -6,6 +6,7 @@ set(SRC
     canrawsender.cpp
     canrawsender_p.cpp
     newlinemanager.cpp
+    editdelegate.cpp
 )
 
 add_library(${COMPONENT_NAME} ${SRC})
