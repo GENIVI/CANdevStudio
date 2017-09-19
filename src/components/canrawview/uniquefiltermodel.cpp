@@ -1,8 +1,6 @@
 #include "uniquefiltermodel.h"
+#include "crv_enums.h"
 
-enum class Type { uint = 0, hex, doubl, str };
-
-Q_DECLARE_METATYPE(Type)
 
 UniqueFilterModel::UniqueFilterModel(QObject* parent)
     : QSortFilterProxyModel(parent)
@@ -37,15 +35,15 @@ bool UniqueFilterModel::lessThan(const QModelIndex& left, const QModelIndex& rig
     QVariant rightData = sourceModel()->data(right);
     QVariant userRole = sourceModel()->headerData(left.column(), Qt::Horizontal, Qt::UserRole);
 
-    switch (userRole.value<Type>()) {
-    case Type::uint:
+    switch (userRole.value<CRV_ColType>()) {
+    case CRV_ColType::uint_type:
         return (leftData.toUInt() < rightData.toUInt());
-    case Type::doubl:
+    case CRV_ColType::double_type:
         return (leftData.toDouble() < rightData.toDouble());
-    case Type::hex:
+    case CRV_ColType::hex_type:
         return ((leftData.toString().toUInt(nullptr, 16)) << (rightData.toString().toUInt(nullptr, 16)));
     default:
-        return (leftData < rightData);
+        return QSortFilterProxyModel::lessThan(left, right);
     }
 }
 
