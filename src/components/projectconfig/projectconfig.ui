@@ -49,7 +49,7 @@
      <property name="lineWidth">
       <number>1</number>
      </property>
-     <widget class="QLabel" name="label">
+     <widget class="QLabel" name="CanDeviceModel">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -61,17 +61,20 @@
       <property name="cursor">
        <cursorShape>OpenHandCursor</cursorShape>
       </property>
+      <property name="toolTip">
+       <string>CanDeviceModel</string>
+      </property>
       <property name="text">
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap resource="../../../resources.qrc">:/images/files/images/car.png</pixmap>
+       <pixmap resource="../../../CANdevResources.qrc">:/images/files/images/car.png</pixmap>
       </property>
       <property name="scaledContents">
        <bool>true</bool>
       </property>
      </widget>
-     <widget class="QLabel" name="label_2">
+     <widget class="QLabel" name="CanRawViewModel">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -84,10 +87,10 @@
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap resource="../../../resources.qrc">:/images/files/images/boat.png</pixmap>
+       <pixmap resource="../../../CANdevResources.qrc">:/images/files/images/boat.png</pixmap>
       </property>
      </widget>
-     <widget class="QLabel" name="label_3">
+     <widget class="QLabel" name="CanRawSenderModel">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -100,12 +103,12 @@
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap resource="../../../resources.qrc">:/images/files/images/house.png</pixmap>
+       <pixmap resource="../../../CANdevResources.qrc">:/images/files/images/house.png</pixmap>
       </property>
      </widget>
-     <zorder>label_2</zorder>
-     <zorder>label_3</zorder>
-     <zorder>label</zorder>
+     <zorder>CanRawViewModel</zorder>
+     <zorder>CanRawSenderModel</zorder>
+     <zorder>CanDeviceModel</zorder>
     </widget>
    </item>
   </layout>
@@ -119,7 +122,7 @@
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="../../../resources.qrc"/>
+  <include location="../../../CANdevResources.qrc"/>
  </resources>
  <connections/>
 </ui>

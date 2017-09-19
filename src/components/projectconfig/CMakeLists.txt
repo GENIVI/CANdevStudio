@@ -7,6 +7,7 @@ set(SRC
     canrawsendermodel.cpp
     candevicemodel.cpp
     dragwidget.cpp
+    flowviewwrapper.cpp
 	../../../CANdevResources.qrc
 )
 
