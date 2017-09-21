@@ -145,9 +145,9 @@ Public Slots</h2></td></tr>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a7ac4f19713050a56a09e0be1a9e96f3c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_unique_filter_model.html#a7ac4f19713050a56a09e0be1a9e96f3c">UniqueFilterModel</a> (QObject *parent=0)</td></tr>
 <tr class="separator:a7ac4f19713050a56a09e0be1a9e96f3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a475d7f40fc5bc7a4154edbdb14072ebe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_unique_filter_model.html#a475d7f40fc5bc7a4154edbdb14072ebe">updateFilter</a> (int frameID, double time, QString direction)</td></tr>
-<tr class="memdesc:a475d7f40fc5bc7a4154edbdb14072ebe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates filter with unique values, on reception of each frame.  <a href="#a475d7f40fc5bc7a4154edbdb14072ebe">More...</a><br /></td></tr>
-<tr class="separator:a475d7f40fc5bc7a4154edbdb14072ebe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6d03c5b8690f7cb84b57f223c195905"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_unique_filter_model.html#aa6d03c5b8690f7cb84b57f223c195905">updateFilter</a> (QString frameID, QString time, QString direction)</td></tr>
+<tr class="memdesc:aa6d03c5b8690f7cb84b57f223c195905"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates filter with unique values, on reception of each frame.  <a href="#aa6d03c5b8690f7cb84b57f223c195905">More...</a><br /></td></tr>
+<tr class="separator:aa6d03c5b8690f7cb84b57f223c195905"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a242df2f42ae90d16e12c2d5c71e5caa4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_unique_filter_model.html#a242df2f42ae90d16e12c2d5c71e5caa4">clearFilter</a> ()</td></tr>
 <tr class="memdesc:a242df2f42ae90d16e12c2d5c71e5caa4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears unique values stored in filter.  <a href="#a242df2f42ae90d16e12c2d5c71e5caa4">More...</a><br /></td></tr>
 <tr class="separator:a242df2f42ae90d16e12c2d5c71e5caa4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -160,6 +160,9 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a4fae0e262713fe6c9709b93984dbbdf1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_unique_filter_model.html#a4fae0e262713fe6c9709b93984dbbdf1">filterAcceptsRow</a> (int source_row, const QModelIndex &amp;source_parent) const override</td></tr>
 <tr class="memdesc:a4fae0e262713fe6c9709b93984dbbdf1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function iterates whole data model row by row and indicates, if currently processed row should be displayed in table view or not.  <a href="#a4fae0e262713fe6c9709b93984dbbdf1">More...</a><br /></td></tr>
 <tr class="separator:a4fae0e262713fe6c9709b93984dbbdf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43382c0e319a067cc372a7311d470036"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_unique_filter_model.html#a43382c0e319a067cc372a7311d470036">lessThan</a> (const QModelIndex &amp;left, const QModelIndex &amp;right) const override</td></tr>
+<tr class="memdesc:a43382c0e319a067cc372a7311d470036"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function compares two items while sorting table view.  <a href="#a43382c0e319a067cc372a7311d470036">More...</a><br /></td></tr>
+<tr class="separator:a43382c0e319a067cc372a7311d470036"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This class provides a filter model between source model and table view, which passes through only frames with newest unique ID and direction values. </p>
@@ -268,6 +271,50 @@ Protected Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a43382c0e319a067cc372a7311d470036"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool UniqueFilterModel::lessThan </td>
+          <td>(</td>
+          <td class="paramtype">const QModelIndex &amp;&#160;</td>
+          <td class="paramname"><em>left</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QModelIndex &amp;&#160;</td>
+          <td class="paramname"><em>right</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Function compares two items while sorting table view. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">left</td><td>index of first item to compare </td></tr>
+    <tr><td class="paramname">right</td><td>index of second item to compare </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if left item is smaller than right, false if otherwise </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="a0b328986c2b99138c4427e7bcef99adb"></a>
 <div class="memitem">
 <div class="memproto">
@@ -293,20 +340,20 @@ Protected Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a475d7f40fc5bc7a4154edbdb14072ebe"></a>
+<a class="anchor" id="aa6d03c5b8690f7cb84b57f223c195905"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void UniqueFilterModel::updateFilter </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
+          <td class="paramtype">QString&#160;</td>
           <td class="paramname"><em>frameID</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">double&#160;</td>
+          <td class="paramtype">QString&#160;</td>
           <td class="paramname"><em>time</em>, </td>
         </tr>
         <tr>

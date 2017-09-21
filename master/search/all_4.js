@@ -7,5 +7,6 @@ var searchData=
   ['direction',['direction',['../class_can_device_data_out.html#a6b74b7c100b11fd3287caf3579a7e2ca',1,'CanDeviceDataOut::direction()'],['../candevicedata_8h.html#a224b9163917ac32fc95a60d8c1eec3aa',1,'Direction():&#160;candevicedata.h']]],
   ['disconnectdevice',['disconnectDevice',['../struct_can_device_interface.html#a74c2c1e6158bf16ce936caf7838efca8',1,'CanDeviceInterface::disconnectDevice()'],['../struct_can_device_qt.html#a83ab2fc7d6d06b502b5df034bc28f0f1',1,'CanDeviceQt::disconnectDevice()']]],
   ['docked',['docked',['../class_can_raw_sender_private.html#a9009d78ec2f03f80cac9fe70bce6235c',1,'CanRawSenderPrivate::docked()'],['../class_can_raw_view_private.html#afd4693b0bb8f1654d92d65fbb4a291be',1,'CanRawViewPrivate::docked()']]],
-  ['dockundock_5ft',['dockUndock_t',['../struct_c_r_s_gui_interface.html#a6b6f93ad5f6eeed2f3ee4dd99278b75e',1,'CRSGuiInterface::dockUndock_t()'],['../struct_c_r_v_gui_interface.html#ada1f344a0743a495c0611c53233f22ef',1,'CRVGuiInterface::dockUndock_t()']]]
+  ['dockundock_5ft',['dockUndock_t',['../struct_c_r_s_gui_interface.html#a6b6f93ad5f6eeed2f3ee4dd99278b75e',1,'CRSGuiInterface::dockUndock_t()'],['../struct_c_r_v_gui_interface.html#ada1f344a0743a495c0611c53233f22ef',1,'CRVGuiInterface::dockUndock_t()']]],
+  ['double_5ftype',['double_type',['../crv__enums_8h.html#aadc9bcbf066be7d015db5c4a7c2c8585aaaacacbe6cfde1582c36c02ebed184cc',1,'crv_enums.h']]]
 ];

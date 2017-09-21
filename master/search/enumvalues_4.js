@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['sendbutton',['SendButton',['../class_new_line_manager.html#a69f0c8e8a1213f641d43b7aa019e87dca50e95d533a998dcfd6c4614c140997a0',1,'NewLineManager']]]
+  ['rx',['RX',['../candevicedata_8h.html#a224b9163917ac32fc95a60d8c1eec3aaaf9c24782c24c237d16e79f18e2fa9046',1,'candevicedata.h']]]
 ];

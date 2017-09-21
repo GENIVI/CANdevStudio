@@ -82,6 +82,8 @@ var searchData=
   ['crsgui_2eh',['crsgui.h',['../crsgui_8h.html',1,'']]],
   ['crsguiinterface',['CRSGuiInterface',['../struct_c_r_s_gui_interface.html',1,'']]],
   ['crsguiinterface_2eh',['crsguiinterface.h',['../crsguiinterface_8h.html',1,'']]],
+  ['crv_5fcoltype',['CRV_ColType',['../crv__enums_8h.html#aadc9bcbf066be7d015db5c4a7c2c8585',1,'crv_enums.h']]],
+  ['crv_5fenums_2eh',['crv_enums.h',['../crv__enums_8h.html',1,'']]],
   ['crvgui',['CRVGui',['../struct_c_r_v_gui.html',1,'CRVGui'],['../struct_c_r_v_gui.html#a59e9be0249f8a0b880cf6de78ebebb68',1,'CRVGui::CRVGui()']]],
   ['crvgui_2eh',['crvgui.h',['../crvgui_8h.html',1,'']]],
   ['crvguiinterface',['CRVGuiInterface',['../struct_c_r_v_gui_interface.html',1,'']]],

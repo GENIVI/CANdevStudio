@@ -162,12 +162,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a3992c5bc5a18ecc27f8c1ab16fc95f43"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acfecda938280600c72abce575acdf0d2"><td class="memItemLeft" align="right" valign="top">virtual Qt::SortOrder&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_c_r_v_gui_interface.html#acfecda938280600c72abce575acdf0d2">getSortOrder</a> ()=0</td></tr>
 <tr class="separator:acfecda938280600c72abce575acdf0d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af493b89b08052afdb8e81439646cb86b"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_c_r_v_gui_interface.html#af493b89b08052afdb8e81439646cb86b">getSortSection</a> ()=0</td></tr>
-<tr class="separator:af493b89b08052afdb8e81439646cb86b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac32bed3f1d95a9f744d55d5ffae27153"><td class="memItemLeft" align="right" valign="top">virtual QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_c_r_v_gui_interface.html#ac32bed3f1d95a9f744d55d5ffae27153">getClickedColumn</a> (int ndx)=0</td></tr>
 <tr class="separator:ac32bed3f1d95a9f744d55d5ffae27153"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa11fdbb5d6e2a29997354b9537bda56a"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_c_r_v_gui_interface.html#aa11fdbb5d6e2a29997354b9537bda56a">setSorting</a> (int sortNdx, int clickedNdx, Qt::SortOrder order)=0</td></tr>
-<tr class="separator:aa11fdbb5d6e2a29997354b9537bda56a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8d76b33dcb19012a88f0f5da098ee2e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_c_r_v_gui_interface.html#ac8d76b33dcb19012a88f0f5da098ee2e">setSorting</a> (int sortNdx, Qt::SortOrder order)=0</td></tr>
+<tr class="separator:ac8d76b33dcb19012a88f0f5da098ee2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a107b53b3fc61dfaf5663cd705fdad592"><td class="memItemLeft" align="right" valign="top">virtual QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_c_r_v_gui_interface.html#a107b53b3fc61dfaf5663cd705fdad592">getWindowTitle</a> ()=0</td></tr>
 <tr class="separator:a107b53b3fc61dfaf5663cd705fdad592"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8b0e282ca7edfd7f828de123d91520f8"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_c_r_v_gui_interface.html#a8b0e282ca7edfd7f828de123d91520f8">isColumnHidden</a> (int ndx)=0</td></tr>
@@ -341,31 +339,6 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implemented in <a class="el" href="struct_c_r_v_gui.html#a8b5f37942f60f4b29e158645f7599bfd">CRVGui</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="af493b89b08052afdb8e81439646cb86b"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual int CRVGuiInterface::getSortSection </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Implemented in <a class="el" href="struct_c_r_v_gui.html#a06a712797643a20ca1702bb10ecb132b">CRVGui</a>.</p>
 
 </div>
 </div>
@@ -693,7 +666,7 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aa11fdbb5d6e2a29997354b9537bda56a"></a>
+<a class="anchor" id="ac8d76b33dcb19012a88f0f5da098ee2e"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -705,12 +678,6 @@ Public Member Functions</h2></td></tr>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>sortNdx</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>clickedNdx</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -731,7 +698,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="struct_c_r_v_gui.html#ac9a2e89fe88079cbe80d6fd07d601f64">CRVGui</a>.</p>
+<p>Implemented in <a class="el" href="struct_c_r_v_gui.html#a517fc8f58be7047c4c3f5af028615b7a">CRVGui</a>.</p>
 
 </div>
 </div>
