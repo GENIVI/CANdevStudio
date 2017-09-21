@@ -18,7 +18,7 @@ public:
     *   @param  time elapsed time since simulation start
     *   @param  direction TX or RX
     */
-    void updateFilter(int frameID, double time, QString direction);
+    void updateFilter(QString frameID, QString time, QString direction);
 
     /**
     *   @brief  Clears unique values stored in filter
@@ -41,6 +41,14 @@ protected:
     */
     bool filterAcceptsRow(int source_row, const QModelIndex& source_parent) const override;
 
+    /**
+    *   @brief  Function compares two items while sorting table view
+    *   @param  left index of first item to compare
+    *   @param  right index of second item to compare
+    *   @return true if left item is smaller than right, false if otherwise
+    */
+    bool lessThan(const QModelIndex& left, const QModelIndex& right) const override;
+
 signals:
 
 public slots:
@@ -50,7 +58,7 @@ public slots:
     void toggleFilter();
 
 private:
-    QMap<QPair<int, QString>, double> uniques;
-    bool filterActive = false;
+    QMap<QPair<QString, QString>, QString> _uniques;
+    bool _filterActive = false;
 };
 #endif
