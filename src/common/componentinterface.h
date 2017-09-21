@@ -35,7 +35,7 @@ struct ComponentInterface {
     *   @brief  Sets configuration for component
     *   @param  json configuratio to be aplied
     */
-    virtual void setConfig(QJsonObject& json) = 0;
+    virtual void setConfig(const QJsonObject& json) = 0;
 
     /**
     *   @brief  Sets configuration for component

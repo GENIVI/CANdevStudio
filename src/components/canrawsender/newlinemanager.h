@@ -32,7 +32,7 @@ public:
         DataLine,
         LoopCheckBox,
         IntervalLine,
-        SendButton,
+        SendButton
     };
     /// \typedef ColNameIterator
     /// \brief Iteratot through ColName content
@@ -52,26 +52,34 @@ public:
     /// \param[in] json Json object
     void Line2Json(QJsonObject& json) const;
 
+    /// \brief The function is responsible for restore line content from config
+    /// \param[in] id Id string
+    /// \param[in] data Data string
+    /// \param[in] interval Interval string
+    /// \param[in] loop Loop enable state
+    /// \return true if new line is adopted all input data successfully, false otherwise
+    bool RestoreLine(QString& id, QString data, QString interval, bool loop);
+
 private:
     /// \brief This function performs the necessary things when the meter stops
     void StopTimer();
 
 private:
-    CanRawSender* canRawSender;
-    QCanBusFrame frame;
-    bool simState;
+    CanRawSender* _canRawSender;
+    QCanBusFrame _frame;
+    bool _simState;
 
-    QTimer timer;
-    QValidator* vDec;
-    QValidator* vIdHex;
-    QValidator* vDataHex;
+    QTimer _timer;
+    QValidator* _vDec;
+    QValidator* _vIdHex;
+    QValidator* _vDataHex;
 
     NLMFactoryInterface& mFactory;
-    std::unique_ptr<CheckBoxInterface> mCheckBox;
-    std::unique_ptr<LineEditInterface> mId;
-    std::unique_ptr<LineEditInterface> mData;
-    std::unique_ptr<LineEditInterface> mInterval;
-    std::unique_ptr<PushButtonInterface> mSend;
+    std::unique_ptr<CheckBoxInterface> _loop;
+    std::unique_ptr<LineEditInterface> _id;
+    std::unique_ptr<LineEditInterface> _data;
+    std::unique_ptr<LineEditInterface> _interval;
+    std::unique_ptr<PushButtonInterface> _send;
 
 signals:
 

@@ -90,7 +90,7 @@ void CanDevice::errorOccurred(int error)
     }
 }
 
-void CanDevice::setConfig(QJsonObject&)
+void CanDevice::setConfig(const QJsonObject&)
 {
     // TODO
 }

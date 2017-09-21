@@ -1,6 +1,7 @@
 #ifndef CRVGUI_H
 #define CRVGUI_H
 
+#include "crv_enums.h"
 #include "crvguiinterface.h"
 #include "ui_canrawview.h"
 #include <memory>
@@ -50,13 +51,25 @@ struct CRVGui : public CRVGuiInterface {
         ui->tv->horizontalHeader()->setSectionsMovable(true);
         ui->tv->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
         ui->tv->setColumnHidden(0, true);
-        ui->tv->setColumnHidden(1, true);
-        ui->tv->setColumnHidden(3, true);
+
+        tvModel.setHeaderData(0, Qt::Horizontal, QVariant::fromValue(CRV_ColType::uint_type), Qt::UserRole); // rowID
+        tvModel.setHeaderData(1, Qt::Horizontal, QVariant::fromValue(CRV_ColType::double_type), Qt::UserRole); // time
+        tvModel.setHeaderData(2, Qt::Horizontal, QVariant::fromValue(CRV_ColType::hex_type), Qt::UserRole); // frame ID
+        tvModel.setHeaderData(3, Qt::Horizontal, QVariant::fromValue(CRV_ColType::str_type), Qt::UserRole); // direction
+        tvModel.setHeaderData(4, Qt::Horizontal, QVariant::fromValue(CRV_ColType::uint_type), Qt::UserRole); // length
+        tvModel.setHeaderData(5, Qt::Horizontal, QVariant::fromValue(CRV_ColType::str_type), Qt::UserRole); // data
     }
 
     virtual bool isViewFrozen() override
     {
         return ui->freezeBox->isChecked();
+    }
+
+    virtual void setViewFrozen(bool state) override
+    {
+        if (ui->freezeBox->isChecked() != state) {
+            ui->freezeBox->setChecked(state);
+        }
     }
 
     virtual void scrollToBottom() override
@@ -69,20 +82,15 @@ struct CRVGui : public CRVGuiInterface {
         return ui->tv->horizontalHeader()->sortIndicatorOrder();
     }
 
-    virtual int getSortSection() override
-    {
-        return ui->tv->horizontalHeader()->sortIndicatorSection();
-    }
-
     virtual QString getClickedColumn(int ndx) override
     {
         return ui->tv->model()->headerData(ndx, Qt::Horizontal).toString();
     }
 
-    virtual void setSorting(int sortNdx, int clickedNdx, Qt::SortOrder order) override
+    virtual void setSorting(int sortNdx, Qt::SortOrder order) override
     {
         ui->tv->sortByColumn(sortNdx, order);
-        ui->tv->horizontalHeader()->setSortIndicator(clickedNdx, order);
+        ui->tv->horizontalHeader()->setSortIndicator(sortNdx, order);
     }
 
     virtual QString getWindowTitle() override
@@ -93,6 +101,20 @@ struct CRVGui : public CRVGuiInterface {
     virtual bool isColumnHidden(int ndx) override
     {
         return ui->tv->isColumnHidden(ndx);
+    }
+
+    virtual void getColumnProper(int ndx, int& vIdx, int& width) override
+    {
+        auto horHeader = ui->tv->horizontalHeader();
+        vIdx = horHeader->visualIndex(ndx);
+        width = ui->tv->columnWidth(ndx);
+    }
+
+    virtual void setColumnProper(int vIdxFrom, int vIdxTo, int width) override
+    {
+        auto horHeader = ui->tv->horizontalHeader();
+        ui->tv->setColumnWidth(horHeader->logicalIndex(vIdxFrom), width);
+        horHeader->moveSection(vIdxFrom, vIdxTo);
     }
 
 private:

@@ -137,6 +137,7 @@ bool MainWindow::closeProjectConfig()
         ui->actionStart->setDisabled(true);
         ui->actionSave->setDisabled(true);
         ui->actionStop->setDisabled(true);
+        ui->actionSimulation->setDisabled(true);
     }
 
     return true;
@@ -151,8 +152,7 @@ bool MainWindow::createProjectConfig(const QString& name)
 
     if (projectConfig) {
         projectConfig->setWindowTitle(name);
-        ui->mdiArea->addSubWindow(projectConfig.get());
-        projectConfig->show();
+        addToMdi(projectConfig.get());
 
         connect(ui->actionStop, &QAction::triggered, projectConfig.get(), &ProjectConfig::stopSimulation);
         connect(ui->actionStart, &QAction::triggered, projectConfig.get(), &ProjectConfig::startSimulation);
@@ -164,6 +164,7 @@ bool MainWindow::createProjectConfig(const QString& name)
         ui->actionClose->setDisabled(false);
         ui->actionStart->setDisabled(false);
         ui->actionSave->setDisabled(false);
+        ui->actionSimulation->setDisabled(false);
         ui->actionStop->setDisabled(true);
 
         return true;
@@ -192,21 +193,18 @@ void MainWindow::connectMenuSignals()
         [this] { ui->mdiArea->setViewMode(QMdiArea::SubWindowView); });
     connect(ui->actionClose, &QAction::triggered, this, &MainWindow::closeProjectConfig);
     connect(ui->actionNew, &QAction::triggered, [this] { createProjectConfig("Project Config"); });
+    connect(ui->actionSimulation, &QAction::triggered, [this] { handleWidgetShowing(projectConfig.get(), true); });
 }
 
 void MainWindow::addToMdi(QWidget* component)
 {
-    auto wnd = new SubWindow;
-    // It seems we need to add Window first before setting the widget
-    ui->mdiArea->addSubWindow(wnd);
+    auto wnd = new SubWindow(ui->mdiArea);
     wnd->setWidget(component);
-    // We need to delete the window to remove it from tabView when closed
-    wnd->setAttribute(Qt::WA_DeleteOnClose);
+    component->show();
 }
 
 void MainWindow::setupMdiArea()
 {
-    ui->mdiArea->setAttribute(Qt::WA_DeleteOnClose, false);
     ui->mdiArea->setViewMode(QMdiArea::TabbedView);
 }
 

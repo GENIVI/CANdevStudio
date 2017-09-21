@@ -40,7 +40,7 @@ public:
     /**
     *   @see ComponentInterface
     */
-    void setConfig(QJsonObject& json) override;
+    void setConfig(const QJsonObject& json) override;
 
     /**
      *  @see ComponentInterface
