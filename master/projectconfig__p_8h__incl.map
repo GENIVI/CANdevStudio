@@ -1,18 +1,18 @@
 <map id="src/components/projectconfig/projectconfig_p.h" name="src/components/projectconfig/projectconfig_p.h">
-<area shape="rect" id="node2" href="$canrawsendermodel_8h.html" title="canrawsendermodel.h" alt="" coords="457,95,620,121"/>
-<area shape="rect" id="node18" href="$canrawviewmodel_8h.html" title="canrawviewmodel.h" alt="" coords="286,95,433,121"/>
-<area shape="rect" id="node20" href="$flowviewwrapper_8h.html" title="flowviewwrapper.h" alt="" coords="892,95,1027,121"/>
-<area shape="rect" id="node23" href="$modeltoolbutton_8h.html" title="modeltoolbutton.h" alt="" coords="1408,95,1548,121"/>
-<area shape="rect" id="node27" href="$log_8h.html" title="log.h" alt="" coords="1573,95,1626,121"/>
-<area shape="rect" id="node32" href="$modelvisitor_8h.html" title="modelvisitor.h" alt="" coords="1966,169,2076,196"/>
-<area shape="rect" id="node38" href="$candevicemodel_8h.html" title="projectconfig/candevicemodel.h" alt="" coords="644,95,868,121"/>
-<area shape="rect" id="node3" href="$componentmodel_8h.html" title="componentmodel.h" alt="" coords="754,169,901,196"/>
-<area shape="rect" id="node11" href="$canrawsender_8h.html" title="canrawsender.h" alt="" coords="210,169,333,196"/>
-<area shape="rect" id="node4" href="$projectconfig_8h.html" title="projectconfig.h" alt="" coords="1024,244,1140,271"/>
-<area shape="rect" id="node13" href="$componentinterface_8h.html" title="componentinterface.h" alt="" coords="225,244,388,271"/>
-<area shape="rect" id="node15" href="$context_8h.html" title="context.h" alt="" coords="412,244,494,271"/>
-<area shape="rect" id="node19" href="$canrawview_8h.html" title="canrawview.h" alt="" coords="80,169,186,196"/>
-<area shape="rect" id="node34" href="$visitor_8h.html" title="visitor.h" alt="" coords="1802,244,1872,271"/>
-<area shape="rect" id="node36" href="$visitablewith_8h.html" title="visitablewith.h" alt="" coords="1966,319,2076,345"/>
-<area shape="rect" id="node39" href="$candevice_8h.html" title="candevice.h" alt="" coords="581,169,680,196"/>
+<area shape="rect" id="node2" href="$canrawsendermodel_8h.html" title="canrawsendermodel.h" alt="" coords="373,95,536,121"/>
+<area shape="rect" id="node9" href="$log_8h.html" title="log.h" alt="" coords="1165,244,1219,271"/>
+<area shape="rect" id="node23" href="$canrawviewmodel_8h.html" title="canrawviewmodel.h" alt="" coords="199,95,345,121"/>
+<area shape="rect" id="node25" href="$flowviewwrapper_8h.html" title="flowviewwrapper.h" alt="" coords="809,95,943,121"/>
+<area shape="rect" id="node28" href="$modeltoolbutton_8h.html" title="modeltoolbutton.h" alt="" coords="967,95,1107,121"/>
+<area shape="rect" id="node32" href="$modelvisitor_8h.html" title="modelvisitor.h" alt="" coords="1582,169,1693,196"/>
+<area shape="rect" id="node38" href="$candevicemodel_8h.html" title="projectconfig/candevicemodel.h" alt="" coords="560,95,784,121"/>
+<area shape="rect" id="node3" href="$componentmodel_8h.html" title="componentmodel.h" alt="" coords="713,169,860,196"/>
+<area shape="rect" id="node17" href="$canrawsender_8h.html" title="canrawsender.h" alt="" coords="393,169,516,196"/>
+<area shape="rect" id="node4" href="$projectconfig_8h.html" title="projectconfig.h" alt="" coords="814,244,930,271"/>
+<area shape="rect" id="node19" href="$componentinterface_8h.html" title="componentinterface.h" alt="" coords="224,244,387,271"/>
+<area shape="rect" id="node21" href="$context_8h.html" title="context.h" alt="" coords="411,244,493,271"/>
+<area shape="rect" id="node24" href="$canrawview_8h.html" title="canrawview.h" alt="" coords="41,169,146,196"/>
+<area shape="rect" id="node34" href="$visitor_8h.html" title="visitor.h" alt="" coords="1515,244,1586,271"/>
+<area shape="rect" id="node36" href="$visitablewith_8h.html" title="visitablewith.h" alt="" coords="1582,319,1693,345"/>
+<area shape="rect" id="node39" href="$candevice_8h.html" title="candevice.h" alt="" coords="540,169,639,196"/>
 </map>

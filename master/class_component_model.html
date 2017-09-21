@@ -151,6 +151,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af0052e9bdddf8ce4516b78409e5aacee"><td class="memItemLeft" align="right" valign="top">virtual QJsonObject&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component_model.html#af0052e9bdddf8ce4516b78409e5aacee">save</a> () const override</td></tr>
 <tr class="memdesc:af0052e9bdddf8ce4516b78409e5aacee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Possibility to save node properties.  <a href="#af0052e9bdddf8ce4516b78409e5aacee">More...</a><br /></td></tr>
 <tr class="separator:af0052e9bdddf8ce4516b78409e5aacee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb2f832f826dc163d34161b8d4d58bc4"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component_model.html#aeb2f832f826dc163d34161b8d4d58bc4">restore</a> (QJsonObject const &amp;json) override</td></tr>
+<tr class="memdesc:aeb2f832f826dc163d34161b8d4d58bc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to restore node configurations.  <a href="#aeb2f832f826dc163d34161b8d4d58bc4">More...</a><br /></td></tr>
+<tr class="separator:aeb2f832f826dc163d34161b8d4d58bc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4a66bba479200abb869f26d8fbc0be83"><td class="memItemLeft" align="right" valign="top">virtual QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component_model.html#a4a66bba479200abb869f26d8fbc0be83">modelName</a> () const </td></tr>
 <tr class="memdesc:a4a66bba479200abb869f26d8fbc0be83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to get model name.  <a href="#a4a66bba479200abb869f26d8fbc0be83">More...</a><br /></td></tr>
 <tr class="separator:a4a66bba479200abb869f26d8fbc0be83"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -459,6 +462,40 @@ template&lt;typename C, typename Derived&gt; </div>
 
 <p>Used to get information if node is resizable. </p>
 <dl class="section return"><dt>Returns</dt><dd>false </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aeb2f832f826dc163d34161b8d4d58bc4"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename C, typename Derived&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void <a class="el" href="class_component_model.html">ComponentModel</a>&lt; C, Derived &gt;::restore </td>
+          <td>(</td>
+          <td class="paramtype">QJsonObject const &amp;&#160;</td>
+          <td class="paramname"><em>json</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Used to restore node configurations. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">json</td><td>Constant reference to json object </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

@@ -152,6 +152,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a94b62ff7fc78e5d9ecbc971a95b5cc6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2c99ac6ad5307ebdf232f1847a9aa843"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_c_r_v_gui.html#a2c99ac6ad5307ebdf232f1847a9aa843">isViewFrozen</a> () override</td></tr>
 <tr class="separator:a2c99ac6ad5307ebdf232f1847a9aa843"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6557d73a968dd06383f98f8d04f2b33"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_c_r_v_gui.html#ae6557d73a968dd06383f98f8d04f2b33">setViewFrozen</a> (bool state) override</td></tr>
+<tr class="separator:ae6557d73a968dd06383f98f8d04f2b33"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a56b80c2f8822d81914f67a4d18abdad0"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_c_r_v_gui.html#a56b80c2f8822d81914f67a4d18abdad0">scrollToBottom</a> () override</td></tr>
 <tr class="separator:a56b80c2f8822d81914f67a4d18abdad0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8b5f37942f60f4b29e158645f7599bfd"><td class="memItemLeft" align="right" valign="top">virtual Qt::SortOrder&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_c_r_v_gui.html#a8b5f37942f60f4b29e158645f7599bfd">getSortOrder</a> () override</td></tr>
@@ -166,6 +168,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a66397f4ca6cefd58b49fbd34181cd8fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7d50613c100064c64d1dc343c3e00cd5"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_c_r_v_gui.html#a7d50613c100064c64d1dc343c3e00cd5">isColumnHidden</a> (int ndx) override</td></tr>
 <tr class="separator:a7d50613c100064c64d1dc343c3e00cd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e3cd8b593b026a9e1cbc8a744c024a8"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_c_r_v_gui.html#a3e3cd8b593b026a9e1cbc8a744c024a8">getColumnProper</a> (int ndx, int &amp;vIdx, int &amp;width) override</td></tr>
+<tr class="separator:a3e3cd8b593b026a9e1cbc8a744c024a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93bd86921c0a1450d8cb02af574b1177"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_c_r_v_gui.html#a93bd86921c0a1450d8cb02af574b1177">setColumnProper</a> (int vIdxFrom, int vIdxTo, int width) override</td></tr>
+<tr class="separator:a93bd86921c0a1450d8cb02af574b1177"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_struct_c_r_v_gui_interface"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_struct_c_r_v_gui_interface')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="struct_c_r_v_gui_interface.html">CRVGuiInterface</a></td></tr>
 <tr class="memitem:a254b5911f8309e4231c37d07d854b0da inherit pub_methods_struct_c_r_v_gui_interface"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_c_r_v_gui_interface.html#a254b5911f8309e4231c37d07d854b0da">~CRVGuiInterface</a> ()</td></tr>
 <tr class="separator:a254b5911f8309e4231c37d07d854b0da inherit pub_methods_struct_c_r_v_gui_interface"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -230,6 +236,48 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implements <a class="el" href="struct_c_r_v_gui_interface.html#ac32bed3f1d95a9f744d55d5ffae27153">CRVGuiInterface</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a3e3cd8b593b026a9e1cbc8a744c024a8"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void CRVGui::getColumnProper </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ndx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int &amp;&#160;</td>
+          <td class="paramname"><em>vIdx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int &amp;&#160;</td>
+          <td class="paramname"><em>width</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="struct_c_r_v_gui_interface.html#a766bde84a7ba50d0254216a98b785690">CRVGuiInterface</a>.</p>
 
 </div>
 </div>
@@ -461,6 +509,48 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a93bd86921c0a1450d8cb02af574b1177"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void CRVGui::setColumnProper </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>vIdxFrom</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>vIdxTo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>width</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="struct_c_r_v_gui_interface.html#acd7a5c8275f69b2b5c0c172b383ada09">CRVGuiInterface</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="aeb03ae6d3d736f64873aabc23b24908a"></a>
 <div class="memitem">
 <div class="memproto">
@@ -604,6 +694,32 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implements <a class="el" href="struct_c_r_v_gui_interface.html#aa11fdbb5d6e2a29997354b9537bda56a">CRVGuiInterface</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae6557d73a968dd06383f98f8d04f2b33"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void CRVGui::setViewFrozen </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>state</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="struct_c_r_v_gui_interface.html#a1fc6c3454ceb5a783810ada7c6db2a52">CRVGuiInterface</a>.</p>
 
 </div>
 </div>

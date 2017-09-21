@@ -9,7 +9,7 @@ var class_can_raw_sender =
     [ "mainWidgetDocked", "class_can_raw_sender.html#ab5c48722c605bef9e9c6ca1d7a9f3b97", null ],
     [ "mainWidgetDockToggled", "class_can_raw_sender.html#a5307741f87bef15571781f7b3d4a434f", null ],
     [ "sendFrame", "class_can_raw_sender.html#a0e6950f7ee975ad8ae200b4bff32614d", null ],
-    [ "setConfig", "class_can_raw_sender.html#abe2ef63d6c37e6704aad1932684a9d88", null ],
+    [ "setConfig", "class_can_raw_sender.html#a3d7ace2cb87bc0f0f5972f33226643da", null ],
     [ "startSimulation", "class_can_raw_sender.html#ad518a89ad799d2a7284ba5ad54f1b3e5", null ],
     [ "stopSimulation", "class_can_raw_sender.html#acf4ae8a4bbab2282a27d2a6001215802", null ]
 ];

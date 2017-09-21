@@ -7,5 +7,6 @@ var struct_n_l_m_line_edit =
     [ "mainWidget", "struct_n_l_m_line_edit.html#a9ddf396d162288fc15eb5994cea91967", null ],
     [ "setDisabled", "struct_n_l_m_line_edit.html#ad97ea8972842b65fa0ad4302bff71d6f", null ],
     [ "setPlaceholderText", "struct_n_l_m_line_edit.html#ad41467e46c39359a61167bbb9c64299f", null ],
+    [ "setText", "struct_n_l_m_line_edit.html#af47a9be0e81384bf7ce48624c3707b70", null ],
     [ "textChangedCbk", "struct_n_l_m_line_edit.html#ac7ba8843fffb2db11e367269eed33144", null ]
 ];

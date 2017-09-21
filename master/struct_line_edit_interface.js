@@ -8,5 +8,6 @@ var struct_line_edit_interface =
     [ "mainWidget", "struct_line_edit_interface.html#a725993351a2e633b86e472709ea11b31", null ],
     [ "setDisabled", "struct_line_edit_interface.html#aa3c79cb626314d653628c0715b64dbe0", null ],
     [ "setPlaceholderText", "struct_line_edit_interface.html#a30729d6560fdfb00a5e75309c14c2b82", null ],
+    [ "setText", "struct_line_edit_interface.html#aa04e6d7b9c24b41829ce2ab563160496", null ],
     [ "textChangedCbk", "struct_line_edit_interface.html#adac4da2674696f907166fa06bcafd350", null ]
 ];

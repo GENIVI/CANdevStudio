@@ -154,6 +154,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a2665355ba83ae2c7d56c6047f1ba979f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_raw_sender_private.html#a2665355ba83ae2c7d56c6047f1ba979f">getLineCount</a> () const </td></tr>
 <tr class="memdesc:a2665355ba83ae2c7d56c6047f1ba979f"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method return actual number of lines in table.  <a href="#a2665355ba83ae2c7d56c6047f1ba979f">More...</a><br /></td></tr>
 <tr class="separator:a2665355ba83ae2c7d56c6047f1ba979f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0bd20f11be7a9272e59ac84c9c6099fb"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_raw_sender_private.html#a0bd20f11be7a9272e59ac84c9c6099fb">restoreConfiguration</a> (const QJsonObject &amp;json)</td></tr>
+<tr class="memdesc:a0bd20f11be7a9272e59ac84c9c6099fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to restore rawsender configurations.  <a href="#a0bd20f11be7a9272e59ac84c9c6099fb">More...</a><br /></td></tr>
+<tr class="separator:a0bd20f11be7a9272e59ac84c9c6099fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -253,6 +256,31 @@ Public Attributes</h2></td></tr>
 
 <p>This method return actual number of lines in table. </p>
 <dl class="section return"><dt>Returns</dt><dd>Line count </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a0bd20f11be7a9272e59ac84c9c6099fb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CanRawSenderPrivate::restoreConfiguration </td>
+          <td>(</td>
+          <td class="paramtype">const QJsonObject &amp;&#160;</td>
+          <td class="paramname"><em>json</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Used to restore rawsender configurations. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">json</td><td>Constant reference to json object </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if configuration was adopted successfully, false otherwise </dd></dl>
 
 </div>
 </div>

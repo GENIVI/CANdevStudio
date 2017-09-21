@@ -10,6 +10,7 @@ var class_component_model =
     [ "modelName", "class_component_model.html#a4a66bba479200abb869f26d8fbc0be83", null ],
     [ "name", "class_component_model.html#a25ef150b9207c5d792a1824e124ad4bb", null ],
     [ "resizable", "class_component_model.html#a9b768221cb765be9fc8d1a41ad36e5f3", null ],
+    [ "restore", "class_component_model.html#aeb2f832f826dc163d34161b8d4d58bc4", null ],
     [ "save", "class_component_model.html#af0052e9bdddf8ce4516b78409e5aacee", null ],
     [ "_caption", "class_component_model.html#a7c8c6b188ad1ecf31ffde72668f42486", null ],
     [ "_component", "class_component_model.html#a54cb9d46c790d31e7679bdfaf463ae61", null ],
