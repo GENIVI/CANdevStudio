@@ -13,5 +13,6 @@ struct CheckBoxInterface {
     virtual void releasedCbk(const released_t& cb) = 0;
     virtual QWidget* mainWidget() = 0;
     virtual bool getState() = 0;
+    virtual void setState(bool state) = 0;
 };
 #endif // CHECKBOXINTERFACE_H

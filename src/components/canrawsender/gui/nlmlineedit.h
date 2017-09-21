@@ -51,6 +51,13 @@ struct NLMLineEdit : public LineEditInterface {
         return qLineEdit->text();
     }
 
+    void setText(QString& text) override
+    {
+        // Inserts new text and validates the result
+        qLineEdit->clear();
+        qLineEdit->insert(text);
+    }
+
 private:
     QLineEdit* qLineEdit;
 };

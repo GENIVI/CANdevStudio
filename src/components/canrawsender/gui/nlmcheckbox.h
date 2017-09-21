@@ -40,6 +40,14 @@ struct NLMCheckBox : public CheckBoxInterface {
         qWidget->setLayout(qLayout);
     }
 
+    void setState(bool state) override
+    {
+        if (qCheckBox->isChecked() != state) {
+            qCheckBox->setChecked(state);
+            emit qCheckBox->released();
+        }
+    }
+
 private:
     QWidget* qWidget;
     QCheckBox* qCheckBox;

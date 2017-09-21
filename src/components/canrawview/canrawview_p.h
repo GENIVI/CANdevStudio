@@ -44,15 +44,10 @@ public:
 
     void saveSettings(QJsonObject& json)
     {
-        QJsonObject jSortingObject;
         QJsonArray viewModelsArray;
 
         writeColumnsOrder(json);
-        writeSortingRules(jSortingObject);
-        json["sorting"] = std::move(jSortingObject);
         json["scrolling"] = _ui.isViewFrozen();
-        writeViewModel(viewModelsArray);
-        json["models"] = std::move(viewModelsArray);
     }
 
     void frameView(const QCanBusFrame& frame, const QString& direction)
@@ -103,39 +98,178 @@ public:
         }
     }
 
-private:
-    void writeSortingRules(QJsonObject& json) const
+    bool restoreConfiguration(const QJsonObject& json)
     {
-        json["prevIndex"] = _prevIndex;
-        json["sortIndex"] = _sortIndex;
-        json["currentSortOrder"] = _currentSortOrder;
+        if (columnAdopt(json) == false) {
+            return false;
+        }
+        if (scrollingAdopt(json) == false) {
+            return false;
+        }
+        return true;
     }
 
+private:
     void writeColumnsOrder(QJsonObject& json) const
     {
         int ii = 0;
-        QJsonArray columnList;
+        QJsonArray columnArray;
         for (const auto& column : _columnsOrder) {
             if (_ui.isColumnHidden(ii) == false) {
-                columnList.append(column);
+                QJsonObject columnProper;
+                int vIdx;
+                int width;
+                _ui.getColumnProper(ii, vIdx, width);
+                columnProper["name"] = column;
+                columnProper["vIdx"] = vIdx;
+                columnProper["width"] = width;
+                columnArray.append(columnProper);
             }
             ++ii;
         }
-        json["columns"] = std::move(columnList);
+        json["columns"] = std::move(columnArray);
     }
 
-    void writeViewModel(QJsonArray& jsonArray) const
+    /* In the future for create log file below code can be use it.
+     * Temporary is commented.
+        void writeViewModel(QJsonArray& jsonArray) const
+        {
+            for (auto row = 0; row < _tvModel.rowCount(); ++row) {
+                QJsonArray lineIter;
+                for (auto column = 0; column < _tvModel.columnCount(); ++column) {
+                    if (_ui.isColumnHidden(column) == false) {
+                        auto pp = _tvModel.data(_tvModel.index(row, column));
+                        lineIter.append(std::move(pp.toString()));
+                    }
+                }
+                jsonArray.append(std::move(lineIter));
+            }
+        }
+    */
+
+    bool scrollingAdopt(QJsonObject const& json)
     {
-        for (auto row = 0; row < _tvModel.rowCount(); ++row) {
-            QJsonArray lineIter;
-            for (auto column = 0; column < _tvModel.columnCount(); ++column) {
-                if (_ui.isColumnHidden(column) == false) {
-                    auto pp = _tvModel.data(_tvModel.index(row, column));
-                    lineIter.append(std::move(pp.toString()));
+        auto scrolling = json.find("scrolling");
+        if (scrolling == json.end()) {
+            cds_error("Scrolling item not found it");
+            return false;
+        }
+
+        if (scrolling.value().type() != QJsonValue::Bool) {
+            cds_error("Scrolling format is different then bool");
+            return false;
+        }
+        auto frozen = json["scrolling"].toBool();
+        if (_ui.isViewFrozen() != frozen) {
+            _ui.setViewFrozen(frozen);
+        }
+
+        cds_info("Scrolling was restored correctly");
+        return true;
+    }
+
+    bool columnAdopt(QJsonObject const& json)
+    {
+        auto columnIter = json.find("columns");
+        if (columnIter == json.end()) {
+            cds_error("Columns item not found it");
+            return false;
+        }
+
+        if (columnIter.value().type() != QJsonValue::Array) {
+            cds_error("Columns format is different then array");
+            return false;
+        }
+
+        auto colArray = json["columns"].toArray();
+        if (colArray.size() != 5) {
+            cds_error("Columns array size must by 5 not {}", std::to_string(colArray.size()));
+            return false;
+        }
+
+        // Structure declaration that will be used to grab information about column settings
+        struct ref {
+            int id;
+            int vIdxConf;
+            int widthConf;
+            bool operator<(const ref& rhs) const
+            {
+                return vIdxConf < rhs.vIdxConf;
+            }
+        };
+        std::vector<ref> refContener;
+
+        auto ii = 0;
+        for (const auto& column : _columnsOrder) {
+            if (_ui.isColumnHidden(ii) == false) {
+                auto jj = 0;
+                for (; jj < colArray.size(); ++jj) {
+                    // Check column name
+                    //==================
+                    if (colArray[jj].isObject() == false) {
+                        cds_error("Columns description does not an object.");
+                        return false;
+                    }
+                    auto colObj = colArray[jj].toObject();
+                    if (colObj.contains("name") == false) {
+                        cds_error("Columns description does not contain name field.");
+                        return false;
+                    }
+                    if (colObj["name"].isString() == false) {
+                        cds_error("name does not a String format.");
+                        return false;
+                    }
+                    // auto nameConf = colObj["name"].toString();
+                    if (colObj["name"].toString() != column) {
+                        // The name does not pass - get next
+                        continue;
+                    }
+
+                    // Check vIdx
+                    //===========
+                    if (colObj.contains("vIdx") == false) {
+                        cds_error("Columns description does not contain vIdx field.");
+                        return false;
+                    }
+                    if (colObj["vIdx"].isDouble() == false) {
+                        cds_error("vIdx does not a Number format.");
+                        return false;
+                    }
+                    auto vIdxConf = colObj["vIdx"].toInt();
+
+                    // Check width
+                    //============
+                    if (colObj.contains("width") == false) {
+                        cds_error("Columns description does not contain width field.");
+                        return false;
+                    }
+                    if (colObj["width"].isDouble() == false) {
+                        cds_error("width does not a Number format.");
+                        return false;
+                    }
+                    auto widthConf = colObj["width"].toInt();
+                    refContener.push_back({ ii, vIdxConf, widthConf });
+                    break;
+                }
+                if (jj == colArray.size()) {
+                    cds_error("Requred parameter in column description was not found.");
+                    return false;
                 }
             }
-            jsonArray.append(std::move(lineIter));
+            ++ii;
         }
+        std::sort(refContener.rbegin(), refContener.rend());
+        for (const auto& pp : refContener) {
+            int width;
+            int vIdx;
+            _ui.getColumnProper(pp.id, vIdx, width);
+            if ((vIdx != pp.vIdxConf) || (width != pp.widthConf)) {
+                _ui.setColumnProper(vIdx, pp.vIdxConf, pp.widthConf);
+            }
+        }
+        cds_info("Column proporties ware restored correctly");
+
+        return true;
     }
 
 private slots:

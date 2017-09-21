@@ -62,6 +62,11 @@ public:
     /// \return Line count
     int getLineCount() const;
 
+    /// \brief Used to restore rawsender configurations
+    /// \param[in] json Constant reference to json object
+    /// \return true if configuration was adopted successfully, false otherwise
+    bool restoreConfiguration(const QJsonObject& json);
+
 private:
     /// \brief This method writes columns order
     /// \param[in] json Json object
@@ -70,6 +75,18 @@ private:
     /// \brief This method writes columns order
     /// \param[in] json Json object
     void writeSortingRules(QJsonObject& json) const;
+
+    /// \brief This method adopts column properties
+    /// \return true if column properties ware adopted successfully, false otherwise
+    bool columnAdopt(QJsonObject const& json);
+
+    /// \brief This method adopts sorting properties
+    /// \return true if sorting was adopted successfully, false otherwise
+    bool sortingAdopt(QJsonObject const& json);
+
+    /// \brief This method adopts content properties
+    /// \return true if contents ware adopted successfully, false otherwise
+    bool contentAdopt(QJsonObject const& json);
 
 private slots:
     /// \brief This method remove selected rows from table

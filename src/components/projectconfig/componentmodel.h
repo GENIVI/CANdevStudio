@@ -5,6 +5,7 @@
 #include <QtCore/QObject>
 #include <QtWidgets/QLabel>
 #include <functional>
+#include <log.h>
 #include <nodes/NodeDataModel>
 
 struct ComponentInterface;
@@ -58,6 +59,21 @@ public:
         QJsonObject json = _component.getConfig();
         json["name"] = name();
         return json;
+    }
+
+    /**
+     * @brief Used to restore node configurations
+     * @param json Constant reference to json object
+     */
+    virtual void restore(QJsonObject const& json) override
+    {
+        if (json.find("name") == json.end()) {
+            cds_error("Problem with validation of restore configuration: component model name tag not exist.");
+            return;
+        }
+        _name = json.find("name").value().toString();
+        _component.setConfig(json);
+        cds_info("Correct validation of restore configuration for {} modul", _name.toStdString());
     }
 
     /**
