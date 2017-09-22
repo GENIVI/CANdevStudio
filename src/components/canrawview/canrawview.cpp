@@ -21,6 +21,11 @@ CanRawView::~CanRawView()
 {
 }
 
+ComponentInterface::ComponentProperties CanRawView::getSupportedProperties() const
+{
+    return d_ptr->getSupportedProperties();
+}
+
 void CanRawView::startSimulation()
 {
     Q_D(CanRawView);

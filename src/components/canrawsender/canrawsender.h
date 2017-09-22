@@ -52,6 +52,11 @@ public:
     */
     bool mainWidgetDocked() const override;
 
+    /**
+    *   @see ComponentInterface
+    */
+    ComponentInterface::ComponentProperties getSupportedProperties() const override;
+
 signals:
     void sendFrame(const QCanBusFrame& frame);
 

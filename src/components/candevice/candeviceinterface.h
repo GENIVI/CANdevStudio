@@ -23,6 +23,7 @@ struct CanDeviceInterface {
     virtual bool connectDevice() = 0;
     virtual void disconnectDevice() = 0;
     virtual qint64 framesAvailable() = 0;
+    virtual void clearCallbacks() = 0;
 
     virtual QCanBusFrame readFrame() = 0;
 };

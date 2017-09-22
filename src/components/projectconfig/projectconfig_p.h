@@ -101,8 +101,11 @@ public:
             auto conf = component.getQConfig();
 
             PropertyEditorDialog e(conf.get());
-            e.exec();
-            //FIXME: act on accepted
+            if (e.exec() == QDialog::Accepted)
+            {
+                component.setConfig(*conf);
+            }
+
         });
 
         contextMenu.addAction(&action1);

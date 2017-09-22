@@ -101,6 +101,11 @@ struct CanDeviceQt : public CanDeviceInterface {
         }
     }
 
+    virtual void clearCallbacks() override
+    {
+        _device->disconnect();
+    }
+
 private:
     std::unique_ptr<QCanBusDevice> _device;
 };

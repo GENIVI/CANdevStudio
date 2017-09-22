@@ -69,3 +69,8 @@ bool CanRawSender::mainWidgetDocked() const
 {
     return d_ptr->docked;
 }
+
+ComponentInterface::ComponentProperties CanRawSender::getSupportedProperties() const
+{
+    return d_ptr->getSupportedProperties();
+}

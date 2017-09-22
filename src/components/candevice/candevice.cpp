@@ -2,7 +2,7 @@
 #include "candevice_p.h"
 #include <QtCore/QQueue>
 #include <QVariant>
-
+#include <iostream>
 CanDevice::CanDevice()
     : d_ptr(new CanDevicePrivate())
 {
@@ -17,10 +17,19 @@ CanDevice::~CanDevice()
 {
 }
 
-bool CanDevice::init(const QString& backend, const QString& interface)
+bool CanDevice::init(const QString& backend, const QString& interface, bool saveConfig)
 {
     Q_D(CanDevice);
     QString errorString;
+
+    if (saveConfig)
+    {
+        d->_props[d->_backendProperty] = backend;
+        d->_props[d->_interfaceProperty] = interface;
+    }
+
+    if (d->_initialized)
+        d->_canDevice.clearCallbacks();
 
     d->_initialized = false;
 
@@ -33,6 +42,19 @@ bool CanDevice::init(const QString& backend, const QString& interface)
     }
 
     return d->_initialized;
+}
+
+bool CanDevice::init()
+{
+    Q_D(CanDevice);
+    if (d->_props.count(d->_backendProperty) != 1 ||
+            d->_props.count(d->_backendProperty) != 1)
+    {
+        return false;
+    }
+
+    return init(d->_props[d->_backendProperty].toString(),
+            d->_props[d->_backendProperty].toString(), false);
 }
 
 void CanDevice::sendFrame(const QCanBusFrame& frame)
@@ -54,6 +76,11 @@ void CanDevice::sendFrame(const QCanBusFrame& frame)
         emit frameSent(status, frame);
         d->_sendQueue.takeFirst();
     }
+}
+
+ComponentInterface::ComponentProperties CanDevice::getSupportedProperties() const
+{
+    return d_ptr->_supportedProps;
 }
 
 void CanDevice::framesReceived()
@@ -103,15 +130,36 @@ QJsonObject CanDevice::getConfig() const
 
 void CanDevice::setConfig(const QObject& qobject)
 {
+    Q_D(CanDevice);
 
+    for (const auto& p: getSupportedProperties())
+    {
+        QVariant v = qobject.property(p.first.toStdString().c_str());
+        if (!v.isValid() || v.type() != p.second.first)
+            continue;
+
+        d->_props[p.first] = v;
+    }
+
+    init();
 }
 
 std::shared_ptr<QObject> CanDevice::getQConfig() const
 {
-//FIXME: implement something useful
+    const Q_D(CanDevice);
+
     std::shared_ptr<QObject> q = std::make_shared<QObject>();
+
     QStringList props;
-    props.push_back("objectName");
+    for (auto& p: getSupportedProperties())
+    {
+        if (!p.second.second) // property not editable
+            continue;
+
+        props.push_back(p.first);
+        q->setProperty(p.first.toStdString().c_str(), d->_props.at(p.first));
+    }
+
     q->setProperty("exposedProperties", props);
 
     return q;

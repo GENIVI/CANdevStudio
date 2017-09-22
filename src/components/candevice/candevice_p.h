@@ -16,6 +16,17 @@ public:
     QVector<QCanBusFrame> _sendQueue;
     CanDeviceInterface& _canDevice;
     bool _initialized{ false };
+
+    const QString _backendProperty = "backend";
+    const QString _interfaceProperty = "interface";
+
+    ComponentInterface::ComponentProperties _supportedProps = {
+            {_backendProperty,   {QVariant::String, true}},
+            {_interfaceProperty, {QVariant::String, true}}
+    };
+
+    std::map<QString, QVariant> _props;
+
 };
 
 #endif /* !__CANDEVICE_P_H */

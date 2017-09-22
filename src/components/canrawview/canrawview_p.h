@@ -97,6 +97,13 @@ public:
         return true;
     }
 
+    /// \brief Used to get list of properties supported by component
+    /// @return supported properties
+    ComponentInterface::ComponentProperties getSupportedProperties() const
+    {
+        return props;
+    }
+
 private:
     void writeColumnsOrder(QJsonObject& json) const
     {
@@ -319,5 +326,6 @@ private:
     Qt::SortOrder _currentSortOrder{ Qt::AscendingOrder };
     QStringList _columnsOrder;
     CanRawView* q_ptr;
+    ComponentInterface::ComponentProperties props;
 };
 #endif // CANRAWVIEW_P_H
