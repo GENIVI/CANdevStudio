@@ -32,3 +32,9 @@ target_link_libraries(common_test candevice Qt5::Core Qt5::SerialBus Qt5::Test n
 target_compile_options(common_test PRIVATE $<$<CXX_COMPILER_ID:GNU>:-fno-devirtualize>)
 add_test( NAME CommonTest COMMAND common_test)
 
+
+set(CONFIG_SOURCE ${PROJECT_SOURCE_DIR}/tests/configfiles)
+set(CONFIG_DESTINATION ${PROJECT_BINARY_DIR}/tests/configfiles)
+add_custom_command(TARGET canrawsender_test canrawviewmodel_test POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E remove_directory ${CONFIG_DESTINATION}
+    COMMAND ${CMAKE_COMMAND} -E copy_directory ${CONFIG_SOURCE} ${CONFIG_DESTINATION})
