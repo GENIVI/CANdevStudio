@@ -13,11 +13,12 @@ void CanRawSenderPrivate::setSimulationState(bool state)
 
 void CanRawSenderPrivate::saveSettings(QJsonObject& json) const
 {
-    QJsonObject jSortingObject;
-    QJsonArray lineArray;
-    writeColumnsOrder(json);
-    writeSortingRules(jSortingObject);
-    json["sorting"] = std::move(jSortingObject);
+    /*
+        QJsonObject jSortingObject;
+        QJsonArray lineArray;
+        writeColumnsOrder(json);
+        writeSortingRules(jSortingObject);
+        json["sorting"] = std::move(jSortingObject);
 
     for (const auto& lineItem : _lines) {
         QJsonObject lineObject;
@@ -26,11 +27,12 @@ void CanRawSenderPrivate::saveSettings(QJsonObject& json) const
     }
 
     json["content"] = std::move(lineArray);
+    */
 }
 
 int CanRawSenderPrivate::getLineCount() const
 {
-    return _lines.size();
+    // return _lines.size();
 }
 
 void CanRawSenderPrivate::writeColumnsOrder(QJsonObject& json) const
@@ -57,7 +59,7 @@ void CanRawSenderPrivate::removeRowsSelectedByMouse()
 
     for (QModelIndex n : tmp) {
         _tvModel.removeRow(n.row()); // Delete line from table view
-        _lines.erase(_lines.begin() + n.row()); // Delete lines also from collection
+        //_lines.erase(_lines.begin() + n.row()); // Delete lines also from collection
         // TODO: check if works when the collums was sorted before
     }
 }
@@ -65,16 +67,54 @@ void CanRawSenderPrivate::removeRowsSelectedByMouse()
 void CanRawSenderPrivate::addNewItem()
 {
     QList<QStandardItem*> list{};
+    list.append(new QStandardItem(QString::number(_rowID)));
+    list.append(new QStandardItem(QString::number(0)));
+    list.append(new QStandardItem(QString::number(0)));
+    list.append(new QStandardItem(QString::number(0)));
+
+    list.append(new QStandardItem(QString::number(0))); // checkbox
+    list.append(new QStandardItem(QString::number(0))); // send button
+
     _tvModel.appendRow(list);
-    auto newLine = std::make_unique<NewLineManager>(q_ptr, _simulationState, _nlmFactory);
+    //auto newLine = std::make_unique<NewLineManager>(q_ptr, _simulationState, _nlmFactory);
 
-    using It = NewLineManager::ColNameIterator;
+    int lastRowIndex = _tvModel.rowCount() - 1;
+    QModelIndex index1 = _sortModel.index(lastRowIndex, 4); // checkbox
+    QModelIndex index2 = _sortModel.index(lastRowIndex, 5); // send button
+    _ui.setWidgetPersistent(index1); // set widget always visible
+    _ui.setWidgetPersistent(index2);
+    _rowID++;
 
-    for (NewLineManager::ColName ii : It{ NewLineManager::ColName::IdLine }) {
-        _ui.setIndexWidget(
-            _tvModel.index(_tvModel.rowCount() - 1, static_cast<int>(ii)), newLine->GetColsWidget(It{ ii }));
+
+//using It = NewLineManager::ColNameIterator;
+    //for (NewLineManager::ColName ii : It{ NewLineManager::ColName::IdLine }) {
+    //    _ui.setIndexWidget(
+    //        _tvModel.index(_tvModel.rowCount() - 1, static_cast<int>(ii)), newLine->GetColsWidget(It{ ii }));
+    //
+    //_lines.push_back(std::move(newLine));
+//	}
+}
+/**
+*   @brief  Function sets current sort settings and calls actual sort function
+*   @param  clickedIndex index of last clicked column
+*/
+void CanRawSenderPrivate::sort(const int clickedIndex)
+{
+    _currentSortOrder = _ui.getSortOrder();
+    _sortIndex = clickedIndex;
+
+    if (_prevIndex == clickedIndex) {
+        if (_currentSortOrder == Qt::DescendingOrder) {
+            _ui.setSorting(_sortIndex, Qt::DescendingOrder);
+        } else {
+            _ui.setSorting(0, Qt::AscendingOrder);
+            _prevIndex = 0;
+            _sortIndex = 0;
+        }
+    } else {
+        _ui.setSorting(_sortIndex, Qt::AscendingOrder);
+        _prevIndex = clickedIndex;
     }
-    _lines.push_back(std::move(newLine));
 }
 
 bool CanRawSenderPrivate::columnAdopt(QJsonObject const& json)
@@ -227,13 +267,14 @@ bool CanRawSenderPrivate::contentAdopt(QJsonObject const& json)
 
         // Add new lines with dependencies
         addNewItem();
+        /*
         if (_lines.back()->RestoreLine(id, data, interval, loop) == false) {
             _tvModel.removeRow(_lines.size() - 1); // Delete line from table view
             _lines.erase(_lines.end() - 1); // Delete lines also from collection
             cds_warn("Problem with a validation of line occurred.");
         } else {
             cds_info("New line was adopted correctly.");
-        }
+        }*/
     }
 
     return true;
