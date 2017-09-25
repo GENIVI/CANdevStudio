@@ -83,12 +83,37 @@ QJsonObject CanRawView::getConfig() const
 
 void CanRawView::setConfig(const QObject& qobject)
 {
-    // FIXME: implement
+    Q_D(CanRawView);
+
+    for (const auto& p: getSupportedProperties())
+    {
+        QVariant v = qobject.property(p.first.toStdString().c_str());
+        if (!v.isValid() || v.type() != p.second.first)
+            continue;
+
+        d->_props[p.first] = v;
+    }
 }
 
 std::shared_ptr<QObject> CanRawView::getQConfig() const
 {
-    throw std::runtime_error("Not implemented"); // FIXME: implement
+    const Q_D(CanRawView);
+
+    std::shared_ptr<QObject> q = std::make_shared<QObject>();
+
+    QStringList props;
+    for (auto& p: getSupportedProperties())
+    {
+        if (!p.second.second) // property not editable
+            continue;
+
+        props.push_back(p.first);
+        q->setProperty(p.first.toStdString().c_str(), d->_props.at(p.first));
+    }
+
+    q->setProperty("exposedProperties", props);
+
+    return q;
 }
 
 bool CanRawView::mainWidgetDocked() const

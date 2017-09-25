@@ -64,7 +64,7 @@ void CanRawSenderPrivate::removeRowsSelectedByMouse()
 
 ComponentInterface::ComponentProperties CanRawSenderPrivate::getSupportedProperties() const
 {
-    return props;
+    return _supportedProps;
 }
 
 void CanRawSenderPrivate::addNewItem()

@@ -104,6 +104,7 @@ public:
     CRSGuiInterface& _ui;
     NLMFactoryInterface& _nlmFactory;
     bool docked{ true };
+    std::map<QString, QVariant> _props;
 
 private:
     std::vector<std::unique_ptr<NewLineManager>> _lines;
@@ -112,7 +113,7 @@ private:
     int _currentIndex;
     QStringList _columnsOrder;
     CanRawSender* q_ptr;
-    ComponentInterface::ComponentProperties props;
+    ComponentInterface::ComponentProperties _supportedProps;
 };
 
 #endif // CANRAWSENDER_P_H

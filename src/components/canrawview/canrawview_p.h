@@ -101,7 +101,7 @@ public:
     /// @return supported properties
     ComponentInterface::ComponentProperties getSupportedProperties() const
     {
-        return props;
+        return _supportedProps;
     }
 
 private:
@@ -318,6 +318,7 @@ public:
     bool _simStarted;
     CRVGuiInterface& _ui;
     bool docked{ true };
+    std::map<QString, QVariant> _props;
 
 private:
     int _rowID{ 0 };
@@ -326,6 +327,6 @@ private:
     Qt::SortOrder _currentSortOrder{ Qt::AscendingOrder };
     QStringList _columnsOrder;
     CanRawView* q_ptr;
-    ComponentInterface::ComponentProperties props;
+    ComponentInterface::ComponentProperties _supportedProps;
 };
 #endif // CANRAWVIEW_P_H
