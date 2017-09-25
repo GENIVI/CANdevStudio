@@ -3,5 +3,8 @@
         <file>files/images/car.png</file>
         <file>files/images/boat.png</file>
         <file>files/images/house.png</file>
+        <file>files/images/CDN_small.png</file>
+        <file>files/images/CRS_small.png</file>
+        <file>files/images/CRV_small.png</file>
     </qresource>
 </RCC>

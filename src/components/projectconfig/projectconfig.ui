@@ -30,7 +30,7 @@
     <widget class="DragWidget" name="frame">
      <property name="minimumSize">
       <size>
-       <width>94</width>
+       <width>140</width>
        <height>0</height>
       </size>
      </property>
@@ -54,8 +54,8 @@
        <rect>
         <x>10</x>
         <y>10</y>
-        <width>75</width>
-        <height>54</height>
+        <width>123</width>
+        <height>50</height>
        </rect>
       </property>
       <property name="cursor">
@@ -68,7 +68,7 @@
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap resource="../../../CANdevResources.qrc">:/images/files/images/car.png</pixmap>
+       <pixmap resource="../../../CANdevResources.qrc">:/images/files/images/CDN_small.png</pixmap>
       </property>
       <property name="scaledContents">
        <bool>true</bool>
@@ -79,15 +79,15 @@
        <rect>
         <x>10</x>
         <y>70</y>
-        <width>75</width>
-        <height>54</height>
+        <width>123</width>
+        <height>50</height>
        </rect>
       </property>
       <property name="text">
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap resource="../../../CANdevResources.qrc">:/images/files/images/boat.png</pixmap>
+       <pixmap resource="../../../CANdevResources.qrc">:/images/files/images/CRV_small.png</pixmap>
       </property>
      </widget>
      <widget class="QLabel" name="CanRawSenderModel">
@@ -95,15 +95,15 @@
        <rect>
         <x>10</x>
         <y>130</y>
-        <width>75</width>
-        <height>54</height>
+        <width>123</width>
+        <height>50</height>
        </rect>
       </property>
       <property name="text">
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap resource="../../../CANdevResources.qrc">:/images/files/images/house.png</pixmap>
+       <pixmap resource="../../../CANdevResources.qrc">:/images/files/images/CRS_small.png</pixmap>
       </property>
      </widget>
      <zorder>CanRawViewModel</zorder>
