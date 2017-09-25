@@ -1,7 +1,6 @@
 #include "uniquefiltermodel.h"
 #include "crv_enums.h"
 
-
 UniqueFilterModel::UniqueFilterModel(QObject* parent)
     : QSortFilterProxyModel(parent)
 {

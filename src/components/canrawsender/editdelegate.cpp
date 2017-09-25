@@ -58,6 +58,10 @@ void EditDelegate::prepareFrame(int section) const
         = model->findItems(QString::number(section), Qt::MatchExactly, 0); // match send button index with rowID index
 
     QStandardItem* item = frameDataIndexList.takeLast();
+    if (item == nullptr) {
+        cds_error("No matching between send button and row ID!");
+    }
+
     int dataRow = item->row(); // real item index in model
 
     QModelIndex frameIndex = model->index(dataRow, 1);

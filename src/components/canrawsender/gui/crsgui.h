@@ -1,6 +1,7 @@
 #ifndef CRSGUI_H
 #define CRSGUI_H
 
+#include "crs_enums.h"
 #include "crsguiinterface.h"
 #include "ui_canrawsender.h"
 #include <editdelegate.h>
@@ -52,7 +53,20 @@ struct CRSGui : public CRSGuiInterface {
         ui->tv->setModel(&_tvModel);
         ui->tv->setSelectionBehavior(QAbstractItemView::SelectRows);
         ui->tv->setItemDelegate(delegate);
+
+        ui->tv->horizontalHeader()->setSectionsMovable(true);
+        ui->tv->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
         ui->tv->setEditTriggers(QAbstractItemView::DoubleClicked);
+        ui->tv->setColumnHidden(0, true);
+
+        _tvModel.setHeaderData(0, Qt::Horizontal, QVariant::fromValue(CRS_ColType::uint_type), Qt::UserRole); // rowID
+        _tvModel.setHeaderData(
+            1, Qt::Horizontal, QVariant::fromValue(CRS_ColType::uint_type), Qt::UserRole); // frame ID
+        _tvModel.setHeaderData(2, Qt::Horizontal, QVariant::fromValue(CRS_ColType::hex_type), Qt::UserRole); // data
+        _tvModel.setHeaderData(
+            3, Qt::Horizontal, QVariant::fromValue(CRS_ColType::uint_type), Qt::UserRole); // interval
+        _tvModel.setHeaderData(
+            4, Qt::Horizontal, QVariant::fromValue(CRS_ColType::bool_type), Qt::UserRole); // checkbox
     }
 
     QModelIndexList getSelectedRows() override
@@ -70,9 +84,9 @@ struct CRSGui : public CRSGuiInterface {
         ui->tv->openPersistentEditor(index);
     }
 
-    void setModel(QAbstractItemModel* model) override
+    void setModel(QAbstractItemModel* _tvModel) override
     {
-        ui->tv->setModel(model);
+        ui->tv->setModel(_tvModel);
     }
 
     Qt::SortOrder getSortOrder() override

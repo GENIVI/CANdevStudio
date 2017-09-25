@@ -68,7 +68,7 @@ void CanRawSenderPrivate::removeRowsSelectedByMouse()
 void CanRawSenderPrivate::addNewItem()
 {
     QList<QStandardItem*> list{};
-    list.append(new QStandardItem(QString::number(_rowID)));
+    list.append(new QStandardItem(QString::number(_rowID++)));
     list.append(new QStandardItem(QString::number(0)));
     list.append(new QStandardItem(QString::number(0)));
     list.append(new QStandardItem(QString::number(0)));
@@ -77,13 +77,13 @@ void CanRawSenderPrivate::addNewItem()
     list.append(new QStandardItem(QString::number(0))); // send button
 
     _tvModel.appendRow(list);
+    //auto newLine = std::make_unique<NewLineManager>(q_ptr, _simulationState, _nlmFactory);
 
     int lastRowIndex = _tvModel.rowCount() - 1;
     QModelIndex index1 = _sortModel.index(lastRowIndex, 4); // checkbox
     QModelIndex index2 = _sortModel.index(lastRowIndex, 5); // send button
     _ui.setWidgetPersistent(index1); // set widget always visible
     _ui.setWidgetPersistent(index2);
-    _rowID++;
 
     /*
     auto newLine = std::make_unique<NewLineManager>(q_ptr, _simulationState, _nlmFactory);
