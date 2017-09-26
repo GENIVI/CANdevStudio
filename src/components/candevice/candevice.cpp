@@ -48,13 +48,13 @@ bool CanDevice::init()
 {
     Q_D(CanDevice);
     if (d->_props.count(d->_backendProperty) != 1 ||
-            d->_props.count(d->_backendProperty) != 1)
+            d->_props.count(d->_interfaceProperty) != 1)
     {
         return false;
     }
 
     return init(d->_props[d->_backendProperty].toString(),
-            d->_props[d->_backendProperty].toString(), false);
+            d->_props[d->_interfaceProperty].toString(), false);
 }
 
 void CanDevice::sendFrame(const QCanBusFrame& frame)
@@ -135,10 +135,8 @@ void CanDevice::setConfig(const QObject& qobject)
     for (const auto& p: getSupportedProperties())
     {
         QVariant v = qobject.property(p.first.toStdString().c_str());
-        if (!v.isValid() || v.type() != p.second.first)
-            continue;
-
-        d->_props[p.first] = v;
+        if (v.isValid() && v.type() == p.second.first)
+            d->_props[p.first] = v;
     }
 
     init();

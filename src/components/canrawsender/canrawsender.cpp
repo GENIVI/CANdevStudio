@@ -23,10 +23,9 @@ void CanRawSender::setConfig(const QObject& qobject)
     for (const auto& p: getSupportedProperties())
     {
         QVariant v = qobject.property(p.first.toStdString().c_str());
-        if (!v.isValid() || v.type() != p.second.first)
-            continue;
 
-        d->_props[p.first] = v;
+        if (v.isValid() && v.type() == p.second.first)
+            d->_props[p.first] = v;
     }
 }
 
