@@ -1,5 +1,6 @@
 #include "canrawsender.h"
 #include "canrawsender_p.h"
+#include "confighelpers.h"
 #include <cassert>
 
 CanRawSender::CanRawSender()
@@ -33,21 +34,7 @@ std::shared_ptr<QObject> CanRawSender::getQConfig() const
 {
     const Q_D(CanRawSender);
 
-    std::shared_ptr<QObject> q = std::make_shared<QObject>();
-
-    QStringList props;
-    for (auto& p: getSupportedProperties())
-    {
-        if (!p.second.second) // property not editable
-            continue;
-
-        props.push_back(p.first);
-        q->setProperty(p.first.toStdString().c_str(), d->_props.at(p.first));
-    }
-
-    q->setProperty("exposedProperties", props);
-
-    return q;
+    return configHelpers::getQConfig(getSupportedProperties(), d->_props);
 }
 
 void CanRawSender::startSimulation()
