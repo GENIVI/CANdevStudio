@@ -47,14 +47,20 @@ bool CanDevice::init(const QString& backend, const QString& interface, bool save
 bool CanDevice::init()
 {
     Q_D(CanDevice);
-    if (d->_props.count(d->_backendProperty) != 1 ||
-            d->_props.count(d->_interfaceProperty) != 1)
-    {
-        return false;
-    }
 
-    return init(d->_props[d->_backendProperty].toString(),
-            d->_props[d->_interfaceProperty].toString(), false);
+    const auto& props   = d->_props;
+    const auto& backend = d->_backendProperty;
+    const auto& iface   = d->_interfaceProperty;
+
+    // check if required properties are set
+    const bool cond = (props.count(backend) != 1)
+                   || (props.count(iface) != 1);
+
+    return (true == cond)
+              ? false
+              : init(props.at(backend).toString()
+                   , props.at(iface).toString()
+                   , false);
 }
 
 void CanDevice::sendFrame(const QCanBusFrame& frame)
