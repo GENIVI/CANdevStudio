@@ -8,9 +8,11 @@
 #include <map>
 #include <memory>
 
-namespace configHelpers {
+class configHelpers
+{
 
-std::shared_ptr<QObject> getQConfig(const ComponentInterface::ComponentProperties& sp,
+public:
+static std::shared_ptr<QObject> getQConfig(const ComponentInterface::ComponentProperties& sp,
         const std::map<QString, QVariant>& properties)
 {
     std::shared_ptr<QObject> q = std::make_shared<QObject>();
@@ -30,6 +32,6 @@ std::shared_ptr<QObject> getQConfig(const ComponentInterface::ComponentPropertie
     return q;
 }
 
-} // namespace configHelpers
+};
 
 #endif /* SRC_COMMON_CONFIGHELPERS_H_ */
