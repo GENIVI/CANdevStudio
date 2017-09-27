@@ -33,6 +33,7 @@ void CanRawSenderPrivate::saveSettings(QJsonObject& json) const
 int CanRawSenderPrivate::getLineCount() const
 {
     // return _lines.size();
+    return _tvModel.rowCount();
 }
 
 void CanRawSenderPrivate::writeColumnsOrder(QJsonObject& json) const
@@ -76,7 +77,6 @@ void CanRawSenderPrivate::addNewItem()
     list.append(new QStandardItem(QString::number(0))); // send button
 
     _tvModel.appendRow(list);
-    //auto newLine = std::make_unique<NewLineManager>(q_ptr, _simulationState, _nlmFactory);
 
     int lastRowIndex = _tvModel.rowCount() - 1;
     QModelIndex index1 = _sortModel.index(lastRowIndex, 4); // checkbox
@@ -85,14 +85,16 @@ void CanRawSenderPrivate::addNewItem()
     _ui.setWidgetPersistent(index2);
     _rowID++;
 
+    /*
+    auto newLine = std::make_unique<NewLineManager>(q_ptr, _simulationState, _nlmFactory);
+    using It = NewLineManager::ColNameIterator;
+    for (NewLineManager::ColName ii : It{ NewLineManager::ColName::IdLine }) {
+        _ui.setIndexWidget(
+            _tvModel.index(_tvModel.rowCount() - 1, static_cast<int>(ii)), newLine->GetColsWidget(It{ ii }));
 
-//using It = NewLineManager::ColNameIterator;
-    //for (NewLineManager::ColName ii : It{ NewLineManager::ColName::IdLine }) {
-    //    _ui.setIndexWidget(
-    //        _tvModel.index(_tvModel.rowCount() - 1, static_cast<int>(ii)), newLine->GetColsWidget(It{ ii }));
-    //
-    //_lines.push_back(std::move(newLine));
-//	}
+    _lines.push_back(std::move(newLine));
+        }
+    */
 }
 /**
 *   @brief  Function sets current sort settings and calls actual sort function

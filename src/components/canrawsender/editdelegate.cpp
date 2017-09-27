@@ -42,9 +42,9 @@ void EditDelegate::setModelData(QWidget* editor, QAbstractItemModel* model, cons
     {
         QCheckBox* checkBox = qobject_cast<QCheckBox*>(editor);
         if (checkBox->isChecked() == true) {
-            model->setData(index, QVariant::fromValue(true));
+            model->setData(index, QVariant::fromValue(1));
         } else {
-            model->setData(index, QVariant::fromValue(false));
+            model->setData(index, QVariant::fromValue(0));
         }
     } else {
         QItemDelegate::setModelData(editor, model, index);
