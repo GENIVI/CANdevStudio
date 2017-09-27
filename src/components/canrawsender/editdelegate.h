@@ -10,7 +10,7 @@ class EditDelegate : public QItemDelegate {
     Q_OBJECT
 
 public:
-    EditDelegate(QAbstractItemModel* model, CanRawSender* q, QWidget* parent);
+    EditDelegate(QAbstractItemModel* model = 0, CanRawSender* q = 0, QWidget* parent = 0);
 
     QWidget* createEditor(QWidget* parent, const QStyleOptionViewItem& option, const QModelIndex& index) const override;
     void setEditorData(QWidget* editor, const QModelIndex& index) const override;

@@ -6,7 +6,7 @@
 #include <QStyledItemDelegate>
 #include <log.h>
 
-EditDelegate::EditDelegate(QAbstractItemModel* model = 0, CanRawSender* q = 0, QWidget* parent = 0)
+EditDelegate::EditDelegate(QAbstractItemModel* model, CanRawSender* q, QWidget* parent)
     : canRawSender(q)
     , QItemDelegate(parent)
 {
