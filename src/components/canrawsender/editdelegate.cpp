@@ -4,6 +4,7 @@
 #include <QItemDelegate>
 #include <QRegExpValidator>
 #include <QStyledItemDelegate>
+#include <log.h>
 
 EditDelegate::EditDelegate(QAbstractItemModel* model = 0, CanRawSender* q = 0, QWidget* parent = 0)
     : canRawSender(q)
