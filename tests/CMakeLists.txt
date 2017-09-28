@@ -17,6 +17,11 @@ target_link_libraries(canrawsendermodel_test canrawsender Qt5::Core Qt5::SerialB
 target_compile_options(canrawsendermodel_test PRIVATE $<$<CXX_COMPILER_ID:GNU>:-fno-devirtualize>)
 add_test( NAME CanRawSenderModelTest COMMAND canrawsendermodel_test)
 
+add_executable(canrawview_test canrawview_test.cpp)
+target_link_libraries(canrawview_test canrawview Qt5::Core Qt5::SerialBus Qt5::Test cds-common)
+target_compile_options(canrawview_test PRIVATE $<$<CXX_COMPILER_ID:GNU>:-fno-devirtualize>)
+add_test( NAME CanRawViewTest COMMAND canrawview_test)
+
 add_executable(canrawviewmodel_test canrawviewmodel_test.cpp)
 target_link_libraries(canrawviewmodel_test canrawview Qt5::Core Qt5::SerialBus Qt5::Test nodes cds-common projectconfig)
 target_compile_options(canrawviewmodel_test PRIVATE $<$<CXX_COMPILER_ID:GNU>:-fno-devirtualize>)
