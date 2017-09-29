@@ -1,4 +1,5 @@
 #define CATCH_CONFIG_RUNNER
+#include <QCanBusFrame>
 #include <QSignalSpy>
 #include <QStandardItemModel>
 #include <QTableView>
@@ -46,7 +47,6 @@ TEST_CASE("Initialize table", "[canrawview]")
 {
 
     //  Q_D(CanRawView);
-
     Mock<CRVGuiInterface> crvMock;
     Fake(Dtor(crvMock));
 
@@ -58,26 +58,28 @@ TEST_CASE("Initialize table", "[canrawview]")
     Fake(Method(crvMock, setSorting));
 
     Fake(Method(crvMock, initTableView));
+    When(Method(crvMock, mainWidget)).Return(NULL);
     When(Method(crvMock, isViewFrozen)).Return(false);
     When(Method(crvMock, getSortOrder)).Return(Qt::AscendingOrder);
     When(Method(crvMock, getClickedColumn)).Return("rowID", "time", "id", "dir", "dlc", "data");
-    When(Method(crvMock, isColumnHidden)).Return(true);
+    When(Method(crvMock, isColumnHidden)).Return(true, false, false, false, false, false);
 
     CRVGuiInterface& i = crvMock.get();
-
-    i.setSorting(0, Qt::AscendingOrder);
-    i.getClickedColumn(0);
-    i.isColumnHidden(0);
-
-    Verify(Method(crvMock, setSorting).Using(0, Qt::AscendingOrder));
-    Verify(Method(crvMock, getClickedColumn).Using(0));
-    Verify(Method(crvMock, getClickedColumn).Using(0));
-
     CanRawView canRawView{ CanRawViewCtx(&i) };
+
+    // Verify(Method(crvMock, setSorting).Using(0, Qt::AscendingOrder));
+    // Verify(Method(crvMock, getClickedColumn).Using(0));
+    // Verify(Method(crvMock, getClickedColumn).Using(0));
+
     REQUIRE_NOTHROW(canRawView.startSimulation());
 
     CanRawViewPrivate* d_ptr = canRawView.d_func();
     CHECK(d_ptr != nullptr);
+
+    CHECK(canRawView.mainWidgetDocked() == true);
+    CHECK(canRawView.mainWidget() == nullptr);
+
+    REQUIRE_NOTHROW(canRawView.stopSimulation());
 }
 
 TEST_CASE("Unique filter test", "[canrawview]")
@@ -100,6 +102,9 @@ TEST_CASE("Unique filter test", "[canrawview]")
 
     _uniqueModel.setSourceModel(&_tvModel);
     _tableView.setModel(&_uniqueModel);
+
+    QCanBusFrame testFrame;
+    testFrame.setFrameId(123);
 
     // rowID, time, frameID, data//
     addNewFrame(rowID, 0.20, 1, 0, _tvModel, _uniqueModel);
