@@ -7,10 +7,12 @@
 #include "modeltoolbutton.h"
 #include "ui_projectconfig.h"
 #include <QtWidgets/QPushButton>
+#include <QMenu>
 #include <log.h>
 #include <modelvisitor.h> // apply_model_visitor
 #include <nodes/Node>
 #include <projectconfig/candevicemodel.h>
+#include <propertyeditor/propertyeditordialog.h>
 
 namespace Ui {
 class ProjectConfigPrivate;
@@ -21,8 +23,8 @@ class ProjectConfigPrivate : public QWidget {
     Q_DECLARE_PUBLIC(ProjectConfig)
 
 public:
-    ProjectConfigPrivate(ProjectConfig* q)
-        : _graphView(new FlowViewWrapper(&_graphScene))
+    ProjectConfigPrivate(ProjectConfig* q, QWidget* parent)
+        : QWidget(parent), _graphView(new FlowViewWrapper(&_graphScene))
         , _ui(std::make_unique<Ui::ProjectConfigPrivate>())
         , q_ptr(q)
     {
@@ -35,6 +37,8 @@ public:
         connect(&_graphScene, &QtNodes::FlowScene::nodeDeleted, this, &ProjectConfigPrivate::nodeDeletedCallback);
         connect(&_graphScene, &QtNodes::FlowScene::nodeDoubleClicked, this,
             &ProjectConfigPrivate::nodeDoubleClickedCallback);
+        connect(&_graphScene, &QtNodes::FlowScene::nodeContextMenu, this,
+            &ProjectConfigPrivate::nodeContextMenuCallback);
 
         _ui->setupUi(this);
         _ui->layout->addWidget(_graphView);
@@ -73,11 +77,7 @@ public:
     void nodeDeletedCallback(QtNodes::Node& node)
     {
         Q_Q(ProjectConfig);
-        auto dataModel = node.nodeDataModel();
-        assert(nullptr != dataModel);
-
-        auto iface = dynamic_cast<ComponentModelInterface*>(dataModel);
-        auto& component = iface->getComponent();
+        auto& component = getComponent(node);
 
         emit q->handleWidgetDeletion(component.mainWidget());
     }
@@ -85,13 +85,35 @@ public:
     void nodeDoubleClickedCallback(QtNodes::Node& node)
     {
         Q_Q(ProjectConfig);
-        auto dataModel = node.nodeDataModel();
-        assert(nullptr != dataModel);
-
-        auto iface = dynamic_cast<ComponentModelInterface*>(dataModel);
-        auto& component = iface->getComponent();
+        auto& component = getComponent(node);
 
         emit q->handleWidgetShowing(component.mainWidget(), component.mainWidgetDocked());
+    }
+
+    void nodeContextMenuCallback(QtNodes::Node& node, const QPointF& pos)
+    {
+        QMenu contextMenu(tr("Node options"), this);
+
+        QAction action1("Properties", this);
+        connect(&action1, &QAction::triggered, [this, &node]()
+        {
+            auto& component = getComponent(node);
+            auto conf = component.getQConfig();
+
+            PropertyEditorDialog e(conf.get());
+            if (e.exec() == QDialog::Accepted)
+            {
+                component.setConfig(*conf);
+            }
+
+        });
+
+        contextMenu.addAction(&action1);
+
+        auto pos1 = mapToGlobal(_graphView->mapFromScene(pos));
+        pos1.setX(pos1.x() + 32); // FIXME: these values are hardcoded and should not be here
+        pos1.setY(pos1.y() + 10); //        find the real cause of misalignment of context menu
+        contextMenu.exec(pos1);
     }
 
 private:
@@ -99,5 +121,15 @@ private:
     FlowViewWrapper* _graphView;
     std::unique_ptr<Ui::ProjectConfigPrivate> _ui;
     ProjectConfig* q_ptr;
+
+    ComponentInterface& getComponent(QtNodes::Node& node)
+    {
+        auto dataModel = node.nodeDataModel();
+        assert(nullptr != dataModel);
+
+        auto iface = dynamic_cast<ComponentModelInterface*>(dataModel);
+        auto& component = iface->getComponent();
+        return component;
+    }
 };
 #endif // PROJECTCONFIG_P_H

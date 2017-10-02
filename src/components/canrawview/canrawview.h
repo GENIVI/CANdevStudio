@@ -31,6 +31,11 @@ public:
     void setConfig(const QJsonObject& json) override;
 
     /**
+     *  @see ComponentInterface
+     */
+    void setConfig(const QObject& qobject) override;
+
+    /**
     *   @see ComponentInterface
     */
     QJsonObject getConfig() const override;
@@ -38,7 +43,17 @@ public:
     /**
     *   @see ComponentInterface
     */
+    std::shared_ptr<QObject> getQConfig() const override;
+
+    /**
+    *   @see ComponentInterface
+    */
     bool mainWidgetDocked() const override;
+
+    /**
+    *   @see ComponentInterface
+    */
+    ComponentInterface::ComponentProperties getSupportedProperties() const override;
 
 signals:
     /**

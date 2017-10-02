@@ -1,6 +1,9 @@
 #include "candevice.h"
 #include "candevice_p.h"
+#include "confighelpers.h"
 #include <QtCore/QQueue>
+#include <QVariant>
+#include <iostream>
 
 CanDevice::CanDevice()
     : d_ptr(new CanDevicePrivate())
@@ -16,10 +19,19 @@ CanDevice::~CanDevice()
 {
 }
 
-bool CanDevice::init(const QString& backend, const QString& interface)
+bool CanDevice::init(const QString& backend, const QString& interface, bool saveConfig)
 {
     Q_D(CanDevice);
     QString errorString;
+
+    if (saveConfig)
+    {
+        d->_props[d->_backendProperty] = backend;
+        d->_props[d->_interfaceProperty] = interface;
+    }
+
+    if (d->_initialized)
+        d->_canDevice.clearCallbacks();
 
     d->_initialized = false;
 
@@ -32,6 +44,25 @@ bool CanDevice::init(const QString& backend, const QString& interface)
     }
 
     return d->_initialized;
+}
+
+bool CanDevice::init()
+{
+    Q_D(CanDevice);
+
+    const auto& props   = d->_props;
+    const auto& backend = d->_backendProperty;
+    const auto& iface   = d->_interfaceProperty;
+
+    // check if required properties are set
+    const bool cond = (props.count(backend) != 1)
+                   || (props.count(iface) != 1);
+
+    return (true == cond)
+              ? false
+              : init(props.at(backend).toString()
+                   , props.at(iface).toString()
+                   , false);
 }
 
 void CanDevice::sendFrame(const QCanBusFrame& frame)
@@ -53,6 +84,11 @@ void CanDevice::sendFrame(const QCanBusFrame& frame)
         emit frameSent(status, frame);
         d->_sendQueue.takeFirst();
     }
+}
+
+ComponentInterface::ComponentProperties CanDevice::getSupportedProperties() const
+{
+    return d_ptr->_supportedProps;
 }
 
 void CanDevice::framesReceived()
@@ -98,6 +134,27 @@ QJsonObject CanDevice::getConfig() const
 {
     // TODO
     return {};
+}
+
+void CanDevice::setConfig(const QObject& qobject)
+{
+    Q_D(CanDevice);
+
+    for (const auto& p: getSupportedProperties())
+    {
+        QVariant v = qobject.property(p.first.toStdString().c_str());
+        if (v.isValid() && v.type() == p.second.first)
+            d->_props[p.first] = v;
+    }
+
+    init();
+}
+
+std::shared_ptr<QObject> CanDevice::getQConfig() const
+{
+    const Q_D(CanDevice);
+
+    return configHelpers::getQConfig(getSupportedProperties(), d->_props);
 }
 
 void CanDevice::startSimulation()

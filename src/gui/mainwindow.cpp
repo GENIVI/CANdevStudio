@@ -148,7 +148,7 @@ bool MainWindow::createProjectConfig(const QString& name)
     if (!closeProjectConfig())
         return false;
 
-    projectConfig = std::make_unique<ProjectConfig>();
+    projectConfig = std::make_unique<ProjectConfig>(this);
 
     if (projectConfig) {
         projectConfig->setWindowTitle(name);

@@ -1,5 +1,6 @@
 #include "canrawsender.h"
 #include "canrawsender_p.h"
+#include "confighelpers.h"
 #include <cassert>
 
 CanRawSender::CanRawSender()
@@ -14,6 +15,26 @@ CanRawSender::CanRawSender(CanRawSenderCtx&& ctx)
 
 CanRawSender::~CanRawSender()
 {
+}
+
+void CanRawSender::setConfig(const QObject& qobject)
+{
+    Q_D(CanRawSender);
+
+    for (const auto& p: getSupportedProperties())
+    {
+        QVariant v = qobject.property(p.first.toStdString().c_str());
+
+        if (v.isValid() && v.type() == p.second.first)
+            d->_props[p.first] = v;
+    }
+}
+
+std::shared_ptr<QObject> CanRawSender::getQConfig() const
+{
+    const Q_D(CanRawSender);
+
+    return configHelpers::getQConfig(getSupportedProperties(), d->_props);
 }
 
 void CanRawSender::startSimulation()
@@ -58,4 +79,9 @@ QJsonObject CanRawSender::getConfig() const
 bool CanRawSender::mainWidgetDocked() const
 {
     return d_ptr->docked;
+}
+
+ComponentInterface::ComponentProperties CanRawSender::getSupportedProperties() const
+{
+    return d_ptr->getSupportedProperties();
 }

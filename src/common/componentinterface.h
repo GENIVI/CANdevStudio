@@ -2,7 +2,10 @@
 #define __COMPONENTINTERFACE_H
 
 #include <QtCore/QJsonObject>
+#include <QVariant>
 #include <functional>
+#include <map>
+#include <memory>
 
 class QWidget;
 
@@ -32,15 +35,37 @@ struct ComponentInterface {
 
     /**
     *   @brief  Sets configuration for component
-    *   @param  json configuratio to be aplied
+    *   @param  json configuration to be aplied
     */
     virtual void setConfig(const QJsonObject& json) = 0;
+
+    /**
+    *   @brief  Sets configuration for component
+    *   @param  QObject configuration to be aplied
+    */
+    virtual void setConfig(const QObject& qobject) = 0;
 
     /**
     *   @brief  Gets current component configuation
     *   @return current config
     */
     virtual QJsonObject getConfig() const = 0;
+
+    /**
+    *   @brief  Gets current component configuation
+    *   @return current config
+    */
+    virtual std::shared_ptr<QObject> getQConfig() const = 0;
+
+    using PropertyEditable = bool;
+    using ComponentProperties = std::map<QString,
+            std::pair<QVariant::Type, PropertyEditable>>;
+
+    /**
+     * Gets list of properties supported by this component
+     * @return list of supported properties
+     */
+    virtual ComponentProperties getSupportedProperties() const = 0;
 
     /**
     *   @brief  Gets components's main widget

@@ -14,7 +14,7 @@ class ProjectConfig : public QWidget {
     Q_DECLARE_PRIVATE(ProjectConfig)
 
 public:
-    explicit ProjectConfig();
+    explicit ProjectConfig(QWidget* parent_);
     ~ProjectConfig();
     void closeEvent(QCloseEvent* e);
     QByteArray save();
@@ -29,11 +29,6 @@ signals:
     void stopSimulation();
     void startSimulation();
     void closeProject();
-
-private slots:
-    void nodeCreatedCallback(QtNodes::Node& node);
-    void nodeDeletedCallback(QtNodes::Node& node);
-    void nodeDoubleClickedCallback(QtNodes::Node& node);
 
 private:
     QScopedPointer<ProjectConfigPrivate> d_ptr;

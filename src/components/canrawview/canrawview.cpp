@@ -1,5 +1,6 @@
 #include "canrawview.h"
 #include "canrawview_p.h"
+#include "confighelpers.h"
 #include "log.h"
 #include <QtCore/QElapsedTimer>
 #include <QtCore/QList>
@@ -19,6 +20,11 @@ CanRawView::CanRawView(CanRawViewCtx&& ctx)
 
 CanRawView::~CanRawView()
 {
+}
+
+ComponentInterface::ComponentProperties CanRawView::getSupportedProperties() const
+{
+    return d_ptr->getSupportedProperties();
 }
 
 void CanRawView::startSimulation()
@@ -74,6 +80,25 @@ QJsonObject CanRawView::getConfig() const
     d_ptr->saveSettings(config);
 
     return config;
+}
+
+void CanRawView::setConfig(const QObject& qobject)
+{
+    Q_D(CanRawView);
+
+    for (const auto& p: getSupportedProperties())
+    {
+        QVariant v = qobject.property(p.first.toStdString().c_str());
+        if (v.isValid() && v.type() == p.second.first)
+            d->_props[p.first] = v;
+    }
+}
+
+std::shared_ptr<QObject> CanRawView::getQConfig() const
+{
+    const Q_D(CanRawView);
+
+    return configHelpers::getQConfig(getSupportedProperties(), d->_props);
 }
 
 bool CanRawView::mainWidgetDocked() const

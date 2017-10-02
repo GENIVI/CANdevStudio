@@ -62,6 +62,11 @@ void CanRawSenderPrivate::removeRowsSelectedByMouse()
     }
 }
 
+ComponentInterface::ComponentProperties CanRawSenderPrivate::getSupportedProperties() const
+{
+    return _supportedProps;
+}
+
 void CanRawSenderPrivate::addNewItem()
 {
     QList<QStandardItem*> list{};

@@ -67,6 +67,10 @@ public:
     /// \return true if configuration was adopted successfully, false otherwise
     bool restoreConfiguration(const QJsonObject& json);
 
+    /// \brief Used to get list of properties supported by component
+    /// @return supported properties
+    ComponentInterface::ComponentProperties getSupportedProperties() const;
+
 private:
     /// \brief This method writes columns order
     /// \param[in] json Json object
@@ -100,6 +104,7 @@ public:
     CRSGuiInterface& _ui;
     NLMFactoryInterface& _nlmFactory;
     bool docked{ true };
+    std::map<QString, QVariant> _props;
 
 private:
     std::vector<std::unique_ptr<NewLineManager>> _lines;
@@ -108,6 +113,7 @@ private:
     int _currentIndex;
     QStringList _columnsOrder;
     CanRawSender* q_ptr;
+    ComponentInterface::ComponentProperties _supportedProps;
 };
 
 #endif // CANRAWSENDER_P_H
