@@ -4,6 +4,7 @@
 #include "canrawsender.h"
 #include "gui/crsgui.h"
 #include "newlinemanager.h"
+#include "sortmodel.h"
 #include <QJsonObject>
 #include <QtGui/QStandardItemModel>
 #include <context.h>
@@ -29,14 +30,16 @@ public:
         , _ui(_ctx.get<CRSGuiInterface>())
         , _nlmFactory(_ctx.get<NLMFactoryInterface>())
         , _simulationState(false)
-        , _columnsOrder({ "Id", "Data", "Loop", "Interval", "" })
+        , _columnsOrder({ "rowID", "Id", "Data", "Interval", "Loop", "" })
         , q_ptr(q)
     {
         // NOTE: Implementation must be kept here. Otherwise VS2015 fails to link.
 
         _tvModel.setHorizontalHeaderLabels(_columnsOrder);
 
-        _ui.initTableView(_tvModel);
+        _ui.initTableView(_tvModel, q_ptr);
+        _sortModel.setSourceModel(&_tvModel);
+        _ui.setModel(&_sortModel);
 
         _ui.setAddCbk(std::bind(&CanRawSenderPrivate::addNewItem, this));
         _ui.setRemoveCbk(std::bind(&CanRawSenderPrivate::removeRowsSelectedByMouse, this));
@@ -45,6 +48,9 @@ public:
             docked = !docked;
             emit q_ptr->mainWidgetDockToggled(_ui.mainWidget());
         });
+
+        _ui.setSectionClikedCbk(std::bind(&CanRawSenderPrivate::sort, this, std::placeholders::_1));
+
     }
 
     /// \brief destructor
@@ -95,6 +101,8 @@ private slots:
     /// \brief This method adds new line to table
     void addNewItem();
 
+    void sort(const int clickedIndex);
+
 public:
     CanRawSenderCtx _ctx;
     CRSGuiInterface& _ui;
@@ -104,10 +112,16 @@ public:
 private:
     std::vector<std::unique_ptr<NewLineManager>> _lines;
     QStandardItemModel _tvModel;
+    SortModel _sortModel;
     bool _simulationState;
     int _currentIndex;
     QStringList _columnsOrder;
     CanRawSender* q_ptr;
+
+    int _rowID{ 0 };
+    int _prevIndex{ 0 };
+    int _sortIndex{ 0 };
+    Qt::SortOrder _currentSortOrder{ Qt::AscendingOrder };
 };
 
 #endif // CANRAWSENDER_P_H

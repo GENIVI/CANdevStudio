@@ -72,6 +72,9 @@
    </item>
    <item>
     <widget class="QTableView" name="tv">
+     <property name="editTriggers">
+      <set>QAbstractItemView::SelectedClicked</set>
+     </property>
      <property name="sortingEnabled">
       <bool>true</bool>
      </property>
