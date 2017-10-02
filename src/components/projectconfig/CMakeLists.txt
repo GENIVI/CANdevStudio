@@ -6,6 +6,9 @@ set(SRC
     canrawviewmodel.cpp
     canrawsendermodel.cpp
     candevicemodel.cpp
+    dragwidget.cpp
+    flowviewwrapper.cpp
+	../../../CANdevResources.qrc
 )
 
 add_library(${COMPONENT_NAME} ${SRC})

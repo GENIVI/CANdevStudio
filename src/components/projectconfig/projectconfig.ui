@@ -6,14 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>592</width>
+    <height>403</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>400</width>
-    <height>250</height>
+    <width>100</width>
+    <height>50</height>
    </size>
   </property>
   <property name="baseSize">
@@ -27,26 +27,102 @@
   </property>
   <layout class="QHBoxLayout" name="layout">
    <item>
-    <widget class="QToolBar" name="toolbar">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
+    <widget class="DragWidget" name="frame">
+     <property name="minimumSize">
+      <size>
+       <width>140</width>
+       <height>0</height>
+      </size>
      </property>
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
+     <property name="maximumSize">
+      <size>
+       <width>94</width>
+       <height>16777215</height>
+      </size>
      </property>
-     <attribute name="toolBarArea">
-      <enum>TopToolBarArea</enum>
-     </attribute>
-     <attribute name="toolBarBreak">
-      <bool>false</bool>
-     </attribute>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <property name="lineWidth">
+      <number>1</number>
+     </property>
+     <widget class="QLabel" name="CanDeviceModel">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>123</width>
+        <height>50</height>
+       </rect>
+      </property>
+      <property name="cursor">
+       <cursorShape>OpenHandCursor</cursorShape>
+      </property>
+      <property name="toolTip">
+       <string>CanDeviceModel</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap resource="../../../CANdevResources.qrc">:/images/files/images/CDN_small.png</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="CanRawViewModel">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>70</y>
+        <width>123</width>
+        <height>50</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap resource="../../../CANdevResources.qrc">:/images/files/images/CRV_small.png</pixmap>
+      </property>
+     </widget>
+     <widget class="QLabel" name="CanRawSenderModel">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>130</y>
+        <width>123</width>
+        <height>50</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap resource="../../../CANdevResources.qrc">:/images/files/images/CRS_small.png</pixmap>
+      </property>
+     </widget>
+     <zorder>CanRawViewModel</zorder>
+     <zorder>CanRawSenderModel</zorder>
+     <zorder>CanDeviceModel</zorder>
     </widget>
    </item>
   </layout>
  </widget>
- <resources/>
+ <customwidgets>
+  <customwidget>
+   <class>DragWidget</class>
+   <extends>QFrame</extends>
+   <header>dragwidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="../../../CANdevResources.qrc"/>
+ </resources>
  <connections/>
 </ui>
