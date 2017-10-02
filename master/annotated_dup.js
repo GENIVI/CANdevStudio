@@ -18,6 +18,7 @@ var annotated_dup =
     [ "ComponentInterface", "struct_component_interface.html", "struct_component_interface" ],
     [ "ComponentModel", "class_component_model.html", "class_component_model" ],
     [ "ComponentModelInterface", "struct_component_model_interface.html", "struct_component_model_interface" ],
+    [ "configHelpers", "classconfig_helpers.html", null ],
     [ "Context", "struct_context.html", "struct_context" ],
     [ "CRSGui", "struct_c_r_s_gui.html", "struct_c_r_s_gui" ],
     [ "CRSGuiInterface", "struct_c_r_s_gui_interface.html", "struct_c_r_s_gui_interface" ],

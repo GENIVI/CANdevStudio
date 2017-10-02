@@ -4,6 +4,9 @@ var dir_fdedb0aba14d44ce9d99bc100e026e6a =
     [ "componentinterface.h", "componentinterface_8h.html", [
       [ "ComponentInterface", "struct_component_interface.html", "struct_component_interface" ]
     ] ],
+    [ "confighelpers.h", "confighelpers_8h.html", [
+      [ "configHelpers", "classconfig_helpers.html", null ]
+    ] ],
     [ "context.h", "context_8h.html", "context_8h" ],
     [ "enumiterator.h", "enumiterator_8h.html", [
       [ "EnumIterator", "class_enum_iterator.html", "class_enum_iterator" ]

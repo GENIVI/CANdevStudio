@@ -21,6 +21,7 @@ var searchData=
   ['componentmodel_3c_20canrawsender_2c_20canrawsendermodel_20_3e',['ComponentModel&lt; CanRawSender, CanRawSenderModel &gt;',['../class_component_model.html',1,'']]],
   ['componentmodel_3c_20canrawview_2c_20canrawviewmodel_20_3e',['ComponentModel&lt; CanRawView, CanRawViewModel &gt;',['../class_component_model.html',1,'']]],
   ['componentmodelinterface',['ComponentModelInterface',['../struct_component_model_interface.html',1,'']]],
+  ['confighelpers',['configHelpers',['../classconfig_helpers.html',1,'']]],
   ['context',['Context',['../struct_context.html',1,'']]],
   ['context_3c_20candeviceinterface_20_3e',['Context&lt; CanDeviceInterface &gt;',['../struct_context.html',1,'']]],
   ['context_3c_20crsguiinterface_2c_20nlmfactoryinterface_20_3e',['Context&lt; CRSGuiInterface, NLMFactoryInterface &gt;',['../struct_context.html',1,'']]],

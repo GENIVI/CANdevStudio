@@ -1,8 +1,8 @@
 <map id="src/components/projectconfig/canrawviewmodel.h" name="src/components/projectconfig/canrawviewmodel.h">
-<area shape="rect" id="node2" href="$componentmodel_8h.html" title="componentmodel.h" alt="" coords="380,95,527,121"/>
-<area shape="rect" id="node16" href="$canrawview_8h.html" title="canrawview.h" alt="" coords="774,95,879,121"/>
+<area shape="rect" id="node2" href="$componentmodel_8h.html" title="componentmodel.h" alt="" coords="407,95,553,121"/>
+<area shape="rect" id="node16" href="$canrawview_8h.html" title="canrawview.h" alt="" coords="839,95,945,121"/>
 <area shape="rect" id="node3" href="$projectconfig_8h.html" title="projectconfig.h" alt="" coords="19,169,135,196"/>
 <area shape="rect" id="node8" href="$log_8h.html" title="log.h" alt="" coords="319,169,372,196"/>
 <area shape="rect" id="node18" href="$componentinterface_8h.html" title="componentinterface.h" alt="" coords="1143,169,1305,196"/>
-<area shape="rect" id="node20" href="$context_8h.html" title="context.h" alt="" coords="785,169,868,196"/>
+<area shape="rect" id="node22" href="$context_8h.html" title="context.h" alt="" coords="735,169,817,196"/>
 </map>

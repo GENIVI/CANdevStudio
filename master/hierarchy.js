@@ -24,6 +24,7 @@ var hierarchy =
         [ "CanRawViewModel", "class_can_raw_view_model.html", null ]
       ] ]
     ] ],
+    [ "configHelpers", "classconfig_helpers.html", null ],
     [ "Context< Args >", "struct_context.html", null ],
     [ "Context< CanDeviceInterface >", "struct_context.html", null ],
     [ "Context< CRSGuiInterface, NLMFactoryInterface >", "struct_context.html", null ],

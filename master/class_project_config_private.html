@@ -132,8 +132,8 @@ Collaboration diagram for ProjectConfigPrivate:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aafa18198649caf9b6d26688316fe8906"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_project_config_private.html#aafa18198649caf9b6d26688316fe8906">ProjectConfigPrivate</a> (<a class="el" href="class_project_config.html">ProjectConfig</a> *q)</td></tr>
-<tr class="separator:aafa18198649caf9b6d26688316fe8906"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a479b2e8fca3a955306d1a3288f0f9173"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_project_config_private.html#a479b2e8fca3a955306d1a3288f0f9173">ProjectConfigPrivate</a> (<a class="el" href="class_project_config.html">ProjectConfig</a> *q, QWidget *parent)</td></tr>
+<tr class="separator:a479b2e8fca3a955306d1a3288f0f9173"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af458ae70e9b85a9755aeec050a20bea1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_project_config_private.html#af458ae70e9b85a9755aeec050a20bea1">~ProjectConfigPrivate</a> ()</td></tr>
 <tr class="separator:af458ae70e9b85a9755aeec050a20bea1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afec09471360417056bbfbd0f2dbf954b"><td class="memItemLeft" align="right" valign="top">QByteArray&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_project_config_private.html#afec09471360417056bbfbd0f2dbf954b">save</a> () const </td></tr>
@@ -148,9 +148,11 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a42fc95f0c72d4b373f034fa9ae48af4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0af542815bcee52c8db3c4d9849f3597"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_project_config_private.html#a0af542815bcee52c8db3c4d9849f3597">nodeDoubleClickedCallback</a> (QtNodes::Node &amp;node)</td></tr>
 <tr class="separator:a0af542815bcee52c8db3c4d9849f3597"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe13628c1f2a46a1d472b58079f81da9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_project_config_private.html#abe13628c1f2a46a1d472b58079f81da9">nodeContextMenuCallback</a> (QtNodes::Node &amp;node, const QPointF &amp;pos)</td></tr>
+<tr class="separator:abe13628c1f2a46a1d472b58079f81da9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="aafa18198649caf9b6d26688316fe8906"></a>
+<a class="anchor" id="a479b2e8fca3a955306d1a3288f0f9173"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -161,8 +163,18 @@ Public Member Functions</h2></td></tr>
           <td class="memname">ProjectConfigPrivate::ProjectConfigPrivate </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_project_config.html">ProjectConfig</a> *&#160;</td>
-          <td class="paramname"><em>q</em></td><td>)</td>
+          <td class="paramname"><em>q</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">QWidget *&#160;</td>
+          <td class="paramname"><em>parent</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -234,6 +246,40 @@ Public Member Functions</h2></td></tr>
           <td class="paramtype">const QByteArray &amp;&#160;</td>
           <td class="paramname"><em>data</em></td><td>)</td>
           <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="abe13628c1f2a46a1d472b58079f81da9"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ProjectConfigPrivate::nodeContextMenuCallback </td>
+          <td>(</td>
+          <td class="paramtype">QtNodes::Node &amp;&#160;</td>
+          <td class="paramname"><em>node</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QPointF &amp;&#160;</td>
+          <td class="paramname"><em>pos</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>

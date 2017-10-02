@@ -1,6 +1,6 @@
 var class_project_config =
 [
-    [ "ProjectConfig", "class_project_config.html#a600febf56740aa751b87321d7e51acaa", null ],
+    [ "ProjectConfig", "class_project_config.html#ac4511179192c6b95c3683007acc51573", null ],
     [ "~ProjectConfig", "class_project_config.html#a8581ca85aa5805e78bc493f04123b7a5", null ],
     [ "clearGraphView", "class_project_config.html#a3247826951e3f4972d4b309467c5c87b", null ],
     [ "closeEvent", "class_project_config.html#a19151c1dd5cf6c3a99985c1c3aa6b4b5", null ],

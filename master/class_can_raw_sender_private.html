@@ -157,6 +157,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a0bd20f11be7a9272e59ac84c9c6099fb"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_raw_sender_private.html#a0bd20f11be7a9272e59ac84c9c6099fb">restoreConfiguration</a> (const QJsonObject &amp;json)</td></tr>
 <tr class="memdesc:a0bd20f11be7a9272e59ac84c9c6099fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to restore rawsender configurations.  <a href="#a0bd20f11be7a9272e59ac84c9c6099fb">More...</a><br /></td></tr>
 <tr class="separator:a0bd20f11be7a9272e59ac84c9c6099fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8fcfa47333d9fc17eb75b7871a8ce6d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_component_interface.html#abae8e9374776c7527ab23d29c8e320f3">ComponentInterface::ComponentProperties</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_raw_sender_private.html#ac8fcfa47333d9fc17eb75b7871a8ce6d">getSupportedProperties</a> () const </td></tr>
+<tr class="memdesc:ac8fcfa47333d9fc17eb75b7871a8ce6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to get list of properties supported by component.  <a href="#ac8fcfa47333d9fc17eb75b7871a8ce6d">More...</a><br /></td></tr>
+<tr class="separator:ac8fcfa47333d9fc17eb75b7871a8ce6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -168,6 +171,8 @@ Public Attributes</h2></td></tr>
 <tr class="separator:aa543a815fbc1d7de277100ba88e8b33e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9009d78ec2f03f80cac9fe70bce6235c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_raw_sender_private.html#a9009d78ec2f03f80cac9fe70bce6235c">docked</a> { true }</td></tr>
 <tr class="separator:a9009d78ec2f03f80cac9fe70bce6235c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae506752d2d0fd3a2dceb4ed4e27d8187"><td class="memItemLeft" align="right" valign="top">std::map&lt; QString, QVariant &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_raw_sender_private.html#ae506752d2d0fd3a2dceb4ed4e27d8187">_props</a></td></tr>
+<tr class="separator:ae506752d2d0fd3a2dceb4ed4e27d8187"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This class is responsible for manage can raw sender window. </p>
@@ -256,6 +261,24 @@ Public Attributes</h2></td></tr>
 
 <p>This method return actual number of lines in table. </p>
 <dl class="section return"><dt>Returns</dt><dd>Line count </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ac8fcfa47333d9fc17eb75b7871a8ce6d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_component_interface.html#abae8e9374776c7527ab23d29c8e320f3">ComponentInterface::ComponentProperties</a> CanRawSenderPrivate::getSupportedProperties </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Used to get list of properties supported by component. </p>
+<dl class="section return"><dt>Returns</dt><dd>supported properties </dd></dl>
 
 </div>
 </div>
@@ -351,6 +374,18 @@ Public Attributes</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="struct_n_l_m_factory_interface.html">NLMFactoryInterface</a>&amp; CanRawSenderPrivate::_nlmFactory</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ae506752d2d0fd3a2dceb4ed4e27d8187"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::map&lt;QString, QVariant&gt; CanRawSenderPrivate::_props</td>
         </tr>
       </table>
 </div><div class="memdoc">

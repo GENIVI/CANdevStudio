@@ -4,6 +4,7 @@ var struct_can_device_interface =
     [ "framesReceived_t", "struct_can_device_interface.html#a0fcd238644d7fde2a4b4f7242fc0fa86", null ],
     [ "framesWritten_t", "struct_can_device_interface.html#a7297a3f6cbb3f1ba6f87c28c04df03a1", null ],
     [ "~CanDeviceInterface", "struct_can_device_interface.html#ad81788df9251ba0fa9a6b3cd854c9836", null ],
+    [ "clearCallbacks", "struct_can_device_interface.html#a45c6932479315663591a38c8947600e4", null ],
     [ "connectDevice", "struct_can_device_interface.html#ae93401fab526dc31098998e15baba1be", null ],
     [ "disconnectDevice", "struct_can_device_interface.html#a74c2c1e6158bf16ce936caf7838efca8", null ],
     [ "framesAvailable", "struct_can_device_interface.html#a20961a2ad09942ba9f847bd465201cba", null ],

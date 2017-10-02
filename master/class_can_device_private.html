@@ -141,6 +141,14 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a318ae2da3aedb5e84b53eac29cf19a9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a177efe7dfca88905f362d88f9ea0d088"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_device_private.html#a177efe7dfca88905f362d88f9ea0d088">_initialized</a> { false }</td></tr>
 <tr class="separator:a177efe7dfca88905f362d88f9ea0d088"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16652750e33c8c101369a742c1be27b6"><td class="memItemLeft" align="right" valign="top">const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_device_private.html#a16652750e33c8c101369a742c1be27b6">_backendProperty</a> = &quot;backend&quot;</td></tr>
+<tr class="separator:a16652750e33c8c101369a742c1be27b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20f388644b525498bf3e657e168bbac6"><td class="memItemLeft" align="right" valign="top">const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_device_private.html#a20f388644b525498bf3e657e168bbac6">_interfaceProperty</a> = &quot;interface&quot;</td></tr>
+<tr class="separator:a20f388644b525498bf3e657e168bbac6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea6db88af1007a48a9e7bbd869a25aeb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_component_interface.html#abae8e9374776c7527ab23d29c8e320f3">ComponentInterface::ComponentProperties</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_device_private.html#aea6db88af1007a48a9e7bbd869a25aeb">_supportedProps</a></td></tr>
+<tr class="separator:aea6db88af1007a48a9e7bbd869a25aeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab92f3ad3d1047b17c9adbcd9a13b86d9"><td class="memItemLeft" align="right" valign="top">std::map&lt; QString, QVariant &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_device_private.html#ab92f3ad3d1047b17c9adbcd9a13b86d9">_props</a></td></tr>
+<tr class="separator:ab92f3ad3d1047b17c9adbcd9a13b86d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a459e88a7efaea2bb9bbbee3bebeff5b7"></a>
@@ -168,6 +176,18 @@ Public Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a16652750e33c8c101369a742c1be27b6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QString CanDevicePrivate::_backendProperty = &quot;backend&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="a318ae2da3aedb5e84b53eac29cf19a9c"></a>
 <div class="memitem">
 <div class="memproto">
@@ -204,6 +224,30 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a20f388644b525498bf3e657e168bbac6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QString CanDevicePrivate::_interfaceProperty = &quot;interface&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ab92f3ad3d1047b17c9adbcd9a13b86d9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::map&lt;QString, QVariant&gt; CanDevicePrivate::_props</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="a3c82b49d7e18f6de1bbe995fc6c79c3b"></a>
 <div class="memitem">
 <div class="memproto">
@@ -214,6 +258,18 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+</div>
+</div>
+<a class="anchor" id="aea6db88af1007a48a9e7bbd869a25aeb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_component_interface.html#abae8e9374776c7527ab23d29c8e320f3">ComponentInterface::ComponentProperties</a> CanDevicePrivate::_supportedProps</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= {</div><div class="line">            {<a class="code" href="class_can_device_private.html#a16652750e33c8c101369a742c1be27b6">_backendProperty</a>,   {QVariant::String, <span class="keyword">true</span>}},</div><div class="line">            {<a class="code" href="class_can_device_private.html#a20f388644b525498bf3e657e168bbac6">_interfaceProperty</a>, {QVariant::String, <span class="keyword">true</span>}}</div><div class="line">    }</div></div><!-- fragment -->
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>

@@ -24,6 +24,7 @@ var searchData=
   ['checkboxinterface_2eh',['checkboxinterface.h',['../checkboxinterface_8h.html',1,'']]],
   ['componentinterface_2eh',['componentinterface.h',['../componentinterface_8h.html',1,'']]],
   ['componentmodel_2eh',['componentmodel.h',['../componentmodel_8h.html',1,'']]],
+  ['confighelpers_2eh',['confighelpers.h',['../confighelpers_8h.html',1,'']]],
   ['context_2eh',['context.h',['../context_8h.html',1,'']]],
   ['crsgui_2eh',['crsgui.h',['../crsgui_8h.html',1,'']]],
   ['crsguiinterface_2eh',['crsguiinterface.h',['../crsguiinterface_8h.html',1,'']]],

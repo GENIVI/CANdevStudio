@@ -137,7 +137,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:affc5a406f9e129e898c18ef7d32cc0a7"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_property_editor_dialog.html#affc5a406f9e129e898c18ef7d32cc0a7">~PropertyEditorDialog</a> ()</td></tr>
 <tr class="separator:affc5a406f9e129e898c18ef7d32cc0a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Class defining Property Editor Dialog </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a7610847818585ddf928be0fd78ba9053"></a>
 <div class="memitem">
 <div class="memproto">
@@ -161,6 +163,13 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">propertySource</td><td>Pointer to QObject whose properties will be edited. NOTE: properties are actually modified, even if dialog is closed by cancelling (emitting "rejected" signal). Please make sure to pass here pointer to a copy of object if you wish to preserve original values in case of cancelling. </td></tr>
+    <tr><td class="paramname">parent</td><td>optional pointer to parent widget </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -188,8 +197,8 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>src/gui/<a class="el" href="propertyeditordialog_8h_source.html">propertyeditordialog.h</a></li>
-<li>src/gui/<a class="el" href="propertyeditordialog_8cpp.html">propertyeditordialog.cpp</a></li>
+<li>src/components/propertyeditor/<a class="el" href="propertyeditordialog_8h_source.html">propertyeditordialog.h</a></li>
+<li>src/components/propertyeditor/<a class="el" href="propertyeditordialog_8cpp.html">propertyeditordialog.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

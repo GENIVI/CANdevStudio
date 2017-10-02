@@ -107,6 +107,7 @@ $(document).ready(function(){initNavTree('struct_component_interface.html','');}
 
 <div class="header">
   <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="struct_component_interface-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -129,6 +130,13 @@ Inheritance diagram for ComponentInterface:</div>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a13df045216851d6a58c84457c9b59669"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_component_interface.html#a13df045216851d6a58c84457c9b59669">PropertyEditable</a> = bool</td></tr>
+<tr class="separator:a13df045216851d6a58c84457c9b59669"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abae8e9374776c7527ab23d29c8e320f3"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_component_interface.html#abae8e9374776c7527ab23d29c8e320f3">ComponentProperties</a> = std::map&lt; QString, std::pair&lt; QVariant::Type, <a class="el" href="struct_component_interface.html#a13df045216851d6a58c84457c9b59669">PropertyEditable</a> &gt;&gt;</td></tr>
+<tr class="separator:abae8e9374776c7527ab23d29c8e320f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a3886256e350e41fe89687a5497308333"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_component_interface.html#a3886256e350e41fe89687a5497308333">~ComponentInterface</a> ()</td></tr>
@@ -145,9 +153,17 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a013aa8028160beb2dc2f5df803c3231c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_component_interface.html#a013aa8028160beb2dc2f5df803c3231c">setConfig</a> (const QJsonObject &amp;json)=0</td></tr>
 <tr class="memdesc:a013aa8028160beb2dc2f5df803c3231c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets configuration for component.  <a href="#a013aa8028160beb2dc2f5df803c3231c">More...</a><br /></td></tr>
 <tr class="separator:a013aa8028160beb2dc2f5df803c3231c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef2bc174edf7af83c52c4971ae8cc2cc"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_component_interface.html#aef2bc174edf7af83c52c4971ae8cc2cc">setConfig</a> (const QObject &amp;qobject)=0</td></tr>
+<tr class="memdesc:aef2bc174edf7af83c52c4971ae8cc2cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets configuration for component.  <a href="#aef2bc174edf7af83c52c4971ae8cc2cc">More...</a><br /></td></tr>
+<tr class="separator:aef2bc174edf7af83c52c4971ae8cc2cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac3cefe894fe3e7d69888b04e4cbcab9d"><td class="memItemLeft" align="right" valign="top">virtual QJsonObject&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_component_interface.html#ac3cefe894fe3e7d69888b04e4cbcab9d">getConfig</a> () const =0</td></tr>
 <tr class="memdesc:ac3cefe894fe3e7d69888b04e4cbcab9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets current component configuation.  <a href="#ac3cefe894fe3e7d69888b04e4cbcab9d">More...</a><br /></td></tr>
 <tr class="separator:ac3cefe894fe3e7d69888b04e4cbcab9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ea3f40f79c703dcda11a29bf4d65cfb"><td class="memItemLeft" align="right" valign="top">virtual std::shared_ptr&lt; QObject &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_component_interface.html#a0ea3f40f79c703dcda11a29bf4d65cfb">getQConfig</a> () const =0</td></tr>
+<tr class="memdesc:a0ea3f40f79c703dcda11a29bf4d65cfb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets current component configuation.  <a href="#a0ea3f40f79c703dcda11a29bf4d65cfb">More...</a><br /></td></tr>
+<tr class="separator:a0ea3f40f79c703dcda11a29bf4d65cfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a522477c76981a2921384cd6abb2839b4"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="struct_component_interface.html#abae8e9374776c7527ab23d29c8e320f3">ComponentProperties</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_component_interface.html#a522477c76981a2921384cd6abb2839b4">getSupportedProperties</a> () const =0</td></tr>
+<tr class="separator:a522477c76981a2921384cd6abb2839b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a80ad120ef1adf35f3d9e85ebd931d3dd"><td class="memItemLeft" align="right" valign="top">virtual QWidget *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_component_interface.html#a80ad120ef1adf35f3d9e85ebd931d3dd">mainWidget</a> ()=0</td></tr>
 <tr class="memdesc:a80ad120ef1adf35f3d9e85ebd931d3dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets components's main widget.  <a href="#a80ad120ef1adf35f3d9e85ebd931d3dd">More...</a><br /></td></tr>
 <tr class="separator:a80ad120ef1adf35f3d9e85ebd931d3dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -157,7 +173,32 @@ Public Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Interface to be implemented by every component. </p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+</div><h2 class="groupheader">Member Typedef Documentation</h2>
+<a class="anchor" id="abae8e9374776c7527ab23d29c8e320f3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="struct_component_interface.html#abae8e9374776c7527ab23d29c8e320f3">ComponentInterface::ComponentProperties</a> =  std::map&lt;QString, std::pair&lt;QVariant::Type, <a class="el" href="struct_component_interface.html#a13df045216851d6a58c84457c9b59669">PropertyEditable</a>&gt;&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a13df045216851d6a58c84457c9b59669"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="struct_component_interface.html#a13df045216851d6a58c84457c9b59669">ComponentInterface::PropertyEditable</a> =  bool</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a3886256e350e41fe89687a5497308333"></a>
 <div class="memitem">
 <div class="memproto">
@@ -207,6 +248,60 @@ Public Member Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>current config </dd></dl>
 
 <p>Implemented in <a class="el" href="class_can_device.html#a9fe8dfa884eb777130c506181ee8dc52">CanDevice</a>, <a class="el" href="class_can_raw_sender.html#a44f43f1a8c31b567ca4044f7b91d7286">CanRawSender</a>, and <a class="el" href="class_can_raw_view.html#aff603c7645cc138a8eb690cae7be452d">CanRawView</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0ea3f40f79c703dcda11a29bf4d65cfb"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual std::shared_ptr&lt;QObject&gt; ComponentInterface::getQConfig </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets current component configuation. </p>
+<dl class="section return"><dt>Returns</dt><dd>current config </dd></dl>
+
+<p>Implemented in <a class="el" href="class_can_device.html#ad279cdc21506d9285a218be228c7c815">CanDevice</a>, <a class="el" href="class_can_raw_sender.html#ab38e7d9f9b4fe3ea059a23f26dca7360">CanRawSender</a>, and <a class="el" href="class_can_raw_view.html#a36dff81123f872f28eaa39b9f8f0cd73">CanRawView</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a522477c76981a2921384cd6abb2839b4"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="struct_component_interface.html#abae8e9374776c7527ab23d29c8e320f3">ComponentProperties</a> ComponentInterface::getSupportedProperties </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Gets list of properties supported by this component </p><dl class="section return"><dt>Returns</dt><dd>list of supported properties </dd></dl>
+
+<p>Implemented in <a class="el" href="class_can_device.html#aea909f6dc3e6a863497c21e4878613f1">CanDevice</a>, <a class="el" href="class_can_raw_sender.html#ab10bb3d844dfa215b7d96a63a43077bb">CanRawSender</a>, and <a class="el" href="class_can_raw_view.html#aa288f2d6b4f17079aff745e3060d9002">CanRawView</a>.</p>
 
 </div>
 </div>
@@ -323,12 +418,46 @@ Public Member Functions</h2></td></tr>
 <p>Sets configuration for component. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">json</td><td>configuratio to be aplied </td></tr>
+    <tr><td class="paramname">json</td><td>configuration to be aplied </td></tr>
   </table>
   </dd>
 </dl>
 
 <p>Implemented in <a class="el" href="class_can_device.html#aaad6d1154b44d02d1368d69879241081">CanDevice</a>, <a class="el" href="class_can_raw_sender.html#a3d7ace2cb87bc0f0f5972f33226643da">CanRawSender</a>, and <a class="el" href="class_can_raw_view.html#a0e1d7de48f97af5b7876985054e70554">CanRawView</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aef2bc174edf7af83c52c4971ae8cc2cc"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void ComponentInterface::setConfig </td>
+          <td>(</td>
+          <td class="paramtype">const QObject &amp;&#160;</td>
+          <td class="paramname"><em>qobject</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets configuration for component. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">QObject</td><td>configuration to be aplied </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implemented in <a class="el" href="class_can_device.html#a677a69f71ce05d3e2aaf021df9bfc95a">CanDevice</a>, <a class="el" href="class_can_raw_sender.html#aa0c4114bdaeabccf1415bcec4c78bb8c">CanRawSender</a>, and <a class="el" href="class_can_raw_view.html#a8add9c18189d2ae7cf42324055c18e00">CanRawView</a>.</p>
 
 </div>
 </div>

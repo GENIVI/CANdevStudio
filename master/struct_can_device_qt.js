@@ -1,5 +1,6 @@
 var struct_can_device_qt =
 [
+    [ "clearCallbacks", "struct_can_device_qt.html#ac72f6a3d28040bd6d193d3dec8deec08", null ],
     [ "connectDevice", "struct_can_device_qt.html#a3217273ad521531a3250d35974e100c7", null ],
     [ "disconnectDevice", "struct_can_device_qt.html#a83ab2fc7d6d06b502b5df034bc28f0f1", null ],
     [ "framesAvailable", "struct_can_device_qt.html#af1bf6677b8ac4ebade2396c2eaa75f68", null ],
