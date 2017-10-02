@@ -252,6 +252,16 @@ TEST_CASE("WriteError causes emitting frameSent with framSent=false", "[candevic
     CHECK(isEqual(qvariant_cast<QCanBusFrame>(args.at(1)), frame));
 }
 
+TEST_CASE("read configuration to json format", "[candevice]")
+{
+    using namespace fakeit;
+    Mock<CanDeviceInterface> deviceMock;
+    Fake(Dtor(deviceMock));
+    CanDevice canDevice{ CanDeviceCtx(&deviceMock.get()) };
+    QJsonObject config = canDevice.getConfig();
+    CHECK(config.count() == 0); // no confiuration at the moment
+}
+
 int main(int argc, char* argv[])
 {
     bool haveDebug = std::getenv("CDS_DEBUG") != nullptr;

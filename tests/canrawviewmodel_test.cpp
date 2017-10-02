@@ -1,4 +1,9 @@
 #include <QtWidgets/QApplication>
+#include <QtCore/QDir>
+#include <QtCore/QFile>
+#include <QtCore/QJsonArray>
+#include <QtCore/QJsonDocument>
+#include <QtCore/QJsonObject>
 #include <projectconfig/canrawviewmodel.h>
 #include <datamodeltypes/canrawviewdata.h>
 #define CATCH_CONFIG_RUNNER
@@ -67,6 +72,141 @@ TEST_CASE("Test save configuration", "[canrawview]")
     CHECK(json.find("name") != json.end());
     CHECK(json.find("columns") != json.end());
     CHECK(json.find("scrolling") != json.end());
+}
+
+bool compareJson(const QJsonObject& patern, const QJsonObject& check)
+{
+    if (patern.contains("name") != check.contains("name"))
+        return false;
+
+    auto paternName = patern["name"].toString();
+    auto checkName = check["name"].toString();
+    if (paternName.compare(checkName))
+        return false;
+
+    if (patern.contains("scrolling") != check.contains("scrolling"))
+        return false;
+    if (patern["scrolling"].isBool() != check["scrolling"].isBool())
+        return false;
+    if (patern["scrolling"].toBool() != check["scrolling"].toBool())
+        return false;
+
+    if (patern.contains("columns") != check.contains("columns"))
+        return false;
+    if (patern["columns"].isArray() != check["columns"].isArray())
+        return false;
+
+    auto paternArray = patern["columns"].toArray();
+    auto checkArray = check["columns"].toArray();
+    if (paternArray.size() != checkArray.size())
+        return false;
+
+    for (int ii = 0; ii < paternArray.size(); ++ii) {
+        if (paternArray[ii].isObject() != checkArray[ii].isObject())
+            return false;
+        auto paternObj = paternArray[ii].toObject();
+        auto checkObj = checkArray[ii].toObject();
+        if ((paternObj.count() != checkObj.count()) || (paternObj.contains("name") != checkObj.contains("name"))
+            || (paternObj.contains("vIdx") != checkObj.contains("vIdx"))
+            || (paternObj.contains("width") != checkObj.contains("width")))
+            return false;
+        if ((paternObj["name"].isString() != checkObj["name"].isString())
+            || (paternObj["vIdx"].isDouble() != checkObj["vIdx"].isDouble())
+            || (paternObj["width"].isDouble() != checkObj["width"].isDouble()))
+            return false;
+
+        auto paternObjName = paternObj["name"].toString();
+        auto checkObjName = checkObj["name"].toString();
+        if (paternObjName.compare(checkObjName) || (paternObj["vIdx"].toInt() != checkObj["vIdx"].toInt())
+            || (paternObj["width"].toInt() != checkObj["width"].toInt()))
+            return false;
+    }
+    return true;
+}
+
+TEST_CASE("Test restore configuration", "[canrawview]")
+{
+    QDir dir("configfiles");
+    QFile file(dir.absoluteFilePath("canrawviewconfig.cds"));
+    CHECK(file.open(QIODevice::ReadOnly) == true);
+
+    QByteArray wholeFile = file.readAll();
+    QJsonDocument jsonFile(QJsonDocument::fromJson(wholeFile));
+    QJsonObject jsonObject = jsonFile.object();
+
+    CanRawViewModel canRawViewModel;
+    canRawViewModel.restore(jsonObject);
+    QJsonObject json = canRawViewModel.save();
+
+    CHECK(compareJson(jsonObject, json) == true);
+}
+
+TEST_CASE("Test restore configuration - luck of column", "[canrawview]")
+{
+    QDir dir("configfiles");
+    QFile file(dir.absoluteFilePath("canrawviewconfig_columnluck.cds"));
+    CHECK(file.open(QIODevice::ReadOnly) == true);
+
+    QByteArray wholeFile = file.readAll();
+    QJsonDocument jsonFile(QJsonDocument::fromJson(wholeFile));
+    QJsonObject jsonObject = jsonFile.object();
+
+    CanRawViewModel canRawViewModel;
+    canRawViewModel.restore(jsonObject);
+    QJsonObject json = canRawViewModel.save();
+
+    CHECK(compareJson(jsonObject, json) == false);
+}
+
+TEST_CASE("Test restore configuration - sorting format incorrect", "[canrawview]")
+{
+    QDir dir("configfiles");
+    QFile file(dir.absoluteFilePath("canrawviewconfig_sortingformat.cds"));
+    CHECK(file.open(QIODevice::ReadOnly) == true);
+
+    QByteArray wholeFile = file.readAll();
+    QJsonDocument jsonFile(QJsonDocument::fromJson(wholeFile));
+    QJsonObject jsonObject = jsonFile.object();
+
+    CanRawViewModel canRawViewModel;
+    canRawViewModel.restore(jsonObject);
+    QJsonObject json = canRawViewModel.save();
+
+    CHECK(compareJson(jsonObject, json) == false);
+}
+
+TEST_CASE("Test restore configuration - visual index incorrect", "[canrawview]")
+{
+    QDir dir("configfiles");
+    QFile file(dir.absoluteFilePath("canrawviewconfig_visualindexproblem.cds"));
+    CHECK(file.open(QIODevice::ReadOnly) == true);
+
+    QByteArray wholeFile = file.readAll();
+    QJsonDocument jsonFile(QJsonDocument::fromJson(wholeFile));
+    QJsonObject jsonObject = jsonFile.object();
+
+    CanRawViewModel canRawViewModel;
+    canRawViewModel.restore(jsonObject);
+    QJsonObject json = canRawViewModel.save();
+
+    CHECK(compareJson(jsonObject, json) == false);
+}
+
+TEST_CASE("Test restore configuration - width incorrect", "[canrawview]")
+{
+    QDir dir("configfiles");
+    QFile file(dir.absoluteFilePath("canrawviewconfig_widthproblem.cds"));
+    CHECK(file.open(QIODevice::ReadOnly) == true);
+
+    QByteArray wholeFile = file.readAll();
+    QJsonDocument jsonFile(QJsonDocument::fromJson(wholeFile));
+    QJsonObject jsonObject = jsonFile.object();
+
+    CanRawViewModel canRawViewModel;
+    canRawViewModel.restore(jsonObject);
+    QJsonObject json = canRawViewModel.save();
+
+    CHECK(compareJson(jsonObject, json) == false);
 }
 
 int main(int argc, char* argv[])
