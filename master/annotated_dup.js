@@ -24,6 +24,7 @@ var annotated_dup =
     [ "CRSGuiInterface", "struct_c_r_s_gui_interface.html", "struct_c_r_s_gui_interface" ],
     [ "CRVGui", "struct_c_r_v_gui.html", "struct_c_r_v_gui" ],
     [ "CRVGuiInterface", "struct_c_r_v_gui_interface.html", "struct_c_r_v_gui_interface" ],
+    [ "DragWidget", "class_drag_widget.html", "class_drag_widget" ],
     [ "EnumIterator", "class_enum_iterator.html", "class_enum_iterator" ],
     [ "FlowViewWrapper", "struct_flow_view_wrapper.html", "struct_flow_view_wrapper" ],
     [ "LineEditInterface", "struct_line_edit_interface.html", "struct_line_edit_interface" ],

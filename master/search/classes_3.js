@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['lineeditinterface',['LineEditInterface',['../struct_line_edit_interface.html',1,'']]]
+  ['flowviewwrapper',['FlowViewWrapper',['../struct_flow_view_wrapper.html',1,'']]]
 ];

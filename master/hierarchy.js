@@ -60,6 +60,9 @@ var hierarchy =
     [ "QDialog", null, [
       [ "PropertyEditorDialog", "class_property_editor_dialog.html", null ]
     ] ],
+    [ "QFrame", null, [
+      [ "DragWidget", "class_drag_widget.html", null ]
+    ] ],
     [ "QMainWindow", null, [
       [ "MainWindow", "class_main_window.html", null ]
     ] ],

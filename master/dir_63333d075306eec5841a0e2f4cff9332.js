@@ -17,6 +17,11 @@ var dir_63333d075306eec5841a0e2f4cff9332 =
       [ "ComponentModelInterface", "struct_component_model_interface.html", "struct_component_model_interface" ],
       [ "ComponentModel", "class_component_model.html", "class_component_model" ]
     ] ],
+    [ "dragwidget.cpp", "dragwidget_8cpp.html", null ],
+    [ "dragwidget.h", "dragwidget_8h.html", [
+      [ "DragWidget", "class_drag_widget.html", "class_drag_widget" ]
+    ] ],
+    [ "flowviewwrapper.cpp", "flowviewwrapper_8cpp.html", null ],
     [ "flowviewwrapper.h", "flowviewwrapper_8h.html", [
       [ "FlowViewWrapper", "struct_flow_view_wrapper.html", "struct_flow_view_wrapper" ]
     ] ],
