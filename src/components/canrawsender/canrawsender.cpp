@@ -21,13 +21,7 @@ void CanRawSender::setConfig(const QObject& qobject)
 {
     Q_D(CanRawSender);
 
-    for (const auto& p: getSupportedProperties())
-    {
-        QVariant v = qobject.property(p.first.toStdString().c_str());
-
-        if (v.isValid() && v.type() == p.second.first)
-            d->_props[p.first] = v;
-    }
+    configHelpers::setQConfig(qobject, getSupportedProperties(), d->_props);
 }
 
 std::shared_ptr<QObject> CanRawSender::getQConfig() const
@@ -35,6 +29,10 @@ std::shared_ptr<QObject> CanRawSender::getQConfig() const
     const Q_D(CanRawSender);
 
     return configHelpers::getQConfig(getSupportedProperties(), d->_props);
+}
+
+void CanRawSender::configChanged()
+{
 }
 
 void CanRawSender::startSimulation()

@@ -69,6 +69,11 @@ public:
     std::shared_ptr<QObject> getQConfig() const override;
 
     /**
+    *   @see ComponentInterface
+    */
+    virtual void configChanged() override;
+
+    /**
      *   @see ComponentInterface
      */
     bool mainWidgetDocked() const override;

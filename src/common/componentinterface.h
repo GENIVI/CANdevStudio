@@ -46,6 +46,11 @@ struct ComponentInterface {
     virtual void setConfig(const QObject& qobject) = 0;
 
     /**
+     *  @brief  Reconfigure component if necessary
+     */
+    virtual void configChanged() = 0;
+
+    /**
     *   @brief  Gets current component configuation
     *   @return current config
     */

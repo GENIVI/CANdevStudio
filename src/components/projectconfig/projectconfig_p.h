@@ -104,6 +104,7 @@ public:
             if (e.exec() == QDialog::Accepted)
             {
                 component.setConfig(*conf);
+                component.configChanged();
             }
 
         });

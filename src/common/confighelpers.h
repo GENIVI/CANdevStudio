@@ -32,6 +32,18 @@ static std::shared_ptr<QObject> getQConfig(const ComponentInterface::ComponentPr
     return q;
 }
 
+static void setQConfig(const QObject& qobject,
+        const ComponentInterface::ComponentProperties& sp,
+        std::map<QString, QVariant>& properties)
+{
+    for (auto& p: sp)
+    {
+        QVariant v = qobject.property(p.first.toStdString().c_str());
+        if (v.isValid() && v.type() == p.second.first)
+            properties[p.first] = v;
+    }
+}
+
 };
 
 #endif /* SRC_COMMON_CONFIGHELPERS_H_ */

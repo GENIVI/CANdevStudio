@@ -17,7 +17,12 @@ CanDeviceModel::CanDeviceModel()
     _name = "CanDeviceModel";
     _modelName = "CAN device";
 
-    _component.init("socketcan", "can0"); // TODO
+    QObject qo;
+    qo.setProperty("backend", "socketcan");
+    qo.setProperty("interface", "can0");
+    _component.setConfig(qo);
+
+    _component.init(); // TODO
 }
 
 unsigned int CanDeviceModel::nPorts(PortType portType) const
