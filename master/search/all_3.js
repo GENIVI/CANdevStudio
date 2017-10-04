@@ -68,6 +68,7 @@ var searchData=
   ['componentmodelinterface',['ComponentModelInterface',['../struct_component_model_interface.html',1,'']]],
   ['componentproperties',['ComponentProperties',['../struct_component_interface.html#abae8e9374776c7527ab23d29c8e320f3',1,'ComponentInterface']]],
   ['componentwidgetcreated',['componentWidgetCreated',['../class_project_config.html#aa58b2f890829fc2ab177578d5926d4b1',1,'ProjectConfig']]],
+  ['configchanged',['configChanged',['../struct_component_interface.html#a454beb59c1467a3eaba31a038c54613a',1,'ComponentInterface::configChanged()'],['../class_can_device.html#a4e7ed27bfec64abc2c7771a757034772',1,'CanDevice::configChanged()'],['../class_can_raw_sender.html#a12350bc252d0e225ba2fd83732806e7e',1,'CanRawSender::configChanged()'],['../class_can_raw_view.html#ad912513d3460b6752a22c459f76e86a2',1,'CanRawView::configChanged()']]],
   ['confighelpers',['configHelpers',['../classconfig_helpers.html',1,'']]],
   ['confighelpers_2eh',['confighelpers.h',['../confighelpers_8h.html',1,'']]],
   ['connectdevice',['connectDevice',['../struct_can_device_interface.html#ae93401fab526dc31098998e15baba1be',1,'CanDeviceInterface::connectDevice()'],['../struct_can_device_qt.html#a3217273ad521531a3250d35974e100c7',1,'CanDeviceQt::connectDevice()']]],

@@ -156,6 +156,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aef2bc174edf7af83c52c4971ae8cc2cc"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_component_interface.html#aef2bc174edf7af83c52c4971ae8cc2cc">setConfig</a> (const QObject &amp;qobject)=0</td></tr>
 <tr class="memdesc:aef2bc174edf7af83c52c4971ae8cc2cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets configuration for component.  <a href="#aef2bc174edf7af83c52c4971ae8cc2cc">More...</a><br /></td></tr>
 <tr class="separator:aef2bc174edf7af83c52c4971ae8cc2cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a454beb59c1467a3eaba31a038c54613a"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_component_interface.html#a454beb59c1467a3eaba31a038c54613a">configChanged</a> ()=0</td></tr>
+<tr class="memdesc:a454beb59c1467a3eaba31a038c54613a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reconfigure component if necessary.  <a href="#a454beb59c1467a3eaba31a038c54613a">More...</a><br /></td></tr>
+<tr class="separator:a454beb59c1467a3eaba31a038c54613a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac3cefe894fe3e7d69888b04e4cbcab9d"><td class="memItemLeft" align="right" valign="top">virtual QJsonObject&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_component_interface.html#ac3cefe894fe3e7d69888b04e4cbcab9d">getConfig</a> () const =0</td></tr>
 <tr class="memdesc:ac3cefe894fe3e7d69888b04e4cbcab9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets current component configuation.  <a href="#ac3cefe894fe3e7d69888b04e4cbcab9d">More...</a><br /></td></tr>
 <tr class="separator:ac3cefe894fe3e7d69888b04e4cbcab9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -223,6 +226,33 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a454beb59c1467a3eaba31a038c54613a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void ComponentInterface::configChanged </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reconfigure component if necessary. </p>
+
+<p>Implemented in <a class="el" href="class_can_device.html#a4e7ed27bfec64abc2c7771a757034772">CanDevice</a>, <a class="el" href="class_can_raw_sender.html#a12350bc252d0e225ba2fd83732806e7e">CanRawSender</a>, and <a class="el" href="class_can_raw_view.html#ad912513d3460b6752a22c459f76e86a2">CanRawView</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="ac3cefe894fe3e7d69888b04e4cbcab9d"></a>
 <div class="memitem">
 <div class="memproto">

@@ -3,6 +3,7 @@ var class_can_raw_sender =
     [ "CanRawSender", "class_can_raw_sender.html#a3e5c79c8702f9e6947697086c04f3c05", null ],
     [ "CanRawSender", "class_can_raw_sender.html#abc435128d26f9dca2bc0314a4f1e65c3", null ],
     [ "~CanRawSender", "class_can_raw_sender.html#ae62d54a7c677e6838d766fd9cb57b32b", null ],
+    [ "configChanged", "class_can_raw_sender.html#a12350bc252d0e225ba2fd83732806e7e", null ],
     [ "getConfig", "class_can_raw_sender.html#a44f43f1a8c31b567ca4044f7b91d7286", null ],
     [ "getLineCount", "class_can_raw_sender.html#aaf94c8438cc5e877f0b3ac5482128d45", null ],
     [ "getQConfig", "class_can_raw_sender.html#ab38e7d9f9b4fe3ea059a23f26dca7360", null ],

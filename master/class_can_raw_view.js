@@ -3,6 +3,7 @@ var class_can_raw_view =
     [ "CanRawView", "class_can_raw_view.html#a750e40a125bcaa35794cb82fc18ede00", null ],
     [ "CanRawView", "class_can_raw_view.html#a04031807543a5932a28acc3375cf807c", null ],
     [ "~CanRawView", "class_can_raw_view.html#a61e97fe7ae8b79740408311f4a243f82", null ],
+    [ "configChanged", "class_can_raw_view.html#ad912513d3460b6752a22c459f76e86a2", null ],
     [ "frameReceived", "class_can_raw_view.html#ace7bb231aa483369b389d02b353a8a17", null ],
     [ "frameSent", "class_can_raw_view.html#a81d095b9dfd03fbc2f53ca8c298abf4f", null ],
     [ "getConfig", "class_can_raw_view.html#aff603c7645cc138a8eb690cae7be452d", null ],
