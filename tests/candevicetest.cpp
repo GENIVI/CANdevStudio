@@ -22,6 +22,16 @@ bool isEqual(const QCanBusFrame& f1, const QCanBusFrame& f2)
     return f1.isValid() == f2.isValid() && f1.frameId() == f2.frameId() && f1.frameType() == f2.frameType()
         && f1.payload() == f2.payload();
 }
+
+
+void setupBackendInterface(CanDevice& canDevice)
+{
+    QObject qo;
+    qo.setProperty("backend", "");
+    qo.setProperty("interface", "");
+    canDevice.setConfig(qo);
+}
+
 }
 
 TEST_CASE("Initialization failed", "[candevice]")
@@ -29,7 +39,9 @@ TEST_CASE("Initialization failed", "[candevice]")
     CanDevice canDevice;
     QCanBusFrame frame;
 
-    CHECK(canDevice.init("", "") == false);
+    setupBackendInterface(canDevice);
+
+    CHECK(canDevice.init() == false);
 
     REQUIRE_NOTHROW(canDevice.framesReceived());
     REQUIRE_NOTHROW(canDevice.startSimulation());
@@ -48,7 +60,8 @@ TEST_CASE("Initialization succedded", "[candevice]")
     When(Method(deviceMock, init)).Return(true);
 
     CanDevice canDevice{ CanDeviceCtx(&deviceMock.get()) };
-    CHECK(canDevice.init("", "") == true);
+    setupBackendInterface(canDevice);
+    CHECK(canDevice.init() == true);
 }
 
 TEST_CASE("Start failed", "[candevice]")
@@ -63,7 +76,8 @@ TEST_CASE("Start failed", "[candevice]")
     When(Method(deviceMock, init)).Return(false);
 
     CanDevice canDevice{ CanDeviceCtx(&deviceMock.get()) };
-    CHECK(canDevice.init("", "") == false);
+    setupBackendInterface(canDevice);
+    CHECK(canDevice.init() == false);
     REQUIRE_NOTHROW(canDevice.startSimulation());
 }
 
@@ -80,7 +94,8 @@ TEST_CASE("Start failed - could not connect to device", "[candevice]")
     When(Method(deviceMock, connectDevice)).Return(false);
 
     CanDevice canDevice{ CanDeviceCtx(&deviceMock.get()) };
-    CHECK(canDevice.init("", "") == true);
+    setupBackendInterface(canDevice);
+    CHECK(canDevice.init() == true);
     REQUIRE_NOTHROW(canDevice.startSimulation());
 }
 
@@ -97,7 +112,8 @@ TEST_CASE("Start succeeded", "[candevice]")
     When(Method(deviceMock, connectDevice)).Return(true);
 
     CanDevice canDevice{ CanDeviceCtx(&deviceMock.get()) };
-    CHECK(canDevice.init("", "") == true);
+    setupBackendInterface(canDevice);
+    CHECK(canDevice.init() == true);
     REQUIRE_NOTHROW(canDevice.startSimulation());
 }
 
@@ -118,7 +134,8 @@ TEST_CASE("sendFrame results in frameSent being emitted and writeFrame being cal
 
     CanDevice canDevice{ CanDeviceCtx(&deviceMock.get()) };
     QSignalSpy frameSentSpy(&canDevice, &CanDevice::frameSent);
-    CHECK(canDevice.init("", "") == true);
+    setupBackendInterface(canDevice);
+    CHECK(canDevice.init() == true);
 
     canDevice.sendFrame(testFrame);
     CHECK(frameSentSpy.count() == 1);
@@ -154,7 +171,8 @@ TEST_CASE("sendFrame, no device availablie, frameSent is not emitted", "[candevi
     CanDevice canDevice;
 
     QSignalSpy frameSentSpy(&canDevice, &CanDevice::frameSent);
-    CHECK(canDevice.init("", "") == false);
+    setupBackendInterface(canDevice);
+    CHECK(canDevice.init() == false);
 
     canDevice.sendFrame(testFrame);
     CHECK(frameSentSpy.count() == 0);
@@ -178,7 +196,8 @@ TEST_CASE("sendFrame defers FrameSent until backend emits frameWritten", "[cande
 
     CanDevice canDevice{ CanDeviceCtx(&deviceMock.get()) };
     QSignalSpy frameSentSpy(&canDevice, &CanDevice::frameSent);
-    CHECK(canDevice.init("", "") == true);
+    setupBackendInterface(canDevice);
+    CHECK(canDevice.init() == true);
 
     canDevice.sendFrame(frame);
     writtenCbk(1);
@@ -214,7 +233,8 @@ TEST_CASE("Emits all available frames when notified by backend", "[candevice]")
 
     CanDevice canDevice{ CanDeviceCtx(&deviceMock.get()) };
     QSignalSpy frameReceivedSpy(&canDevice, &CanDevice::frameReceived);
-    CHECK(canDevice.init("", "") == true);
+    setupBackendInterface(canDevice);
+    CHECK(canDevice.init() == true);
 
     receivedCbk();
     CHECK(frameReceivedSpy.count() == static_cast<int>(frames.size()));
@@ -242,7 +262,8 @@ TEST_CASE("WriteError causes emitting frameSent with framSent=false", "[candevic
 
     CanDevice canDevice{ CanDeviceCtx(&deviceMock.get()) };
     QSignalSpy frameSentSpy(&canDevice, &CanDevice::frameSent);
-    CHECK(canDevice.init("", "") == true);
+    setupBackendInterface(canDevice);
+    CHECK(canDevice.init() == true);
 
     canDevice.sendFrame(frame);
     errorCbk(QCanBusDevice::WriteError);

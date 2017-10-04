@@ -48,6 +48,11 @@ public:
     /**
     *   @see ComponentInterface
     */
+    virtual void configChanged() override;
+
+    /**
+    *   @see ComponentInterface
+    */
     bool mainWidgetDocked() const override;
 
     /**

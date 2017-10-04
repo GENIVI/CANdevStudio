@@ -55,14 +55,30 @@ bool CanDevice::init()
     const auto& iface   = d->_interfaceProperty;
 
     // check if required properties are set
-    const bool cond = (props.count(backend) != 1)
-                   || (props.count(iface) != 1);
+    const bool propertiesSet = (props.count(backend) == 1)
+        && (props.count(iface) == 1);
 
-    return (true == cond)
-              ? false
-              : init(props.at(backend).toString()
-                   , props.at(iface).toString()
-                   , false);
+    if (!propertiesSet)
+        return d->_initialized;
+
+    QString errorString;
+
+    if (d->_initialized)
+        d->_canDevice.clearCallbacks();
+
+    d->_initialized = false;
+
+    QString b = props.at(backend).toString();
+    QString i = props.at(iface).toString();
+    if (d->_canDevice.init(b, i)) {
+        d->_canDevice.setFramesWrittenCbk(std::bind(&CanDevice::framesWritten, this, std::placeholders::_1));
+        d->_canDevice.setFramesReceivedCbk(std::bind(&CanDevice::framesReceived, this));
+        d->_canDevice.setErrorOccurredCbk(std::bind(&CanDevice::errorOccurred, this, std::placeholders::_1));
+
+        d->_initialized = true;
+    }
+
+    return d->_initialized;
 }
 
 void CanDevice::sendFrame(const QCanBusFrame& frame)
@@ -140,14 +156,7 @@ void CanDevice::setConfig(const QObject& qobject)
 {
     Q_D(CanDevice);
 
-    for (const auto& p: getSupportedProperties())
-    {
-        QVariant v = qobject.property(p.first.toStdString().c_str());
-        if (v.isValid() && v.type() == p.second.first)
-            d->_props[p.first] = v;
-    }
-
-    init();
+    configHelpers::setQConfig(qobject, getSupportedProperties(), d->_props);
 }
 
 std::shared_ptr<QObject> CanDevice::getQConfig() const
@@ -193,4 +202,9 @@ bool CanDevice::mainWidgetDocked() const
 {
     // Widget does not exist. Return always true
     return true;
+}
+
+void CanDevice::configChanged()
+{
+    init();
 }

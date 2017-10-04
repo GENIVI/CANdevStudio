@@ -27,6 +27,10 @@ ComponentInterface::ComponentProperties CanRawView::getSupportedProperties() con
     return d_ptr->getSupportedProperties();
 }
 
+void CanRawView::configChanged()
+{
+}
+
 void CanRawView::startSimulation()
 {
     Q_D(CanRawView);
@@ -86,12 +90,7 @@ void CanRawView::setConfig(const QObject& qobject)
 {
     Q_D(CanRawView);
 
-    for (const auto& p: getSupportedProperties())
-    {
-        QVariant v = qobject.property(p.first.toStdString().c_str());
-        if (v.isValid() && v.type() == p.second.first)
-            d->_props[p.first] = v;
-    }
+    configHelpers::setQConfig(qobject, getSupportedProperties(), d->_props);
 }
 
 std::shared_ptr<QObject> CanRawView::getQConfig() const
