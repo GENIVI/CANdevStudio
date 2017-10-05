@@ -1,10 +1,10 @@
 <map id="src/components/candevice/candevice.cpp" name="src/components/candevice/candevice.cpp">
 <area shape="rect" id="node2" href="$candevice_8h.html" title="candevice.h" alt="" coords="179,169,277,196"/>
-<area shape="rect" id="node13" href="$candevice__p_8h.html" title="candevice_p.h" alt="" coords="1003,95,1117,121"/>
-<area shape="rect" id="node26" href="$confighelpers_8h.html" title="confighelpers.h" alt="" coords="1402,169,1521,196"/>
+<area shape="rect" id="node13" href="$candevice__p_8h.html" title="candevice_p.h" alt="" coords="995,95,1109,121"/>
+<area shape="rect" id="node30" href="$confighelpers_8h.html" title="confighelpers.h" alt="" coords="1414,169,1533,196"/>
 <area shape="rect" id="node5" href="$componentinterface_8h.html" title="componentinterface.h" alt="" coords="1176,244,1339,271"/>
 <area shape="rect" id="node11" href="$context_8h.html" title="context.h" alt="" coords="429,244,512,271"/>
-<area shape="rect" id="node14" href="$candeviceqt_8h.html" title="candeviceqt.h" alt="" coords="766,169,877,196"/>
+<area shape="rect" id="node14" href="$candeviceqt_8h.html" title="candeviceqt.h" alt="" coords="574,169,685,196"/>
 <area shape="rect" id="node15" href="$candeviceinterface_8h.html" title="candeviceinterface.h" alt="" coords="997,244,1152,271"/>
 <area shape="rect" id="node20" href="$log_8h.html" title="log.h" alt="" coords="352,244,405,271"/>
 </map>
