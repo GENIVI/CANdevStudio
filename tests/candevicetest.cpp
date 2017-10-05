@@ -280,7 +280,7 @@ TEST_CASE("read configuration to json format", "[candevice]")
     Fake(Dtor(deviceMock));
     CanDevice canDevice{ CanDeviceCtx(&deviceMock.get()) };
     QJsonObject config = canDevice.getConfig();
-    CHECK(config.count() == 0); // no confiuration at the moment
+    CHECK(config.count() == canDevice.getSupportedProperties().size());
 }
 
 int main(int argc, char* argv[])

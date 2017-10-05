@@ -73,6 +73,7 @@ public:
         }
         _name = json.find("name").value().toString();
         _component.setConfig(json);
+        _component.configChanged();
         cds_info("Correct validation of restore configuration for {} modul", _name.toStdString());
     }
 

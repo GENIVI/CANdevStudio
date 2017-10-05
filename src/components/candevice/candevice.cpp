@@ -141,15 +141,19 @@ void CanDevice::errorOccurred(int error)
     }
 }
 
-void CanDevice::setConfig(const QJsonObject&)
+void CanDevice::setConfig(const QJsonObject& json)
 {
-    // TODO
+    assert(d_ptr != nullptr);
+    d_ptr->restoreConfiguration(json);
 }
 
 QJsonObject CanDevice::getConfig() const
 {
-    // TODO
-    return {};
+    QJsonObject config;
+
+    d_ptr->saveSettings(config);
+
+    return config;
 }
 
 void CanDevice::setConfig(const QObject& qobject)

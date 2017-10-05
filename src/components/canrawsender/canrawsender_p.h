@@ -33,6 +33,7 @@ public:
         , q_ptr(q)
     {
         // NOTE: Implementation must be kept here. Otherwise VS2015 fails to link.
+        initProps();
 
         _tvModel.setHorizontalHeaderLabels(_columnsOrder);
 
@@ -91,6 +92,15 @@ private:
     /// \brief This method adopts content properties
     /// \return true if contents ware adopted successfully, false otherwise
     bool contentAdopt(QJsonObject const& json);
+
+    /// \brief This method initializes property member
+    void initProps()
+    {
+        for (const auto& p: _supportedProps)
+        {
+            _props[p.first];
+        }
+    }
 
 private slots:
     /// \brief This method remove selected rows from table
