@@ -2,7 +2,12 @@
 #define __CANDEVICE_P_H
 
 #include "candeviceqt.h"
+#include <QJsonArray>
+#include <QJsonObject>
+#include <QJsonValue>
 #include <QtCore/QVector>
+
+#include <QJsonDocument>
 
 class CanDevicePrivate {
 public:
@@ -10,6 +15,27 @@ public:
         : _ctx(std::move(ctx))
         , _canDevice(_ctx.get<CanDeviceInterface>())
     {
+        initProps();
+    }
+
+    void saveSettings(QJsonObject& json)
+    {
+        QJsonArray viewModelsArray;
+
+        for (const auto& p: _props)
+        {
+            json[p.first] = QJsonValue::fromVariant(p.second);
+        }
+    }
+
+    bool restoreConfiguration(const QJsonObject& json)
+    {
+        for (const auto& p: _supportedProps)
+        {
+            if (json.contains(p.first))
+                _props[p.first] = json[p.first].toVariant();
+        }
+        return true;
     }
 
     CanDeviceCtx _ctx;
@@ -26,6 +52,15 @@ public:
     };
 
     std::map<QString, QVariant> _props;
+
+private:
+    void initProps()
+    {
+        for (const auto& p: _supportedProps)
+        {
+            _props[p.first];
+        }
+    }
 
 };
 

@@ -23,6 +23,8 @@ public:
         , _columnsOrder({ "rowID", "time", "id", "dir", "dlc", "data" })
         , q_ptr(q)
     {
+        initProps();
+
         _tvModel.setHorizontalHeaderLabels(_columnsOrder);
 
         _ui.initTableView(_tvModel);
@@ -265,6 +267,14 @@ private:
         cds_info("Column proporties ware restored correctly");
 
         return true;
+    }
+
+    void initProps()
+    {
+        for (const auto& p: _supportedProps)
+        {
+            _props[p.first];
+        }
     }
 
 private slots:

@@ -3,7 +3,7 @@
 #include <datamodeltypes/candevicedata.h>
 #include <log.h>
 
-CanDeviceModel::CanDeviceModel()
+CanDeviceModel::CanDeviceModel() : _status(false), _direction(Direction::Uninitialized)
 {
     _label->setAlignment(Qt::AlignVCenter | Qt::AlignHCenter);
     _label->setFixedSize(75, 25);
@@ -16,13 +16,6 @@ CanDeviceModel::CanDeviceModel()
     _caption = "CanDevice Node";
     _name = "CanDeviceModel";
     _modelName = "CAN device";
-
-    QObject qo;
-    qo.setProperty("backend", "socketcan");
-    qo.setProperty("interface", "can0");
-    _component.setConfig(qo);
-
-    _component.init(); // TODO
 }
 
 unsigned int CanDeviceModel::nPorts(PortType portType) const

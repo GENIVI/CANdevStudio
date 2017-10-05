@@ -10,7 +10,7 @@ using QtNodes::NodeDataType;
 /**
 *   @brief The enum class describing frame direction
 */
-enum class Direction { RX, TX };
+enum class Direction { RX, TX, Uninitialized };
 
 /**
 *   @brief The class describing data model used as input for CanDevice node
