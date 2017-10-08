@@ -3,7 +3,7 @@ Windows: [![Build status](https://ci.appveyor.com/api/projects/status/y7vacbyvso
 Coverage: [![codecov](https://codecov.io/gh/GENIVI/CANdevStudio/branch/master/graph/badge.svg)](https://codecov.io/gh/GENIVI/CANdevStudio)
 
 [Confluence Page](https://at.projects.genivi.org/wiki/display/PROJ/CANdevStudio)<br />
-* [How to build](https://at.projects.genivi.org/wiki/display/PROJ/Build+instructions)
+* [How to build](https://at.projects.genivi.org/wiki/display/PROJ/CANdevStudio+Build+instructions)
 * [How to contribute](https://at.projects.genivi.org/wiki/display/PROJ/CANdevStudio+How+to+contribute) 
 
 [Doxygen](https://genivi.github.io/CANdevStudio/master/)
