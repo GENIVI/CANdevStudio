@@ -1,5 +1,5 @@
 {
-"columns": [
+"viewColumns": [
     {
 	"name": "time",
 	"vIdx": 100,

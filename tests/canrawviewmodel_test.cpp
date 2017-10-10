@@ -70,7 +70,7 @@ TEST_CASE("Test save configuration", "[canrawview]")
     CanRawViewModel canRawViewModel;
     QJsonObject json = canRawViewModel.save();
     CHECK(json.find("name") != json.end());
-    CHECK(json.find("columns") != json.end());
+    CHECK(json.find("viewColumns") != json.end());
     CHECK(json.find("scrolling") != json.end());
 }
 
@@ -91,13 +91,13 @@ bool compareJson(const QJsonObject& patern, const QJsonObject& check)
     if (patern["scrolling"].toBool() != check["scrolling"].toBool())
         return false;
 
-    if (patern.contains("columns") != check.contains("columns"))
+    if (patern.contains("viewColumns") != check.contains("viewColumns"))
         return false;
-    if (patern["columns"].isArray() != check["columns"].isArray())
+    if (patern["viewColumns"].isArray() != check["viewColumns"].isArray())
         return false;
 
-    auto paternArray = patern["columns"].toArray();
-    auto checkArray = check["columns"].toArray();
+    auto paternArray = patern["viewColumns"].toArray();
+    auto checkArray = check["viewColumns"].toArray();
     if (paternArray.size() != checkArray.size())
         return false;
 

@@ -47,7 +47,7 @@ TEST_CASE("Test save configuration", "[canrawsender]")
     CanRawSenderModel canRawSenderModel;
     QJsonObject json = canRawSenderModel.save();
     CHECK(json.find("name") != json.end());
-    CHECK(json.find("columns") != json.end());
+    CHECK(json.find("senderColumns") != json.end());
     CHECK(json.find("content") != json.end());
     CHECK(json.find("sorting") != json.end());
 }

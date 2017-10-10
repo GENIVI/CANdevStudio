@@ -109,10 +109,10 @@ TEST_CASE("Can raw sender save configuration test", "[canrawsender]")
 
     CHECK(json.empty() == false);
     CHECK(json.count() == 3);
-    const auto colIter = json.find("columns");
+    const auto colIter = json.find("senderColumns");
     CHECK(colIter != json.end());
     CHECK(colIter.value().type() == QJsonValue::Array);
-    const auto colArray = json["columns"].toArray();
+    const auto colArray = json["senderColumns"].toArray();
     CHECK(colArray.empty() == false);
     CHECK(colArray.size() == 5);
     CHECK(colArray.contains("Id") == true);
