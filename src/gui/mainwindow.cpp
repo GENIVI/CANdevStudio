@@ -4,20 +4,14 @@
 #include "modelvisitor.h" // apply_model_visitor
 #include "subwindow.h"
 #include "ui_mainwindow.h"
-
-#include <rapidjson/schema.h>
-#include <rapidjson/stringbuffer.h>
+#include "projectconfigvalidator.h"
 
 #include <QCloseEvent>
-#include <QMessageBox>
 #include <QtCore/QFile>
 #include <QtWidgets/QFileDialog>
 #include <QtWidgets/QMdiArea>
 #include <QtWidgets/QMdiSubWindow>
 #include <QtWidgets/QMessageBox>
-
-std::shared_ptr<rapidjson::SchemaDocument> MainWindow::configSchema;
-bool MainWindow::schemaInitialized = false;
 
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent)
@@ -112,7 +106,7 @@ void MainWindow::handleLoadAction()
 
     QByteArray wholeFile = file.readAll();
 
-    if (!validateConfiguration(wholeFile))
+    if (!ProjectConfigValidator::validateConfiguration(wholeFile))
         return;
 
     // TODO check if file is correct, nodeeditor library does not provide it and will crash if incorrect file is
@@ -126,55 +120,6 @@ void MainWindow::handleLoadAction()
             cds_error("Project config does not exist");
         }
     }
-}
-
-bool MainWindow::validateConfiguration(const QByteArray& wholeFile) const
-{
-    using namespace rapidjson;
-
-    if (!schemaInitialized && !MainWindow::loadConfigSchema())
-    {
-        QMessageBox msgBox;
-        msgBox.setText("There was an error loading project configuration schema.");
-        msgBox.setInformativeText("Do you want to try to load project without validating it?");
-        msgBox.setStandardButtons(QMessageBox::Open | QMessageBox::Cancel);
-        msgBox.setDefaultButton(QMessageBox::Cancel);
-
-        return (msgBox.exec() == QMessageBox::Open) ? true : false;
-    }
-
-    Document d;
-    if (d.Parse(wholeFile.toStdString()).HasParseError())
-    {
-        cds_error("Could not parse configuration file");
-        QMessageBox::warning(nullptr, "Could not parse configuration file",
-                "There was an error parsing project configuration file: it is not a valid json file.");
-
-        return false;
-    }
-
-    SchemaValidator validator(*MainWindow::configSchema);
-    if (!d.Accept(validator))
-    {
-        StringBuffer sb;
-        validator.GetInvalidSchemaPointer().StringifyUriFragment(sb);
-        cds_error("Invalid schema: {}", sb.GetString());
-        cds_error("Invalid keyword: {}", validator.GetInvalidSchemaKeyword());
-
-        sb.Clear();
-        validator.GetInvalidDocumentPointer().StringifyUriFragment(sb);
-        cds_error("Invalid document: {}", sb.GetString());
-
-        QMessageBox msgBox;
-        msgBox.setText("There was an error validating project configuration.");
-        msgBox.setInformativeText("Do you want to try to load it anyway?");
-        msgBox.setStandardButtons(QMessageBox::Open | QMessageBox::Cancel);
-        msgBox.setDefaultButton(QMessageBox::Cancel);
-
-        return (msgBox.exec() == QMessageBox::Open) ? true : false;
-    }
-
-    return true;
 }
 
 bool MainWindow::closeProjectConfig()
@@ -302,28 +247,3 @@ void MainWindow::handleWidgetShowing(QWidget* widget, bool docked)
     }
 }
 
-bool MainWindow::loadConfigSchema()
-{
-    using namespace rapidjson;
-
-    QFile file("/home/krbo/schema.json");
-    if (!file.open(QIODevice::ReadOnly))
-    {
-        cds_error("Could not open configuration schema file");
-        return false;
-    }
-
-    QByteArray data = file.readAll();
-
-    Document sd;
-    if (sd.Parse(data.toStdString()).HasParseError())
-    {
-        cds_error("Could not parse configuration schema file");
-        return false;
-    }
-
-    configSchema = std::make_shared<SchemaDocument>(sd);
-
-
-    return MainWindow::schemaInitialized = true;
-}
