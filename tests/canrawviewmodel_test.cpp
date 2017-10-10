@@ -19,7 +19,7 @@ Q_DECLARE_METATYPE(QCanBusFrame);
 TEST_CASE("Test basic functionality", "[canrawview]")
 {
     using namespace fakeit;
-    CanRawViewModel canRawViewModel;
+    CanRawViewModel canRawViewModel(nullptr);
     CHECK(canRawViewModel.caption() == "CanRawView Node");
     CHECK(canRawViewModel.name() == "CanRawViewModel");
     CHECK(canRawViewModel.modelName() == "Raw view");
@@ -30,7 +30,7 @@ TEST_CASE("Test basic functionality", "[canrawview]")
 
 TEST_CASE("Port information", "[canrawview]")
 {
-    CanRawViewModel canRawViewModel;
+    CanRawViewModel canRawViewModel(nullptr);
     CanRawViewDataIn canRawViewDataIn;
     CHECK(canRawViewModel.nPorts(PortType::Out) == 0);
     CHECK(canRawViewModel.nPorts(PortType::In) == 1);
@@ -41,7 +41,7 @@ TEST_CASE("Port information", "[canrawview]")
 
 TEST_CASE("Calling setInData with direction TX will result in frameSent being emitted", "[canrawview]")
 {
-    CanRawViewModel canRawViewModel;
+    CanRawViewModel canRawViewModel(nullptr);
     QCanBusFrame testFrame;
     testFrame.setFrameId(123);
     auto canRawViewDataIn = std::make_shared<CanRawViewDataIn>(testFrame, Direction::TX, true);
@@ -54,7 +54,7 @@ TEST_CASE("Calling setInData with direction TX will result in frameSent being em
 
 TEST_CASE("Calling setInData with direction RX will result in frameReceived being emitted", "[canrawview]")
 {
-    CanRawViewModel canRawViewModel;
+    CanRawViewModel canRawViewModel(nullptr);
     QCanBusFrame testFrame;
     testFrame.setFrameId(123);
     auto canRawViewDataIn = std::make_shared<CanRawViewDataIn>(testFrame, Direction::RX, true);
@@ -67,7 +67,7 @@ TEST_CASE("Calling setInData with direction RX will result in frameReceived bein
 
 TEST_CASE("Test save configuration", "[canrawview]")
 {
-    CanRawViewModel canRawViewModel;
+    CanRawViewModel canRawViewModel(nullptr);
     QJsonObject json = canRawViewModel.save();
     CHECK(json.find("name") != json.end());
     CHECK(json.find("columns") != json.end());
@@ -134,7 +134,7 @@ TEST_CASE("Test restore configuration", "[canrawview]")
     QJsonDocument jsonFile(QJsonDocument::fromJson(wholeFile));
     QJsonObject jsonObject = jsonFile.object();
 
-    CanRawViewModel canRawViewModel;
+    CanRawViewModel canRawViewModel(nullptr);
     canRawViewModel.restore(jsonObject);
     QJsonObject json = canRawViewModel.save();
 
@@ -151,7 +151,7 @@ TEST_CASE("Test restore configuration - luck of column", "[canrawview]")
     QJsonDocument jsonFile(QJsonDocument::fromJson(wholeFile));
     QJsonObject jsonObject = jsonFile.object();
 
-    CanRawViewModel canRawViewModel;
+    CanRawViewModel canRawViewModel(nullptr);
     canRawViewModel.restore(jsonObject);
     QJsonObject json = canRawViewModel.save();
 
@@ -168,7 +168,7 @@ TEST_CASE("Test restore configuration - sorting format incorrect", "[canrawview]
     QJsonDocument jsonFile(QJsonDocument::fromJson(wholeFile));
     QJsonObject jsonObject = jsonFile.object();
 
-    CanRawViewModel canRawViewModel;
+    CanRawViewModel canRawViewModel(nullptr);
     canRawViewModel.restore(jsonObject);
     QJsonObject json = canRawViewModel.save();
 
@@ -185,7 +185,7 @@ TEST_CASE("Test restore configuration - visual index incorrect", "[canrawview]")
     QJsonDocument jsonFile(QJsonDocument::fromJson(wholeFile));
     QJsonObject jsonObject = jsonFile.object();
 
-    CanRawViewModel canRawViewModel;
+    CanRawViewModel canRawViewModel(nullptr);
     canRawViewModel.restore(jsonObject);
     QJsonObject json = canRawViewModel.save();
 
@@ -202,7 +202,7 @@ TEST_CASE("Test restore configuration - width incorrect", "[canrawview]")
     QJsonDocument jsonFile(QJsonDocument::fromJson(wholeFile));
     QJsonObject jsonObject = jsonFile.object();
 
-    CanRawViewModel canRawViewModel;
+    CanRawViewModel canRawViewModel(nullptr);
     canRawViewModel.restore(jsonObject);
     QJsonObject json = canRawViewModel.save();
 

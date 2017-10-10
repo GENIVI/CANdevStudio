@@ -2,6 +2,7 @@
 #define COMPONENTMODEL_H
 
 #include "projectconfig.h"
+#include "configuration.h"
 #include <QtCore/QObject>
 #include <QtWidgets/QLabel>
 #include <functional>
@@ -20,7 +21,8 @@ template <typename C, typename Derived>
 class ComponentModel : public QtNodes::NodeDataModel, public ComponentModelInterface {
 
 public:
-    ComponentModel() = default;
+    ComponentModel(Config::IConfig *configMgr) : _component(configMgr) {_configMgr = configMgr;}
+
     virtual ~ComponentModel() = default;
 
     /**
@@ -47,7 +49,7 @@ public:
     */
     virtual std::unique_ptr<QtNodes::NodeDataModel> clone() const override
     {
-        return std::make_unique<Derived>();
+          return std::make_unique<Derived>(_configMgr);
     }
 
     /**
@@ -127,6 +129,7 @@ protected:
     QString _name;
     QString _modelName;
     bool _resizable{ false };
+    Config::IConfig * _configMgr;
 };
 
 #endif // COMPONENTMODEL_H

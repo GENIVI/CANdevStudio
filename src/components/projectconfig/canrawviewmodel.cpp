@@ -2,7 +2,7 @@
 #include <datamodeltypes/canrawviewdata.h>
 #include <log.h>
 
-CanRawViewModel::CanRawViewModel()
+CanRawViewModel::CanRawViewModel(Config::IConfig* configMgr) : ComponentModel<CanRawView, CanRawViewModel>(configMgr)
 {
     _label->setAlignment(Qt::AlignVCenter | Qt::AlignHCenter);
     _label->setFixedSize(75, 25);

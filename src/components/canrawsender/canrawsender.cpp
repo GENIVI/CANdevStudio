@@ -3,8 +3,8 @@
 #include "confighelpers.h"
 #include <cassert>
 
-CanRawSender::CanRawSender()
-    : d_ptr(new CanRawSenderPrivate(this))
+CanRawSender::CanRawSender(Config::IConfig *configMgr)
+    : _configMgr(configMgr),  d_ptr(new CanRawSenderPrivate(this))
 {
 }
 
@@ -15,6 +15,10 @@ CanRawSender::CanRawSender(CanRawSenderCtx&& ctx)
 
 CanRawSender::~CanRawSender()
 {
+}
+
+Config::IConfig* CanRawSender::getConfigMgr() {
+    return _configMgr;
 }
 
 void CanRawSender::setConfig(const QObject& qobject)

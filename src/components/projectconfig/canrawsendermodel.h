@@ -1,6 +1,7 @@
 #ifndef CANRAWSENDERMODEL_H
 #define CANRAWSENDERMODEL_H
 
+#include "configuration.h"
 #include "componentmodel.h"
 #include <QtSerialBus/QCanBusFrame>
 #include <canrawsender.h>
@@ -17,7 +18,8 @@ class CanRawSenderModel : public ComponentModel<CanRawSender, CanRawSenderModel>
     Q_OBJECT
 
 public:
-    CanRawSenderModel();
+    CanRawSenderModel(Config::IConfig* configMgr);
+
     virtual ~CanRawSenderModel() = default;
 
     /**

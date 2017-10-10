@@ -2,6 +2,7 @@
 #define CANDEVICEMODEL_H
 
 #include "componentmodel.h"
+#include "configuration.h"
 #include <QtCore/QObject>
 #include <QtSerialBus/QCanBusFrame>
 #include <candevice.h>
@@ -20,8 +21,9 @@ class CanDeviceModel : public ComponentModel<CanDevice, CanDeviceModel> {
     Q_OBJECT
 
 public:
-    CanDeviceModel();
+    CanDeviceModel(Config::IConfig* configMgr);
 
+    virtual ~CanDeviceModel() = default;
     /**
     *   @brief  Used to get number of ports of each type used by model
     *   @param  type of port

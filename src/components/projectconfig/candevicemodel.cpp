@@ -3,7 +3,7 @@
 #include <datamodeltypes/candevicedata.h>
 #include <log.h>
 
-CanDeviceModel::CanDeviceModel() : _status(false), _direction(Direction::Uninitialized)
+CanDeviceModel::CanDeviceModel(Config::IConfig* configMgr) : ComponentModel<CanDevice, CanDeviceModel>(configMgr), _status(false), _direction(Direction::Uninitialized)
 {
     _label->setAlignment(Qt::AlignVCenter | Qt::AlignHCenter);
     _label->setFixedSize(75, 25);

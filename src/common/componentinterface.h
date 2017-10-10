@@ -1,6 +1,7 @@
 #ifndef __COMPONENTINTERFACE_H
 #define __COMPONENTINTERFACE_H
 
+#include "configuration.h"
 #include <QtCore/QJsonObject>
 #include <QVariant>
 #include <functional>
@@ -32,6 +33,11 @@ struct ComponentInterface {
     *   @brief  Slot to be implemented by Component to execute simulation start action
     */
     virtual void startSimulation() = 0;
+
+    /**
+    *   @brief  Get configuration manager
+    */
+    virtual Config::IConfig* getConfigMgr() = 0;
 
     /**
     *   @brief  Sets configuration for component

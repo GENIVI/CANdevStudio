@@ -14,7 +14,7 @@ Q_DECLARE_METATYPE(QCanBusFrame);
 TEST_CASE("Test basic functionality", "[candevice]")
 {
     using namespace fakeit;
-    CanDeviceModel canDeviceModel;
+    CanDeviceModel canDeviceModel(nullptr);
     CHECK(canDeviceModel.caption() == "CanDevice Node");
     CHECK(canDeviceModel.name() == "CanDeviceModel");
     CHECK(canDeviceModel.modelName() == "CAN device");
@@ -25,7 +25,7 @@ TEST_CASE("Test basic functionality", "[candevice]")
 
 TEST_CASE("Port information", "[candevice]")
 {
-    CanDeviceModel canDeviceModel;
+    CanDeviceModel canDeviceModel(nullptr);
     CanDeviceDataIn canDeviceDataIn;
     CanDeviceDataOut canDeviceDataOut;
     CHECK(canDeviceModel.nPorts(PortType::Out) == 1);
@@ -40,7 +40,7 @@ TEST_CASE("Port information", "[candevice]")
 
 TEST_CASE("Calling frameReceived emits dataUpdated and outData returns that frame", "[candevice]")
 {
-    CanDeviceModel canDeviceModel;
+    CanDeviceModel canDeviceModel(nullptr);
     QCanBusFrame testFrame;
     testFrame.setFrameId(123);
     QSignalSpy dataUpdatedSpy(&canDeviceModel, &CanDeviceModel::dataUpdated);
@@ -53,7 +53,7 @@ TEST_CASE("Calling frameReceived emits dataUpdated and outData returns that fram
 
 TEST_CASE("Calling frameSent emits dataUpdated and outData returns that frame", "[candevice]")
 {
-    CanDeviceModel canDeviceModel;
+    CanDeviceModel canDeviceModel(nullptr);
     QCanBusFrame testFrame;
     testFrame.setFrameId(123);
     QSignalSpy dataUpdatedSpy(&canDeviceModel, &CanDeviceModel::dataUpdated);
@@ -65,7 +65,7 @@ TEST_CASE("Calling frameSent emits dataUpdated and outData returns that frame", 
 
 TEST_CASE("Calling setInData will result in sendFrame being emitted", "[candevice]")
 {
-    CanDeviceModel canDeviceModel;
+    CanDeviceModel canDeviceModel(nullptr);
     QCanBusFrame testFrame;
     testFrame.setFrameId(123);
     auto canDeviceDataIn = std::make_shared<CanDeviceDataIn>(testFrame);
@@ -78,7 +78,7 @@ TEST_CASE("Calling setInData will result in sendFrame being emitted", "[candevic
 
 TEST_CASE("Test save configuration", "[candevice]")
 {
-    CanDeviceModel canDeviceModel;
+    CanDeviceModel canDeviceModel(nullptr);
     QJsonObject json = canDeviceModel.save();
     CHECK(json.find("name") != json.end());
 }

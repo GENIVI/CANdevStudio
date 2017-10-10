@@ -23,15 +23,15 @@ class ProjectConfigPrivate : public QWidget {
     Q_DECLARE_PUBLIC(ProjectConfig)
 
 public:
-    ProjectConfigPrivate(ProjectConfig* q, QWidget* parent)
+    ProjectConfigPrivate(ProjectConfig* q, QWidget* parent, Config::IConfig* configMgr)
         : QWidget(parent), _graphView(new FlowViewWrapper(&_graphScene))
         , _ui(std::make_unique<Ui::ProjectConfigPrivate>())
         , q_ptr(q)
     {
         auto& modelRegistry = _graphScene.registry();
-        modelRegistry.registerModel<CanDeviceModel>();
-        modelRegistry.registerModel<CanRawSenderModel>();
-        modelRegistry.registerModel<CanRawViewModel>();
+        modelRegistry.registerModel<CanDeviceModel>(std::make_unique<CanDeviceModel>(configMgr));
+        modelRegistry.registerModel<CanRawSenderModel>(std::make_unique<CanRawSenderModel>(configMgr));
+        modelRegistry.registerModel<CanRawViewModel>(std::make_unique<CanRawViewModel>(configMgr));
 
         connect(&_graphScene, &QtNodes::FlowScene::nodeCreated, this, &ProjectConfigPrivate::nodeCreatedCallback);
         connect(&_graphScene, &QtNodes::FlowScene::nodeDeleted, this, &ProjectConfigPrivate::nodeDeletedCallback);
