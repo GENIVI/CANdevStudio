@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <rapidjson/schema.h>
 #include <QtWidgets/QMainWindow>
 #include <memory>
 
@@ -23,6 +24,9 @@ private:
     std::unique_ptr<Ui::MainWindow> ui;
     std::unique_ptr<ProjectConfig> projectConfig;
 
+    static std::shared_ptr<rapidjson::SchemaDocument> configSchema;
+    static bool schemaInitialized;
+
     void connectToolbarSignals();
     void connectMenuSignals();
     void setupMdiArea();
@@ -30,6 +34,8 @@ private:
     void handleLoadAction();
     void handleSaveAction();
     void addToMdi(QWidget* component);
+    bool validateConfiguration(const QByteArray& wholeFile) const;
+    static bool loadConfigSchema();
 
 public slots:
     void handleDock(QWidget* component);

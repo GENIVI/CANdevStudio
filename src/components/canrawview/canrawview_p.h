@@ -124,7 +124,7 @@ private:
             }
             ++ii;
         }
-        json["columns"] = std::move(columnArray);
+        json["viewColumns"] = std::move(columnArray);
     }
 
     /* In the future for create log file below code can be use it.
@@ -167,7 +167,7 @@ private:
 
     bool columnAdopt(QJsonObject const& json)
     {
-        auto columnIter = json.find("columns");
+        auto columnIter = json.find("viewColumns");
         if (columnIter == json.end()) {
             cds_error("Columns item not found it");
             return false;
@@ -178,7 +178,7 @@ private:
             return false;
         }
 
-        auto colArray = json["columns"].toArray();
+        auto colArray = json["viewColumns"].toArray();
         if (colArray.size() != 5) {
             cds_error("Columns array size must by 5 not {}", std::to_string(colArray.size()));
             return false;
