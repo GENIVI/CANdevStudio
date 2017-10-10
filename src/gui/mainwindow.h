@@ -5,6 +5,7 @@
 #include <memory>
 
 #include "projectconfig/projectconfig.h"
+#include "projectconfig/configmgr.h"
 
 class QCloseEvent;
 
@@ -22,6 +23,7 @@ public:
 private:
     std::unique_ptr<Ui::MainWindow> ui;
     std::unique_ptr<ProjectConfig> projectConfig;
+    std::unique_ptr<ConfigMgr> configMgr;
 
     void connectToolbarSignals();
     void connectMenuSignals();

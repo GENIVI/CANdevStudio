@@ -36,7 +36,7 @@ void setupBackendInterface(CanDevice& canDevice)
 
 TEST_CASE("Initialization failed", "[candevice]")
 {
-    CanDevice canDevice;
+    CanDevice canDevice(nullptr);
     QCanBusFrame frame;
 
     setupBackendInterface(canDevice);
@@ -168,7 +168,7 @@ TEST_CASE("sendFrame, no device availablie, frameSent is not emitted", "[candevi
     using namespace fakeit;
 
     QCanBusFrame testFrame;
-    CanDevice canDevice;
+    CanDevice canDevice(nullptr);
 
     QSignalSpy frameSentSpy(&canDevice, &CanDevice::frameSent);
     setupBackendInterface(canDevice);

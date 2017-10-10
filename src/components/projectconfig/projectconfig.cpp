@@ -2,8 +2,8 @@
 #include "projectconfig_p.h"
 #include <QCloseEvent>
 
-ProjectConfig::ProjectConfig(QWidget* parent_)
-    : QWidget(parent_), d_ptr(new ProjectConfigPrivate(this, this))
+ProjectConfig::ProjectConfig(QWidget* parent_, Config::IConfig *configMgr)
+    : QWidget(parent_), d_ptr(new ProjectConfigPrivate(this, this, configMgr))
 {
     Q_D(ProjectConfig);
 

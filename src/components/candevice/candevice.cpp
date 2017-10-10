@@ -5,8 +5,8 @@
 #include <QVariant>
 #include <iostream>
 
-CanDevice::CanDevice()
-    : d_ptr(new CanDevicePrivate())
+CanDevice::CanDevice(Config::IConfig *configMgr)
+    : _configMgr(configMgr), d_ptr(new CanDevicePrivate())
 {
 }
 
@@ -139,6 +139,10 @@ void CanDevice::errorOccurred(int error)
         auto sendItem = d->_sendQueue.takeFirst();
         emit frameSent(false, sendItem);
     }
+}
+
+Config::IConfig* CanDevice::getConfigMgr() {
+    return _configMgr;
 }
 
 void CanDevice::setConfig(const QJsonObject& json)

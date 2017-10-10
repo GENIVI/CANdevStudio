@@ -10,7 +10,7 @@ std::shared_ptr<spdlog::logger> kDefaultLogger;
 
 TEST_CASE("Test basic functionality", "[canrawsender]")
 {
-    CanRawSenderModel canRawSenderModel;
+    CanRawSenderModel canRawSenderModel(nullptr);
     CHECK(canRawSenderModel.caption() == "CanRawSender Node");
     CHECK(canRawSenderModel.name() == "CanRawSenderModel");
     CHECK(canRawSenderModel.modelName() == "Raw sender");
@@ -21,7 +21,7 @@ TEST_CASE("Test basic functionality", "[canrawsender]")
 
 TEST_CASE("Port information", "[canrawsender]")
 {
-    CanRawSenderModel canRawSenderModel;
+    CanRawSenderModel canRawSenderModel(nullptr);
     CanRawSenderDataOut canRawSenderDataOut;
     CHECK(canRawSenderModel.nPorts(PortType::Out) == 1);
     CHECK(canRawSenderModel.nPorts(PortType::In) == 0);
@@ -32,7 +32,7 @@ TEST_CASE("Port information", "[canrawsender]")
 
 TEST_CASE("Calling sendFrame emits dataUpdated and outData returns that frame", "[canrawsender]")
 {
-    CanRawSenderModel canRawSenderModel;
+    CanRawSenderModel canRawSenderModel(nullptr);
     QCanBusFrame testFrame;
     testFrame.setFrameId(123);
     QSignalSpy dataUpdatedSpy(&canRawSenderModel, &CanRawSenderModel::dataUpdated);
@@ -44,7 +44,7 @@ TEST_CASE("Calling sendFrame emits dataUpdated and outData returns that frame", 
 
 TEST_CASE("Test save configuration", "[canrawsender]")
 {
-    CanRawSenderModel canRawSenderModel;
+    CanRawSenderModel canRawSenderModel(nullptr);
     QJsonObject json = canRawSenderModel.save();
     CHECK(json.find("name") != json.end());
     CHECK(json.find("columns") != json.end());

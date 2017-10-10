@@ -7,9 +7,8 @@
 #include <QtCore/QString>
 #include <QtCore/QStringList>
 #include <QtSerialBus/QCanBusFrame>
-
-CanRawView::CanRawView()
-    : d_ptr(new CanRawViewPrivate(this))
+CanRawView::CanRawView(Config::IConfig *configMgr)
+    : _configMgr(configMgr), d_ptr(new CanRawViewPrivate(this))
 {
 }
 
@@ -68,6 +67,10 @@ QWidget* CanRawView::mainWidget()
     Q_D(CanRawView);
 
     return d->_ui.mainWidget();
+}
+
+Config::IConfig* CanRawView::getConfigMgr() {
+    return _configMgr;
 }
 
 void CanRawView::setConfig(const QJsonObject& json)

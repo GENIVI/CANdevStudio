@@ -16,7 +16,7 @@ class CanRawView : public QObject, public ComponentInterface {
     Q_DECLARE_PRIVATE(CanRawView)
 
 public:
-    CanRawView();
+    CanRawView(Config::IConfig *configMgr);
     explicit CanRawView(CanRawViewCtx&& ctx);
     ~CanRawView();
 
@@ -24,6 +24,11 @@ public:
     *   @see ComponentInterface
     */
     QWidget* mainWidget() override;
+
+    /**
+    *   @see ComponentInterface
+    */
+    Config::IConfig* getConfigMgr() override;
 
     /**
     *   @see ComponentInterface
@@ -81,6 +86,7 @@ public slots:
     void startSimulation() override;
 
 private:
+    Config::IConfig *_configMgr;
     QScopedPointer<CanRawViewPrivate> d_ptr;
 };
 

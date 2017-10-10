@@ -2,7 +2,7 @@
 #define PROJECTCONFIG_H
 
 #include <QtWidgets/QWidget>
-
+#include "configuration.h"
 namespace QtNodes {
 class Node;
 }
@@ -14,7 +14,7 @@ class ProjectConfig : public QWidget {
     Q_DECLARE_PRIVATE(ProjectConfig)
 
 public:
-    explicit ProjectConfig(QWidget* parent_);
+    explicit ProjectConfig(QWidget* parent_, Config::IConfig* configMgr);
     ~ProjectConfig();
     void closeEvent(QCloseEvent* e);
     QByteArray save();
@@ -32,6 +32,7 @@ signals:
 
 private:
     QScopedPointer<ProjectConfigPrivate> d_ptr;
+    //Config::IConfig* _configMgr;
 };
 
 #endif // PROJECTCONFIG_H

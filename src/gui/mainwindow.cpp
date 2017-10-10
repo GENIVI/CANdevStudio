@@ -147,8 +147,14 @@ bool MainWindow::createProjectConfig(const QString& name)
 {
     if (!closeProjectConfig())
         return false;
-
-    projectConfig = std::make_unique<ProjectConfig>(this);
+  if (configMgr.get() == nullptr) {
+        configMgr = std::make_unique<ConfigMgr>();
+        if (configMgr->init() == false) {
+            cds_error("ConfigMgr not initialized correctly.");
+            return false;
+        }
+    }
+    projectConfig = std::make_unique<ProjectConfig>(this, configMgr.get());
 
     if (projectConfig) {
         projectConfig->setWindowTitle(name);

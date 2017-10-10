@@ -1,7 +1,7 @@
 #include "canrawsendermodel.h"
 #include <datamodeltypes/canrawsenderdata.h>
 
-CanRawSenderModel::CanRawSenderModel()
+CanRawSenderModel::CanRawSenderModel(Config::IConfig* configMgr) :ComponentModel<CanRawSender, CanRawSenderModel>(configMgr)
 {
     _label->setAlignment(Qt::AlignVCenter | Qt::AlignHCenter);
     _label->setFixedSize(75, 25);

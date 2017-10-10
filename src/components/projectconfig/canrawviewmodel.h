@@ -1,6 +1,7 @@
 #ifndef CANRAWVIEWMODEL_H
 #define CANRAWVIEWMODEL_H
 
+#include "configuration.h"
 #include "componentmodel.h"
 #include <QtSerialBus/QCanBusFrame>
 #include <canrawview.h>
@@ -17,7 +18,8 @@ class CanRawViewModel : public ComponentModel<CanRawView, CanRawViewModel> {
     Q_OBJECT
 
 public:
-    CanRawViewModel();
+    CanRawViewModel(Config::IConfig* configMgr);
+
     virtual ~CanRawViewModel() = default;
 
     /**

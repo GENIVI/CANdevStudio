@@ -17,7 +17,7 @@ class CanDevice : public QObject, public ComponentInterface {
     Q_DECLARE_PRIVATE(CanDevice)
 
 public:
-    CanDevice();
+    CanDevice(Config::IConfig *configMgr);
     CanDevice(CanDeviceCtx&& ctx);
     ~CanDevice();
 
@@ -52,6 +52,11 @@ public:
     *   @see ComponentInterface
     */
     void setConfig(const QJsonObject& json) override;
+
+    /**
+    *   @see ComponentInterface
+    */
+    Config::IConfig* getConfigMgr() override;
 
     /**
      *  @see ComponentInterface
@@ -112,6 +117,7 @@ private slots:
     void framesReceived();
 
 private:
+    Config::IConfig *_configMgr;
     QScopedPointer<CanDevicePrivate> d_ptr;
 };
 

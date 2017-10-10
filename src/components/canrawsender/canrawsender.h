@@ -15,7 +15,7 @@ class CanRawSender : public QObject, public ComponentInterface {
     Q_DECLARE_PRIVATE(CanRawSender)
 
 public:
-    CanRawSender();
+    CanRawSender(Config::IConfig *configMgr);
     explicit CanRawSender(CanRawSenderCtx&& ctx);
     ~CanRawSender();
 
@@ -26,6 +26,11 @@ public:
     *   @see ComponentInterface
     */
     QWidget* mainWidget() override;
+
+    /**
+    *   @see ComponentInterface
+    */
+    Config::IConfig* getConfigMgr() override;
 
     /**
     *   @see ComponentInterface
@@ -81,6 +86,7 @@ public slots:
     void startSimulation() override;
 
 private:
+    Config::IConfig *_configMgr;
     QScopedPointer<CanRawSenderPrivate> d_ptr;
 };
 
