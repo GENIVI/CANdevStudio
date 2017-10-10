@@ -9,4 +9,4 @@
 	url = https://github.com/paceholder/nodeeditor
 [submodule "3rdParty/rapidjson"]
 	path = 3rdParty/rapidjson
-	url = git@github.com:Tencent/rapidjson.git
+	url = https://github.com/Tencent/rapidjson.git
