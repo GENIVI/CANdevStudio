@@ -74,7 +74,7 @@ bool Parameter::setNewValue(unsigned int userId, const QString& newValue)
     return true;
 }
 
-const char* Parameter::GetValue(unsigned int handle) const
+const char* Parameter::getValue(unsigned int handle) const
 {
     auto user = _userDef.find(GETUSERID(handle));
     if (user == _userDef.end()) {

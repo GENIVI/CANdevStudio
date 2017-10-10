@@ -47,7 +47,7 @@ public:
     ///	Returns parameter current value
     /// \param[in] handle Id of called modul
     ///	\return	string containing parameter current value
-    virtual const char* GetValue(unsigned int handle) const = 0;
+    virtual const char* getValue(unsigned int handle) const = 0;
     ///	Returns parameter maximum value, if specified
     ///	\return	string containing parameter maximum value
     virtual const char* getMaxValue() const = 0;

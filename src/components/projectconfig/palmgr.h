@@ -96,7 +96,7 @@ public:
     }
 
     /// \brief Returns unique Id of Limits set for parameter
-    /// \return Unique Id of limits set (NULL means not used)
+    /// \return Unique Id of limits set (0 means not used)
     unsigned int getLimitId() const override
     {
         return _content._limitId;
@@ -110,9 +110,9 @@ public:
     }
 
     /// \brief Returns parameter current value
-    /// \param[in] handle Id of called modul
+    /// \param[in] handle Id of called module
     /// \return string containing parameter current value
-    const char* GetValue(unsigned int handle) const override;
+    const char* getValue(unsigned int handle) const override;
 
     /// \brief Returns parameter maximum value, if specified
     /// \return String containing parameter minimum value
@@ -128,13 +128,13 @@ public:
         return _content._maxValue.toStdString().c_str();
     }
     /// \brief Attach observer for parameter changed
-    /// \param[in] handle Id of called modul
+    /// \param[in] handle Id of called module
     /// \param[in] onChange Pointer to IOnChange interface
     /// \return true if interface was added or exist in collection, false otherwise
     bool attach(unsigned int handle, Config::IOnChange* onChange) override;
 
     /// \brief Detach observer for parameter changed
-    /// \param[in] handle Id of called modul
+    /// \param[in] handle Id of called module
     /// \param[in] onChange Pointer to IOnChange interface
     /// \return true if interface was removed or not exist in collection, false otherwise
     bool detach(unsigned int handle, Config::IOnChange* onChange) override;
@@ -142,7 +142,7 @@ public:
 
     /// \brief method used to change current value to new one
     /// \param[in] userId Id of user
-    /// \param[in] NewValue - new parameter value to set
+    /// \param[in] newValue - new parameter value to set
     /// \return true if new parameter was set, false otherwise
     bool setNewValue(unsigned int userId, const QString& newValue);
 
@@ -212,7 +212,7 @@ public:
     const char* getName(unsigned int index) const override;
 
     /// \brief Returns value of given index
-    /// \param[in] Index Index of value to get (0 to COUNT-1)
+    /// \param[in] index Index of value to get (0 to COUNT-1)
     /// \return String containing value with given index
     const char* getValue(unsigned int index) const override;
     //=== Config::ILimit - end ===
@@ -313,9 +313,9 @@ public:
 
 private:
     /// \brief This method checks if value is in limit range and prepares information about result
-    /// \param[in] value Value to check
     /// \param[in] min - low range on parameter
     /// \param[in] max - high range of parameter
+    /// \param[in] value Value to check
     /// \tparam VALUE_TYPE is a type of input values
     template <typename VALUE_TYPE> bool CheckRange(VALUE_TYPE min, VALUE_TYPE max, VALUE_TYPE value)
     {
@@ -340,8 +340,8 @@ private:
     bool findId(unsigned int id);
 
     /// \brief This method checks if limit is correctly set and if value is in limit range
-    /// \param[in] minValue Low range on parameter
-    /// \param[in] maxValue High range of parameter
+    /// \param[in] min Low range on parameter
+    /// \param[in] max High range of parameter
     /// \param[in] value Text parameter value
     /// \param[in] type Parameter type value (description by PT_xxx types)
     /// \return true if value is in range, false otherwise
