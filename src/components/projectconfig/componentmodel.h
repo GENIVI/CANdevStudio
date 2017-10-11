@@ -15,6 +15,7 @@ struct ComponentModelInterface {
     virtual ComponentInterface& getComponent() = 0;
     virtual void handleModelCreation(ProjectConfig* config) = 0;
     virtual void setCaption(const QString &caption) = 0;
+    virtual bool restored() = 0;
 };
 
 template <typename C, typename Derived>
@@ -73,6 +74,7 @@ public:
     {
         QJsonObject json = _component.getConfig();
         json["name"] = name();
+        json["caption"] = caption();
         return json;
     }
 
@@ -86,7 +88,15 @@ public:
             cds_error("Problem with validation of restore configuration: component model name tag not exist.");
             return;
         }
+
+        if (json.find("caption") == json.end()) {
+            cds_error("Problem with validation of restore configuration: component model caption tag not exist.");
+            return;
+        }
+
+        _restored = true;
         _name = json.find("name").value().toString();
+        _caption = json.find("caption").value().toString();
         _component.setConfig(json);
         _component.configChanged();
         cds_info("Correct validation of restore configuration for {} modul", _name.toStdString());
@@ -126,12 +136,18 @@ public:
         connect(&_component, &C::mainWidgetDockToggled, config, &ProjectConfig::handleDock);
     }
 
+    virtual bool restored() override
+    {
+        return _restored;
+    }
+
 protected:
     C _component;
     QLabel* _label{ new QLabel };
     QString _caption;
     QString _name;
     bool _resizable{ false };
+    bool _restored{ false };
 };
 
 #endif // COMPONENTMODEL_H

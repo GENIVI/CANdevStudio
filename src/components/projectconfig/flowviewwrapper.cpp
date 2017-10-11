@@ -4,7 +4,7 @@
 
 #include "flowviewwrapper.h"
 
-void FlowViewWrapper::dragMoveEvent(QDragMoveEvent *event) {}
+void FlowViewWrapper::dragMoveEvent(QDragMoveEvent *) {}
 
 void FlowViewWrapper::dropEvent(QDropEvent *event)
 {

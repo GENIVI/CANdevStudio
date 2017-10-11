@@ -71,8 +71,14 @@ public:
         assert(nullptr != dataModel);
 
         auto iface = dynamic_cast<ComponentModelInterface*>(dataModel);
-        iface->setCaption(dataModel->caption() + " #" + QString::number(_nodeCnt++));
         iface->handleModelCreation(q);
+
+        if(!iface->restored())
+        {
+            iface->setCaption(dataModel->caption() + " #" + QString::number(_nodeCnt));
+        }
+
+        _nodeCnt++;
     }
 
     void nodeDeletedCallback(QtNodes::Node& node)

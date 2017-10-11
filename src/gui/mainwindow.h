@@ -20,8 +20,10 @@ public:
     ~MainWindow();
 
 private:
-    std::unique_ptr<Ui::MainWindow> ui;
-    std::unique_ptr<ProjectConfig> projectConfig;
+    std::unique_ptr<Ui::MainWindow> _ui;
+    std::unique_ptr<ProjectConfig> _projectConfig;
+    QString _projectFile;
+    QString _projectName;
 
     void connectToolbarSignals();
     void connectMenuSignals();
@@ -29,6 +31,7 @@ private:
     void closeEvent(QCloseEvent* event);
     void handleLoadAction();
     void handleSaveAction();
+    void handleSaveAsAction();
     void addToMdi(QWidget* component);
 
 public slots:
