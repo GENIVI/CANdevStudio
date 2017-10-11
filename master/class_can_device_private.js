@@ -8,6 +8,7 @@ var class_can_device_private =
     [ "_ctx", "class_can_device_private.html#a01062d474bca898c296bbbb94212a6a1", null ],
     [ "_initialized", "class_can_device_private.html#a177efe7dfca88905f362d88f9ea0d088", null ],
     [ "_interfaceProperty", "class_can_device_private.html#a20f388644b525498bf3e657e168bbac6", null ],
+    [ "_nameProperty", "class_can_device_private.html#ad1c3ee8d24db6dee4003d597c533c3b0", null ],
     [ "_props", "class_can_device_private.html#ab92f3ad3d1047b17c9adbcd9a13b86d9", null ],
     [ "_sendQueue", "class_can_device_private.html#a3c82b49d7e18f6de1bbe995fc6c79c3b", null ],
     [ "_supportedProps", "class_can_device_private.html#aea6db88af1007a48a9e7bbd869a25aeb", null ]
