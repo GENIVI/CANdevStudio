@@ -71,6 +71,7 @@ public:
         assert(nullptr != dataModel);
 
         auto iface = dynamic_cast<ComponentModelInterface*>(dataModel);
+        iface->setCaption(dataModel->caption() + " #" + QString::number(_nodeCnt++));
         iface->handleModelCreation(q);
     }
 
@@ -99,14 +100,21 @@ public:
         {
             auto& component = getComponent(node);
             auto conf = component.getQConfig();
+            conf->setProperty("name", node.nodeDataModel()->caption());
 
-            PropertyEditorDialog e(conf.get());
+            PropertyEditorDialog e(node.nodeDataModel()->name() + " properties", conf.get());
             if (e.exec() == QDialog::Accepted)
             {
+                auto nodeCaption = conf->property("name");
+                if(nodeCaption.isValid()) {
+                    auto iface = dynamic_cast<ComponentModelInterface*>(node.nodeDataModel());
+                    iface->setCaption(nodeCaption.toString());
+                    node.nodeGraphicsObject().update();
+                }
+
                 component.setConfig(*conf);
                 component.configChanged();
             }
-
         });
 
         contextMenu.addAction(&action1);
@@ -121,6 +129,7 @@ private:
     QtNodes::FlowScene _graphScene;
     FlowViewWrapper* _graphView;
     std::unique_ptr<Ui::ProjectConfigPrivate> _ui;
+    int _nodeCnt = 1;
     ProjectConfig* q_ptr;
 
     ComponentInterface& getComponent(QtNodes::Node& node)

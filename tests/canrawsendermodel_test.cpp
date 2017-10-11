@@ -11,9 +11,8 @@ std::shared_ptr<spdlog::logger> kDefaultLogger;
 TEST_CASE("Test basic functionality", "[canrawsender]")
 {
     CanRawSenderModel canRawSenderModel;
-    CHECK(canRawSenderModel.caption() == "CanRawSender Node");
-    CHECK(canRawSenderModel.name() == "CanRawSenderModel");
-    CHECK(canRawSenderModel.modelName() == "Raw sender");
+    CHECK(canRawSenderModel.caption() == "CanRawSender");
+    CHECK(canRawSenderModel.name() == "CanRawSender");
     CHECK(canRawSenderModel.resizable() == false);
     CHECK(dynamic_cast<CanRawSenderModel*>(canRawSenderModel.clone().get()) != nullptr);
     CHECK(dynamic_cast<QLabel*>(canRawSenderModel.embeddedWidget()) != nullptr);

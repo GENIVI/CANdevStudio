@@ -13,9 +13,8 @@ CanDeviceModel::CanDeviceModel() : _status(false), _direction(Direction::Uniniti
     connect(&_component, &CanDevice::frameReceived, this, &CanDeviceModel::frameReceived);
     connect(this, &CanDeviceModel::sendFrame, &_component, &CanDevice::sendFrame);
 
-    _caption = "CanDevice Node";
-    _name = "CanDeviceModel";
-    _modelName = "CAN device";
+    _caption = "CanDevice";
+    _name = "CanDevice";
 }
 
 unsigned int CanDeviceModel::nPorts(PortType portType) const

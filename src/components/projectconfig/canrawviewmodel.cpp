@@ -8,11 +8,11 @@ CanRawViewModel::CanRawViewModel()
     _label->setFixedSize(75, 25);
     _label->setAttribute(Qt::WA_TranslucentBackground);
 
-    _caption = "CanRawView Node";
-    _name = "CanRawViewModel";
-    _modelName = "Raw view";
+    _caption = "CanRawView";
+    _name = "CanRawView";
 
-    _component.mainWidget()->setWindowTitle("CANrawView");
+    _component.mainWidget()->setWindowTitle(_caption);
+
     connect(this, &CanRawViewModel::frameSent, &_component, &CanRawView::frameSent);
     connect(this, &CanRawViewModel::frameReceived, &_component, &CanRawView::frameReceived);
 }

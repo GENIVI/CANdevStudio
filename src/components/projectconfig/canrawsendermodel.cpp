@@ -7,14 +7,13 @@ CanRawSenderModel::CanRawSenderModel()
     _label->setFixedSize(75, 25);
     _label->setAttribute(Qt::WA_TranslucentBackground);
 
-    QWidget* crsWidget = _component.mainWidget();
-    crsWidget->setWindowTitle("CANrawSender");
-
     connect(&_component, &CanRawSender::sendFrame, this, &CanRawSenderModel::sendFrame);
 
-    _caption = "CanRawSender Node";
-    _name = "CanRawSenderModel";
-    _modelName = "Raw sender";
+    _caption = "CanRawSender";
+    _name = "CanRawSender";
+
+    QWidget* crsWidget = _component.mainWidget();
+    crsWidget->setWindowTitle(_caption);
 }
 
 NodeDataType CanRawSenderModel::dataType(PortType, PortIndex) const

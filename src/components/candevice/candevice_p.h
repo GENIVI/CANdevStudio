@@ -43,10 +43,12 @@ public:
     CanDeviceInterface& _canDevice;
     bool _initialized{ false };
 
+    const QString _nameProperty = "name";
     const QString _backendProperty = "backend";
     const QString _interfaceProperty = "interface";
 
     ComponentInterface::ComponentProperties _supportedProps = {
+            {_nameProperty,   {QVariant::String, true}},
             {_backendProperty,   {QVariant::String, true}},
             {_interfaceProperty, {QVariant::String, true}}
     };

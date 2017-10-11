@@ -15,9 +15,8 @@ TEST_CASE("Test basic functionality", "[candevice]")
 {
     using namespace fakeit;
     CanDeviceModel canDeviceModel;
-    CHECK(canDeviceModel.caption() == "CanDevice Node");
-    CHECK(canDeviceModel.name() == "CanDeviceModel");
-    CHECK(canDeviceModel.modelName() == "CAN device");
+    CHECK(canDeviceModel.caption() == "CanDevice");
+    CHECK(canDeviceModel.name() == "CanDevice");
     CHECK(canDeviceModel.resizable() == false);
     CHECK(dynamic_cast<CanDeviceModel*>(canDeviceModel.clone().get()) != nullptr);
     CHECK(dynamic_cast<QLabel*>(canDeviceModel.embeddedWidget()) != nullptr);

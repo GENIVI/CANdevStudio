@@ -123,7 +123,12 @@ private:
     int _currentIndex;
     QStringList _columnsOrder;
     CanRawSender* q_ptr;
-    ComponentInterface::ComponentProperties _supportedProps;
+
+    const QString _nameProperty = "name";
+
+    ComponentInterface::ComponentProperties _supportedProps = {
+            {_nameProperty,   {QVariant::String, true}}
+    };
 };
 
 #endif // CANRAWSENDER_P_H

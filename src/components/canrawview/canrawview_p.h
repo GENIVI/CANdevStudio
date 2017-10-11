@@ -337,6 +337,11 @@ private:
     Qt::SortOrder _currentSortOrder{ Qt::AscendingOrder };
     QStringList _columnsOrder;
     CanRawView* q_ptr;
-    ComponentInterface::ComponentProperties _supportedProps;
+
+    const QString _nameProperty = "name";
+
+    ComponentInterface::ComponentProperties _supportedProps = {
+            {_nameProperty,   {QVariant::String, true}}
+    };
 };
 #endif // CANRAWVIEW_P_H

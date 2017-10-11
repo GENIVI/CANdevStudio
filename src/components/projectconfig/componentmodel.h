@@ -14,6 +14,7 @@ struct ComponentModelInterface {
     virtual ~ComponentModelInterface() = default;
     virtual ComponentInterface& getComponent() = 0;
     virtual void handleModelCreation(ProjectConfig* config) = 0;
+    virtual void setCaption(const QString &caption) = 0;
 };
 
 template <typename C, typename Derived>
@@ -30,6 +31,20 @@ public:
     virtual QString caption() const override
     {
         return _caption;
+    }
+
+    /**
+     * @brief Sets model caption and updates widget title.
+     * @param caption new caption
+     */
+    virtual void setCaption(const QString &caption) override
+    {
+        _caption = caption;
+
+        auto w = _component.mainWidget();
+        if(w) {
+            w->setWindowTitle(_caption);
+        }
     }
 
     /**
@@ -78,15 +93,6 @@ public:
     }
 
     /**
-    *   @brief  Used to get model name
-    *   @return Model name
-    */
-    virtual QString modelName() const
-    {
-        return _modelName;
-    }
-
-    /**
     *   @brief  Used to get widget embedded in Node
     *   @return QLabel
     */
@@ -125,7 +131,6 @@ protected:
     QLabel* _label{ new QLabel };
     QString _caption;
     QString _name;
-    QString _modelName;
     bool _resizable{ false };
 };
 

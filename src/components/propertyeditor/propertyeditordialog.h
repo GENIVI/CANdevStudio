@@ -30,7 +30,7 @@ public:
      *        original values in case of cancelling.
      * @param parent optional pointer to parent widget
      */
-    PropertyEditorDialog(QObject* propertySource, QWidget* parent = nullptr);
+    PropertyEditorDialog(const QString &title, QObject* propertySource, QWidget* parent = nullptr);
 
     virtual ~PropertyEditorDialog();
 

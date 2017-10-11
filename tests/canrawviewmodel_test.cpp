@@ -20,9 +20,8 @@ TEST_CASE("Test basic functionality", "[canrawview]")
 {
     using namespace fakeit;
     CanRawViewModel canRawViewModel;
-    CHECK(canRawViewModel.caption() == "CanRawView Node");
-    CHECK(canRawViewModel.name() == "CanRawViewModel");
-    CHECK(canRawViewModel.modelName() == "Raw view");
+    CHECK(canRawViewModel.caption() == "CanRawView");
+    CHECK(canRawViewModel.name() == "CanRawView");
     CHECK(canRawViewModel.resizable() == false);
     CHECK(dynamic_cast<CanRawViewModel*>(canRawViewModel.clone().get()) != nullptr);
     CHECK(dynamic_cast<QLabel*>(canRawViewModel.embeddedWidget()) != nullptr);

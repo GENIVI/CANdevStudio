@@ -49,7 +49,7 @@
      <property name="lineWidth">
       <number>1</number>
      </property>
-     <widget class="QLabel" name="CanDeviceModel">
+     <widget class="QLabel" name="CanDevice">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -62,7 +62,7 @@
        <cursorShape>OpenHandCursor</cursorShape>
       </property>
       <property name="toolTip">
-       <string>CanDeviceModel</string>
+       <string>CanDevice</string>
       </property>
       <property name="text">
        <string/>
@@ -74,7 +74,7 @@
        <bool>true</bool>
       </property>
      </widget>
-     <widget class="QLabel" name="CanRawViewModel">
+     <widget class="QLabel" name="CanRawView">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -90,7 +90,7 @@
        <pixmap resource="../../../CANdevResources.qrc">:/images/files/images/CRV_small.png</pixmap>
       </property>
      </widget>
-     <widget class="QLabel" name="CanRawSenderModel">
+     <widget class="QLabel" name="CanRawSender">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -106,9 +106,9 @@
        <pixmap resource="../../../CANdevResources.qrc">:/images/files/images/CRS_small.png</pixmap>
       </property>
      </widget>
-     <zorder>CanRawViewModel</zorder>
-     <zorder>CanRawSenderModel</zorder>
-     <zorder>CanDeviceModel</zorder>
+     <zorder>CanRawView</zorder>
+     <zorder>CanRawSender</zorder>
+     <zorder>CanDevice</zorder>
     </widget>
    </item>
   </layout>
