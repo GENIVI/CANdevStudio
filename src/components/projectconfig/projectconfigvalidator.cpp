@@ -1,5 +1,6 @@
 #include <projectconfigvalidator.h>
 #include <rapidjson/stringbuffer.h>
+#include <QDirIterator>
 #include <QFile>
 #include <QMessageBox>
 
@@ -61,7 +62,7 @@ bool ProjectConfigValidator::loadConfigSchema()
 {
     using namespace rapidjson;
 
-    QFile file("/home/krbo/schema.json");
+    QFile file(":/files/json/projectConfigSchema.json");
     if (!file.open(QIODevice::ReadOnly))
     {
         cds_error("Could not open configuration schema file");

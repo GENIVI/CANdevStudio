@@ -1,0 +1,160 @@
+
+
+{
+  "$schema": "http://json-schema.org/draft-04/schema#", 
+  "definitions": {}, 
+  "id": "http://example.com/example.json", 
+  "properties": {
+    "connections": {
+      "id": "/properties/connections", 
+      "items": {
+        "description": "This accepts anything, as long as it's valid JSON.", 
+        "title": "Empty Object"
+      }, 
+      "type": "array"
+    }, 
+    "nodes": {
+      "id": "/properties/nodes", 
+      "items": {
+        "id": "/properties/nodes/items", 
+        "properties": {
+          "id": {
+            "default": "{51ff31b2-3fa8-463e-bf37-a4568f486035}", 
+            "description": "An explanation about the purpose of this instance.", 
+            "examples": [
+              "{51ff31b2-3fa8-463e-bf37-a4568f486035}"
+            ], 
+            "id": "/properties/nodes/items/properties/id", 
+            "title": "The id schema.", 
+            "type": "string"
+          }, 
+          "model": {
+            "id": "/properties/nodes/items/properties/model", 
+            "properties": {
+              "content": {
+                "id": "/properties/nodes/items/properties/model/properties/content", 
+                "items": {
+                  "description": "This accepts anything, as long as it's valid JSON.", 
+                  "title": "Empty Object"
+                }, 
+                "type": "array"
+              }, 
+              "name": {
+                "default": "CanRawSenderModel", 
+                "description": "An explanation about the purpose of this instance.", 
+                "examples": [
+                  "CanRawSenderModel"
+                ], 
+                "id": "/properties/nodes/items/properties/model/properties/name", 
+                "title": "The name schema.", 
+                "type": "string"
+              }, 
+              "senderColumns": {
+                "id": "/properties/nodes/items/properties/model/properties/senderColumns", 
+                "items": {
+                  "default": "Id", 
+                  "description": "An explanation about the purpose of this instance.", 
+                  "examples": [
+                    "Id"
+                  ], 
+                  "id": "/properties/nodes/items/properties/model/properties/senderColumns/items", 
+                  "title": "The 0 schema.", 
+                  "type": "string"
+                }, 
+                "type": "array"
+              },
+              "viewColumns": {
+                "id": "/properties/nodes/items/properties/model/properties/viewColumns", 
+                "items": {
+                  "id": "/properties/nodes/items/properties/model/properties/viewColumns/items", 
+                  "properties": {
+                    "name": {
+                      "default": "time", 
+                      "description": "An explanation about the purpose of this instance.", 
+                      "examples": [
+                        "time"
+                      ], 
+                      "id": "/properties/nodes/items/properties/model/properties/viewColumns/items/properties/name", 
+                      "title": "The name schema.", 
+                      "type": "string"
+                    }, 
+                    "vIdx": {
+                      "default": 1, 
+                      "description": "An explanation about the purpose of this instance.", 
+                      "examples": [
+                        "1"
+                      ], 
+                      "id": "/properties/nodes/items/properties/model/properties/viewColumns/items/properties/vIdx", 
+                      "title": "The vidx schema.", 
+                      "type": "integer"
+                    }, 
+                    "width": {
+                      "default": 60, 
+                      "description": "An explanation about the purpose of this instance.", 
+                      "examples": [
+                        "60"
+                      ], 
+                      "id": "/properties/nodes/items/properties/model/properties/viewColumns/items/properties/width", 
+                      "title": "The width schema.", 
+                      "type": "integer"
+                    }
+                  }, 
+                  "type": "object"
+                }, 
+                "type": "array"
+              },
+              "sorting": {
+                "id": "/properties/nodes/items/properties/model/properties/sorting", 
+                "properties": {
+                  "currentIndex": {
+                    "default": 22081, 
+                    "description": "An explanation about the purpose of this instance.", 
+                    "examples": [
+                      "22081"
+                    ], 
+                    "id": "/properties/nodes/items/properties/model/properties/sorting/properties/currentIndex", 
+                    "title": "The currentindex schema.", 
+                    "type": "integer"
+                  }
+                }, 
+                "type": "object"
+              }
+            }, 
+            "type": "object"
+          }, 
+          "position": {
+            "id": "/properties/nodes/items/properties/position", 
+            "properties": {
+              "x": {
+                "default": 485, 
+                "description": "An explanation about the purpose of this instance.", 
+                "examples": [
+                  "485"
+                ], 
+                "id": "/properties/nodes/items/properties/position/properties/x", 
+                "title": "The x schema.", 
+                "type": "integer"
+              }, 
+              "y": {
+                "default": 377, 
+                "description": "An explanation about the purpose of this instance.", 
+                "examples": [
+                  "377"
+                ], 
+                "id": "/properties/nodes/items/properties/position/properties/y", 
+                "title": "The y schema.", 
+                "type": "integer"
+              }
+            }, 
+            "type": "object"
+          }
+        }, 
+        "type": "object"
+      }, 
+      "type": "array"
+    }
+  }, 
+  "type": "object"
+}
+
+
