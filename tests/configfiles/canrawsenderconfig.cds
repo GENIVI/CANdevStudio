@@ -14,7 +14,8 @@
            "loop": false
        }
    ],
-   "name": "CanRawSenderModel",
+   "name": "CanRawSender",
+   "caption": "CanRawSender",
    "sorting": {
        "currentIndex": 0
    }

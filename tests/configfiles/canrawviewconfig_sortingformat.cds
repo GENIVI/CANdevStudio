@@ -26,7 +26,8 @@
 	"width": 764
     }
 ],
-"name": "CanRawViewModel",
+"name": "CanRawView",
+"caption": "CanRawView",
 "scrolling": 0
 }
 
