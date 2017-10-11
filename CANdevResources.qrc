@@ -4,4 +4,7 @@
         <file>files/images/CRS_small.png</file>
         <file>files/images/CRV_small.png</file>
     </qresource>
+    <qresource prefix="">
+        <file>files/json/projectConfigSchema.json</file>
+    </qresource>
 </RCC>

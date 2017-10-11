@@ -4,6 +4,7 @@
 #include "modelvisitor.h" // apply_model_visitor
 #include "subwindow.h"
 #include "ui_mainwindow.h"
+#include "projectconfigvalidator.h"
 
 #include <QCloseEvent>
 #include <QtCore/QFile>
@@ -104,6 +105,9 @@ void MainWindow::handleLoadAction()
     }
 
     QByteArray wholeFile = file.readAll();
+
+    if (!ProjectConfigValidator::validateConfiguration(wholeFile))
+        return;
 
     // TODO check if file is correct, nodeeditor library does not provide it and will crash if incorrect file is
     // supplied
@@ -242,3 +246,4 @@ void MainWindow::handleWidgetShowing(QWidget* widget, bool docked)
         widget->activateWindow();
     }
 }
+

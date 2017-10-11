@@ -1,5 +1,5 @@
 {
-   "columns": [
+   "senderColumns": [
        "Id",
        "Data",
        "Loop",

@@ -1,5 +1,5 @@
 {
-   "columns": [
+   "senderColumns": [
        "badColumnsName_luckId",
        "Data",
        "Loop",

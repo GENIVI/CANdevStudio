@@ -39,7 +39,7 @@ void CanRawSenderPrivate::writeColumnsOrder(QJsonObject& json) const
     for (const auto& column : _columnsOrder) {
         columnList.append(column);
     }
-    json["columns"] = std::move(columnList);
+    json["senderColumns"] = std::move(columnList);
 }
 
 void CanRawSenderPrivate::writeSortingRules(QJsonObject& json) const
@@ -84,7 +84,7 @@ void CanRawSenderPrivate::addNewItem()
 
 bool CanRawSenderPrivate::columnAdopt(QJsonObject const& json)
 {
-    auto columnIter = json.find("columns");
+    auto columnIter = json.find("senderColumns");
     if (columnIter == json.end()) {
         cds_error("Columns item not found it");
         return false;
@@ -95,7 +95,7 @@ bool CanRawSenderPrivate::columnAdopt(QJsonObject const& json)
         return false;
     }
 
-    auto colArray = json["columns"].toArray();
+    auto colArray = json["senderColumns"].toArray();
     if (colArray.size() != 5) {
         cds_error("Columns array size is {} - must by 5!", std::to_string(colArray.size()));
         return false;

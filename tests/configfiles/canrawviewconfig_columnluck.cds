@@ -1,5 +1,5 @@
 {
-"columns": [
+"viewColumns": [
     {
 	"name": "id",
 	"vIdx": 4,
