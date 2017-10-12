@@ -6,8 +6,8 @@
 #include "flowviewwrapper.h"
 #include "modeltoolbutton.h"
 #include "ui_projectconfig.h"
-#include <QtWidgets/QPushButton>
 #include <QMenu>
+#include <QtWidgets/QPushButton>
 #include <log.h>
 #include <modelvisitor.h> // apply_model_visitor
 #include <nodes/Node>
@@ -24,7 +24,8 @@ class ProjectConfigPrivate : public QWidget {
 
 public:
     ProjectConfigPrivate(ProjectConfig* q, QWidget* parent)
-        : QWidget(parent), _graphView(new FlowViewWrapper(&_graphScene))
+        : QWidget(parent)
+        , _graphView(new FlowViewWrapper(&_graphScene))
         , _ui(std::make_unique<Ui::ProjectConfigPrivate>())
         , q_ptr(q)
     {
@@ -37,16 +38,14 @@ public:
         connect(&_graphScene, &QtNodes::FlowScene::nodeDeleted, this, &ProjectConfigPrivate::nodeDeletedCallback);
         connect(&_graphScene, &QtNodes::FlowScene::nodeDoubleClicked, this,
             &ProjectConfigPrivate::nodeDoubleClickedCallback);
-        connect(&_graphScene, &QtNodes::FlowScene::nodeContextMenu, this,
-            &ProjectConfigPrivate::nodeContextMenuCallback);
+        connect(
+            &_graphScene, &QtNodes::FlowScene::nodeContextMenu, this, &ProjectConfigPrivate::nodeContextMenuCallback);
 
         _ui->setupUi(this);
         _ui->layout->addWidget(_graphView);
     }
 
-    ~ProjectConfigPrivate()
-    {
-    }
+    ~ProjectConfigPrivate() {}
 
     QByteArray save() const
     {
@@ -73,8 +72,7 @@ public:
         auto iface = dynamic_cast<ComponentModelInterface*>(dataModel);
         iface->handleModelCreation(q);
 
-        if(!iface->restored())
-        {
+        if (!iface->restored()) {
             iface->setCaption(dataModel->caption() + " #" + QString::number(_nodeCnt));
         }
 
@@ -102,17 +100,16 @@ public:
         QMenu contextMenu(tr("Node options"), this);
 
         QAction action1("Properties", this);
-        connect(&action1, &QAction::triggered, [this, &node]()
-        {
+        connect(&action1, &QAction::triggered, [this, &node]() {
             auto& component = getComponent(node);
             auto conf = component.getQConfig();
             conf->setProperty("name", node.nodeDataModel()->caption());
 
-            PropertyEditorDialog e(node.nodeDataModel()->name() + " properties", conf.get());
-            if (e.exec() == QDialog::Accepted)
-            {
+            PropertyEditorDialog e(node.nodeDataModel()->name() + " properties", *conf.get());
+            if (e.exec() == QDialog::Accepted) {
+                conf = e.properties();
                 auto nodeCaption = conf->property("name");
-                if(nodeCaption.isValid()) {
+                if (nodeCaption.isValid()) {
                     auto iface = dynamic_cast<ComponentModelInterface*>(node.nodeDataModel());
                     iface->setCaption(nodeCaption.toString());
                     node.nodeGraphicsObject().update();

@@ -42,6 +42,7 @@ public:
     QVector<QCanBusFrame> _sendQueue;
     CanDeviceInterface& _canDevice;
     bool _initialized{ false };
+    bool _simStarted{ false };
 
     const QString _nameProperty = "name";
     const QString _backendProperty = "backend";

@@ -1,8 +1,8 @@
 #include "candevice.h"
 #include "candevice_p.h"
 #include "confighelpers.h"
-#include <QtCore/QQueue>
 #include <QVariant>
+#include <QtCore/QQueue>
 #include <iostream>
 
 CanDevice::CanDevice()
@@ -15,17 +15,14 @@ CanDevice::CanDevice(CanDeviceCtx&& ctx)
 {
 }
 
-CanDevice::~CanDevice()
-{
-}
+CanDevice::~CanDevice() {}
 
 bool CanDevice::init(const QString& backend, const QString& interface, bool saveConfig)
 {
     Q_D(CanDevice);
     QString errorString;
 
-    if (saveConfig)
-    {
+    if (saveConfig) {
         d->_props[d->_backendProperty] = backend;
         d->_props[d->_interfaceProperty] = interface;
     }
@@ -50,13 +47,12 @@ bool CanDevice::init()
 {
     Q_D(CanDevice);
 
-    const auto& props   = d->_props;
+    const auto& props = d->_props;
     const auto& backend = d->_backendProperty;
-    const auto& iface   = d->_interfaceProperty;
+    const auto& iface = d->_interfaceProperty;
 
     // check if required properties are set
-    const bool propertiesSet = (props.count(backend) == 1)
-        && (props.count(iface) == 1);
+    const bool propertiesSet = (props.count(backend) == 1) && (props.count(iface) == 1);
 
     if (!propertiesSet)
         return d->_initialized;
@@ -174,6 +170,8 @@ void CanDevice::startSimulation()
 {
     Q_D(CanDevice);
 
+    d->_simStarted = true;
+
     if (!d->_initialized) {
         cds_info("CanDevice not initialized");
         return;
@@ -187,6 +185,8 @@ void CanDevice::startSimulation()
 void CanDevice::stopSimulation()
 {
     Q_D(CanDevice);
+
+    d->_simStarted = false;
 
     if (!d->_initialized) {
         cds_info("CanDevice not initialized");
@@ -210,5 +210,11 @@ bool CanDevice::mainWidgetDocked() const
 
 void CanDevice::configChanged()
 {
+    Q_D(CanDevice);
+
     init();
+
+    if (d->_simStarted) {
+        startSimulation();
+    }
 }
