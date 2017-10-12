@@ -4,6 +4,5 @@ var searchData=
   ['projectconfigprivate',['ProjectConfigPrivate',['../class_project_config_private.html',1,'']]],
   ['projectconfigvalidator',['ProjectConfigValidator',['../class_project_config_validator.html',1,'']]],
   ['propertyeditordialog',['PropertyEditorDialog',['../class_property_editor_dialog.html',1,'']]],
-  ['propertymodel',['PropertyModel',['../class_property_model.html',1,'']]],
   ['pushbuttoninterface',['PushButtonInterface',['../struct_push_button_interface.html',1,'']]]
 ];

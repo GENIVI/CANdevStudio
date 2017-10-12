@@ -55,9 +55,6 @@ var hierarchy =
     [ "PushButtonInterface", "struct_push_button_interface.html", [
       [ "NLMPushButton", "struct_n_l_m_push_button.html", null ]
     ] ],
-    [ "QAbstractTableModel", null, [
-      [ "PropertyModel", "class_property_model.html", null ]
-    ] ],
     [ "QDialog", null, [
       [ "PropertyEditorDialog", "class_property_editor_dialog.html", null ]
     ] ],

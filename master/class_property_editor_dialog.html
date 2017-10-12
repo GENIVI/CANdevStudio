@@ -132,15 +132,17 @@ Collaboration diagram for PropertyEditorDialog:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a33927074bb5d5bcfebf774e56e89c058"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_property_editor_dialog.html#a33927074bb5d5bcfebf774e56e89c058">PropertyEditorDialog</a> (const QString &amp;title, QObject *propertySource, QWidget *parent=nullptr)</td></tr>
-<tr class="separator:a33927074bb5d5bcfebf774e56e89c058"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aefeb75865a1ff3767ed955bbfb1963a2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_property_editor_dialog.html#aefeb75865a1ff3767ed955bbfb1963a2">PropertyEditorDialog</a> (const QString &amp;title, const QObject &amp;propertySource, QWidget *parent=nullptr)</td></tr>
+<tr class="separator:aefeb75865a1ff3767ed955bbfb1963a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:affc5a406f9e129e898c18ef7d32cc0a7"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_property_editor_dialog.html#affc5a406f9e129e898c18ef7d32cc0a7">~PropertyEditorDialog</a> ()</td></tr>
 <tr class="separator:affc5a406f9e129e898c18ef7d32cc0a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0502bb194829b5ebabe029e03bf2813c"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; QObject &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_property_editor_dialog.html#a0502bb194829b5ebabe029e03bf2813c">properties</a> ()</td></tr>
+<tr class="separator:a0502bb194829b5ebabe029e03bf2813c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class defining Property Editor Dialog </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a33927074bb5d5bcfebf774e56e89c058"></a>
+<a class="anchor" id="aefeb75865a1ff3767ed955bbfb1963a2"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -153,7 +155,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">QObject *&#160;</td>
+          <td class="paramtype">const QObject &amp;&#160;</td>
           <td class="paramname"><em>propertySource</em>, </td>
         </tr>
         <tr>
@@ -169,13 +171,6 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">propertySource</td><td>Pointer to QObject whose properties will be edited. NOTE: properties are actually modified, even if dialog is closed by cancelling (emitting "rejected" signal). Please make sure to pass here pointer to a copy of object if you wish to preserve original values in case of cancelling. </td></tr>
-    <tr><td class="paramname">parent</td><td>optional pointer to parent widget </td></tr>
-  </table>
-  </dd>
-</dl>
 
 </div>
 </div>
@@ -198,6 +193,22 @@ Public Member Functions</h2></td></tr>
 <span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a0502bb194829b5ebabe029e03bf2813c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt; QObject &gt; PropertyEditorDialog::properties </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
 </div><div class="memdoc">
 
 </div>

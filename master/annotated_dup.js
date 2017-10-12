@@ -40,7 +40,6 @@ var annotated_dup =
     [ "ProjectConfigPrivate", "class_project_config_private.html", "class_project_config_private" ],
     [ "ProjectConfigValidator", "class_project_config_validator.html", null ],
     [ "PropertyEditorDialog", "class_property_editor_dialog.html", "class_property_editor_dialog" ],
-    [ "PropertyModel", "class_property_model.html", "class_property_model" ],
     [ "PushButtonInterface", "struct_push_button_interface.html", "struct_push_button_interface" ],
     [ "SubWindow", "struct_sub_window.html", "struct_sub_window" ],
     [ "UniqueFilterModel", "class_unique_filter_model.html", "class_unique_filter_model" ],

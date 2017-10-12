@@ -19,7 +19,6 @@ var searchData=
   ['closeevent',['closeEvent',['../class_project_config.html#a19151c1dd5cf6c3a99985c1c3aa6b4b5',1,'ProjectConfig::closeEvent()'],['../struct_sub_window.html#a1b4b2dec3bd9137440c809bde3447f0c',1,'SubWindow::closeEvent()']]],
   ['closeproject',['closeProject',['../class_project_config.html#af229bb450c2e6e3971b34cfe91387659',1,'ProjectConfig']]],
   ['closeprojectconfig',['closeProjectConfig',['../class_main_window.html#a3a91691c4879ced069c02b2a6a524ec4',1,'MainWindow']]],
-  ['columncount',['columnCount',['../class_property_model.html#a5fdaf73fcd116cc51d84124e8d003cff',1,'PropertyModel']]],
   ['componentmodel',['ComponentModel',['../class_component_model.html#a2fb9e24a9ca0498cc6e67aa9d676e822',1,'ComponentModel']]],
   ['componentwidgetcreated',['componentWidgetCreated',['../class_project_config.html#aa58b2f890829fc2ab177578d5926d4b1',1,'ProjectConfig']]],
   ['configchanged',['configChanged',['../struct_component_interface.html#a454beb59c1467a3eaba31a038c54613a',1,'ComponentInterface::configChanged()'],['../class_can_device.html#a4e7ed27bfec64abc2c7771a757034772',1,'CanDevice::configChanged()'],['../class_can_raw_sender.html#a12350bc252d0e225ba2fd83732806e7e',1,'CanRawSender::configChanged()'],['../class_can_raw_view.html#ad912513d3460b6752a22c459f76e86a2',1,'CanRawView::configChanged()']]],

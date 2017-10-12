@@ -11,6 +11,5 @@ var searchData=
   ['restoreconfiguration',['restoreConfiguration',['../class_can_device_private.html#a6a5e19d65cb4d53494708268b9707ad2',1,'CanDevicePrivate::restoreConfiguration()'],['../class_can_raw_sender_private.html#a0bd20f11be7a9272e59ac84c9c6099fb',1,'CanRawSenderPrivate::restoreConfiguration()'],['../class_can_raw_view_private.html#ad415a21405ed841194bb4b23e94bb473',1,'CanRawViewPrivate::restoreConfiguration()']]],
   ['restored',['restored',['../struct_component_model_interface.html#abbfa2c696b0fed3650bfab78b2c8477f',1,'ComponentModelInterface::restored()'],['../class_component_model.html#a92313e4bda9e50f0f57061e64143512e',1,'ComponentModel::restored()']]],
   ['restoreline',['RestoreLine',['../class_new_line_manager.html#abe667dc57c62ee98887ffc1c1e48a436',1,'NewLineManager']]],
-  ['rowcount',['rowCount',['../class_property_model.html#a1c4e3a1f5151de7fd22de4e90b171dca',1,'PropertyModel']]],
   ['rx',['RX',['../candevicedata_8h.html#a224b9163917ac32fc95a60d8c1eec3aaaf9c24782c24c237d16e79f18e2fa9046',1,'candevicedata.h']]]
 ];
