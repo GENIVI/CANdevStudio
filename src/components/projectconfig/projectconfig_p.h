@@ -66,14 +66,11 @@ public:
     {
         Q_Q(ProjectConfig);
 
-        auto dataModel = node.nodeDataModel();
-        assert(nullptr != dataModel);
+        auto& iface = getComponentModel(node);
+        iface.handleModelCreation(q);
 
-        auto iface = dynamic_cast<ComponentModelInterface*>(dataModel);
-        iface->handleModelCreation(q);
-
-        if (!iface->restored()) {
-            iface->setCaption(dataModel->caption() + " #" + QString::number(_nodeCnt));
+        if (!iface.restored()) {
+            iface.setCaption(node.nodeDataModel()->caption() + " #" + QString::number(_nodeCnt));
         }
 
         _nodeCnt++;
@@ -89,38 +86,39 @@ public:
 
     void nodeDoubleClickedCallback(QtNodes::Node& node)
     {
-        Q_Q(ProjectConfig);
         auto& component = getComponent(node);
 
-        emit q->handleWidgetShowing(component.mainWidget(), component.mainWidgetDocked());
+        if (component.mainWidget() != nullptr) {
+            openWidget(node);
+        } else {
+            openProperties(node);
+        }
     }
 
     void nodeContextMenuCallback(QtNodes::Node& node, const QPointF& pos)
     {
+        auto& component = getComponent(node);
         QMenu contextMenu(tr("Node options"), this);
 
-        QAction action1("Properties", this);
-        connect(&action1, &QAction::triggered, [this, &node]() {
-            auto& component = getComponent(node);
-            auto conf = component.getQConfig();
-            conf->setProperty("name", node.nodeDataModel()->caption());
+        QAction actionOpen("Open", this);
+        connect(&actionOpen, &QAction::triggered, [this, &node]() { openWidget(node); });
 
-            PropertyEditorDialog e(node.nodeDataModel()->name() + " properties", *conf.get());
-            if (e.exec() == QDialog::Accepted) {
-                conf = e.properties();
-                auto nodeCaption = conf->property("name");
-                if (nodeCaption.isValid()) {
-                    auto iface = dynamic_cast<ComponentModelInterface*>(node.nodeDataModel());
-                    iface->setCaption(nodeCaption.toString());
-                    node.nodeGraphicsObject().update();
-                }
+        QAction actionProperties("Properties", this);
+        connect(&actionProperties, &QAction::triggered, [this, &node]() { openProperties(node); });
 
-                component.setConfig(*conf);
-                component.configChanged();
-            }
-        });
+        QAction actionDelete("Delete", this);
+        connect(&actionDelete, &QAction::triggered, [this, &node]() { _graphScene.removeNode(node); });
 
-        contextMenu.addAction(&action1);
+        if (component.mainWidget() != nullptr) {
+            contextMenu.addAction(&actionOpen);
+            contextMenu.addAction(&actionProperties);
+            contextMenu.setDefaultAction(&actionOpen);
+        } else {
+            contextMenu.addAction(&actionProperties);
+            contextMenu.setDefaultAction(&actionProperties);
+        }
+
+        contextMenu.addAction(&actionDelete);
 
         auto pos1 = mapToGlobal(_graphView->mapFromScene(pos));
         pos1.setX(pos1.x() + 32); // FIXME: these values are hardcoded and should not be here
@@ -135,14 +133,49 @@ private:
     int _nodeCnt = 1;
     ProjectConfig* q_ptr;
 
+    void openWidget(QtNodes::Node& node)
+    {
+        Q_Q(ProjectConfig);
+        auto& component = getComponent(node);
+
+        emit q->handleWidgetShowing(component.mainWidget(), component.mainWidgetDocked());
+    }
+
+    void openProperties(QtNodes::Node& node)
+    {
+        auto& component = getComponent(node);
+        auto conf = component.getQConfig();
+        conf->setProperty("name", node.nodeDataModel()->caption());
+
+        PropertyEditorDialog e(node.nodeDataModel()->name() + " properties", *conf.get());
+        if (e.exec() == QDialog::Accepted) {
+            conf = e.properties();
+            auto nodeCaption = conf->property("name");
+            if (nodeCaption.isValid()) {
+                auto& iface = getComponentModel(node);
+                iface.setCaption(nodeCaption.toString());
+                node.nodeGraphicsObject().update();
+            }
+
+            component.setConfig(*conf);
+            component.configChanged();
+        }
+    }
+
     ComponentInterface& getComponent(QtNodes::Node& node)
+    {
+        auto &iface = getComponentModel(node);
+        auto& component = iface.getComponent();
+        return component;
+    }
+
+    ComponentModelInterface& getComponentModel(QtNodes::Node& node)
     {
         auto dataModel = node.nodeDataModel();
         assert(nullptr != dataModel);
 
         auto iface = dynamic_cast<ComponentModelInterface*>(dataModel);
-        auto& component = iface->getComponent();
-        return component;
+        return *iface;
     }
 };
 #endif // PROJECTCONFIG_P_H
