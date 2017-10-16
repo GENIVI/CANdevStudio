@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include <QFile>
 #include <QtCore/QtDebug>
 #include <QtCore/QtGlobal>
 #include <QtWidgets/QApplication>
@@ -54,6 +55,13 @@ int main(int argc, char* argv[])
     QApplication a(argc, argv);
     Q_INIT_RESOURCE(CANdevResources);
     QCoreApplication::setAttribute(Qt::AA_DontUseNativeMenuBar);
+
+
+    QFile f(":/files/css/style.css");
+    f.open(QFile::ReadOnly);
+    QString css = QLatin1String(f.readAll());
+    //std::cout << "STYLE: " << css.toStdString() << std::endl;
+    qApp->setStyleSheet(css);
 
     // CDS_DEBUG is set automatically in CMakeLists.txt based on build type (i.e. false for Release, true for Debug)
     setupLogger(CDS_DEBUG);

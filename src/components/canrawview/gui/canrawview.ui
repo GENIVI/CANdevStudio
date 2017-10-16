@@ -30,15 +30,42 @@
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QPushButton" name="pbClear">
-       <property name="text">
+       <property name="toolTip">
         <string>Clear</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../../../CANdevResources.qrc" >:/images/files/images/CANbus_icon_Clear.svg</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QCheckBox" name="freezeBox">
-       <property name="text">
+      <widget class="QPushButton" name="freezeBox">
+       <property name="toolTip">
         <string>Freeze</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../../../CANdevResources.qrc" >:/images/files/images/CANbus_icon_Lock.svg</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
@@ -57,20 +84,44 @@
      </item>
      <item>
       <widget class="QPushButton" name="pbToggleFilter">
-       <property name="text">
-        <string>Combined</string>
+       <property name="toolTip">
+        <string>Combine</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../../../CANdevResources.qrc" >:/images/files/images/CANbus_icon_Combine.svg</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
        </property>
        <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="flat">
         <bool>true</bool>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="pbDockUndock">
-       <property name="text">
+       <property name="toolTip">
         <string>Undock</string>
        </property>
+       <property name="icon">
+        <iconset resource="../../../CANdevResources.qrc" >:/images/files/images/CANbus_icon_Undock.svg</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
        <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="flat">
         <bool>true</bool>
        </property>
       </widget>
@@ -119,6 +170,8 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../../../CANdevResources.qrc"/>
+ </resources>
  <connections/>
 </ui>

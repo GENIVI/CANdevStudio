@@ -128,6 +128,9 @@
    <property name="shortcut">
     <string>Ctrl+O</string>
    </property>
+   <property name="icon" >
+    <iconset resource="../../CANdevResources.qrc" >:/images/files/images/CANbus_icon_OpenProject.svg</iconset>
+   </property>
   </action>
   <action name="actionExit">
    <property name="text">
@@ -181,6 +184,9 @@
    <property name="shortcut">
     <string>Ctrl+Shift+S</string>
    </property>
+   <property name="icon" >
+    <iconset resource="../../CANdevResources.qrc" >:/images/files/images/CANbus_icon_SaveAsProject.svg</iconset>
+   </property>
   </action>
   <action name="actionNew">
    <property name="text">
@@ -188,6 +194,9 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+N</string>
+   </property>
+   <property name="icon" >
+    <iconset resource="../../CANdevResources.qrc" >:/images/files/images/CANbus_icon_NewProject.svg</iconset>
    </property>
   </action>
   <action name="actionClose">
@@ -200,6 +209,9 @@
    <property name="shortcut">
     <string>Ctrl+W</string>
    </property>
+   <property name="icon" >
+    <iconset resource="../../CANdevResources.qrc" >:/images/files/images/CANbus_icon_CloseSim.svg</iconset>
+   </property>
   </action>
   <action name="actionSimulation">
    <property name="enabled">
@@ -207,6 +219,9 @@
    </property>
    <property name="text">
     <string>Simulation Window</string>
+   </property>
+   <property name="icon" >
+    <iconset resource="../../CANdevResources.qrc" >:/images/files/images/CANbus_icon_OpenSim.svg</iconset>
    </property>
   </action>
   <action name="actionSave">
@@ -218,6 +233,9 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+S</string>
+   </property>
+   <property name="icon" >
+    <iconset resource="../../CANdevResources.qrc" >:/images/files/images/CANbus_icon_SaveProject.svg</iconset>
    </property>
   </action>
  </widget>
