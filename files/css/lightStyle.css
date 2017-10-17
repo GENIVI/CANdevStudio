@@ -1,0 +1,139 @@
+QWidget
+{
+    color: #1d1d1d;
+    background-color: #ffffff;
+    selection-background-color: #666666;
+    selection-color: #cccccc;
+    
+
+}
+
+QMenuBar {
+    background-color: #1d1d1d;
+    color: #cccccc
+}
+
+QMenuBar::item {
+    spacing: 3px;
+    padding: 1px 4px;
+    background: transparent;
+    border-radius: 4px;
+}
+
+QMenuBar::item:selected {
+    background: #666666;
+}
+
+QMenuBar::item:pressed {
+    background: #868686;
+}
+
+QMenu {
+/*    color: #282828;
+    background-color: #ffffff;*/
+}
+
+
+QMenu::item:disabled {
+    color: #888888;
+}
+
+QToolBar {
+    background-color: #1492ca;
+}
+
+QToolBar QToolButton {
+    background-color: #1492ca;
+    color: #ffffff
+}
+
+QTabBar {
+    background: #d3d3d3
+}
+
+QTabBar::tab {
+    color: #969696;
+    font-weight: bold;
+    background: #f6f6f6;
+    margin-right: 5px;
+    margin-top: 5px;
+}
+
+QTabBar::tab:selected {
+    color: #ffffff;
+    font-weight: bold;
+    background: #1492ca;
+}
+
+QMdiSubWindow {
+    background: #ffffff;
+}
+
+DragWidget {
+    background: #f2f2f2;
+}
+
+QTableView {
+    background: #ffffff;
+}
+
+QTableView::item {
+    background: #ffffff;
+}
+
+QHeaderView {
+    background-color: #f7f7f7;
+}
+
+
+QCheckBox {
+    background: #cccccc;
+    color: #282828;
+    spacing: 0px;
+}
+
+QCheckBox::indicator {
+    width: 18px;
+    height: 18px;
+}
+
+QCheckBox:checked {
+    color: white;
+}
+
+
+QPushButton[flat="true"] {
+    border: none;
+    margin: 0px;
+    padding: 0px;
+    background-color: #ffffff;
+}
+
+QPushButton[flat="true"]:pressed {
+    border: 2px solid #b8b8b8;
+    border-color: #b8b8b8;
+    background-color: #b8b8b8;
+}
+
+QPushButton[flat="true"]:checked {
+    border: 2px solid #b8b8b8;
+    border-color: #b8b8b8;
+    background-color: #b8b8b8;
+}
+
+QToolButton[text="Start"], QToolButton[text="Stop"] {
+    height: 22px;
+    color: #1492ca;
+    background-color: #ffffff;
+    border-radius: 3;
+    margin: 5px;
+}
+
+QToolButton[text="Start"]:hover, QToolButton[text="Stop"]:hover {
+    background-color: #cccccc;
+}
+
+QToolButton[text="Start"]:pressed, QToolButton[text="Stop"]:pressed {
+    background-color: #616161;
+}
+
