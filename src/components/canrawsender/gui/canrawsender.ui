@@ -34,7 +34,7 @@
         <string>Add</string>
        </property>
        <property name="icon">
-        <iconset resource="../../../CANdevResources.qrc" >:/images/files/images/CANbus_icon_Add.svg</iconset>
+        <iconset resource="../../../CANdevResources.qrc" >:/images/files/images/light/CANbus_icon_Add.svg</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -53,7 +53,7 @@
         <string>Remove</string>
        </property>
        <property name="icon">
-        <iconset resource="../../../CANdevResources.qrc" >:/images/files/images/CANbus_icon_Remove.svg</iconset>
+        <iconset resource="../../../CANdevResources.qrc" >:/images/files/images/light/CANbus_icon_Remove.svg</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -86,7 +86,7 @@
         <string>Undock</string>
        </property>
        <property name="icon" >
-        <iconset resource="../../../CANdevResources.qrc" >:/images/files/images/CANbus_icon_Undock.svg</iconset>
+        <iconset resource="../../../CANdevResources.qrc" >:/images/files/images/light/CANbus_icon_Undock.svg</iconset>
        </property>
        <property name="iconSize" >
         <size>

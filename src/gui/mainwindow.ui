@@ -129,7 +129,7 @@
     <string>Ctrl+O</string>
    </property>
    <property name="icon" >
-    <iconset resource="../../CANdevResources.qrc" >:/images/files/images/CANbus_icon_OpenProject.svg</iconset>
+    <iconset resource="../../CANdevResources.qrc" >:/images/files/images/light/CANbus_icon_OpenProject.svg</iconset>
    </property>
   </action>
   <action name="actionExit">
@@ -185,7 +185,7 @@
     <string>Ctrl+Shift+S</string>
    </property>
    <property name="icon" >
-    <iconset resource="../../CANdevResources.qrc" >:/images/files/images/CANbus_icon_SaveAsProject.svg</iconset>
+    <iconset resource="../../CANdevResources.qrc" >:/images/files/images/light/CANbus_icon_SaveAsProject.svg</iconset>
    </property>
   </action>
   <action name="actionNew">
@@ -196,7 +196,7 @@
     <string>Ctrl+N</string>
    </property>
    <property name="icon" >
-    <iconset resource="../../CANdevResources.qrc" >:/images/files/images/CANbus_icon_NewProject.svg</iconset>
+    <iconset resource="../../CANdevResources.qrc" >:/images/files/images/light/CANbus_icon_NewProject.svg</iconset>
    </property>
   </action>
   <action name="actionClose">
@@ -210,7 +210,7 @@
     <string>Ctrl+W</string>
    </property>
    <property name="icon" >
-    <iconset resource="../../CANdevResources.qrc" >:/images/files/images/CANbus_icon_CloseSim.svg</iconset>
+    <iconset resource="../../CANdevResources.qrc" >:/images/files/images/light/CANbus_icon_CloseSim.svg</iconset>
    </property>
   </action>
   <action name="actionSimulation">
@@ -221,7 +221,7 @@
     <string>Simulation Window</string>
    </property>
    <property name="icon" >
-    <iconset resource="../../CANdevResources.qrc" >:/images/files/images/CANbus_icon_OpenSim.svg</iconset>
+    <iconset resource="../../CANdevResources.qrc" >:/images/files/images/light/CANbus_icon_OpenSim.svg</iconset>
    </property>
   </action>
   <action name="actionSave">
@@ -235,7 +235,7 @@
     <string>Ctrl+S</string>
    </property>
    <property name="icon" >
-    <iconset resource="../../CANdevResources.qrc" >:/images/files/images/CANbus_icon_SaveProject.svg</iconset>
+    <iconset resource="../../CANdevResources.qrc" >:/images/files/images/light/CANbus_icon_SaveProject.svg</iconset>
    </property>
   </action>
  </widget>

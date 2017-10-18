@@ -93,14 +93,17 @@ QCheckBox {
 }
 
 QCheckBox::indicator {
-    width: 18px;
-    height: 18px;
+    width: 28px;
+    height: 28px;
 }
 
-QCheckBox:checked {
-    color: white;
+QCheckBox::indicator:unchecked {
+    image: url(:/images/files/images/light/CANbus_icon_CheckBoxOff.svg);
 }
 
+QCheckBox::indicator:checked {
+    image: url(:/images/files/images/light/CANbus_icon_CheckBoxOn.svg);
+}
 
 QPushButton[flat="true"] {
     border: none;
@@ -135,5 +138,9 @@ QToolButton[text="Start"]:hover, QToolButton[text="Stop"]:hover {
 
 QToolButton[text="Start"]:pressed, QToolButton[text="Stop"]:pressed {
     background-color: #616161;
+}
+
+QToolBar QToolButton[text="New"]{
+    image: url(:/images/files/images/light/CANbus_icon_OpenProject.svg);
 }
 

@@ -79,20 +79,22 @@ QTableView::item {
 
 
 QCheckBox {
-    background: #cccccc;
     color: #282828;
     spacing: 0px;
 }
 
 QCheckBox::indicator {
-    width: 18px;
-    height: 18px;
+    width: 28px;
+    height: 28px;
 }
 
-QCheckBox:checked {
-    color: white;
+QCheckBox::indicator:unchecked {
+    image: url(:/images/files/images/light/CANbus_icon_CheckBoxOff.svg);
 }
 
+QCheckBox::indicator:checked {
+    image: url(:/images/files/images/light/CANbus_icon_CheckBoxOn.svg);
+}
 
 QPushButton[flat="true"] {
     border: none;
