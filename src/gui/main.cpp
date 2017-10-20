@@ -56,13 +56,6 @@ int main(int argc, char* argv[])
     Q_INIT_RESOURCE(CANdevResources);
     QCoreApplication::setAttribute(Qt::AA_DontUseNativeMenuBar);
 
-
-    QFile f(":/files/css/style.css");
-    f.open(QFile::ReadOnly);
-    QString css = QLatin1String(f.readAll());
-    //std::cout << "STYLE: " << css.toStdString() << std::endl;
-    qApp->setStyleSheet(css);
-
     // CDS_DEBUG is set automatically in CMakeLists.txt based on build type (i.e. false for Release, true for Debug)
     setupLogger(CDS_DEBUG);
 
@@ -71,6 +64,7 @@ int main(int argc, char* argv[])
     qDebug() << "Qt message ";
 
     MainWindow w;
+    w.setStyle(MainWindow::Styles::darkStyle);
     w.show();
 
     return a.exec();

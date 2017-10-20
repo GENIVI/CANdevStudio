@@ -16,6 +16,11 @@ class MainWindow : public QMainWindow {
     Q_OBJECT
 
 public:
+    enum class Styles {
+        darkStyle,
+        lightStyle
+    };
+
     explicit MainWindow(QWidget* parent = nullptr);
     ~MainWindow();
 
@@ -24,6 +29,7 @@ private:
     std::unique_ptr<ProjectConfig> _projectConfig;
     QString _projectFile;
     QString _projectName;
+    Styles currentStyle;
 
     void connectToolbarSignals();
     void connectMenuSignals();
@@ -40,6 +46,8 @@ public slots:
     void handleWidgetShowing(QWidget* widget, bool docked);
     bool createProjectConfig(const QString &name);
     bool closeProjectConfig();
+    void switchStyle();
+    void setStyle(Styles style);
 };
 
 #endif // MAINWINDOW_H

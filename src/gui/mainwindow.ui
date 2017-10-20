@@ -61,6 +61,18 @@
    <addaction name="actionStart"/>
    <addaction name="actionStop"/>
   </widget>
+  <widget class="QToolBar" name="toolBar2">
+   <property name="windowTitle">
+    <string>toolBar2</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <property name="layoutDirection">
+    <enum>Qt::RightToLeft</enum>
+   </property>
+   <addaction name="actionSwitchStyle"/>
+  </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
@@ -238,8 +250,18 @@
     <iconset resource="../../CANdevResources.qrc" >:/images/files/images/light/CANbus_icon_SaveProject.svg</iconset>
    </property>
   </action>
+  <action name="actionSwitchStyle">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Switch style</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="../../CANdevResources.qrc"/>
+ </resources>
  <connections/>
 </ui>

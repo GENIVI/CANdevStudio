@@ -5,6 +5,7 @@
 #include "subwindow.h"
 #include "ui_mainwindow.h"
 #include "projectconfigvalidator.h"
+#include <nodes/FlowViewStyle>
 
 #include <QCloseEvent>
 #include <QtCore/QFile>
@@ -226,6 +227,7 @@ void MainWindow::connectMenuSignals()
     connect(_ui->actionClose, &QAction::triggered, this, &MainWindow::closeProjectConfig);
     connect(_ui->actionNew, &QAction::triggered, [this] { createProjectConfig("New Project"); });
     connect(_ui->actionSimulation, &QAction::triggered, [this] { handleWidgetShowing(_projectConfig.get(), true); });
+    connect(_ui->actionSwitchStyle, & QAction::triggered, this, &MainWindow::switchStyle);
 }
 
 void MainWindow::addToMdi(QWidget* component)
@@ -275,3 +277,55 @@ void MainWindow::handleWidgetShowing(QWidget* widget, bool docked)
     }
 }
 
+void MainWindow::switchStyle()
+{
+    if (currentStyle == Styles::darkStyle)
+        setStyle(Styles::lightStyle);
+    else
+        setStyle(Styles::darkStyle);
+}
+
+void MainWindow::setStyle(Styles style)
+{
+    QString stylefile;
+    QString flowStyle;
+
+    switch (style)
+    {
+    case Styles::darkStyle :
+    {
+        stylefile = ":/files/css/darkStyle.css";
+        flowStyle = R"(
+        {
+          "FlowViewStyle": {
+              "BackgroundColor": [38, 38, 38],
+              "FineGridColor": [30, 30, 30],
+              "CoarseGridColor": [20, 20, 20]
+          }
+        }
+        )";
+    } break;
+    case Styles::lightStyle :
+    {
+        stylefile = ":/files/css/lightStyle.css";
+        flowStyle = R"(
+        {
+          "FlowViewStyle": {
+              "BackgroundColor": [229, 229, 229],
+              "FineGridColor": [220, 220, 220],
+              "CoarseGridColor": [210, 210, 210]
+          }
+        }
+        )";
+    } break;
+    }
+
+    QFile f(stylefile);
+    f.open(QFile::ReadOnly);
+    QString css = QLatin1String(f.readAll());
+    qApp->setStyleSheet(css);
+
+    QtNodes::FlowViewStyle::setStyle(flowStyle);
+
+    currentStyle = style;
+}
