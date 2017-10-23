@@ -47,6 +47,10 @@ QToolBar QToolButton {
     color: #ffffff
 }
 
+QTabBar::close-button {
+    image: url(:/images/files/images/light/CANbus_icon_Close.svg);
+}
+
 QTabBar::tab {
     color: #a6a6a6;
     font-weight: bold;

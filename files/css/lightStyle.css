@@ -48,7 +48,11 @@ QToolBar QToolButton {
 }
 
 QTabBar {
-    background: #d3d3d3
+    background: #d3d3d3;
+}
+
+QTabBar::close-button {
+    image: url(:/images/files/images/light/CANbus_icon_Close.svg);
 }
 
 QTabBar::tab {
