@@ -40,6 +40,12 @@ QMenu::item:disabled {
 
 QToolBar {
     background-color: #1492ca;
+    icon-size: 26px; /* FIXME: for some reason this has no effect */
+}
+
+QToolBar::separator {
+    color: #ff0000; /* FIXME: does not work */
+    /*background: #ff0000; This changes color, but also destroys look (width, height, rounding)*/ 
 }
 
 QToolBar QToolButton {
@@ -104,7 +110,6 @@ QPushButton[flat="true"] {
     border: none;
     margin: 0px;
     padding: 0px;
-    background-color: #616161;
 }
 
 QPushButton[flat="true"]:pressed {
@@ -120,7 +125,8 @@ QPushButton[flat="true"]:checked {
 }
 
 QToolButton[text="Start"], QToolButton[text="Stop"] {
-    height: 22px;
+    height: 26px;
+    width: 80px;
     color: #1492ca;
     background-color: #ffffff;
     border-radius: 3;

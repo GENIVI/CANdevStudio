@@ -44,7 +44,7 @@ QToolBar {
 
 QToolBar QToolButton {
     background-color: #1492ca;
-    color: #ffffff
+    color: #ffffff;
 }
 
 QTabBar {
@@ -129,7 +129,8 @@ QPushButton[flat="true"]:checked {
 }
 
 QToolButton[text="Start"], QToolButton[text="Stop"] {
-    height: 22px;
+    height: 26px;
+    width: 80px;
     color: #1492ca;
     background-color: #ffffff;
     border-radius: 3;
