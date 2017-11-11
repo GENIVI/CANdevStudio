@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include <QFile>
 #include <QtCore/QtDebug>
 #include <QtCore/QtGlobal>
 #include <QtWidgets/QApplication>
@@ -63,6 +64,7 @@ int main(int argc, char* argv[])
     qDebug() << "Qt message ";
 
     MainWindow w;
+    w.setStyle(MainWindow::Styles::darkStyle);
     w.show();
 
     return a.exec();

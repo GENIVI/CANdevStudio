@@ -3,8 +3,53 @@
         <file>files/images/CDN_small.png</file>
         <file>files/images/CRS_small.png</file>
         <file>files/images/CRV_small.png</file>
+	<file>files/images/light/CANbus_icon_Add.svg</file>
+	<file>files/images/light/CANbus_icon_CascadeView.svg</file>
+	<file>files/images/light/CANbus_icon_Clear.svg</file>
+	<file>files/images/light/CANbus_icon_CloseSim.svg</file>
+	<file>files/images/light/CANbus_icon_Combine.svg</file>
+	<file>files/images/light/CANbus_icon_InputOutput.svg</file>
+	<file>files/images/light/CANbus_icon_Input.svg</file>
+	<file>files/images/light/CANbus_icon_Lock.svg</file>
+	<file>files/images/light/CANbus_icon_NewProject.svg</file>
+	<file>files/images/light/CANbus_icon_OpenProject.svg</file>
+	<file>files/images/light/CANbus_icon_OpenSim.svg</file>
+	<file>files/images/light/CANbus_icon_Output.svg</file>
+	<file>files/images/light/CANbus_icon_Remove.svg</file>
+	<file>files/images/light/CANbus_icon_SaveAsProject.svg</file>
+	<file>files/images/light/CANbus_icon_SaveProject.svg</file>
+	<file>files/images/light/CANbus_icon_Switch_2.svg</file>
+	<file>files/images/light/CANbus_icon_Switch.svg</file>
+	<file>files/images/light/CANbus_icon_TabsView.svg</file>
+	<file>files/images/light/CANbus_icon_Undock.svg</file>
+	<file>files/images/light/CANbus_logo.svg</file>
+	<file>files/images/light/CANbus_icon_CheckBoxOn.svg</file>
+	<file>files/images/light/CANbus_icon_CheckBoxOff.svg</file>
+	<file>files/images/light/CANbus_icon_Close.svg</file>
+	<file>files/images/dark/CANbus_icon_Add.svg</file>
+	<file>files/images/dark/CANbus_icon_CascadeView.svg</file>
+	<file>files/images/dark/CANbus_icon_Clear.svg</file>
+	<file>files/images/dark/CANbus_icon_CloseSim.svg</file>
+	<file>files/images/dark/CANbus_icon_Combine.svg</file>
+	<file>files/images/dark/CANbus_icon_InputOutput.svg</file>
+	<file>files/images/dark/CANbus_icon_Input.svg</file>
+	<file>files/images/dark/CANbus_icon_Lock.svg</file>
+	<file>files/images/dark/CANbus_icon_NewProject.svg</file>
+	<file>files/images/dark/CANbus_icon_OpenProject.svg</file>
+	<file>files/images/dark/CANbus_icon_OpenSim.svg</file>
+	<file>files/images/dark/CANbus_icon_Output.svg</file>
+	<file>files/images/dark/CANbus_icon_Remove.svg</file>
+	<file>files/images/dark/CANbus_icon_SaveAsProject.svg</file>
+	<file>files/images/dark/CANbus_icon_SaveProject.svg</file>
+	<file>files/images/dark/CANbus_icon_Switch_2.svg</file>
+	<file>files/images/dark/CANbus_icon_Switch.svg</file>
+	<file>files/images/dark/CANbus_icon_TabsView.svg</file>
+	<file>files/images/dark/CANbus_icon_Undock.svg</file>
+	<file>files/images/dark/CANbus_logo.svg</file>
     </qresource>
     <qresource prefix="">
         <file>files/json/projectConfigSchema.json</file>
+	<file>files/css/darkStyle.css</file>
+	<file>files/css/lightStyle.css</file>
     </qresource>
 </RCC>

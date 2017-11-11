@@ -1,0 +1,143 @@
+QWidget
+{
+    color: #cccccc;
+    background-color: #1d1d1d;
+    selection-background-color: #666666;
+    selection-color: #cccccc;
+    
+    /*
+    border: 0px transparent black;
+    
+    background-clip: border;
+    border-image: none;
+    
+    outline: 0;*/
+}
+
+QMenuBar::item {
+    spacing: 3px;
+    padding: 1px 4px;
+    background: transparent;
+    border-radius: 4px;
+}
+
+QMenuBar::item:selected {
+    background: #666666;
+}
+
+QMenuBar::item:pressed {
+    background: #868686;
+}
+
+QMenu {
+    background-color: "#282828";
+}
+
+
+QMenu::item:disabled {
+    color: #888888;
+}
+
+QToolBar {
+    background-color: #1492ca;
+    icon-size: 26px; /* FIXME: for some reason this has no effect */
+}
+
+QToolBar::separator {
+    color: #ff0000; /* FIXME: does not work */
+    /*background: #ff0000; This changes color, but also destroys look (width, height, rounding)*/ 
+}
+
+QToolBar QToolButton {
+    background-color: #1492ca;
+    color: #ffffff
+}
+
+QTabBar::close-button {
+    image: url(:/images/files/images/light/CANbus_icon_Close.svg);
+}
+
+QTabBar::tab {
+    color: #a6a6a6;
+    font-weight: bold;
+    background: #3a3a3a;
+    margin-right: 5px;
+    margin-top: 5px;
+}
+
+QTabBar::tab:selected {
+    color: #ffffff;
+    font-weight: bold;
+    background: #616161;
+}
+
+QMdiSubWindow {
+    background: #616161;
+}
+
+DragWidget {
+    background: #282828;
+}
+
+QTableView {
+    background: #616161;
+}
+
+QTableView::item {
+    background: #282828;
+}
+
+
+QCheckBox {
+    color: #282828;
+    spacing: 0px;
+}
+
+QCheckBox::indicator {
+    width: 28px;
+    height: 28px;
+}
+
+QCheckBox::indicator:unchecked {
+    image: url(:/images/files/images/light/CANbus_icon_CheckBoxOff.svg);
+}
+
+QCheckBox::indicator:checked {
+    image: url(:/images/files/images/light/CANbus_icon_CheckBoxOn.svg);
+}
+
+QPushButton[flat="true"] {
+    border: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+QPushButton[flat="true"]:pressed {
+    border: 2px solid #b8b8b8;
+    border-color: #b8b8b8;
+    background-color: #b8b8b8;
+}
+
+QPushButton[flat="true"]:checked {
+    border: 2px solid #b8b8b8;
+    border-color: #b8b8b8;
+    background-color: #b8b8b8;
+}
+
+QToolButton[text="Start"], QToolButton[text="Stop"] {
+    height: 26px;
+    width: 80px;
+    color: #1492ca;
+    background-color: #ffffff;
+    border-radius: 3;
+    margin: 5px;
+}
+
+QToolButton[text="Start"]:hover, QToolButton[text="Stop"]:hover {
+    background-color: #cccccc;
+}
+
+QToolButton[text="Start"]:pressed, QToolButton[text="Stop"]:pressed {
+    background-color: #616161;
+}
+

@@ -61,6 +61,18 @@
    <addaction name="actionStart"/>
    <addaction name="actionStop"/>
   </widget>
+  <widget class="QToolBar" name="toolBar2">
+   <property name="windowTitle">
+    <string>toolBar2</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <property name="layoutDirection">
+    <enum>Qt::RightToLeft</enum>
+   </property>
+   <addaction name="actionSwitchStyle"/>
+  </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
@@ -128,6 +140,9 @@
    <property name="shortcut">
     <string>Ctrl+O</string>
    </property>
+   <property name="icon" >
+    <iconset resource="../../CANdevResources.qrc" >:/images/files/images/light/CANbus_icon_OpenProject.svg</iconset>
+   </property>
   </action>
   <action name="actionExit">
    <property name="text">
@@ -181,6 +196,9 @@
    <property name="shortcut">
     <string>Ctrl+Shift+S</string>
    </property>
+   <property name="icon" >
+    <iconset resource="../../CANdevResources.qrc" >:/images/files/images/light/CANbus_icon_SaveAsProject.svg</iconset>
+   </property>
   </action>
   <action name="actionNew">
    <property name="text">
@@ -188,6 +206,9 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+N</string>
+   </property>
+   <property name="icon" >
+    <iconset resource="../../CANdevResources.qrc" >:/images/files/images/light/CANbus_icon_NewProject.svg</iconset>
    </property>
   </action>
   <action name="actionClose">
@@ -200,6 +221,9 @@
    <property name="shortcut">
     <string>Ctrl+W</string>
    </property>
+   <property name="icon" >
+    <iconset resource="../../CANdevResources.qrc" >:/images/files/images/light/CANbus_icon_CloseSim.svg</iconset>
+   </property>
   </action>
   <action name="actionSimulation">
    <property name="enabled">
@@ -207,6 +231,9 @@
    </property>
    <property name="text">
     <string>Simulation Window</string>
+   </property>
+   <property name="icon" >
+    <iconset resource="../../CANdevResources.qrc" >:/images/files/images/light/CANbus_icon_OpenSim.svg</iconset>
    </property>
   </action>
   <action name="actionSave">
@@ -219,9 +246,22 @@
    <property name="shortcut">
     <string>Ctrl+S</string>
    </property>
+   <property name="icon" >
+    <iconset resource="../../CANdevResources.qrc" >:/images/files/images/light/CANbus_icon_SaveProject.svg</iconset>
+   </property>
+  </action>
+  <action name="actionSwitchStyle">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Switch style</string>
+   </property>
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="../../CANdevResources.qrc"/>
+ </resources>
  <connections/>
 </ui>
