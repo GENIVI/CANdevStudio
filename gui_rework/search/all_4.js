@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['darkstyle',['darkStyle',['../class_main_window.html#a3ce45e5943ef06256e909456d7aaff8daf4bc4d588e4835f2c88b952a762870bc',1,'MainWindow']]],
   ['dataline',['DataLine',['../class_new_line_manager.html#a69f0c8e8a1213f641d43b7aa019e87dca32b63603e3a306a3ea64b3e5d16488f1',1,'NewLineManager']]],
   ['datatype',['dataType',['../class_can_device_model.html#aa8a1a96f0f78a16f1692bc66d05e0095',1,'CanDeviceModel::dataType()'],['../class_can_raw_sender_model.html#ab620ab7774c2cb1f4847c7dc7c2267e7',1,'CanRawSenderModel::dataType()'],['../class_can_raw_view_model.html#ae7d4f0c3b91e497773271f8effaa4bf9',1,'CanRawViewModel::dataType()']]],
   ['difference_5ftype',['difference_type',['../class_enum_iterator.html#a5d0eafb4a6100762191474ed400eeecd',1,'EnumIterator']]],

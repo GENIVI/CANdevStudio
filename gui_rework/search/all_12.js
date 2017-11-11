@@ -27,6 +27,7 @@ var searchData=
   ['setsimulationstate',['SetSimulationState',['../class_new_line_manager.html#aa9e40fb8bda738c509ab9b9df60f2de1',1,'NewLineManager::SetSimulationState()'],['../class_can_raw_sender_private.html#ac2fd241370f1045c3735cb32d670eb31',1,'CanRawSenderPrivate::setSimulationState()']]],
   ['setsorting',['setSorting',['../struct_c_r_v_gui.html#a517fc8f58be7047c4c3f5af028615b7a',1,'CRVGui::setSorting()'],['../struct_c_r_v_gui_interface.html#ac8d76b33dcb19012a88f0f5da098ee2e',1,'CRVGuiInterface::setSorting()']]],
   ['setstate',['setState',['../struct_check_box_interface.html#a19933f6a84ef58575df894d6c319f8bb',1,'CheckBoxInterface::setState()'],['../struct_n_l_m_check_box.html#a93fb487c800dfe598935736f829f8e87',1,'NLMCheckBox::setState()']]],
+  ['setstyle',['setStyle',['../class_main_window.html#a7d59764cad27f224ba87e76d07ad5269',1,'MainWindow']]],
   ['settext',['setText',['../struct_line_edit_interface.html#aa04e6d7b9c24b41829ce2ab563160496',1,'LineEditInterface::setText()'],['../struct_n_l_m_line_edit.html#af47a9be0e81384bf7ce48624c3707b70',1,'NLMLineEdit::setText()']]],
   ['setuplogger',['setupLogger',['../main_8cpp.html#a677cf1dd7db1d278155bd2637971a267',1,'main.cpp']]],
   ['setviewfrozen',['setViewFrozen',['../struct_c_r_v_gui.html#ae6557d73a968dd06383f98f8d04f2b33',1,'CRVGui::setViewFrozen()'],['../struct_c_r_v_gui_interface.html#a1fc6c3454ceb5a783810ada7c6db2a52',1,'CRVGuiInterface::setViewFrozen()']]],
@@ -35,7 +36,9 @@ var searchData=
   ['status',['status',['../class_can_device_data_out.html#aa58fee746094174d0927b1307d0597c3',1,'CanDeviceDataOut']]],
   ['stopsimulation',['stopSimulation',['../struct_component_interface.html#ae5a20c5ff68df62ff745cae181d75772',1,'ComponentInterface::stopSimulation()'],['../class_can_device.html#a8d6a7e02abfd305219e78db47764d7b3',1,'CanDevice::stopSimulation()'],['../class_can_raw_sender.html#acf4ae8a4bbab2282a27d2a6001215802',1,'CanRawSender::stopSimulation()'],['../class_can_raw_view.html#a1ea137e8b0b4e6e23a7d84a9c7218ddc',1,'CanRawView::stopSimulation()'],['../class_project_config.html#a9a43e8a6f85ee87ac61799a8a9918772',1,'ProjectConfig::stopSimulation()']]],
   ['str_5ftype',['str_type',['../crv__enums_8h.html#aadc9bcbf066be7d015db5c4a7c2c8585a7f7921bc4676e716d2c318870072e147',1,'crv_enums.h']]],
+  ['styles',['Styles',['../class_main_window.html#a3ce45e5943ef06256e909456d7aaff8d',1,'MainWindow']]],
   ['subwindow',['SubWindow',['../struct_sub_window.html',1,'SubWindow'],['../struct_sub_window.html#a6f9daf9f3cf4ad881f3b452c32778b1d',1,'SubWindow::SubWindow()']]],
   ['subwindow_2eh',['subwindow.h',['../subwindow_8h.html',1,'']]],
-  ['swap',['swap',['../class_enum_iterator.html#a48c1f507be738412e5a54628f69c403d',1,'EnumIterator']]]
+  ['swap',['swap',['../class_enum_iterator.html#a48c1f507be738412e5a54628f69c403d',1,'EnumIterator']]],
+  ['switchstyle',['switchStyle',['../class_main_window.html#a3b69ba6c8a1aaebdcb7a8e5cac3e2842',1,'MainWindow']]]
 ];
