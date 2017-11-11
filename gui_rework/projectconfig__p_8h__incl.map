@@ -1,0 +1,19 @@
+<map id="src/components/projectconfig/projectconfig_p.h" name="src/components/projectconfig/projectconfig_p.h">
+<area shape="rect" id="node2" href="$canrawsendermodel_8h.html" title="canrawsendermodel.h" alt="" coords="501,95,663,121"/>
+<area shape="rect" id="node9" href="$log_8h.html" title="log.h" alt="" coords="1246,244,1299,271"/>
+<area shape="rect" id="node25" href="$canrawviewmodel_8h.html" title="canrawviewmodel.h" alt="" coords="687,95,834,121"/>
+<area shape="rect" id="node27" href="$flowviewwrapper_8h.html" title="flowviewwrapper.h" alt="" coords="1747,95,1881,121"/>
+<area shape="rect" id="node30" href="$modeltoolbutton_8h.html" title="modeltoolbutton.h" alt="" coords="1905,95,2045,121"/>
+<area shape="rect" id="node35" href="$modelvisitor_8h.html" title="modelvisitor.h" alt="" coords="1311,169,1421,196"/>
+<area shape="rect" id="node41" href="$candevicemodel_8h.html" title="projectconfig/candevicemodel.h" alt="" coords="858,95,1082,121"/>
+<area shape="rect" id="node44" href="$propertyeditordialog_8h.html" title="propertyeditor/propertyeditordialog.h" alt="" coords="1463,95,1722,121"/>
+<area shape="rect" id="node3" href="$componentmodel_8h.html" title="componentmodel.h" alt="" coords="930,169,1077,196"/>
+<area shape="rect" id="node17" href="$canrawsender_8h.html" title="canrawsender.h" alt="" coords="206,169,329,196"/>
+<area shape="rect" id="node4" href="$projectconfig_8h.html" title="projectconfig.h" alt="" coords="896,244,1012,271"/>
+<area shape="rect" id="node19" href="$componentinterface_8h.html" title="componentinterface.h" alt="" coords="205,244,367,271"/>
+<area shape="rect" id="node23" href="$context_8h.html" title="context.h" alt="" coords="442,244,525,271"/>
+<area shape="rect" id="node26" href="$canrawview_8h.html" title="canrawview.h" alt="" coords="353,169,459,196"/>
+<area shape="rect" id="node37" href="$visitor_8h.html" title="visitor.h" alt="" coords="1516,244,1587,271"/>
+<area shape="rect" id="node39" href="$visitablewith_8h.html" title="visitablewith.h" alt="" coords="1621,319,1732,345"/>
+<area shape="rect" id="node42" href="$candevice_8h.html" title="candevice.h" alt="" coords="706,169,805,196"/>
+</map>

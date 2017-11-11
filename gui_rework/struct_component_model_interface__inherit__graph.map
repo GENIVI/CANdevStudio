@@ -1,0 +1,9 @@
+<map id="ComponentModelInterface" name="ComponentModelInterface">
+<area shape="rect" id="node2" href="$class_component_model.html" title="ComponentModel\&lt; C,\l Derived \&gt;" alt="" coords="288,5,451,47"/>
+<area shape="rect" id="node3" href="$class_component_model.html" title="ComponentModel\&lt; CanDevice,\l CanDeviceModel \&gt;" alt="" coords="258,71,481,112"/>
+<area shape="rect" id="node5" href="$class_component_model.html" title="ComponentModel\&lt; CanRawSender,\l CanRawSenderModel \&gt;" alt="" coords="244,136,495,177"/>
+<area shape="rect" id="node7" href="$class_component_model.html" title="ComponentModel\&lt; CanRawView,\l CanRawViewModel \&gt;" alt="" coords="253,201,486,243"/>
+<area shape="rect" id="node4" href="$class_can_device_model.html" title="The class provides node graphical representation of CanDevice. " alt="" coords="557,78,685,105"/>
+<area shape="rect" id="node6" href="$class_can_raw_sender_model.html" title="The class provides node graphical representation of CanRawSender. " alt="" coords="543,143,699,170"/>
+<area shape="rect" id="node8" href="$class_can_raw_view_model.html" title="The class provides node graphical representation of CanRawView. " alt="" coords="551,209,690,235"/>
+</map>
