@@ -200,10 +200,6 @@ QToolButton:disabled[iconType="TabView"] {
     image: url(:/images/files/images/light/CANbus_icon_TabsView_disabled.svg);
 }
 
-/*QToolButton:disabled {
-    background-color: #bbbbbb;
-}*/
-
 QToolButton:hover {
     background-color: #0000ff;
 }

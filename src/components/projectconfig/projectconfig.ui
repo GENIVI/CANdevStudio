@@ -25,6 +25,10 @@
   <property name="windowTitle">
    <string>ProjectConfig</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="../../../CANdevResources.qrc">
+    <normaloff>:/images/files/images/dark/CANbus_logo.svg</normaloff>:/images/files/images/dark/CANbus_logo.svg</iconset>
+  </property>
   <layout class="QHBoxLayout" name="layout">
    <item>
     <widget class="DragWidget" name="frame">

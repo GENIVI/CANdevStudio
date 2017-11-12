@@ -187,7 +187,7 @@ bool MainWindow::closeProjectConfig()
         }
 
         _projectConfig->clearGraphView();
-        _ui->mdiArea->removeSubWindow(_projectConfig.get()->parentWidget());
+        _projectConfig.get()->parentWidget()->close();
         _projectConfig.reset();
 
         _ui->actionClose->setDisabled(true);
@@ -276,9 +276,11 @@ void MainWindow::connectMenuSignals()
 
 void MainWindow::addToMdi(QWidget* component)
 {
-    auto wnd = new SubWindow(_ui->mdiArea);
+    auto wnd = new SubWindow(nullptr);
     wnd->setWidget(component);
+    _ui->mdiArea->addSubWindow(wnd);
     component->show();
+    wnd->show();
 }
 
 void MainWindow::setupMdiArea()
@@ -348,6 +350,15 @@ void MainWindow::setStyle(Styles style)
           }
         }
         )";
+
+        // Setting icons for QAction in CSS does not work
+        _ui->actionNew->setIcon(QIcon(":/images/files/images/light/CANbus_icon_NewProject.svg"));
+        _ui->actionLoad->setIcon(QIcon(":/images/files/images/light/CANbus_icon_OpenProject.svg"));
+        _ui->actionSave->setIcon(QIcon(":/images/files/images/light/CANbus_icon_SaveProject.svg"));
+        _ui->actionSaveAs->setIcon(QIcon(":/images/files/images/light/CANbus_icon_SaveAsProject.svg"));
+        _ui->actionSimulation->setIcon(QIcon(":/images/files/images/light/CANbus_icon_OpenSim.svg"));
+        _ui->actionClose->setIcon(QIcon(":/images/files/images/light/CANbus_icon_CloseSim.svg"));
+        _ui->actionExit->setIcon(QIcon(":/images/files/images/light/CANbus_icon_Close.svg"));
     } break;
     case Styles::lightStyle :
     {
@@ -361,6 +372,15 @@ void MainWindow::setStyle(Styles style)
           }
         }
         )";
+
+        // Setting icons for QAction in CSS does not work
+        _ui->actionNew->setIcon(QIcon(":/images/files/images/dark/CANbus_icon_NewProject.svg"));
+        _ui->actionLoad->setIcon(QIcon(":/images/files/images/dark/CANbus_icon_OpenProject.svg"));
+        _ui->actionSave->setIcon(QIcon(":/images/files/images/dark/CANbus_icon_SaveProject.svg"));
+        _ui->actionSaveAs->setIcon(QIcon(":/images/files/images/dark/CANbus_icon_SaveAsProject.svg"));
+        _ui->actionSimulation->setIcon(QIcon(":/images/files/images/dark/CANbus_icon_OpenSim.svg"));
+        _ui->actionClose->setIcon(QIcon(":/images/files/images/dark/CANbus_icon_CloseSim.svg"));
+        _ui->actionExit->setIcon(QIcon(":/images/files/images/dark/CANbus_icon_Close.svg"));
     } break;
     }
 
