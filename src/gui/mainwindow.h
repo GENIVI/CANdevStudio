@@ -9,6 +9,7 @@
 class QCloseEvent;
 
 namespace Ui {
+class ToolBar;
 class MainWindow;
 }
 
@@ -26,6 +27,7 @@ public:
 
 private:
     std::unique_ptr<Ui::MainWindow> _ui;
+    std::unique_ptr<Ui::ToolBar> _toolBar;
     std::unique_ptr<ProjectConfig> _projectConfig;
     QString _projectFile;
     QString _projectName;

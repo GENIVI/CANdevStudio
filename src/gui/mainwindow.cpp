@@ -4,6 +4,7 @@
 #include "modelvisitor.h" // apply_model_visitor
 #include "subwindow.h"
 #include "ui_mainwindow.h"
+#include "ui_toolbar.h"
 #include "projectconfigvalidator.h"
 #include <nodes/FlowViewStyle>
 
@@ -13,13 +14,24 @@
 #include <QtWidgets/QMdiArea>
 #include <QtWidgets/QMdiSubWindow>
 #include <QtWidgets/QMessageBox>
+#include <QtWidgets/QToolButton>
+#include <QtWidgets/QToolBar>
 
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent)
     , _ui(std::make_unique<Ui::MainWindow>())
+    , _toolBar(std::make_unique<Ui::ToolBar>())
 {
     _ui->setupUi(this);
     _ui->centralWidget->layout()->setContentsMargins(0, 0, 0, 0);
+
+    QWidget *toolBarWidget = new QWidget;
+    _toolBar->setupUi(toolBarWidget);
+
+    QToolBar *bar = new QToolBar();
+    bar->addWidget(toolBarWidget);
+    bar->setMovable(false);
+    addToolBar(bar);
 
     setupMdiArea();
     connectToolbarSignals();
@@ -63,8 +75,24 @@ void MainWindow::connectToolbarSignals()
 {
     connect(_ui->actionStart, &QAction::triggered, _ui->actionStop, &QAction::setDisabled);
     connect(_ui->actionStart, &QAction::triggered, _ui->actionStart, &QAction::setEnabled);
+    connect(_ui->actionStart, &QAction::triggered, _toolBar->toolStop, &QWidget::setDisabled);
+    connect(_ui->actionStart, &QAction::triggered, _toolBar->toolStart, &QWidget::setEnabled);
     connect(_ui->actionStop, &QAction::triggered, _ui->actionStop, &QAction::setEnabled);
     connect(_ui->actionStop, &QAction::triggered, _ui->actionStart, &QAction::setDisabled);
+    connect(_ui->actionStop, &QAction::triggered, _toolBar->toolStop, &QWidget::setEnabled);
+    connect(_ui->actionStop, &QAction::triggered, _toolBar->toolStart, &QWidget::setDisabled);
+
+    connect(_toolBar->toolNew, &QToolButton::clicked, _ui->actionNew, &QAction::trigger);
+    connect(_toolBar->toolOpen, &QToolButton::clicked, _ui->actionLoad, &QAction::trigger);
+    connect(_toolBar->toolSave, &QToolButton::clicked, _ui->actionSave, &QAction::trigger);
+    connect(_toolBar->toolSaveAs, &QToolButton::clicked, _ui->actionSaveAs, &QAction::trigger);
+    connect(_toolBar->toolSimulation, &QToolButton::clicked, _ui->actionSimulation, &QAction::trigger);
+    connect(_toolBar->toolClose, &QToolButton::clicked, _ui->actionClose, &QAction::trigger);
+    connect(_toolBar->toolStart, &QToolButton::clicked, _ui->actionStart, &QAction::trigger);
+    connect(_toolBar->toolStop, &QToolButton::clicked, _ui->actionStop, &QAction::trigger);
+    connect(_toolBar->toolSwitch, &QToolButton::clicked, _ui->actionSwitchStyle, &QAction::trigger);
+    connect(_toolBar->toolTabView, &QToolButton::clicked, _ui->actionTabView, &QAction::trigger);
+    connect(_toolBar->toolWindowView, &QToolButton::clicked, _ui->actionSubWindowView, &QAction::trigger);
 }
 
 void MainWindow::handleSaveAction()
@@ -168,6 +196,12 @@ bool MainWindow::closeProjectConfig()
         _ui->actionSaveAs->setDisabled(true);
         _ui->actionStop->setDisabled(true);
         _ui->actionSimulation->setDisabled(true);
+        _toolBar->toolClose->setDisabled(true);
+        _toolBar->toolStart->setDisabled(true);
+        _toolBar->toolSave->setDisabled(true);
+        _toolBar->toolSaveAs->setDisabled(true);
+        _toolBar->toolSimulation->setDisabled(true);
+        _toolBar->toolStop->setDisabled(true);
     }
 
     return true;
@@ -198,6 +232,12 @@ bool MainWindow::createProjectConfig(const QString& name)
         _ui->actionSaveAs->setDisabled(false);
         _ui->actionSimulation->setDisabled(false);
         _ui->actionStop->setDisabled(true);
+        _toolBar->toolClose->setDisabled(false);
+        _toolBar->toolStart->setDisabled(false);
+        _toolBar->toolSave->setDisabled(false);
+        _toolBar->toolSaveAs->setDisabled(false);
+        _toolBar->toolSimulation->setDisabled(false);
+        _toolBar->toolStop->setDisabled(true);
 
         return true;
     } else {
@@ -220,10 +260,14 @@ void MainWindow::connectMenuSignals()
     connect(_ui->actionTile, &QAction::triggered, _ui->mdiArea, &QMdiArea::tileSubWindows);
     connect(_ui->actionCascade, &QAction::triggered, _ui->mdiArea, &QMdiArea::cascadeSubWindows);
     connect(_ui->actionTabView, &QAction::triggered, this, [this] { _ui->mdiArea->setViewMode(QMdiArea::TabbedView); });
+    connect(_ui->actionTabView, &QAction::triggered, _toolBar->toolTabView, &QToolButton::setDisabled);
+    connect(_ui->actionTabView, &QAction::triggered, _toolBar->toolWindowView, &QToolButton::setEnabled);
     connect(_ui->actionTabView, &QAction::toggled, _ui->actionTile, &QAction::setDisabled);
     connect(_ui->actionTabView, &QAction::toggled, _ui->actionCascade, &QAction::setDisabled);
     connect(_ui->actionSubWindowView, &QAction::triggered, this,
         [this] { _ui->mdiArea->setViewMode(QMdiArea::SubWindowView); });
+    connect(_ui->actionSubWindowView, &QAction::triggered, _toolBar->toolWindowView, &QToolButton::setDisabled);
+    connect(_ui->actionSubWindowView, &QAction::triggered, _toolBar->toolTabView, &QToolButton::setEnabled);
     connect(_ui->actionClose, &QAction::triggered, this, &MainWindow::closeProjectConfig);
     connect(_ui->actionNew, &QAction::triggered, [this] { createProjectConfig("New Project"); });
     connect(_ui->actionSimulation, &QAction::triggered, [this] { handleWidgetShowing(_projectConfig.get(), true); });

@@ -4,6 +4,7 @@ set(srcs
     main.cpp
     mainwindow.cpp
     mainwindow.ui
+    toolbar.ui
 )
 
 
