@@ -1,7 +1,7 @@
 QWidget
 {
     color: #cccccc;
-    background-color: #1d1d1d;
+    background-color: #282828;
     selection-background-color: #666666;
     selection-color: #cccccc;
     
@@ -12,6 +12,10 @@ QWidget
     border-image: none;
     
     outline: 0;*/
+}
+
+QWidget#centralWidget {
+    background-color: #1d1d1d;
 }
 
 QMenuBar::item {
@@ -76,9 +80,16 @@ DragWidget {
     background: #282828;
 }
 
+QTableView QTableCornerButton::section {
+    background-color: #3a3a3a;
+    border: 1px solid #3a3a3a;
+}
+
 QTableView {
     background: #616161;
     border : 1px solid #8f8f8f;
+    gridline-color: #8f8f8f;
+    color: #e1e1e1
 }
 
 QTableView::item {
@@ -108,11 +119,11 @@ QCheckBox::indicator {
 }
 
 QCheckBox::indicator:unchecked {
-    image: url(:/images/files/images/light/CANbus_icon_CheckBoxOff.svg);
+    image: url(:/images/files/images/dark/CANbus_icon_CheckBoxOff.svg);
 }
 
 QCheckBox::indicator:checked {
-    image: url(:/images/files/images/light/CANbus_icon_CheckBoxOn.svg);
+    image: url(:/images/files/images/dark/CANbus_icon_CheckBoxOn.svg);
 }
 
 QPushButton[flat="true"] {
@@ -185,7 +196,7 @@ QToolButton:disabled[iconType="Close"] {
 }
 
 QToolButton[iconType="Switch"] {
-    image: url(:/images/files/images/light/CANbus_icon_Switch.svg);
+    image: url(:/images/files/images/light/CANbus_icon_Switch_dark.svg);
 }
 
 QToolButton[iconType="WindowView"] {

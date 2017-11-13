@@ -58,6 +58,8 @@
         <file>files/images/light/CANbus_icon_TabsView_disabled.svg</file>
         <file>files/images/light/CANbus_icon_Switch_dark.svg</file>
         <file>files/images/dark/CANbus_icon_Close.svg</file>
+        <file>files/images/dark/CANbus_icon_CheckBoxOff.svg</file>
+        <file>files/images/dark/CANbus_icon_CheckBoxOn.svg</file>
     </qresource>
     <qresource prefix="/">
         <file>files/json/projectConfigSchema.json</file>

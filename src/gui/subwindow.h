@@ -11,7 +11,7 @@ struct SubWindow : public QMdiSubWindow {
         : QMdiSubWindow(parent)
     {
         setAttribute(Qt::WA_DeleteOnClose);
-        setWindowIcon(QIcon(":/images/files/images/light/CANbus_logo.svg"));
+        setWindowIcon(QIcon(" "));
     }
 
     virtual void closeEvent(QCloseEvent* event) override

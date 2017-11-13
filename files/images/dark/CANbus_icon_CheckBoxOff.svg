@@ -30,15 +30,15 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="956"
-     inkscape:window-height="1056"
+     inkscape:window-width="1920"
+     inkscape:window-height="1080"
      id="namedview9"
      showgrid="false"
      inkscape:zoom="5.9"
-     inkscape:cx="-9.4915254"
+     inkscape:cx="-48.135594"
      inkscape:cy="20"
      inkscape:window-x="0"
-     inkscape:window-y="20"
+     inkscape:window-y="0"
      inkscape:window-maximized="0"
      inkscape:current-layer="Layer_1" /><style
      type="text/css"
@@ -46,8 +46,8 @@
 	.st0{fill:#FFFFFF;}
 </style><g
      id="g6"
-     style="fill:#616161;fill-opacity:1"><path
+     style="fill:#e1e1e1;fill-opacity:1"><path
        class="st0"
        d="M8,8l0,24l24,0l0-24L8,8z M28.9,28.9l-17.9,0L11,11l17.9,0L28.9,28.9z"
        id="path4"
-       style="fill:#616161;fill-opacity:1" /></g></svg>
+       style="fill:#e1e1e1;fill-opacity:1" /></g></svg>
