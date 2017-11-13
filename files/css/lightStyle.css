@@ -4,8 +4,10 @@ QWidget
     background-color: #ffffff;
     selection-background-color: #666666;
     selection-color: #cccccc;
-    
+}
 
+QWidget#centralWidget {
+    background-color: #d3d3d3;
 }
 
 QMenuBar {
@@ -29,10 +31,8 @@ QMenuBar::item:pressed {
 }
 
 QMenu {
-/*    color: #282828;
-    background-color: #ffffff;*/
+    background-color: #1d1d1d;
 }
-
 
 QMenu::item:disabled {
     color: #888888;
@@ -72,10 +72,6 @@ QTabBar::tab:selected {
     background: #1492ca;
 }
 
-QMdiSubWindow {
-    background: #ffffff;
-}
-
 DragWidget {
     background: #f2f2f2;
 }
@@ -86,10 +82,20 @@ QTableView {
 
 QTableView::item {
     background: #ffffff;
+    border : 0px;
+    border-color: #ff0000;
 }
 
-QHeaderView {
+QLineEdit {
+    color: #282828;
+}
+
+QHeaderView::section {
     background-color: #f7f7f7;
+    border : 1px solid #d3d3d3;
+    border-left : 0px;
+    border-top : 0px;
+    color: #626262
 }
 
 

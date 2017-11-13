@@ -37,3 +37,9 @@ void ProjectConfig::clearGraphView()
     Q_D(ProjectConfig);
     return d->clearGraphView();
 }
+
+void ProjectConfig::setGraphViewBackground(const QColor &color)
+{
+    Q_D(ProjectConfig);
+    d->_graphView->setBackgroundBrush(QBrush(color, Qt::SolidPattern));
+}

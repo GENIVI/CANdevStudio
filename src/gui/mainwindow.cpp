@@ -187,7 +187,9 @@ bool MainWindow::closeProjectConfig()
         }
 
         _projectConfig->clearGraphView();
-        _projectConfig.get()->parentWidget()->close();
+        if(_projectConfig.get()->isVisible()) {
+            _projectConfig.get()->parentWidget()->close();
+        }
         _projectConfig.reset();
 
         _ui->actionClose->setDisabled(true);
@@ -335,6 +337,8 @@ void MainWindow::setStyle(Styles style)
 {
     QString stylefile;
     QString flowStyle;
+    QColor bgViewColor(38, 38, 38);
+    QColor bgMdiColor(0x1d, 0x1d, 0x1d);
 
     switch (style)
     {
@@ -372,6 +376,8 @@ void MainWindow::setStyle(Styles style)
           }
         }
         )";
+        bgViewColor = QColor(229, 229, 229);
+        bgMdiColor = QColor(0xd3, 0xd3, 0xd3);
 
         // Setting icons for QAction in CSS does not work
         _ui->actionNew->setIcon(QIcon(":/images/files/images/dark/CANbus_icon_NewProject.svg"));
@@ -390,6 +396,11 @@ void MainWindow::setStyle(Styles style)
     qApp->setStyleSheet(css);
 
     QtNodes::FlowViewStyle::setStyle(flowStyle);
+    // Workaround. Background is not updated via style sheet.
+    if(_projectConfig) {
+        _projectConfig->setGraphViewBackground(bgViewColor);
+    }
+    _ui->mdiArea->setBackground(QBrush(bgMdiColor, Qt::SolidPattern));
 
     currentStyle = style;
 }

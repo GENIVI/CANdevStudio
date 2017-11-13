@@ -30,7 +30,7 @@ QMenuBar::item:pressed {
 }
 
 QMenu {
-    background-color: "#282828";
+    background-color: "#1d1d1d";
 }
 
 
@@ -78,12 +78,24 @@ DragWidget {
 
 QTableView {
     background: #616161;
+    border : 1px solid #8f8f8f;
 }
 
 QTableView::item {
     background: #282828;
 }
 
+QHeaderView {
+    background-color: #616161;
+}
+
+QHeaderView::section {
+    background-color: #3a3a3a;
+    border : 1px solid #8f8f8f;
+    border-left: 0px;
+    border-top: 0px;
+    color: #e1e1e1
+}
 
 QCheckBox {
     color: #282828;
@@ -212,3 +224,12 @@ QWidget[toolBarWidget=true] {
     color: #1492ca;
     background-color: #1492ca;
 }
+
+QWidget#CanRawSenderPrivate, #CanRawViewPrivate {
+    background-color: #616161;
+}
+
+QPushButton#pbAdd, #pbDockUndock, #pbRemove, #pbClear, #freezeBox, #pbToggleFilter {
+    background-color: #616161;
+}
+
