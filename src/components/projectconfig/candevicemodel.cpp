@@ -3,7 +3,11 @@
 #include <datamodeltypes/candevicedata.h>
 #include <log.h>
 
-CanDeviceModel::CanDeviceModel() : _status(false), _direction(Direction::Uninitialized)
+CanDeviceModel::CanDeviceModel()
+    : ComponentModel("CanDevice")
+    , _status(false)
+    , _direction(Direction::Uninitialized)
+    , _painter(std::make_unique<NodePainter>((NodePainterSettings){QColor(245, 170, 27), QColor(84, 84, 84)}))
 {
     _label->setAlignment(Qt::AlignVCenter | Qt::AlignHCenter);
     _label->setFixedSize(75, 25);
@@ -13,8 +17,22 @@ CanDeviceModel::CanDeviceModel() : _status(false), _direction(Direction::Uniniti
     connect(&_component, &CanDevice::frameReceived, this, &CanDeviceModel::frameReceived);
     connect(this, &CanDeviceModel::sendFrame, &_component, &CanDevice::sendFrame);
 
-    _caption = "CanDevice";
-    _name = "CanDevice";
+    QColor bgColor = QColor(93, 93, 93);
+    QtNodes::NodeStyle style;
+    style.GradientColor0 = bgColor;
+    style.GradientColor1 = bgColor;
+    style.GradientColor2 = bgColor;
+    style.GradientColor3 = bgColor;
+    style.NormalBoundaryColor = bgColor;
+    style.FontColor = QColor(Qt::white);
+    style.FontColorFaded = QColor(Qt::white);
+    style.Opacity = 1.0;
+    setNodeStyle(style);
+}
+
+QtNodes::NodePainterDelegate* CanDeviceModel::painterDelegate() const
+{
+    return _painter.get();
 }
 
 unsigned int CanDeviceModel::nPorts(PortType portType) const

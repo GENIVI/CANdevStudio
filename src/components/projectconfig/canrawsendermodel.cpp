@@ -2,6 +2,8 @@
 #include <datamodeltypes/canrawsenderdata.h>
 
 CanRawSenderModel::CanRawSenderModel()
+    : ComponentModel("CanRawSender")
+    , _painter(std::make_unique<NodePainter>((NodePainterSettings){QColor(144, 187, 62), QColor(84, 84, 84)}))
 {
     _label->setAlignment(Qt::AlignVCenter | Qt::AlignHCenter);
     _label->setFixedSize(75, 25);
@@ -9,11 +11,23 @@ CanRawSenderModel::CanRawSenderModel()
 
     connect(&_component, &CanRawSender::sendFrame, this, &CanRawSenderModel::sendFrame);
 
-    _caption = "CanRawSender";
-    _name = "CanRawSender";
-
     QWidget* crsWidget = _component.mainWidget();
     crsWidget->setWindowTitle(_caption);
+
+    QColor bgColor = QColor(93, 93, 93);
+    QtNodes::NodeStyle style;
+    style.GradientColor0 = bgColor;
+    style.GradientColor1 = bgColor;
+    style.GradientColor2 = bgColor;
+    style.GradientColor3 = bgColor;
+    style.NormalBoundaryColor = bgColor;
+    style.Opacity = 1.0;
+    setNodeStyle(style);
+}
+
+QtNodes::NodePainterDelegate* CanRawSenderModel::painterDelegate() const
+{
+    return _painter.get();
 }
 
 NodeDataType CanRawSenderModel::dataType(PortType, PortIndex) const
