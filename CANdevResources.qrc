@@ -65,5 +65,6 @@
         <file>files/json/projectConfigSchema.json</file>
         <file>files/css/darkStyle.css</file>
         <file>files/css/lightStyle.css</file>
+        <file>files/css/toolBar.css</file>
     </qresource>
 </RCC>

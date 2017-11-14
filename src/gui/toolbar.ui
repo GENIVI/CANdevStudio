@@ -34,9 +34,6 @@
   <property name="styleSheet">
    <string notr="true"/>
   </property>
-  <property name="toolBarWidget" stdset="0">
-   <bool>true</bool>
-  </property>
   <layout class="QHBoxLayout" name="horizontalLayout_2">
    <property name="spacing">
     <number>0</number>
@@ -66,18 +63,12 @@
        <property name="text">
         <string/>
        </property>
-       <property name="iconType" stdset="0">
-        <string>New</string>
-       </property>
       </widget>
      </item>
      <item>
       <widget class="QToolButton" name="toolOpen">
        <property name="text">
         <string/>
-       </property>
-       <property name="iconType" stdset="0">
-        <string>Open</string>
        </property>
       </widget>
      </item>
@@ -89,9 +80,6 @@
        <property name="text">
         <string/>
        </property>
-       <property name="iconType" stdset="0">
-        <string>Save</string>
-       </property>
       </widget>
      </item>
      <item>
@@ -101,9 +89,6 @@
        </property>
        <property name="text">
         <string/>
-       </property>
-       <property name="iconType" stdset="0">
-        <string>SaveAs</string>
        </property>
       </widget>
      </item>
@@ -115,9 +100,6 @@
        <property name="text">
         <string/>
        </property>
-       <property name="iconType" stdset="0">
-        <string>Simulation</string>
-       </property>
       </widget>
      </item>
      <item>
@@ -127,9 +109,6 @@
        </property>
        <property name="text">
         <string/>
-       </property>
-       <property name="iconType" stdset="0">
-        <string>Close</string>
        </property>
       </widget>
      </item>
@@ -151,7 +130,7 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_3">
      <property name="spacing">
-      <number>6</number>
+      <number>4</number>
      </property>
      <item>
       <spacer name="horizontalSpacer_2">
@@ -204,9 +183,6 @@
          <height>26</height>
         </size>
        </property>
-       <property name="iconType" stdset="0">
-        <string>Start</string>
-       </property>
       </widget>
      </item>
      <item>
@@ -246,9 +222,6 @@
          <width>80</width>
          <height>26</height>
         </size>
-       </property>
-       <property name="iconType" stdset="0">
-        <string>Stop</string>
        </property>
       </widget>
      </item>
@@ -290,9 +263,6 @@
        <property name="text">
         <string/>
        </property>
-       <property name="iconType" stdset="0">
-        <string>WindowView</string>
-       </property>
       </widget>
      </item>
      <item>
@@ -303,18 +273,12 @@
        <property name="text">
         <string/>
        </property>
-       <property name="iconType" stdset="0">
-        <string>TabView</string>
-       </property>
       </widget>
      </item>
      <item>
       <widget class="QToolButton" name="toolSwitch">
        <property name="text">
         <string/>
-       </property>
-       <property name="iconType" stdset="0">
-        <string>Switch</string>
        </property>
       </widget>
      </item>

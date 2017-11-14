@@ -390,9 +390,18 @@ void MainWindow::setStyle(Styles style)
     } break;
     }
 
+    // Application style
     QFile f(stylefile);
     f.open(QFile::ReadOnly);
     QString css = QLatin1String(f.readAll());
+    f.close();
+
+    // Toolbar style
+    QFile f2(":/files/css/toolBar.css");
+    f2.open(QFile::ReadOnly);
+    css.append(QLatin1String(f2.readAll()));
+    f2.close();
+
     qApp->setStyleSheet(css);
 
     QtNodes::FlowViewStyle::setStyle(flowStyle);

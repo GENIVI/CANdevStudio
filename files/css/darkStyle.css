@@ -4,14 +4,6 @@ QWidget
     background-color: #282828;
     selection-background-color: #666666;
     selection-color: #cccccc;
-    
-    /*
-    border: 0px transparent black;
-    
-    background-clip: border;
-    border-image: none;
-    
-    outline: 0;*/
 }
 
 QWidget#centralWidget {
@@ -40,18 +32,6 @@ QMenu {
 
 QMenu::item:disabled {
     color: #888888;
-}
-
-QToolBar {
-    background-color: #1492ca;
-    border: none;
-    margin: 0px;
-    padding: 0px;
-}
-
-QToolBar::separator {
-    color: #ff0000; /* FIXME: does not work */
-    /*background: #ff0000; This changes color, but also destroys look (width, height, rounding)*/ 
 }
 
 QTabBar::close-button {
@@ -133,107 +113,13 @@ QPushButton[flat="true"] {
 }
 
 QPushButton[flat="true"]:pressed {
-    border: 2px solid #b8b8b8;
-    border-color: #b8b8b8;
-    background-color: #b8b8b8;
+    border: 2px solid #a6a6a6;
+    background-color: #616161;
 }
 
 QPushButton[flat="true"]:checked {
-    border: 2px solid #b8b8b8;
-    border-color: #b8b8b8;
-    background-color: #b8b8b8;
-}
-
-QToolButton {
-    background-color: #1492ca;
-    border: 0px;
-    border-width: 0px;
-    padding: 0px;
-    margin: 0px;
-    height: 32px;
-    width: 32px;
-    color: #000000;
-}
-
-QToolButton[iconType="New"] {
-    image: url(:/images/files/images/light/CANbus_icon_NewProject.svg);
-}
-
-QToolButton[iconType="Open"] {
-    image: url(:/images/files/images/light/CANbus_icon_OpenProject.svg);
-}
-
-QToolButton[iconType="Save"] {
-    image: url(:/images/files/images/light/CANbus_icon_SaveProject.svg);
-}
-
-QToolButton:disabled[iconType="Save"] {
-    image: url(:/images/files/images/light/CANbus_icon_SaveProject_disabled.svg);
-}
-
-QToolButton[iconType="SaveAs"] {
-    image: url(:/images/files/images/light/CANbus_icon_SaveAsProject.svg);
-}
-
-QToolButton:disabled[iconType="SaveAs"] {
-    image: url(:/images/files/images/light/CANbus_icon_SaveAsProject_disabled.svg);
-}
-
-QToolButton[iconType="Simulation"] {
-    image: url(:/images/files/images/light/CANbus_icon_OpenSim.svg);
-}
-
-QToolButton:disabled[iconType="Simulation"] {
-    image: url(:/images/files/images/light/CANbus_icon_OpenSim_disabled.svg);
-}
-
-QToolButton[iconType="Close"] {
-    image: url(:/images/files/images/light/CANbus_icon_CloseSim.svg);
-}
-
-QToolButton:disabled[iconType="Close"] {
-    image: url(:/images/files/images/light/CANbus_icon_CloseSim_disabled.svg);
-}
-
-QToolButton[iconType="Switch"] {
-    image: url(:/images/files/images/light/CANbus_icon_Switch_dark.svg);
-}
-
-QToolButton[iconType="WindowView"] {
-    height: 30px;
-    width: 34px;
-    image: url(:/images/files/images/light/CANbus_icon_CascadeView.svg);
-}
-
-QToolButton:disabled[iconType="WindowView"] {
-    height: 30px;
-    width: 34px;
-    image: url(:/images/files/images/light/CANbus_icon_CascadeView_disabled.svg);
-}
-
-QToolButton[iconType="TabView"] {
-    height: 30px;
-    width: 34px;
-    image: url(:/images/files/images/light/CANbus_icon_TabsView.svg);
-}
-
-QToolButton:disabled[iconType="TabView"] {
-    height: 30px;
-    width: 34px;
-    image: url(:/images/files/images/light/CANbus_icon_TabsView_disabled.svg);
-}
-
-QToolButton:hover {
-    background-color: #0000ff;
-}
-
-QToolButton:pressed {
-    background-color: #00ffff;
-}
-
-QWidget[toolBarWidget=true] {
-    color: #1492ca;
-    background-color: #1492ca;
+    border: 2px solid #a6a6a6;
+    background-color: #616161;
 }
 
 QWidget#CanRawSenderPrivate, #CanRawViewPrivate {
@@ -244,3 +130,6 @@ QPushButton#pbAdd, #pbDockUndock, #pbRemove, #pbClear, #freezeBox, #pbToggleFilt
     background-color: #616161;
 }
 
+QToolButton#toolSwitch {
+    image: url(:/images/files/images/light/CANbus_icon_Switch_dark.svg);
+}
