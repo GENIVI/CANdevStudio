@@ -1,6 +1,7 @@
 var class_component_model =
 [
     [ "ComponentModel", "class_component_model.html#a2fb9e24a9ca0498cc6e67aa9d676e822", null ],
+    [ "ComponentModel", "class_component_model.html#a0b774d6a7f791253c84c132df7036e67", null ],
     [ "~ComponentModel", "class_component_model.html#a9269b1658ab35cda9124651b2b063f96", null ],
     [ "caption", "class_component_model.html#a95dab6e3aee57b9c0cd931aef9565bf0", null ],
     [ "clone", "class_component_model.html#a8a91bf58568283d1a48fdf80449532f4", null ],

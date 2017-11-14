@@ -51,6 +51,10 @@ var hierarchy =
       [ "ComponentModel< CanRawSender, CanRawSenderModel >", "class_component_model.html", null ],
       [ "ComponentModel< CanRawView, CanRawViewModel >", "class_component_model.html", null ]
     ] ],
+    [ "NodePainterDelegate", null, [
+      [ "NodePainter", "struct_node_painter.html", null ]
+    ] ],
+    [ "NodePainterSettings", "struct_node_painter_settings.html", null ],
     [ "ProjectConfigValidator", "class_project_config_validator.html", null ],
     [ "PushButtonInterface", "struct_push_button_interface.html", [
       [ "NLMPushButton", "struct_n_l_m_push_button.html", null ]

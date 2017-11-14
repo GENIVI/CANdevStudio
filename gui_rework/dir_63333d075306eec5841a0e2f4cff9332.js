@@ -28,6 +28,10 @@ var dir_63333d075306eec5841a0e2f4cff9332 =
     [ "modeltoolbutton.h", "modeltoolbutton_8h.html", [
       [ "ModelToolButton", "struct_model_tool_button.html", "struct_model_tool_button" ]
     ] ],
+    [ "nodepainter.h", "nodepainter_8h.html", [
+      [ "NodePainterSettings", "struct_node_painter_settings.html", "struct_node_painter_settings" ],
+      [ "NodePainter", "struct_node_painter.html", "struct_node_painter" ]
+    ] ],
     [ "projectconfig.cpp", "projectconfig_8cpp.html", null ],
     [ "projectconfig.h", "projectconfig_8h.html", [
       [ "ProjectConfig", "class_project_config.html", "class_project_config" ]

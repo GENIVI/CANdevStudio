@@ -36,6 +36,8 @@ var annotated_dup =
     [ "NLMFactoryInterface", "struct_n_l_m_factory_interface.html", "struct_n_l_m_factory_interface" ],
     [ "NLMLineEdit", "struct_n_l_m_line_edit.html", "struct_n_l_m_line_edit" ],
     [ "NLMPushButton", "struct_n_l_m_push_button.html", "struct_n_l_m_push_button" ],
+    [ "NodePainter", "struct_node_painter.html", "struct_node_painter" ],
+    [ "NodePainterSettings", "struct_node_painter_settings.html", "struct_node_painter_settings" ],
     [ "ProjectConfig", "class_project_config.html", "class_project_config" ],
     [ "ProjectConfigPrivate", "class_project_config_private.html", "class_project_config_private" ],
     [ "ProjectConfigValidator", "class_project_config_validator.html", null ],

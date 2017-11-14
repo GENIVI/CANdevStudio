@@ -175,9 +175,14 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a44f295e8d6bb766aa35bdf6d592d7af0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_device_model.html#a44f295e8d6bb766aa35bdf6d592d7af0">frameOnQueue</a> ()</td></tr>
 <tr class="memdesc:a44f295e8d6bb766aa35bdf6d592d7af0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to send frames that were put in queue.  <a href="#a44f295e8d6bb766aa35bdf6d592d7af0">More...</a><br /></td></tr>
 <tr class="separator:a44f295e8d6bb766aa35bdf6d592d7af0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9d2bb6523d5f5ffd88f6a605d08dcab"><td class="memItemLeft" align="right" valign="top">QtNodes::NodePainterDelegate *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_device_model.html#ab9d2bb6523d5f5ffd88f6a605d08dcab">painterDelegate</a> () const override</td></tr>
+<tr class="memdesc:ab9d2bb6523d5f5ffd88f6a605d08dcab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to provide custom painter to nodeeditor.  <a href="#ab9d2bb6523d5f5ffd88f6a605d08dcab">More...</a><br /></td></tr>
+<tr class="separator:ab9d2bb6523d5f5ffd88f6a605d08dcab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_component_model"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_component_model')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_component_model.html">ComponentModel&lt; CanDevice, CanDeviceModel &gt;</a></td></tr>
 <tr class="memitem:a2fb9e24a9ca0498cc6e67aa9d676e822 inherit pub_methods_class_component_model"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component_model.html#a2fb9e24a9ca0498cc6e67aa9d676e822">ComponentModel</a> ()=default</td></tr>
 <tr class="separator:a2fb9e24a9ca0498cc6e67aa9d676e822 inherit pub_methods_class_component_model"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b774d6a7f791253c84c132df7036e67 inherit pub_methods_class_component_model"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component_model.html#a0b774d6a7f791253c84c132df7036e67">ComponentModel</a> (const QString &amp;<a class="el" href="class_component_model.html#a25ef150b9207c5d792a1824e124ad4bb">name</a>)</td></tr>
+<tr class="separator:a0b774d6a7f791253c84c132df7036e67 inherit pub_methods_class_component_model"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9269b1658ab35cda9124651b2b063f96 inherit pub_methods_class_component_model"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component_model.html#a9269b1658ab35cda9124651b2b063f96">~ComponentModel</a> ()=default</td></tr>
 <tr class="separator:a9269b1658ab35cda9124651b2b063f96 inherit pub_methods_class_component_model"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a95dab6e3aee57b9c0cd931aef9565bf0 inherit pub_methods_class_component_model"><td class="memItemLeft" align="right" valign="top">virtual QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component_model.html#a95dab6e3aee57b9c0cd931aef9565bf0">caption</a> () const override</td></tr>
@@ -448,6 +453,32 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_can_device_data_out.html" title="The class describing data model used as output for CanDevice node. ">CanDeviceDataOut</a> or <a class="el" href="class_can_device_data_in.html" title="The class describing data model used as input for CanDevice node. ">CanDeviceDataIn</a> filled with data </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ab9d2bb6523d5f5ffd88f6a605d08dcab"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QtNodes::NodePainterDelegate * CanDeviceModel::painterDelegate </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Used to provide custom painter to nodeeditor. </p>
+<dl class="section return"><dt>Returns</dt><dd>NodePainterDelegate used to perform custom node painting </dd></dl>
 
 </div>
 </div>
