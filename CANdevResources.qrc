@@ -60,6 +60,10 @@
         <file>files/images/dark/CANbus_icon_Close.svg</file>
         <file>files/images/dark/CANbus_icon_CheckBoxOff.svg</file>
         <file>files/images/dark/CANbus_icon_CheckBoxOn.svg</file>
+        <file>files/images/dark/CANbus_icon_Close_tab_selected.svg</file>
+        <file>files/images/dark/CANbus_icon_Close_tab.svg</file>
+        <file>files/images/light/CANbus_icon_Close_tab_selected.svg</file>
+        <file>files/images/light/CANbus_icon_Close_tab.svg</file>
     </qresource>
     <qresource prefix="/">
         <file>files/json/projectConfigSchema.json</file>

@@ -34,8 +34,16 @@ QMenu::item:disabled {
     color: #888888;
 }
 
+QTabBar {
+    background: #1d1d1d;
+}
+
 QTabBar::close-button {
-    image: url(:/images/files/images/light/CANbus_icon_Close.svg);
+    image: url(:/images/files/images/dark/CANbus_icon_Close_tab.svg);
+}
+
+QTabBar::close-button:selected {
+    image: url(:/images/files/images/dark/CANbus_icon_Close_tab_selected.svg);
 }
 
 QTabBar::tab {

@@ -43,21 +43,25 @@ QTabBar {
 }
 
 QTabBar::close-button {
-    image: url(:/images/files/images/light/CANbus_icon_Close.svg);
+    image: url(:/images/files/images/light/CANbus_icon_Close_tab.svg);
+}
+
+QTabBar::close-button:selected {
+    image: url(:/images/files/images/light/CANbus_icon_Close_tab_selected.svg);
 }
 
 QTabBar::tab {
-    color: #969696;
+    color: #a6a6a6;
     font-weight: bold;
-    background: #f6f6f6;
+    background: #f0f0f0;
     margin-right: 5px;
     margin-top: 5px;
 }
 
 QTabBar::tab:selected {
-    color: #ffffff;
+    color: #767676;
     font-weight: bold;
-    background: #1492ca;
+    background: #ffffff;
 }
 
 DragWidget {
