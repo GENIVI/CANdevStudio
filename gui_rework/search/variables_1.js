@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['color1',['color1',['../struct_node_painter_settings.html#add764ad074d1ba2d72d4f36d6404c123',1,'NodePainterSettings']]],
-  ['color2',['color2',['../struct_node_painter_settings.html#a746c7748925aef0639033ed0e491920a',1,'NodePainterSettings']]]
+  ['docked',['docked',['../class_can_raw_sender_private.html#a9009d78ec2f03f80cac9fe70bce6235c',1,'CanRawSenderPrivate::docked()'],['../class_can_raw_view_private.html#afd4693b0bb8f1654d92d65fbb4a291be',1,'CanRawViewPrivate::docked()']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['lineeditinterface',['LineEditInterface',['../struct_line_edit_interface.html',1,'']]]
+  ['iconlabel',['IconLabel',['../class_icon_label.html',1,'']]]
 ];

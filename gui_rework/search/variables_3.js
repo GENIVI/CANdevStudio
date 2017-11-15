@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['kdefaultlogger',['kDefaultLogger',['../log_8h.html#a20e4133288a6dd5e9b289bf4407d57d6',1,'kDefaultLogger():&#160;main.cpp'],['../main_8cpp.html#a20e4133288a6dd5e9b289bf4407d57d6',1,'kDefaultLogger():&#160;main.cpp']]]
+  ['qtdefaultlogger',['qtDefaultLogger',['../main_8cpp.html#ab4d70e8cf06e32830aaa27b5701a223d',1,'main.cpp']]]
 ];

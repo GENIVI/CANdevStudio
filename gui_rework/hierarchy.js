@@ -54,7 +54,6 @@ var hierarchy =
     [ "NodePainterDelegate", null, [
       [ "NodePainter", "struct_node_painter.html", null ]
     ] ],
-    [ "NodePainterSettings", "struct_node_painter_settings.html", null ],
     [ "ProjectConfigValidator", "class_project_config_validator.html", null ],
     [ "PushButtonInterface", "struct_push_button_interface.html", [
       [ "NLMPushButton", "struct_n_l_m_push_button.html", null ]
@@ -64,6 +63,9 @@ var hierarchy =
     ] ],
     [ "QFrame", null, [
       [ "DragWidget", "class_drag_widget.html", null ]
+    ] ],
+    [ "QLabel", null, [
+      [ "IconLabel", "class_icon_label.html", null ]
     ] ],
     [ "QMainWindow", null, [
       [ "MainWindow", "class_main_window.html", null ]

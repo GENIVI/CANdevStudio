@@ -57,8 +57,6 @@ var searchData=
   ['closeprojectconfig',['closeProjectConfig',['../class_main_window.html#a3a91691c4879ced069c02b2a6a524ec4',1,'MainWindow']]],
   ['colname',['ColName',['../class_new_line_manager.html#a69f0c8e8a1213f641d43b7aa019e87dc',1,'NewLineManager']]],
   ['colnameiterator',['ColNameIterator',['../class_new_line_manager.html#a3c24c5471a339e08265d47422b1f41fd',1,'NewLineManager']]],
-  ['color1',['color1',['../struct_node_painter_settings.html#add764ad074d1ba2d72d4f36d6404c123',1,'NodePainterSettings']]],
-  ['color2',['color2',['../struct_node_painter_settings.html#a746c7748925aef0639033ed0e491920a',1,'NodePainterSettings']]],
   ['componentinterface',['ComponentInterface',['../struct_component_interface.html',1,'']]],
   ['componentinterface_2eh',['componentinterface.h',['../componentinterface_8h.html',1,'']]],
   ['componentmodel',['ComponentModel',['../class_component_model.html',1,'ComponentModel&lt; C, Derived &gt;'],['../class_component_model.html#a2fb9e24a9ca0498cc6e67aa9d676e822',1,'ComponentModel::ComponentModel()=default'],['../class_component_model.html#a0b774d6a7f791253c84c132df7036e67',1,'ComponentModel::ComponentModel(const QString &amp;name)']]],
