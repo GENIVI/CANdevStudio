@@ -3,7 +3,7 @@
 
 CanRawSenderModel::CanRawSenderModel()
     : ComponentModel("CanRawSender")
-    , _painter(std::make_unique<NodePainter>((NodePainterSettings){QColor(144, 187, 62), QColor(84, 84, 84)}))
+    , _painter(std::make_unique<NodePainter>(headerColor1(), headerColor2()))
 {
     _label->setAlignment(Qt::AlignVCenter | Qt::AlignHCenter);
     _label->setFixedSize(75, 25);

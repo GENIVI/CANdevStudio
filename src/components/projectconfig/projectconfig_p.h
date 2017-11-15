@@ -13,6 +13,7 @@
 #include <nodes/Node>
 #include <projectconfig/candevicemodel.h>
 #include <propertyeditor/propertyeditordialog.h>
+#include "iconlabel.h"
 
 namespace Ui {
 class ProjectConfigPrivate;
@@ -43,6 +44,11 @@ public:
 
         _ui->setupUi(this);
         _ui->layout->addWidget(_graphView);
+
+        _ui->frame->layout()->addWidget(new IconLabel("CanDevice", CanDeviceModel::headerColor1(), CanDeviceModel::headerColor2()));
+        _ui->frame->layout()->addWidget(new IconLabel("CanRawSender", CanRawSenderModel::headerColor1(), CanRawSenderModel::headerColor2()));
+        _ui->frame->layout()->addWidget(new IconLabel("CanRawView", CanRawViewModel::headerColor1(), CanRawViewModel::headerColor2()));
+        _ui->frame->layout()->addItem(new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding));
     }
 
     ~ProjectConfigPrivate() {}

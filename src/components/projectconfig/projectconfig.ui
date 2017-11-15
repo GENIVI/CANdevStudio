@@ -49,14 +49,20 @@
     <widget class="DragWidget" name="frame">
      <property name="minimumSize">
       <size>
-       <width>140</width>
+       <width>0</width>
        <height>0</height>
       </size>
      </property>
      <property name="maximumSize">
       <size>
-       <width>94</width>
+       <width>16777215</width>
        <height>16777215</height>
+      </size>
+     </property>
+     <property name="baseSize">
+      <size>
+       <width>0</width>
+       <height>0</height>
       </size>
      </property>
      <property name="frameShape">
@@ -68,66 +74,23 @@
      <property name="lineWidth">
       <number>1</number>
      </property>
-     <widget class="QLabel" name="CanDevice">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>10</y>
-        <width>123</width>
-        <height>50</height>
-       </rect>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <property name="spacing">
+       <number>20</number>
       </property>
-      <property name="cursor">
-       <cursorShape>OpenHandCursor</cursorShape>
+      <property name="leftMargin">
+       <number>10</number>
       </property>
-      <property name="toolTip">
-       <string>CanDevice</string>
+      <property name="topMargin">
+       <number>10</number>
       </property>
-      <property name="text">
-       <string/>
+      <property name="rightMargin">
+       <number>10</number>
       </property>
-      <property name="pixmap">
-       <pixmap resource="../../../CANdevResources.qrc">:/images/files/images/CDN_small.png</pixmap>
+      <property name="bottomMargin">
+       <number>10</number>
       </property>
-      <property name="scaledContents">
-       <bool>true</bool>
-      </property>
-     </widget>
-     <widget class="QLabel" name="CanRawView">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>70</y>
-        <width>123</width>
-        <height>50</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="pixmap">
-       <pixmap resource="../../../CANdevResources.qrc">:/images/files/images/CRV_small.png</pixmap>
-      </property>
-     </widget>
-     <widget class="QLabel" name="CanRawSender">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>130</y>
-        <width>123</width>
-        <height>50</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="pixmap">
-       <pixmap resource="../../../CANdevResources.qrc">:/images/files/images/CRS_small.png</pixmap>
-      </property>
-     </widget>
-     <zorder>CanRawView</zorder>
-     <zorder>CanRawSender</zorder>
-     <zorder>CanDevice</zorder>
+     </layout>
     </widget>
    </item>
   </layout>

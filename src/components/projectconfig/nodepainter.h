@@ -4,17 +4,13 @@
 #include <QPainter>
 #include <nodes/Node>
 
-struct NodePainterSettings {
-    QColor color1;
-    QColor color2;
-};
-
 struct NodePainter : public QtNodes::NodePainterDelegate {
 
     NodePainter() = default;
 
-    NodePainter(const NodePainterSettings& settings)
-        : _settings(settings)
+    NodePainter(const QColor& headerColor1, const QColor& headerColor2)
+        : _headerColor1(headerColor1)
+        , _headerColor2(headerColor2)
     {
     }
 
@@ -30,9 +26,9 @@ struct NodePainter : public QtNodes::NodePainterDelegate {
 
         QLinearGradient gradient(QPointF(0.0, 0.0), QPointF(geom.width(), 0));
 
-        gradient.setColorAt(0.0, _settings.color1);
-        gradient.setColorAt(0.3, _settings.color1);
-        gradient.setColorAt(1.0, _settings.color2);
+        gradient.setColorAt(0.0, _headerColor1);
+        gradient.setColorAt(0.3, _headerColor1);
+        gradient.setColorAt(1.0, _headerColor2);
 
         painter->setBrush(gradient);
 
@@ -51,7 +47,9 @@ struct NodePainter : public QtNodes::NodePainterDelegate {
         painter->drawText(-diam + 6, -diam + 16, model->caption());
     }
 
-    private : NodePainterSettings _settings;
+private:
+    const QColor _headerColor1;
+    const QColor _headerColor2;
 };
 
 #endif /* !__NODEPAINTER_H */

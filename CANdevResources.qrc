@@ -1,8 +1,5 @@
 <RCC>
     <qresource prefix="/images">
-        <file>files/images/CDN_small.png</file>
-        <file>files/images/CRS_small.png</file>
-        <file>files/images/CRV_small.png</file>
         <file>files/images/light/CANbus_icon_Add.svg</file>
         <file>files/images/light/CANbus_icon_CascadeView.svg</file>
         <file>files/images/light/CANbus_icon_Clear.svg</file>
