@@ -11,7 +11,7 @@ var class_project_config =
     [ "handleWidgetShowing", "class_project_config.html#a3415e7b9e10250bb4e43985e677ff50b", null ],
     [ "load", "class_project_config.html#adf35c8592a59b6b787db41e53432353c", null ],
     [ "save", "class_project_config.html#aedf1db3274b8b57e72648af8220d2a32", null ],
-    [ "setGraphViewBackground", "class_project_config.html#a04f4ec764d33efa04235484c56278e32", null ],
+    [ "setColorMode", "class_project_config.html#aee51fe64eae27ca2f006c06be58af220", null ],
     [ "startSimulation", "class_project_config.html#a18f37c77fc6bc6840e9131c4f172c1fc", null ],
     [ "stopSimulation", "class_project_config.html#a9a43e8a6f85ee87ac61799a8a9918772", null ]
 ];

@@ -4,5 +4,6 @@ var struct_component_model_interface =
     [ "getComponent", "struct_component_model_interface.html#a6c9faa87490d885682cb80327cde6b38", null ],
     [ "handleModelCreation", "struct_component_model_interface.html#ab87046683d718d59a97ed76898381b1e", null ],
     [ "restored", "struct_component_model_interface.html#abbfa2c696b0fed3650bfab78b2c8477f", null ],
-    [ "setCaption", "struct_component_model_interface.html#aa0523d7d6fc99ede2b58969699d4241b", null ]
+    [ "setCaption", "struct_component_model_interface.html#aa0523d7d6fc99ede2b58969699d4241b", null ],
+    [ "setColorMode", "struct_component_model_interface.html#abe2a4b5b7c242974ad5254aaf9b7f3a1", null ]
 ];

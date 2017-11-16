@@ -172,6 +172,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aeb4b488cecaf5da4b1a5a234bb552c89"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a92313e4bda9e50f0f57061e64143512e"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component_model.html#a92313e4bda9e50f0f57061e64143512e">restored</a> () override</td></tr>
 <tr class="separator:a92313e4bda9e50f0f57061e64143512e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa51f469411dd71d7218b281f27e3e190"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component_model.html#aa51f469411dd71d7218b281f27e3e190">setColorMode</a> (bool darkMode)</td></tr>
+<tr class="separator:aa51f469411dd71d7218b281f27e3e190"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_struct_component_model_interface"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_struct_component_model_interface')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="struct_component_model_interface.html">ComponentModelInterface</a></td></tr>
 <tr class="memitem:a798879d3774311685412083267f5e0f8 inherit pub_methods_struct_component_model_interface"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_component_model_interface.html#a798879d3774311685412083267f5e0f8">~ComponentModelInterface</a> ()=default</td></tr>
 <tr class="separator:a798879d3774311685412083267f5e0f8 inherit pub_methods_struct_component_model_interface"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -190,6 +192,10 @@ Protected Attributes</h2></td></tr>
 <tr class="separator:a6a688b4830a2bbf90cdc730a2f109d25"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3be9dddbac505b600ba199bfde7d8210"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component_model.html#a3be9dddbac505b600ba199bfde7d8210">_restored</a> { false }</td></tr>
 <tr class="separator:a3be9dddbac505b600ba199bfde7d8210"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87f190c3f0c6d9b27f07dc82ee2e77cf"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component_model.html#a87f190c3f0c6d9b27f07dc82ee2e77cf">_darkMode</a> { true }</td></tr>
+<tr class="separator:a87f190c3f0c6d9b27f07dc82ee2e77cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa46e099374009e6de0c1c88ebcbb73e0"><td class="memItemLeft" align="right" valign="top">QtNodes::NodeStyle&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component_model.html#aa46e099374009e6de0c1c88ebcbb73e0">_nodeStyle</a></td></tr>
+<tr class="separator:aa46e099374009e6de0c1c88ebcbb73e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a2fb9e24a9ca0498cc6e67aa9d676e822"></a>
@@ -592,6 +598,34 @@ template&lt;typename C, typename Derived&gt; </div>
 
 </div>
 </div>
+<a class="anchor" id="aa51f469411dd71d7218b281f27e3e190"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename C, typename Derived&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void <a class="el" href="class_component_model.html">ComponentModel</a>&lt; C, Derived &gt;::setColorMode </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>darkMode</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="struct_component_model_interface.html#abe2a4b5b7c242974ad5254aaf9b7f3a1">ComponentModelInterface</a>.</p>
+
+</div>
+</div>
 <h2 class="groupheader">Member Data Documentation</h2>
 <a class="anchor" id="a7c8c6b188ad1ecf31ffde72668f42486"></a>
 <div class="memitem">
@@ -637,6 +671,28 @@ template&lt;typename C, typename Derived&gt; </div>
 
 </div>
 </div>
+<a class="anchor" id="a87f190c3f0c6d9b27f07dc82ee2e77cf"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename C, typename Derived&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="class_component_model.html">ComponentModel</a>&lt; C, Derived &gt;::_darkMode { true }</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="a0f52cf3cdf6d8b30414d88dd64398f5a"></a>
 <div class="memitem">
 <div class="memproto">
@@ -670,6 +726,28 @@ template&lt;typename C, typename Derived&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">QString <a class="el" href="class_component_model.html">ComponentModel</a>&lt; C, Derived &gt;::_name</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aa46e099374009e6de0c1c88ebcbb73e0"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename C, typename Derived&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QtNodes::NodeStyle <a class="el" href="class_component_model.html">ComponentModel</a>&lt; C, Derived &gt;::_nodeStyle</td>
         </tr>
       </table>
   </td>
