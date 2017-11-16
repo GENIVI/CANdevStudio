@@ -7,17 +7,17 @@
 class IconLabel : public QLabel
 {
 public:
-    IconLabel(const QString &name, const QColor &headerColor1, const QColor &headerColor2)
+    IconLabel(const QString &name, const QColor &headerColor1, const QColor &headerColor2, const QColor &bgColor)
     {        
         QPixmap pix(_width, _height);
         pix.fill(Qt::transparent);
         QPainter painter(&pix);
 
-        auto color = _itemBg;
+        auto color = bgColor;
         QPen p(color, 0);
         painter.setPen(p);
 
-        painter.setBrush(QBrush(_itemBg));
+        painter.setBrush(QBrush(bgColor));
         QRectF boundary(0, 0, pix.width(), pix.height());
         painter.drawRoundedRect(boundary, _radius, _radius);
 
@@ -45,8 +45,7 @@ public:
 private:
     const int _width = 140;
     const int _height = 50;
-    const double _radius = 3.0;
-    const QColor _itemBg = QColor(94,94,94);
+    const double _radius = 5.0;
 };
 
 #endif /* !__ICONLABEL_H */

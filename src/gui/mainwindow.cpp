@@ -218,6 +218,8 @@ bool MainWindow::createProjectConfig(const QString& name)
     _projectName = name;
 
     if (_projectConfig) {
+        setStyle(currentStyle);
+
         _projectConfig->setWindowTitle(_projectName);
         addToMdi(_projectConfig.get());
 
@@ -337,13 +339,14 @@ void MainWindow::setStyle(Styles style)
 {
     QString stylefile;
     QString flowStyle;
-    QColor bgViewColor(38, 38, 38);
     QColor bgMdiColor(0x1d, 0x1d, 0x1d);
+    bool darkMode = false;
 
     switch (style)
     {
     case Styles::darkStyle :
     {
+        darkMode = true;
         stylefile = ":/files/css/darkStyle.css";
         flowStyle = R"(
         {
@@ -376,7 +379,6 @@ void MainWindow::setStyle(Styles style)
           }
         }
         )";
-        bgViewColor = QColor(229, 229, 229);
         bgMdiColor = QColor(0xd3, 0xd3, 0xd3);
 
         // Setting icons for QAction in CSS does not work
@@ -407,7 +409,7 @@ void MainWindow::setStyle(Styles style)
     QtNodes::FlowViewStyle::setStyle(flowStyle);
     // Workaround. Background is not updated via style sheet.
     if(_projectConfig) {
-        _projectConfig->setGraphViewBackground(bgViewColor);
+        _projectConfig->setColorMode(darkMode);
     }
     _ui->mdiArea->setBackground(QBrush(bgMdiColor, Qt::SolidPattern));
 

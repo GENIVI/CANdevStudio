@@ -20,7 +20,7 @@ public:
     QByteArray save();
     void load(const QByteArray& data);
     void clearGraphView();
-    void setGraphViewBackground(const QColor &color);
+    void setColorMode(bool darkMode);
 
 signals:
     void handleDock(QWidget* component);

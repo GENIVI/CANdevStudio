@@ -13,16 +13,6 @@ CanRawSenderModel::CanRawSenderModel()
 
     QWidget* crsWidget = _component.mainWidget();
     crsWidget->setWindowTitle(_caption);
-
-    QColor bgColor = QColor(93, 93, 93);
-    QtNodes::NodeStyle style;
-    style.GradientColor0 = bgColor;
-    style.GradientColor1 = bgColor;
-    style.GradientColor2 = bgColor;
-    style.GradientColor3 = bgColor;
-    style.NormalBoundaryColor = bgColor;
-    style.Opacity = 1.0;
-    setNodeStyle(style);
 }
 
 QtNodes::NodePainterDelegate* CanRawSenderModel::painterDelegate() const

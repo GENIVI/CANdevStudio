@@ -16,18 +16,6 @@ CanDeviceModel::CanDeviceModel()
     connect(&_component, &CanDevice::frameSent, this, &CanDeviceModel::frameSent);
     connect(&_component, &CanDevice::frameReceived, this, &CanDeviceModel::frameReceived);
     connect(this, &CanDeviceModel::sendFrame, &_component, &CanDevice::sendFrame);
-
-    QColor bgColor = QColor(93, 93, 93);
-    QtNodes::NodeStyle style;
-    style.GradientColor0 = bgColor;
-    style.GradientColor1 = bgColor;
-    style.GradientColor2 = bgColor;
-    style.GradientColor3 = bgColor;
-    style.NormalBoundaryColor = bgColor;
-    style.FontColor = QColor(Qt::white);
-    style.FontColorFaded = QColor(Qt::white);
-    style.Opacity = 1.0;
-    setNodeStyle(style);
 }
 
 QtNodes::NodePainterDelegate* CanDeviceModel::painterDelegate() const

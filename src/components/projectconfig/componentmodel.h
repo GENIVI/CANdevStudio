@@ -16,6 +16,7 @@ struct ComponentModelInterface {
     virtual void handleModelCreation(ProjectConfig* config) = 0;
     virtual void setCaption(const QString& caption) = 0;
     virtual bool restored() = 0;
+    virtual void setColorMode(bool darkMode) = 0;
 };
 
 template <typename C, typename Derived>
@@ -148,6 +149,33 @@ public:
         return _restored;
     }
 
+    virtual void setColorMode(bool darkMode)
+    {
+        _darkMode = darkMode;
+
+        if(darkMode) {
+            QColor bgColor = QColor(94, 94, 94);
+            _nodeStyle.GradientColor0 = bgColor;
+            _nodeStyle.GradientColor1 = bgColor;
+            _nodeStyle.GradientColor2 = bgColor;
+            _nodeStyle.GradientColor3 = bgColor;
+            _nodeStyle.NormalBoundaryColor = bgColor;
+        } else {
+            QColor bgColor = QColor(190, 190, 190);
+            _nodeStyle.GradientColor0 = bgColor;
+            _nodeStyle.GradientColor1 = bgColor;
+            _nodeStyle.GradientColor2 = bgColor;
+            _nodeStyle.GradientColor3 = bgColor;
+            _nodeStyle.NormalBoundaryColor = bgColor;
+        }
+
+        _nodeStyle.FontColor = QColor(Qt::white);
+        _nodeStyle.FontColorFaded = QColor(Qt::white);
+        _nodeStyle.Opacity = 1.0;
+
+        setNodeStyle(_nodeStyle);
+    }
+
 protected:
     C _component;
     QLabel* _label{ new QLabel };
@@ -155,6 +183,8 @@ protected:
     QString _name;
     bool _resizable{ false };
     bool _restored{ false };
+    bool _darkMode{ true };
+    QtNodes::NodeStyle _nodeStyle;
 };
 
 #endif // COMPONENTMODEL_H

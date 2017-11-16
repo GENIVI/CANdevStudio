@@ -38,8 +38,18 @@ void ProjectConfig::clearGraphView()
     return d->clearGraphView();
 }
 
-void ProjectConfig::setGraphViewBackground(const QColor &color)
+void ProjectConfig::setColorMode(bool darkMode)
 {
     Q_D(ProjectConfig);
-    d->_graphView->setBackgroundBrush(QBrush(color, Qt::SolidPattern));
+    QColor bgViewColor;
+
+    if(darkMode) {
+        bgViewColor = QColor(38, 38, 38);
+    } else {
+        bgViewColor = QColor(229, 229, 229);
+    }
+
+    d->_graphView->setBackgroundBrush(QBrush(bgViewColor, Qt::SolidPattern));
+    d->updateNodeStyle(darkMode);
+    d->addModelIcons();
 }
