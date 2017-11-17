@@ -35,7 +35,6 @@ private:
 
     void connectToolbarSignals();
     void connectMenuSignals();
-    void setupMdiArea();
     void closeEvent(QCloseEvent* event);
     void handleLoadAction();
     void handleSaveAction();

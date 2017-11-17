@@ -65,6 +65,7 @@
         <file>files/images/dark/Angle-up-01.svg</file>
         <file>files/images/light/Angle-down-01.svg</file>
         <file>files/images/light/Angle-up-01.svg</file>
+        <file>files/images/start_screen.png</file>
     </qresource>
     <qresource prefix="/">
         <file>files/json/projectConfigSchema.json</file>

@@ -16,6 +16,7 @@
 #include <QtWidgets/QMessageBox>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QToolButton>
+#include <QGraphicsDropShadowEffect>
 
 namespace {
 const QString SETTINGS_STYLE_TAG = "style";
@@ -38,7 +39,14 @@ MainWindow::MainWindow(QWidget* parent)
     bar->setMovable(false);
     addToolBar(bar);
 
-    setupMdiArea();
+    _ui->mdiArea->setViewMode(QMdiArea::TabbedView);
+    _ui->mdiArea->hide();
+
+    QGraphicsDropShadowEffect* ef = new QGraphicsDropShadowEffect;
+    ef->setBlurRadius(50);
+    ef->setOffset(0);
+    _ui->startScreen->setGraphicsEffect(ef);
+
     connectToolbarSignals();
     connectMenuSignals();
 
@@ -53,7 +61,7 @@ MainWindow::~MainWindow() {} // NOTE: Qt MOC requires this code
 void MainWindow::loadSettings()
 {
     _currentStyle
-        = static_cast<Styles>(_settings.value(SETTINGS_STYLE_TAG, static_cast<int>(Styles::darkStyle)).toInt());
+        = static_cast<Styles>(_settings.value(SETTINGS_STYLE_TAG, static_cast<int>(Styles::lightStyle)).toInt());
 }
 
 void MainWindow::saveSettings()
@@ -224,6 +232,9 @@ bool MainWindow::closeProjectConfig()
         _toolBar->toolSaveAs->setDisabled(true);
         _toolBar->toolSimulation->setDisabled(true);
         _toolBar->toolStop->setDisabled(true);
+
+        _ui->mdiArea->hide();
+        _ui->startScreenWidget->show();
     }
 
     return true;
@@ -238,6 +249,9 @@ bool MainWindow::createProjectConfig(const QString& name)
     _projectName = name;
 
     if (_projectConfig) {
+        _ui->startScreenWidget->hide();
+        _ui->mdiArea->show();
+
         setStyle(_currentStyle);
 
         _projectConfig->setWindowTitle(_projectName);
@@ -305,11 +319,6 @@ void MainWindow::addToMdi(QWidget* component)
     _ui->mdiArea->addSubWindow(wnd);
     component->show();
     wnd->show();
-}
-
-void MainWindow::setupMdiArea()
-{
-    _ui->mdiArea->setViewMode(QMdiArea::TabbedView);
 }
 
 void MainWindow::handleWidgetDeletion(QWidget* widget)
