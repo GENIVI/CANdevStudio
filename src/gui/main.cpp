@@ -64,7 +64,6 @@ int main(int argc, char* argv[])
     qDebug() << "Qt message ";
 
     MainWindow w;
-    w.setStyle(MainWindow::Styles::darkStyle);
     w.show();
 
     return a.exec();

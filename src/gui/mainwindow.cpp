@@ -2,10 +2,10 @@
 #include "mainwindow.h"
 #include "log.h"
 #include "modelvisitor.h" // apply_model_visitor
+#include "projectconfigvalidator.h"
 #include "subwindow.h"
 #include "ui_mainwindow.h"
 #include "ui_toolbar.h"
-#include "projectconfigvalidator.h"
 #include <nodes/FlowViewStyle>
 
 #include <QCloseEvent>
@@ -14,21 +14,26 @@
 #include <QtWidgets/QMdiArea>
 #include <QtWidgets/QMdiSubWindow>
 #include <QtWidgets/QMessageBox>
-#include <QtWidgets/QToolButton>
 #include <QtWidgets/QToolBar>
+#include <QtWidgets/QToolButton>
+
+namespace {
+const QString SETTINGS_STYLE_TAG = "style";
+}
 
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent)
     , _ui(std::make_unique<Ui::MainWindow>())
     , _toolBar(std::make_unique<Ui::ToolBar>())
+    , _settings("CANdevStudio")
 {
     _ui->setupUi(this);
     _ui->centralWidget->layout()->setContentsMargins(0, 0, 0, 0);
 
-    QWidget *toolBarWidget = new QWidget;
+    QWidget* toolBarWidget = new QWidget;
     _toolBar->setupUi(toolBarWidget);
 
-    QToolBar *bar = new QToolBar();
+    QToolBar* bar = new QToolBar();
     bar->addWidget(toolBarWidget);
     bar->setMovable(false);
     addToolBar(bar);
@@ -36,11 +41,27 @@ MainWindow::MainWindow(QWidget* parent)
     setupMdiArea();
     connectToolbarSignals();
     connectMenuSignals();
+
+    loadSettings();
+
+    // loadSettings will update _currentStyle;
+    setStyle(_currentStyle);
 }
 
-MainWindow::~MainWindow()
+MainWindow::~MainWindow() {} // NOTE: Qt MOC requires this code
+
+void MainWindow::loadSettings()
 {
-} // NOTE: Qt MOC requires this code
+    _currentStyle
+        = static_cast<Styles>(_settings.value(SETTINGS_STYLE_TAG, static_cast<int>(Styles::darkStyle)).toInt());
+}
+
+void MainWindow::saveSettings()
+{
+    _settings.setValue(SETTINGS_STYLE_TAG, static_cast<int>(_currentStyle));
+
+    _settings.sync();
+}
 
 void MainWindow::closeEvent(QCloseEvent* e)
 {
@@ -48,6 +69,7 @@ void MainWindow::closeEvent(QCloseEvent* e)
     userReply = QMessageBox::question(
         this, "Exit", "Are you sure you want to quit CANdevStudio?", QMessageBox::Yes | QMessageBox::No);
     if (userReply == QMessageBox::Yes) {
+        saveSettings();
         QApplication::quit();
     } else {
         e->ignore();
@@ -55,8 +77,7 @@ void MainWindow::closeEvent(QCloseEvent* e)
 }
 
 void MainWindow::handleDock(QWidget* component)
-{
-    // check if component is already displayed by mdi area
+{ // check if component is already displayed by mdi area
     if (component->parentWidget()
         && _ui->mdiArea->subWindowList().contains(static_cast<QMdiSubWindow*>(component->parentWidget()))) {
         cds_debug("Undock action");
@@ -100,7 +121,7 @@ void MainWindow::handleSaveAction()
     if (!_projectConfig)
         return;
 
-    if(_projectFile.isEmpty()) {
+    if (_projectFile.isEmpty()) {
         handleSaveAsAction();
     } else {
         QFile file(_projectFile);
@@ -117,8 +138,8 @@ void MainWindow::handleSaveAsAction()
     if (!_projectConfig)
         return;
 
-    QString fileName = QFileDialog::getSaveFileName(
-        nullptr, "Save project as...", QDir::homePath(), "CANdevStudio Files (*.cds)");
+    QString fileName
+        = QFileDialog::getSaveFileName(nullptr, "Save project as...", QDir::homePath(), "CANdevStudio Files (*.cds)");
 
     if (!fileName.isEmpty()) {
         if (!fileName.endsWith(".cds", Qt::CaseInsensitive))
@@ -142,8 +163,7 @@ void MainWindow::handleSaveAsAction()
 
 void MainWindow::handleLoadAction()
 {
-    QString fileName
-        = QFileDialog::getOpenFileName(nullptr, "Open project", QDir::homePath(), "CANdevStudio (*.cds)");
+    QString fileName = QFileDialog::getOpenFileName(nullptr, "Open project", QDir::homePath(), "CANdevStudio (*.cds)");
 
     if (fileName.isEmpty()) {
         cds_debug("Load action cancelled by the user");
@@ -187,7 +207,7 @@ bool MainWindow::closeProjectConfig()
         }
 
         _projectConfig->clearGraphView();
-        if(_projectConfig.get()->isVisible()) {
+        if (_projectConfig.get()->isVisible()) {
             _projectConfig.get()->parentWidget()->close();
         }
         _projectConfig.reset();
@@ -218,7 +238,7 @@ bool MainWindow::createProjectConfig(const QString& name)
     _projectName = name;
 
     if (_projectConfig) {
-        setStyle(currentStyle);
+        setStyle(_currentStyle);
 
         _projectConfig->setWindowTitle(_projectName);
         addToMdi(_projectConfig.get());
@@ -275,7 +295,7 @@ void MainWindow::connectMenuSignals()
     connect(_ui->actionClose, &QAction::triggered, this, &MainWindow::closeProjectConfig);
     connect(_ui->actionNew, &QAction::triggered, [this] { createProjectConfig("New Project"); });
     connect(_ui->actionSimulation, &QAction::triggered, [this] { handleWidgetShowing(_projectConfig.get(), true); });
-    connect(_ui->actionSwitchStyle, & QAction::triggered, this, &MainWindow::switchStyle);
+    connect(_ui->actionSwitchStyle, &QAction::triggered, this, &MainWindow::switchStyle);
 }
 
 void MainWindow::addToMdi(QWidget* component)
@@ -329,7 +349,7 @@ void MainWindow::handleWidgetShowing(QWidget* widget, bool docked)
 
 void MainWindow::switchStyle()
 {
-    if (currentStyle == Styles::darkStyle)
+    if (_currentStyle == Styles::darkStyle)
         setStyle(Styles::lightStyle);
     else
         setStyle(Styles::darkStyle);
@@ -342,10 +362,8 @@ void MainWindow::setStyle(Styles style)
     QColor bgMdiColor(0x1d, 0x1d, 0x1d);
     bool darkMode = false;
 
-    switch (style)
-    {
-    case Styles::darkStyle :
-    {
+    switch (style) {
+    case Styles::darkStyle: {
         darkMode = true;
         stylefile = ":/files/css/darkStyle.css";
         flowStyle = R"(
@@ -367,8 +385,7 @@ void MainWindow::setStyle(Styles style)
         _ui->actionClose->setIcon(QIcon(":/images/files/images/light/CANbus_icon_CloseSim.svg"));
         _ui->actionExit->setIcon(QIcon(":/images/files/images/light/CANbus_icon_Close.svg"));
     } break;
-    case Styles::lightStyle :
-    {
+    case Styles::lightStyle: {
         stylefile = ":/files/css/lightStyle.css";
         flowStyle = R"(
         {
@@ -408,10 +425,10 @@ void MainWindow::setStyle(Styles style)
 
     QtNodes::FlowViewStyle::setStyle(flowStyle);
     // Workaround. Background is not updated via style sheet.
-    if(_projectConfig) {
+    if (_projectConfig) {
         _projectConfig->setColorMode(darkMode);
     }
     _ui->mdiArea->setBackground(QBrush(bgMdiColor, Qt::SolidPattern));
 
-    currentStyle = style;
+    _currentStyle = style;
 }

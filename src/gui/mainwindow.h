@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <QSettings>
 #include <QtWidgets/QMainWindow>
 #include <memory>
 
@@ -11,16 +12,13 @@ class QCloseEvent;
 namespace Ui {
 class ToolBar;
 class MainWindow;
-}
+} // namespace Ui
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
 
 public:
-    enum class Styles {
-        darkStyle,
-        lightStyle
-    };
+    enum class Styles { darkStyle, lightStyle };
 
     explicit MainWindow(QWidget* parent = nullptr);
     ~MainWindow();
@@ -31,7 +29,9 @@ private:
     std::unique_ptr<ProjectConfig> _projectConfig;
     QString _projectFile;
     QString _projectName;
-    Styles currentStyle;
+    Styles _currentStyle;
+    QSettings _settings;
+    QVector<std::pair<QString, QString>> _recentProjects;
 
     void connectToolbarSignals();
     void connectMenuSignals();
@@ -41,12 +41,14 @@ private:
     void handleSaveAction();
     void handleSaveAsAction();
     void addToMdi(QWidget* component);
+    void loadSettings();
+    void saveSettings();
 
 public slots:
     void handleDock(QWidget* component);
     void handleWidgetDeletion(QWidget* widget);
     void handleWidgetShowing(QWidget* widget, bool docked);
-    bool createProjectConfig(const QString &name);
+    bool createProjectConfig(const QString& name);
     bool closeProjectConfig();
     void switchStyle();
     void setStyle(Styles style);
