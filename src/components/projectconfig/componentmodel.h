@@ -160,17 +160,19 @@ public:
             _nodeStyle.GradientColor2 = bgColor;
             _nodeStyle.GradientColor3 = bgColor;
             _nodeStyle.NormalBoundaryColor = bgColor;
+            _nodeStyle.FontColor = QColor(240, 240, 240);
+            _nodeStyle.FontColorFaded = QColor(240, 240, 240);
         } else {
-            QColor bgColor = QColor(190, 190, 190);
+            QColor bgColor = QColor(255, 255, 255);
             _nodeStyle.GradientColor0 = bgColor;
             _nodeStyle.GradientColor1 = bgColor;
             _nodeStyle.GradientColor2 = bgColor;
             _nodeStyle.GradientColor3 = bgColor;
             _nodeStyle.NormalBoundaryColor = bgColor;
+            _nodeStyle.FontColor = QColor(20, 20, 20);
+            _nodeStyle.FontColorFaded = QColor(20, 20, 20);
         }
 
-        _nodeStyle.FontColor = QColor(Qt::white);
-        _nodeStyle.FontColorFaded = QColor(Qt::white);
         _nodeStyle.Opacity = 1.0;
 
         setNodeStyle(_nodeStyle);

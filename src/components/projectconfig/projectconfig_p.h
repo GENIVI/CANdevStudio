@@ -44,6 +44,11 @@ public:
 
         _ui->setupUi(this);
         _ui->layout->addWidget(_graphView);
+
+        connect(_ui->pbDeviceLayer, &QPushButton::toggled, _ui->deviceWidget, &QWidget::setVisible);
+        _ui->pbDeviceLayer->setChecked(true);
+        connect(_ui->pbRawLayer, &QPushButton::toggled, _ui->rawWidget, &QWidget::setVisible);
+        _ui->pbRawLayer->setChecked(true);
     }
 
     void addModelIcons()
@@ -53,19 +58,22 @@ public:
         if(_darkMode) {
             bgColor = QColor(94, 94, 94);
         } else {
-            bgColor = QColor(190, 190, 190);
+            bgColor = QColor(255, 255, 255);
         }
 
         QLayoutItem *item;
-        while ((item = _ui->frame->layout()->takeAt(0)) != nullptr)
+        while ((item = _ui->deviceWidget->layout()->takeAt(0)) != nullptr)
+        {
+            delete item;
+        }
+        while ((item = _ui->rawWidget->layout()->takeAt(0)) != nullptr)
         {
             delete item;
         }
 
-        _ui->frame->layout()->addWidget(new IconLabel("CanDevice", CanDeviceModel::headerColor1(), CanDeviceModel::headerColor2(), bgColor));
-        _ui->frame->layout()->addWidget(new IconLabel("CanRawSender", CanRawSenderModel::headerColor1(), CanRawSenderModel::headerColor2(), bgColor));
-        _ui->frame->layout()->addWidget(new IconLabel("CanRawView", CanRawViewModel::headerColor1(), CanRawViewModel::headerColor2(), bgColor));
-        _ui->frame->layout()->addItem(new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding));
+        _ui->deviceWidget->layout()->addWidget(new IconLabel("CanDevice", CanDeviceModel::headerColor1(), CanDeviceModel::headerColor2(), bgColor));
+        _ui->rawWidget->layout()->addWidget(new IconLabel("CanRawSender", CanRawSenderModel::headerColor1(), CanRawSenderModel::headerColor2(), bgColor));
+        _ui->rawWidget->layout()->addWidget(new IconLabel("CanRawView", CanRawViewModel::headerColor1(), CanRawViewModel::headerColor2(), bgColor));
     }
 
     ~ProjectConfigPrivate() {}

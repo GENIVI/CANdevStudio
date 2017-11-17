@@ -141,3 +141,27 @@ QPushButton#pbAdd, #pbDockUndock, #pbRemove, #pbClear, #freezeBox, #pbToggleFilt
 QToolButton#toolSwitch {
     image: url(:/images/files/images/light/CANbus_icon_Switch_dark.svg);
 }
+
+QCheckBox {
+    spacing: 43px;
+    color: #767676;
+}
+
+QCheckBox#pbRawLayer {
+    spacing: 58px;
+}
+
+QCheckBox::indicator {
+    padding-top: 4px;
+    width: 16px;
+    height: 16px;
+
+}
+
+QCheckBox::indicator:checked {
+    image: url(:/images/files/images/dark/Angle-down-01.svg);
+}
+
+QCheckBox::indicator:unchecked {
+    image: url(:/images/files/images/dark/Angle-up-01.svg);
+}

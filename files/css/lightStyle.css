@@ -139,3 +139,42 @@ QPushButton[flat="true"]:checked {
 QToolButton#toolSwitch {
     image: url(:/images/files/images/light/CANbus_icon_Switch.svg);
 }
+
+QCheckBox {
+    background: #f2f2f2;
+    spacing: 50px;
+    color: #767676;
+}
+
+QCheckBox#pbRawLayer {
+    spacing: 65px;
+}
+
+QCheckBox::indicator {
+    background: #f2f2f2;
+    padding-top: 4px;
+    width: 16px;
+    height: 16px;
+}
+
+QCheckBox::indicator:checked {
+    background: #f2f2f2;
+    image: url(:/images/files/images/light/Angle-down-01.svg);
+}
+
+QCheckBox::indicator:unchecked {
+    background: #f2f2f2;
+    image: url(:/images/files/images/light/Angle-up-01.svg);
+}
+
+QWidget#deviceWidget {
+    background: #f2f2f2;
+}
+
+QWidget#rawWidget {
+    background: #f2f2f2;
+}
+
+QLabel {
+    background: #f2f2f2;
+}
