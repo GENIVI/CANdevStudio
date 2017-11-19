@@ -8,6 +8,7 @@
 #include "projectconfig/projectconfig.h"
 
 class QCloseEvent;
+class QPushButton;
 
 namespace Ui {
 class ToolBar;
@@ -32,6 +33,7 @@ private:
     Styles _currentStyle;
     QSettings _settings;
     QVector<std::pair<QString, QString>> _recentProjects;
+    QVector<std::pair<QPushButton *, QPushButton *>> _recentProjectsButtons;
 
     void connectToolbarSignals();
     void connectMenuSignals();
@@ -42,6 +44,9 @@ private:
     void addToMdi(QWidget* component);
     void loadSettings();
     void saveSettings();
+    void addRecentProject(const QString &name, const QString &path);
+    void refreshRecentProjects();
+    void handleRecentProject(int ndx);
 
 public slots:
     void handleDock(QWidget* component);

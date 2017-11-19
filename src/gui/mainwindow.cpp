@@ -1,4 +1,3 @@
-
 #include "mainwindow.h"
 #include "log.h"
 #include "modelvisitor.h" // apply_model_visitor
@@ -9,6 +8,7 @@
 #include <nodes/FlowViewStyle>
 
 #include <QCloseEvent>
+#include <QMenu>
 #include <QtCore/QFile>
 #include <QtWidgets/QFileDialog>
 #include <QtWidgets/QMdiArea>
@@ -20,6 +20,10 @@
 
 namespace {
 const QString SETTINGS_STYLE_TAG = "style";
+const QString SETTINGS_RECENT_TAG = "recentProjects";
+const QString SETTINGS_NAME_TAG = "name";
+const QString SETTINGS_FILENAME_TAG = "filename";
+const int SETTINGS_RECENT_SIZE = 20;
 }
 
 MainWindow::MainWindow(QWidget* parent)
@@ -50,23 +54,133 @@ MainWindow::MainWindow(QWidget* parent)
     connectToolbarSignals();
     connectMenuSignals();
 
+    _recentProjectsButtons.push_back({ _ui->pbRecent1Name, _ui->pbRecent1File });
+    _recentProjectsButtons.push_back({ _ui->pbRecent2Name, _ui->pbRecent2File });
+    _recentProjectsButtons.push_back({ _ui->pbRecent3Name, _ui->pbRecent3File });
+    _recentProjectsButtons.push_back({ _ui->pbRecent4Name, _ui->pbRecent4File });
+    _recentProjectsButtons.push_back({ _ui->pbRecent5Name, _ui->pbRecent5File });
+    _recentProjectsButtons.push_back({ _ui->pbRecent6Name, _ui->pbRecent6File });
+
+
+    for(int i = 0; i < _recentProjectsButtons.size(); ++i) {
+        connect(_recentProjectsButtons[i].first, &QPushButton::clicked, [this, i] {
+           handleRecentProject(i);
+        });
+        connect(_recentProjectsButtons[i].second, &QPushButton::clicked, [this, i] {
+           handleRecentProject(i);
+        });
+    }
+
     loadSettings();
 
+    // loadSettings will update _recentProjects;
+    refreshRecentProjects();
     // loadSettings will update _currentStyle;
     setStyle(_currentStyle);
 }
 
 MainWindow::~MainWindow() {} // NOTE: Qt MOC requires this code
 
+void MainWindow::refreshRecentProjects()
+{
+    for(int i = 0; i < _recentProjectsButtons.size(); ++i)
+    {
+        if(i < _recentProjects.size()) {
+            _recentProjectsButtons[i].first->setText(_recentProjects[i].first);
+            _recentProjectsButtons[i].first->setToolTip(_recentProjects[i].first);
+            _recentProjectsButtons[i].second->setText(_recentProjects[i].second);
+            _recentProjectsButtons[i].second->setToolTip(_recentProjects[i].second);
+        } else {
+            _recentProjectsButtons[i].first->setText("");
+            _recentProjectsButtons[i].first->setToolTip("");
+            _recentProjectsButtons[i].second->setText("");
+            _recentProjectsButtons[i].second->setToolTip("");
+        }
+    }
+
+    _ui->menuRecent_Projects->clear();
+    for(int i = 0; i < _recentProjects.size(); ++i) {
+        _ui->menuRecent_Projects->addAction(_recentProjects[i].second, [this, i] {handleRecentProject(i);});
+    }
+    _ui->menuRecent_Projects->addSeparator();
+    _ui->menuRecent_Projects->addAction(_ui->actionClear);
+}
+
+void MainWindow::handleRecentProject(int ndx)
+{
+    if(ndx >= _recentProjects.size()) {
+        return;
+    }
+
+    QString projectName = _recentProjects[ndx].first;
+    QString projectFile = _recentProjects[ndx].second;
+
+    QFile file(projectFile);
+
+    if (!file.open(QIODevice::ReadOnly)) {
+        cds_error("Could not open file");
+        return;
+    }
+
+    QByteArray wholeFile = file.readAll();
+
+
+    if (createProjectConfig(projectName)) {
+        if (_projectConfig) {
+            _projectConfig->load(wholeFile); // FIXME
+            _projectFile = projectFile;
+
+            addRecentProject(projectName, projectFile);
+        } else {
+            cds_error("Project config does not exist");
+        }
+    }
+
+    file.close();
+
+    refreshRecentProjects();
+ }
+
 void MainWindow::loadSettings()
 {
     _currentStyle
         = static_cast<Styles>(_settings.value(SETTINGS_STYLE_TAG, static_cast<int>(Styles::lightStyle)).toInt());
+
+    _recentProjects.clear();
+
+    int recentSize = _settings.beginReadArray(SETTINGS_RECENT_TAG);
+    if(recentSize > SETTINGS_RECENT_SIZE) {
+        recentSize = SETTINGS_RECENT_SIZE;
+    }
+
+    for(int i = 0; i < recentSize; ++i) {
+        _settings.setArrayIndex(i);
+        QString name = _settings.value(SETTINGS_NAME_TAG).toString();
+        QString filename = _settings.value(SETTINGS_FILENAME_TAG).toString();
+        _recentProjects.push_back( {name, filename} );
+    }
+    _settings.endArray();
+
 }
 
 void MainWindow::saveSettings()
 {
+    _settings.clear();
+
     _settings.setValue(SETTINGS_STYLE_TAG, static_cast<int>(_currentStyle));
+
+    int recentSize = _recentProjects.size();
+    if(recentSize > SETTINGS_RECENT_SIZE) {
+        recentSize = SETTINGS_RECENT_SIZE;
+    }
+
+    _settings.beginWriteArray(SETTINGS_RECENT_TAG);
+    for(int i = 0; i < recentSize; ++i) {
+        _settings.setArrayIndex(i);
+        _settings.setValue(SETTINGS_NAME_TAG, _recentProjects[i].first);
+        _settings.setValue(SETTINGS_FILENAME_TAG, _recentProjects[i].second);
+    }
+    _settings.endArray();
 
     _settings.sync();
 }
@@ -127,6 +241,25 @@ void MainWindow::connectToolbarSignals()
     connect(_ui->pbStartOpen, &QPushButton::clicked, _ui->actionLoad, &QAction::trigger);
 }
 
+void MainWindow::addRecentProject(const QString &name, const QString &path)
+{
+    // Do not allow duplicates. Most recent project must be first on the list
+    for(auto &row : _recentProjects) {
+        if(row.second == path) {
+            cds_debug("Project '{}' ({}) already found in recent list", row.first.toStdString(), row.second.toStdString());
+            _recentProjects.removeOne(row);
+        }
+    }
+
+    _recentProjects.push_front({ name, path });
+
+    int ndx = 0;
+    cds_debug("Recent project list:");
+    for(auto &row : _recentProjects) {
+        cds_debug("{}. '{}', {}", ++ndx, row.first.toStdString(), row.second.toStdString());
+    }
+}
+
 void MainWindow::handleSaveAction()
 {
     if (!_projectConfig)
@@ -138,10 +271,14 @@ void MainWindow::handleSaveAction()
         QFile file(_projectFile);
         if (file.open(QIODevice::WriteOnly)) {
             file.write(_projectConfig->save()); // FIXME
+
+            addRecentProject(_projectName, _projectFile);
         } else {
             cds_error("Failed to open file for writing: {}", _projectFile.toStdString());
         }
     }
+
+    refreshRecentProjects();
 }
 
 void MainWindow::handleSaveAsAction()
@@ -164,12 +301,16 @@ void MainWindow::handleSaveAsAction()
             _projectFile = fileName;
             _projectName = fInfo.completeBaseName();
             _projectConfig->setWindowTitle(_projectName);
+
+            addRecentProject(_projectName, _projectFile);
         } else {
             cds_error("Failed to open file for writing: {}", _projectFile.toStdString());
         }
     } else {
         cds_debug("Save action cancelled by the user");
     }
+
+    refreshRecentProjects();
 }
 
 void MainWindow::handleLoadAction()
@@ -200,10 +341,14 @@ void MainWindow::handleLoadAction()
         if (_projectConfig) {
             _projectConfig->load(wholeFile); // FIXME
             _projectFile = fileName;
+
+            addRecentProject(_projectName, _projectFile);
         } else {
             cds_error("Project config does not exist");
         }
     }
+
+    refreshRecentProjects();
 }
 
 bool MainWindow::closeProjectConfig()
@@ -222,6 +367,8 @@ bool MainWindow::closeProjectConfig()
             _projectConfig.get()->parentWidget()->close();
         }
         _projectConfig.reset();
+        _projectFile.clear();
+        _projectName.clear();
 
         _ui->actionClose->setDisabled(true);
         _ui->actionStart->setDisabled(true);
@@ -237,6 +384,7 @@ bool MainWindow::closeProjectConfig()
         _toolBar->toolStop->setDisabled(true);
 
         _ui->mdiArea->hide();
+        refreshRecentProjects();
         _ui->startScreenWidget->show();
     }
 
@@ -313,6 +461,10 @@ void MainWindow::connectMenuSignals()
     connect(_ui->actionNew, &QAction::triggered, [this] { createProjectConfig("New Project"); });
     connect(_ui->actionSimulation, &QAction::triggered, [this] { handleWidgetShowing(_projectConfig.get(), true); });
     connect(_ui->actionSwitchStyle, &QAction::triggered, this, &MainWindow::switchStyle);
+    connect(_ui->actionClear, &QAction::triggered, [this] {
+        _recentProjects.clear();
+        refreshRecentProjects();
+    });
 }
 
 void MainWindow::addToMdi(QWidget* component)

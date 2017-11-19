@@ -177,3 +177,22 @@ QCheckBox#pbRawLayer::indicator:unchecked, #pbDeviceLayer::indicator:unchecked {
 QWidget#startScreen {
     image: url(:/images/files/images/start_screen.png);
 }
+
+QPushButton[type="recentProjectName"], QWidget#recentContainer {
+    background: #ffffff;
+    color: #0d6188;
+    text-align: left;
+    font-size: 14px;
+}
+
+QPushButton[type="recentProjectFile"] {
+    background: #ffffff;
+    color: #919191;
+    text-align: left;
+    font-size: 12px;
+}
+
+QPushButton:pressed[type="recentProjectName"], QPushButton:pressed[type="recentProjectFile"], #pbStartNew, #pbStartOpen {
+    border: 0px;
+    background: #ffffff;
+}

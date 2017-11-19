@@ -131,14 +131,6 @@ QPushButton[flat="true"]:pressed {
     background-color: #ffffff;
 }
 
-QPushButton#pbStartNew {
-    border: 0px;
-}
-
-QPushButton#pbStartOpen {
-    border: 0px;
-}
-
 QPushButton[flat="true"]:checked {
     border: 2px solid #b8b8b8;
     background-color: #ffffff;
@@ -195,3 +187,22 @@ QWidget#startScreen {
 QWidget#startScreenWidget {
     background-color: #d3d3d3;
 }
+
+QPushButton[type="recentProjectName"] {
+    background: #ffffff;
+    color: #0d6188;
+    text-align: left;
+    font-size: 14px;
+}
+
+QPushButton[type="recentProjectFile"] {
+    background: #ffffff;
+    color: #919191;
+    text-align: left;
+    font-size: 12px;
+}
+
+QPushButton:pressed[type="recentProjectName"], QPushButton:pressed[type="recentProjectFile"], #pbStartNew, #pbStartOpen {
+    border: 0px;
+}
+
