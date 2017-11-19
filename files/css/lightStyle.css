@@ -131,6 +131,14 @@ QPushButton[flat="true"]:pressed {
     background-color: #ffffff;
 }
 
+QPushButton#pbStartNew {
+    border: 0px;
+}
+
+QPushButton#pbStartOpen {
+    border: 0px;
+}
+
 QPushButton[flat="true"]:checked {
     border: 2px solid #b8b8b8;
     background-color: #ffffff;

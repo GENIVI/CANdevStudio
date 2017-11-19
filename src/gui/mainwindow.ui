@@ -61,13 +61,6 @@
        <number>8</number>
       </property>
       <item>
-       <widget class="QMdiArea" name="mdiArea">
-        <property name="tabsClosable">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
        <widget class="QWidget" name="startScreenWidget" native="true">
         <property name="minimumSize">
          <size>
@@ -103,6 +96,53 @@
              <height>472</height>
             </size>
            </property>
+           <property name="baseSize">
+            <size>
+             <width>783</width>
+             <height>472</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true"/>
+           </property>
+           <widget class="QPushButton" name="pbStartNew">
+            <property name="geometry">
+             <rect>
+              <x>420</x>
+              <y>160</y>
+              <width>131</width>
+              <height>21</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background: transparent;</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
+            </property>
+           </widget>
+           <widget class="QPushButton" name="pbStartOpen">
+            <property name="geometry">
+             <rect>
+              <x>420</x>
+              <y>200</y>
+              <width>131</width>
+              <height>21</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background: transparent;</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
+            </property>
+           </widget>
           </widget>
          </item>
          <item row="1" column="0">
@@ -145,6 +185,19 @@
           </spacer>
          </item>
         </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QMdiArea" name="mdiArea">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="tabsClosable">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
      </layout>

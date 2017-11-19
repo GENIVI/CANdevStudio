@@ -130,6 +130,14 @@ QPushButton[flat="true"]:checked {
     background-color: #616161;
 }
 
+QPushButton#pbStartNew {
+    border: 0px;
+}
+
+QPushButton#pbStartOpen {
+    border: 0px;
+}
+
 QWidget#CanRawSenderPrivate, #CanRawViewPrivate {
     background-color: #616161;
 }

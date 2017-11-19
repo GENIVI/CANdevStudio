@@ -122,6 +122,9 @@ void MainWindow::connectToolbarSignals()
     connect(_toolBar->toolSwitch, &QToolButton::clicked, _ui->actionSwitchStyle, &QAction::trigger);
     connect(_toolBar->toolTabView, &QToolButton::clicked, _ui->actionTabView, &QAction::trigger);
     connect(_toolBar->toolWindowView, &QToolButton::clicked, _ui->actionSubWindowView, &QAction::trigger);
+
+    connect(_ui->pbStartNew, &QPushButton::clicked, _ui->actionNew, &QAction::trigger);
+    connect(_ui->pbStartOpen, &QPushButton::clicked, _ui->actionLoad, &QAction::trigger);
 }
 
 void MainWindow::handleSaveAction()
