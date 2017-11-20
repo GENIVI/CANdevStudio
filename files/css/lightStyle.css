@@ -175,7 +175,7 @@ QWidget#rawWidget {
     background: #f2f2f2;
 }
 
-QLabel {
+QLabel[type="IconLabel"] {
     background: #f2f2f2;
 }
 
@@ -205,4 +205,3 @@ QPushButton[type="recentProjectFile"] {
 QPushButton:pressed[type="recentProjectName"], QPushButton:pressed[type="recentProjectFile"], #pbStartNew, #pbStartOpen {
     border: 0px;
 }
-

@@ -63,12 +63,18 @@
        <property name="text">
         <string/>
        </property>
+       <property name="type" stdset="0">
+        <string>ToolButton</string>
+       </property>
       </widget>
      </item>
      <item>
       <widget class="QToolButton" name="toolOpen">
        <property name="text">
         <string/>
+       </property>
+       <property name="type" stdset="0">
+        <string>ToolButton</string>
        </property>
       </widget>
      </item>
@@ -80,6 +86,9 @@
        <property name="text">
         <string/>
        </property>
+       <property name="type" stdset="0">
+        <string>ToolButton</string>
+       </property>
       </widget>
      </item>
      <item>
@@ -89,6 +98,9 @@
        </property>
        <property name="text">
         <string/>
+       </property>
+       <property name="type" stdset="0">
+        <string>ToolButton</string>
        </property>
       </widget>
      </item>
@@ -100,6 +112,9 @@
        <property name="text">
         <string/>
        </property>
+       <property name="type" stdset="0">
+        <string>ToolButton</string>
+       </property>
       </widget>
      </item>
      <item>
@@ -109,6 +124,9 @@
        </property>
        <property name="text">
         <string/>
+       </property>
+       <property name="type" stdset="0">
+        <string>ToolButton</string>
        </property>
       </widget>
      </item>
@@ -183,6 +201,9 @@
          <height>26</height>
         </size>
        </property>
+       <property name="type" stdset="0">
+        <string>ToolButton</string>
+       </property>
       </widget>
      </item>
      <item>
@@ -222,6 +243,9 @@
          <width>80</width>
          <height>26</height>
         </size>
+       </property>
+       <property name="type" stdset="0">
+        <string>ToolButton</string>
        </property>
       </widget>
      </item>
@@ -263,6 +287,9 @@
        <property name="text">
         <string/>
        </property>
+       <property name="type" stdset="0">
+        <string>ToolButton</string>
+       </property>
       </widget>
      </item>
      <item>
@@ -273,12 +300,18 @@
        <property name="text">
         <string/>
        </property>
+       <property name="type" stdset="0">
+        <string>ToolButton</string>
+       </property>
       </widget>
      </item>
      <item>
       <widget class="QToolButton" name="toolSwitch">
        <property name="text">
         <string/>
+       </property>
+       <property name="type" stdset="0">
+        <string>ToolButton</string>
        </property>
       </widget>
      </item>

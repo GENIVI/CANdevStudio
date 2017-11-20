@@ -1,7 +1,7 @@
 QWidget
 {
     color: #cccccc;
-    background-color: #282828;
+    background-color: #1d1d1d;
     selection-background-color: #666666;
     selection-color: #cccccc;
 }
@@ -153,6 +153,7 @@ QToolButton#toolSwitch {
 QCheckBox#pbRawLayer, QCheckBox#pbDeviceLayer{
     spacing: 43px;
     color: #767676;
+    background: #282828;
 }
 
 QCheckBox#pbRawLayer {
@@ -163,7 +164,7 @@ QCheckBox#pbRawLayer::indicator, QCheckBox#pbDeviceLayer::indicator {
     padding-top: 4px;
     width: 16px;
     height: 16px;
-
+    background: #282828;
 }
 
 QCheckBox#pbRawLayer::indicator:checked, #pbDeviceLayer::indicator:checked {
@@ -176,6 +177,10 @@ QCheckBox#pbRawLayer::indicator:unchecked, #pbDeviceLayer::indicator:unchecked {
 
 QWidget#startScreen {
     image: url(:/images/files/images/start_screen.png);
+}
+
+QWidget#rawWidget, #deviceWidget {
+    background: #282828;
 }
 
 QPushButton[type="recentProjectName"], QWidget#recentContainer {

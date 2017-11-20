@@ -4,7 +4,7 @@ QToolBar {
     padding: 0px;
 }
 
-QToolButton {
+QToolButton[type="ToolButton"] {
     background-color: #1492ca;
     border: 0px;
     border-width: 0px;
@@ -18,14 +18,15 @@ QToolButton {
 }
 
 QToolButton#toolStart, #toolStop {
+    background-color: #1492ca;
     padding: 0px;
 }
 
-QToolButton:hover {
+QToolButton[type="ToolButton"]:hover {
     background-color: #18a7ea;
 }
 
-QToolButton:pressed {
+QToolButton[type="ToolButton"]:pressed {
     background-color: #1283b7;
 }
 

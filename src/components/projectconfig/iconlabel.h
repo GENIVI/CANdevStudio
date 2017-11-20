@@ -40,6 +40,8 @@ public:
         setMaximumSize(_width, _height);
         setObjectName(name);
         setPixmap(pix);
+
+        setProperty("type", "IconLabel");
     }
 
 private:
