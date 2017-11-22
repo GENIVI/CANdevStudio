@@ -5,10 +5,12 @@
 #include "subwindow.h"
 #include "ui_mainwindow.h"
 #include "ui_toolbar.h"
+#include "ui_aboutdialog.h"
 #include <nodes/FlowViewStyle>
 
 #include <QCloseEvent>
 #include <QMenu>
+#include <QDesktopServices>
 #include <QtCore/QFile>
 #include <QtWidgets/QFileDialog>
 #include <QtWidgets/QMdiArea>
@@ -24,6 +26,7 @@ const QString SETTINGS_RECENT_TAG = "recentProjects";
 const QString SETTINGS_NAME_TAG = "name";
 const QString SETTINGS_FILENAME_TAG = "filename";
 const int SETTINGS_RECENT_SIZE = 20;
+const QString VERSION = "0.1";
 }
 
 MainWindow::MainWindow(QWidget* parent)
@@ -45,6 +48,8 @@ MainWindow::MainWindow(QWidget* parent)
 
     _ui->mdiArea->setViewMode(QMdiArea::TabbedView);
     _ui->mdiArea->hide();
+    _ui->pbStartNew->setCursor(Qt::PointingHandCursor);
+    _ui->pbStartOpen->setCursor(Qt::PointingHandCursor);
 
     QGraphicsDropShadowEffect* ef = new QGraphicsDropShadowEffect;
     ef->setBlurRadius(50);
@@ -69,6 +74,9 @@ MainWindow::MainWindow(QWidget* parent)
         connect(_recentProjectsButtons[i].second, &QPushButton::clicked, [this, i] {
            handleRecentProject(i);
         });
+
+        _recentProjectsButtons[i].first->setCursor(Qt::PointingHandCursor);
+        _recentProjectsButtons[i].second->setCursor(Qt::PointingHandCursor);
     }
 
     loadSettings();
@@ -351,6 +359,32 @@ void MainWindow::handleLoadAction()
     refreshRecentProjects();
 }
 
+void MainWindow::handleAboutAction()
+{
+    Ui::aboutDialog dialog;
+    QDialog *d = new QDialog();
+    dialog.setupUi(d);
+
+    dialog.version->setText("v" + VERSION);
+    dialog.info->setText(dialog.info->text() + " " + VERSION);
+    dialog.repoLink->setTextFormat(Qt::RichText);
+    dialog.repoLink->setTextInteractionFlags(Qt::TextBrowserInteraction);
+    dialog.repoLink->setOpenExternalLinks(true);
+    dialog.close->setCursor(Qt::PointingHandCursor);
+    dialog.mobica->setCursor(Qt::PointingHandCursor);
+    dialog.genivi->setCursor(Qt::PointingHandCursor);
+
+    connect(dialog.close, &QPushButton::clicked, d, &QDialog::close);
+    connect(dialog.mobica, &QPushButton::clicked, []{
+        QDesktopServices::openUrl({"http://www.mobica.com"});
+    });
+    connect(dialog.genivi, &QPushButton::clicked, []{
+        QDesktopServices::openUrl({"http://www.genivi.org"});
+    });
+
+    d->exec();
+}
+
 bool MainWindow::closeProjectConfig()
 {
     if (_projectConfig) {
@@ -441,7 +475,7 @@ void MainWindow::connectMenuSignals()
     QActionGroup* ViewModes = new QActionGroup(this);
     ViewModes->addAction(_ui->actionTabView);
     ViewModes->addAction(_ui->actionSubWindowView);
-    connect(_ui->actionAbout, &QAction::triggered, this, [this] { QMessageBox::about(this, "About", "<about body>"); });
+    connect(_ui->actionAbout, &QAction::triggered, this, &MainWindow::handleAboutAction);
     connect(_ui->actionExit, &QAction::triggered, this, &MainWindow::close);
     connect(_ui->actionLoad, &QAction::triggered, this, &MainWindow::handleLoadAction);
     connect(_ui->actionSave, &QAction::triggered, this, &MainWindow::handleSaveAction);

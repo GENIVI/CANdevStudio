@@ -39,6 +39,7 @@ private:
     void connectMenuSignals();
     void closeEvent(QCloseEvent* event);
     void handleLoadAction();
+    void handleAboutAction();
     void handleSaveAction();
     void handleSaveAsAction();
     void addToMdi(QWidget* component);

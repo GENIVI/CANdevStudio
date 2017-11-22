@@ -5,6 +5,7 @@ set(srcs
     mainwindow.cpp
     mainwindow.ui
     toolbar.ui
+    aboutdialog.ui
 )
 
 

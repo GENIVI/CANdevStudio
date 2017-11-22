@@ -26,7 +26,7 @@
    <string>CANdevStudio</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../../CANdevResources.qrc">
+   <iconset>
     <normaloff>:/images/files/images/light/CANbus_logo.svg</normaloff>:/images/files/images/light/CANbus_logo.svg</iconset>
   </property>
   <widget class="QWidget" name="centralWidget">
@@ -525,7 +525,7 @@
      <string>Icon</string>
     </property>
     <property name="icon">
-     <iconset resource="../../CANdevResources.qrc">
+     <iconset>
       <normaloff>:/images/files/images/dark/CANbus_logo.svg</normaloff>:/images/files/images/dark/CANbus_logo.svg</iconset>
     </property>
    </widget>
@@ -586,7 +586,7 @@
   </action>
   <action name="actionAbout">
    <property name="icon">
-    <iconset resource="../../CANdevResources.qrc">
+    <iconset>
      <normaloff>:/images/files/images/dark/CANbus_logo.svg</normaloff>:/images/files/images/dark/CANbus_logo.svg</iconset>
    </property>
    <property name="text">
@@ -671,8 +671,6 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources>
-  <include location="../../CANdevResources.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>
