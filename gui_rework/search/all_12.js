@@ -25,7 +25,7 @@ var searchData=
   ['setqconfig',['setQConfig',['../classconfig_helpers.html#a334a8dafdd159258dd0af7c986069a0d',1,'configHelpers']]],
   ['setremovecbk',['setRemoveCbk',['../struct_c_r_s_gui.html#a9e8f6452b3c9aaac5cf9f6ad3ff76f03',1,'CRSGui::setRemoveCbk()'],['../struct_c_r_s_gui_interface.html#aa78f9ad14e3b1dab6069779e67654e2d',1,'CRSGuiInterface::setRemoveCbk()']]],
   ['setsectionclikedcbk',['setSectionClikedCbk',['../struct_c_r_v_gui.html#a8ab65b21d578369200f5c8d27fd509ba',1,'CRVGui::setSectionClikedCbk()'],['../struct_c_r_v_gui_interface.html#a88ad20480f5ed0f24ef7c1d92ecebda5',1,'CRVGuiInterface::setSectionClikedCbk()']]],
-  ['setsimulationstate',['SetSimulationState',['../class_new_line_manager.html#aa9e40fb8bda738c509ab9b9df60f2de1',1,'NewLineManager::SetSimulationState()'],['../class_can_raw_sender_private.html#ac2fd241370f1045c3735cb32d670eb31',1,'CanRawSenderPrivate::setSimulationState()']]],
+  ['setsimulationstate',['setSimulationState',['../class_can_raw_sender_private.html#ac2fd241370f1045c3735cb32d670eb31',1,'CanRawSenderPrivate::setSimulationState()'],['../class_new_line_manager.html#aa9e40fb8bda738c509ab9b9df60f2de1',1,'NewLineManager::SetSimulationState()']]],
   ['setsorting',['setSorting',['../struct_c_r_v_gui.html#a517fc8f58be7047c4c3f5af028615b7a',1,'CRVGui::setSorting()'],['../struct_c_r_v_gui_interface.html#ac8d76b33dcb19012a88f0f5da098ee2e',1,'CRVGuiInterface::setSorting()']]],
   ['setstate',['setState',['../struct_check_box_interface.html#a19933f6a84ef58575df894d6c319f8bb',1,'CheckBoxInterface::setState()'],['../struct_n_l_m_check_box.html#a93fb487c800dfe598935736f829f8e87',1,'NLMCheckBox::setState()']]],
   ['setstyle',['setStyle',['../class_main_window.html#a7d59764cad27f224ba87e76d07ad5269',1,'MainWindow']]],
