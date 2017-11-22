@@ -201,3 +201,10 @@ QPushButton:pressed[type="recentProjectName"], QPushButton:pressed[type="recentP
     border: 0px;
     background: #ffffff;
 }
+
+QLabel[type="aboutLabel"] {
+    background: #ffffff;
+    color: #282828;
+    font-size: 12px;
+    font-family: "Arial";
+}

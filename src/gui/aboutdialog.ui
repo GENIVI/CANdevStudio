@@ -42,6 +42,9 @@ image: url(:/images/files/images/about_screen.png);
    <property name="text">
     <string>v0.1</string>
    </property>
+   <property name="type" stdset="0">
+    <string>aboutLabel</string>
+   </property>
   </widget>
   <widget class="QLabel" name="label">
    <property name="geometry">
@@ -54,6 +57,9 @@ image: url(:/images/files/images/about_screen.png);
    </property>
    <property name="text">
     <string>Copyright (C) 2017 Mobica Limited</string>
+   </property>
+   <property name="type" stdset="0">
+    <string>aboutLabel</string>
    </property>
   </widget>
   <widget class="QLabel" name="info">
@@ -73,6 +79,9 @@ Version:</string>
    <property name="wordWrap">
     <bool>true</bool>
    </property>
+   <property name="type" stdset="0">
+    <string>aboutLabel</string>
+   </property>
   </widget>
   <widget class="QLabel" name="label_3">
    <property name="geometry">
@@ -89,6 +98,9 @@ Version:</string>
    <property name="wordWrap">
     <bool>true</bool>
    </property>
+   <property name="type" stdset="0">
+    <string>aboutLabel</string>
+   </property>
   </widget>
   <widget class="QLabel" name="repoLink">
    <property name="geometry">
@@ -101,6 +113,9 @@ Version:</string>
    </property>
    <property name="text">
     <string>&lt;a href=&quot;https://github.com/GENIVI/CANdevStudio/&quot;&gt;https://github.com/GENIVI/CANdevStudio&lt;/a&gt;</string>
+   </property>
+   <property name="type" stdset="0">
+    <string>aboutLabel</string>
    </property>
   </widget>
   <widget class="QPushButton" name="close">

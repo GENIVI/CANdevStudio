@@ -205,3 +205,10 @@ QPushButton[type="recentProjectFile"] {
 QPushButton:pressed[type="recentProjectName"], QPushButton:pressed[type="recentProjectFile"], #pbStartNew, #pbStartOpen {
     border: 0px;
 }
+
+QLabel[type="aboutLabel"] {
+    background: #ffffff;
+    color: #282828;
+    font-size: 12px;
+    font-family: "Arial";
+}
