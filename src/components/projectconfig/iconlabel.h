@@ -17,6 +17,8 @@ public:
         QPen p(color, 0);
         painter.setPen(p);
 
+        painter.setRenderHint(QPainter::Antialiasing);
+
         painter.setBrush(QBrush(bgColor));
         QRectF boundary(0, 0, pix.width(), pix.height());
         painter.drawRoundedRect(boundary, _radius, _radius);

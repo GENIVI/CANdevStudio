@@ -58,11 +58,6 @@ void DragWidget::mousePressEvent(QMouseEvent *event)
     drag->setPixmap(*pixmap);
     drag->setHotSpot({0, 0});
 
-    QPainter painter;
-    painter.begin(this);
-    painter.fillRect(pixmap->rect(), QColor(127, 127, 127, 127));
-    painter.end();
-
     if (drag->exec(Qt::CopyAction | Qt::MoveAction, Qt::CopyAction) == Qt::MoveAction) {
         child->close();
     } else {
