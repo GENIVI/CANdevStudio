@@ -382,6 +382,7 @@ void MainWindow::handleAboutAction()
         QDesktopServices::openUrl({"http://www.genivi.org"});
     });
 
+    d->setWindowFlags(d->windowFlags() | Qt::FramelessWindowHint);
     d->exec();
 }
 
