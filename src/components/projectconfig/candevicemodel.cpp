@@ -3,7 +3,11 @@
 #include <datamodeltypes/candevicedata.h>
 #include <log.h>
 
-CanDeviceModel::CanDeviceModel() : _status(false), _direction(Direction::Uninitialized)
+CanDeviceModel::CanDeviceModel()
+    : ComponentModel("CanDevice")
+    , _status(false)
+    , _direction(Direction::Uninitialized)
+    , _painter(std::make_unique<NodePainter>(headerColor1(), headerColor2()))
 {
     _label->setAlignment(Qt::AlignVCenter | Qt::AlignHCenter);
     _label->setFixedSize(75, 25);
@@ -12,9 +16,11 @@ CanDeviceModel::CanDeviceModel() : _status(false), _direction(Direction::Uniniti
     connect(&_component, &CanDevice::frameSent, this, &CanDeviceModel::frameSent);
     connect(&_component, &CanDevice::frameReceived, this, &CanDeviceModel::frameReceived);
     connect(this, &CanDeviceModel::sendFrame, &_component, &CanDevice::sendFrame);
+}
 
-    _caption = "CanDevice";
-    _name = "CanDevice";
+QtNodes::NodePainterDelegate* CanDeviceModel::painterDelegate() const
+{
+    return _painter.get();
 }
 
 unsigned int CanDeviceModel::nPorts(PortType portType) const

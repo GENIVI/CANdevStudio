@@ -13,6 +13,7 @@
 #include <nodes/Node>
 #include <projectconfig/candevicemodel.h>
 #include <propertyeditor/propertyeditordialog.h>
+#include "iconlabel.h"
 
 namespace Ui {
 class ProjectConfigPrivate;
@@ -43,6 +44,36 @@ public:
 
         _ui->setupUi(this);
         _ui->layout->addWidget(_graphView);
+
+        connect(_ui->pbDeviceLayer, &QPushButton::toggled, _ui->deviceWidget, &QWidget::setVisible);
+        _ui->pbDeviceLayer->setChecked(true);
+        connect(_ui->pbRawLayer, &QPushButton::toggled, _ui->rawWidget, &QWidget::setVisible);
+        _ui->pbRawLayer->setChecked(true);
+    }
+
+    void addModelIcons()
+    {
+        QColor bgColor;
+
+        if(_darkMode) {
+            bgColor = QColor(94, 94, 94);
+        } else {
+            bgColor = QColor(255, 255, 255);
+        }
+
+        QLayoutItem *item;
+        while ((item = _ui->deviceWidget->layout()->takeAt(0)) != nullptr)
+        {
+            delete item;
+        }
+        while ((item = _ui->rawWidget->layout()->takeAt(0)) != nullptr)
+        {
+            delete item;
+        }
+
+        _ui->deviceWidget->layout()->addWidget(new IconLabel("CanDevice", CanDeviceModel::headerColor1(), CanDeviceModel::headerColor2(), bgColor));
+        _ui->rawWidget->layout()->addWidget(new IconLabel("CanRawSender", CanRawSenderModel::headerColor1(), CanRawSenderModel::headerColor2(), bgColor));
+        _ui->rawWidget->layout()->addWidget(new IconLabel("CanRawView", CanRawViewModel::headerColor1(), CanRawViewModel::headerColor2(), bgColor));
     }
 
     ~ProjectConfigPrivate() {}
@@ -68,10 +99,14 @@ public:
 
         auto& iface = getComponentModel(node);
         iface.handleModelCreation(q);
+        iface.setColorMode(_darkMode);
 
         if (!iface.restored()) {
             iface.setCaption(node.nodeDataModel()->caption() + " #" + QString::number(_nodeCnt));
         }
+
+        node.nodeGraphicsObject().setOpacity(node.nodeDataModel()->nodeStyle().Opacity);
+        node.nodeGraphicsObject().update();
 
         _nodeCnt++;
     }
@@ -126,12 +161,24 @@ public:
         contextMenu.exec(pos1);
     }
 
+    void updateNodeStyle(bool darkMode)
+    {
+        _darkMode = darkMode;
+
+        _graphScene.iterateOverNodes([this](QtNodes::Node* node){
+            auto &iface = getComponentModel(*node);
+            iface.setColorMode(_darkMode);
+            node->nodeGraphicsObject().update();
+        });
+    }
+
 private:
     QtNodes::FlowScene _graphScene;
     FlowViewWrapper* _graphView;
     std::unique_ptr<Ui::ProjectConfigPrivate> _ui;
     int _nodeCnt = 1;
     ProjectConfig* q_ptr;
+    bool _darkMode;
 
     void openWidget(QtNodes::Node& node)
     {

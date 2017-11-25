@@ -42,6 +42,7 @@ struct CRSGui : public CRSGuiInterface {
 
         ui->tv->setModel(&_tvModel);
         ui->tv->setSelectionBehavior(QAbstractItemView::SelectRows);
+        ui->tv->horizontalHeader()->setSectionResizeMode(1, QHeaderView::Stretch);
     }
 
     QModelIndexList getSelectedRows() override

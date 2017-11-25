@@ -1,0 +1,225 @@
+QWidget
+{
+    color: #1d1d1d;
+    background-color: #ffffff;
+    selection-background-color: #666666;
+    selection-color: #cccccc;
+}
+
+QWidget#centralWidget {
+    background-color: #d3d3d3;
+}
+
+QMenuBar {
+    background-color: #1d1d1d;
+    color: #cccccc
+}
+
+QMenuBar::item {
+    spacing: 3px;
+    padding: 1px 4px;
+    background: transparent;
+    border-radius: 4px;
+}
+
+QMenuBar::item:selected {
+    background: #666666;
+}
+
+QMenuBar::item:pressed {
+    background: #868686;
+}
+
+QMenu {
+    background-color: #ffffff;
+}
+
+QMenu::item:disabled {
+    color: #888888;
+}
+
+QTabBar {
+    background: #d3d3d3;
+}
+
+QTabBar::close-button {
+    image: url(:/images/files/images/light/CANbus_icon_Close_tab.svg);
+}
+
+QTabBar::close-button:selected {
+    image: url(:/images/files/images/light/CANbus_icon_Close_tab_selected.svg);
+}
+
+QTabBar::tab {
+    color: #a6a6a6;
+    font-weight: bold;
+    background: #f0f0f0;
+    margin-right: 5px;
+    margin-top: 5px;
+}
+
+QTabBar::tab:selected {
+    color: #767676;
+    font-weight: bold;
+    background: #ffffff;
+}
+
+DragWidget {
+    background: #f2f2f2;
+}
+
+QTableView#tv QTableCornerButton::section {
+    background-color: #f7f7f7;
+    border: 1px solid #f7f7f7;
+}
+
+QTableView#tv {
+    background: #ffffff;
+    gridline-color: #d3d3d3;
+    color: #626262
+}
+
+QTableView#tv::item {
+    background: #ffffff;
+    border : 0px;
+    border-color: #ff0000;
+}
+
+QTableView#tableView {
+    selection-background-color: #fafafa;
+    selection-color: #282828;
+}
+
+QLineEdit {
+    color: #282828;
+}
+
+QHeaderView::section {
+    background-color: #f7f7f7;
+    border : 1px solid #d3d3d3;
+    border-left : 0px;
+    border-top : 0px;
+    color: #626262
+}
+
+
+QCheckBox {
+    background: #cccccc;
+    color: #282828;
+    spacing: 0px;
+}
+
+QCheckBox::indicator {
+    width: 28px;
+    height: 28px;
+}
+
+QCheckBox::indicator:unchecked {
+    image: url(:/images/files/images/light/CANbus_icon_CheckBoxOff.svg);
+    background-color: #ffffff;
+}
+
+QCheckBox::indicator:checked {
+    image: url(:/images/files/images/light/CANbus_icon_CheckBoxOn.svg);
+    background-color: #ffffff;
+}
+
+QPushButton[flat="true"] {
+    border: none;
+    margin: 0px;
+    padding: 0px;
+    background-color: #ffffff;
+}
+
+QPushButton[flat="true"]:pressed {
+    border: 2px solid #b8b8b8;
+    background-color: #ffffff;
+}
+
+QPushButton[flat="true"]:checked {
+    border: 2px solid #b8b8b8;
+    background-color: #ffffff;
+}
+
+QToolButton#toolSwitch {
+    image: url(:/images/files/images/light/CANbus_icon_Switch.svg);
+}
+
+QCheckBox#pbRawLayer, QCheckBox#pbDeviceLayer{
+    background: #f2f2f2;
+    spacing: 50px;
+    color: #767676;
+}
+
+QCheckBox#pbRawLayer {
+    spacing: 65px;
+}
+
+QCheckBox#pbRawLayer::indicator, QCheckBox#pbDeviceLayer::indicator {
+    background: #f2f2f2;
+    padding-top: 4px;
+    width: 16px;
+    height: 16px;
+}
+
+QCheckBox#pbRawLayer::indicator:checked, #pbDeviceLayer::indicator:checked {
+    background: #f2f2f2;
+    image: url(:/images/files/images/light/Angle-down-01.svg);
+}
+
+QCheckBox#pbRawLayer::indicator:unchecked, #pbDeviceLayer::indicator:unchecked {
+    background: #f2f2f2;
+    image: url(:/images/files/images/light/Angle-up-01.svg);
+}
+
+QWidget#deviceWidget {
+    background: #f2f2f2;
+}
+
+QWidget#rawWidget {
+    background: #f2f2f2;
+}
+
+QLabel[type="IconLabel"] {
+    background: #f2f2f2;
+}
+
+QWidget#startScreen {
+    background-color: #d3d3d3;
+    image: url(:/images/files/images/start_screen.png);
+}
+
+QWidget#startScreenWidget {
+    background-color: #d3d3d3;
+}
+
+QPushButton[type="recentProjectName"] {
+    background: #ffffff;
+    color: #0d6188;
+    text-align: left;
+    font-size: 14px;
+}
+
+QPushButton[type="recentProjectFile"] {
+    background: #ffffff;
+    color: #919191;
+    text-align: left;
+    font-size: 12px;
+}
+
+QPushButton:pressed[type="recentProjectName"], QPushButton:pressed[type="recentProjectFile"], #pbStartNew, #pbStartOpen {
+    border: 0px;
+}
+
+QLabel[type="aboutLabel"] {
+    background: #ffffff;
+    color: #282828;
+    font-size: 12px;
+    font-family: "Arial";
+}
+
+#PropertyEditorDialog QSizeGrip {
+    width: 6px;
+    height: 6px;
+    background: #ffffff;
+}

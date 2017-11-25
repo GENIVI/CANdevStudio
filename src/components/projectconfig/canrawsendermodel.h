@@ -2,6 +2,7 @@
 #define CANRAWSENDERMODEL_H
 
 #include "componentmodel.h"
+#include "nodepainter.h"
 #include <QtSerialBus/QCanBusFrame>
 #include <canrawsender.h>
 
@@ -49,6 +50,28 @@ public:
     */
     void setInData(std::shared_ptr<NodeData>, PortIndex) override{};
 
+    /**
+     *   @brief Used to provide custom painter to nodeeditor
+     *   @return NodePainterDelegate used to perform custom node painting
+     */
+    QtNodes::NodePainterDelegate* painterDelegate() const override;
+
+    /**
+     *   @brief Returns color that will be used to draw node header
+     */
+    static QColor headerColor1()
+    {
+        return QColor(144, 187, 62);
+    }
+
+    /**
+     *   @brief Returns color that will be used to draw node header
+     */
+    static QColor headerColor2()
+    {
+        return QColor(84, 84, 84);
+    }
+
 public slots:
 
     /**
@@ -59,6 +82,7 @@ public slots:
 
 private:
     QCanBusFrame _frame;
+    std::unique_ptr<NodePainter> _painter;
 };
 
 #endif // CANRAWSENDERMODEL_H

@@ -14,8 +14,9 @@ struct ComponentModelInterface {
     virtual ~ComponentModelInterface() = default;
     virtual ComponentInterface& getComponent() = 0;
     virtual void handleModelCreation(ProjectConfig* config) = 0;
-    virtual void setCaption(const QString &caption) = 0;
+    virtual void setCaption(const QString& caption) = 0;
     virtual bool restored() = 0;
+    virtual void setColorMode(bool darkMode) = 0;
 };
 
 template <typename C, typename Derived>
@@ -23,12 +24,19 @@ class ComponentModel : public QtNodes::NodeDataModel, public ComponentModelInter
 
 public:
     ComponentModel() = default;
+
+    ComponentModel(const QString& name)
+        : _caption(name)
+        , _name(name)
+    {
+    }
+
     virtual ~ComponentModel() = default;
 
     /**
-    *   @brief  Used to get node caption
-    *   @return Node caption
-    */
+     *   @brief  Used to get node caption
+     *   @return Node caption
+     */
     virtual QString caption() const override
     {
         return _caption;
@@ -38,29 +46,29 @@ public:
      * @brief Sets model caption and updates widget title.
      * @param caption new caption
      */
-    virtual void setCaption(const QString &caption) override
+    virtual void setCaption(const QString& caption) override
     {
         _caption = caption;
 
         auto w = _component.mainWidget();
-        if(w) {
+        if (w) {
             w->setWindowTitle(_caption);
         }
     }
 
     /**
-    *   @brief  Used to identify model by data model name
-    *   @return Node model name
-    */
+     *   @brief  Used to identify model by data model name
+     *   @return Node model name
+     */
     virtual QString name() const override
     {
         return _name;
     }
 
     /**
-    *   @brief Creates new node of the same type
-    *   @return cloned node
-    */
+     *   @brief Creates new node of the same type
+     *   @return cloned node
+     */
     virtual std::unique_ptr<QtNodes::NodeDataModel> clone() const override
     {
         return std::make_unique<Derived>();
@@ -103,27 +111,27 @@ public:
     }
 
     /**
-    *   @brief  Used to get widget embedded in Node
-    *   @return QLabel
-    */
+     *   @brief  Used to get widget embedded in Node
+     *   @return QLabel
+     */
     virtual QWidget* embeddedWidget() override
     {
         return _label;
     }
 
     /**
-    *   @brief  Used to get information if node is resizable
-    *   @return false
-    */
+     *   @brief  Used to get information if node is resizable
+     *   @return false
+     */
     virtual bool resizable() const override
     {
         return _resizable;
     }
 
     /**
-    *   @brief Component getter
-    *   @return Component managed by model
-    */
+     *   @brief Component getter
+     *   @return Component managed by model
+     */
     virtual ComponentInterface& getComponent() override
     {
         return _component;
@@ -141,6 +149,35 @@ public:
         return _restored;
     }
 
+    virtual void setColorMode(bool darkMode)
+    {
+        _darkMode = darkMode;
+
+        if(darkMode) {
+            QColor bgColor = QColor(94, 94, 94);
+            _nodeStyle.GradientColor0 = bgColor;
+            _nodeStyle.GradientColor1 = bgColor;
+            _nodeStyle.GradientColor2 = bgColor;
+            _nodeStyle.GradientColor3 = bgColor;
+            _nodeStyle.NormalBoundaryColor = bgColor;
+            _nodeStyle.FontColor = QColor(240, 240, 240);
+            _nodeStyle.FontColorFaded = QColor(240, 240, 240);
+        } else {
+            QColor bgColor = QColor(255, 255, 255);
+            _nodeStyle.GradientColor0 = bgColor;
+            _nodeStyle.GradientColor1 = bgColor;
+            _nodeStyle.GradientColor2 = bgColor;
+            _nodeStyle.GradientColor3 = bgColor;
+            _nodeStyle.NormalBoundaryColor = bgColor;
+            _nodeStyle.FontColor = QColor(20, 20, 20);
+            _nodeStyle.FontColorFaded = QColor(20, 20, 20);
+        }
+
+        _nodeStyle.Opacity = 1.0;
+
+        setNodeStyle(_nodeStyle);
+    }
+
 protected:
     C _component;
     QLabel* _label{ new QLabel };
@@ -148,6 +185,8 @@ protected:
     QString _name;
     bool _resizable{ false };
     bool _restored{ false };
+    bool _darkMode{ true };
+    QtNodes::NodeStyle _nodeStyle;
 };
 
 #endif // COMPONENTMODEL_H

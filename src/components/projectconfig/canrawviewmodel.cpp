@@ -3,18 +3,22 @@
 #include <log.h>
 
 CanRawViewModel::CanRawViewModel()
+    : ComponentModel("CanRawView")
+    , _painter(std::make_unique<NodePainter>(headerColor1(), headerColor2()))
 {
     _label->setAlignment(Qt::AlignVCenter | Qt::AlignHCenter);
     _label->setFixedSize(75, 25);
     _label->setAttribute(Qt::WA_TranslucentBackground);
 
-    _caption = "CanRawView";
-    _name = "CanRawView";
-
     _component.mainWidget()->setWindowTitle(_caption);
 
     connect(this, &CanRawViewModel::frameSent, &_component, &CanRawView::frameSent);
     connect(this, &CanRawViewModel::frameReceived, &_component, &CanRawView::frameReceived);
+}
+
+QtNodes::NodePainterDelegate* CanRawViewModel::painterDelegate() const
+{
+    return _painter.get();
 }
 
 unsigned int CanRawViewModel::nPorts(PortType portType) const

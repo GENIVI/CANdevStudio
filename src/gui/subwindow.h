@@ -11,6 +11,7 @@ struct SubWindow : public QMdiSubWindow {
         : QMdiSubWindow(parent)
     {
         setAttribute(Qt::WA_DeleteOnClose);
+        setWindowIcon(QIcon(" "));
     }
 
     virtual void closeEvent(QCloseEvent* event) override

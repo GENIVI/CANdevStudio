@@ -26,12 +26,23 @@ void DragWidget::dragEnterEvent(QDragEnterEvent *event)
 
 void DragWidget::mousePressEvent(QMouseEvent *event)
 {
+    QWidget *el = childAt(event->pos());
+
+    if(el &&
+       el->objectName() != "CanDevice" &&
+       el->objectName() != "CanRawSender" &&
+       el->objectName() != "CanRawView")
+    {
+        cds_debug("Dragging disabled for {}", el->objectName().toStdString());
+        return;
+    }
+
     QLabel *child = static_cast<QLabel*>(childAt(event->pos()));
     if (!child) {
         return;
     }
 
-    QPixmap pixmap = *child->pixmap();
+    const QPixmap *pixmap = child->pixmap();
     if (!pixmap)
         return;
 
@@ -44,21 +55,13 @@ void DragWidget::mousePressEvent(QMouseEvent *event)
 
     QDrag *drag = new QDrag(this);
     drag->setMimeData(mimeData);
-    drag->setPixmap(pixmap);
-    drag->setHotSpot((event->pos() - child->pos())/2);
-
-    QPixmap tempPixmap = pixmap;
-    QPainter painter;
-    painter.begin(&tempPixmap);
-    painter.fillRect(pixmap.rect(), QColor(127, 127, 127, 127));
-    painter.end();
-
-    child->setPixmap(tempPixmap);
+    drag->setPixmap(*pixmap);
+    drag->setHotSpot({0, 0});
 
     if (drag->exec(Qt::CopyAction | Qt::MoveAction, Qt::CopyAction) == Qt::MoveAction) {
         child->close();
     } else {
         child->show();
-        child->setPixmap(pixmap);
+        child->setPixmap(*pixmap);
     }
 }

@@ -8,6 +8,8 @@ class QDropEvent;
 
 class DragWidget : public QFrame
 {
+    Q_OBJECT
+
 public:
     DragWidget(QWidget *parent = 0);
 
