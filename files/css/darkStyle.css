@@ -73,15 +73,19 @@ QTableView QTableCornerButton::section {
     border: 1px solid #3a3a3a;
 }
 
+QTableView::item {
+    background: #1d1d1d;
+}
+
+QTableView::item:selected {
+    background: #3f3f3f;
+}
+
 QTableView {
     background: #616161;
     border : 1px solid #8f8f8f;
     gridline-color: #8f8f8f;
-    color: #e1e1e1
-}
-
-QTableView::item {
-    background: #282828;
+    color: #e1e1e1;
 }
 
 QHeaderView {
@@ -207,4 +211,14 @@ QLabel[type="aboutLabel"] {
     color: #282828;
     font-size: 12px;
     font-family: "Arial";
+}
+
+#PropertyEditorDialog {
+    background: #616161;
+}
+
+#PropertyEditorDialog QSizeGrip {
+    width: 6px;
+    height: 6px;
+    background: #616161;
 }
