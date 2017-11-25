@@ -59,7 +59,7 @@ var searchData=
   ['colnameiterator',['ColNameIterator',['../class_new_line_manager.html#a3c24c5471a339e08265d47422b1f41fd',1,'NewLineManager']]],
   ['componentinterface',['ComponentInterface',['../struct_component_interface.html',1,'']]],
   ['componentinterface_2eh',['componentinterface.h',['../componentinterface_8h.html',1,'']]],
-  ['componentmodel',['ComponentModel',['../class_component_model.html',1,'ComponentModel&lt; C, Derived &gt;'],['../class_component_model.html#a2fb9e24a9ca0498cc6e67aa9d676e822',1,'ComponentModel::ComponentModel()']]],
+  ['componentmodel',['ComponentModel',['../class_component_model.html',1,'ComponentModel&lt; C, Derived &gt;'],['../class_component_model.html#a2fb9e24a9ca0498cc6e67aa9d676e822',1,'ComponentModel::ComponentModel()=default'],['../class_component_model.html#a0b774d6a7f791253c84c132df7036e67',1,'ComponentModel::ComponentModel(const QString &amp;name)']]],
   ['componentmodel_2eh',['componentmodel.h',['../componentmodel_8h.html',1,'']]],
   ['componentmodel_3c_20candevice_2c_20candevicemodel_20_3e',['ComponentModel&lt; CanDevice, CanDeviceModel &gt;',['../class_component_model.html',1,'']]],
   ['componentmodel_3c_20canrawsender_2c_20canrawsendermodel_20_3e',['ComponentModel&lt; CanRawSender, CanRawSenderModel &gt;',['../class_component_model.html',1,'']]],

@@ -1,6 +1,7 @@
 var class_component_model =
 [
     [ "ComponentModel", "class_component_model.html#a2fb9e24a9ca0498cc6e67aa9d676e822", null ],
+    [ "ComponentModel", "class_component_model.html#a0b774d6a7f791253c84c132df7036e67", null ],
     [ "~ComponentModel", "class_component_model.html#a9269b1658ab35cda9124651b2b063f96", null ],
     [ "caption", "class_component_model.html#a95dab6e3aee57b9c0cd931aef9565bf0", null ],
     [ "clone", "class_component_model.html#a8a91bf58568283d1a48fdf80449532f4", null ],
@@ -13,10 +14,13 @@ var class_component_model =
     [ "restored", "class_component_model.html#a92313e4bda9e50f0f57061e64143512e", null ],
     [ "save", "class_component_model.html#af0052e9bdddf8ce4516b78409e5aacee", null ],
     [ "setCaption", "class_component_model.html#a8e8163fbacf8810c8ad461f7a9fb2021", null ],
+    [ "setColorMode", "class_component_model.html#aa51f469411dd71d7218b281f27e3e190", null ],
     [ "_caption", "class_component_model.html#a7c8c6b188ad1ecf31ffde72668f42486", null ],
     [ "_component", "class_component_model.html#a54cb9d46c790d31e7679bdfaf463ae61", null ],
+    [ "_darkMode", "class_component_model.html#a87f190c3f0c6d9b27f07dc82ee2e77cf", null ],
     [ "_label", "class_component_model.html#a0f52cf3cdf6d8b30414d88dd64398f5a", null ],
     [ "_name", "class_component_model.html#afd064c889d85b05d77d164c80651cacc", null ],
+    [ "_nodeStyle", "class_component_model.html#aa46e099374009e6de0c1c88ebcbb73e0", null ],
     [ "_resizable", "class_component_model.html#a6a688b4830a2bbf90cdc730a2f109d25", null ],
     [ "_restored", "class_component_model.html#a3be9dddbac505b600ba199bfde7d8210", null ]
 ];

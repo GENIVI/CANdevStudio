@@ -25,8 +25,14 @@ var dir_63333d075306eec5841a0e2f4cff9332 =
     [ "flowviewwrapper.h", "flowviewwrapper_8h.html", [
       [ "FlowViewWrapper", "struct_flow_view_wrapper.html", "struct_flow_view_wrapper" ]
     ] ],
+    [ "iconlabel.h", "iconlabel_8h.html", [
+      [ "IconLabel", "class_icon_label.html", "class_icon_label" ]
+    ] ],
     [ "modeltoolbutton.h", "modeltoolbutton_8h.html", [
       [ "ModelToolButton", "struct_model_tool_button.html", "struct_model_tool_button" ]
+    ] ],
+    [ "nodepainter.h", "nodepainter_8h.html", [
+      [ "NodePainter", "struct_node_painter.html", "struct_node_painter" ]
     ] ],
     [ "projectconfig.cpp", "projectconfig_8cpp.html", null ],
     [ "projectconfig.h", "projectconfig_8h.html", [

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['uniquefiltermodel',['UniqueFilterModel',['../class_unique_filter_model.html',1,'']]]
+  ['subwindow',['SubWindow',['../struct_sub_window.html',1,'']]]
 ];

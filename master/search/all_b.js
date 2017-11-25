@@ -1,6 +1,7 @@
 var searchData=
 [
   ['lessthan',['lessThan',['../class_unique_filter_model.html#a43382c0e319a067cc372a7311d470036',1,'UniqueFilterModel']]],
+  ['lightstyle',['lightStyle',['../class_main_window.html#a3ce45e5943ef06256e909456d7aaff8da8135819e91ced9d88a24be3b16021d46',1,'MainWindow']]],
   ['line2json',['Line2Json',['../class_new_line_manager.html#aa7d83fa77ccb7bc7b37ee6645117eb4a',1,'NewLineManager']]],
   ['lineeditinterface',['LineEditInterface',['../struct_line_edit_interface.html',1,'']]],
   ['lineeditinterface_2eh',['lineeditinterface.h',['../lineeditinterface_8h.html',1,'']]],
