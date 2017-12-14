@@ -117,7 +117,7 @@ TEST_CASE("Start succeeded", "[candevice]")
     REQUIRE_NOTHROW(canDevice.startSimulation());
 }
 
-TEST_CASE("sendFrame results in frameSent being emitted and writeFrame being called", "[candevice]")
+TEST_CASE("writeFrame results in error", "[candevice]")
 {
     using namespace fakeit;
     Mock<CanDeviceInterface> deviceMock;
@@ -133,13 +133,10 @@ TEST_CASE("sendFrame results in frameSent being emitted and writeFrame being cal
     testFrame.setFrameId(123);
 
     CanDevice canDevice{ CanDeviceCtx(&deviceMock.get()) };
-    QSignalSpy frameSentSpy(&canDevice, &CanDevice::frameSent);
     setupBackendInterface(canDevice);
     CHECK(canDevice.init() == true);
 
     canDevice.sendFrame(testFrame);
-    CHECK(frameSentSpy.count() == 1);
-    CHECK(qvariant_cast<QCanBusFrame>(frameSentSpy.takeFirst().at(1)).frameId() == testFrame.frameId());
 }
 
 TEST_CASE("sendFrame, writeframe returns true, no signal emitted", "[candevice]")
