@@ -80,7 +80,6 @@ bool CanDevice::init()
 void CanDevice::sendFrame(const QCanBusFrame& frame)
 {
     Q_D(CanDevice);
-    bool status = false;
 
     if (!d->_initialized) {
         return;
@@ -90,12 +89,9 @@ void CanDevice::sendFrame(const QCanBusFrame& frame)
     // Sending may be buffered. Keep correlation between sending results and frame/context
     d->_sendQueue.push_back(frame);
 
-    status = d->_canDevice.writeFrame(frame);
+    d->_canDevice.writeFrame(frame);
 
-    if (!status) {
-        emit frameSent(status, frame);
-        d->_sendQueue.takeFirst();
-    }
+    // writeFrame status will be handled by framesWritten and errorOccured slots
 }
 
 ComponentInterface::ComponentProperties CanDevice::getSupportedProperties() const
@@ -117,19 +113,27 @@ void CanDevice::framesReceived()
     }
 }
 
-void CanDevice::framesWritten(qint64)
+void CanDevice::framesWritten(qint64 cnt)
 {
     Q_D(CanDevice);
 
-    if (!d->_sendQueue.isEmpty()) {
-        auto sendItem = d->_sendQueue.takeFirst();
-        emit frameSent(true, sendItem);
+    cds_debug("Frames written ({}). Send queue size {}", cnt, d->_sendQueue.count());
+
+    while(cnt--) {
+        if (!d->_sendQueue.isEmpty()) {
+            auto sendItem = d->_sendQueue.takeFirst();
+            emit frameSent(true, sendItem);
+        } else {
+            cds_warn("Send queue is empty!");
+        }
     }
 }
 
 void CanDevice::errorOccurred(int error)
 {
     Q_D(CanDevice);
+
+    cds_warn("Error occurred. Send queue size {}", d->_sendQueue.count());
 
     if (error == QCanBusDevice::WriteError && !d->_sendQueue.isEmpty()) {
         auto sendItem = d->_sendQueue.takeFirst();
@@ -180,6 +184,8 @@ void CanDevice::startSimulation()
     if (!d->_canDevice.connectDevice()) {
         cds_error("Failed to connect device");
     }
+
+    d->_sendQueue.clear();
 }
 
 void CanDevice::stopSimulation()
