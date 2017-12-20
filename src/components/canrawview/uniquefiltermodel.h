@@ -31,6 +31,8 @@ public:
     */
     bool isFilterActive();
 
+    void sort(int column, Qt::SortOrder order = Qt::AscendingOrder);
+
 protected:
     /**
     *   @brief  Function iterates whole data model row by row and indicates, if currently processed row should be
@@ -60,5 +62,7 @@ public slots:
 private:
     QMap<QPair<QString, QString>, QString> _uniques;
     bool _filterActive = false;
+    int _currSortNdx;
+    Qt::SortOrder _currSortOrder;
 };
 #endif

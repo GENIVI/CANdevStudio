@@ -13,9 +13,8 @@ void UniqueFilterModel::updateFilter(QString frameID, QString time, QString dire
 
     if ((!_uniques.contains(value)) || (time.toDouble() > _uniques[value].toDouble())) {
         _uniques[std::move(value)] = time;
+        invalidateFilter();
     }
-
-    invalidateFilter();
 }
 
 bool UniqueFilterModel::filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const
@@ -31,9 +30,9 @@ bool UniqueFilterModel::filterAcceptsRow(int sourceRow, const QModelIndex& sourc
 
 bool UniqueFilterModel::lessThan(const QModelIndex& left, const QModelIndex& right) const
 {
-    QVariant leftData = sourceModel()->data(left);
-    QVariant rightData = sourceModel()->data(right);
-    QVariant userRole = sourceModel()->headerData(left.column(), Qt::Horizontal, Qt::UserRole);
+    QVariant leftData = sourceModel()->data(sourceModel()->index(left.row(), _currSortNdx));
+    QVariant rightData = sourceModel()->data(sourceModel()->index(right.row(), _currSortNdx));
+    QVariant userRole = sourceModel()->headerData(_currSortNdx, Qt::Horizontal, Qt::UserRole);
 
     switch (userRole.value<CRV_ColType>()) {
     case CRV_ColType::uint_type:
@@ -41,7 +40,7 @@ bool UniqueFilterModel::lessThan(const QModelIndex& left, const QModelIndex& rig
     case CRV_ColType::double_type:
         return (leftData.toDouble() < rightData.toDouble());
     case CRV_ColType::hex_type:
-        return ((leftData.toString().toUInt(nullptr, 16)) << (rightData.toString().toUInt(nullptr, 16)));
+        return ((leftData.toString().toUInt(nullptr, 16)) < (rightData.toString().toUInt(nullptr, 16)));
     default:
         return QSortFilterProxyModel::lessThan(left, right);
     }
@@ -55,10 +54,24 @@ void UniqueFilterModel::clearFilter()
 void UniqueFilterModel::toggleFilter()
 {
     _filterActive = !_filterActive;
+
     invalidateFilter();
 }
 
 bool UniqueFilterModel::isFilterActive()
 {
     return _filterActive;
+}
+
+void UniqueFilterModel::sort(int column, Qt::SortOrder order)
+{
+    _currSortNdx = column;
+    _currSortOrder = order;
+
+    if(!isFilterActive()) {
+        // If filter is turned off apply sorting for the whole model
+        sourceModel()->sort(_currSortNdx, _currSortOrder);
+    }
+
+    QSortFilterProxyModel::sort(column, order);
 }
