@@ -189,12 +189,6 @@
        <property name="text">
         <string/>
        </property>
-       <property name="icon">
-        <iconset>
-         <normalon>:/images/files/images/light/CANbus_icon_start_enabled.png</normalon>
-         <disabledon>:/images/files/images/light/CANbus_icon_start_disabled.png</disabledon>
-        </iconset>
-       </property>
        <property name="iconSize">
         <size>
          <width>80</width>
@@ -231,12 +225,6 @@
        </property>
        <property name="text">
         <string/>
-       </property>
-       <property name="icon">
-        <iconset>
-         <normalon>:/images/files/images/light/CANbus_icon_stop_enabled.png</normalon>
-         <disabledon>:/images/files/images/light/CANbus_icon_stop_disabled.png</disabledon>
-        </iconset>
        </property>
        <property name="iconSize">
         <size>

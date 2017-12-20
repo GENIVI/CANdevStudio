@@ -23,14 +23,7 @@ struct NodePainter : public QtNodes::NodePainterDelegate {
 
         QPen p(color, nodeStyle.PenWidth);
         painter->setPen(p);
-
-        QLinearGradient gradient(QPointF(0.0, 0.0), QPointF(geom.width(), 0));
-
-        gradient.setColorAt(0.0, _headerColor1);
-        gradient.setColorAt(0.3, _headerColor1);
-        gradient.setColorAt(1.0, _headerColor2);
-
-        painter->setBrush(gradient);
+        painter->setBrush(QBrush(_headerColor1));
 
         float diam = nodeStyle.ConnectionPointDiameter;
 

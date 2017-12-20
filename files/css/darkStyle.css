@@ -134,11 +134,7 @@ QPushButton[flat="true"]:checked {
     background-color: #616161;
 }
 
-QPushButton#pbStartNew {
-    border: 0px;
-}
-
-QPushButton#pbStartOpen {
+QPushButton#pbStartNew, #pbStartOpen, #close {
     border: 0px;
 }
 
@@ -180,7 +176,7 @@ QCheckBox#pbRawLayer::indicator:unchecked, #pbDeviceLayer::indicator:unchecked {
 }
 
 QWidget#startScreen {
-    image: url(:/images/files/images/start_screen.png);
+    image: url(:/images/files/images/dark/start_screen.png);
 }
 
 QWidget#rawWidget, #deviceWidget {
@@ -188,27 +184,27 @@ QWidget#rawWidget, #deviceWidget {
 }
 
 QPushButton[type="recentProjectName"], QWidget#recentContainer {
-    background: #ffffff;
-    color: #0d6188;
+    background: #3a3a3a;
+    color: #ffffff;
     text-align: left;
     font-size: 14px;
 }
 
 QPushButton[type="recentProjectFile"] {
-    background: #ffffff;
-    color: #919191;
+    background: #3a3a3a;
+    color: #1492ca;
     text-align: left;
     font-size: 12px;
 }
 
 QPushButton:pressed[type="recentProjectName"], QPushButton:pressed[type="recentProjectFile"], #pbStartNew, #pbStartOpen {
     border: 0px;
-    background: #ffffff;
+    background: #3a3a3a;
 }
 
 QLabel[type="aboutLabel"] {
-    background: #ffffff;
-    color: #282828;
+    background: #3a3a3a;
+    color: #ffffff;
     font-size: 12px;
     font-family: "Arial";
 }
@@ -221,4 +217,8 @@ QLabel[type="aboutLabel"] {
     width: 6px;
     height: 6px;
     background: #616161;
+}
+
+#aboutDialog{
+    image: url(:/images/files/images/dark/about_screen.png);
 }

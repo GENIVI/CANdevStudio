@@ -65,13 +65,26 @@
         <file>files/images/dark/Angle-up-01.svg</file>
         <file>files/images/light/Angle-down-01.svg</file>
         <file>files/images/light/Angle-up-01.svg</file>
-        <file>files/images/start_screen.png</file>
-        <file>files/images/about_screen.png</file>
+        <file>files/images/light/about_screen.png</file>
+        <file>files/images/light/start_screen.png</file>
+        <file>files/images/dark/CANbus_icon_start_disabled.png</file>
+        <file>files/images/dark/CANbus_icon_start_enabled.png</file>
+        <file>files/images/dark/CANbus_icon_stop_enabled.png</file>
+        <file>files/images/dark/CANbus_icon_stop_disabled.png</file>
+        <file>files/images/dark/start_screen.png</file>
+        <file>files/images/dark/CANbus_icon_SaveProject_disabled.svg</file>
+        <file>files/images/dark/CANbus_icon_SaveAsProject_disabled.svg</file>
+        <file>files/images/dark/CANbus_icon_OpenSim_disabled.svg</file>
+        <file>files/images/dark/CANbus_icon_CloseSim_disabled.svg</file>
+        <file>files/images/dark/CANbus_icon_TabsView_disabled.svg</file>
+        <file>files/images/dark/CANbus_icon_CascadeView_disabled.svg</file>
+        <file>files/images/dark/about_screen.png</file>
     </qresource>
     <qresource prefix="/">
         <file>files/json/projectConfigSchema.json</file>
         <file>files/css/darkStyle.css</file>
         <file>files/css/lightStyle.css</file>
-        <file>files/css/toolBar.css</file>
+        <file>files/css/toolBar_light.css</file>
+        <file>files/css/toolBar_dark.css</file>
     </qresource>
 </RCC>

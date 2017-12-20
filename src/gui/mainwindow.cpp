@@ -558,6 +558,7 @@ void MainWindow::setStyle(Styles style)
 {
     QString stylefile;
     QString flowStyle;
+    QString styletoolbar;
     QColor bgMdiColor(0x1d, 0x1d, 0x1d);
     bool darkMode = false;
 
@@ -565,6 +566,7 @@ void MainWindow::setStyle(Styles style)
     case Styles::darkStyle: {
         darkMode = true;
         stylefile = ":/files/css/darkStyle.css";
+        styletoolbar = ":/files/css/toolBar_dark.css";
         flowStyle = R"(
         {
           "FlowViewStyle": {
@@ -586,6 +588,7 @@ void MainWindow::setStyle(Styles style)
     } break;
     case Styles::lightStyle: {
         stylefile = ":/files/css/lightStyle.css";
+        styletoolbar = ":/files/css/toolBar_light.css";
         flowStyle = R"(
         {
           "FlowViewStyle": {
@@ -615,7 +618,7 @@ void MainWindow::setStyle(Styles style)
     f.close();
 
     // Toolbar style
-    QFile f2(":/files/css/toolBar.css");
+    QFile f2(styletoolbar);
     f2.open(QFile::ReadOnly);
     css.append(QLatin1String(f2.readAll()));
     f2.close();

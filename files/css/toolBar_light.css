@@ -22,6 +22,22 @@ QToolButton#toolStart, #toolStop {
     padding: 0px;
 }
 
+QToolButton#toolStart:enabled {
+    image: url(:/images/files/images/light/CANbus_icon_start_enabled.png);
+}
+
+QToolButton#toolStart:disabled {
+    image: url(:/images/files/images/light/CANbus_icon_start_disabled.png);
+}
+
+QToolButton#toolStop:enabled {
+    image: url(:/images/files/images/light/CANbus_icon_stop_enabled.png);
+}
+
+QToolButton#toolStop:disabled {
+    image: url(:/images/files/images/light/CANbus_icon_stop_disabled.png);
+}
+
 QToolButton[type="ToolButton"]:hover {
     background-color: #18a7ea;
 }

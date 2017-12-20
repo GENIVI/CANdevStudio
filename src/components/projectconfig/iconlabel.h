@@ -7,7 +7,7 @@
 class IconLabel : public QLabel
 {
 public:
-    IconLabel(const QString &name, const QColor &headerColor1, const QColor &headerColor2, const QColor &bgColor)
+    IconLabel(const QString &name, const QColor &headerColor1, const QColor &, const QColor &bgColor)
     {        
         QPixmap pix(_width, _height);
         pix.fill(Qt::transparent);
@@ -22,12 +22,7 @@ public:
         painter.setBrush(QBrush(bgColor));
         QRectF boundary(0, 0, pix.width(), pix.height());
         painter.drawRoundedRect(boundary, _radius, _radius);
-
-        QLinearGradient gradient(QPointF(0.0, 0.0), QPointF(pix.width(), 0));
-        gradient.setColorAt(0.0, headerColor1);
-        gradient.setColorAt(0.3, headerColor1);
-        gradient.setColorAt(1.0, headerColor2);
-        painter.setBrush(gradient);
+        painter.setBrush(QBrush(headerColor1));
 
         QRectF boundary2(1, 1, pix.width()-2, pix.height()/2 - 2);
         painter.drawRoundedRect(boundary2, _radius, _radius);

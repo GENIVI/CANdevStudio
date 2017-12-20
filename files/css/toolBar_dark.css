@@ -1,0 +1,117 @@
+QToolBar {
+    border: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+QToolButton[type="ToolButton"] {
+    background-color: #616161;
+    border: 0px;
+    border-width: 0px;
+    padding: 0px;
+    padding-bottom: 4px;
+    padding-top: 4px;
+    margin: 0px;
+    height: 38px;
+    width: 32px;
+    color: #000000;
+}
+
+QToolButton#toolStart, #toolStop {
+    background-color: #616161;
+    padding: 0px;
+}
+
+QToolButton#toolStart:enabled {
+    image: url(:/images/files/images/dark/CANbus_icon_start_enabled.png);
+}
+
+QToolButton#toolStart:disabled {
+    image: url(:/images/files/images/dark/CANbus_icon_start_disabled.png);
+}
+
+QToolButton#toolStop:enabled {
+    image: url(:/images/files/images/dark/CANbus_icon_stop_enabled.png);
+}
+
+QToolButton#toolStop:disabled {
+    image: url(:/images/files/images/dark/CANbus_icon_stop_disabled.png);
+}
+
+QToolButton[type="ToolButton"]:hover {
+    background-color: #757575;
+}
+
+QToolButton[type="ToolButton"]:pressed {
+    background-color: #555555;
+}
+
+QToolButton#toolNew {
+    image: url(:/images/files/images/light/CANbus_icon_NewProject.svg);
+}
+
+QToolButton#toolOpen {
+    image: url(:/images/files/images/light/CANbus_icon_OpenProject.svg);
+}
+
+QToolButton#toolSave {
+    image: url(:/images/files/images/light/CANbus_icon_SaveProject.svg);
+}
+
+QToolButton:disabled#toolSave {
+    image: url(:/images/files/images/dark/CANbus_icon_SaveProject_disabled.svg);
+}
+
+QToolButton#toolSaveAs {
+    image: url(:/images/files/images/light/CANbus_icon_SaveAsProject.svg);
+}
+
+QToolButton:disabled#toolSaveAs {
+    image: url(:/images/files/images/dark/CANbus_icon_SaveAsProject_disabled.svg);
+}
+
+QToolButton#toolSimulation {
+    image: url(:/images/files/images/light/CANbus_icon_OpenSim.svg);
+}
+
+QToolButton:disabled#toolSimulation {
+    image: url(:/images/files/images/dark/CANbus_icon_OpenSim_disabled.svg);
+}
+
+QToolButton#toolClose {
+    image: url(:/images/files/images/light/CANbus_icon_CloseSim.svg);
+}
+
+QToolButton:disabled#toolClose {
+    image: url(:/images/files/images/dark/CANbus_icon_CloseSim_disabled.svg);
+}
+
+QToolButton#toolWindowView {
+    height: 30px;
+    width: 34px;
+    image: url(:/images/files/images/light/CANbus_icon_CascadeView.svg);
+}
+
+QToolButton:disabled#toolWindowView {
+    height: 30px;
+    width: 34px;
+    image: url(:/images/files/images/dark/CANbus_icon_CascadeView_disabled.svg);
+}
+
+QToolButton#toolTabView {
+    height: 30px;
+    width: 34px;
+    image: url(:/images/files/images/light/CANbus_icon_TabsView.svg);
+}
+
+QToolButton:disabled#toolTabView {
+    height: 30px;
+    width: 34px;
+    image: url(:/images/files/images/dark/CANbus_icon_TabsView_disabled.svg);
+}
+
+QWidget#ToolBar {
+    color: #616161;
+    background-color: #616161;
+}
+

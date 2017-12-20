@@ -186,7 +186,7 @@ QLabel[type="IconLabel"] {
 
 QWidget#startScreen {
     background-color: #d3d3d3;
-    image: url(:/images/files/images/start_screen.png);
+    image: url(:/images/files/images/light/start_screen.png);
 }
 
 QWidget#startScreenWidget {
@@ -207,7 +207,7 @@ QPushButton[type="recentProjectFile"] {
     font-size: 12px;
 }
 
-QPushButton:pressed[type="recentProjectName"], QPushButton:pressed[type="recentProjectFile"], #pbStartNew, #pbStartOpen {
+QPushButton:pressed[type="recentProjectName"], QPushButton:pressed[type="recentProjectFile"], #pbStartNew, #pbStartOpen, #close {
     border: 0px;
 }
 
@@ -222,4 +222,8 @@ QLabel[type="aboutLabel"] {
     width: 6px;
     height: 6px;
     background: #ffffff;
+}
+
+#aboutDialog{
+    image: url(:/images/files/images/light/about_screen.png);
 }

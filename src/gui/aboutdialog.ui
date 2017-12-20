@@ -26,9 +26,7 @@
    <string>Dialog</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">#aboutDialog{
-image: url(:/images/files/images/about_screen.png);
-}</string>
+   <string notr="true"/>
   </property>
   <widget class="QLabel" name="version">
    <property name="geometry">
@@ -112,7 +110,7 @@ Version:</string>
     </rect>
    </property>
    <property name="text">
-    <string>&lt;a href=&quot;https://github.com/GENIVI/CANdevStudio/&quot;&gt;https://github.com/GENIVI/CANdevStudio&lt;/a&gt;</string>
+    <string>&lt;a href=&quot;https://github.com/GENIVI/CANdevStudio/&quot; style=&quot;color: #1492ca;&quot;&gt;https://github.com/GENIVI/CANdevStudio&lt;/a&gt;</string>
    </property>
    <property name="type" stdset="0">
     <string>aboutLabel</string>
