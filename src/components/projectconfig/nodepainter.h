@@ -3,6 +3,7 @@
 
 #include <QPainter>
 #include <nodes/Node>
+#include <QtWidgets/QGraphicsEffect>
 
 struct NodePainter : public QtNodes::NodePainterDelegate {
 

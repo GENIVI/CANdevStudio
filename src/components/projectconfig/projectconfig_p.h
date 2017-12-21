@@ -106,6 +106,7 @@ public:
         }
 
         node.nodeGraphicsObject().setOpacity(node.nodeDataModel()->nodeStyle().Opacity);
+        addShadow(node);
         node.nodeGraphicsObject().update();
 
         _nodeCnt++;
@@ -169,6 +170,7 @@ public:
             auto &iface = getComponentModel(*node);
             iface.setColorMode(_darkMode);
             node->nodeGraphicsObject().update();
+            addShadow(*node);
         });
     }
 
@@ -223,6 +225,17 @@ private:
 
         auto iface = dynamic_cast<ComponentModelInterface*>(dataModel);
         return *iface;
+    }
+
+    void addShadow(QtNodes::Node& node)
+    {
+        auto const &nodeStyle = node.nodeDataModel()->nodeStyle();
+        auto effect = new QGraphicsDropShadowEffect;
+
+        effect->setOffset(4, 4);
+        effect->setBlurRadius(20);
+        effect->setColor(nodeStyle.ShadowColor);
+        node.nodeGraphicsObject().setGraphicsEffect(effect);
     }
 };
 #endif // PROJECTCONFIG_P_H

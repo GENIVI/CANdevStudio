@@ -570,7 +570,6 @@ void MainWindow::setStyle(Styles style)
         flowStyle = R"(
         {
           "FlowViewStyle": {
-              "BackgroundColor": [38, 38, 38],
               "FineGridColor": [30, 30, 30],
               "CoarseGridColor": [20, 20, 20]
           }
@@ -592,9 +591,8 @@ void MainWindow::setStyle(Styles style)
         flowStyle = R"(
         {
           "FlowViewStyle": {
-              "BackgroundColor": [229, 229, 229],
-              "FineGridColor": [220, 220, 220],
-              "CoarseGridColor": [210, 210, 210]
+              "FineGridColor": [195, 195, 195],
+              "CoarseGridColor": [187, 187, 187]
           }
         }
         )";

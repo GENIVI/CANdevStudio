@@ -162,6 +162,7 @@ public:
             _nodeStyle.NormalBoundaryColor = bgColor;
             _nodeStyle.FontColor = QColor(240, 240, 240);
             _nodeStyle.FontColorFaded = QColor(240, 240, 240);
+            _nodeStyle.ShadowColor = QColor(20, 20, 20);
         } else {
             QColor bgColor = QColor(255, 255, 255);
             _nodeStyle.GradientColor0 = bgColor;
@@ -171,6 +172,7 @@ public:
             _nodeStyle.NormalBoundaryColor = bgColor;
             _nodeStyle.FontColor = QColor(20, 20, 20);
             _nodeStyle.FontColorFaded = QColor(20, 20, 20);
+            _nodeStyle.ShadowColor = QColor(170, 170, 170);
         }
 
         _nodeStyle.Opacity = 1.0;

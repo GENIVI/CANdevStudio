@@ -65,7 +65,7 @@ QTabBar::tab:selected {
 }
 
 DragWidget {
-    background: #f2f2f2;
+    background: #dcdcdc;
 }
 
 QTableView#tv QTableCornerButton::section {
@@ -146,42 +146,42 @@ QToolButton#toolSwitch {
 }
 
 QCheckBox#pbRawLayer, QCheckBox#pbDeviceLayer{
-    background: #f2f2f2;
-    spacing: 50px;
+    background: #dcdcdc;
+    spacing: 43px;
     color: #767676;
 }
 
 QCheckBox#pbRawLayer {
-    spacing: 65px;
+    spacing: 58px;
 }
 
 QCheckBox#pbRawLayer::indicator, QCheckBox#pbDeviceLayer::indicator {
-    background: #f2f2f2;
+    background: #dcdcdc;
     padding-top: 4px;
     width: 16px;
     height: 16px;
 }
 
 QCheckBox#pbRawLayer::indicator:checked, #pbDeviceLayer::indicator:checked {
-    background: #f2f2f2;
+    background: #dcdcdc;
     image: url(:/images/files/images/light/Angle-down-01.svg);
 }
 
 QCheckBox#pbRawLayer::indicator:unchecked, #pbDeviceLayer::indicator:unchecked {
-    background: #f2f2f2;
+    background: #dcdcdc;
     image: url(:/images/files/images/light/Angle-up-01.svg);
 }
 
 QWidget#deviceWidget {
-    background: #f2f2f2;
+    background: #dcdcdc;
 }
 
 QWidget#rawWidget {
-    background: #f2f2f2;
+    background: #dcdcdc;
 }
 
 QLabel[type="IconLabel"] {
-    background: #f2f2f2;
+    background: #dcdcdc;
 }
 
 QWidget#startScreen {

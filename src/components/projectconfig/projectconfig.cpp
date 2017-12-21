@@ -46,7 +46,7 @@ void ProjectConfig::setColorMode(bool darkMode)
     if(darkMode) {
         bgViewColor = QColor(38, 38, 38);
     } else {
-        bgViewColor = QColor(229, 229, 229);
+        bgViewColor = QColor(205, 205, 205);
     }
 
     d->_graphView->setBackgroundBrush(QBrush(bgViewColor, Qt::SolidPattern));
