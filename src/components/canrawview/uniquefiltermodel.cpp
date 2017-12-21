@@ -1,9 +1,12 @@
 #include "uniquefiltermodel.h"
 #include "crv_enums.h"
+#include <log.h>
 
 
 UniqueFilterModel::UniqueFilterModel(QObject* parent)
     : QSortFilterProxyModel(parent)
+    , _currSortNdx(0)
+    , _currSortOrder(Qt::AscendingOrder)
 {
 }
 
@@ -30,9 +33,9 @@ bool UniqueFilterModel::filterAcceptsRow(int sourceRow, const QModelIndex& sourc
 
 bool UniqueFilterModel::lessThan(const QModelIndex& left, const QModelIndex& right) const
 {
-    QVariant leftData = sourceModel()->data(sourceModel()->index(left.row(), _currSortNdx));
-    QVariant rightData = sourceModel()->data(sourceModel()->index(right.row(), _currSortNdx));
-    QVariant userRole = sourceModel()->headerData(_currSortNdx, Qt::Horizontal, Qt::UserRole);
+    QVariant leftData = sourceModel()->data(sourceModel()->index(left.row(), updatedSortNdx()));
+    QVariant rightData = sourceModel()->data(sourceModel()->index(right.row(), updatedSortNdx()));
+    QVariant userRole = sourceModel()->headerData(updatedSortNdx(), Qt::Horizontal, Qt::UserRole);
 
     switch (userRole.value<CRV_ColType>()) {
     case CRV_ColType::uint_type:
@@ -54,11 +57,24 @@ void UniqueFilterModel::clearFilter()
 void UniqueFilterModel::toggleFilter()
 {
     _filterActive = !_filterActive;
-
+    QSortFilterProxyModel::sort(updatedSortNdx(), _currSortOrder);
     invalidateFilter();
 }
 
-bool UniqueFilterModel::isFilterActive()
+int UniqueFilterModel::updatedSortNdx() const
+{
+    int updatedSortNdx = _currSortNdx;
+
+    // Use ID column by default for sorting when in filtering mode. Using time causes "frame flickering"
+    // TODO: Find something better without magic nubmers...
+    if(isFilterActive() && _currSortNdx == 0) {
+        updatedSortNdx = 2;
+    }
+
+    return updatedSortNdx;
+}
+
+bool UniqueFilterModel::isFilterActive() const
 {
     return _filterActive;
 }
@@ -68,10 +84,7 @@ void UniqueFilterModel::sort(int column, Qt::SortOrder order)
     _currSortNdx = column;
     _currSortOrder = order;
 
-    if(!isFilterActive()) {
-        // If filter is turned off apply sorting for the whole model
-        sourceModel()->sort(_currSortNdx, _currSortOrder);
-    }
+    cds_debug("Sort index: {}, Refreshed sort index: {}, sort ortder: {}", _currSortNdx, updatedSortNdx(), _currSortOrder);
 
-    QSortFilterProxyModel::sort(column, order);
+    QSortFilterProxyModel::sort(updatedSortNdx(), _currSortOrder);
 }

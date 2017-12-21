@@ -29,7 +29,7 @@ public:
     *   @brief  Indicates whether filter is currently active
     *   @return true if active, false if inactive
     */
-    bool isFilterActive();
+    bool isFilterActive() const;
 
     void sort(int column, Qt::SortOrder order = Qt::AscendingOrder);
 
@@ -60,6 +60,8 @@ public slots:
     void toggleFilter();
 
 private:
+    int updatedSortNdx() const;
+
     QMap<QPair<QString, QString>, QString> _uniques;
     bool _filterActive = false;
     int _currSortNdx;

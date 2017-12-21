@@ -117,8 +117,6 @@ void CanDevice::framesWritten(qint64 cnt)
 {
     Q_D(CanDevice);
 
-    cds_debug("Frames written ({}). Send queue size {}", cnt, d->_sendQueue.count());
-
     while(cnt--) {
         if (!d->_sendQueue.isEmpty()) {
             auto sendItem = d->_sendQueue.takeFirst();
