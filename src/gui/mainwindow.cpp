@@ -128,7 +128,7 @@ void MainWindow::handleRecentProject(int ndx)
     if (!file.open(QIODevice::ReadOnly)) {
         cds_error("Could not open file: {}", projectFile.toStdString());
 
-        auto userReply = QMessageBox::question(
+        auto userReply = QMessageBox::warning(
                     this, "Project not found", "File " + projectFile + " not found. Do you want to remove it from the recent list?",
                     QMessageBox::Yes | QMessageBox::No);
 
