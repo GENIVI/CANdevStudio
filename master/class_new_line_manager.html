@@ -164,9 +164,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa7d83fa77ccb7bc7b37ee6645117eb4a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_new_line_manager.html#aa7d83fa77ccb7bc7b37ee6645117eb4a">Line2Json</a> (QJsonObject &amp;json) const </td></tr>
 <tr class="memdesc:aa7d83fa77ccb7bc7b37ee6645117eb4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The function is responsible for convert line content to json format.  <a href="#aa7d83fa77ccb7bc7b37ee6645117eb4a">More...</a><br /></td></tr>
 <tr class="separator:aa7d83fa77ccb7bc7b37ee6645117eb4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abe667dc57c62ee98887ffc1c1e48a436"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_new_line_manager.html#abe667dc57c62ee98887ffc1c1e48a436">RestoreLine</a> (QString &amp;id, QString data, QString interval, bool loop)</td></tr>
-<tr class="memdesc:abe667dc57c62ee98887ffc1c1e48a436"><td class="mdescLeft">&#160;</td><td class="mdescRight">The function is responsible for restore line content from config.  <a href="#abe667dc57c62ee98887ffc1c1e48a436">More...</a><br /></td></tr>
-<tr class="separator:abe667dc57c62ee98887ffc1c1e48a436"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a4aee50bf8ccfa3d60a4dd3f25f3d7c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_new_line_manager.html#a4a4aee50bf8ccfa3d60a4dd3f25f3d7c">RestoreLine</a> (QString &amp;id, QString data, QString interval, bool loop, bool send)</td></tr>
+<tr class="memdesc:a4a4aee50bf8ccfa3d60a4dd3f25f3d7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The function is responsible for restore line content from config.  <a href="#a4a4aee50bf8ccfa3d60a4dd3f25f3d7c">More...</a><br /></td></tr>
+<tr class="separator:a4a4aee50bf8ccfa3d60a4dd3f25f3d7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This class holds informations about all the columns in line and relationships beteewn them. </p>
@@ -317,7 +317,7 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="abe667dc57c62ee98887ffc1c1e48a436"></a>
+<a class="anchor" id="a4a4aee50bf8ccfa3d60a4dd3f25f3d7c"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -343,7 +343,13 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>loop</em>&#160;</td>
+          <td class="paramname"><em>loop</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>send</em>&#160;</td>
         </tr>
         <tr>
           <td></td>

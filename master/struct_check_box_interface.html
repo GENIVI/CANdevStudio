@@ -127,29 +127,31 @@ Inheritance diagram for CheckBoxInterface:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a528f7a009803dd253a89a1ca697c6508"><td class="memItemLeft" align="right" valign="top">typedef std::function&lt; void()&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_check_box_interface.html#a528f7a009803dd253a89a1ca697c6508">released_t</a></td></tr>
-<tr class="separator:a528f7a009803dd253a89a1ca697c6508"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff52a9071d4a368ff0b16d11e4f94444"><td class="memItemLeft" align="right" valign="top">typedef std::function&lt; void(bool)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_check_box_interface.html#aff52a9071d4a368ff0b16d11e4f94444">toggled_t</a></td></tr>
+<tr class="separator:aff52a9071d4a368ff0b16d11e4f94444"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:abd2a5e5ed41427d37bb5fa47d6c7902f"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_check_box_interface.html#abd2a5e5ed41427d37bb5fa47d6c7902f">~CheckBoxInterface</a> ()</td></tr>
 <tr class="separator:abd2a5e5ed41427d37bb5fa47d6c7902f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9dada01aa9c8faeb8d957831652b2339"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_check_box_interface.html#a9dada01aa9c8faeb8d957831652b2339">releasedCbk</a> (const <a class="el" href="struct_check_box_interface.html#a528f7a009803dd253a89a1ca697c6508">released_t</a> &amp;cb)=0</td></tr>
-<tr class="separator:a9dada01aa9c8faeb8d957831652b2339"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8888b9261d28c3621c8291beffbc315c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_check_box_interface.html#a8888b9261d28c3621c8291beffbc315c">toggledCbk</a> (const <a class="el" href="struct_check_box_interface.html#aff52a9071d4a368ff0b16d11e4f94444">toggled_t</a> &amp;cb)=0</td></tr>
+<tr class="separator:a8888b9261d28c3621c8291beffbc315c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ada286f9a511060ebd933bc130f72288d"><td class="memItemLeft" align="right" valign="top">virtual QWidget *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_check_box_interface.html#ada286f9a511060ebd933bc130f72288d">mainWidget</a> ()=0</td></tr>
 <tr class="separator:ada286f9a511060ebd933bc130f72288d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0a1251c13142b0f0aafcdc125e51d046"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_check_box_interface.html#a0a1251c13142b0f0aafcdc125e51d046">getState</a> ()=0</td></tr>
 <tr class="separator:a0a1251c13142b0f0aafcdc125e51d046"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a19933f6a84ef58575df894d6c319f8bb"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_check_box_interface.html#a19933f6a84ef58575df894d6c319f8bb">setState</a> (bool state)=0</td></tr>
 <tr class="separator:a19933f6a84ef58575df894d6c319f8bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d44935285a83f5e698cf64423fa7e12"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_check_box_interface.html#a8d44935285a83f5e698cf64423fa7e12">setDisabled</a> (bool state)=0</td></tr>
+<tr class="separator:a8d44935285a83f5e698cf64423fa7e12"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Typedef Documentation</h2>
-<a class="anchor" id="a528f7a009803dd253a89a1ca697c6508"></a>
+<a class="anchor" id="aff52a9071d4a368ff0b16d11e4f94444"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef std::function&lt;void()&gt; <a class="el" href="struct_check_box_interface.html#a528f7a009803dd253a89a1ca697c6508">CheckBoxInterface::released_t</a></td>
+          <td class="memname">typedef std::function&lt;void(bool)&gt; <a class="el" href="struct_check_box_interface.html#aff52a9071d4a368ff0b16d11e4f94444">CheckBoxInterface::toggled_t</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -231,7 +233,7 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a9dada01aa9c8faeb8d957831652b2339"></a>
+<a class="anchor" id="a8d44935285a83f5e698cf64423fa7e12"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -239,10 +241,10 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void CheckBoxInterface::releasedCbk </td>
+          <td class="memname">virtual void CheckBoxInterface::setDisabled </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="struct_check_box_interface.html#a528f7a009803dd253a89a1ca697c6508">released_t</a> &amp;&#160;</td>
-          <td class="paramname"><em>cb</em></td><td>)</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>state</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -253,7 +255,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="struct_n_l_m_check_box.html#acb17acc3107b8735e8d3dfca89a9ab7e">NLMCheckBox</a>.</p>
+<p>Implemented in <a class="el" href="struct_n_l_m_check_box.html#acaa701e46a68049ba08335d960b50426">NLMCheckBox</a>.</p>
 
 </div>
 </div>
@@ -280,6 +282,32 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implemented in <a class="el" href="struct_n_l_m_check_box.html#a93fb487c800dfe598935736f829f8e87">NLMCheckBox</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8888b9261d28c3621c8291beffbc315c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void CheckBoxInterface::toggledCbk </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_check_box_interface.html#aff52a9071d4a368ff0b16d11e4f94444">toggled_t</a> &amp;&#160;</td>
+          <td class="paramname"><em>cb</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="struct_n_l_m_check_box.html#afff6f19c1a323a3f743d08736436a504">NLMCheckBox</a>.</p>
 
 </div>
 </div>

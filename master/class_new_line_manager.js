@@ -11,6 +11,6 @@ var class_new_line_manager =
     [ "NewLineManager", "class_new_line_manager.html#a37350d6458d2c05ce4f36e47a7d20fa3", null ],
     [ "GetColsWidget", "class_new_line_manager.html#a6c1bc00584da388c96113a07886297a8", null ],
     [ "Line2Json", "class_new_line_manager.html#aa7d83fa77ccb7bc7b37ee6645117eb4a", null ],
-    [ "RestoreLine", "class_new_line_manager.html#abe667dc57c62ee98887ffc1c1e48a436", null ],
+    [ "RestoreLine", "class_new_line_manager.html#a4a4aee50bf8ccfa3d60a4dd3f25f3d7c", null ],
     [ "SetSimulationState", "class_new_line_manager.html#aa9e40fb8bda738c509ab9b9df60f2de1", null ]
 ];

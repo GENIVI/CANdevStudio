@@ -144,6 +144,14 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aa83e615fcb8d171501cb62caa57160fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab29a5cff947b0c08bacfa611eec0a814"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_push_button_interface.html#ab29a5cff947b0c08bacfa611eec0a814">isEnabled</a> ()=0</td></tr>
 <tr class="separator:ab29a5cff947b0c08bacfa611eec0a814"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3ae18d63b6127102ce3e39e9356974b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_push_button_interface.html#ab3ae18d63b6127102ce3e39e9356974b">setCheckable</a> (bool <a class="el" href="struct_push_button_interface.html#a2c8491656bddc5c61961a2ac6cf46c6f">checked</a>)=0</td></tr>
+<tr class="separator:ab3ae18d63b6127102ce3e39e9356974b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f075cbb297b3c1e9057be2ce2f0c2c3"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_push_button_interface.html#a4f075cbb297b3c1e9057be2ce2f0c2c3">checkable</a> ()=0</td></tr>
+<tr class="separator:a4f075cbb297b3c1e9057be2ce2f0c2c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c8491656bddc5c61961a2ac6cf46c6f"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_push_button_interface.html#a2c8491656bddc5c61961a2ac6cf46c6f">checked</a> ()=0</td></tr>
+<tr class="separator:a2c8491656bddc5c61961a2ac6cf46c6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7dc9e2dc8ee540a629dcf0f83d99ffc0"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_push_button_interface.html#a7dc9e2dc8ee540a629dcf0f83d99ffc0">setChecked</a> (bool <a class="el" href="struct_push_button_interface.html#a2c8491656bddc5c61961a2ac6cf46c6f">checked</a>)=0</td></tr>
+<tr class="separator:a7dc9e2dc8ee540a629dcf0f83d99ffc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Typedef Documentation</h2>
 <a class="anchor" id="a64999d71e1c5f285f519ae298d392967"></a>
@@ -183,6 +191,56 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a4f075cbb297b3c1e9057be2ce2f0c2c3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool PushButtonInterface::checkable </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="struct_n_l_m_push_button.html#a9797dd90cb25037087e99876774187b6">NLMPushButton</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2c8491656bddc5c61961a2ac6cf46c6f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool PushButtonInterface::checked </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="struct_n_l_m_push_button.html#a5722989f994a3f96200dcc0d1378369d">NLMPushButton</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a1517d4d6188e4b59454a56b8ee767e24"></a>
 <div class="memitem">
 <div class="memproto">
@@ -292,6 +350,58 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implemented in <a class="el" href="struct_n_l_m_push_button.html#ae31dbf696c746ae49927d2aef9918293">NLMPushButton</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab3ae18d63b6127102ce3e39e9356974b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void PushButtonInterface::setCheckable </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>checked</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="struct_n_l_m_push_button.html#ad23cbaa0949d89e42ba31864cf4887f9">NLMPushButton</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7dc9e2dc8ee540a629dcf0f83d99ffc0"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void PushButtonInterface::setChecked </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>checked</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="struct_n_l_m_push_button.html#a5b463ba23e5d3c8621fcfdfe7024b660">NLMPushButton</a>.</p>
 
 </div>
 </div>
