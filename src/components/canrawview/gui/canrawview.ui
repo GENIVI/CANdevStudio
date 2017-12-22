@@ -34,7 +34,8 @@
         <string>Clear</string>
        </property>
        <property name="icon">
-        <iconset resource="../../../CANdevResources.qrc" >:/images/files/images/light/CANbus_icon_Clear.svg</iconset>
+        <iconset resource="../../../../CANdevResources.qrc">
+         <normaloff>:/images/files/images/light/CANbus_icon_Clear.svg</normaloff>:/images/files/images/light/CANbus_icon_Clear.svg</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -53,7 +54,8 @@
         <string>Freeze</string>
        </property>
        <property name="icon">
-        <iconset resource="../../../CANdevResources.qrc" >:/images/files/images/light/CANbus_icon_Lock.svg</iconset>
+        <iconset resource="../../../../CANdevResources.qrc">
+         <normaloff>:/images/files/images/light/CANbus_icon_Lock.svg</normaloff>:/images/files/images/light/CANbus_icon_Lock.svg</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -88,7 +90,8 @@
         <string>Combine</string>
        </property>
        <property name="icon">
-        <iconset resource="../../../CANdevResources.qrc" >:/images/files/images/light/CANbus_icon_Combine.svg</iconset>
+        <iconset resource="../../../../CANdevResources.qrc">
+         <normaloff>:/images/files/images/light/CANbus_icon_Combine.svg</normaloff>:/images/files/images/light/CANbus_icon_Combine.svg</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -110,7 +113,8 @@
         <string>Undock</string>
        </property>
        <property name="icon">
-        <iconset resource="../../../CANdevResources.qrc" >:/images/files/images/light/CANbus_icon_Undock.svg</iconset>
+        <iconset resource="../../../../CANdevResources.qrc">
+         <normaloff>:/images/files/images/light/CANbus_icon_Undock.svg</normaloff>:/images/files/images/light/CANbus_icon_Undock.svg</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -130,6 +134,9 @@
    </item>
    <item>
     <widget class="QTableView" name="tv">
+     <property name="focusPolicy">
+      <enum>Qt::NoFocus</enum>
+     </property>
      <property name="sizeAdjustPolicy">
       <enum>QAbstractScrollArea::AdjustToContents</enum>
      </property>
@@ -171,7 +178,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="../../../CANdevResources.qrc"/>
+  <include location="../../../../CANdevResources.qrc"/>
  </resources>
  <connections/>
 </ui>

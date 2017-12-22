@@ -78,9 +78,6 @@ public:
         list.append(new QStandardItem(QString::fromUtf8(payHex.data(), payHex.size())));
 
         _tvModel.appendRow(list);
-
-        // Sort after reception of each frame and appending it to _tvModel and update filter
-        _ui.setSorting(_sortIndex, _ui.getSortOrder());
         _uniqueModel.updateFilter(frameID, time, direction);
 
         if (!_ui.isViewFrozen()) {
