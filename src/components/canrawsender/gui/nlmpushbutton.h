@@ -9,6 +9,7 @@ struct NLMPushButton : public PushButtonInterface {
     NLMPushButton()
         : qPushButton(new QPushButton)
     {
+        qPushButton->setProperty("type", "nlmItem");
     }
 
     void pressedCbk(const pressed_t& cb) override
@@ -24,6 +25,7 @@ struct NLMPushButton : public PushButtonInterface {
     void init(const QString& buttonName, bool isEnable) override
     {
         qPushButton->setText(buttonName);
+        qPushButton->setFlat(true);
         setDisabled(!isEnable);
     }
 
@@ -36,6 +38,29 @@ struct NLMPushButton : public PushButtonInterface {
     {
         return qPushButton->isEnabled();
     }
+
+    void setCheckable(bool checked) override
+    {
+        qPushButton->setCheckable(checked);
+    }
+
+    bool checkable() override
+    {
+        return qPushButton->isCheckable();
+    }
+
+    bool checked() override
+    {
+        return qPushButton->isChecked();
+    }
+
+    void setChecked(bool checked) override
+    {
+        if(checked != qPushButton->isChecked()) {
+            qPushButton->animateClick();
+        }
+    }
+
 
 private:
     QPushButton* qPushButton;

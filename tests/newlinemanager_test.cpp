@@ -67,7 +67,7 @@ TEST_CASE("Constructor with correct arguments", "[newlinemanager]")
 
     Mock<CheckBoxInterface> nlmCheckBoxMock;
     Fake(Dtor(nlmCheckBoxMock));
-    Fake(Method(nlmCheckBoxMock, releasedCbk));
+    Fake(Method(nlmCheckBoxMock, toggledCbk));
     When(Method(nlmFactoryMock, createCheckBox)).Return(&nlmCheckBoxMock.get());
 
     Mock<PushButtonInterface> nlmPushButtonMock;
@@ -112,7 +112,7 @@ TEST_CASE("Send button clicked - send one frame test", "[newlinemanager]")
 
     Mock<CheckBoxInterface> nlmCheckBoxMock;
     Fake(Dtor(nlmCheckBoxMock));
-    Fake(Method(nlmCheckBoxMock, releasedCbk));
+    Fake(Method(nlmCheckBoxMock, toggledCbk));
     Fake(Method(nlmCheckBoxMock, mainWidget));
     When(Method(nlmCheckBoxMock, getState)).Return(false);
     When(Method(nlmFactoryMock, createCheckBox)).Return(&nlmCheckBoxMock.get());
@@ -124,6 +124,10 @@ TEST_CASE("Send button clicked - send one frame test", "[newlinemanager]")
     Fake(Method(nlmPushButtonMock, mainWidget));
     Fake(Method(nlmPushButtonMock, setDisabled));
     Fake(Method(nlmPushButtonMock, isEnabled));
+    Fake(Method(nlmPushButtonMock, setCheckable));
+    Fake(Method(nlmPushButtonMock, checkable));
+    Fake(Method(nlmPushButtonMock, checked));
+    Fake(Method(nlmPushButtonMock, setChecked));
     When(Method(nlmFactoryMock, createPushButton)).Return(&nlmPushButtonMock.get());
 
     CanRawSender canRawSender(CanRawSenderCtx(&crsMock.get(), &nlmFactoryMock.get()));
@@ -166,19 +170,23 @@ TEST_CASE("Send button clicked - send several frame test", "[newlinemanager]")
 
     Mock<CheckBoxInterface> nlmCheckBoxMock;
     Fake(Dtor(nlmCheckBoxMock));
-    Fake(Method(nlmCheckBoxMock, releasedCbk));
+    Fake(Method(nlmCheckBoxMock, toggledCbk));
     Fake(Method(nlmCheckBoxMock, mainWidget));
     When(Method(nlmCheckBoxMock, getState)).Return(true);
+    Fake(Method(nlmCheckBoxMock, setDisabled));
     When(Method(nlmFactoryMock, createCheckBox)).Return(&nlmCheckBoxMock.get());
 
     Mock<PushButtonInterface> nlmPushButtonMock;
     Fake(Dtor(nlmPushButtonMock));
     Fake(Method(nlmPushButtonMock, init));
     When(Method(nlmPushButtonMock, pressedCbk)).Do([&](auto&& fn) { pressedCbk = fn; });
-    ;
     Fake(Method(nlmPushButtonMock, mainWidget));
     Fake(Method(nlmPushButtonMock, setDisabled));
     Fake(Method(nlmPushButtonMock, isEnabled));
+    Fake(Method(nlmPushButtonMock, setCheckable));
+    When(Method(nlmPushButtonMock, checkable)).Return(true);
+    Fake(Method(nlmPushButtonMock, checked));
+    Fake(Method(nlmPushButtonMock, setChecked));
     When(Method(nlmFactoryMock, createPushButton)).Return(&nlmPushButtonMock.get());
 
     CanRawSender canRawSender(CanRawSenderCtx(&crsMock.get(), &nlmFactoryMock.get()));
@@ -220,7 +228,7 @@ TEST_CASE("Get columns wigdet test", "[newlinemanager]")
 
     Mock<CheckBoxInterface> nlmCheckBoxMock;
     Fake(Dtor(nlmCheckBoxMock));
-    Fake(Method(nlmCheckBoxMock, releasedCbk));
+    Fake(Method(nlmCheckBoxMock, toggledCbk));
     When(Method(nlmCheckBoxMock, mainWidget)).Return(reinterpret_cast<QWidget*>(&nlmCheckBoxMock.get()));
     When(Method(nlmFactoryMock, createCheckBox)).Return(&nlmCheckBoxMock.get());
 

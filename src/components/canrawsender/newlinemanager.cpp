@@ -4,6 +4,7 @@
 #include "canrawsender.h"
 #include "newlinemanager.h"
 #include <QRegExpValidator>
+#include <log.h>
 
 NewLineManager::NewLineManager(CanRawSender* q, bool _simulationState, NLMFactoryInterface& factory)
     : _canRawSender(q)
@@ -31,18 +32,17 @@ NewLineManager::NewLineManager(CanRawSender* q, bool _simulationState, NLMFactor
     _interval.reset(mFactory.createLineEdit());
     qRegExp.setPattern("[1-9]\\d{0,6}");
     _vDec = new QRegExpValidator(qRegExp, this);
-    _interval->init("Select Loop", _vDec);
-    _interval->setDisabled(true);
+    _interval->init("ms", _vDec);
     _interval->textChangedCbk(std::bind(&NewLineManager::SetSendButtonState, this));
-
-    // Checkbox
-    _loop.reset(mFactory.createCheckBox());
-    _loop->releasedCbk(std::bind(&NewLineManager::LoopCheckBoxReleased, this));
 
     // Send button
     _send.reset(mFactory.createPushButton());
     _send->init("Send", false);
     _send->pressedCbk(std::bind(&NewLineManager::SendButtonPressed, this));
+
+    // Checkbox
+    _loop.reset(mFactory.createCheckBox());
+    _loop->toggledCbk(std::bind(&NewLineManager::LoopToggled, this, std::placeholders::_1));
 
     connect(&_timer, &QTimer::timeout, this, &NewLineManager::TimerExpired);
 }
@@ -52,28 +52,34 @@ void NewLineManager::StopTimer()
     _timer.stop();
     _id->setDisabled(false);
     _data->setDisabled(false);
+    _loop->setDisabled(false);
+    _interval->setDisabled(false);
 }
 
-void NewLineManager::LoopCheckBoxReleased()
+void NewLineManager::StartTimer()
 {
-    if (_loop->getState() == false) {
+    const auto delay = _interval->getText().toUInt();
+
+    if (delay != 0) {
+        _timer.start(delay);
+        _id->setDisabled(true);
+        _data->setDisabled(true);
         _interval->setDisabled(true);
-        if (_timer.isActive() == true) {
-            StopTimer();
-        } else if (_interval->getTextLength() == 0) {
-            _interval->setPlaceholderText("Select Loop");
-        }
-    } else if (_timer.isActive() == false) {
-        _interval->setDisabled(false);
-        if (_interval->getTextLength() == 0) {
-            _interval->setPlaceholderText("Time in ms");
-        }
+        _loop->setDisabled(true);
+    } else {
+        cds_info("Timer not started. Delay set to 0");
     }
+}
+
+void NewLineManager::LoopToggled(bool checked)
+{
+    _send->setCheckable(checked);
+    SetSendButtonState();
 }
 
 void NewLineManager::SetSendButtonState()
 {
-    if ((_id->getTextLength() > 0) && (_simState == true)) {
+    if ((_id->getTextLength() > 0) && ((_simState == true) || _send->checkable())) {
         if (_send->isEnabled() == false) {
             _send->setDisabled(false);
         }
@@ -86,18 +92,17 @@ void NewLineManager::SetSendButtonState()
 
 void NewLineManager::SendButtonPressed()
 {
-    if (_id->getTextLength() > 0) {
+    if(_send->checked()) {
+        StopTimer();
+    } else {
         _frame.setFrameId(_id->getText().toUInt(nullptr, 16));
         _frame.setPayload(QByteArray::fromHex(_data->getText().toUtf8()));
-        emit _canRawSender->sendFrame(_frame);
 
-        if ((_timer.isActive() == false) && (_loop->getState() == true)) {
-            const auto delay = _interval->getText().toUInt();
-            if (delay != 0) {
-                _timer.start(delay);
-                _id->setDisabled(true);
-                _data->setDisabled(true);
-                _interval->setDisabled(true);
+        if(_simState) {
+            emit _canRawSender->sendFrame(_frame);
+
+            if (_send->checkable()){
+                StartTimer();
             }
         }
     }
@@ -134,9 +139,13 @@ void NewLineManager::SetSimulationState(bool state)
 {
     _simState = state;
     SetSendButtonState();
-    if ((_simState == false) && (_timer.isActive() == true)) {
+
+    if (_simState) {
+        if(_send->checked()) {
+            StartTimer();
+        }
+    } else {
         StopTimer();
-        _interval->setDisabled(false);
     }
 }
 
@@ -146,9 +155,10 @@ void NewLineManager::Line2Json(QJsonObject& json) const
     json["data"] = _data->getText();
     json["interval"] = _interval->getText();
     json["loop"] = (_loop->getState() == true) ? true : false;
+    json["send"] = _send->checked();
 }
 
-bool NewLineManager::RestoreLine(QString& id, QString data, QString interval, bool loop)
+bool NewLineManager::RestoreLine(QString& id, QString data, QString interval, bool loop, bool send)
 {
     // Adopt new line requirement
     _id->setText(id);
@@ -157,8 +167,13 @@ bool NewLineManager::RestoreLine(QString& id, QString data, QString interval, bo
         _loop->setState(true); // get possibility to write interval data
         _interval->setText(interval);
     }
+
     if (_loop->getState() != loop) {
         _loop->setState(loop);
+    }
+
+    if(loop && send) {
+        _send->setChecked(true);
     }
 
     // Chcek if adopted correctly

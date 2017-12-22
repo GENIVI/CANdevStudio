@@ -110,28 +110,21 @@ QCheckBox::indicator {
     height: 28px;
 }
 
-QCheckBox::indicator:unchecked {
-    image: url(:/images/files/images/dark/CANbus_icon_CheckBoxOff.svg);
-}
-
-QCheckBox::indicator:checked {
-    image: url(:/images/files/images/dark/CANbus_icon_CheckBoxOn.svg);
-}
-
 QPushButton[flat="true"] {
     border: none;
     margin: 0px;
     padding: 0px;
+    background-color: #616161;
 }
 
 QPushButton[flat="true"]:pressed {
-    border: 2px solid #a6a6a6;
-    background-color: #616161;
+    border: 2px solid #adadad;
+    background-color: #3a3a3a;
 }
 
 QPushButton[flat="true"]:checked {
-    border: 2px solid #a6a6a6;
-    background-color: #616161;
+    border: 2px solid #adadad;
+    background-color: #3a3a3a;
 }
 
 QPushButton#pbStartNew, #pbStartOpen, #close {
@@ -139,10 +132,6 @@ QPushButton#pbStartNew, #pbStartOpen, #close {
 }
 
 QWidget#CanRawSenderPrivate, #CanRawViewPrivate {
-    background-color: #616161;
-}
-
-QPushButton#pbAdd, #pbDockUndock, #pbRemove, #pbClear, #freezeBox, #pbToggleFilter {
     background-color: #616161;
 }
 
@@ -221,4 +210,32 @@ QLabel[type="aboutLabel"] {
 
 #aboutDialog{
     image: url(:/images/files/images/dark/about_screen.png);
+}
+
+QPushButton[type="nlmItem"] {
+    background: #1d1d1d;
+}
+
+QPushButton[type="nlmItem"]:disabled {
+    color: #616161;
+}
+
+QLineEdit[type="nlmItem"]:disabled {
+    color: #616161;
+}
+
+QCheckBox::indicator:unchecked {
+    image: url(:/images/files/images/dark/CANbus_icon_CheckBoxOff.svg);
+}
+
+QCheckBox::indicator:checked {
+    image: url(:/images/files/images/dark/CANbus_icon_CheckBoxOn.svg);
+}
+
+QCheckBox::indicator:unchecked:disabled {
+    image: url(:/images/files/images/dark/CANbus_icon_CheckBoxOff_disabled.svg);
+}
+
+QCheckBox::indicator:checked:disabled {
+    image: url(:/images/files/images/dark/CANbus_icon_CheckBoxOn_disabled.svg);
 }

@@ -14,11 +14,12 @@ struct NLMCheckBox : public CheckBoxInterface {
         , qLayout(nullptr)
     {
         init();
+        qCheckBox->setProperty("type", "nlmItem");
     }
 
-    void releasedCbk(const released_t& cb) override
+    void toggledCbk(const toggled_t& cb) override
     {
-        QObject::connect(qCheckBox, &QCheckBox::released, cb);
+        QObject::connect(qCheckBox, &QCheckBox::toggled, cb);
     }
 
     QWidget* mainWidget() override
@@ -47,6 +48,12 @@ struct NLMCheckBox : public CheckBoxInterface {
             emit qCheckBox->released();
         }
     }
+
+    void setDisabled(bool state)
+    {
+        qCheckBox->setDisabled(state);
+    }
+
 
 private:
     QWidget* qWidget;

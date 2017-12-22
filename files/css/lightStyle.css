@@ -114,16 +114,6 @@ QCheckBox::indicator {
     height: 28px;
 }
 
-QCheckBox::indicator:unchecked {
-    image: url(:/images/files/images/light/CANbus_icon_CheckBoxOff.svg);
-    background-color: #ffffff;
-}
-
-QCheckBox::indicator:checked {
-    image: url(:/images/files/images/light/CANbus_icon_CheckBoxOn.svg);
-    background-color: #ffffff;
-}
-
 QPushButton[flat="true"] {
     border: none;
     margin: 0px;
@@ -132,13 +122,13 @@ QPushButton[flat="true"] {
 }
 
 QPushButton[flat="true"]:pressed {
-    border: 2px solid #b8b8b8;
-    background-color: #ffffff;
+    border: 2px solid #adadad;
+    background-color: #eeeeee;
 }
 
 QPushButton[flat="true"]:checked {
-    border: 2px solid #b8b8b8;
-    background-color: #ffffff;
+    border: 2px solid #adadad;
+    background-color: #eeeeee;
 }
 
 QToolButton#toolSwitch {
@@ -226,4 +216,32 @@ QLabel[type="aboutLabel"] {
 
 #aboutDialog{
     image: url(:/images/files/images/light/about_screen.png);
+}
+
+QPushButton[type="nlmItem"]:disabled {
+    color: #cdcdcd;
+}
+
+QLineEdit[type="nlmItem"]:disabled {
+    color: #cdcdcd;
+}
+
+QCheckBox::indicator:unchecked {
+    image: url(:/images/files/images/light/CANbus_icon_CheckBoxOff.svg);
+    background-color: #ffffff;
+}
+
+QCheckBox::indicator:checked {
+    image: url(:/images/files/images/light/CANbus_icon_CheckBoxOn.svg);
+    background-color: #ffffff;
+}
+
+QCheckBox::indicator:unchecked:disabled {
+    image: url(:/images/files/images/light/CANbus_icon_CheckBoxOff_disabled.svg);
+    background-color: #ffffff;
+}
+
+QCheckBox::indicator:checked:disabled {
+    image: url(:/images/files/images/light/CANbus_icon_CheckBoxOn_disabled.svg);
+    background-color: #ffffff;
 }

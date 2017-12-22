@@ -58,11 +58,12 @@ public:
     /// \param[in] interval Interval string
     /// \param[in] loop Loop enable state
     /// \return true if new line is adopted all input data successfully, false otherwise
-    bool RestoreLine(QString& id, QString data, QString interval, bool loop);
+    bool RestoreLine(QString& id, QString data, QString interval, bool loop, bool send);
 
 private:
     /// \brief This function performs the necessary things when the meter stops
     void StopTimer();
+    void StartTimer();
 
 private:
     CanRawSender* _canRawSender;
@@ -84,7 +85,7 @@ private:
 signals:
 
 private slots:
-    void LoopCheckBoxReleased();
+    void LoopToggled(bool checked);
     void SetSendButtonState();
     void SendButtonPressed();
     void TimerExpired();

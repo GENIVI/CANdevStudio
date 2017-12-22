@@ -60,13 +60,18 @@ TEST_CASE("Add and remove frame test", "[canrawsender]")
     When(Method(nlmFactoryMock, createLineEdit)).AlwaysDo([&]() { return &nlmLineEditMock.get(); });
 
     Fake(Dtor(nlmCheckBoxMock));
-    Fake(Method(nlmCheckBoxMock, releasedCbk));
+    Fake(Method(nlmCheckBoxMock, toggledCbk));
+    Fake(Method(nlmCheckBoxMock, setDisabled));
     When(Method(nlmCheckBoxMock, mainWidget)).Return(reinterpret_cast<QWidget*>(&nlmCheckBoxMock.get()));
     When(Method(nlmFactoryMock, createCheckBox)).Return(&nlmCheckBoxMock.get());
 
     Fake(Dtor(nlmPushButtonMock));
     Fake(Method(nlmPushButtonMock, init));
     Fake(Method(nlmPushButtonMock, pressedCbk));
+    Fake(Method(nlmPushButtonMock, setCheckable));
+    Fake(Method(nlmPushButtonMock, checkable));
+    Fake(Method(nlmPushButtonMock, checked));
+    Fake(Method(nlmPushButtonMock, setChecked));
     When(Method(nlmPushButtonMock, mainWidget)).Return(reinterpret_cast<QWidget*>(&nlmPushButtonMock.get()));
     When(Method(nlmFactoryMock, createPushButton)).Return(&nlmPushButtonMock.get());
 
@@ -157,7 +162,7 @@ public:
         When(Method(nlmFactoryMock, createLineEdit)).AlwaysDo([&]() { return &nlmLineEditMock.get(); });
 
         Fake(Dtor(nlmCheckBoxMock));
-        Fake(Method(nlmCheckBoxMock, releasedCbk));
+        Fake(Method(nlmCheckBoxMock, toggledCbk));
         When(Method(nlmCheckBoxMock, getState)).Return(true, loop);
         Fake(Method(nlmCheckBoxMock, setState));
         When(Method(nlmCheckBoxMock, mainWidget)).Return(reinterpret_cast<QWidget*>(&nlmCheckBoxMock.get()));

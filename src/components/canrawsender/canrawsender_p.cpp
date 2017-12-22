@@ -164,7 +164,8 @@ bool CanRawSenderPrivate::sortingAdopt(QJsonObject const& json)
 bool CanRawSenderPrivate::contentAdopt(QJsonObject const& json)
 {
     QString data, id, interval;
-    bool loop;
+    bool loop = false;
+    bool send = false;
 
     auto contentIter = json.find("content");
     if (contentIter == json.end()) {
@@ -230,9 +231,20 @@ bool CanRawSenderPrivate::contentAdopt(QJsonObject const& json)
             cds_info("Loop is not available.");
         }
 
+        // Send checked
+        if (line.contains("send")) {
+            if (line["send"].isBool() == true) {
+                send = line["send"].toBool();
+            } else {
+                cds_error("Send checked status does not contain a bool format.");
+            }
+        } else {
+            cds_info("Send checked status is not available.");
+        }
+
         // Add new lines with dependencies
         addNewItem();
-        if (_lines.back()->RestoreLine(id, data, interval, loop) == false) {
+        if (_lines.back()->RestoreLine(id, data, interval, loop, send) == false) {
             _tvModel.removeRow(_lines.size() - 1); // Delete line from table view
             _lines.erase(_lines.end() - 1); // Delete lines also from collection
             cds_warn("Problem with a validation of line occurred.");

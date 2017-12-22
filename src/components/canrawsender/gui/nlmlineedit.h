@@ -9,6 +9,7 @@ struct NLMLineEdit : public LineEditInterface {
     NLMLineEdit()
         : qLineEdit(new QLineEdit)
     {
+        qLineEdit->setProperty("type", "nlmItem");
     }
 
     void textChangedCbk(const textChanged_t& cb) override

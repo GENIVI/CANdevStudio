@@ -79,6 +79,10 @@
         <file>files/images/dark/CANbus_icon_TabsView_disabled.svg</file>
         <file>files/images/dark/CANbus_icon_CascadeView_disabled.svg</file>
         <file>files/images/dark/about_screen.png</file>
+        <file>files/images/light/CANbus_icon_CheckBoxOff_disable.svg</file>
+        <file>files/images/light/CANbus_icon_CheckBoxOn_disabled.svg</file>
+        <file>files/images/dark/CANbus_icon_CheckBoxOff_disabled.svg</file>
+        <file>files/images/dark/CANbus_icon_CheckBoxOn_disabled.svg</file>
     </qresource>
     <qresource prefix="/">
         <file>files/json/projectConfigSchema.json</file>
