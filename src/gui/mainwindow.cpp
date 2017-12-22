@@ -126,7 +126,17 @@ void MainWindow::handleRecentProject(int ndx)
     QFile file(projectFile);
 
     if (!file.open(QIODevice::ReadOnly)) {
-        cds_error("Could not open file");
+        cds_error("Could not open file: {}", projectFile.toStdString());
+
+        auto userReply = QMessageBox::question(
+                    this, "Project not found", "File " + projectFile + " not found. Do you want to remove it from the recent list?",
+                    QMessageBox::Yes | QMessageBox::No);
+
+        if (userReply == QMessageBox::Yes) {
+            _recentProjects.remove(ndx);
+            refreshRecentProjects();
+        }
+
         return;
     }
 
