@@ -280,6 +280,31 @@ TEST_CASE("read configuration to json format", "[candevice]")
     CHECK(config.count() == canDevice.getSupportedProperties().size());
 }
 
+TEST_CASE("setConfig using JSON read with QObject", "[candevice]")
+{
+    using namespace fakeit;
+ 
+    Mock<CanDeviceInterface> deviceMock;
+    Fake(Dtor(deviceMock));
+    CanDevice canDevice{ CanDeviceCtx(&deviceMock.get()) };
+
+    QJsonObject config;
+
+    config["name"] = "CAN1";
+    config["backend"] = "socketcan";
+    config["interface"] = "can0";
+    config["fake"] = "unsupported";
+
+    canDevice.setConfig(config);
+
+    auto qConfig = canDevice.getQConfig();
+
+    CHECK(qConfig->property("name").toString() == "CAN1");
+    CHECK(qConfig->property("backend").toString() == "socketcan");
+    CHECK(qConfig->property("interface").toString() == "can0");
+    CHECK(qConfig->property("fake").isValid() == false);
+}
+
 int main(int argc, char* argv[])
 {
     bool haveDebug = std::getenv("CDS_DEBUG") != nullptr;

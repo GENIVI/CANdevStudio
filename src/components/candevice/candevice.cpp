@@ -17,32 +17,6 @@ CanDevice::CanDevice(CanDeviceCtx&& ctx)
 
 CanDevice::~CanDevice() {}
 
-bool CanDevice::init(const QString& backend, const QString& interface, bool saveConfig)
-{
-    Q_D(CanDevice);
-    QString errorString;
-
-    if (saveConfig) {
-        d->_props[d->_backendProperty] = backend;
-        d->_props[d->_interfaceProperty] = interface;
-    }
-
-    if (d->_initialized)
-        d->_canDevice.clearCallbacks();
-
-    d->_initialized = false;
-
-    if (d->_canDevice.init(backend, interface)) {
-        d->_canDevice.setFramesWrittenCbk(std::bind(&CanDevice::framesWritten, this, std::placeholders::_1));
-        d->_canDevice.setFramesReceivedCbk(std::bind(&CanDevice::framesReceived, this));
-        d->_canDevice.setErrorOccurredCbk(std::bind(&CanDevice::errorOccurred, this, std::placeholders::_1));
-
-        d->_initialized = true;
-    }
-
-    return d->_initialized;
-}
-
 bool CanDevice::init()
 {
     Q_D(CanDevice);

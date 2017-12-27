@@ -22,19 +22,6 @@ public:
     ~CanDevice();
 
     /**
-    *   @brief  Configures CAN BUS backend and interface
-    *
-    *   This function is used to configure QtCanBus class.
-    *
-    *   @param  backend one of backends supported by QtCanBus class
-    *   @param  iface CAN BUS interface index (e.g. can0 for socketcan backend)
-    *   @param  saveConfig tells whether backend and iface should be saved to device properties
-    *   @return true on success, false on failure
-    */
-    [[deprecated("Backend and interface should be configured through setConfig")]]
-     bool init(const QString& backend, const QString& iface, bool saveConfig = true);
-
-    /**
      * @brief  Configures CAN BUS backend and interface
      *
      * This function configures QtCanBus class with backend and interface
