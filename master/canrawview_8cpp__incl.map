@@ -1,12 +1,12 @@
 <map id="src/components/canrawview/canrawview.cpp" name="src/components/canrawview/canrawview.cpp">
 <area shape="rect" id="node2" href="$canrawview_8h.html" title="canrawview.h" alt="" coords="439,95,544,121"/>
-<area shape="rect" id="node13" href="$canrawview__p_8h.html" title="canrawview_p.h" alt="" coords="1184,95,1305,121"/>
-<area shape="rect" id="node25" href="$log_8h.html" title="log.h" alt="" coords="1047,169,1101,196"/>
-<area shape="rect" id="node30" href="$confighelpers_8h.html" title="confighelpers.h" alt="" coords="737,95,856,121"/>
+<area shape="rect" id="node13" href="$canrawview__p_8h.html" title="canrawview_p.h" alt="" coords="1239,95,1360,121"/>
+<area shape="rect" id="node26" href="$log_8h.html" title="log.h" alt="" coords="1102,169,1155,196"/>
+<area shape="rect" id="node31" href="$confighelpers_8h.html" title="confighelpers.h" alt="" coords="737,95,856,121"/>
 <area shape="rect" id="node5" href="$componentinterface_8h.html" title="componentinterface.h" alt="" coords="509,169,671,196"/>
 <area shape="rect" id="node11" href="$context_8h.html" title="context.h" alt="" coords="351,169,434,196"/>
-<area shape="rect" id="node14" href="$crvgui_8h.html" title="gui/crvgui.h" alt="" coords="1125,169,1220,196"/>
-<area shape="rect" id="node19" href="$uniquefiltermodel_8h.html" title="uniquefiltermodel.h" alt="" coords="1244,169,1389,196"/>
-<area shape="rect" id="node15" href="$crv__enums_8h.html" title="crv_enums.h" alt="" coords="1426,244,1530,271"/>
-<area shape="rect" id="node16" href="$crvguiinterface_8h.html" title="crvguiinterface.h" alt="" coords="1554,244,1682,271"/>
+<area shape="rect" id="node14" href="$crvgui_8h.html" title="gui/crvgui.h" alt="" coords="1180,169,1275,196"/>
+<area shape="rect" id="node20" href="$uniquefiltermodel_8h.html" title="uniquefiltermodel.h" alt="" coords="1299,169,1444,196"/>
+<area shape="rect" id="node15" href="$crv__enums_8h.html" title="crv_enums.h" alt="" coords="1805,244,1909,271"/>
+<area shape="rect" id="node16" href="$crvguiinterface_8h.html" title="crvguiinterface.h" alt="" coords="1407,244,1535,271"/>
 </map>

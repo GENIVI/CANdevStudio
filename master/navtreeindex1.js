@@ -248,6 +248,6 @@ var NAVTREEINDEX1 =
 "struct_c_r_s_gui_interface.html#adb4c73ffb72e5e0f15cf3a795ac45681":[1,0,21,3],
 "struct_c_r_v_gui.html":[1,0,22],
 "struct_c_r_v_gui.html#a2c99ac6ad5307ebdf232f1847a9aa843":[1,0,22,7],
-"struct_c_r_v_gui.html#a3e3cd8b593b026a9e1cbc8a744c024a8":[1,0,22,2],
-"struct_c_r_v_gui.html#a517fc8f58be7047c4c3f5af028615b7a":[1,0,22,16]
+"struct_c_r_v_gui.html#a517fc8f58be7047c4c3f5af028615b7a":[1,0,22,16],
+"struct_c_r_v_gui.html#a55d7654cf9a2b83977511bf8cda3a15a":[1,0,22,14]
 };

@@ -166,10 +166,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a66397f4ca6cefd58b49fbd34181cd8fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7d50613c100064c64d1dc343c3e00cd5"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_c_r_v_gui.html#a7d50613c100064c64d1dc343c3e00cd5">isColumnHidden</a> (int ndx) override</td></tr>
 <tr class="separator:a7d50613c100064c64d1dc343c3e00cd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3e3cd8b593b026a9e1cbc8a744c024a8"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_c_r_v_gui.html#a3e3cd8b593b026a9e1cbc8a744c024a8">getColumnProper</a> (int ndx, int &amp;vIdx, int &amp;width) override</td></tr>
-<tr class="separator:a3e3cd8b593b026a9e1cbc8a744c024a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a93bd86921c0a1450d8cb02af574b1177"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_c_r_v_gui.html#a93bd86921c0a1450d8cb02af574b1177">setColumnProper</a> (int vIdxFrom, int vIdxTo, int width) override</td></tr>
-<tr class="separator:a93bd86921c0a1450d8cb02af574b1177"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8369ad964a23bd9986c64d2a33e006c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_c_r_v_gui.html#ae8369ad964a23bd9986c64d2a33e006c">getColumnProper</a> (int ndx, int &amp;vIdx) override</td></tr>
+<tr class="separator:ae8369ad964a23bd9986c64d2a33e006c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d9d89b7974325dcd6f2625fd7a44317"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_c_r_v_gui.html#a6d9d89b7974325dcd6f2625fd7a44317">setColumnProper</a> (int vIdxFrom, int vIdxTo) override</td></tr>
+<tr class="separator:a6d9d89b7974325dcd6f2625fd7a44317"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_struct_c_r_v_gui_interface"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_struct_c_r_v_gui_interface')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="struct_c_r_v_gui_interface.html">CRVGuiInterface</a></td></tr>
 <tr class="memitem:a254b5911f8309e4231c37d07d854b0da inherit pub_methods_struct_c_r_v_gui_interface"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_c_r_v_gui_interface.html#a254b5911f8309e4231c37d07d854b0da">~CRVGuiInterface</a> ()</td></tr>
 <tr class="separator:a254b5911f8309e4231c37d07d854b0da inherit pub_methods_struct_c_r_v_gui_interface"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -237,7 +237,7 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a3e3cd8b593b026a9e1cbc8a744c024a8"></a>
+<a class="anchor" id="ae8369ad964a23bd9986c64d2a33e006c"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -254,13 +254,7 @@ Additional Inherited Members</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int &amp;&#160;</td>
-          <td class="paramname"><em>vIdx</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int &amp;&#160;</td>
-          <td class="paramname"><em>width</em>&#160;</td>
+          <td class="paramname"><em>vIdx</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -275,7 +269,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Implements <a class="el" href="struct_c_r_v_gui_interface.html#a766bde84a7ba50d0254216a98b785690">CRVGuiInterface</a>.</p>
+<p>Implements <a class="el" href="struct_c_r_v_gui_interface.html#a694c52bd1111dbbc612711bb9f53bb3a">CRVGuiInterface</a>.</p>
 
 </div>
 </div>
@@ -482,7 +476,7 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a93bd86921c0a1450d8cb02af574b1177"></a>
+<a class="anchor" id="a6d9d89b7974325dcd6f2625fd7a44317"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -499,13 +493,7 @@ Additional Inherited Members</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>vIdxTo</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>width</em>&#160;</td>
+          <td class="paramname"><em>vIdxTo</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -520,7 +508,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Implements <a class="el" href="struct_c_r_v_gui_interface.html#acd7a5c8275f69b2b5c0c172b383ada09">CRVGuiInterface</a>.</p>
+<p>Implements <a class="el" href="struct_c_r_v_gui_interface.html#aecff90a090bba56ba2479950d07ef21f">CRVGuiInterface</a>.</p>
 
 </div>
 </div>

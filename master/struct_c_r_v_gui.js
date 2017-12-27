@@ -2,7 +2,7 @@ var struct_c_r_v_gui =
 [
     [ "CRVGui", "struct_c_r_v_gui.html#a59e9be0249f8a0b880cf6de78ebebb68", null ],
     [ "getClickedColumn", "struct_c_r_v_gui.html#af47844dee2689b3a954e6f6e9544b9c1", null ],
-    [ "getColumnProper", "struct_c_r_v_gui.html#a3e3cd8b593b026a9e1cbc8a744c024a8", null ],
+    [ "getColumnProper", "struct_c_r_v_gui.html#ae8369ad964a23bd9986c64d2a33e006c", null ],
     [ "getSortOrder", "struct_c_r_v_gui.html#a8b5f37942f60f4b29e158645f7599bfd", null ],
     [ "getWindowTitle", "struct_c_r_v_gui.html#a66397f4ca6cefd58b49fbd34181cd8fb", null ],
     [ "initTableView", "struct_c_r_v_gui.html#a94b62ff7fc78e5d9ecbc971a95b5cc6d", null ],
@@ -11,7 +11,7 @@ var struct_c_r_v_gui =
     [ "mainWidget", "struct_c_r_v_gui.html#a98cf655026d2e3d5e8180fc0f2e92fdb", null ],
     [ "scrollToBottom", "struct_c_r_v_gui.html#a56b80c2f8822d81914f67a4d18abdad0", null ],
     [ "setClearCbk", "struct_c_r_v_gui.html#a9a688a77fc119b4394e43c6d4de00825", null ],
-    [ "setColumnProper", "struct_c_r_v_gui.html#a93bd86921c0a1450d8cb02af574b1177", null ],
+    [ "setColumnProper", "struct_c_r_v_gui.html#a6d9d89b7974325dcd6f2625fd7a44317", null ],
     [ "setDockUndockCbk", "struct_c_r_v_gui.html#aeb03ae6d3d736f64873aabc23b24908a", null ],
     [ "setFilterCbk", "struct_c_r_v_gui.html#af4ed40a252062440f277bae9155e13a5", null ],
     [ "setModel", "struct_c_r_v_gui.html#a55d7654cf9a2b83977511bf8cda3a15a", null ],
