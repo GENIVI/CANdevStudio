@@ -15,6 +15,7 @@ struct CRSGui : public CRSGuiInterface {
         , widget(new QWidget)
     {
         ui->setupUi(widget);
+        widget->setMinimumSize(ui->tv->minimumSize());
     }
 
     void setAddCbk(const add_t& cb) override

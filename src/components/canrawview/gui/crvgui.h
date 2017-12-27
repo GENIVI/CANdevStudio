@@ -5,6 +5,7 @@
 #include "crvguiinterface.h"
 #include "ui_canrawview.h"
 #include <memory>
+#include <QWidget>
 
 struct CRVGui : public CRVGuiInterface {
 
@@ -13,6 +14,7 @@ struct CRVGui : public CRVGuiInterface {
         , widget(new QWidget)
     {
         ui->setupUi(widget);
+        widget->setMinimumSize(ui->tv->minimumSize());
     }
 
     virtual void setClearCbk(const clear_t& cb) override
@@ -103,17 +105,15 @@ struct CRVGui : public CRVGuiInterface {
         return ui->tv->isColumnHidden(ndx);
     }
 
-    virtual void getColumnProper(int ndx, int& vIdx, int& width) override
+    virtual void getColumnProper(int ndx, int& vIdx) override
     {
         auto horHeader = ui->tv->horizontalHeader();
         vIdx = horHeader->visualIndex(ndx);
-        width = ui->tv->columnWidth(ndx);
     }
 
-    virtual void setColumnProper(int vIdxFrom, int vIdxTo, int width) override
+    virtual void setColumnProper(int vIdxFrom, int vIdxTo) override
     {
         auto horHeader = ui->tv->horizontalHeader();
-        ui->tv->setColumnWidth(horHeader->logicalIndex(vIdxFrom), width);
         horHeader->moveSection(vIdxFrom, vIdxTo);
     }
 

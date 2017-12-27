@@ -112,11 +112,9 @@ private:
             if (_ui.isColumnHidden(ii) == false) {
                 QJsonObject columnProper;
                 int vIdx;
-                int width;
-                _ui.getColumnProper(ii, vIdx, width);
+                _ui.getColumnProper(ii, vIdx);
                 columnProper["name"] = column;
                 columnProper["vIdx"] = vIdx;
-                columnProper["width"] = width;
                 columnArray.append(columnProper);
             }
             ++ii;
@@ -185,7 +183,6 @@ private:
         struct ref {
             int id;
             int vIdxConf;
-            int widthConf;
             bool operator<(const ref& rhs) const
             {
                 return vIdxConf < rhs.vIdxConf;
@@ -231,18 +228,7 @@ private:
                     }
                     auto vIdxConf = colObj["vIdx"].toInt();
 
-                    // Check width
-                    //============
-                    if (colObj.contains("width") == false) {
-                        cds_error("Columns description does not contain width field.");
-                        return false;
-                    }
-                    if (colObj["width"].isDouble() == false) {
-                        cds_error("width does not a Number format.");
-                        return false;
-                    }
-                    auto widthConf = colObj["width"].toInt();
-                    refContener.push_back({ ii, vIdxConf, widthConf });
+                    refContener.push_back({ ii, vIdxConf });
                     break;
                 }
                 if (jj == colArray.size()) {
@@ -254,11 +240,10 @@ private:
         }
         std::sort(refContener.rbegin(), refContener.rend());
         for (const auto& pp : refContener) {
-            int width;
             int vIdx;
-            _ui.getColumnProper(pp.id, vIdx, width);
-            if ((vIdx != pp.vIdxConf) || (width != pp.widthConf)) {
-                _ui.setColumnProper(vIdx, pp.vIdxConf, pp.widthConf);
+            _ui.getColumnProper(pp.id, vIdx);
+            if (vIdx != pp.vIdxConf) {
+                _ui.setColumnProper(vIdx, pp.vIdxConf);
             }
         }
         cds_info("Column proporties ware restored correctly");

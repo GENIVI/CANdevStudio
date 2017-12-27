@@ -33,8 +33,8 @@ struct CRVGuiInterface {
     virtual void setSorting(int sortNdx, Qt::SortOrder order) = 0;
     virtual QString getWindowTitle() = 0;
     virtual bool isColumnHidden(int ndx) = 0;
-    virtual void getColumnProper(int ndx, int& vIdx, int& width) = 0;
-    virtual void setColumnProper(int vIdxFrom, int vIdxTo, int width) = 0;
+    virtual void getColumnProper(int ndx, int& vIdx) = 0;
+    virtual void setColumnProper(int vIdxFrom, int vIdxTo) = 0;
 };
 
 #endif // CRVGUIINTERFACE_H
