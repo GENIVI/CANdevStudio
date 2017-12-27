@@ -8,6 +8,7 @@ fi
 
 echo "CMake: $cmake_command"
 echo "ci_env: $ci_env"
+sudo modprobe vcan
 docker run \
      $ci_env -e WITH_COVERAGE -e CC -e CXX -e DISPLAY=:10 --privileged \
      -v `pwd`:/root/sources przemyslawdraszkiewicz/can_dev_base_image /bin/bash \
