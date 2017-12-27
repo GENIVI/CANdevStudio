@@ -19,6 +19,7 @@
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QToolButton>
 #include <QGraphicsDropShadowEffect>
+#include <version.h>
 
 namespace {
 const QString SETTINGS_STYLE_TAG = "style";
@@ -26,7 +27,6 @@ const QString SETTINGS_RECENT_TAG = "recentProjects";
 const QString SETTINGS_NAME_TAG = "name";
 const QString SETTINGS_FILENAME_TAG = "filename";
 const int SETTINGS_RECENT_SIZE = 20;
-const QString VERSION = "0.1";
 }
 
 MainWindow::MainWindow(QWidget* parent)
@@ -374,12 +374,22 @@ void MainWindow::handleAboutAction()
     Ui::aboutDialog dialog;
     QDialog *d = new QDialog();
     dialog.setupUi(d);
+    QString version = CDS_VERSION;
 
-    dialog.version->setText("v" + VERSION);
-    dialog.info->setText(dialog.info->text() + " " + VERSION);
+    if(QString(GIT_COMMIT_HASH).length() > 0) {
+        version += QString(" (") + GIT_BRANCH + ", " + GIT_COMMIT_HASH + ")";
+    }
+
+    dialog.version->setText(QString("v") + CDS_VERSION);
+    dialog.info->setText(dialog.info->text() + " " + version);
     dialog.repoLink->setTextFormat(Qt::RichText);
-    dialog.repoLink->setTextInteractionFlags(Qt::TextBrowserInteraction);
     dialog.repoLink->setOpenExternalLinks(true);
+
+    dialog.info->setTextInteractionFlags(Qt::TextSelectableByMouse);
+    dialog.legal->setTextInteractionFlags(Qt::TextSelectableByMouse);
+    dialog.copyright->setTextInteractionFlags(Qt::TextSelectableByMouse);
+    dialog.repoLink->setTextInteractionFlags(Qt::TextBrowserInteraction);
+    dialog.repoLink->setTextInteractionFlags(Qt::TextSelectableByMouse);
     dialog.close->setCursor(Qt::PointingHandCursor);
     dialog.mobica->setCursor(Qt::PointingHandCursor);
     dialog.genivi->setCursor(Qt::PointingHandCursor);
