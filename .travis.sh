@@ -9,9 +9,9 @@ fi
 echo "CMake: $cmake_command"
 echo "ci_env: $ci_env"
 docker run \
-     $ci_env -e WITH_COVERAGE -e CC -e CXX -e DISPLAY=:10\
+     $ci_env -e WITH_COVERAGE -e CC -e CXX -e DISPLAY=:10 --privileged \
      -v `pwd`:/root/sources przemyslawdraszkiewicz/can_dev_base_image /bin/bash \
-     -c "service xvfb start && cd /root/sources && rm -rf build && mkdir -p build && cd build && source /opt/qt58/bin/qt58-env.sh &&
+     -c "ip link add name can0 type vcan && service xvfb start && cd /root/sources && rm -rf build && mkdir -p build && cd build && source /opt/qt58/bin/qt58-env.sh &&
         $cmake_command &&
         make -j5 &&
         make test &&
