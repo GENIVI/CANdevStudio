@@ -103,7 +103,12 @@ struct CanDeviceQt : public CanDeviceInterface {
 
     virtual void clearCallbacks() override
     {
-        _device->disconnect();
+        if (_device) {
+            _device->disconnect();
+        } else {
+            cds_error("candevice is null. Call init firts!");
+            throw std::runtime_error("candevice is null. Call init first!");
+        }
     }
 
 private:
