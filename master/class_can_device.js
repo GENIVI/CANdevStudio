@@ -9,7 +9,6 @@ var class_can_device =
     [ "getConfig", "class_can_device.html#a9fe8dfa884eb777130c506181ee8dc52", null ],
     [ "getQConfig", "class_can_device.html#ad279cdc21506d9285a218be228c7c815", null ],
     [ "getSupportedProperties", "class_can_device.html#aea909f6dc3e6a863497c21e4878613f1", null ],
-    [ "init", "class_can_device.html#a3dd7b7ec0e905318bc0e699540dda9f3", null ],
     [ "init", "class_can_device.html#a2170e88b711de3d112bcf1e330492760", null ],
     [ "mainWidget", "class_can_device.html#aaa3e0bbf9db51ba30af4b07932fc63aa", null ],
     [ "mainWidgetDocked", "class_can_device.html#a297ef1b08779b4f98b50970ec431d6fa", null ],

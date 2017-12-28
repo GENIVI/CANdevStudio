@@ -1,6 +1,5 @@
 var NAVTREEINDEX1 =
 {
-"class_main_window.html#ae98d00a93bc118200eeef9f9bba1dba7":[1,0,29,2],
 "class_new_line_manager.html":[1,0,31],
 "class_new_line_manager.html#a37350d6458d2c05ce4f36e47a7d20fa3":[1,0,31,2],
 "class_new_line_manager.html#a3c24c5471a339e08265d47422b1f41fd":[1,0,31,0],
@@ -109,8 +108,8 @@ var NAVTREEINDEX1 =
 "flowviewwrapper_8cpp.html":[2,0,0,1,3,10],
 "flowviewwrapper_8h.html":[2,0,0,1,3,11],
 "flowviewwrapper_8h_source.html":[2,0,0,1,3,11],
-"functions.html":[1,3,0],
 "functions.html":[1,3,0,0],
+"functions.html":[1,3,0],
 "functions_0x7e.html":[1,3,0,21],
 "functions_a.html":[1,3,0,1],
 "functions_b.html":[1,3,0,2],
@@ -249,5 +248,6 @@ var NAVTREEINDEX1 =
 "struct_c_r_v_gui.html":[1,0,22],
 "struct_c_r_v_gui.html#a2c99ac6ad5307ebdf232f1847a9aa843":[1,0,22,7],
 "struct_c_r_v_gui.html#a517fc8f58be7047c4c3f5af028615b7a":[1,0,22,16],
-"struct_c_r_v_gui.html#a55d7654cf9a2b83977511bf8cda3a15a":[1,0,22,14]
+"struct_c_r_v_gui.html#a55d7654cf9a2b83977511bf8cda3a15a":[1,0,22,14],
+"struct_c_r_v_gui.html#a56b80c2f8822d81914f67a4d18abdad0":[1,0,22,9]
 };

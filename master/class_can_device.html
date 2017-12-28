@@ -163,9 +163,6 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ae04e225627487183a11f0b07584bbca3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4a1a39d39f0de37d5a94acdb4ace1b34"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_device.html#a4a1a39d39f0de37d5a94acdb4ace1b34">~CanDevice</a> ()</td></tr>
 <tr class="separator:a4a1a39d39f0de37d5a94acdb4ace1b34"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3dd7b7ec0e905318bc0e699540dda9f3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_device.html#a3dd7b7ec0e905318bc0e699540dda9f3">init</a> (const QString &amp;backend, const QString &amp;iface, bool saveConfig=true)</td></tr>
-<tr class="memdesc:a3dd7b7ec0e905318bc0e699540dda9f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures CAN BUS backend and interface.  <a href="#a3dd7b7ec0e905318bc0e699540dda9f3">More...</a><br /></td></tr>
-<tr class="separator:a3dd7b7ec0e905318bc0e699540dda9f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2170e88b711de3d112bcf1e330492760"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_device.html#a2170e88b711de3d112bcf1e330492760">init</a> ()</td></tr>
 <tr class="memdesc:a2170e88b711de3d112bcf1e330492760"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures CAN BUS backend and interface.  <a href="#a2170e88b711de3d112bcf1e330492760">More...</a><br /></td></tr>
 <tr class="separator:a2170e88b711de3d112bcf1e330492760"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -415,50 +412,6 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="struct_component_interface.html" title="Interface to be implemented by every component. ">ComponentInterface</a> </dd></dl>
 
 <p>Implements <a class="el" href="struct_component_interface.html#a522477c76981a2921384cd6abb2839b4">ComponentInterface</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a3dd7b7ec0e905318bc0e699540dda9f3"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool CanDevice::init </td>
-          <td>(</td>
-          <td class="paramtype">const QString &amp;&#160;</td>
-          <td class="paramname"><em>backend</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const QString &amp;&#160;</td>
-          <td class="paramname"><em>iface</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>saveConfig</em> = <code>true</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Configures CAN BUS backend and interface. </p>
-<p>This function is used to configure QtCanBus class.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">backend</td><td>one of backends supported by QtCanBus class </td></tr>
-    <tr><td class="paramname">iface</td><td>CAN BUS interface index (e.g. can0 for socketcan backend) </td></tr>
-    <tr><td class="paramname">saveConfig</td><td>tells whether backend and iface should be saved to device properties </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>true on success, false on failure </dd></dl>
 
 </div>
 </div>
