@@ -40,7 +40,7 @@ TEST_CASE("Initialized device", "[candeviceqt]")
     REQUIRE_NOTHROW(dev.setFramesReceivedCbk({}));
     REQUIRE_NOTHROW(dev.setErrorOccurredCbk({}));
     REQUIRE_NOTHROW(dev.writeFrame(frame));
-    REQUIRE_NOTHROW(dev.connectDevice());
+    //REQUIRE_NOTHROW(dev.connectDevice());
     REQUIRE_NOTHROW(dev.readFrame());
     REQUIRE_NOTHROW(dev.framesAvailable());
     REQUIRE_NOTHROW(dev.disconnectDevice());
