@@ -27,8 +27,8 @@ bool isEqual(const QCanBusFrame& f1, const QCanBusFrame& f2)
 void setupBackendInterface(CanDevice& canDevice)
 {
     QObject qo;
-    qo.setProperty("backend", "");
-    qo.setProperty("interface", "");
+    qo.setProperty("backend", "dummy");
+    qo.setProperty("interface", "dummy");
     canDevice.setConfig(qo);
 }
 
@@ -39,6 +39,9 @@ TEST_CASE("Initialization failed", "[candevice]")
     CanDevice canDevice;
     QCanBusFrame frame;
 
+    // properties not set
+    CHECK(canDevice.init() == false);
+    
     setupBackendInterface(canDevice);
 
     CHECK(canDevice.init() == false);
@@ -54,13 +57,17 @@ TEST_CASE("Initialization succedded", "[candevice]")
     Mock<CanDeviceInterface> deviceMock;
 
     Fake(Dtor(deviceMock));
-    When(Method(deviceMock, setFramesWrittenCbk)).Do([](const auto& cb) { cb(100); });
+    Fake(Method(deviceMock, setFramesWrittenCbk));
     Fake(Method(deviceMock, setFramesReceivedCbk));
     Fake(Method(deviceMock, setErrorOccurredCbk));
-    When(Method(deviceMock, init)).Return(true);
+    Fake(Method(deviceMock, clearCallbacks));
+    When(Method(deviceMock, init)).AlwaysReturn(true);
 
     CanDevice canDevice{ CanDeviceCtx(&deviceMock.get()) };
     setupBackendInterface(canDevice);
+    CHECK(canDevice.init() == true);
+
+    // clearCallbacks
     CHECK(canDevice.init() == true);
 }
 
@@ -115,6 +122,59 @@ TEST_CASE("Start succeeded", "[candevice]")
     setupBackendInterface(canDevice);
     CHECK(canDevice.init() == true);
     REQUIRE_NOTHROW(canDevice.startSimulation());
+}
+
+TEST_CASE("Stop uninitialized", "[candevice]")
+{
+    using namespace fakeit;
+    Mock<CanDeviceInterface> deviceMock;
+
+    Fake(Dtor(deviceMock));
+
+    CanDevice canDevice{ CanDeviceCtx(&deviceMock.get()) };
+
+    REQUIRE_NOTHROW(canDevice.stopSimulation());
+}
+
+TEST_CASE("Stop initialized", "[candevice]")
+{
+    using namespace fakeit;
+    Mock<CanDeviceInterface> deviceMock;
+
+    Fake(Dtor(deviceMock));
+    When(Method(deviceMock, setFramesWrittenCbk)).Do([](const auto& cb) { cb(100); });
+    Fake(Method(deviceMock, setFramesReceivedCbk));
+    Fake(Method(deviceMock, setErrorOccurredCbk));
+    When(Method(deviceMock, init)).Return(true);
+    When(Method(deviceMock, connectDevice)).Return(true);
+    Fake(Method(deviceMock, disconnectDevice));
+
+    CanDevice canDevice{ CanDeviceCtx(&deviceMock.get()) };
+    setupBackendInterface(canDevice);
+    CHECK(canDevice.init() == true);
+
+    REQUIRE_NOTHROW(canDevice.stopSimulation());
+}
+
+TEST_CASE("Config changed", "[candevice]")
+{
+    using namespace fakeit;
+    Mock<CanDeviceInterface> deviceMock;
+
+    Fake(Dtor(deviceMock));
+    When(Method(deviceMock, setFramesWrittenCbk)).Do([](const auto& cb) { cb(100); });
+    Fake(Method(deviceMock, setFramesReceivedCbk));
+    Fake(Method(deviceMock, setErrorOccurredCbk));
+    When(Method(deviceMock, init)).Return(true);
+    When(Method(deviceMock, connectDevice)).Return(true);
+
+    CanDevice canDevice{ CanDeviceCtx(&deviceMock.get()) };
+
+    REQUIRE_NOTHROW(canDevice.configChanged());
+
+    canDevice.startSimulation();
+
+    REQUIRE_NOTHROW(canDevice.configChanged());
 }
 
 TEST_CASE("writeFrame results in error", "[candevice]")
@@ -278,6 +338,42 @@ TEST_CASE("read configuration to json format", "[candevice]")
     CanDevice canDevice{ CanDeviceCtx(&deviceMock.get()) };
     QJsonObject config = canDevice.getConfig();
     CHECK(config.count() == canDevice.getSupportedProperties().size());
+}
+
+TEST_CASE("setConfig using JSON read with QObject", "[candevice]")
+{
+    using namespace fakeit;
+ 
+    Mock<CanDeviceInterface> deviceMock;
+    Fake(Dtor(deviceMock));
+    CanDevice canDevice{ CanDeviceCtx(&deviceMock.get()) };
+
+    QJsonObject config;
+
+    config["name"] = "CAN1";
+    config["backend"] = "socketcan";
+    config["interface"] = "can0";
+    config["fake"] = "unsupported";
+
+    canDevice.setConfig(config);
+
+    auto qConfig = canDevice.getQConfig();
+
+    CHECK(qConfig->property("name").toString() == "CAN1");
+    CHECK(qConfig->property("backend").toString() == "socketcan");
+    CHECK(qConfig->property("interface").toString() == "can0");
+    CHECK(qConfig->property("fake").isValid() == false);
+}
+
+TEST_CASE("Stubbed methods", "[candevice]")
+{
+    using namespace fakeit;
+    Mock<CanDeviceInterface> deviceMock;
+    Fake(Dtor(deviceMock));
+    CanDevice canDevice{ CanDeviceCtx(&deviceMock.get()) };
+
+    CHECK(canDevice.mainWidget() == nullptr);
+    CHECK(canDevice.mainWidgetDocked() == true);
 }
 
 int main(int argc, char* argv[])

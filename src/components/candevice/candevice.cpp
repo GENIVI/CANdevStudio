@@ -17,32 +17,6 @@ CanDevice::CanDevice(CanDeviceCtx&& ctx)
 
 CanDevice::~CanDevice() {}
 
-bool CanDevice::init(const QString& backend, const QString& interface, bool saveConfig)
-{
-    Q_D(CanDevice);
-    QString errorString;
-
-    if (saveConfig) {
-        d->_props[d->_backendProperty] = backend;
-        d->_props[d->_interfaceProperty] = interface;
-    }
-
-    if (d->_initialized)
-        d->_canDevice.clearCallbacks();
-
-    d->_initialized = false;
-
-    if (d->_canDevice.init(backend, interface)) {
-        d->_canDevice.setFramesWrittenCbk(std::bind(&CanDevice::framesWritten, this, std::placeholders::_1));
-        d->_canDevice.setFramesReceivedCbk(std::bind(&CanDevice::framesReceived, this));
-        d->_canDevice.setErrorOccurredCbk(std::bind(&CanDevice::errorOccurred, this, std::placeholders::_1));
-
-        d->_initialized = true;
-    }
-
-    return d->_initialized;
-}
-
 bool CanDevice::init()
 {
     Q_D(CanDevice);
@@ -51,16 +25,16 @@ bool CanDevice::init()
     const auto& backend = d->_backendProperty;
     const auto& iface = d->_interfaceProperty;
 
-    // check if required properties are set
-    const bool propertiesSet = (props.count(backend) == 1) && (props.count(iface) == 1);
-
-    if (!propertiesSet)
+    // check if required properties are set. They always exists as are initialized in constructor
+    if((props.at(backend).toString().length() == 0) || (props.at(iface).toString().length() == 0)) {
         return d->_initialized;
+    }
 
     QString errorString;
 
-    if (d->_initialized)
+    if (d->_initialized) {
         d->_canDevice.clearCallbacks();
+    }
 
     d->_initialized = false;
 
