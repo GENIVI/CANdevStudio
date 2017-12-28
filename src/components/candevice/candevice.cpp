@@ -25,16 +25,16 @@ bool CanDevice::init()
     const auto& backend = d->_backendProperty;
     const auto& iface = d->_interfaceProperty;
 
-    // check if required properties are set
-    const bool propertiesSet = (props.count(backend) == 1) && (props.count(iface) == 1);
-
-    if (!propertiesSet)
+    // check if required properties are set. They always exists as are initialized in constructor
+    if((props.at(backend).toString().length() == 0) || (props.at(iface).toString().length() == 0)) {
         return d->_initialized;
+    }
 
     QString errorString;
 
-    if (d->_initialized)
+    if (d->_initialized) {
         d->_canDevice.clearCallbacks();
+    }
 
     d->_initialized = false;
 
