@@ -15,21 +15,15 @@ bool ProjectConfigValidator::validateConfiguration(const QByteArray& wholeFile)
 
     if (!schemaInitialized && !ProjectConfigValidator::loadConfigSchema())
     {
-        QMessageBox msgBox;
-        msgBox.setText("There was an error loading project configuration schema.");
-        msgBox.setInformativeText("Do you want to try to load project without validating it?");
-        msgBox.setStandardButtons(QMessageBox::Open | QMessageBox::Cancel);
-        msgBox.setDefaultButton(QMessageBox::Cancel);
+        cds_error("Failed to load project configuration schema.");
 
-        return (msgBox.exec() == QMessageBox::Open) ? true : false;
+        return false;
     }
 
     Document d;
     if (d.Parse(wholeFile.toStdString()).HasParseError())
     {
         cds_error("Could not parse configuration file");
-        QMessageBox::warning(nullptr, "Could not parse configuration file",
-                "There was an error parsing project configuration file: it is not a valid json file.");
 
         return false;
     }
@@ -46,23 +40,17 @@ bool ProjectConfigValidator::validateConfiguration(const QByteArray& wholeFile)
         validator.GetInvalidDocumentPointer().StringifyUriFragment(sb);
         cds_error("Invalid document: {}", sb.GetString());
 
-        QMessageBox msgBox;
-        msgBox.setText("There was an error validating project configuration.");
-        msgBox.setInformativeText("Do you want to try to load it anyway?");
-        msgBox.setStandardButtons(QMessageBox::Open | QMessageBox::Cancel);
-        msgBox.setDefaultButton(QMessageBox::Cancel);
-
-        return (msgBox.exec() == QMessageBox::Open) ? true : false;
+        return false;
     }
 
     return true;
 }
 
-bool ProjectConfigValidator::loadConfigSchema()
+bool ProjectConfigValidator::loadConfigSchema(const char* filename)
 {
     using namespace rapidjson;
 
-    QFile file(":/files/json/projectConfigSchema.json");
+    QFile file(filename);
     if (!file.open(QIODevice::ReadOnly))
     {
         cds_error("Could not open configuration schema file");

@@ -51,6 +51,14 @@ TEST_CASE("Test save configuration", "[canrawsender]")
     CHECK(json.find("sorting") != json.end());
 }
 
+TEST_CASE("Getters/setters", "[canrawview]")
+{
+    CanRawSenderModel crsModel;
+
+    CHECK(crsModel.painterDelegate() != nullptr);
+    REQUIRE_NOTHROW(crsModel.setInData({}, 0));
+}
+
 int main(int argc, char* argv[])
 {
     bool haveDebug = std::getenv("CDS_DEBUG") != nullptr;

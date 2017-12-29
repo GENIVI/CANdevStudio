@@ -39,8 +39,12 @@ void PropertyEditorDialog::fillModel(const QObject& propsObj)
 {
     auto prop = propsObj.property("exposedProperties");
 
-    if (prop.isNull() || !prop.isValid())
+    if (prop.isNull() || !prop.isValid()) {
+        cds_info("No exposed properties");
         return;
+    }
+
+    cds_info("Exposed properties size: {}", prop.toStringList().size());
 
     for (const auto& p : prop.toStringList()) {
         if (!p.isEmpty()) {
@@ -52,6 +56,8 @@ void PropertyEditorDialog::fillModel(const QObject& propsObj)
             list.append(new QStandardItem(propsObj.property(p.toStdString().c_str()).toString()));
 
             _model.appendRow(list);
+
+            cds_debug("Adding '{}' to model", p.toStdString());
         }
     }
 }

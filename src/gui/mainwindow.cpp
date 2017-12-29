@@ -350,8 +350,10 @@ void MainWindow::handleLoadAction()
     QByteArray wholeFile = file.readAll();
 
     // TODO nodeeditor is not validating data. Improve schema file (using required fields) to be safe.
-    if (!ProjectConfigValidator::validateConfiguration(wholeFile))
+    if (!ProjectConfigValidator::validateConfiguration(wholeFile)) {
+        QMessageBox::warning(nullptr, "File corrupted", "Invailid file. Project loading aborted");
         return;
+    }
 
     QFileInfo fInfo(fileName);
 

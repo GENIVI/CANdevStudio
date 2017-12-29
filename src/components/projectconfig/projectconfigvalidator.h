@@ -10,7 +10,7 @@
 class ProjectConfigValidator
 {
 public:
-    static bool loadConfigSchema();
+    static bool loadConfigSchema(const char* filename=":/files/json/projectConfigSchema.json");
     static bool validateConfiguration(const QByteArray& wholeFile);
 
 private:

@@ -11,8 +11,8 @@
 #include <log.h>
 #include <modelvisitor.h> // apply_model_visitor
 #include <nodes/Node>
-#include <projectconfig/candevicemodel.h>
-#include <propertyeditor/propertyeditordialog.h>
+#include <candevicemodel.h>
+#include <propertyeditordialog.h>
 #include "iconlabel.h"
 
 namespace Ui {

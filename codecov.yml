@@ -5,3 +5,9 @@ coverage:
         - "src/gui"
         - "src/common/guiinterface"
         - "tests"
+        - "src/components/projectconfig/flowviewwrapper.h"
+        - "src/components/projectconfig/flowviewwrapper.cpp"
+        - "src/components/projectconfig/dragwidget.h"
+        - "src/components/projectconfig/dragwidget.cpp"
+        - "src/components/projectconfig/nodepainter.h"
+

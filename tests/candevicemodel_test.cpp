@@ -82,6 +82,13 @@ TEST_CASE("Test save configuration", "[candevice]")
     CHECK(json.find("name") != json.end());
 }
 
+TEST_CASE("Getters", "[canrawview]")
+{
+    CanDeviceModel cdModel;
+
+    CHECK(cdModel.painterDelegate() != nullptr);
+}
+
 int main(int argc, char* argv[])
 {
     bool haveDebug = std::getenv("CDS_DEBUG") != nullptr;
