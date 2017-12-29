@@ -12,10 +12,10 @@
 <area shape="rect" id="node19" href="$dragwidget_8cpp.html" title="src/components/projectconfig\l/dragwidget.cpp" alt="" coords="1599,80,1810,121"/>
 <area shape="rect" id="node20" href="$flowviewwrapper_8cpp.html" title="src/components/projectconfig\l/flowviewwrapper.cpp" alt="" coords="1834,80,2045,121"/>
 <area shape="rect" id="node21" href="$projectconfigvalidator_8cpp.html" title="src/components/projectconfig\l/projectconfigvalidator.cpp" alt="" coords="2069,80,2279,121"/>
-<area shape="rect" id="node22" href="$propertyeditordialog_8cpp.html" title="src/components/propertyeditor\l/propertyeditordialog.cpp" alt="" coords="2304,80,2524,121"/>
-<area shape="rect" id="node23" href="$main_8cpp.html" title="src/gui/main.cpp" alt="" coords="2548,87,2675,114"/>
-<area shape="rect" id="node24" href="$mainwindow_8cpp.html" title="src/gui/mainwindow.cpp" alt="" coords="2742,177,2913,203"/>
-<area shape="rect" id="node25" href="$subwindow_8h.html" title="src/gui/subwindow.h" alt="" coords="2699,87,2846,114"/>
+<area shape="rect" id="node22" href="$propertyeditordialog_8cpp.html" title="src/components/projectconfig\l/propertyeditordialog.cpp" alt="" coords="2303,80,2514,121"/>
+<area shape="rect" id="node23" href="$main_8cpp.html" title="src/gui/main.cpp" alt="" coords="2539,87,2665,114"/>
+<area shape="rect" id="node24" href="$mainwindow_8cpp.html" title="src/gui/mainwindow.cpp" alt="" coords="2733,177,2903,203"/>
+<area shape="rect" id="node25" href="$subwindow_8h.html" title="src/gui/subwindow.h" alt="" coords="2690,87,2837,114"/>
 <area shape="rect" id="node3" href="$candevice__p_8h.html" title="src/components/candevice\l/candevice_p.h" alt="" coords="5,169,199,211"/>
 <area shape="rect" id="node4" href="$candevice_8cpp.html" title="src/components/candevice\l/candevice.cpp" alt="" coords="5,259,199,300"/>
 <area shape="rect" id="node11" href="$candevicemodel_8h.html" title="src/components/projectconfig\l/candevicemodel.h" alt="" coords="1314,169,1525,211"/>

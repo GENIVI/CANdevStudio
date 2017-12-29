@@ -44,5 +44,9 @@ var dir_63333d075306eec5841a0e2f4cff9332 =
     [ "projectconfigvalidator.cpp", "projectconfigvalidator_8cpp.html", null ],
     [ "projectconfigvalidator.h", "projectconfigvalidator_8h.html", [
       [ "ProjectConfigValidator", "class_project_config_validator.html", null ]
+    ] ],
+    [ "propertyeditordialog.cpp", "propertyeditordialog_8cpp.html", null ],
+    [ "propertyeditordialog.h", "propertyeditordialog_8h.html", [
+      [ "PropertyEditorDialog", "class_property_editor_dialog.html", "class_property_editor_dialog" ]
     ] ]
 ];

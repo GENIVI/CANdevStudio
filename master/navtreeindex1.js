@@ -95,7 +95,6 @@ var NAVTREEINDEX1 =
 "dir_94e65932f1e05d44d79da8e98a8aee4c.html":[2,0,0,1,1],
 "dir_99d0482cf009f9d97a0877749b817f19.html":[2,0,0,2],
 "dir_bb447f364f13c9307fc8b28dfc5bcb76.html":[2,0,0,0,0],
-"dir_bc29816dfefc28e9877846fe5e2a4a7b.html":[2,0,0,1,4],
 "dir_bdfef683cdcec59763063a4d6a2f152c.html":[2,0,0,1,2],
 "dir_c3a04f334b303e0e7484d59fef452afc.html":[2,0,0,1,0],
 "dir_fdedb0aba14d44ce9d99bc100e026e6a.html":[2,0,0,0],
@@ -219,9 +218,9 @@ var NAVTREEINDEX1 =
 "projectconfigvalidator_8cpp.html":[2,0,0,1,3,18],
 "projectconfigvalidator_8h.html":[2,0,0,1,3,19],
 "projectconfigvalidator_8h_source.html":[2,0,0,1,3,19],
-"propertyeditordialog_8cpp.html":[2,0,0,1,4,0],
-"propertyeditordialog_8h.html":[2,0,0,1,4,1],
-"propertyeditordialog_8h_source.html":[2,0,0,1,4,1],
+"propertyeditordialog_8cpp.html":[2,0,0,1,3,20],
+"propertyeditordialog_8h.html":[2,0,0,1,3,21],
+"propertyeditordialog_8h_source.html":[2,0,0,1,3,21],
 "pushbuttoninterface_8h.html":[2,0,0,0,0,2],
 "pushbuttoninterface_8h_source.html":[2,0,0,0,0,2],
 "struct_c_r_s_gui.html":[1,0,20],
@@ -249,5 +248,6 @@ var NAVTREEINDEX1 =
 "struct_c_r_v_gui.html#a2c99ac6ad5307ebdf232f1847a9aa843":[1,0,22,7],
 "struct_c_r_v_gui.html#a517fc8f58be7047c4c3f5af028615b7a":[1,0,22,16],
 "struct_c_r_v_gui.html#a55d7654cf9a2b83977511bf8cda3a15a":[1,0,22,14],
-"struct_c_r_v_gui.html#a56b80c2f8822d81914f67a4d18abdad0":[1,0,22,9]
+"struct_c_r_v_gui.html#a56b80c2f8822d81914f67a4d18abdad0":[1,0,22,9],
+"struct_c_r_v_gui.html#a59e9be0249f8a0b880cf6de78ebebb68":[1,0,22,0]
 };
