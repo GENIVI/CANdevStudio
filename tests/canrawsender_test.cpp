@@ -10,6 +10,7 @@
 #include <gui/crsguiinterface.h>
 #include <memory>
 #include <newlinemanager.h>
+#include <QSignalSpy>
 
 using namespace fakeit;
 
@@ -38,6 +39,7 @@ TEST_CASE("Add and remove frame test", "[canrawsender]")
 
     CRSGuiInterface::add_t addLineCbk;
     CRSGuiInterface::remove_t removeLineCbk;
+    PushButtonInterface::pressed_t sendPressed;
 
     Mock<CRSGuiInterface> crsMock;
 
@@ -51,29 +53,36 @@ TEST_CASE("Add and remove frame test", "[canrawsender]")
 
     Fake(Dtor(nlmLineEditMock));
     Fake(Method(nlmLineEditMock, textChangedCbk));
-    Fake(Method(nlmLineEditMock, init));
-    Fake(Method(nlmLineEditMock, setPlaceholderText));
-    Fake(Method(nlmLineEditMock, setDisabled));
     When(Method(nlmLineEditMock, mainWidget)).AlwaysDo([&]() {
         return reinterpret_cast<QWidget*>(&nlmLineEditMock.get());
     });
+    Fake(Method(nlmLineEditMock, init));
+    Fake(Method(nlmLineEditMock, setPlaceholderText));
+    Fake(Method(nlmLineEditMock, setDisabled));
+    Fake(Method(nlmLineEditMock, getTextLength));
+    Fake(Method(nlmLineEditMock, getText));
+    Fake(Method(nlmLineEditMock, setText));
     When(Method(nlmFactoryMock, createLineEdit)).AlwaysDo([&]() { return &nlmLineEditMock.get(); });
 
     Fake(Dtor(nlmCheckBoxMock));
     Fake(Method(nlmCheckBoxMock, toggledCbk));
+    When(Method(nlmCheckBoxMock, mainWidget)).AlwaysReturn(reinterpret_cast<QWidget*>(&nlmCheckBoxMock.get()));
+    Fake(Method(nlmCheckBoxMock, getState));
+    Fake(Method(nlmCheckBoxMock, setState));
     Fake(Method(nlmCheckBoxMock, setDisabled));
-    When(Method(nlmCheckBoxMock, mainWidget)).Return(reinterpret_cast<QWidget*>(&nlmCheckBoxMock.get()));
-    When(Method(nlmFactoryMock, createCheckBox)).Return(&nlmCheckBoxMock.get());
+    When(Method(nlmFactoryMock, createCheckBox)).AlwaysReturn(&nlmCheckBoxMock.get());
 
     Fake(Dtor(nlmPushButtonMock));
     Fake(Method(nlmPushButtonMock, init));
-    Fake(Method(nlmPushButtonMock, pressedCbk));
+    When(Method(nlmPushButtonMock, pressedCbk)).AlwaysDo([&](auto&& fn) { sendPressed = fn; });
+    Fake(Method(nlmPushButtonMock, setDisabled));
+    Fake(Method(nlmPushButtonMock, isEnabled));
     Fake(Method(nlmPushButtonMock, setCheckable));
     Fake(Method(nlmPushButtonMock, checkable));
-    Fake(Method(nlmPushButtonMock, checked));
+    When(Method(nlmPushButtonMock, checked)).Return(true).Return(false).Return(true);
     Fake(Method(nlmPushButtonMock, setChecked));
-    When(Method(nlmPushButtonMock, mainWidget)).Return(reinterpret_cast<QWidget*>(&nlmPushButtonMock.get()));
-    When(Method(nlmFactoryMock, createPushButton)).Return(&nlmPushButtonMock.get());
+    When(Method(nlmPushButtonMock, mainWidget)).AlwaysReturn(reinterpret_cast<QWidget*>(&nlmPushButtonMock.get()));
+    When(Method(nlmFactoryMock, createPushButton)).AlwaysReturn(&nlmPushButtonMock.get());
 
     Fake(Dtor(crsMock));
     When(Method(crsMock, setAddCbk)).Do([&](auto&& fn) { addLineCbk = fn; });
@@ -87,10 +96,18 @@ TEST_CASE("Add and remove frame test", "[canrawsender]")
     CanRawSender canRawSender{ CanRawSenderCtx(&crsMock.get(), &nlmFactoryMock.get()) };
 
     CHECK(canRawSender.getLineCount() == 0);
+
     addLineCbk();
-    CHECK(canRawSender.getLineCount() == 1);
+    addLineCbk();
+    CHECK(canRawSender.getLineCount() == 2);
+
+    canRawSender.stopSimulation();
+    canRawSender.startSimulation();
+
     removeLineCbk();
-    CHECK(canRawSender.getLineCount() == 0);
+    CHECK(canRawSender.getLineCount() == 1);
+
+    sendPressed();
 }
 
 TEST_CASE("Can raw sender save configuration test", "[canrawsender]")
@@ -310,4 +327,232 @@ TEST_CASE("Can raw sender restore configuration test - Interval incorrect", "[ca
     canRawSender.setConfig(jsonObject);
     // If configuration is corrected create new line - check it
     CHECK(canRawSender.getLineCount() == 0);
+}
+
+TEST_CASE("Misc", "[canrawsender]")
+{
+    CanRawSender canRawSender;
+
+    CHECK(canRawSender.mainWidgetDocked() == true);
+    CHECK(canRawSender.mainWidget() != nullptr);
+}
+
+TEST_CASE("setConfig using QObject", "[canrawsender]")
+{
+    CanRawSender crs;
+    QObject config;
+
+    config.setProperty("name", "CAN1");
+    config.setProperty("fake", "unsupported");
+
+    crs.setConfig(config);
+
+    auto qConfig = crs.getQConfig();
+
+    CHECK(qConfig->property("name").toString() == "CAN1");
+    CHECK(qConfig->property("fake").isValid() == false);
+}
+
+TEST_CASE("Restore config paths - columnAdopt", "[canrawsender]")
+{
+    CanRawSender canRawSender;
+    QJsonObject json;
+    QJsonArray columnArray;
+    QJsonObject columnItem;
+
+    // No senderColumns
+    canRawSender.setConfig(json);
+
+    // senderColumns is not an array
+    json["senderColumns"] = "";
+    canRawSender.setConfig(json);
+
+    // Array size != 5
+    columnItem["dummy"] = 123;
+    columnArray.append(columnItem);
+    json["senderColumns"] = columnArray;
+    canRawSender.setConfig(json);
+
+    // No Id column
+    columnArray = QJsonArray();
+    columnArray.append({ "Idd" });
+    columnArray.append({ "Idd" });
+    columnArray.append({ "Idd" });
+    columnArray.append({ "Idd" });
+    columnArray.append({ "Idd" });
+    json["senderColumns"] = columnArray;
+    canRawSender.setConfig(json);
+
+    // No Data column
+    columnArray = QJsonArray();
+    columnArray.append({ "Id" });
+    columnArray.append({ "Idd" });
+    columnArray.append({ "Idd" });
+    columnArray.append({ "Idd" });
+    columnArray.append({ "Idd" });
+    json["senderColumns"] = columnArray;
+    canRawSender.setConfig(json);
+
+    // No Loop column
+    columnArray = QJsonArray();
+    columnArray.append({ "Id" });
+    columnArray.append({ "Data" });
+    columnArray.append({ "Idd" });
+    columnArray.append({ "Idd" });
+    columnArray.append({ "Idd" });
+    json["senderColumns"] = columnArray;
+    canRawSender.setConfig(json);
+
+    // No Interval column
+    columnArray = QJsonArray();
+    columnArray.append({ "Id" });
+    columnArray.append({ "Data" });
+    columnArray.append({ "Loop" });
+    columnArray.append({ "Idd" });
+    columnArray.append({ "Idd" });
+    json["senderColumns"] = columnArray;
+    canRawSender.setConfig(json);
+
+    // Validation complete
+    columnArray = QJsonArray();
+    columnArray.append({ "Id" });
+    columnArray.append({ "Data" });
+    columnArray.append({ "Loop" });
+    columnArray.append({ "Interval" });
+    columnArray.append({ "Idd" });
+    json["senderColumns"] = columnArray;
+    canRawSender.setConfig(json);
+}
+
+TEST_CASE("Restore config paths - contentAdopt", "[canrawsender]")
+{
+    CanRawSender canRawSender;
+    QJsonObject json;
+    QJsonArray columnArray;
+    QJsonObject columnItem;
+    QJsonArray contentArray;
+
+    // contentAdopt Validation complete
+    columnArray = QJsonArray();
+    columnArray.append({ "Id" });
+    columnArray.append({ "Data" });
+    columnArray.append({ "Loop" });
+    columnArray.append({ "Interval" });
+    columnArray.append({ "Idd" });
+    json["senderColumns"] = columnArray;
+
+    // content is not array
+    json["content"] = "";
+    canRawSender.setConfig(json);
+
+    // no Data Id Interval Loop and Send fields
+    contentArray = QJsonArray();
+    contentArray.append({ "dummy" });
+    json["content"] = contentArray;
+    canRawSender.setConfig(json);
+
+    // Data has wrong type
+    contentArray = QJsonArray();
+    contentArray.append(QJsonObject({ { "data", true } }));
+    json["content"] = contentArray;
+    canRawSender.setConfig(json);
+
+    // Id has wrong type
+    contentArray = QJsonArray();
+    contentArray.append(QJsonObject({ { "id", true } }));
+    json["content"] = contentArray;
+    canRawSender.setConfig(json);
+
+    // interval has wrong type
+    contentArray = QJsonArray();
+    contentArray.append(QJsonObject({ { "interval", true } }));
+    json["content"] = contentArray;
+    canRawSender.setConfig(json);
+
+    // loop has wrong type
+    contentArray = QJsonArray();
+    contentArray.append(QJsonObject({ { "loop", "aa" } }));
+    json["content"] = contentArray;
+    canRawSender.setConfig(json);
+
+    // loop has wrong type
+    contentArray = QJsonArray();
+    contentArray.append(QJsonObject({ { "send", "aa" } }));
+    json["content"] = contentArray;
+    canRawSender.setConfig(json);
+}
+
+TEST_CASE("Restore config paths - sortingAdopt", "[canrawsender]")
+{
+    CanRawSender canRawSender;
+    QJsonObject json;
+    QJsonArray columnArray;
+    QJsonObject columnItem;
+    QJsonArray contentArray;
+
+    // contentAdopt Validation complete
+    columnArray = QJsonArray();
+    columnArray.append({ "Id" });
+    columnArray.append({ "Data" });
+    columnArray.append({ "Loop" });
+    columnArray.append({ "Interval" });
+    columnArray.append({ "Idd" });
+    json["senderColumns"] = columnArray;
+    contentArray = QJsonArray();
+    contentArray.append({ "dummy" });
+    json["content"] = contentArray;
+    canRawSender.setConfig(json);
+
+    // sorting is not an Object
+    json["sorting"] = "";
+    canRawSender.setConfig(json);
+
+    // sorting is Object size != 1
+    json["sorting"] = QJsonObject({ { "a", "b" }, { "c", "d" } });
+    canRawSender.setConfig(json);
+
+    // no currentIndex
+    json["sorting"] = QJsonObject({ { "a", "b" } });
+    canRawSender.setConfig(json);
+
+    // currentIndex is not a number
+    json["sorting"] = QJsonObject({ { "currentIndex", "b" } });
+    canRawSender.setConfig(json);
+
+    // All good!
+    json["sorting"] = QJsonObject({ { "currentIndex", 12 } });
+    canRawSender.setConfig(json);
+}
+
+TEST_CASE("Dock/Undock", "[canrawsender]")
+{
+    CRSGuiInterface::dockUndock_t dockUndock;
+
+    Mock<CRSGuiInterface> crsMock;
+    Fake(Dtor(crsMock));
+    Fake(Method(crsMock, setAddCbk));
+    Fake(Method(crsMock, setRemoveCbk));
+    When(Method(crsMock, setDockUndockCbk)).Do([&](auto&& fn) { dockUndock = fn; });
+    Fake(Method(crsMock, mainWidget));
+    Fake(Method(crsMock, initTableView));
+    Fake(Method(crsMock, getSelectedRows));
+    Fake(Method(crsMock, setIndexWidget));
+
+    Mock<NLMFactoryInterface> nlmFactoryMock;
+    Fake(Dtor(nlmFactoryMock));
+
+    CanRawSender canRawSender{ CanRawSenderCtx(&crsMock.get(), &nlmFactoryMock.get()) };
+    QSignalSpy dockSpy(&canRawSender, &CanRawSender::mainWidgetDockToggled);
+
+    CHECK(canRawSender.mainWidgetDocked() == true);
+
+    dockUndock();
+
+    CHECK(dockSpy.count() == 1);
+    CHECK(canRawSender.mainWidgetDocked() == false);
+
+    dockUndock();
+
+    CHECK(dockSpy.count() == 2);
+    CHECK(canRawSender.mainWidgetDocked() == true);
 }
