@@ -7,6 +7,8 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 14)
+#libnodes.so will be installed to CANdevStudio dir to not override other installations. Set RPATH accordingly
+SET(CMAKE_INSTALL_RPATH ${CMAKE_INSTALL_PREFIX}/lib/CANdevStudio)
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/Modules)
 
@@ -79,8 +81,8 @@ configure_file(
 include_directories(${CMAKE_BINARY_DIR}/generated)
 # end of version Handling
 
-add_subdirectory(3rdParty/spdlog)
 add_subdirectory(3rdParty/nodeeditor)
+add_subdirectory(3rdParty/qtCannelloniCanBus)
 add_subdirectory(src/common)
 add_subdirectory(src/gui)
 add_subdirectory(src/components)
@@ -90,3 +92,11 @@ if(WITH_TESTS OR WITH_COVERAGE)
     add_subdirectory(3rdParty/fakeit)
     add_subdirectory(tests)
 endif()
+
+install(PROGRAMS ${CMAKE_BINARY_DIR}/lib/libnodes.so DESTINATION lib/CANdevStudio)
+
+list(GET Qt5SerialBus_PLUGINS 0 SB_PLUGIN)
+get_target_property(CAN_PLUGIN_PATH ${SB_PLUGIN} LOCATION)
+get_filename_component(CAN_PLUGIN_PATH ${CAN_PLUGIN_PATH} PATH)
+
+install(PROGRAMS ${CMAKE_BINARY_DIR}/3rdParty/qtCannelloniCanBus/libqtCannelloniCanBusPlugin.so DESTINATION ${CAN_PLUGIN_PATH})

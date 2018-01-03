@@ -10,3 +10,6 @@
 [submodule "3rdParty/rapidjson"]
 	path = 3rdParty/rapidjson
 	url = https://github.com/Tencent/rapidjson.git
+[submodule "3rdParty/qtCannelloniCanBus"]
+	path = 3rdParty/qtCannelloniCanBus
+	url = https://github.com/tuvok/qtCannelloniCanBus.git
