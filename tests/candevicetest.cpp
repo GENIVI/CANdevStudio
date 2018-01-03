@@ -69,6 +69,8 @@ TEST_CASE("Initialization succedded", "[candevice]")
 
     // clearCallbacks
     CHECK(canDevice.init() == true);
+
+    Verify(Method(deviceMock, clearCallbacks)).Exactly(Once);
 }
 
 TEST_CASE("Start failed", "[candevice]")
@@ -94,16 +96,30 @@ TEST_CASE("Start failed - could not connect to device", "[candevice]")
     Mock<CanDeviceInterface> deviceMock;
 
     Fake(Dtor(deviceMock));
-    When(Method(deviceMock, setFramesWrittenCbk)).Do([](const auto& cb) { cb(100); });
+    Fake(Method(deviceMock, setFramesWrittenCbk));
     Fake(Method(deviceMock, setFramesReceivedCbk));
     Fake(Method(deviceMock, setErrorOccurredCbk));
-    When(Method(deviceMock, init)).Return(true);
-    When(Method(deviceMock, connectDevice)).Return(false);
+    Fake(Method(deviceMock, clearCallbacks));
+    When(Method(deviceMock, init)).Return(true, true, true, false);
+    When(Method(deviceMock, connectDevice)).Return(false, true, false, false);
 
     CanDevice canDevice{ CanDeviceCtx(&deviceMock.get()) };
     setupBackendInterface(canDevice);
     CHECK(canDevice.init() == true);
+
     REQUIRE_NOTHROW(canDevice.startSimulation());
+    // startSimulation will try to reconnect
+    Verify(Method(deviceMock, init)).Exactly(2);
+    Verify(Method(deviceMock, connectDevice)).Exactly(2);
+
+    REQUIRE_NOTHROW(canDevice.startSimulation());
+    Verify(Method(deviceMock, init)).Exactly(3);
+    Verify(Method(deviceMock, connectDevice)).Exactly(4);
+
+    CHECK(canDevice.init() == false);
+    REQUIRE_NOTHROW(canDevice.startSimulation());
+    Verify(Method(deviceMock, init)).Exactly(4);
+    Verify(Method(deviceMock, connectDevice)).Exactly(4);
 }
 
 TEST_CASE("Start succeeded", "[candevice]")
