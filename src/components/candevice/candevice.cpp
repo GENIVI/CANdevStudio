@@ -26,7 +26,7 @@ bool CanDevice::init()
     const auto& iface = d->_interfaceProperty;
 
     // check if required properties are set. They always exists as are initialized in constructor
-    if((props.at(backend).toString().length() == 0) || (props.at(iface).toString().length() == 0)) {
+    if ((props.at(backend).toString().length() == 0) || (props.at(iface).toString().length() == 0)) {
         return d->_initialized;
     }
 
@@ -91,7 +91,7 @@ void CanDevice::framesWritten(qint64 cnt)
 {
     Q_D(CanDevice);
 
-    while(cnt--) {
+    while (cnt--) {
         if (!d->_sendQueue.isEmpty()) {
             auto sendItem = d->_sendQueue.takeFirst();
             emit frameSent(true, sendItem);
@@ -154,7 +154,20 @@ void CanDevice::startSimulation()
     }
 
     if (!d->_canDevice.connectDevice()) {
-        cds_error("Failed to connect device");
+        cds_error("Failed to connect device. Trying to init the device again...");
+
+        // Cannelloni plugin fails to reconnect after initial disconnection.
+        // This workaround reinit the device before reconnection
+        // TODO: Findout why cannelloni plugin fails.
+        if (init()) {
+            cds_info("Re-init successful");
+
+            if (!d->_canDevice.connectDevice()) {
+                cds_error("Failed to re-connect device");
+            } else {
+                cds_info("Re-connection successful");
+            }
+        }
     }
 
     d->_sendQueue.clear();
