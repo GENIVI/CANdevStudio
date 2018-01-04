@@ -82,10 +82,10 @@ include_directories(${CMAKE_BINARY_DIR}/generated)
 # end of version Handling
 
 add_subdirectory(3rdParty/nodeeditor)
-add_subdirectory(3rdParty/qtCannelloniCanBus)
 add_subdirectory(src/common)
 add_subdirectory(src/gui)
 add_subdirectory(src/components)
+
 
 if(WITH_TESTS OR WITH_COVERAGE)
     enable_testing()
@@ -95,8 +95,13 @@ endif()
 
 install(PROGRAMS ${CMAKE_BINARY_DIR}/lib/libnodes.so DESTINATION lib/CANdevStudio)
 
-list(GET Qt5SerialBus_PLUGINS 0 SB_PLUGIN)
-get_target_property(CAN_PLUGIN_PATH ${SB_PLUGIN} LOCATION)
-get_filename_component(CAN_PLUGIN_PATH ${CAN_PLUGIN_PATH} PATH)
+#Cannelloni is supported on Linux only
+if(UNIX)
+    add_subdirectory(3rdParty/qtCannelloniCanBus)
 
-install(PROGRAMS ${CMAKE_BINARY_DIR}/3rdParty/qtCannelloniCanBus/libqtCannelloniCanBusPlugin.so DESTINATION ${CAN_PLUGIN_PATH})
+    list(GET Qt5SerialBus_PLUGINS 0 SB_PLUGIN)
+    get_target_property(CAN_PLUGIN_PATH ${SB_PLUGIN} LOCATION)
+    get_filename_component(CAN_PLUGIN_PATH ${CAN_PLUGIN_PATH} PATH)
+
+    install(PROGRAMS ${CMAKE_BINARY_DIR}/3rdParty/qtCannelloniCanBus/libqtCannelloniCanBusPlugin.so DESTINATION ${CAN_PLUGIN_PATH})
+endif()
