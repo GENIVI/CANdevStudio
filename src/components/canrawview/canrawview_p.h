@@ -11,6 +11,10 @@
 #include <log.h>
 #include <memory>
 
+namespace {
+    const int32_t rowCountMax = 2000;
+}
+
 class CanRawViewPrivate : public QObject {
     Q_OBJECT
     Q_DECLARE_PUBLIC(CanRawView)
@@ -63,6 +67,10 @@ public:
         // insert space between bytes, skip the end
         for (int ii = payHex.size() - 2; ii >= 2; ii -= 2) {
             payHex.insert(ii, ' ');
+        }
+
+        if(rowCountMax < _tvModel.rowCount()) {
+            _tvModel.removeRow(0);
         }
 
         QList<QStandardItem*> list;
