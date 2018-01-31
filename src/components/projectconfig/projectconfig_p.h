@@ -30,6 +30,8 @@ public:
         , _ui(std::make_unique<Ui::ProjectConfigPrivate>())
         , q_ptr(q)
     {
+        qRegisterMetaType<PortIndex>("PortIndex");    
+
         auto& modelRegistry = _graphScene.registry();
         modelRegistry.registerModel<CanDeviceModel>();
         modelRegistry.registerModel<CanRawSenderModel>();

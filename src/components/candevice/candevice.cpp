@@ -6,12 +6,12 @@
 #include <iostream>
 
 CanDevice::CanDevice()
-    : d_ptr(new CanDevicePrivate())
+    : d_ptr(new CanDevicePrivate(this))
 {
 }
 
 CanDevice::CanDevice(CanDeviceCtx&& ctx)
-    : d_ptr(new CanDevicePrivate(std::move(ctx)))
+    : d_ptr(new CanDevicePrivate(this, std::move(ctx)))
 {
 }
 

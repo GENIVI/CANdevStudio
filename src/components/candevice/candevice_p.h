@@ -1,6 +1,7 @@
 #ifndef __CANDEVICE_P_H
 #define __CANDEVICE_P_H
 
+#include "candevice.h"
 #include "candeviceqt.h"
 #include <QJsonArray>
 #include <QJsonObject>
@@ -10,12 +11,16 @@
 #include <QJsonDocument>
 
 class CanDevicePrivate {
+    Q_DECLARE_PUBLIC(CanDevice)
+
 public:
-    CanDevicePrivate(CanDeviceCtx&& ctx = CanDeviceCtx(new CanDeviceQt))
+    CanDevicePrivate(CanDevice *q, CanDeviceCtx&& ctx = CanDeviceCtx(new CanDeviceQt()))
         : _ctx(std::move(ctx))
         , _canDevice(_ctx.get<CanDeviceInterface>())
+        , q_ptr(q)
     {
         initProps();
+        _canDevice.setParent(q);
     }
 
     void saveSettings(QJsonObject& json)
@@ -64,6 +69,8 @@ private:
             _props[p.first];
         }
     }
+
+    CanDevice *q_ptr;
 
 };
 
