@@ -12,7 +12,7 @@
 #include <memory>
 
 namespace {
-    const int32_t rowCountMax = 2000;
+    const int32_t rowCountMax = 1000;
 }
 
 class CanRawViewPrivate : public QObject {
@@ -32,8 +32,9 @@ public:
         _tvModel.setHorizontalHeaderLabels(_columnsOrder);
 
         _ui.initTableView(_tvModel);
-        _uniqueModel.setSourceModel(&_tvModel);
-        _ui.setModel(&_uniqueModel);
+        //_uniqueModel.setSourceModel(&_tvModel);
+        _ui.setModel(&_tvModel);
+        _tvModel.setParent(q);
 
         _ui.setClearCbk(std::bind(&CanRawViewPrivate::clear, this));
         _ui.setSectionClikedCbk(std::bind(&CanRawViewPrivate::sort, this, std::placeholders::_1));
