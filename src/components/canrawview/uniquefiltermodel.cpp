@@ -10,26 +10,26 @@ UniqueFilterModel::UniqueFilterModel(QObject* parent)
 {
 }
 
-void UniqueFilterModel::updateFilter(QString frameID, QString time, QString direction)
-{
-    QPair<QString, QString> value(frameID, direction);
+//void UniqueFilterModel::updateFilter(QString frameID, QString time, QString direction)
+//{
+    //QPair<QString, QString> value(frameID, direction);
 
-    if ((!_uniques.contains(value)) || (time.toDouble() > _uniques[value].toDouble())) {
-        _uniques[std::move(value)] = time;
-        invalidateFilter();
-    }
-}
+    //if ((!_uniques.contains(value)) || (time.toDouble() > _uniques[value].toDouble())) {
+        //_uniques[std::move(value)] = time;
+        //invalidateFilter();
+    //}
+//}
 
-bool UniqueFilterModel::filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const
-{
-    QString time = sourceModel()->index(sourceRow, 1, sourceParent).data().toString();
-    QString frameID = sourceModel()->index(sourceRow, 2, sourceParent).data().toString();
-    QString direction = sourceModel()->index(sourceRow, 3, sourceParent).data().toString();
+//bool UniqueFilterModel::filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const
+//{
+    //QString time = sourceModel()->index(sourceRow, 1, sourceParent).data().toString();
+    //QString frameID = sourceModel()->index(sourceRow, 2, sourceParent).data().toString();
+    //QString direction = sourceModel()->index(sourceRow, 3, sourceParent).data().toString();
 
-    QPair<QString, QString> value(std::move(frameID), std::move(direction));
+    //QPair<QString, QString> value(std::move(frameID), std::move(direction));
 
-    return ((_uniques[value] == time) || (false == _filterActive));
-}
+    //return ((_uniques[value] == time) || (false == _filterActive));
+//}
 
 bool UniqueFilterModel::lessThan(const QModelIndex& left, const QModelIndex& right) const
 {
@@ -49,17 +49,17 @@ bool UniqueFilterModel::lessThan(const QModelIndex& left, const QModelIndex& rig
     }
 }
 
-void UniqueFilterModel::clearFilter()
-{
-    _uniques.clear();
-}
+//void UniqueFilterModel::clearFilter()
+//{
+    //_uniques.clear();
+//}
 
-void UniqueFilterModel::toggleFilter()
-{
-    _filterActive = !_filterActive;
-    QSortFilterProxyModel::sort(updatedSortNdx(), _currSortOrder);
-    invalidateFilter();
-}
+//void UniqueFilterModel::toggleFilter()
+//{
+    //_filterActive = !_filterActive;
+    //QSortFilterProxyModel::sort(updatedSortNdx(), _currSortOrder);
+    //invalidateFilter();
+//}
 
 int UniqueFilterModel::updatedSortNdx() const
 {
@@ -77,6 +77,11 @@ int UniqueFilterModel::updatedSortNdx() const
 bool UniqueFilterModel::isFilterActive() const
 {
     return _filterActive;
+}
+
+void UniqueFilterModel::setFilterActive(bool enabled)
+{
+    _filterActive = enabled;
 }
 
 void UniqueFilterModel::sort(int column, Qt::SortOrder order)

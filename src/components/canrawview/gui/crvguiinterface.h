@@ -11,7 +11,7 @@ struct CRVGuiInterface {
     typedef std::function<void()> clear_t;
     typedef std::function<void()> dockUndock_t;
     typedef std::function<void(int)> sectionClicked_t;
-    typedef std::function<void()> filter_t;
+    typedef std::function<void(bool)> filter_t;
 
     virtual void setClearCbk(const clear_t& cb) = 0;
     virtual void setDockUndockCbk(const dockUndock_t& cb) = 0;

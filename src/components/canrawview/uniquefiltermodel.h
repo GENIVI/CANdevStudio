@@ -18,20 +18,21 @@ public:
     *   @param  time elapsed time since simulation start
     *   @param  direction TX or RX
     */
-    void updateFilter(QString frameID, QString time, QString direction);
+    //void updateFilter(QString frameID, QString time, QString direction);
 
     /**
     *   @brief  Clears unique values stored in filter
     */
-    void clearFilter();
+    //void clearFilter();
 
     /**
     *   @brief  Indicates whether filter is currently active
     *   @return true if active, false if inactive
     */
+    void setFilterActive(bool enabled);
     bool isFilterActive() const;
 
-    void sort(int column, Qt::SortOrder order = Qt::AscendingOrder);
+    void sort(int column, Qt::SortOrder order = Qt::AscendingOrder) override;
 
 protected:
     /**
@@ -41,7 +42,7 @@ protected:
     *   @param  source_parent QModelIndex pointing at source data model
     *   @return true if row is accepted by filter, false if not
     */
-    bool filterAcceptsRow(int source_row, const QModelIndex& source_parent) const override;
+    //bool filterAcceptsRow(int source_row, const QModelIndex& source_parent) const override;
 
     /**
     *   @brief  Function compares two items while sorting table view
@@ -57,7 +58,7 @@ public slots:
     /**
     *   @brief  Function toggles filter on/off
     */
-    void toggleFilter();
+    //void toggleFilter();
 
 private:
     int updatedSortNdx() const;
