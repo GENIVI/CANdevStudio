@@ -12,7 +12,7 @@
 #include <memory>
 
 namespace {
-const int32_t rowCountMax = 10000;
+const int32_t rowCountMax = 2000;
 }
 
 class CanRawViewPrivate : public QObject {
@@ -83,23 +83,32 @@ public:
             payHex.insert(ii, ' ');
         }
 
-        if (rowCountMax < _tvModel.rowCount()) {
-            _tvModel.removeRow(0);
-        }
-
-        QList<QStandardItem*> list;
-
         QString frameID = QString("0x" + QString::number(frame.frameId(), 16));
         QString time = QString::number((_timer.elapsed() / 1000.0), 'f', 2);
         QString size = QString::number(frame.payload().size());
         QString data = QString::fromUtf8(payHex.data(), payHex.size());
 
-        list.append(new QStandardItem(QString::number(_rowID)));
-        list.append(new QStandardItem(time));
-        list.append(new QStandardItem(frameID));
-        list.append(new QStandardItem(direction));
-        list.append(new QStandardItem(size));
-        list.append(new QStandardItem(data));
+        QList<QStandardItem*> list;
+
+        if (_tvModel.rowCount() < rowCountMax) {
+            list.append(new QStandardItem(QString::number(_rowID)));
+            list.append(new QStandardItem(time));
+            list.append(new QStandardItem(frameID));
+            list.append(new QStandardItem(direction));
+            list.append(new QStandardItem(size));
+            list.append(new QStandardItem(data));
+        } else {
+            list = _tvModel.takeRow(0);
+            auto it = list.begin();
+
+            (*it++)->setText(QString::number(_rowID));
+            (*it++)->setText(time);
+            (*it++)->setText(frameID);
+            (*it++)->setText(direction);
+            (*it++)->setText(size);
+            (*it++)->setText(data);
+        }
+
 
         _tvModel.appendRow(list);
 
@@ -380,6 +389,9 @@ private slots:
         } else {
             _ui.setModel(&_tvModelSort);
         }
+
+        _currentSortOrder = _ui.getSortOrder();
+        _ui.setSorting(_sortIndex, _currentSortOrder);
     }
 
 public:
