@@ -32,14 +32,24 @@ unsigned int CanDeviceModel::nPorts(PortType portType) const
 
 void CanDeviceModel::frameReceived(const QCanBusFrame& frame)
 {
-    _rxQueue.enqueue(std::make_shared<CanDeviceDataOut>(frame, Direction::RX, false));
-    emit dataUpdated(0); // Data ready on port 0
+    bool ret = _rxQueue.try_enqueue(std::make_shared<CanDeviceDataOut>(frame, Direction::RX, false));
+
+    if(ret) {
+        emit dataUpdated(0); // Data ready on port 0
+    } else {
+        cds_warn("Queue full. Frame dropped");
+    } 
 }
 
 void CanDeviceModel::frameSent(bool status, const QCanBusFrame& frame)
 {
-    _rxQueue.enqueue(std::make_shared<CanDeviceDataOut>(frame, Direction::TX, status));
-    emit dataUpdated(0); // Data ready on port
+    bool ret = _rxQueue.enqueue(std::make_shared<CanDeviceDataOut>(frame, Direction::TX, status));
+
+    if(ret) {
+        emit dataUpdated(0); // Data ready on port 0
+    } else {
+        cds_warn("Queue full. Frame dropped");
+    } 
 }
 
 NodeDataType CanDeviceModel::dataType(PortType portType, PortIndex) const
