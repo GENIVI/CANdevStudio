@@ -55,7 +55,6 @@ struct CRVGui : public CRVGuiInterface {
         ui->tv->horizontalHeader()->setSectionsMovable(true);
         ui->tv->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
         ui->tv->setColumnHidden(0, true);
-
     }
 
     virtual bool isViewFrozen() override
@@ -89,14 +88,6 @@ struct CRVGui : public CRVGuiInterface {
     {
         ui->tv->sortByColumn(sortNdx, order);
         ui->tv->horizontalHeader()->setSortIndicator(sortNdx, order);
-
-        if(sortNdx == 0) {
-            cds_info("Sorting disabled");
-            ui->tv->setSortingEnabled(false);
-        } else {
-            cds_info("Sorting enabled");
-            ui->tv->setSortingEnabled(true);
-        }
     }
 
     virtual QString getWindowTitle() override
