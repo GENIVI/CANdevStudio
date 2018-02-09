@@ -152,7 +152,7 @@ public:
                 auto dataEl = new QStandardItem(data);
 
                 _tvModelUnique.appendRow({ rowEl, timeEl, frameEl, dirEl, sizeEl, dataEl });
-                _uniqueTxMap[frame.frameId()] = { rowEl, timeEl, frameEl, dirEl, sizeEl, dataEl };
+                _uniqueTxMap[frame.frameId()] = std::make_tuple(rowEl, timeEl, frameEl, dirEl, sizeEl, dataEl);
             }
         } else {
             cds_warn("Invalid direction string: {}", direction.toStdString());
