@@ -2,7 +2,7 @@
 #define CANRAWVIEW_P_H
 
 #include "gui/crvgui.h"
-#include "uniquefiltermodel.h"
+#include "crvsortmodel.h"
 #include <QtCore/QElapsedTimer>
 #include <QtCore/QJsonArray>
 #include <QtCore/QJsonObject>
@@ -403,8 +403,8 @@ public:
     CRVGuiInterface& _ui;
     bool docked{ true };
     std::map<QString, QVariant> _props;
-    UniqueFilterModel _tvModelSort;
-    UniqueFilterModel _tvModelUniqueSort;
+    CRVSortModel _tvModelSort;
+    CRVSortModel _tvModelUniqueSort;
 
 private:
     int _rowID{ 0 };
