@@ -22,13 +22,17 @@ public:
     void clearGraphView();
     void setColorMode(bool darkMode);
 
+public slots:
+    void simulationStarted();
+    void simulationStopped();
+
 signals:
     void handleDock(QWidget* component);
     void handleWidgetDeletion(QWidget* widget);
     void handleWidgetShowing(QWidget* widget, bool docked);
-    void componentWidgetCreated(QWidget* component);
     void stopSimulation();
     void startSimulation();
+    void componentWidgetCreated(QWidget* component);
     void closeProject();
 
 private:

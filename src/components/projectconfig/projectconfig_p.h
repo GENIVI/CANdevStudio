@@ -4,20 +4,16 @@
 #include "canrawsendermodel.h"
 #include "canrawviewmodel.h"
 #include "flowviewwrapper.h"
-#include "iconlabel.h"
 #include "modeltoolbutton.h"
 #include "ui_projectconfig.h"
-#include <QCanBusFrame>
 #include <QMenu>
 #include <QtWidgets/QPushButton>
-#include <candevicemodel.h>
 #include <log.h>
 #include <modelvisitor.h> // apply_model_visitor
 #include <nodes/Node>
+#include <candevicemodel.h>
 #include <propertyeditordialog.h>
-
-Q_DECLARE_METATYPE(PortIndex);
-Q_DECLARE_METATYPE(QCanBusFrame);
+#include "iconlabel.h"
 
 namespace Ui {
 class ProjectConfigPrivate;
@@ -34,9 +30,6 @@ public:
         , _ui(std::make_unique<Ui::ProjectConfigPrivate>())
         , q_ptr(q)
     {
-        qRegisterMetaType<QCanBusFrame>("QCanBusFrame");
-        qRegisterMetaType<PortIndex>("PortIndex");
-
         auto& modelRegistry = _graphScene.registry();
         modelRegistry.registerModel<CanDeviceModel>();
         modelRegistry.registerModel<CanRawSenderModel>();
@@ -62,26 +55,25 @@ public:
     {
         QColor bgColor;
 
-        if (_darkMode) {
+        if(_darkMode) {
             bgColor = QColor(94, 94, 94);
         } else {
             bgColor = QColor(255, 255, 255);
         }
 
-        QLayoutItem* item;
-        while ((item = _ui->deviceWidget->layout()->takeAt(0)) != nullptr) {
+        QLayoutItem *item;
+        while ((item = _ui->deviceWidget->layout()->takeAt(0)) != nullptr)
+        {
             delete item;
         }
-        while ((item = _ui->rawWidget->layout()->takeAt(0)) != nullptr) {
+        while ((item = _ui->rawWidget->layout()->takeAt(0)) != nullptr)
+        {
             delete item;
         }
 
-        _ui->deviceWidget->layout()->addWidget(
-            new IconLabel("CanDevice", CanDeviceModel::headerColor1(), CanDeviceModel::headerColor2(), bgColor));
-        _ui->rawWidget->layout()->addWidget(new IconLabel(
-            "CanRawSender", CanRawSenderModel::headerColor1(), CanRawSenderModel::headerColor2(), bgColor));
-        _ui->rawWidget->layout()->addWidget(
-            new IconLabel("CanRawView", CanRawViewModel::headerColor1(), CanRawViewModel::headerColor2(), bgColor));
+        _ui->deviceWidget->layout()->addWidget(new IconLabel("CanDevice", CanDeviceModel::headerColor1(), CanDeviceModel::headerColor2(), bgColor));
+        _ui->rawWidget->layout()->addWidget(new IconLabel("CanRawSender", CanRawSenderModel::headerColor1(), CanRawSenderModel::headerColor2(), bgColor));
+        _ui->rawWidget->layout()->addWidget(new IconLabel("CanRawView", CanRawViewModel::headerColor1(), CanRawViewModel::headerColor2(), bgColor));
     }
 
     ~ProjectConfigPrivate() {}
@@ -106,22 +98,16 @@ public:
         Q_Q(ProjectConfig);
 
         auto& iface = getComponentModel(node);
+        iface.handleModelCreation(q);
+        iface.setColorMode(_darkMode);
 
         if (!iface.restored()) {
             iface.setCaption(node.nodeDataModel()->caption() + " #" + QString::number(_nodeCnt));
-        }
-        // For some reason QWidget title is being set to name instead of caption.
-        // TODO: investigate why
-        iface.setCaption(node.nodeDataModel()->caption());
-
-        if (iface.hasSeparateThread()) {
-            // Thread will be deleted during node deletion
-            iface.handleModelCreation(q, new QThread());
         } else {
-            iface.handleModelCreation(q);
+            // For some reason QWidget title is being set to name instead of caption. 
+            // TODO: investigate why
+            iface.setCaption(node.nodeDataModel()->caption());
         }
-
-        iface.setColorMode(_darkMode);
 
         node.nodeGraphicsObject().setOpacity(node.nodeDataModel()->nodeStyle().Opacity);
         addShadow(node);
@@ -133,17 +119,7 @@ public:
     void nodeDeletedCallback(QtNodes::Node& node)
     {
         Q_Q(ProjectConfig);
-
-        auto& iface = getComponentModel(node);
         auto& component = getComponent(node);
-
-        if (iface.hasSeparateThread()) {
-            cds_info("Node was running in separate thread. It will be closed now");
-            auto th = node.nodeDataModel()->thread();
-            th->exit();
-            th->wait();
-            delete th;
-        }
 
         emit q->handleWidgetDeletion(component.mainWidget());
     }
@@ -155,7 +131,9 @@ public:
         if (component.mainWidget() != nullptr) {
             openWidget(node);
         } else {
-            openProperties(node);
+            if(!_simStarted) {
+                openProperties(node);
+            }
         }
     }
 
@@ -169,6 +147,10 @@ public:
 
         QAction actionProperties("Properties", this);
         connect(&actionProperties, &QAction::triggered, [this, &node]() { openProperties(node); });
+
+        if(_simStarted) {
+            actionProperties.setDisabled(true);
+        }
 
         QAction actionDelete("Delete", this);
         connect(&actionDelete, &QAction::triggered, [this, &node]() { _graphScene.removeNode(node); });
@@ -194,8 +176,8 @@ public:
     {
         _darkMode = darkMode;
 
-        _graphScene.iterateOverNodes([this](QtNodes::Node* node) {
-            auto& iface = getComponentModel(*node);
+        _graphScene.iterateOverNodes([this](QtNodes::Node* node){
+            auto &iface = getComponentModel(*node);
             iface.setColorMode(_darkMode);
             node->nodeGraphicsObject().update();
             addShadow(*node);
@@ -203,13 +185,6 @@ public:
     }
 
 private:
-    QtNodes::FlowScene _graphScene;
-    FlowViewWrapper* _graphView;
-    std::unique_ptr<Ui::ProjectConfigPrivate> _ui;
-    int _nodeCnt = 1;
-    ProjectConfig* q_ptr;
-    bool _darkMode;
-
     void openWidget(QtNodes::Node& node)
     {
         Q_Q(ProjectConfig);
@@ -226,10 +201,10 @@ private:
 
         PropertyEditorDialog e(node.nodeDataModel()->name() + " properties", *conf.get());
         if (e.exec() == QDialog::Accepted) {
+            auto& iface = getComponentModel(node);
             conf = e.properties();
             auto nodeCaption = conf->property("name");
             if (nodeCaption.isValid()) {
-                auto& iface = getComponentModel(node);
                 iface.setCaption(nodeCaption.toString());
                 node.nodeGraphicsObject().update();
             }
@@ -241,7 +216,7 @@ private:
 
     ComponentInterface& getComponent(QtNodes::Node& node)
     {
-        auto& iface = getComponentModel(node);
+        auto &iface = getComponentModel(node);
         auto& component = iface.getComponent();
         return component;
     }
@@ -257,7 +232,7 @@ private:
 
     void addShadow(QtNodes::Node& node)
     {
-        auto const& nodeStyle = node.nodeDataModel()->nodeStyle();
+        auto const &nodeStyle = node.nodeDataModel()->nodeStyle();
         auto effect = new QGraphicsDropShadowEffect;
 
         effect->setOffset(4, 4);
@@ -265,5 +240,17 @@ private:
         effect->setColor(nodeStyle.ShadowColor);
         node.nodeGraphicsObject().setGraphicsEffect(effect);
     }
+
+public:
+    bool _simStarted{ false };
+
+private:
+    QtNodes::FlowScene _graphScene;
+    FlowViewWrapper* _graphView;
+    std::unique_ptr<Ui::ProjectConfigPrivate> _ui;
+    int _nodeCnt = 1;
+    ProjectConfig* q_ptr;
+    bool _darkMode;
+
 };
 #endif // PROJECTCONFIG_P_H

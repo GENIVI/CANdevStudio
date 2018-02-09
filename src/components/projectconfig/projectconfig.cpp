@@ -53,3 +53,18 @@ void ProjectConfig::setColorMode(bool darkMode)
     d->updateNodeStyle(darkMode);
     d->addModelIcons();
 }
+
+void ProjectConfig::simulationStarted()
+{
+    emit startSimulation();
+
+    d_ptr->_simStarted = true;
+}
+
+void ProjectConfig::simulationStopped()
+{
+    emit stopSimulation();
+
+    d_ptr->_simStarted = false;
+}
+
