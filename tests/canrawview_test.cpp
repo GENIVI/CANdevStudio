@@ -15,7 +15,7 @@
 #define private public
 #include <canrawview.h>
 #include <gui/crvguiinterface.h>
-#include <uniquefiltermodel.h>
+#include <crvsortmodel.h>
 #undef private
 
 #include <iostream>
@@ -27,7 +27,7 @@ using namespace fakeit;
 class CanRawViewPrivate;
 
 void addNewFrame(
-    uint& rowID, double time, uint frameID, uint data, QStandardItemModel& tvModel, UniqueFilterModel& uniqueModel)
+    uint& rowID, double time, uint frameID, uint data, QStandardItemModel& tvModel)
 {
     QList<QStandardItem*> list;
 
@@ -39,9 +39,6 @@ void addNewFrame(
     list.append(new QStandardItem(QString::number(data)));
 
     tvModel.appendRow(list);
-
-    //_ui.setSorting(_sortIndex, _ui.getSortOrder());
-    uniqueModel.updateFilter(QString::number(frameID), QString::number(time), "TX");
 }
 
 TEST_CASE("Initialize table", "[canrawview]")
@@ -83,68 +80,29 @@ TEST_CASE("Initialize table", "[canrawview]")
     REQUIRE_NOTHROW(canRawView.frameReceived(frame));
 }
 
-TEST_CASE("Unique filter test", "[canrawview]")
-{
-    QStandardItemModel _tvModel;
-    UniqueFilterModel _uniqueModel;
-    QTableView _tableView;
-    uint rowID = 0;
-
-    _uniqueModel.setSourceModel(&_tvModel);
-    _tableView.setModel(&_uniqueModel);
-
-    QCanBusFrame testFrame;
-    testFrame.setFrameId(123);
-
-    // rowID, time, frameID, data
-    addNewFrame(rowID, 0.20, 1, 0, _tvModel, _uniqueModel);
-    addNewFrame(rowID, 0.40, 2, 0, _tvModel, _uniqueModel);
-    addNewFrame(rowID, 0.60, 3, 0, _tvModel, _uniqueModel);
-    addNewFrame(rowID, 0.80, 2, 20, _tvModel, _uniqueModel); // duplicate frameID 2
-    addNewFrame(rowID, 1.00, 1, 10, _tvModel, _uniqueModel); // duplicate frameID 1
-
-    CHECK(_tvModel.rowCount() == 5);
-    CHECK(_uniqueModel.isFilterActive() == false);
-    _uniqueModel.toggleFilter();
-    CHECK(_uniqueModel.isFilterActive() == true);
-    CHECK(_uniqueModel._uniques.size() == 3);
-
-    _uniqueModel.clearFilter();
-    CHECK(_uniqueModel._uniques.size() == 0);
-    CHECK(_tvModel.rowCount() == 5);
-
-    QModelIndex rowIDidx_0 = _tvModel.index(0, 0);
-    QModelIndex rowIDidx_1 = _tvModel.index(1, 0);
-    uint rowID_0 = _tvModel.data(rowIDidx_0).toUInt();
-    uint rowID_1 = _tvModel.data(rowIDidx_1).toUInt();
-    CHECK(rowID_0 == rowID_1 - 1);
-}
-
 TEST_CASE("Sort test", "[canrawview]")
 {
     QStandardItemModel _tvModel;
-    UniqueFilterModel _uniqueModel;
+    CRVSortModel _sortModel;
     QTableView _tableView;
     uint rowID = 0;
 
-    _uniqueModel.setSourceModel(&_tvModel);
-    _tableView.setModel(&_uniqueModel);
+    _sortModel.setSourceModel(&_tvModel);
+    _tableView.setModel(&_sortModel);
 
     // rowID, time, frameID, data//
-    addNewFrame(rowID, 0.20, 10, 1, _tvModel, _uniqueModel);
-    addNewFrame(rowID, 1.00, 1, 110, _tvModel, _uniqueModel);
-    addNewFrame(rowID, 10.00, 101, 1000, _tvModel, _uniqueModel);
-    addNewFrame(rowID, 11.00, 11, 11, _tvModel, _uniqueModel);
-
-    _uniqueModel.toggleFilter();
+    addNewFrame(rowID, 0.20, 10, 1, _tvModel);
+    addNewFrame(rowID, 1.00, 1, 110, _tvModel);
+    addNewFrame(rowID, 10.00, 101, 1000, _tvModel);
+    addNewFrame(rowID, 11.00, 11, 11, _tvModel);
 
     for (int i = 0; i < 4; ++i) {
-        _uniqueModel.sort(i, Qt::AscendingOrder);
-        _uniqueModel.sort(i, Qt::DescendingOrder);
+        _sortModel.sort(i, Qt::AscendingOrder);
+        _sortModel.sort(i, Qt::DescendingOrder);
     }
 
     CHECK(_tvModel.rowCount() == 4);
-    CHECK(_uniqueModel.isFilterActive() == true);
+    CHECK(_sortModel.isFilterActive() == false);
     // TODO spy sectionClicked signal...
 }
 
@@ -378,5 +336,5 @@ TEST_CASE("Filter callback", "[canrawview]")
 
     CanRawView canRawView{ CanRawViewCtx(&crvMock.get()) };
 
-    filter();
+    filter(true);
 }
