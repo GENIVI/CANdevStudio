@@ -53,8 +53,10 @@ struct CanDeviceQt : public CanDeviceInterface {
             return false;
         }
 
-        _device->moveToThread(_parent->thread());
-        _device->setParent(_parent);
+        if(_parent && _parent->thread()) {
+            _device->moveToThread(_parent->thread());
+            _device->setParent(_parent);
+        }
 
         return true;
     }
@@ -122,7 +124,7 @@ struct CanDeviceQt : public CanDeviceInterface {
 
 private:
     QCanBusDevice* _device{nullptr};
-    QObject* _parent;
+    QObject* _parent{nullptr};
 };
 
 #endif /* end of include guard: CANDEVICEQT_H_JYBV8GIQ */
