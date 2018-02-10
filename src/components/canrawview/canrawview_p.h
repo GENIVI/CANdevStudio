@@ -131,7 +131,7 @@ public:
                 auto dataEl = new QStandardItem(data);
 
                 _tvModelUnique.appendRow({ rowEl, timeEl, frameEl, dirEl, sizeEl, dataEl });
-                _uniqueRxMap[frame.frameId()] = { rowEl, timeEl, frameEl, dirEl, sizeEl, dataEl };
+                _uniqueRxMap[frame.frameId()] = std::make_tuple(rowEl, timeEl, frameEl, dirEl, sizeEl, dataEl);
             }
         } else if (direction == "TX") {
             if (_uniqueTxMap.count(frame.frameId())) {
