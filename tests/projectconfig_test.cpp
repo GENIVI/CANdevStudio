@@ -9,7 +9,9 @@
 #include <QDir>
 #include <QSignalSpy>
 #include <QCloseEvent>
+#include <QMenu>
 #include <candevicemodel.h>
+#include <canrawviewmodel.h>
 #include <nodes/FlowScene>
 
 std::shared_ptr<spdlog::logger> kDefaultLogger;
@@ -119,12 +121,29 @@ TEST_CASE("callbacks test", "[projectconfig]")
     When(Method(pcMock, setNodeDeletedCallback)).Do([&](auto, auto&& fn) { nodeDeleted = fn; });
     When(Method(pcMock, setNodeDoubleClickedCallback)).Do([&](auto, auto&& fn) { nodeClicked = fn; });
     When(Method(pcMock, setNodeContextMenuCallback)).Do([&](auto, auto&& fn) { nodeMenu = fn; });
+    Fake(Method(pcMock, showContextMenu));
+    Fake(Method(pcMock, openProperties));
 
     ProjectConfig pc(nullptr, ProjectConfigCtx(&pcMock.get()));
+    pc.simulationStarted();
 
     auto &node = fs->createNode(std::make_unique<CanDeviceModel>());
-    //nodeMenu(node, QPointF());
+    nodeClicked(node);
+    nodeMenu(node, QPointF());
+
+    QSignalSpy showingSpy(&pc, &ProjectConfig::handleWidgetShowing);
+    auto &node2 = fs->createNode(std::make_unique<CanRawViewModel>());
+    nodeClicked(node2);
+    nodeMenu(node2, QPointF());
+    CHECK(showingSpy.count() == 1);
+
+    nodeClicked(node);
+    nodeMenu(node, QPointF());
+    nodeClicked(node2);
+    nodeMenu(node2, QPointF());
+
     fs->removeNode(node);
+    fs->removeNode(node2);
 }
 
 int main(int argc, char* argv[]){

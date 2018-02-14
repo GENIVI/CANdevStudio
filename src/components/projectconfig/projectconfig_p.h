@@ -152,7 +152,7 @@ public:
             openWidget(node);
         } else {
             if (!_simStarted) {
-                openProperties(node);
+                _pcInt.openProperties(node);
             }
         }
     }
@@ -168,7 +168,7 @@ public:
         connect(&actionOpen, &QAction::triggered, [this, &node]() { openWidget(node); });
 
         QAction actionProperties("Properties", this);
-        connect(&actionProperties, &QAction::triggered, [this, &node]() { openProperties(node); });
+        connect(&actionProperties, &QAction::triggered, [this, &node]() { _pcInt.openProperties(node); });
 
         if (_simStarted) {
             actionProperties.setDisabled(true);
@@ -188,10 +188,7 @@ public:
 
         contextMenu.addAction(&actionDelete);
 
-        auto pos1 = mapToGlobal(_graphView->mapFromScene(pos));
-        pos1.setX(pos1.x() + 32); // FIXME: these values are hardcoded and should not be here
-        pos1.setY(pos1.y() + 10); //        find the real cause of misalignment of context menu
-        contextMenu.exec(pos1);
+        _pcInt.showContextMenu(contextMenu, mapToGlobal(_graphView->mapFromScene(pos)));
     }
 
     void updateNodeStyle(bool darkMode)
@@ -213,27 +210,6 @@ private:
         auto& component = getComponent(node);
 
         emit q->handleWidgetShowing(component.mainWidget(), component.mainWidgetDocked());
-    }
-
-    void openProperties(QtNodes::Node& node)
-    {
-        auto& component = getComponent(node);
-        auto conf = component.getQConfig();
-        conf->setProperty("name", node.nodeDataModel()->caption());
-
-        PropertyEditorDialog e(node.nodeDataModel()->name() + " properties", *conf.get());
-        if (e.exec() == QDialog::Accepted) {
-            auto& iface = getComponentModel(node);
-            conf = e.properties();
-            auto nodeCaption = conf->property("name");
-            if (nodeCaption.isValid()) {
-                iface.setCaption(nodeCaption.toString());
-                node.nodeGraphicsObject().update();
-            }
-
-            component.setConfig(*conf);
-            component.configChanged();
-        }
     }
 
     ComponentInterface& getComponent(QtNodes::Node& node)

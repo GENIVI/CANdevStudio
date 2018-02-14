@@ -9,7 +9,9 @@ class FlowScene;
 class Node;
 }
 
+class QPoint;
 class QPointF;
+class QMenu;
 
 struct PCInterface {
     virtual ~PCInterface()
@@ -23,6 +25,8 @@ struct PCInterface {
     virtual void setNodeDeletedCallback(QtNodes::FlowScene* scene, const node_t& cb) = 0;
     virtual void setNodeDoubleClickedCallback(QtNodes::FlowScene* scene, const node_t& cb) = 0;
     virtual void setNodeContextMenuCallback(QtNodes::FlowScene* scene, const menu_t& cb) = 0;
+    virtual void openProperties(QtNodes::Node& node) = 0;
+    virtual void showContextMenu(QMenu &menu, const QPoint& pos) = 0;
 };
 
 
