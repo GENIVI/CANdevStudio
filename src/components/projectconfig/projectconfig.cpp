@@ -10,6 +10,14 @@ ProjectConfig::ProjectConfig(QWidget* parent_)
     setLayout(d->_ui->layout);
 }
 
+ProjectConfig::ProjectConfig(QWidget* parent_, ProjectConfigCtx&& ctx)
+    : QWidget(parent_), d_ptr(new ProjectConfigPrivate(this, this, std::move(ctx)))
+{
+    Q_D(ProjectConfig);
+
+    setLayout(d->_ui->layout);
+}
+
 ProjectConfig::~ProjectConfig()
 {
 }

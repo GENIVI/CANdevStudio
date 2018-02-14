@@ -1,5 +1,6 @@
 #define CATCH_CONFIG_RUNNER
 #include <projectconfig.h>
+#include <pcinterface.h>
 #include <projectconfigvalidator.h>
 #include <fakeit.hpp>
 #include <log.h>
@@ -8,6 +9,8 @@
 #include <QDir>
 #include <QSignalSpy>
 #include <QCloseEvent>
+#include <candevicemodel.h>
+#include <nodes/FlowScene>
 
 std::shared_ptr<spdlog::logger> kDefaultLogger;
 
@@ -100,8 +103,31 @@ TEST_CASE("Validator validate", "[projectconfig]")
     CHECK(pcv.validateConfiguration(inConfig));
 }
 
-int main(int argc, char* argv[])
+TEST_CASE("callbacks test", "[projectconfig]")
 {
+    using namespace fakeit;
+    PCInterface::node_t nodeCreated;
+    PCInterface::node_t nodeDeleted;
+    PCInterface::node_t nodeClicked;
+    PCInterface::menu_t nodeMenu;
+    QtNodes::FlowScene * fs;
+
+    Mock<PCInterface> pcMock;
+
+    Fake(Dtor(pcMock));
+    When(Method(pcMock, setNodeCreatedCallback)).Do([&](auto flow, auto&& fn) { fs=flow; nodeCreated = fn; });
+    When(Method(pcMock, setNodeDeletedCallback)).Do([&](auto, auto&& fn) { nodeDeleted = fn; });
+    When(Method(pcMock, setNodeDoubleClickedCallback)).Do([&](auto, auto&& fn) { nodeClicked = fn; });
+    When(Method(pcMock, setNodeContextMenuCallback)).Do([&](auto, auto&& fn) { nodeMenu = fn; });
+
+    ProjectConfig pc(nullptr, ProjectConfigCtx(&pcMock.get()));
+
+    auto &node = fs->createNode(std::make_unique<CanDeviceModel>());
+    nodeMenu(node, QPointF());
+    fs->removeNode(node);
+}
+
+int main(int argc, char* argv[]){
     Q_INIT_RESOURCE(CANdevResources);
     bool haveDebug = std::getenv("CDS_DEBUG") != nullptr;
     kDefaultLogger = spdlog::stdout_color_mt("cds");

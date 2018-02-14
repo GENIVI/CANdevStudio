@@ -2,6 +2,10 @@
 #define PROJECTCONFIG_H
 
 #include <QtWidgets/QWidget>
+#include <context.h>
+
+struct PCInterface;
+typedef Context<PCInterface> ProjectConfigCtx;
 
 namespace QtNodes {
 class Node;
@@ -15,6 +19,7 @@ class ProjectConfig : public QWidget {
 
 public:
     explicit ProjectConfig(QWidget* parent_);
+    explicit ProjectConfig(QWidget* parent_, ProjectConfigCtx&& ctx);
     ~ProjectConfig();
     void closeEvent(QCloseEvent* e);
     QByteArray save();
