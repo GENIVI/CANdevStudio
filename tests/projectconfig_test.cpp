@@ -123,7 +123,7 @@ TEST_CASE("callbacks test", "[projectconfig]")
     ProjectConfig pc(nullptr, ProjectConfigCtx(&pcMock.get()));
 
     auto &node = fs->createNode(std::make_unique<CanDeviceModel>());
-    nodeMenu(node, QPointF());
+    //nodeMenu(node, QPointF());
     fs->removeNode(node);
 }
 
