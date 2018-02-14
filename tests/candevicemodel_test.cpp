@@ -90,16 +90,6 @@ TEST_CASE("Getters", "[candevice]")
     CHECK(cdModel.hasSeparateThread() == true);
 }
 
-TEST_CASE("Rx queue full test", "[candevice]")
-{
-    CanDeviceModel cdModel;
-    QCanBusFrame frame;
-
-    for(int i=0; i < 200; ++i) {
-        cdModel.frameReceived(frame);
-    }
-}
-
 TEST_CASE("Tx queue full test", "[candevice]")
 {
     CanDeviceModel cdModel;
@@ -107,6 +97,16 @@ TEST_CASE("Tx queue full test", "[candevice]")
 
     for(int i=0; i < 200; ++i) {
         cdModel.frameSent(true, frame);
+    }
+}
+
+TEST_CASE("Rx queue full test", "[candevice]")
+{
+    CanDeviceModel cdModel;
+    QCanBusFrame frame;
+
+    for(int i=0; i < 200; ++i) {
+        cdModel.frameReceived(frame);
     }
 }
 

@@ -137,6 +137,8 @@ TEST_CASE("callbacks test", "[projectconfig]")
     nodeMenu(node2, QPointF());
     CHECK(showingSpy.count() == 1);
 
+    pc.simulationStopped();
+
     nodeClicked(node);
     nodeMenu(node, QPointF());
     nodeClicked(node2);
