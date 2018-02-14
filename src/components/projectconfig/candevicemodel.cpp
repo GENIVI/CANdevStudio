@@ -43,7 +43,7 @@ void CanDeviceModel::frameReceived(const QCanBusFrame& frame)
 
 void CanDeviceModel::frameSent(bool status, const QCanBusFrame& frame)
 {
-    bool ret = _rxQueue.enqueue(std::make_shared<CanDeviceDataOut>(frame, Direction::TX, status));
+    bool ret = _rxQueue.try_enqueue(std::make_shared<CanDeviceDataOut>(frame, Direction::TX, status));
 
     if(ret) {
         emit dataUpdated(0); // Data ready on port 0
