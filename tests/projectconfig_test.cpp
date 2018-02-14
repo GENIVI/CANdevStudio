@@ -128,6 +128,8 @@ TEST_CASE("callbacks test", "[projectconfig]")
     pc.simulationStarted();
 
     auto &node = fs->createNode(std::make_unique<CanDeviceModel>());
+    node.restore({});
+    nodeCreated(node);
     nodeClicked(node);
     nodeMenu(node, QPointF());
 

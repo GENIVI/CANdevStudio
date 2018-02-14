@@ -64,6 +64,18 @@ TEST_CASE("Calling setInData with direction RX will result in frameReceived bein
     CHECK(qvariant_cast<QCanBusFrame>(frameReceivedSpy.takeFirst().at(0)).frameId() == testFrame.frameId());
 }
 
+TEST_CASE("Invalid direction", "[canrawview]")
+{
+    CanRawViewModel canRawViewModel;
+    QCanBusFrame testFrame;
+    testFrame.setFrameId(123);
+    auto canRawViewDataIn = std::make_shared<CanRawViewDataIn>(testFrame, static_cast<Direction>(11), true);
+    QSignalSpy frameSentSpy(&canRawViewModel, &CanRawViewModel::frameSent);
+
+    canRawViewModel.setInData(canRawViewDataIn, 0);
+    CHECK(frameSentSpy.count() == 0);
+}
+
 TEST_CASE("Test save configuration", "[canrawview]")
 {
     CanRawViewModel canRawViewModel;
