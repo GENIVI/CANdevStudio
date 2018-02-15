@@ -304,9 +304,26 @@ TEST_CASE("Section clicked", "[canrawview]")
     Fake(Method(crvMock, setModel));
     Fake(Method(crvMock, setSorting));
     Fake(Method(crvMock, initTableView));
-    When(Method(crvMock, getSortOrder)).Return(Qt::AscendingOrder, Qt::DescendingOrder, Qt::AscendingOrder);
+    When(Method(crvMock, getSortOrder)).Return(Qt::AscendingOrder, Qt::DescendingOrder, Qt::AscendingOrder, Qt::AscendingOrder, Qt::AscendingOrder, Qt::AscendingOrder, Qt::AscendingOrder);
+    Fake(Method(crvMock, isViewFrozen));
+    Fake(Method(crvMock, scrollToBottom));
 
     CanRawView canRawView{ CanRawViewCtx(&crvMock.get()) };
+
+    QCanBusFrame frame;
+    frame.setFrameId(11);
+    frame.setPayload({ "123" });
+    REQUIRE_NOTHROW(canRawView.startSimulation());
+    REQUIRE_NOTHROW(canRawView.frameReceived(frame));
+    REQUIRE_NOTHROW(canRawView.frameReceived(frame));
+
+    frame.setFrameId(12);
+    frame.setPayload({ "1234" });
+    REQUIRE_NOTHROW(canRawView.frameReceived(frame));
+
+    frame.setFrameId(123);
+    frame.setPayload({ "12345" });
+    REQUIRE_NOTHROW(canRawView.frameReceived(frame));
 
     sectionClicked(1);
     sectionClicked(1);
@@ -315,6 +332,17 @@ TEST_CASE("Section clicked", "[canrawview]")
     Verify(Method(crvMock, setSorting).Using(1, Qt::AscendingOrder),
         Method(crvMock, setSorting).Using(1, Qt::DescendingOrder),
         Method(crvMock, setSorting).Using(0, Qt::AscendingOrder))
+        .Exactly(Once);
+
+    sectionClicked(1);
+    sectionClicked(2);
+    sectionClicked(3);
+    sectionClicked(4);
+
+    Verify(Method(crvMock, setSorting).Using(1, Qt::AscendingOrder),
+        Method(crvMock, setSorting).Using(2, Qt::AscendingOrder),
+        Method(crvMock, setSorting).Using(3, Qt::AscendingOrder),
+        Method(crvMock, setSorting).Using(4, Qt::AscendingOrder))
         .Exactly(Once);
 }
 
@@ -333,8 +361,68 @@ TEST_CASE("Filter callback", "[canrawview]")
     Fake(Method(crvMock, setSorting));
     Fake(Method(crvMock, initTableView));
     When(Method(crvMock, getSortOrder)).Return(Qt::AscendingOrder, Qt::DescendingOrder, Qt::AscendingOrder);
+    Fake(Method(crvMock, isViewFrozen));
+    Fake(Method(crvMock, scrollToBottom));
 
     CanRawView canRawView{ CanRawViewCtx(&crvMock.get()) };
 
     filter(true);
+    REQUIRE_NOTHROW(canRawView.startSimulation());
+
+    QCanBusFrame frame;
+    frame.setFrameId(11);
+    frame.setPayload({ "123" });
+    REQUIRE_NOTHROW(canRawView.frameReceived(frame));
+    REQUIRE_NOTHROW(canRawView.frameReceived(frame));
+    REQUIRE_NOTHROW(canRawView.frameSent(true, frame));
+    REQUIRE_NOTHROW(canRawView.frameSent(true, frame));
+
+    frame.setFrameId(12);
+    frame.setPayload({ "1234" });
+    REQUIRE_NOTHROW(canRawView.frameReceived(frame));
+    REQUIRE_NOTHROW(canRawView.frameSent(true, frame));
+
+    frame.setFrameId(123);
+    frame.setPayload({ "12345" });
+    REQUIRE_NOTHROW(canRawView.frameReceived(frame));
+    REQUIRE_NOTHROW(canRawView.frameSent(true, frame));
+
+    filter(false);
 }
+
+TEST_CASE("Stress test", "[canrawview]")
+{
+    CRVGuiInterface::filter_t filter;
+
+    Mock<CRVGuiInterface> crvMock;
+    Fake(Dtor(crvMock));
+    Fake(Method(crvMock, setClearCbk));
+    When(Method(crvMock, setFilterCbk)).Do([&](auto&& fn) { filter = fn; });
+    Fake(Method(crvMock, setSectionClikedCbk));
+    Fake(Method(crvMock, setDockUndockCbk));
+    Fake(Method(crvMock, mainWidget));
+    Fake(Method(crvMock, setModel));
+    Fake(Method(crvMock, setSorting));
+    Fake(Method(crvMock, initTableView));
+    When(Method(crvMock, getSortOrder)).Return(Qt::AscendingOrder, Qt::DescendingOrder, Qt::AscendingOrder);
+    Fake(Method(crvMock, isViewFrozen));
+    Fake(Method(crvMock, scrollToBottom));
+
+    CanRawView canRawView{ CanRawViewCtx(&crvMock.get()) };
+
+    filter(true);
+
+    REQUIRE_NOTHROW(canRawView.startSimulation());
+
+    QCanBusFrame frame;
+    frame.setPayload({ "123" });
+
+    for(int i = 0; i < 0x7ff; ++i) {
+        frame.setFrameId(i);
+        REQUIRE_NOTHROW(canRawView.frameReceived(frame));
+        REQUIRE_NOTHROW(canRawView.frameSent(true, frame));
+    }
+
+    filter(false);
+}
+

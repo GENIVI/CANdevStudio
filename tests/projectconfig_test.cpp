@@ -1,18 +1,18 @@
 #define CATCH_CONFIG_RUNNER
-#include <projectconfig.h>
-#include <pcinterface.h>
-#include <projectconfigvalidator.h>
-#include <fakeit.hpp>
-#include <log.h>
-#include <QWindow>
 #include <QApplication>
-#include <QDir>
-#include <QSignalSpy>
 #include <QCloseEvent>
+#include <QDir>
 #include <QMenu>
+#include <QSignalSpy>
+#include <QWindow>
 #include <candevicemodel.h>
 #include <canrawviewmodel.h>
+#include <fakeit.hpp>
+#include <log.h>
 #include <nodes/FlowScene>
+#include <pcinterface.h>
+#include <projectconfig.h>
+#include <projectconfigvalidator.h>
 
 std::shared_ptr<spdlog::logger> kDefaultLogger;
 
@@ -56,7 +56,6 @@ TEST_CASE("Close event", "[projectconfig]")
 
     CHECK(closeSpy.count() == 1);
 }
-
 
 TEST_CASE("Validation schema parse error", "[projectconfig]")
 {
@@ -112,12 +111,15 @@ TEST_CASE("callbacks test", "[projectconfig]")
     PCInterface::node_t nodeDeleted;
     PCInterface::node_t nodeClicked;
     PCInterface::menu_t nodeMenu;
-    QtNodes::FlowScene * fs;
+    QtNodes::FlowScene* fs;
 
     Mock<PCInterface> pcMock;
 
     Fake(Dtor(pcMock));
-    When(Method(pcMock, setNodeCreatedCallback)).Do([&](auto flow, auto&& fn) { fs=flow; nodeCreated = fn; });
+    When(Method(pcMock, setNodeCreatedCallback)).Do([&](auto flow, auto&& fn) {
+        fs = flow;
+        nodeCreated = fn;
+    });
     When(Method(pcMock, setNodeDeletedCallback)).Do([&](auto, auto&& fn) { nodeDeleted = fn; });
     When(Method(pcMock, setNodeDoubleClickedCallback)).Do([&](auto, auto&& fn) { nodeClicked = fn; });
     When(Method(pcMock, setNodeContextMenuCallback)).Do([&](auto, auto&& fn) { nodeMenu = fn; });
@@ -127,14 +129,14 @@ TEST_CASE("callbacks test", "[projectconfig]")
     ProjectConfig pc(nullptr, ProjectConfigCtx(&pcMock.get()));
     pc.simulationStarted();
 
-    auto &node = fs->createNode(std::make_unique<CanDeviceModel>());
+    auto& node = fs->createNode(std::make_unique<CanDeviceModel>());
     node.restore({});
     nodeCreated(node);
     nodeClicked(node);
     nodeMenu(node, QPointF());
 
     QSignalSpy showingSpy(&pc, &ProjectConfig::handleWidgetShowing);
-    auto &node2 = fs->createNode(std::make_unique<CanRawViewModel>());
+    auto& node2 = fs->createNode(std::make_unique<CanRawViewModel>());
     nodeClicked(node2);
     nodeMenu(node2, QPointF());
     CHECK(showingSpy.count() == 1);
@@ -150,7 +152,8 @@ TEST_CASE("callbacks test", "[projectconfig]")
     fs->removeNode(node2);
 }
 
-int main(int argc, char* argv[]){
+int main(int argc, char* argv[])
+{
     Q_INIT_RESOURCE(CANdevResources);
     bool haveDebug = std::getenv("CDS_DEBUG") != nullptr;
     kDefaultLogger = spdlog::stdout_color_mt("cds");
@@ -161,4 +164,3 @@ int main(int argc, char* argv[]){
     QApplication a(argc, argv);
     return Catch::Session().run(argc, argv);
 }
-
