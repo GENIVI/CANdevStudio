@@ -2,7 +2,7 @@
 #define CANRAWVIEW_P_H
 
 #include "gui/crvgui.h"
-#include "uniquefiltermodel.h"
+#include "crvsortmodel.h"
 #include <QtCore/QElapsedTimer>
 #include <QtCore/QJsonArray>
 #include <QtCore/QJsonObject>
@@ -12,7 +12,7 @@
 #include <memory>
 
 namespace {
-    const int32_t rowCountMax = 2000;
+const int32_t rowCountMax = 2000;
 }
 
 class CanRawViewPrivate : public QObject {
@@ -30,23 +30,37 @@ public:
         initProps();
 
         _tvModel.setHorizontalHeaderLabels(_columnsOrder);
+        _tvModelUnique.setHorizontalHeaderLabels(_columnsOrder);
 
         _ui.initTableView(_tvModel);
-        _uniqueModel.setSourceModel(&_tvModel);
-        _ui.setModel(&_uniqueModel);
+        _tvModelSort.setSourceModel(&_tvModel);
+        _tvModelUniqueSort.setSourceModel(&_tvModelUnique);
+        _ui.setModel(&_tvModelSort);
 
         _ui.setClearCbk(std::bind(&CanRawViewPrivate::clear, this));
         _ui.setSectionClikedCbk(std::bind(&CanRawViewPrivate::sort, this, std::placeholders::_1));
-        _ui.setFilterCbk(std::bind(&CanRawViewPrivate::setFilter, this));
+        _ui.setFilterCbk(std::bind(&CanRawViewPrivate::setFilter, this, std::placeholders::_1));
         _ui.setDockUndockCbk([this] {
             docked = !docked;
             emit q_ptr->mainWidgetDockToggled(_ui.mainWidget());
         });
+
+        _tvModel.setHeaderData(0, Qt::Horizontal, QVariant::fromValue(CRV_ColType::uint_type), Qt::UserRole); // rowID
+        _tvModel.setHeaderData(1, Qt::Horizontal, QVariant::fromValue(CRV_ColType::double_type), Qt::UserRole); // time
+        _tvModel.setHeaderData(2, Qt::Horizontal, QVariant::fromValue(CRV_ColType::hex_type), Qt::UserRole); // frame ID
+        _tvModel.setHeaderData(3, Qt::Horizontal, QVariant::fromValue(CRV_ColType::str_type), Qt::UserRole); // direction
+        _tvModel.setHeaderData(4, Qt::Horizontal, QVariant::fromValue(CRV_ColType::uint_type), Qt::UserRole); // length
+        _tvModel.setHeaderData(5, Qt::Horizontal, QVariant::fromValue(CRV_ColType::str_type), Qt::UserRole); // data
+
+        _tvModelUnique.setHeaderData(0, Qt::Horizontal, QVariant::fromValue(CRV_ColType::uint_type), Qt::UserRole); // rowID
+        _tvModelUnique.setHeaderData(1, Qt::Horizontal, QVariant::fromValue(CRV_ColType::double_type), Qt::UserRole); // time
+        _tvModelUnique.setHeaderData(2, Qt::Horizontal, QVariant::fromValue(CRV_ColType::hex_type), Qt::UserRole); // frame ID
+        _tvModelUnique.setHeaderData(3, Qt::Horizontal, QVariant::fromValue(CRV_ColType::str_type), Qt::UserRole); // direction
+        _tvModelUnique.setHeaderData(4, Qt::Horizontal, QVariant::fromValue(CRV_ColType::uint_type), Qt::UserRole); // length
+        _tvModelUnique.setHeaderData(5, Qt::Horizontal, QVariant::fromValue(CRV_ColType::str_type), Qt::UserRole); // data
     }
 
-    ~CanRawViewPrivate()
-    {
-    }
+    ~CanRawViewPrivate() {}
 
     void saveSettings(QJsonObject& json)
     {
@@ -69,28 +83,86 @@ public:
             payHex.insert(ii, ' ');
         }
 
-        if(rowCountMax < _tvModel.rowCount()) {
-            _tvModel.removeRow(0);
-        }
+        QString frameID = QString("0x" + QString::number(frame.frameId(), 16));
+        QString time = QString::number((_timer.elapsed() / 1000.0), 'f', 2);
+        QString size = QString::number(frame.payload().size());
+        QString data = QString::fromUtf8(payHex.data(), payHex.size());
 
         QList<QStandardItem*> list;
 
-        QString frameID = QString("0x" + QString::number(frame.frameId(), 16));
-        QString time = QString::number((_timer.elapsed() / 1000.0), 'f', 2);
+        if (_tvModel.rowCount() < rowCountMax) {
+            list.append(new QStandardItem(QString::number(_rowID)));
+            list.append(new QStandardItem(time));
+            list.append(new QStandardItem(frameID));
+            list.append(new QStandardItem(direction));
+            list.append(new QStandardItem(size));
+            list.append(new QStandardItem(data));
+        } else {
+            list = _tvModel.takeRow(0);
+            auto it = list.begin();
 
-        list.append(new QStandardItem(QString::number(_rowID++)));
-        list.append(new QStandardItem(std::move(time)));
-        list.append(new QStandardItem(std::move(frameID)));
-        list.append(new QStandardItem(direction));
-        list.append(new QStandardItem(QString::number(frame.payload().size())));
-        list.append(new QStandardItem(QString::fromUtf8(payHex.data(), payHex.size())));
+            (*it++)->setText(QString::number(_rowID));
+            (*it++)->setText(time);
+            (*it++)->setText(frameID);
+            (*it++)->setText(direction);
+            (*it++)->setText(size);
+            (*it++)->setText(data);
+        }
+
 
         _tvModel.appendRow(list);
-        _uniqueModel.updateFilter(frameID, time, direction);
+
+        if (direction == "RX") {
+            if (_uniqueRxMap.count(frame.frameId())) {
+                auto& row = _uniqueRxMap[frame.frameId()];
+
+                std::get<0>(row)->setText(QString::number(_rowID));
+                std::get<1>(row)->setText(time);
+                std::get<2>(row)->setText(frameID);
+                std::get<3>(row)->setText(direction);
+                std::get<4>(row)->setText(size);
+                std::get<5>(row)->setText(data);
+            } else {
+                auto rowEl = new QStandardItem(QString::number(_rowID));
+                auto timeEl = new QStandardItem(time);
+                auto frameEl = new QStandardItem(frameID);
+                auto dirEl = new QStandardItem(direction);
+                auto sizeEl = new QStandardItem(size);
+                auto dataEl = new QStandardItem(data);
+
+                _tvModelUnique.appendRow({ rowEl, timeEl, frameEl, dirEl, sizeEl, dataEl });
+                _uniqueRxMap[frame.frameId()] = std::make_tuple(rowEl, timeEl, frameEl, dirEl, sizeEl, dataEl);
+            }
+        } else if (direction == "TX") {
+            if (_uniqueTxMap.count(frame.frameId())) {
+                auto& row = _uniqueTxMap[frame.frameId()];
+
+                std::get<0>(row)->setText(QString::number(_rowID));
+                std::get<1>(row)->setText(time);
+                std::get<2>(row)->setText(frameID);
+                std::get<3>(row)->setText(direction);
+                std::get<4>(row)->setText(size);
+                std::get<5>(row)->setText(data);
+            } else {
+                auto rowEl = new QStandardItem(QString::number(_rowID));
+                auto timeEl = new QStandardItem(time);
+                auto frameEl = new QStandardItem(frameID);
+                auto dirEl = new QStandardItem(direction);
+                auto sizeEl = new QStandardItem(size);
+                auto dataEl = new QStandardItem(data);
+
+                _tvModelUnique.appendRow({ rowEl, timeEl, frameEl, dirEl, sizeEl, dataEl });
+                _uniqueTxMap[frame.frameId()] = std::make_tuple(rowEl, timeEl, frameEl, dirEl, sizeEl, dataEl);
+            }
+        } else {
+            cds_warn("Invalid direction string: {}", direction.toStdString());
+        }
 
         if (!_ui.isViewFrozen()) {
             _ui.scrollToBottom();
         }
+
+        _rowID++;
     }
 
     bool restoreConfiguration(const QJsonObject& json)
@@ -261,8 +333,7 @@ private:
 
     void initProps()
     {
-        for (const auto& p: _supportedProps)
-        {
+        for (const auto& p : _supportedProps) {
             _props[p.first];
         }
     }
@@ -276,13 +347,16 @@ private slots:
     void clear()
     {
         _tvModel.removeRows(0, _tvModel.rowCount());
-        _uniqueModel.clearFilter();
+        _tvModelUnique.removeRows(0, _tvModelUnique.rowCount());
+        _uniqueRxMap.clear();
+        _uniqueTxMap.clear();
+        _rowID = 0;
     }
 
     /**
-    *   @brief  Function sets current sort settings and calls actual sort function
-    *   @param  clickedIndex index of last clicked column
-    */
+     *   @brief  Function sets current sort settings and calls actual sort function
+     *   @param  clickedIndex index of last clicked column
+     */
     void sort(const int clickedIndex)
     {
         _currentSortOrder = _ui.getSortOrder();
@@ -303,22 +377,34 @@ private slots:
     }
 
     /**
-    *   @brief  Function call turns unique filter model on and off
-    */
-    void setFilter()
+     *   @brief  Function call turns unique filter model on and off
+     */
+    void setFilter(bool enabled)
     {
-        _uniqueModel.toggleFilter();
+        _tvModelSort.setFilterActive(enabled);
+        _tvModelUniqueSort.setFilterActive(enabled);
+
+        if (enabled) {
+            _ui.setModel(&_tvModelUniqueSort);
+        } else {
+            _ui.setModel(&_tvModelSort);
+        }
+
+        _currentSortOrder = _ui.getSortOrder();
+        _ui.setSorting(_sortIndex, _currentSortOrder);
     }
 
 public:
     CanRawViewCtx _ctx;
     QElapsedTimer _timer;
     QStandardItemModel _tvModel;
-    UniqueFilterModel _uniqueModel;
+    QStandardItemModel _tvModelUnique;
     bool _simStarted;
     CRVGuiInterface& _ui;
     bool docked{ true };
     std::map<QString, QVariant> _props;
+    CRVSortModel _tvModelSort;
+    CRVSortModel _tvModelUniqueSort;
 
 private:
     int _rowID{ 0 };
@@ -327,11 +413,15 @@ private:
     Qt::SortOrder _currentSortOrder{ Qt::AscendingOrder };
     QStringList _columnsOrder;
     CanRawView* q_ptr;
+    std::map<uint32_t,
+        std::tuple<QStandardItem*, QStandardItem*, QStandardItem*, QStandardItem*, QStandardItem*, QStandardItem*>>
+        _uniqueTxMap;
+    std::map<uint32_t,
+        std::tuple<QStandardItem*, QStandardItem*, QStandardItem*, QStandardItem*, QStandardItem*, QStandardItem*>>
+        _uniqueRxMap;
 
     const QString _nameProperty = "name";
 
-    ComponentInterface::ComponentProperties _supportedProps = {
-            {_nameProperty,   {QVariant::String, true}}
-    };
+    ComponentInterface::ComponentProperties _supportedProps = { { _nameProperty, { QVariant::String, true } } };
 };
 #endif // CANRAWVIEW_P_H

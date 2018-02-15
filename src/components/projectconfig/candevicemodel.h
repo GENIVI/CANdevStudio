@@ -6,6 +6,7 @@
 #include <QtCore/QObject>
 #include <QtSerialBus/QCanBusFrame>
 #include <candevice.h>
+#include <readerwriterqueue.h>
 
 using QtNodes::NodeData;
 using QtNodes::NodeDataType;
@@ -53,11 +54,6 @@ public:
     void setInData(std::shared_ptr<NodeData> nodeData, PortIndex port) override;
 
     /**
-     *   @brief Used to send frames that were put in queue
-     */
-    void frameOnQueue();
-
-    /**
      *   @brief Used to provide custom painter to nodeeditor
      *   @return NodePainterDelegate used to perform custom node painting
      */
@@ -77,6 +73,11 @@ public:
     static QColor headerColor2()
     {
         return QColor(84, 84, 84);
+    }
+
+    virtual bool hasSeparateThread() const override 
+    {
+        return true;
     }
 
 public slots:
@@ -103,11 +104,12 @@ signals:
 
 private:
     std::shared_ptr<NodeData> _nodeData;
-    QVector<std::tuple<QCanBusFrame, Direction, bool>> _frameQueue;
     bool _status;
     Direction _direction;
     QCanBusFrame _frame;
     std::unique_ptr<NodePainter> _painter;
+    // 127 to use 4 blocks, 512 bytes each
+    moodycamel::ReaderWriterQueue<std::shared_ptr<NodeData>> _rxQueue { 127 };
 };
 
 #endif // CANDEVICEMODEL_H

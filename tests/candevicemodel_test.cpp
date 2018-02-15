@@ -82,11 +82,32 @@ TEST_CASE("Test save configuration", "[candevice]")
     CHECK(json.find("name") != json.end());
 }
 
-TEST_CASE("Getters", "[canrawview]")
+TEST_CASE("Getters", "[candevice]")
 {
     CanDeviceModel cdModel;
 
     CHECK(cdModel.painterDelegate() != nullptr);
+    CHECK(cdModel.hasSeparateThread() == true);
+}
+
+TEST_CASE("Tx queue full test", "[candevice]")
+{
+    CanDeviceModel cdModel;
+    QCanBusFrame frame;
+
+    for(int i=0; i < 200; ++i) {
+        cdModel.frameSent(true, frame);
+    }
+}
+
+TEST_CASE("Rx queue full test", "[candevice]")
+{
+    CanDeviceModel cdModel;
+    QCanBusFrame frame;
+
+    for(int i=0; i < 200; ++i) {
+        cdModel.frameReceived(frame);
+    }
 }
 
 int main(int argc, char* argv[])

@@ -10,4 +10,6 @@ coverage:
         - "src/components/projectconfig/dragwidget.h"
         - "src/components/projectconfig/dragwidget.cpp"
         - "src/components/projectconfig/nodepainter.h"
+        - "src/components/projectconfig/pcinterface.h"
+        - "src/components/projectconfig/pcimpl.h"
 

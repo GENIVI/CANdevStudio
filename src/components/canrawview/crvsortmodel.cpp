@@ -1,37 +1,17 @@
-#include "uniquefiltermodel.h"
+#include "crvsortmodel.h"
 #include "crv_enums.h"
 #include <log.h>
 
 
-UniqueFilterModel::UniqueFilterModel(QObject* parent)
+CRVSortModel::CRVSortModel(QObject* parent)
     : QSortFilterProxyModel(parent)
     , _currSortNdx(0)
     , _currSortOrder(Qt::AscendingOrder)
+    , _filterActive(false)
 {
 }
 
-void UniqueFilterModel::updateFilter(QString frameID, QString time, QString direction)
-{
-    QPair<QString, QString> value(frameID, direction);
-
-    if ((!_uniques.contains(value)) || (time.toDouble() > _uniques[value].toDouble())) {
-        _uniques[std::move(value)] = time;
-        invalidateFilter();
-    }
-}
-
-bool UniqueFilterModel::filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const
-{
-    QString time = sourceModel()->index(sourceRow, 1, sourceParent).data().toString();
-    QString frameID = sourceModel()->index(sourceRow, 2, sourceParent).data().toString();
-    QString direction = sourceModel()->index(sourceRow, 3, sourceParent).data().toString();
-
-    QPair<QString, QString> value(std::move(frameID), std::move(direction));
-
-    return ((_uniques[value] == time) || (false == _filterActive));
-}
-
-bool UniqueFilterModel::lessThan(const QModelIndex& left, const QModelIndex& right) const
+bool CRVSortModel::lessThan(const QModelIndex& left, const QModelIndex& right) const
 {
     QVariant leftData = sourceModel()->data(sourceModel()->index(left.row(), updatedSortNdx()));
     QVariant rightData = sourceModel()->data(sourceModel()->index(right.row(), updatedSortNdx()));
@@ -49,19 +29,7 @@ bool UniqueFilterModel::lessThan(const QModelIndex& left, const QModelIndex& rig
     }
 }
 
-void UniqueFilterModel::clearFilter()
-{
-    _uniques.clear();
-}
-
-void UniqueFilterModel::toggleFilter()
-{
-    _filterActive = !_filterActive;
-    QSortFilterProxyModel::sort(updatedSortNdx(), _currSortOrder);
-    invalidateFilter();
-}
-
-int UniqueFilterModel::updatedSortNdx() const
+int CRVSortModel::updatedSortNdx() const
 {
     int updatedSortNdx = _currSortNdx;
 
@@ -74,12 +42,17 @@ int UniqueFilterModel::updatedSortNdx() const
     return updatedSortNdx;
 }
 
-bool UniqueFilterModel::isFilterActive() const
+bool CRVSortModel::isFilterActive() const
 {
     return _filterActive;
 }
 
-void UniqueFilterModel::sort(int column, Qt::SortOrder order)
+void CRVSortModel::setFilterActive(bool enabled)
+{
+    _filterActive = enabled;
+}
+
+void CRVSortModel::sort(int column, Qt::SortOrder order)
 {
     _currSortNdx = column;
     _currSortOrder = order;

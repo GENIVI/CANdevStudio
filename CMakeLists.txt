@@ -80,6 +80,7 @@ configure_file(
 )
 include_directories(${CMAKE_BINARY_DIR}/generated)
 # end of version Handling
+include_directories(${CMAKE_SOURCE_DIR}/3rdParty/readerwriterqueue)
 
 add_subdirectory(3rdParty/nodeeditor)
 add_subdirectory(src/common)

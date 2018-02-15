@@ -26,6 +26,7 @@ struct CanDeviceInterface {
     virtual void clearCallbacks() = 0;
 
     virtual QCanBusFrame readFrame() = 0;
+    virtual void setParent(QObject *parent) = 0;
 };
 
 #endif /* end of include guard: CANDEVICEINTERFACE_H_DNXOI7PW */

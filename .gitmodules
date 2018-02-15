@@ -13,3 +13,6 @@
 [submodule "3rdParty/qtCannelloniCanBus"]
 	path = 3rdParty/qtCannelloniCanBus
 	url = https://github.com/tuvok/qtCannelloniCanBus.git
+[submodule "3rdParty/readerwriterqueue"]
+	path = 3rdParty/readerwriterqueue
+	url = https://github.com/cameron314/readerwriterqueue

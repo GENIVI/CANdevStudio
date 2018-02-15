@@ -30,22 +30,26 @@ unsigned int CanDeviceModel::nPorts(PortType portType) const
     return (PortType::None != portType) ? 1 : 0;
 }
 
-void CanDeviceModel::frameOnQueue()
-{
-    std::tie(_frame, _direction, _status) = _frameQueue.takeFirst();
-    emit dataUpdated(0); // Data ready on port 0
-}
-
 void CanDeviceModel::frameReceived(const QCanBusFrame& frame)
 {
-    _frameQueue.push_back(std::make_tuple(frame, Direction::RX, false));
-    frameOnQueue();
+    bool ret = _rxQueue.try_enqueue(std::make_shared<CanDeviceDataOut>(frame, Direction::RX, false));
+
+    if(ret) {
+        emit dataUpdated(0); // Data ready on port 0
+    } else {
+        cds_warn("Queue full. Frame dropped");
+    } 
 }
 
 void CanDeviceModel::frameSent(bool status, const QCanBusFrame& frame)
 {
-    _frameQueue.push_back(std::make_tuple(frame, Direction::TX, status));
-    frameOnQueue();
+    bool ret = _rxQueue.try_enqueue(std::make_shared<CanDeviceDataOut>(frame, Direction::TX, status));
+
+    if(ret) {
+        emit dataUpdated(0); // Data ready on port 0
+    } else {
+        cds_warn("Queue full. Frame dropped");
+    } 
 }
 
 NodeDataType CanDeviceModel::dataType(PortType portType, PortIndex) const
@@ -57,7 +61,15 @@ NodeDataType CanDeviceModel::dataType(PortType portType, PortIndex) const
 
 std::shared_ptr<NodeData> CanDeviceModel::outData(PortIndex)
 {
-    return std::make_shared<CanDeviceDataOut>(_frame, _direction, _status);
+    std::shared_ptr<NodeData> ret;
+    bool status = _rxQueue.try_dequeue(ret);
+
+    if (!status) {
+        cds_error("No data availalbe on rx queue");
+        return {};
+    }
+
+    return ret;
 }
 
 void CanDeviceModel::setInData(std::shared_ptr<NodeData> nodeData, PortIndex)

@@ -4,8 +4,10 @@
 #include "crv_enums.h"
 #include "crvguiinterface.h"
 #include "ui_canrawview.h"
-#include <memory>
 #include <QWidget>
+#include <memory>
+#include <log.h>
+#include <QStandardItemModel>
 
 struct CRVGui : public CRVGuiInterface {
 
@@ -53,13 +55,6 @@ struct CRVGui : public CRVGuiInterface {
         ui->tv->horizontalHeader()->setSectionsMovable(true);
         ui->tv->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
         ui->tv->setColumnHidden(0, true);
-
-        tvModel.setHeaderData(0, Qt::Horizontal, QVariant::fromValue(CRV_ColType::uint_type), Qt::UserRole); // rowID
-        tvModel.setHeaderData(1, Qt::Horizontal, QVariant::fromValue(CRV_ColType::double_type), Qt::UserRole); // time
-        tvModel.setHeaderData(2, Qt::Horizontal, QVariant::fromValue(CRV_ColType::hex_type), Qt::UserRole); // frame ID
-        tvModel.setHeaderData(3, Qt::Horizontal, QVariant::fromValue(CRV_ColType::str_type), Qt::UserRole); // direction
-        tvModel.setHeaderData(4, Qt::Horizontal, QVariant::fromValue(CRV_ColType::uint_type), Qt::UserRole); // length
-        tvModel.setHeaderData(5, Qt::Horizontal, QVariant::fromValue(CRV_ColType::str_type), Qt::UserRole); // data
     }
 
     virtual bool isViewFrozen() override

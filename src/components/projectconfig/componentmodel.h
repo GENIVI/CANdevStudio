@@ -7,16 +7,18 @@
 #include <functional>
 #include <log.h>
 #include <nodes/NodeDataModel>
+#include <QThread>
 
 struct ComponentInterface;
 
 struct ComponentModelInterface {
     virtual ~ComponentModelInterface() = default;
     virtual ComponentInterface& getComponent() = 0;
-    virtual void handleModelCreation(ProjectConfig* config) = 0;
+    virtual void handleModelCreation(ProjectConfig* config, QThread* th = nullptr) = 0;
     virtual void setCaption(const QString& caption) = 0;
     virtual bool restored() = 0;
     virtual void setColorMode(bool darkMode) = 0;
+    virtual bool hasSeparateThread() const = 0;
 };
 
 template <typename C, typename Derived>
@@ -137,11 +139,20 @@ public:
         return _component;
     }
 
-    virtual void handleModelCreation(ProjectConfig* config) override
+    virtual void handleModelCreation(ProjectConfig* config, QThread *th = nullptr) override
     {
         connect(config, &ProjectConfig::startSimulation, &_component, &C::startSimulation);
         connect(config, &ProjectConfig::stopSimulation, &_component, &C::stopSimulation);
         connect(&_component, &C::mainWidgetDockToggled, config, &ProjectConfig::handleDock);
+
+        if(th) {
+            cds_info("Setting separate event loop for component {}", _caption.toStdString());
+
+            this->moveToThread(th);
+            _component.moveToThread(th);
+
+            th->start();
+        }
     }
 
     virtual bool restored() override
@@ -178,6 +189,12 @@ public:
         _nodeStyle.Opacity = 1.0;
 
         setNodeStyle(_nodeStyle);
+    }
+
+    virtual bool hasSeparateThread() const override
+    {
+        // Override if you want model and underlying component to be run in separate thread
+        return false;
     }
 
 protected:

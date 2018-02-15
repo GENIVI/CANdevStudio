@@ -465,8 +465,8 @@ bool MainWindow::createProjectConfig(const QString& name)
         _projectConfig->setWindowTitle(_projectName);
         addToMdi(_projectConfig.get());
 
-        connect(_ui->actionStop, &QAction::triggered, _projectConfig.get(), &ProjectConfig::stopSimulation);
-        connect(_ui->actionStart, &QAction::triggered, _projectConfig.get(), &ProjectConfig::startSimulation);
+        connect(_ui->actionStop, &QAction::triggered, _projectConfig.get(), &ProjectConfig::simulationStopped);
+        connect(_ui->actionStart, &QAction::triggered, _projectConfig.get(), &ProjectConfig::simulationStarted);
         connect(_projectConfig.get(), &ProjectConfig::handleDock, this, &MainWindow::handleDock);
         connect(_projectConfig.get(), &ProjectConfig::handleWidgetDeletion, this, &MainWindow::handleWidgetDeletion);
         connect(_projectConfig.get(), &ProjectConfig::handleWidgetShowing, this, &MainWindow::handleWidgetShowing);

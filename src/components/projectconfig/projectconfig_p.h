@@ -4,16 +4,17 @@
 #include "canrawsendermodel.h"
 #include "canrawviewmodel.h"
 #include "flowviewwrapper.h"
+#include "iconlabel.h"
 #include "modeltoolbutton.h"
+#include "pcimpl.h"
 #include "ui_projectconfig.h"
 #include <QMenu>
 #include <QtWidgets/QPushButton>
+#include <candevicemodel.h>
 #include <log.h>
 #include <modelvisitor.h> // apply_model_visitor
 #include <nodes/Node>
-#include <candevicemodel.h>
 #include <propertyeditordialog.h>
-#include "iconlabel.h"
 
 namespace Ui {
 class ProjectConfigPrivate;
@@ -24,8 +25,10 @@ class ProjectConfigPrivate : public QWidget {
     Q_DECLARE_PUBLIC(ProjectConfig)
 
 public:
-    ProjectConfigPrivate(ProjectConfig* q, QWidget* parent)
+    ProjectConfigPrivate(ProjectConfig* q, QWidget* parent, ProjectConfigCtx&& ctx = ProjectConfigCtx(new PCImpl()))
         : QWidget(parent)
+        , _ctx(std::move(ctx))
+        , _pcInt(_ctx.get<PCInterface>())
         , _graphView(new FlowViewWrapper(&_graphScene))
         , _ui(std::make_unique<Ui::ProjectConfigPrivate>())
         , q_ptr(q)
@@ -35,12 +38,15 @@ public:
         modelRegistry.registerModel<CanRawSenderModel>();
         modelRegistry.registerModel<CanRawViewModel>();
 
-        connect(&_graphScene, &QtNodes::FlowScene::nodeCreated, this, &ProjectConfigPrivate::nodeCreatedCallback);
-        connect(&_graphScene, &QtNodes::FlowScene::nodeDeleted, this, &ProjectConfigPrivate::nodeDeletedCallback);
-        connect(&_graphScene, &QtNodes::FlowScene::nodeDoubleClicked, this,
-            &ProjectConfigPrivate::nodeDoubleClickedCallback);
-        connect(
-            &_graphScene, &QtNodes::FlowScene::nodeContextMenu, this, &ProjectConfigPrivate::nodeContextMenuCallback);
+        _pcInt.setNodeCreatedCallback(
+            &_graphScene, std::bind(&ProjectConfigPrivate::nodeCreatedCallback, this, std::placeholders::_1));
+        _pcInt.setNodeDeletedCallback(
+            &_graphScene, std::bind(&ProjectConfigPrivate::nodeDeletedCallback, this, std::placeholders::_1));
+        _pcInt.setNodeDoubleClickedCallback(
+            &_graphScene, std::bind(&ProjectConfigPrivate::nodeDoubleClickedCallback, this, std::placeholders::_1));
+        _pcInt.setNodeContextMenuCallback(&_graphScene,
+            std::bind(
+                &ProjectConfigPrivate::nodeContextMenuCallback, this, std::placeholders::_1, std::placeholders::_2));
 
         _ui->setupUi(this);
         _ui->layout->addWidget(_graphView);
@@ -55,25 +61,26 @@ public:
     {
         QColor bgColor;
 
-        if(_darkMode) {
+        if (_darkMode) {
             bgColor = QColor(94, 94, 94);
         } else {
             bgColor = QColor(255, 255, 255);
         }
 
-        QLayoutItem *item;
-        while ((item = _ui->deviceWidget->layout()->takeAt(0)) != nullptr)
-        {
+        QLayoutItem* item;
+        while ((item = _ui->deviceWidget->layout()->takeAt(0)) != nullptr) {
             delete item;
         }
-        while ((item = _ui->rawWidget->layout()->takeAt(0)) != nullptr)
-        {
+        while ((item = _ui->rawWidget->layout()->takeAt(0)) != nullptr) {
             delete item;
         }
 
-        _ui->deviceWidget->layout()->addWidget(new IconLabel("CanDevice", CanDeviceModel::headerColor1(), CanDeviceModel::headerColor2(), bgColor));
-        _ui->rawWidget->layout()->addWidget(new IconLabel("CanRawSender", CanRawSenderModel::headerColor1(), CanRawSenderModel::headerColor2(), bgColor));
-        _ui->rawWidget->layout()->addWidget(new IconLabel("CanRawView", CanRawViewModel::headerColor1(), CanRawViewModel::headerColor2(), bgColor));
+        _ui->deviceWidget->layout()->addWidget(
+            new IconLabel("CanDevice", CanDeviceModel::headerColor1(), CanDeviceModel::headerColor2(), bgColor));
+        _ui->rawWidget->layout()->addWidget(new IconLabel(
+            "CanRawSender", CanRawSenderModel::headerColor1(), CanRawSenderModel::headerColor2(), bgColor));
+        _ui->rawWidget->layout()->addWidget(
+            new IconLabel("CanRawView", CanRawViewModel::headerColor1(), CanRawViewModel::headerColor2(), bgColor));
     }
 
     ~ProjectConfigPrivate() {}
@@ -98,24 +105,39 @@ public:
         Q_Q(ProjectConfig);
 
         auto& iface = getComponentModel(node);
-        iface.handleModelCreation(q);
-        iface.setColorMode(_darkMode);
 
         if (!iface.restored()) {
             iface.setCaption(node.nodeDataModel()->caption() + " #" + QString::number(_nodeCnt));
         }
+
+        // For some reason QWidget title is being set to name instead of caption.
+        // TODO: investigate why
+        iface.setCaption(node.nodeDataModel()->caption());
+
+        if (iface.hasSeparateThread()) {
+            // Thread will be deleted during node deletion
+            iface.handleModelCreation(q, new QThread());
+        } else {
+            iface.handleModelCreation(q);
+        }
+
+        iface.setColorMode(_darkMode);
 
         node.nodeGraphicsObject().setOpacity(node.nodeDataModel()->nodeStyle().Opacity);
         addShadow(node);
         node.nodeGraphicsObject().update();
 
         _nodeCnt++;
+
+        cds_debug("Node '{}' created", node.nodeDataModel()->caption().toStdString());
     }
 
     void nodeDeletedCallback(QtNodes::Node& node)
     {
         Q_Q(ProjectConfig);
         auto& component = getComponent(node);
+
+        cds_debug("Node '{}' deleted", node.nodeDataModel()->caption().toStdString());
 
         emit q->handleWidgetDeletion(component.mainWidget());
     }
@@ -124,23 +146,33 @@ public:
     {
         auto& component = getComponent(node);
 
+        cds_debug("Node '{}' double clicked", node.nodeDataModel()->caption().toStdString());
+
         if (component.mainWidget() != nullptr) {
             openWidget(node);
         } else {
-            openProperties(node);
+            if (!_simStarted) {
+                _pcInt.openProperties(node);
+            }
         }
     }
 
     void nodeContextMenuCallback(QtNodes::Node& node, const QPointF& pos)
     {
         auto& component = getComponent(node);
+        cds_debug("Node '{}' context menu", node.nodeDataModel()->caption().toStdString());
+
         QMenu contextMenu(tr("Node options"), this);
 
         QAction actionOpen("Open", this);
         connect(&actionOpen, &QAction::triggered, [this, &node]() { openWidget(node); });
 
         QAction actionProperties("Properties", this);
-        connect(&actionProperties, &QAction::triggered, [this, &node]() { openProperties(node); });
+        connect(&actionProperties, &QAction::triggered, [this, &node]() { _pcInt.openProperties(node); });
+
+        if (_simStarted) {
+            actionProperties.setDisabled(true);
+        }
 
         QAction actionDelete("Delete", this);
         connect(&actionDelete, &QAction::triggered, [this, &node]() { _graphScene.removeNode(node); });
@@ -156,18 +188,15 @@ public:
 
         contextMenu.addAction(&actionDelete);
 
-        auto pos1 = mapToGlobal(_graphView->mapFromScene(pos));
-        pos1.setX(pos1.x() + 32); // FIXME: these values are hardcoded and should not be here
-        pos1.setY(pos1.y() + 10); //        find the real cause of misalignment of context menu
-        contextMenu.exec(pos1);
+        _pcInt.showContextMenu(contextMenu, mapToGlobal(_graphView->mapFromScene(pos)));
     }
 
     void updateNodeStyle(bool darkMode)
     {
         _darkMode = darkMode;
 
-        _graphScene.iterateOverNodes([this](QtNodes::Node* node){
-            auto &iface = getComponentModel(*node);
+        _graphScene.iterateOverNodes([this](QtNodes::Node* node) {
+            auto& iface = getComponentModel(*node);
             iface.setColorMode(_darkMode);
             node->nodeGraphicsObject().update();
             addShadow(*node);
@@ -175,13 +204,6 @@ public:
     }
 
 private:
-    QtNodes::FlowScene _graphScene;
-    FlowViewWrapper* _graphView;
-    std::unique_ptr<Ui::ProjectConfigPrivate> _ui;
-    int _nodeCnt = 1;
-    ProjectConfig* q_ptr;
-    bool _darkMode;
-
     void openWidget(QtNodes::Node& node)
     {
         Q_Q(ProjectConfig);
@@ -190,30 +212,9 @@ private:
         emit q->handleWidgetShowing(component.mainWidget(), component.mainWidgetDocked());
     }
 
-    void openProperties(QtNodes::Node& node)
-    {
-        auto& component = getComponent(node);
-        auto conf = component.getQConfig();
-        conf->setProperty("name", node.nodeDataModel()->caption());
-
-        PropertyEditorDialog e(node.nodeDataModel()->name() + " properties", *conf.get());
-        if (e.exec() == QDialog::Accepted) {
-            conf = e.properties();
-            auto nodeCaption = conf->property("name");
-            if (nodeCaption.isValid()) {
-                auto& iface = getComponentModel(node);
-                iface.setCaption(nodeCaption.toString());
-                node.nodeGraphicsObject().update();
-            }
-
-            component.setConfig(*conf);
-            component.configChanged();
-        }
-    }
-
     ComponentInterface& getComponent(QtNodes::Node& node)
     {
-        auto &iface = getComponentModel(node);
+        auto& iface = getComponentModel(node);
         auto& component = iface.getComponent();
         return component;
     }
@@ -229,7 +230,7 @@ private:
 
     void addShadow(QtNodes::Node& node)
     {
-        auto const &nodeStyle = node.nodeDataModel()->nodeStyle();
+        auto const& nodeStyle = node.nodeDataModel()->nodeStyle();
         auto effect = new QGraphicsDropShadowEffect;
 
         effect->setOffset(4, 4);
@@ -237,5 +238,18 @@ private:
         effect->setColor(nodeStyle.ShadowColor);
         node.nodeGraphicsObject().setGraphicsEffect(effect);
     }
+
+public:
+    bool _simStarted{ false };
+
+private:
+    ProjectConfigCtx _ctx;
+    PCInterface& _pcInt;
+    QtNodes::FlowScene _graphScene;
+    FlowViewWrapper* _graphView;
+    std::unique_ptr<Ui::ProjectConfigPrivate> _ui;
+    int _nodeCnt = 1;
+    ProjectConfig* q_ptr;
+    bool _darkMode;
 };
 #endif // PROJECTCONFIG_P_H
