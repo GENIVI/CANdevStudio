@@ -354,6 +354,7 @@ TEST_CASE("Section clicked", "[canrawview]")
 TEST_CASE("Filter callback", "[canrawview]")
 {
     CRVGuiInterface::filter_t filter;
+    QAbstractItemModel* model = nullptr;
 
     Mock<CRVGuiInterface> crvMock;
     Fake(Dtor(crvMock));
@@ -362,7 +363,7 @@ TEST_CASE("Filter callback", "[canrawview]")
     Fake(Method(crvMock, setSectionClikedCbk));
     Fake(Method(crvMock, setDockUndockCbk));
     Fake(Method(crvMock, mainWidget));
-    Fake(Method(crvMock, setModel));
+    When(Method(crvMock, setModel)).AlwaysDo([&](auto&& m) { model = m; });
     Fake(Method(crvMock, setSorting));
     Fake(Method(crvMock, initTableView));
     When(Method(crvMock, getSortOrder)).Return(Qt::AscendingOrder, Qt::DescendingOrder, Qt::AscendingOrder);
@@ -373,6 +374,9 @@ TEST_CASE("Filter callback", "[canrawview]")
 
     filter(true);
     REQUIRE_NOTHROW(canRawView.startSimulation());
+
+    CHECK(model != nullptr);
+    model->sort(0, Qt::AscendingOrder);
 
     QCanBusFrame frame;
     frame.setFrameId(11);
