@@ -5,6 +5,6 @@ var searchData=
   ['inittableview',['initTableView',['../struct_c_r_s_gui.html#a22057ae4b21aca098a97d188d4d528ab',1,'CRSGui::initTableView()'],['../struct_c_r_s_gui_interface.html#a467b63ed974cdc169b3601735143a201',1,'CRSGuiInterface::initTableView()'],['../struct_c_r_v_gui.html#a94b62ff7fc78e5d9ecbc971a95b5cc6d',1,'CRVGui::initTableView()'],['../struct_c_r_v_gui_interface.html#aa29af334acacdd847ccd6d31ccd0ad74',1,'CRVGuiInterface::initTableView()']]],
   ['iscolumnhidden',['isColumnHidden',['../struct_c_r_v_gui.html#a7d50613c100064c64d1dc343c3e00cd5',1,'CRVGui::isColumnHidden()'],['../struct_c_r_v_gui_interface.html#a8b0e282ca7edfd7f828de123d91520f8',1,'CRVGuiInterface::isColumnHidden()']]],
   ['isenabled',['isEnabled',['../struct_push_button_interface.html#ab29a5cff947b0c08bacfa611eec0a814',1,'PushButtonInterface::isEnabled()'],['../struct_n_l_m_push_button.html#a235c1e1060d132bdc759ebb5bb7774cd',1,'NLMPushButton::isEnabled()']]],
-  ['isfilteractive',['isFilterActive',['../class_unique_filter_model.html#a640f275642923cba2068aab6376718c3',1,'UniqueFilterModel']]],
+  ['isfilteractive',['isFilterActive',['../class_c_r_v_sort_model.html#a449bab265a48f8c3a2cb1a7e37cc1468',1,'CRVSortModel']]],
   ['isviewfrozen',['isViewFrozen',['../struct_c_r_v_gui.html#a2c99ac6ad5307ebdf232f1847a9aa843',1,'CRVGui::isViewFrozen()'],['../struct_c_r_v_gui_interface.html#a6725e4eeaa56fec55b8aeb97f5b248f6',1,'CRVGuiInterface::isViewFrozen()']]]
 ];

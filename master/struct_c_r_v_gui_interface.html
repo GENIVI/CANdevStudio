@@ -133,8 +133,8 @@ Public Types</h2></td></tr>
 <tr class="separator:ada1f344a0743a495c0611c53233f22ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6d1d02d38e185b0ba783aa8a9ef0affa"><td class="memItemLeft" align="right" valign="top">typedef std::function&lt; void(int)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_c_r_v_gui_interface.html#a6d1d02d38e185b0ba783aa8a9ef0affa">sectionClicked_t</a></td></tr>
 <tr class="separator:a6d1d02d38e185b0ba783aa8a9ef0affa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9a86700085432014ce9c10ce4923433a"><td class="memItemLeft" align="right" valign="top">typedef std::function&lt; void()&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_c_r_v_gui_interface.html#a9a86700085432014ce9c10ce4923433a">filter_t</a></td></tr>
-<tr class="separator:a9a86700085432014ce9c10ce4923433a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83e88a932974e9ace4cd3597b3295c94"><td class="memItemLeft" align="right" valign="top">typedef std::function&lt; void(bool)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_c_r_v_gui_interface.html#a83e88a932974e9ace4cd3597b3295c94">filter_t</a></td></tr>
+<tr class="separator:a83e88a932974e9ace4cd3597b3295c94"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -144,7 +144,7 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a3a2a1249bf619043ebb61c9dffddc144"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a88ad20480f5ed0f24ef7c1d92ecebda5"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_c_r_v_gui_interface.html#a88ad20480f5ed0f24ef7c1d92ecebda5">setSectionClikedCbk</a> (const <a class="el" href="struct_c_r_v_gui_interface.html#a6d1d02d38e185b0ba783aa8a9ef0affa">sectionClicked_t</a> &amp;cb)=0</td></tr>
 <tr class="separator:a88ad20480f5ed0f24ef7c1d92ecebda5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae43a5ff518659c94eb3a8410836ecef3"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_c_r_v_gui_interface.html#ae43a5ff518659c94eb3a8410836ecef3">setFilterCbk</a> (const <a class="el" href="struct_c_r_v_gui_interface.html#a9a86700085432014ce9c10ce4923433a">filter_t</a> &amp;cb)=0</td></tr>
+<tr class="memitem:ae43a5ff518659c94eb3a8410836ecef3"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_c_r_v_gui_interface.html#ae43a5ff518659c94eb3a8410836ecef3">setFilterCbk</a> (const <a class="el" href="struct_c_r_v_gui_interface.html#a83e88a932974e9ace4cd3597b3295c94">filter_t</a> &amp;cb)=0</td></tr>
 <tr class="separator:ae43a5ff518659c94eb3a8410836ecef3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a254b5911f8309e4231c37d07d854b0da"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_c_r_v_gui_interface.html#a254b5911f8309e4231c37d07d854b0da">~CRVGuiInterface</a> ()</td></tr>
 <tr class="separator:a254b5911f8309e4231c37d07d854b0da"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -200,12 +200,12 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a9a86700085432014ce9c10ce4923433a"></a>
+<a class="anchor" id="a83e88a932974e9ace4cd3597b3295c94"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef std::function&lt;void()&gt; <a class="el" href="struct_c_r_v_gui_interface.html#a9a86700085432014ce9c10ce4923433a">CRVGuiInterface::filter_t</a></td>
+          <td class="memname">typedef std::function&lt;void(bool)&gt; <a class="el" href="struct_c_r_v_gui_interface.html#a83e88a932974e9ace4cd3597b3295c94">CRVGuiInterface::filter_t</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -586,7 +586,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">virtual void CRVGuiInterface::setFilterCbk </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="struct_c_r_v_gui_interface.html#a9a86700085432014ce9c10ce4923433a">filter_t</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="struct_c_r_v_gui_interface.html#a83e88a932974e9ace4cd3597b3295c94">filter_t</a> &amp;&#160;</td>
           <td class="paramname"><em>cb</em></td><td>)</td>
           <td></td>
         </tr>

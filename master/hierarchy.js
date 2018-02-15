@@ -29,6 +29,7 @@ var hierarchy =
     [ "Context< CanDeviceInterface >", "struct_context.html", null ],
     [ "Context< CRSGuiInterface, NLMFactoryInterface >", "struct_context.html", null ],
     [ "Context< CRVGuiInterface >", "struct_context.html", null ],
+    [ "Context< PCInterface >", "struct_context.html", null ],
     [ "CRSGuiInterface", "struct_c_r_s_gui_interface.html", [
       [ "CRSGui", "struct_c_r_s_gui.html", null ]
     ] ],
@@ -53,6 +54,9 @@ var hierarchy =
     ] ],
     [ "NodePainterDelegate", null, [
       [ "NodePainter", "struct_node_painter.html", null ]
+    ] ],
+    [ "PCInterface", "struct_p_c_interface.html", [
+      [ "PCImpl", "class_p_c_impl.html", null ]
     ] ],
     [ "ProjectConfigValidator", "class_project_config_validator.html", null ],
     [ "PushButtonInterface", "struct_push_button_interface.html", [
@@ -82,7 +86,7 @@ var hierarchy =
       [ "NewLineManager", "class_new_line_manager.html", null ]
     ] ],
     [ "QSortFilterProxyModel", null, [
-      [ "UniqueFilterModel", "class_unique_filter_model.html", null ]
+      [ "CRVSortModel", "class_c_r_v_sort_model.html", null ]
     ] ],
     [ "QToolButton", null, [
       [ "ModelToolButton", "struct_model_tool_button.html", null ]

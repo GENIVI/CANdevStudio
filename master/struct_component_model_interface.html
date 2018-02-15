@@ -136,14 +136,16 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a798879d3774311685412083267f5e0f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6c9faa87490d885682cb80327cde6b38"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="struct_component_interface.html">ComponentInterface</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_component_model_interface.html#a6c9faa87490d885682cb80327cde6b38">getComponent</a> ()=0</td></tr>
 <tr class="separator:a6c9faa87490d885682cb80327cde6b38"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab87046683d718d59a97ed76898381b1e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_component_model_interface.html#ab87046683d718d59a97ed76898381b1e">handleModelCreation</a> (<a class="el" href="class_project_config.html">ProjectConfig</a> *config)=0</td></tr>
-<tr class="separator:ab87046683d718d59a97ed76898381b1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24fb5e05431ea9875661421c8814a71d"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_component_model_interface.html#a24fb5e05431ea9875661421c8814a71d">handleModelCreation</a> (<a class="el" href="class_project_config.html">ProjectConfig</a> *config, QThread *th=nullptr)=0</td></tr>
+<tr class="separator:a24fb5e05431ea9875661421c8814a71d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa0523d7d6fc99ede2b58969699d4241b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_component_model_interface.html#aa0523d7d6fc99ede2b58969699d4241b">setCaption</a> (const QString &amp;caption)=0</td></tr>
 <tr class="separator:aa0523d7d6fc99ede2b58969699d4241b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abbfa2c696b0fed3650bfab78b2c8477f"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_component_model_interface.html#abbfa2c696b0fed3650bfab78b2c8477f">restored</a> ()=0</td></tr>
 <tr class="separator:abbfa2c696b0fed3650bfab78b2c8477f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abe2a4b5b7c242974ad5254aaf9b7f3a1"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_component_model_interface.html#abe2a4b5b7c242974ad5254aaf9b7f3a1">setColorMode</a> (bool darkMode)=0</td></tr>
 <tr class="separator:abe2a4b5b7c242974ad5254aaf9b7f3a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff449ecb2777f0d44ab869e75e5a1e5a"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_component_model_interface.html#aff449ecb2777f0d44ab869e75e5a1e5a">hasSeparateThread</a> () const =0</td></tr>
+<tr class="separator:aff449ecb2777f0d44ab869e75e5a1e5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a798879d3774311685412083267f5e0f8"></a>
@@ -195,7 +197,7 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ab87046683d718d59a97ed76898381b1e"></a>
+<a class="anchor" id="a24fb5e05431ea9875661421c8814a71d"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -206,8 +208,18 @@ Public Member Functions</h2></td></tr>
           <td class="memname">virtual void ComponentModelInterface::handleModelCreation </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_project_config.html">ProjectConfig</a> *&#160;</td>
-          <td class="paramname"><em>config</em></td><td>)</td>
+          <td class="paramname"><em>config</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">QThread *&#160;</td>
+          <td class="paramname"><em>th</em> = <code>nullptr</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -217,7 +229,32 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="class_component_model.html#aeb4b488cecaf5da4b1a5a234bb552c89">ComponentModel&lt; C, Derived &gt;</a>, <a class="el" href="class_component_model.html#aeb4b488cecaf5da4b1a5a234bb552c89">ComponentModel&lt; CanDevice, CanDeviceModel &gt;</a>, <a class="el" href="class_component_model.html#aeb4b488cecaf5da4b1a5a234bb552c89">ComponentModel&lt; CanRawSender, CanRawSenderModel &gt;</a>, and <a class="el" href="class_component_model.html#aeb4b488cecaf5da4b1a5a234bb552c89">ComponentModel&lt; CanRawView, CanRawViewModel &gt;</a>.</p>
+<p>Implemented in <a class="el" href="class_component_model.html#a9d1be7abf854fc88cdd8cbc0061220d8">ComponentModel&lt; C, Derived &gt;</a>, <a class="el" href="class_component_model.html#a9d1be7abf854fc88cdd8cbc0061220d8">ComponentModel&lt; CanDevice, CanDeviceModel &gt;</a>, <a class="el" href="class_component_model.html#a9d1be7abf854fc88cdd8cbc0061220d8">ComponentModel&lt; CanRawSender, CanRawSenderModel &gt;</a>, and <a class="el" href="class_component_model.html#a9d1be7abf854fc88cdd8cbc0061220d8">ComponentModel&lt; CanRawView, CanRawViewModel &gt;</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aff449ecb2777f0d44ab869e75e5a1e5a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool ComponentModelInterface::hasSeparateThread </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="class_component_model.html#ae7b8e2ec63bd90e2acca3cf7bb10a912">ComponentModel&lt; C, Derived &gt;</a>, <a class="el" href="class_component_model.html#ae7b8e2ec63bd90e2acca3cf7bb10a912">ComponentModel&lt; CanDevice, CanDeviceModel &gt;</a>, <a class="el" href="class_component_model.html#ae7b8e2ec63bd90e2acca3cf7bb10a912">ComponentModel&lt; CanRawSender, CanRawSenderModel &gt;</a>, <a class="el" href="class_component_model.html#ae7b8e2ec63bd90e2acca3cf7bb10a912">ComponentModel&lt; CanRawView, CanRawViewModel &gt;</a>, and <a class="el" href="class_can_device_model.html#a2d03d2a5d8661ccc7ea81efbcda2e5ab">CanDeviceModel</a>.</p>
 
 </div>
 </div>

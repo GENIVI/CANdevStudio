@@ -4,7 +4,7 @@ var searchData=
   ['candevicedatain',['CanDeviceDataIn',['../class_can_device_data_in.html#ae8114a4de27eab6f3c991c7b169c7d03',1,'CanDeviceDataIn::CanDeviceDataIn()'],['../class_can_device_data_in.html#a9f51d8d5c62b66e02aa88157b13215a0',1,'CanDeviceDataIn::CanDeviceDataIn(QCanBusFrame const &amp;frame)']]],
   ['candevicedataout',['CanDeviceDataOut',['../class_can_device_data_out.html#ae3460c64a1534464c322218caa6b1136',1,'CanDeviceDataOut::CanDeviceDataOut()'],['../class_can_device_data_out.html#a33cc3b62d24af193d179273191002448',1,'CanDeviceDataOut::CanDeviceDataOut(QCanBusFrame const &amp;frame, Direction const direction, bool status)']]],
   ['candevicemodel',['CanDeviceModel',['../class_can_device_model.html#add5985ec6435f710acc0b0b14c560dd1',1,'CanDeviceModel']]],
-  ['candeviceprivate',['CanDevicePrivate',['../class_can_device_private.html#a459e88a7efaea2bb9bbbee3bebeff5b7',1,'CanDevicePrivate']]],
+  ['candeviceprivate',['CanDevicePrivate',['../class_can_device_private.html#a7896dc8cab99964673232ee03a374029',1,'CanDevicePrivate']]],
   ['canrawsender',['CanRawSender',['../class_can_raw_sender.html#a3e5c79c8702f9e6947697086c04f3c05',1,'CanRawSender::CanRawSender()'],['../class_can_raw_sender.html#abc435128d26f9dca2bc0314a4f1e65c3',1,'CanRawSender::CanRawSender(CanRawSenderCtx &amp;&amp;ctx)']]],
   ['canrawsendermodel',['CanRawSenderModel',['../class_can_raw_sender_model.html#aafca46c260201ce3c1c20658d14456bc',1,'CanRawSenderModel']]],
   ['canrawsenderprivate',['CanRawSenderPrivate',['../class_can_raw_sender_private.html#ae69e7d51f9258a91bd04dfcb5e5e12eb',1,'CanRawSenderPrivate']]],
@@ -15,7 +15,6 @@ var searchData=
   ['checkable',['checkable',['../struct_push_button_interface.html#a4f075cbb297b3c1e9057be2ce2f0c2c3',1,'PushButtonInterface::checkable()'],['../struct_n_l_m_push_button.html#a9797dd90cb25037087e99876774187b6',1,'NLMPushButton::checkable()']]],
   ['checked',['checked',['../struct_push_button_interface.html#a2c8491656bddc5c61961a2ac6cf46c6f',1,'PushButtonInterface::checked()'],['../struct_n_l_m_push_button.html#a5722989f994a3f96200dcc0d1378369d',1,'NLMPushButton::checked()']]],
   ['clearcallbacks',['clearCallbacks',['../struct_can_device_interface.html#a45c6932479315663591a38c8947600e4',1,'CanDeviceInterface::clearCallbacks()'],['../struct_can_device_qt.html#ac72f6a3d28040bd6d193d3dec8deec08',1,'CanDeviceQt::clearCallbacks()']]],
-  ['clearfilter',['clearFilter',['../class_unique_filter_model.html#a242df2f42ae90d16e12c2d5c71e5caa4',1,'UniqueFilterModel']]],
   ['cleargraphview',['clearGraphView',['../class_project_config.html#a3247826951e3f4972d4b309467c5c87b',1,'ProjectConfig::clearGraphView()'],['../class_project_config_private.html#a5478ebc01faa31e431bf59735f79e4f0',1,'ProjectConfigPrivate::clearGraphView()']]],
   ['clone',['clone',['../class_component_model.html#a8a91bf58568283d1a48fdf80449532f4',1,'ComponentModel']]],
   ['closeevent',['closeEvent',['../class_project_config.html#a19151c1dd5cf6c3a99985c1c3aa6b4b5',1,'ProjectConfig::closeEvent()'],['../struct_sub_window.html#a1b4b2dec3bd9137440c809bde3447f0c',1,'SubWindow::closeEvent()']]],
@@ -31,5 +30,6 @@ var searchData=
   ['createprojectconfig',['createProjectConfig',['../class_main_window.html#a03ffc218341eec996463d79739b02e89',1,'MainWindow']]],
   ['createpushbutton',['createPushButton',['../struct_n_l_m_factory.html#ab2578c0dc5f31f397faad63aac30419b',1,'NLMFactory::createPushButton()'],['../struct_n_l_m_factory_interface.html#a6e6be93f1dd8b419baaf1e1de7f31005',1,'NLMFactoryInterface::createPushButton()']]],
   ['crsgui',['CRSGui',['../struct_c_r_s_gui.html#aa16dee0fca89a03a8749b924fb03851d',1,'CRSGui']]],
-  ['crvgui',['CRVGui',['../struct_c_r_v_gui.html#a59e9be0249f8a0b880cf6de78ebebb68',1,'CRVGui']]]
+  ['crvgui',['CRVGui',['../struct_c_r_v_gui.html#a59e9be0249f8a0b880cf6de78ebebb68',1,'CRVGui']]],
+  ['crvsortmodel',['CRVSortModel',['../class_c_r_v_sort_model.html#a7a3a59938287c0301e7f775ec99d7792',1,'CRVSortModel']]]
 ];

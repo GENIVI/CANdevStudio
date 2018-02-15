@@ -34,10 +34,14 @@ var dir_63333d075306eec5841a0e2f4cff9332 =
     [ "nodepainter.h", "nodepainter_8h.html", [
       [ "NodePainter", "struct_node_painter.html", "struct_node_painter" ]
     ] ],
-    [ "projectconfig.cpp", "projectconfig_8cpp.html", null ],
-    [ "projectconfig.h", "projectconfig_8h.html", [
-      [ "ProjectConfig", "class_project_config.html", "class_project_config" ]
+    [ "pcimpl.h", "pcimpl_8h.html", [
+      [ "PCImpl", "class_p_c_impl.html", "class_p_c_impl" ]
     ] ],
+    [ "pcinterface.h", "pcinterface_8h.html", [
+      [ "PCInterface", "struct_p_c_interface.html", "struct_p_c_interface" ]
+    ] ],
+    [ "projectconfig.cpp", "projectconfig_8cpp.html", null ],
+    [ "projectconfig.h", "projectconfig_8h.html", "projectconfig_8h" ],
     [ "projectconfig_p.h", "projectconfig__p_8h.html", [
       [ "ProjectConfigPrivate", "class_project_config_private.html", "class_project_config_private" ]
     ] ],

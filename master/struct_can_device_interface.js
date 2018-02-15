@@ -13,5 +13,6 @@ var struct_can_device_interface =
     [ "setErrorOccurredCbk", "struct_can_device_interface.html#a5ffe30d097d59b48a78a91215d831540", null ],
     [ "setFramesReceivedCbk", "struct_can_device_interface.html#aad56683892b79922799ba163f81c3404", null ],
     [ "setFramesWrittenCbk", "struct_can_device_interface.html#a83eb2a451898d07703bce9efbf3f6df3", null ],
+    [ "setParent", "struct_can_device_interface.html#a074b4869f84a2547858025b57fc5cb20", null ],
     [ "writeFrame", "struct_can_device_interface.html#aeb963d0da7bd307275d43dbea110e1c9", null ]
 ];

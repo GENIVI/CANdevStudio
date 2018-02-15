@@ -2,7 +2,7 @@ var struct_c_r_v_gui_interface =
 [
     [ "clear_t", "struct_c_r_v_gui_interface.html#a4f3e2e64061f9fee89c136124df259fa", null ],
     [ "dockUndock_t", "struct_c_r_v_gui_interface.html#ada1f344a0743a495c0611c53233f22ef", null ],
-    [ "filter_t", "struct_c_r_v_gui_interface.html#a9a86700085432014ce9c10ce4923433a", null ],
+    [ "filter_t", "struct_c_r_v_gui_interface.html#a83e88a932974e9ace4cd3597b3295c94", null ],
     [ "sectionClicked_t", "struct_c_r_v_gui_interface.html#a6d1d02d38e185b0ba783aa8a9ef0affa", null ],
     [ "~CRVGuiInterface", "struct_c_r_v_gui_interface.html#a254b5911f8309e4231c37d07d854b0da", null ],
     [ "getClickedColumn", "struct_c_r_v_gui_interface.html#ac32bed3f1d95a9f744d55d5ffae27153", null ],

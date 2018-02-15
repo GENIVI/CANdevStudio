@@ -1,6 +1,6 @@
 var class_can_device_private =
 [
-    [ "CanDevicePrivate", "class_can_device_private.html#a459e88a7efaea2bb9bbbee3bebeff5b7", null ],
+    [ "CanDevicePrivate", "class_can_device_private.html#a7896dc8cab99964673232ee03a374029", null ],
     [ "restoreConfiguration", "class_can_device_private.html#a6a5e19d65cb4d53494708268b9707ad2", null ],
     [ "saveSettings", "class_can_device_private.html#a4afd3fdf5e6f11859fd0308fce07d86f", null ],
     [ "_backendProperty", "class_can_device_private.html#a16652750e33c8c101369a742c1be27b6", null ],

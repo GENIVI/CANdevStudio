@@ -17,10 +17,12 @@ var searchData=
   ['_5fresizable',['_resizable',['../class_component_model.html#a6a688b4830a2bbf90cdc730a2f109d25',1,'ComponentModel']]],
   ['_5frestored',['_restored',['../class_component_model.html#a3be9dddbac505b600ba199bfde7d8210',1,'ComponentModel']]],
   ['_5fsendqueue',['_sendQueue',['../class_can_device_private.html#a3c82b49d7e18f6de1bbe995fc6c79c3b',1,'CanDevicePrivate']]],
-  ['_5fsimstarted',['_simStarted',['../class_can_device_private.html#a9e0bb6c05a587352044d5ba6bdeffc14',1,'CanDevicePrivate::_simStarted()'],['../class_can_raw_view_private.html#a1064b20d356ab769c8e583e56dccebb5',1,'CanRawViewPrivate::_simStarted()']]],
+  ['_5fsimstarted',['_simStarted',['../class_can_device_private.html#a9e0bb6c05a587352044d5ba6bdeffc14',1,'CanDevicePrivate::_simStarted()'],['../class_can_raw_view_private.html#a1064b20d356ab769c8e583e56dccebb5',1,'CanRawViewPrivate::_simStarted()'],['../class_project_config_private.html#a0b8b5b4d9599c29b0225e9ee147de296',1,'ProjectConfigPrivate::_simStarted()']]],
   ['_5fsupportedprops',['_supportedProps',['../class_can_device_private.html#aea6db88af1007a48a9e7bbd869a25aeb',1,'CanDevicePrivate']]],
   ['_5ftimer',['_timer',['../class_can_raw_view_private.html#a44915d7e6ebceb2fc65b25c2d725f5f4',1,'CanRawViewPrivate']]],
   ['_5ftvmodel',['_tvModel',['../class_can_raw_view_private.html#a597e0b4695ac16e64c42ab6b00359836',1,'CanRawViewPrivate']]],
-  ['_5fui',['_ui',['../class_can_raw_sender_private.html#a218cdc83f7aae5aacd3f4fdacb4d3df6',1,'CanRawSenderPrivate::_ui()'],['../class_can_raw_view_private.html#ade10e0a061d9f71118f185218e0cecc7',1,'CanRawViewPrivate::_ui()']]],
-  ['_5funiquemodel',['_uniqueModel',['../class_can_raw_view_private.html#a4572535f14200f94c01d3f8f532e9a4b',1,'CanRawViewPrivate']]]
+  ['_5ftvmodelsort',['_tvModelSort',['../class_can_raw_view_private.html#aa2a3f0ea6354a5534c1a6d98b389adb8',1,'CanRawViewPrivate']]],
+  ['_5ftvmodelunique',['_tvModelUnique',['../class_can_raw_view_private.html#ab4eb3a46005ade1fea9a4624473df1e6',1,'CanRawViewPrivate']]],
+  ['_5ftvmodeluniquesort',['_tvModelUniqueSort',['../class_can_raw_view_private.html#a569c37c4d952d58b70a7f427987613c1',1,'CanRawViewPrivate']]],
+  ['_5fui',['_ui',['../class_can_raw_sender_private.html#a218cdc83f7aae5aacd3f4fdacb4d3df6',1,'CanRawSenderPrivate::_ui()'],['../class_can_raw_view_private.html#ade10e0a061d9f71118f185218e0cecc7',1,'CanRawViewPrivate::_ui()']]]
 ];

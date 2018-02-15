@@ -24,6 +24,7 @@ var annotated_dup =
     [ "CRSGuiInterface", "struct_c_r_s_gui_interface.html", "struct_c_r_s_gui_interface" ],
     [ "CRVGui", "struct_c_r_v_gui.html", "struct_c_r_v_gui" ],
     [ "CRVGuiInterface", "struct_c_r_v_gui_interface.html", "struct_c_r_v_gui_interface" ],
+    [ "CRVSortModel", "class_c_r_v_sort_model.html", "class_c_r_v_sort_model" ],
     [ "DragWidget", "class_drag_widget.html", "class_drag_widget" ],
     [ "EnumIterator", "class_enum_iterator.html", "class_enum_iterator" ],
     [ "FlowViewWrapper", "struct_flow_view_wrapper.html", "struct_flow_view_wrapper" ],
@@ -38,13 +39,14 @@ var annotated_dup =
     [ "NLMLineEdit", "struct_n_l_m_line_edit.html", "struct_n_l_m_line_edit" ],
     [ "NLMPushButton", "struct_n_l_m_push_button.html", "struct_n_l_m_push_button" ],
     [ "NodePainter", "struct_node_painter.html", "struct_node_painter" ],
+    [ "PCImpl", "class_p_c_impl.html", "class_p_c_impl" ],
+    [ "PCInterface", "struct_p_c_interface.html", "struct_p_c_interface" ],
     [ "ProjectConfig", "class_project_config.html", "class_project_config" ],
     [ "ProjectConfigPrivate", "class_project_config_private.html", "class_project_config_private" ],
     [ "ProjectConfigValidator", "class_project_config_validator.html", null ],
     [ "PropertyEditorDialog", "class_property_editor_dialog.html", "class_property_editor_dialog" ],
     [ "PushButtonInterface", "struct_push_button_interface.html", "struct_push_button_interface" ],
     [ "SubWindow", "struct_sub_window.html", "struct_sub_window" ],
-    [ "UniqueFilterModel", "class_unique_filter_model.html", "class_unique_filter_model" ],
     [ "VisitableWith", "struct_visitable_with.html", "struct_visitable_with" ],
     [ "Visitor", "class_visitor.html", "class_visitor" ]
 ];

@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['openproperties',['openProperties',['../class_p_c_impl.html#ae4e7f293a6e0139305dd41d9593a0f55',1,'PCImpl::openProperties()'],['../struct_p_c_interface.html#af5d4101faa425ef53996088e79b2ae95',1,'PCInterface::openProperties()']]],
   ['operator_21_3d',['operator!=',['../class_enum_iterator.html#a54fe0ac121358843ccd364d554871c56',1,'EnumIterator']]],
   ['operator_28_29',['operator()',['../class_visitor.html#a76df5d255ab8dc3b6ad187f46f78e5e5',1,'Visitor']]],
   ['operator_2a',['operator*',['../class_enum_iterator.html#a8c655fc0ff3e91b784e24427f32bfea9',1,'EnumIterator::operator*()'],['../class_enum_iterator.html#a3ef54e1c9a0c6b715068e5cd5ff0552a',1,'EnumIterator::operator*() const ']]],

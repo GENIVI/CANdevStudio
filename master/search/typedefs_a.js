@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['value_5ftype',['value_type',['../class_enum_iterator.html#a32022a1677f92a64efe381ec0b495486',1,'EnumIterator']]],
-  ['visitable_5ftypes',['visitable_types',['../class_visitor.html#abae8402bdacf11116114c195712bfca4',1,'Visitor']]]
+  ['sectionclicked_5ft',['sectionClicked_t',['../struct_c_r_v_gui_interface.html#a6d1d02d38e185b0ba783aa8a9ef0affa',1,'CRVGuiInterface']]]
 ];

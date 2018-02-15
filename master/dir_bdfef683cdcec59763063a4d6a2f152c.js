@@ -9,8 +9,8 @@ var dir_bdfef683cdcec59763063a4d6a2f152c =
       [ "CanRawViewPrivate", "class_can_raw_view_private.html", "class_can_raw_view_private" ]
     ] ],
     [ "crv_enums.h", "crv__enums_8h.html", "crv__enums_8h" ],
-    [ "uniquefiltermodel.cpp", "uniquefiltermodel_8cpp.html", null ],
-    [ "uniquefiltermodel.h", "uniquefiltermodel_8h.html", [
-      [ "UniqueFilterModel", "class_unique_filter_model.html", "class_unique_filter_model" ]
+    [ "crvsortmodel.cpp", "crvsortmodel_8cpp.html", null ],
+    [ "crvsortmodel.h", "crvsortmodel_8h.html", [
+      [ "CRVSortModel", "class_c_r_v_sort_model.html", "class_c_r_v_sort_model" ]
     ] ]
 ];

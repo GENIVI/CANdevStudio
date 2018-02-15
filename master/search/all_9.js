@@ -8,7 +8,7 @@ var searchData=
   ['intervalline',['IntervalLine',['../class_new_line_manager.html#a69f0c8e8a1213f641d43b7aa019e87dca346e881b63154e5471f78b7708e6a1f4',1,'NewLineManager']]],
   ['iscolumnhidden',['isColumnHidden',['../struct_c_r_v_gui.html#a7d50613c100064c64d1dc343c3e00cd5',1,'CRVGui::isColumnHidden()'],['../struct_c_r_v_gui_interface.html#a8b0e282ca7edfd7f828de123d91520f8',1,'CRVGuiInterface::isColumnHidden()']]],
   ['isenabled',['isEnabled',['../struct_push_button_interface.html#ab29a5cff947b0c08bacfa611eec0a814',1,'PushButtonInterface::isEnabled()'],['../struct_n_l_m_push_button.html#a235c1e1060d132bdc759ebb5bb7774cd',1,'NLMPushButton::isEnabled()']]],
-  ['isfilteractive',['isFilterActive',['../class_unique_filter_model.html#a640f275642923cba2068aab6376718c3',1,'UniqueFilterModel']]],
+  ['isfilteractive',['isFilterActive',['../class_c_r_v_sort_model.html#a449bab265a48f8c3a2cb1a7e37cc1468',1,'CRVSortModel']]],
   ['isviewfrozen',['isViewFrozen',['../struct_c_r_v_gui.html#a2c99ac6ad5307ebdf232f1847a9aa843',1,'CRVGui::isViewFrozen()'],['../struct_c_r_v_gui_interface.html#a6725e4eeaa56fec55b8aeb97f5b248f6',1,'CRVGuiInterface::isViewFrozen()']]],
   ['iterator_5fcategory',['iterator_category',['../class_enum_iterator.html#ab54baf4008839326bb0194bfdc39beff',1,'EnumIterator']]]
 ];

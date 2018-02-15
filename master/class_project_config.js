@@ -1,6 +1,7 @@
 var class_project_config =
 [
     [ "ProjectConfig", "class_project_config.html#ac4511179192c6b95c3683007acc51573", null ],
+    [ "ProjectConfig", "class_project_config.html#a6ef93e1565281e718af6d67109f4aa47", null ],
     [ "~ProjectConfig", "class_project_config.html#a8581ca85aa5805e78bc493f04123b7a5", null ],
     [ "clearGraphView", "class_project_config.html#a3247826951e3f4972d4b309467c5c87b", null ],
     [ "closeEvent", "class_project_config.html#a19151c1dd5cf6c3a99985c1c3aa6b4b5", null ],
@@ -12,6 +13,8 @@ var class_project_config =
     [ "load", "class_project_config.html#adf35c8592a59b6b787db41e53432353c", null ],
     [ "save", "class_project_config.html#aedf1db3274b8b57e72648af8220d2a32", null ],
     [ "setColorMode", "class_project_config.html#aee51fe64eae27ca2f006c06be58af220", null ],
+    [ "simulationStarted", "class_project_config.html#afd045792374c1eb6fca4ee0601db3822", null ],
+    [ "simulationStopped", "class_project_config.html#a41e85517b8614890238079cb8dd17d6c", null ],
     [ "startSimulation", "class_project_config.html#a18f37c77fc6bc6840e9131c4f172c1fc", null ],
     [ "stopSimulation", "class_project_config.html#a9a43e8a6f85ee87ac61799a8a9918772", null ]
 ];

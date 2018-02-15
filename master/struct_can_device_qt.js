@@ -9,5 +9,6 @@ var struct_can_device_qt =
     [ "setErrorOccurredCbk", "struct_can_device_qt.html#a5b9294df606c7773413fbb26d1588e63", null ],
     [ "setFramesReceivedCbk", "struct_can_device_qt.html#ab3dbf5e6f572f406d523496533797b33", null ],
     [ "setFramesWrittenCbk", "struct_can_device_qt.html#ab32e80032d7b5f821381dd3da252ef23", null ],
+    [ "setParent", "struct_can_device_qt.html#a26e391fed48074fee9d6d1e79b76401d", null ],
     [ "writeFrame", "struct_can_device_qt.html#ab5e13b14d2281ee83d2119f2a083a6e7", null ]
 ];

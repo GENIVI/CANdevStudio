@@ -30,5 +30,7 @@ var searchData=
   ['crsguiinterface_2eh',['crsguiinterface.h',['../crsguiinterface_8h.html',1,'']]],
   ['crv_5fenums_2eh',['crv_enums.h',['../crv__enums_8h.html',1,'']]],
   ['crvgui_2eh',['crvgui.h',['../crvgui_8h.html',1,'']]],
-  ['crvguiinterface_2eh',['crvguiinterface.h',['../crvguiinterface_8h.html',1,'']]]
+  ['crvguiinterface_2eh',['crvguiinterface.h',['../crvguiinterface_8h.html',1,'']]],
+  ['crvsortmodel_2ecpp',['crvsortmodel.cpp',['../crvsortmodel_8cpp.html',1,'']]],
+  ['crvsortmodel_2eh',['crvsortmodel.h',['../crvsortmodel_8h.html',1,'']]]
 ];

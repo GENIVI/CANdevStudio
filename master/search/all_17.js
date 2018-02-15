@@ -19,6 +19,7 @@ var searchData=
   ['_7emainwindow',['~MainWindow',['../class_main_window.html#ae98d00a93bc118200eeef9f9bba1dba7',1,'MainWindow']]],
   ['_7enlmfactory',['~NLMFactory',['../struct_n_l_m_factory.html#a600ced51d576ba1af49d7f3c5d186d6f',1,'NLMFactory']]],
   ['_7enlmfactoryinterface',['~NLMFactoryInterface',['../struct_n_l_m_factory_interface.html#a217f14adc09c34b22ce116da1adc63dc',1,'NLMFactoryInterface']]],
+  ['_7epcinterface',['~PCInterface',['../struct_p_c_interface.html#a6fd828ee7ea77e07ac9ddda48a889450',1,'PCInterface']]],
   ['_7eprojectconfig',['~ProjectConfig',['../class_project_config.html#a8581ca85aa5805e78bc493f04123b7a5',1,'ProjectConfig']]],
   ['_7eprojectconfigprivate',['~ProjectConfigPrivate',['../class_project_config_private.html#af458ae70e9b85a9755aeec050a20bea1',1,'ProjectConfigPrivate']]],
   ['_7epropertyeditordialog',['~PropertyEditorDialog',['../class_property_editor_dialog.html#affc5a406f9e129e898c18ef7d32cc0a7',1,'PropertyEditorDialog']]],

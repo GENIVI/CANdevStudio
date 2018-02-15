@@ -13,7 +13,7 @@ var searchData=
   ['candevicemodel',['CanDeviceModel',['../class_can_device_model.html',1,'CanDeviceModel'],['../class_can_device_model.html#add5985ec6435f710acc0b0b14c560dd1',1,'CanDeviceModel::CanDeviceModel()']]],
   ['candevicemodel_2ecpp',['candevicemodel.cpp',['../candevicemodel_8cpp.html',1,'']]],
   ['candevicemodel_2eh',['candevicemodel.h',['../candevicemodel_8h.html',1,'']]],
-  ['candeviceprivate',['CanDevicePrivate',['../class_can_device_private.html',1,'CanDevicePrivate'],['../class_can_device_private.html#a459e88a7efaea2bb9bbbee3bebeff5b7',1,'CanDevicePrivate::CanDevicePrivate()']]],
+  ['candeviceprivate',['CanDevicePrivate',['../class_can_device_private.html',1,'CanDevicePrivate'],['../class_can_device_private.html#a7896dc8cab99964673232ee03a374029',1,'CanDevicePrivate::CanDevicePrivate()']]],
   ['candeviceqt',['CanDeviceQt',['../struct_can_device_qt.html',1,'']]],
   ['candeviceqt_2eh',['candeviceqt.h',['../candeviceqt_8h.html',1,'']]],
   ['cannodedatamodelvisitor',['CanNodeDataModelVisitor',['../struct_can_node_data_model_visitor.html',1,'']]],
@@ -51,7 +51,6 @@ var searchData=
   ['checked',['checked',['../struct_push_button_interface.html#a2c8491656bddc5c61961a2ac6cf46c6f',1,'PushButtonInterface::checked()'],['../struct_n_l_m_push_button.html#a5722989f994a3f96200dcc0d1378369d',1,'NLMPushButton::checked()']]],
   ['clear_5ft',['clear_t',['../struct_c_r_v_gui_interface.html#a4f3e2e64061f9fee89c136124df259fa',1,'CRVGuiInterface']]],
   ['clearcallbacks',['clearCallbacks',['../struct_can_device_interface.html#a45c6932479315663591a38c8947600e4',1,'CanDeviceInterface::clearCallbacks()'],['../struct_can_device_qt.html#ac72f6a3d28040bd6d193d3dec8deec08',1,'CanDeviceQt::clearCallbacks()']]],
-  ['clearfilter',['clearFilter',['../class_unique_filter_model.html#a242df2f42ae90d16e12c2d5c71e5caa4',1,'UniqueFilterModel']]],
   ['cleargraphview',['clearGraphView',['../class_project_config.html#a3247826951e3f4972d4b309467c5c87b',1,'ProjectConfig::clearGraphView()'],['../class_project_config_private.html#a5478ebc01faa31e431bf59735f79e4f0',1,'ProjectConfigPrivate::clearGraphView()']]],
   ['clone',['clone',['../class_component_model.html#a8a91bf58568283d1a48fdf80449532f4',1,'ComponentModel']]],
   ['closeevent',['closeEvent',['../class_project_config.html#a19151c1dd5cf6c3a99985c1c3aa6b4b5',1,'ProjectConfig::closeEvent()'],['../struct_sub_window.html#a1b4b2dec3bd9137440c809bde3447f0c',1,'SubWindow::closeEvent()']]],
@@ -80,6 +79,7 @@ var searchData=
   ['context_3c_20candeviceinterface_20_3e',['Context&lt; CanDeviceInterface &gt;',['../struct_context.html',1,'']]],
   ['context_3c_20crsguiinterface_2c_20nlmfactoryinterface_20_3e',['Context&lt; CRSGuiInterface, NLMFactoryInterface &gt;',['../struct_context.html',1,'']]],
   ['context_3c_20crvguiinterface_20_3e',['Context&lt; CRVGuiInterface &gt;',['../struct_context.html',1,'']]],
+  ['context_3c_20pcinterface_20_3e',['Context&lt; PCInterface &gt;',['../struct_context.html',1,'']]],
   ['createcheckbox',['createCheckBox',['../struct_n_l_m_factory.html#a433a486cc1cc0e4412493734eb23d4f2',1,'NLMFactory::createCheckBox()'],['../struct_n_l_m_factory_interface.html#ac9ec50963e900d2172c098a6b419abd2',1,'NLMFactoryInterface::createCheckBox()']]],
   ['createlineedit',['createLineEdit',['../struct_n_l_m_factory.html#a9a2c71787872caa47353083640e64436',1,'NLMFactory::createLineEdit()'],['../struct_n_l_m_factory_interface.html#ae39bffe027fdbd7ad80044c739b427d9',1,'NLMFactoryInterface::createLineEdit()']]],
   ['createprojectconfig',['createProjectConfig',['../class_main_window.html#a03ffc218341eec996463d79739b02e89',1,'MainWindow']]],
@@ -93,5 +93,8 @@ var searchData=
   ['crvgui',['CRVGui',['../struct_c_r_v_gui.html',1,'CRVGui'],['../struct_c_r_v_gui.html#a59e9be0249f8a0b880cf6de78ebebb68',1,'CRVGui::CRVGui()']]],
   ['crvgui_2eh',['crvgui.h',['../crvgui_8h.html',1,'']]],
   ['crvguiinterface',['CRVGuiInterface',['../struct_c_r_v_gui_interface.html',1,'']]],
-  ['crvguiinterface_2eh',['crvguiinterface.h',['../crvguiinterface_8h.html',1,'']]]
+  ['crvguiinterface_2eh',['crvguiinterface.h',['../crvguiinterface_8h.html',1,'']]],
+  ['crvsortmodel',['CRVSortModel',['../class_c_r_v_sort_model.html',1,'CRVSortModel'],['../class_c_r_v_sort_model.html#a7a3a59938287c0301e7f775ec99d7792',1,'CRVSortModel::CRVSortModel()']]],
+  ['crvsortmodel_2ecpp',['crvsortmodel.cpp',['../crvsortmodel_8cpp.html',1,'']]],
+  ['crvsortmodel_2eh',['crvsortmodel.h',['../crvsortmodel_8h.html',1,'']]]
 ];
