@@ -14,8 +14,8 @@
 
 #define private public
 #include <canrawview.h>
-#include <gui/crvguiinterface.h>
 #include <crvsortmodel.h>
+#include <gui/crvguiinterface.h>
 #undef private
 
 #include <iostream>
@@ -26,8 +26,7 @@ using namespace fakeit;
 
 class CanRawViewPrivate;
 
-void addNewFrame(
-    uint& rowID, double time, uint frameID, uint data, QStandardItemModel& tvModel)
+void addNewFrame(uint& rowID, double time, uint frameID, uint data, QStandardItemModel& tvModel)
 {
     QList<QStandardItem*> list;
 
@@ -293,18 +292,24 @@ TEST_CASE("Dock/Undock", "[canrawview]")
 TEST_CASE("Section clicked", "[canrawview]")
 {
     CRVGuiInterface::sectionClicked_t sectionClicked;
+    QAbstractItemModel* model = nullptr;
 
     Mock<CRVGuiInterface> crvMock;
     Fake(Dtor(crvMock));
     Fake(Method(crvMock, setClearCbk));
-    When(Method(crvMock, setSectionClikedCbk)).Do([&](auto&& fn) { sectionClicked = fn; });
+    When(Method(crvMock, setSectionClikedCbk)).AlwaysDo([&](auto&& fn) { sectionClicked = fn; });
     Fake(Method(crvMock, setFilterCbk));
     Fake(Method(crvMock, setDockUndockCbk));
     Fake(Method(crvMock, mainWidget));
-    Fake(Method(crvMock, setModel));
-    Fake(Method(crvMock, setSorting));
+    When(Method(crvMock, setModel)).AlwaysDo([&](auto&& m) { model = m; });
+    When(Method(crvMock, setSorting)).AlwaysDo([&](int sortNdx, Qt::SortOrder order) {
+        CHECK(model != nullptr);
+        model->sort(sortNdx, order);
+    });
     Fake(Method(crvMock, initTableView));
-    When(Method(crvMock, getSortOrder)).Return(Qt::AscendingOrder, Qt::DescendingOrder, Qt::AscendingOrder, Qt::AscendingOrder, Qt::AscendingOrder, Qt::AscendingOrder, Qt::AscendingOrder);
+    When(Method(crvMock, getSortOrder))
+        .Return(Qt::AscendingOrder, Qt::DescendingOrder, Qt::AscendingOrder, Qt::AscendingOrder, Qt::AscendingOrder,
+            Qt::AscendingOrder, Qt::AscendingOrder);
     Fake(Method(crvMock, isViewFrozen));
     Fake(Method(crvMock, scrollToBottom));
 
@@ -417,7 +422,7 @@ TEST_CASE("Stress test", "[canrawview]")
     QCanBusFrame frame;
     frame.setPayload({ "123" });
 
-    for(int i = 0; i < 0x7ff; ++i) {
+    for (int i = 0; i < 0x7ff; ++i) {
         frame.setFrameId(i);
         REQUIRE_NOTHROW(canRawView.frameReceived(frame));
         REQUIRE_NOTHROW(canRawView.frameSent(true, frame));
@@ -425,4 +430,3 @@ TEST_CASE("Stress test", "[canrawview]")
 
     filter(false);
 }
-

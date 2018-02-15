@@ -1,5 +1,6 @@
 #include <candevice/candeviceqt.h>
 #include <catch.hpp>
+#include <QEventLoop>
 
 TEST_CASE("Invalid parameters init fails", "[candeviceqt]")
 {
@@ -45,4 +46,13 @@ TEST_CASE("Initialized device", "[candeviceqt]")
     REQUIRE_NOTHROW(dev.framesAvailable());
     REQUIRE_NOTHROW(dev.disconnectDevice());
     REQUIRE_NOTHROW(dev.clearCallbacks());
+}
+
+TEST_CASE("Thread", "[candeviceqt]")
+{
+    CanDeviceQt dev;
+    QEventLoop el;
+
+    dev.setParent(&el);
+    CHECK(dev.init("socketcan", "can0") == true);
 }
