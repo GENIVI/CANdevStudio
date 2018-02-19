@@ -6,12 +6,6 @@
 #include <QTextStream>
 #include <log.h>
 
-namespace {
-
-const uint32_t g_cTick = 1;
-
-} //namespace
-
 CanRawPlayerPrivate::CanRawPlayerPrivate(CanRawPlayer* q, CanRawPlayerCtx&& ctx)
     : _ctx(std::move(ctx))
     , q_ptr(q)
@@ -22,7 +16,6 @@ CanRawPlayerPrivate::CanRawPlayerPrivate(CanRawPlayer* q, CanRawPlayerCtx&& ctx)
     setParent(q);
 
     _timer.setTimerType(Qt::PreciseTimer);
-    _timer.setInterval(g_cTick);
     connect(&_timer, &QTimer::timeout, this, &CanRawPlayerPrivate::timeout);
 }
 
@@ -31,6 +24,8 @@ void CanRawPlayerPrivate::initProps()
     for (const auto& p : _supportedProps) {
         _props[p.first];
     }
+    
+    _props[_tickProperty] = _tick;
 }
 
 ComponentInterface::ComponentProperties CanRawPlayerPrivate::getSupportedProperties() const
@@ -110,12 +105,13 @@ void CanRawPlayerPrivate::startPlayback()
 {
     _frameNdx = 0;
     _ticks = 0;
+    _timer.setInterval(_tick);
     _timer.start();
 }
 
 void CanRawPlayerPrivate::timeout()
 {
-    _ticks += g_cTick;
+    _ticks += _tick;
 
     while (_frameNdx < _frames.size() && _frames[_frameNdx].first <= _ticks) {
         emit q_ptr->sendFrame(_frames[_frameNdx].second);

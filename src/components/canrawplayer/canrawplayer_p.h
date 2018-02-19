@@ -33,6 +33,10 @@ public:
     bool _simStarted{ false };
     CanRawPlayerCtx _ctx;
     std::map<QString, QVariant> _props;
+    uint32_t _tick{ 10 };
+    const QString _nameProperty = "name";
+    const QString _fileProperty = "file";
+    const QString _tickProperty = "timer tick [ms]";
 
 private:
     CanRawPlayer* q_ptr;
@@ -40,11 +44,10 @@ private:
     uint32_t _frameNdx;
     uint32_t _ticks;
     QTimer _timer;
-    const QString _nameProperty = "name";
-    const QString _fileProperty = "file";
     ComponentInterface::ComponentProperties _supportedProps = {
             {_nameProperty,   {QVariant::String, true}},
-            {_fileProperty,   {QVariant::String, true}}
+            {_fileProperty,   {QVariant::String, true}},
+            {_tickProperty,   {QVariant::String, true}}
     };
 };
 

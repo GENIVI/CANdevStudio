@@ -13,7 +13,6 @@ CanRawPlayer::CanRawPlayer()
 CanRawPlayer::CanRawPlayer(CanRawPlayerCtx&& ctx)
     : d_ptr(new CanRawPlayerPrivate(this, std::move(ctx)))
 {
-
 }
 
 CanRawPlayer::~CanRawPlayer() {}
@@ -50,13 +49,17 @@ std::shared_ptr<QObject> CanRawPlayer::getQConfig() const
     return configHelpers::getQConfig(getSupportedProperties(), d->_props);
 }
 
-void CanRawPlayer::configChanged() 
+void CanRawPlayer::configChanged()
 {
-    QString fileName = getQConfig()->property("file").toString();
+    QString fileName = getQConfig()->property(d_ptr->_fileProperty.toStdString().c_str()).toString();
 
     cds_info("File to open: '{}'", fileName.toStdString());
 
     d_ptr->loadTraceFile(fileName);
+
+    QString tick = getQConfig()->property(d_ptr->_tickProperty.toStdString().c_str()).toString();
+    d_ptr->_tick = tick.toUInt();
+    cds_debug("Tick set to {}", d_ptr->_tick);
 }
 
 bool CanRawPlayer::mainWidgetDocked() const
