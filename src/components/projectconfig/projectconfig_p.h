@@ -3,6 +3,7 @@
 
 #include "canrawsendermodel.h"
 #include "canrawviewmodel.h"
+#include "canrawplayermodel.h"
 #include "flowviewwrapper.h"
 #include "iconlabel.h"
 #include "modeltoolbutton.h"
@@ -37,6 +38,7 @@ public:
         modelRegistry.registerModel<CanDeviceModel>();
         modelRegistry.registerModel<CanRawSenderModel>();
         modelRegistry.registerModel<CanRawViewModel>();
+        modelRegistry.registerModel<CanRawPlayerModel>();
 
         _pcInt.setNodeCreatedCallback(
             &_graphScene, std::bind(&ProjectConfigPrivate::nodeCreatedCallback, this, std::placeholders::_1));
@@ -81,6 +83,8 @@ public:
             "CanRawSender", CanRawSenderModel::headerColor1(), CanRawSenderModel::headerColor2(), bgColor));
         _ui->rawWidget->layout()->addWidget(
             new IconLabel("CanRawView", CanRawViewModel::headerColor1(), CanRawViewModel::headerColor2(), bgColor));
+        _ui->rawWidget->layout()->addWidget(
+            new IconLabel("CanRawPlayer", CanRawPlayerModel::headerColor1(), CanRawPlayerModel::headerColor2(), bgColor));
     }
 
     ~ProjectConfigPrivate() {}
