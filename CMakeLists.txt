@@ -13,6 +13,7 @@ SET(CMAKE_INSTALL_RPATH ${CMAKE_INSTALL_PREFIX}/lib/CANdevStudio)
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/Modules)
 
 option(WITH_COVERAGE "Build with coverage" OFF)
+option(WITH_TOOLS "Build tools directory" OFF)
 
 if(NOT MSVC)
     option(WITH_TESTS "Build with test" ON)
@@ -80,18 +81,25 @@ configure_file(
 )
 include_directories(${CMAKE_BINARY_DIR}/generated)
 # end of version Handling
-include_directories(${CMAKE_SOURCE_DIR}/3rdParty/readerwriterqueue)
+
+include_directories(3rdParty/readerwriterqueue)
+include_directories(3rdParty/cxxopts/include)
 
 add_subdirectory(3rdParty/nodeeditor)
 add_subdirectory(src/common)
 add_subdirectory(src/gui)
 add_subdirectory(src/components)
 
-
 if(WITH_TESTS OR WITH_COVERAGE)
     enable_testing()
     add_subdirectory(3rdParty/fakeit)
     add_subdirectory(tests)
+endif()
+
+if(WITH_TOOLS)
+    find_package(Boost COMPONENTS system filesystem REQUIRED)
+
+    add_subdirectory(tools)
 endif()
 
 install(PROGRAMS ${CMAKE_BINARY_DIR}/lib/libnodes.so DESTINATION lib/CANdevStudio)

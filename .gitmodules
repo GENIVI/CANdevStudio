@@ -16,3 +16,6 @@
 [submodule "3rdParty/readerwriterqueue"]
 	path = 3rdParty/readerwriterqueue
 	url = https://github.com/cameron314/readerwriterqueue
+[submodule "3rdParty/cxxopts"]
+	path = 3rdParty/cxxopts
+	url = https://github.com/jarro2783/cxxopts.git
