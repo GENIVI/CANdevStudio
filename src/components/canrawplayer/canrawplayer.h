@@ -8,6 +8,7 @@
 #include <memory>
 
 class CanRawPlayerPrivate;
+class QCanBusFrame;
 class QWidget;
 typedef Context<> CanRawPlayerCtx;
 
@@ -30,6 +31,7 @@ public:
     ComponentInterface::ComponentProperties getSupportedProperties() const override;
 
 signals:
+    void sendFrame(const QCanBusFrame& frame);
     void mainWidgetDockToggled(QWidget* widget) override;
 
 public slots:

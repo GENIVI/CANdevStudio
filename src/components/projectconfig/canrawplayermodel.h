@@ -37,6 +37,11 @@ public:
         return QColor(84, 84, 84);
     }
 
+    virtual bool hasSeparateThread() const override 
+    {
+        return true;
+    }
+
 public slots:
 
     /**

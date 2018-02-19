@@ -1,17 +1,34 @@
 #include "canrawplayer_p.h"
+#include <QCanBusFrame>
+#include <QFile>
+#include <QFileInfo>
+#include <QRegularExpression>
+#include <QTextStream>
 #include <log.h>
 
-CanRawPlayerPrivate::CanRawPlayerPrivate(CanRawPlayer *q, CanRawPlayerCtx&& ctx)
+namespace {
+
+const uint32_t g_cTick = 1;
+
+} //namespace
+
+CanRawPlayerPrivate::CanRawPlayerPrivate(CanRawPlayer* q, CanRawPlayerCtx&& ctx)
     : _ctx(std::move(ctx))
     , q_ptr(q)
+    , _timer(this)
 {
     initProps();
+
+    setParent(q);
+
+    _timer.setTimerType(Qt::PreciseTimer);
+    _timer.setInterval(g_cTick);
+    connect(&_timer, &QTimer::timeout, this, &CanRawPlayerPrivate::timeout);
 }
 
 void CanRawPlayerPrivate::initProps()
 {
-    for (const auto& p: _supportedProps)
-    {
+    for (const auto& p : _supportedProps) {
         _props[p.first];
     }
 }
@@ -37,5 +54,71 @@ void CanRawPlayerPrivate::setSettings(const QJsonObject& json)
     for (const auto& p : _supportedProps) {
         if (json.contains(p.first))
             _props[p.first] = json[p.first].toVariant();
+    }
+}
+
+void CanRawPlayerPrivate::loadTraceFile(const QString& filename)
+{
+    QFileInfo fileNfo(filename);
+    QFile traceFile(filename);
+
+    _frames.clear();
+
+    if (!fileNfo.exists() || !fileNfo.isFile()) {
+        cds_error("File: '{}' does not exist", filename.toStdString());
+        return;
+    }
+
+    if (!traceFile.open(QIODevice::ReadOnly)) {
+        cds_error("Failed to open file '{}' for reading", filename.toStdString());
+        return;
+    }
+
+    QTextStream in(&traceFile);
+
+    QRegularExpression re(R"((\d+\.\d{6})\W\d\W([0-9,A-F]{1,8})(x)?\W+Rx\W+d\W+(\d)((\W[0-9,A-F]{2}){0,8}))");
+    while (!in.atEnd()) {
+        QString line = in.readLine();
+
+        const auto& match = re.match(line);
+
+        if (match.hasMatch()) {
+            unsigned int time = static_cast<unsigned int>(std::stof(match.captured(1).toStdString()) * 1000 + 0.5);
+            auto id = std::stoul(match.captured(2).toStdString(), 0, 16);
+            auto payload = QByteArray::fromHex(match.captured(5).replace(" ", "").toLatin1());
+
+            QCanBusFrame frame(id, payload);
+            if (match.captured(3).length()) {
+                frame.setExtendedFrameFormat(true);
+            }
+
+            _frames.push_back({ time, std::move(frame) });
+        }
+    }
+
+    cds_info("Number of frames to play: {}", _frames.size());
+
+    traceFile.close();
+}
+
+void CanRawPlayerPrivate::stopPlayback()
+{
+    _timer.stop();
+}
+
+void CanRawPlayerPrivate::startPlayback()
+{
+    _frameNdx = 0;
+    _ticks = 0;
+    _timer.start();
+}
+
+void CanRawPlayerPrivate::timeout()
+{
+    _ticks += g_cTick;
+
+    while (_frameNdx < _frames.size() && _frames[_frameNdx].first <= _ticks) {
+        emit q_ptr->sendFrame(_frames[_frameNdx].second);
+        ++_frameNdx;
     }
 }

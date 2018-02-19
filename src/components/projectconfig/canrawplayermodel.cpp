@@ -17,6 +17,7 @@ const std::map<PortType, std::vector<NodeDataType>> portMappings = {
 // clang-format on
 
 } // namespace
+    
 
 CanRawPlayerModel::CanRawPlayerModel()
     : ComponentModel("CanRawPlayer")
@@ -25,6 +26,8 @@ CanRawPlayerModel::CanRawPlayerModel()
     _label->setAlignment(Qt::AlignVCenter | Qt::AlignHCenter);
     _label->setFixedSize(75, 25);
     _label->setAttribute(Qt::WA_TranslucentBackground);
+
+    connect(&_component, &CanRawPlayer::sendFrame, this, &CanRawPlayerModel::sendFrame);
 }
 
 QtNodes::NodePainterDelegate* CanRawPlayerModel::painterDelegate() const
