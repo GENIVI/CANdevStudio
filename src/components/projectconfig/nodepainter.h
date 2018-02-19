@@ -28,7 +28,7 @@ struct NodePainter : public QtNodes::NodePainterDelegate {
 
         float diam = nodeStyle.ConnectionPointDiameter;
 
-        QRectF boundary(-diam + 1, -diam + 1, 2.0 * diam + geom.width() - 2, (2.0 * diam + geom.height()) / 3 - 1);
+        QRectF boundary(-diam + 1, -diam + 1, 2.0 * diam + geom.width() - 2, 22);
 
         double const radius = 3.0;
 

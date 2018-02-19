@@ -419,6 +419,8 @@ bool MainWindow::closeProjectConfig()
             return false;
         }
 
+        _ui->actionStop->trigger();
+
         _projectConfig->clearGraphView();
         if (_projectConfig.get()->isVisible()) {
             _projectConfig.get()->parentWidget()->close();

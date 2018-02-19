@@ -76,7 +76,7 @@ void CanRawPlayerPrivate::loadTraceFile(const QString& filename)
 
     QTextStream in(&traceFile);
 
-    QRegularExpression re(R"((\d+\.\d{6})\W\d\W([0-9,A-F]{1,8})(x)?\W+Rx\W+d\W+(\d)((\W[0-9,A-F]{2}){0,8}))");
+    QRegularExpression re(R"(\((\d+\.\d{6})\)\s*\w*\s*([0-9,A-F]{1,8})\s*\[(\d)\]\s*((\s*[0-9,A-F]{2}){0,8}))");
     while (!in.atEnd()) {
         QString line = in.readLine();
 
@@ -85,7 +85,7 @@ void CanRawPlayerPrivate::loadTraceFile(const QString& filename)
         if (match.hasMatch()) {
             unsigned int time = static_cast<unsigned int>(std::stof(match.captured(1).toStdString()) * 1000 + 0.5);
             auto id = std::stoul(match.captured(2).toStdString(), 0, 16);
-            auto payload = QByteArray::fromHex(match.captured(5).replace(" ", "").toLatin1());
+            auto payload = QByteArray::fromHex(match.captured(4).replace(" ", "").toLatin1());
 
             QCanBusFrame frame(id, payload);
             if (match.captured(3).length()) {
