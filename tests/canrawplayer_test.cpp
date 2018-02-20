@@ -13,7 +13,8 @@ Q_DECLARE_METATYPE(QCanBusFrame);
 
 TEST_CASE("Stubbed methods", "[canrawplayer]")
 {
-    CanRawPlayer c;
+    CanRawPlayerCtx ctx;
+    CanRawPlayer c(std::move(ctx));
 
     CHECK(c.mainWidget() == nullptr);
     CHECK(c.mainWidgetDocked() == true);
@@ -56,6 +57,17 @@ TEST_CASE("getQConfig", "[canrawplayer]")
 TEST_CASE("configChanged", "[canrawplayer]")
 {
     CanRawPlayer c;
+    QObject obj;
+    std::string filename = "wrongFile";
+
+    c.configChanged();
+
+    std::ofstream file(filename);
+    file << "blah";
+    file.close();
+
+    chmod(filename.c_str(), 0);
+    obj.setProperty("file", QString(filename.c_str()));
 
     c.configChanged();
 }
@@ -82,11 +94,11 @@ static QString createTestFile()
     file << "(000.003365)  can0  55A   [7]  A0 0D EE 33 3C 33 A7\n";
     file << "(000.004497)  can0  4B1   [8]  60 E4 37 4C D8 64 37 13\n";
     file << "(000.005588)  can0  0A3   [5]  70 C6 55 0F DE\n";
-    file << "(000.259614)  can0  199043EC   [7]  2B 86 F8 52 4E D9 7D\n";
-    file << "(000.260767)  can0  0709939E   [8]  87 A4 5B 0C 01 0F C7 6D\n";
-    file << "(000.261918)  can0  11989CEC   [8]  22 F8 20 1E 43 3B C1 40\n";
-    file << "(000.263150)  can0  07602F88   [7]  2C 29 3A 33 A9 7E 3C\n";
-    file << "(000.264412)  can0  1896047E   [0] \n";
+    file << "(000.059614)  can0  199043EC   [7]  2B 86 F8 52 4E D9 7D\n";
+    file << "(000.060767)  can0  0709939E   [8]  87 A4 5B 0C 01 0F C7 6D\n";
+    file << "(000.061918)  can0  11989CEC   [8]  22 F8 20 1E 43 3B C1 40\n";
+    file << "(000.063150)  can0  07602F88   [7]  2C 29 3A 33 A9 7E 3C\n";
+    file << "(000.064412)  can0  1896047E   [0] \n";
 
     file.close();
 
@@ -134,7 +146,7 @@ TEST_CASE("Send test", "[canrawplayer]")
 
     th.start();
 
-    std::this_thread::sleep_for(1s);
+    std::this_thread::sleep_for(200ms);
 
     th.quit();
     th.wait();
@@ -162,7 +174,7 @@ TEST_CASE("Send test 2", "[canrawplayer]")
 
     th.start();
 
-    std::this_thread::sleep_for(1s);
+    std::this_thread::sleep_for(200ms);
 
     th.quit();
     th.wait();
