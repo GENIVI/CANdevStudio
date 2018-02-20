@@ -9,6 +9,7 @@ var hierarchy =
     ] ],
     [ "ComponentInterface", "struct_component_interface.html", [
       [ "CanDevice", "class_can_device.html", null ],
+      [ "CanRawPlayer", "class_can_raw_player.html", null ],
       [ "CanRawSender", "class_can_raw_sender.html", null ],
       [ "CanRawView", "class_can_raw_view.html", null ]
     ] ],
@@ -16,6 +17,9 @@ var hierarchy =
       [ "ComponentModel< C, Derived >", "class_component_model.html", null ],
       [ "ComponentModel< CanDevice, CanDeviceModel >", "class_component_model.html", [
         [ "CanDeviceModel", "class_can_device_model.html", null ]
+      ] ],
+      [ "ComponentModel< CanRawPlayer, CanRawPlayerModel >", "class_component_model.html", [
+        [ "CanRawPlayerModel", "class_can_raw_player_model.html", null ]
       ] ],
       [ "ComponentModel< CanRawSender, CanRawSenderModel >", "class_component_model.html", [
         [ "CanRawSenderModel", "class_can_raw_sender_model.html", null ]
@@ -49,6 +53,7 @@ var hierarchy =
     [ "NodeDataModel", null, [
       [ "ComponentModel< C, Derived >", "class_component_model.html", null ],
       [ "ComponentModel< CanDevice, CanDeviceModel >", "class_component_model.html", null ],
+      [ "ComponentModel< CanRawPlayer, CanRawPlayerModel >", "class_component_model.html", null ],
       [ "ComponentModel< CanRawSender, CanRawSenderModel >", "class_component_model.html", null ],
       [ "ComponentModel< CanRawView, CanRawViewModel >", "class_component_model.html", null ]
     ] ],
@@ -79,6 +84,8 @@ var hierarchy =
     ] ],
     [ "QObject", null, [
       [ "CanDevice", "class_can_device.html", null ],
+      [ "CanRawPlayer", "class_can_raw_player.html", null ],
+      [ "CanRawPlayerPrivate", "class_can_raw_player_private.html", null ],
       [ "CanRawSender", "class_can_raw_sender.html", null ],
       [ "CanRawSenderPrivate", "class_can_raw_sender_private.html", null ],
       [ "CanRawView", "class_can_raw_view.html", null ],

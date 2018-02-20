@@ -1,10 +1,12 @@
 <map id="src/components/projectconfig/nodepainter.h" name="src/components/projectconfig/nodepainter.h">
 <area shape="rect" id="node2" href="$candevicemodel_8h.html" title="src/components/projectconfig\l/candevicemodel.h" alt="" coords="123,95,333,136"/>
-<area shape="rect" id="node6" href="$canrawsendermodel_8h.html" title="src/components/projectconfig\l/canrawsendermodel.h" alt="" coords="357,95,568,136"/>
-<area shape="rect" id="node8" href="$canrawviewmodel_8h.html" title="src/components/projectconfig\l/canrawviewmodel.h" alt="" coords="592,95,803,136"/>
+<area shape="rect" id="node6" href="$canrawplayermodel_8h.html" title="src/components/projectconfig\l/canrawplayermodel.h" alt="" coords="357,95,568,136"/>
+<area shape="rect" id="node8" href="$canrawsendermodel_8h.html" title="src/components/projectconfig\l/canrawsendermodel.h" alt="" coords="592,95,803,136"/>
+<area shape="rect" id="node10" href="$canrawviewmodel_8h.html" title="src/components/projectconfig\l/canrawviewmodel.h" alt="" coords="827,95,1037,136"/>
 <area shape="rect" id="node3" href="$candevicemodel_8cpp.html" title="src/components/projectconfig\l/candevicemodel.cpp" alt="" coords="5,184,216,225"/>
-<area shape="rect" id="node4" href="$projectconfig__p_8h.html" title="src/components/projectconfig\l/projectconfig_p.h" alt="" coords="240,184,451,225"/>
-<area shape="rect" id="node5" href="$projectconfig_8cpp.html" title="src/components/projectconfig\l/projectconfig.cpp" alt="" coords="240,273,451,315"/>
-<area shape="rect" id="node7" href="$canrawsendermodel_8cpp.html" title="src/components/projectconfig\l/canrawsendermodel.cpp" alt="" coords="475,184,685,225"/>
-<area shape="rect" id="node9" href="$canrawviewmodel_8cpp.html" title="src/components/projectconfig\l/canrawviewmodel.cpp" alt="" coords="709,184,920,225"/>
+<area shape="rect" id="node4" href="$projectconfig__p_8h.html" title="src/components/projectconfig\l/projectconfig_p.h" alt="" coords="475,184,685,225"/>
+<area shape="rect" id="node5" href="$projectconfig_8cpp.html" title="src/components/projectconfig\l/projectconfig.cpp" alt="" coords="475,273,685,315"/>
+<area shape="rect" id="node7" href="$canrawplayermodel_8cpp.html" title="src/components/projectconfig\l/canrawplayermodel.cpp" alt="" coords="240,184,451,225"/>
+<area shape="rect" id="node9" href="$canrawsendermodel_8cpp.html" title="src/components/projectconfig\l/canrawsendermodel.cpp" alt="" coords="709,184,920,225"/>
+<area shape="rect" id="node11" href="$canrawviewmodel_8cpp.html" title="src/components/projectconfig\l/canrawviewmodel.cpp" alt="" coords="944,184,1155,225"/>
 </map>

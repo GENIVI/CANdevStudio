@@ -21,5 +21,5 @@ var searchData=
   ['nodedoubleclickedcallback',['nodeDoubleClickedCallback',['../class_project_config_private.html#a0af542815bcee52c8db3c4d9849f3597',1,'ProjectConfigPrivate']]],
   ['nodepainter',['NodePainter',['../struct_node_painter.html',1,'NodePainter'],['../struct_node_painter.html#a146d12d2ee40b7d2d8fea3eaa146e1cc',1,'NodePainter::NodePainter()=default'],['../struct_node_painter.html#a713654fd488f4aa1144bf1440839a2cb',1,'NodePainter::NodePainter(const QColor &amp;headerColor1, const QColor &amp;headerColor2)']]],
   ['nodepainter_2eh',['nodepainter.h',['../nodepainter_8h.html',1,'']]],
-  ['nports',['nPorts',['../class_can_device_model.html#ad02c6e46e947211afb068f202faa9e4b',1,'CanDeviceModel::nPorts()'],['../class_can_raw_sender_model.html#ad2b2ba0baf9826b9b781f8d05fbefdc0',1,'CanRawSenderModel::nPorts()'],['../class_can_raw_view_model.html#a9e366286e6593bf14168da1cadbd8654',1,'CanRawViewModel::nPorts()']]]
+  ['nports',['nPorts',['../class_can_device_model.html#ad02c6e46e947211afb068f202faa9e4b',1,'CanDeviceModel::nPorts()'],['../class_can_raw_player_model.html#a59d7865f1e476c4fa15ce39cd3dfe064',1,'CanRawPlayerModel::nPorts()'],['../class_can_raw_sender_model.html#ad2b2ba0baf9826b9b781f8d05fbefdc0',1,'CanRawSenderModel::nPorts()'],['../class_can_raw_view_model.html#a9e366286e6593bf14168da1cadbd8654',1,'CanRawViewModel::nPorts()']]]
 ];

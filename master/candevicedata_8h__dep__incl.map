@@ -1,7 +1,9 @@
 <map id="src/components/projectconfig/datamodeltypes/candevicedata.h" name="src/components/projectconfig/datamodeltypes/candevicedata.h">
 <area shape="rect" id="node2" href="$candevicemodel_8cpp.html" title="src/components/projectconfig\l/candevicemodel.cpp" alt="" coords="5,95,216,136"/>
-<area shape="rect" id="node3" href="$canrawsenderdata_8h.html" title="src/components/projectconfig\l/datamodeltypes/canrawsenderdata.h" alt="" coords="240,95,504,136"/>
-<area shape="rect" id="node5" href="$canrawviewdata_8h.html" title="src/components/projectconfig\l/datamodeltypes/canrawviewdata.h" alt="" coords="529,95,775,136"/>
-<area shape="rect" id="node4" href="$canrawsendermodel_8cpp.html" title="src/components/projectconfig\l/canrawsendermodel.cpp" alt="" coords="267,184,477,225"/>
-<area shape="rect" id="node6" href="$canrawviewmodel_8cpp.html" title="src/components/projectconfig\l/canrawviewmodel.cpp" alt="" coords="547,184,757,225"/>
+<area shape="rect" id="node3" href="$canrawplayerdata_8h.html" title="src/components/projectconfig\l/datamodeltypes/canrawplayerdata.h" alt="" coords="240,95,499,136"/>
+<area shape="rect" id="node5" href="$canrawsenderdata_8h.html" title="src/components/projectconfig\l/datamodeltypes/canrawsenderdata.h" alt="" coords="523,95,787,136"/>
+<area shape="rect" id="node7" href="$canrawviewdata_8h.html" title="src/components/projectconfig\l/datamodeltypes/canrawviewdata.h" alt="" coords="811,95,1058,136"/>
+<area shape="rect" id="node4" href="$canrawplayermodel_8cpp.html" title="src/components/projectconfig\l/canrawplayermodel.cpp" alt="" coords="264,184,475,225"/>
+<area shape="rect" id="node6" href="$canrawsendermodel_8cpp.html" title="src/components/projectconfig\l/canrawsendermodel.cpp" alt="" coords="549,184,760,225"/>
+<area shape="rect" id="node8" href="$canrawviewmodel_8cpp.html" title="src/components/projectconfig\l/canrawviewmodel.cpp" alt="" coords="829,184,1040,225"/>
 </map>

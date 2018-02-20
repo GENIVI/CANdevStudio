@@ -5,6 +5,10 @@ var dir_63333d075306eec5841a0e2f4cff9332 =
     [ "candevicemodel.h", "candevicemodel_8h.html", [
       [ "CanDeviceModel", "class_can_device_model.html", "class_can_device_model" ]
     ] ],
+    [ "canrawplayermodel.cpp", "canrawplayermodel_8cpp.html", null ],
+    [ "canrawplayermodel.h", "canrawplayermodel_8h.html", [
+      [ "CanRawPlayerModel", "class_can_raw_player_model.html", "class_can_raw_player_model" ]
+    ] ],
     [ "canrawsendermodel.cpp", "canrawsendermodel_8cpp.html", null ],
     [ "canrawsendermodel.h", "canrawsendermodel_8h.html", [
       [ "CanRawSenderModel", "class_can_raw_sender_model.html", "class_can_raw_sender_model" ]

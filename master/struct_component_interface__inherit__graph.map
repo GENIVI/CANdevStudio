@@ -1,5 +1,6 @@
 <map id="ComponentInterface" name="ComponentInterface">
 <area shape="rect" id="node2" href="$class_can_device.html" title="The class provides abstraction layer for CAN BUS hardware. " alt="" coords="5,80,96,107"/>
-<area shape="rect" id="node3" href="$class_can_raw_sender.html" title="CanRawSender" alt="" coords="121,80,239,107"/>
-<area shape="rect" id="node4" href="$class_can_raw_view.html" title="CanRawView" alt="" coords="264,80,365,107"/>
+<area shape="rect" id="node3" href="$class_can_raw_player.html" title="CanRawPlayer" alt="" coords="121,80,231,107"/>
+<area shape="rect" id="node4" href="$class_can_raw_sender.html" title="CanRawSender" alt="" coords="255,80,374,107"/>
+<area shape="rect" id="node5" href="$class_can_raw_view.html" title="CanRawView" alt="" coords="399,80,500,107"/>
 </map>
