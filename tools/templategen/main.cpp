@@ -763,6 +763,98 @@ typedef CanDeviceDataOut {name}DataIn;
         "name"_a = name, "nameUpper"_a = str_toupper(name), "nameLower"_a = str_tolower(name));
 }
 
+std::string genTests(const std::string& name)
+{
+    using namespace fmt::literals;
+
+    return fmt::format(R"(#include <QtWidgets/QApplication>
+#include <{nameLower}.h>
+#define CATCH_CONFIG_RUNNER
+#include "log.h"
+#include <QSignalSpy>
+#include <fakeit.hpp>
+#include <QCanBusFrame>
+
+std::shared_ptr<spdlog::logger> kDefaultLogger;
+// needed for QSignalSpy cause according to qtbug 49623 comments
+// automatic detection of types is "flawed" in moc
+Q_DECLARE_METATYPE(QCanBusFrame);
+
+TEST_CASE("Stubbed methods", "[{nameLower}]")
+{{
+    {name} c;
+
+    CHECK(c.mainWidget() == nullptr);
+    CHECK(c.mainWidgetDocked() == true);
+}}
+
+TEST_CASE("setConfig - qobj", "[{nameLower}]")
+{{
+    {name} c;
+    QObject obj;
+
+    obj.setProperty("name", "Test Name");
+
+    c.setConfig(obj);
+}}
+
+TEST_CASE("setConfig - json", "[{nameLower}]")
+{{
+    {name} c;
+    QJsonObject obj;
+
+    obj["name"] = "Test Name";
+
+    c.setConfig(obj);
+}}
+
+TEST_CASE("getConfig", "[{nameLower}]")
+{{
+    {name} c;
+
+    auto abc = c.getConfig();
+}}
+
+TEST_CASE("getQConfig", "[{nameLower}]")
+{{
+    {name} c;
+
+    auto abc = c.getQConfig();
+}}
+
+TEST_CASE("configChanged", "[{nameLower}]")
+{{
+    {name} c;
+
+    c.configChanged();
+}}
+
+TEST_CASE("getSupportedProperties", "[canrawplayer]")
+{{
+    CanRawPlayer c;
+
+    auto props = c.getSupportedProperties();
+
+    CHECK(props.find("name") != props.end());
+    CHECK(props.find("dummy") == props.end());
+}}
+
+int main(int argc, char* argv[])
+{{
+    bool haveDebug = std::getenv("CDS_DEBUG") != nullptr;
+    kDefaultLogger = spdlog::stdout_color_mt("cds");
+    if (haveDebug) {{
+        kDefaultLogger->set_level(spdlog::level::debug);
+    }}
+    cds_debug("Staring unit tests");
+    qRegisterMetaType<QCanBusFrame>(); // required by QSignalSpy
+    QApplication a(argc, argv); // QApplication must exist when contructing QWidgets TODO check QTest
+    return Catch::Session().run(argc, argv);
+}}
+)",
+        "name"_a = name, "nameUpper"_a = str_toupper(name), "nameLower"_a = str_tolower(name));
+}
+
 std::string genTestsModel(const std::string& name)
 {
     using namespace fmt::literals;
@@ -979,6 +1071,7 @@ int main(int argc, char* argv[])
     writeToFile(projectConfigDir / (componentNameLower + "model.cpp"), genDataModelSrc(componentName));
     writeToFile(dataTypesDir / (componentNameLower + "data.h"), genDataTypes(componentName));
 
+    writeToFile(testsDir / (componentNameLower + "_test.cpp"), genTests(componentName));
     writeToFile(testsDir / (componentNameLower + "model_test.cpp"), genTestsModel(componentName));
      
     
