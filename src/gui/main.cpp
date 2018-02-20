@@ -3,6 +3,8 @@
 #include <QtCore/QtDebug>
 #include <QtCore/QtGlobal>
 #include <QtWidgets/QApplication>
+#include <QCanBusFrame>
+#include <nodes/Connection>
 
 #include "log.h"
 
@@ -55,6 +57,9 @@ int main(int argc, char* argv[])
     QApplication a(argc, argv);
     Q_INIT_RESOURCE(CANdevResources);
     QCoreApplication::setAttribute(Qt::AA_DontUseNativeMenuBar);
+
+    qRegisterMetaType<QtNodes::PortIndex>("PortIndex");
+    qRegisterMetaType<QCanBusFrame>("QCanBusFrame");
 
     // CDS_DEBUG is set automatically in CMakeLists.txt based on build type (i.e. false for Release, true for Debug)
     setupLogger(CDS_DEBUG);
