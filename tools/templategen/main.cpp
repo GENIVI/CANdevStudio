@@ -879,6 +879,7 @@ TEST_CASE("Test basic functionality", "[{nameLower}Model]")
     CHECK({nameLower}Model.caption() == "{name}");
     CHECK({nameLower}Model.name() == "{name}");
     CHECK({nameLower}Model.resizable() == false);
+    CHECK({nameLower}Model.hasSeparateThread() == true);
     CHECK(dynamic_cast<{name}Model*>({nameLower}Model.clone().get()) != nullptr);
     CHECK(dynamic_cast<QLabel*>({nameLower}Model.embeddedWidget()) != nullptr);
 }}

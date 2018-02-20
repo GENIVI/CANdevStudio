@@ -18,6 +18,7 @@ TEST_CASE("Test basic functionality", "[canrawplayerModel]")
     CHECK(canrawplayerModel.caption() == "CanRawPlayer");
     CHECK(canrawplayerModel.name() == "CanRawPlayer");
     CHECK(canrawplayerModel.resizable() == false);
+    CHECK(canrawplayerModel.hasSeparateThread() == true);
     CHECK(dynamic_cast<CanRawPlayerModel*>(canrawplayerModel.clone().get()) != nullptr);
     CHECK(dynamic_cast<QLabel*>(canrawplayerModel.embeddedWidget()) != nullptr);
 }
