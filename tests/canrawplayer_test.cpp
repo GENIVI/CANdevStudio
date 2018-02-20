@@ -68,6 +68,7 @@ TEST_CASE("configChanged", "[canrawplayer]")
 
     chmod(filename.c_str(), 0);
     obj.setProperty("file", QString(filename.c_str()));
+    c.setConfig(obj);
 
     c.configChanged();
 }
