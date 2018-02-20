@@ -53,3 +53,8 @@ set(CONFIG_DESTINATION ${PROJECT_BINARY_DIR}/tests/configfiles)
 add_custom_command(TARGET canrawsender_test canrawviewmodel_test POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E remove_directory ${CONFIG_DESTINATION}
     COMMAND ${CMAKE_COMMAND} -E copy_directory ${CONFIG_SOURCE} ${CONFIG_DESTINATION})
+
+add_executable(canrawplayermodel_test canrawplayermodel_test.cpp)
+target_link_libraries(canrawplayermodel_test candevice Qt5::Core Qt5::SerialBus Qt5::Test nodes cds-common projectconfig)
+target_compile_options(canrawplayermodel_test PRIVATE $<$<CXX_COMPILER_ID:GNU>:-fno-devirtualize>)
+add_test( NAME CanRawPlayerModelTest COMMAND canrawplayermodel_test)

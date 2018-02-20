@@ -763,6 +763,118 @@ typedef CanDeviceDataOut {name}DataIn;
         "name"_a = name, "nameUpper"_a = str_toupper(name), "nameLower"_a = str_tolower(name));
 }
 
+std::string genTestsModel(const std::string& name)
+{
+    using namespace fmt::literals;
+
+    return fmt::format(R"(#include <QtWidgets/QApplication>
+#include <projectconfig/{nameLower}model.h>
+#include <datamodeltypes/{nameLower}data.h>
+#define CATCH_CONFIG_RUNNER
+#include "log.h"
+#include <QSignalSpy>
+#include <fakeit.hpp>
+
+std::shared_ptr<spdlog::logger> kDefaultLogger;
+// needed for QSignalSpy cause according to qtbug 49623 comments
+// automatic detection of types is "flawed" in moc
+Q_DECLARE_METATYPE(QCanBusFrame);
+
+TEST_CASE("Test basic functionality", "[{nameLower}Model]")
+{{
+    using namespace fakeit;
+    {name}Model {nameLower}Model;
+    CHECK({nameLower}Model.caption() == "{name}");
+    CHECK({nameLower}Model.name() == "{name}");
+    CHECK({nameLower}Model.resizable() == false);
+    CHECK(dynamic_cast<{name}Model*>({nameLower}Model.clone().get()) != nullptr);
+    CHECK(dynamic_cast<QLabel*>({nameLower}Model.embeddedWidget()) != nullptr);
+}}
+
+TEST_CASE("painterDelegate", "[{nameLower}Model]")
+{{
+    {name}Model {nameLower}Model;
+    CHECK({nameLower}Model.painterDelegate() != nullptr);
+}}
+
+TEST_CASE("nPorts", "[{nameLower}Model]")
+{{
+    {name}Model {nameLower}Model;
+
+    CHECK({nameLower}Model.nPorts(QtNodes::PortType::Out) == 1);
+    CHECK({nameLower}Model.nPorts(QtNodes::PortType::In) == 0);
+}}
+
+TEST_CASE("dataType", "[{nameLower}Model]")
+{{
+    {name}Model {nameLower}Model;
+
+    NodeDataType ndt;
+        
+    ndt = {nameLower}Model.dataType(QtNodes::PortType::Out, 0);
+    CHECK(ndt.id == "rawsender");
+    CHECK(ndt.name == "Raw");
+
+    ndt = {nameLower}Model.dataType(QtNodes::PortType::Out, 1);
+    CHECK(ndt.id == "");
+    CHECK(ndt.name == "");
+    
+    ndt = {nameLower}Model.dataType(QtNodes::PortType::In, 0);
+    CHECK(ndt.id == "");
+    CHECK(ndt.name == "");
+}}
+
+TEST_CASE("outData", "[{nameLower}Model]")
+{{
+    {name}Model {nameLower}Model;
+
+    auto nd = {nameLower}Model.outData(0);
+    CHECK(!nd);
+
+    QCanBusFrame frame;
+    {nameLower}Model.sendFrame(frame);
+    nd = {nameLower}Model.outData(0);
+    CHECK(nd);
+}}
+
+TEST_CASE("setInData", "[{nameLower}Model]")
+{{
+    {name}Model {nameLower}Model;
+
+    {nameLower}Model.setInData({{}}, 1);
+}}
+
+TEST_CASE("sendFrame", "[{nameLower}Model]")
+{{
+    {name}Model {nameLower}Model;
+    QCanBusFrame frame;
+
+    QSignalSpy dataUpdatedSpy(&{nameLower}Model, &{name}Model::dataUpdated);
+
+    for(int i = 0; i < 200; ++i) {{
+        {nameLower}Model.sendFrame(frame);
+    }}
+
+    CHECK(dataUpdatedSpy.count() == 127);
+}}
+
+int main(int argc, char* argv[])
+{{
+    bool haveDebug = std::getenv("CDS_DEBUG") != nullptr;
+    kDefaultLogger = spdlog::stdout_color_mt("cds");
+    if (haveDebug) {{
+        kDefaultLogger->set_level(spdlog::level::debug);
+    }}
+    cds_debug("Staring unit tests");
+    qRegisterMetaType<QCanBusFrame>(); // required by QSignalSpy
+    QApplication a(argc, argv); // QApplication must exist when contructing QWidgets TODO check QTest
+    return Catch::Session().run(argc, argv);
+}}
+
+)",
+        "name"_a = name, "nameUpper"_a = str_toupper(name), "nameLower"_a = str_tolower(name));
+}
+
 void writeToFile(const boost::filesystem::path& filename, const std::string& content)
 {
     boost::filesystem::ofstream file(filename);
@@ -829,6 +941,13 @@ int main(int argc, char* argv[])
         return EXIT_FAILURE;
     }
 
+    boost::filesystem::path testsDir(componentsPath + "/../../tests");
+    if (!boost::filesystem::exists(testsDir)) {
+        std::cerr << "tests directory does not exist" << std::endl;
+
+        return EXIT_FAILURE;
+    }
+
     if (result.count("no-gui")) {
         writeToFile(componentDir / "CMakeLists.txt", genCMake(componentNameLower));
         writeToFile(componentDir / (componentNameLower + ".h"), genComponentHdr(componentName));
@@ -860,5 +979,8 @@ int main(int argc, char* argv[])
     writeToFile(projectConfigDir / (componentNameLower + "model.cpp"), genDataModelSrc(componentName));
     writeToFile(dataTypesDir / (componentNameLower + "data.h"), genDataTypes(componentName));
 
+    writeToFile(testsDir / (componentNameLower + "model_test.cpp"), genTestsModel(componentName));
+     
+    
     return EXIT_SUCCESS;
 }
