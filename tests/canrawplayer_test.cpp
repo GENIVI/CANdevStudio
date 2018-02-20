@@ -67,7 +67,107 @@ TEST_CASE("getSupportedProperties", "[canrawplayer]")
     auto props = c.getSupportedProperties();
 
     CHECK(props.find("name") != props.end());
+    CHECK(props.find("file") != props.end());
+    CHECK(props.find("timer tick [ms]") != props.end());
     CHECK(props.find("dummy") == props.end());
+}
+
+static QString createTestFile()
+{
+    std::string filename = "testfile.log";
+    std::ofstream file(filename);
+
+    file << "(000.001103)  can0  4A1   [2]  C7 B2\n";
+    file << "(000.002232)  can0  794   [5]  06 41 1A 2F 28\n";
+    file << "(000.003365)  can0  55A   [7]  A0 0D EE 33 3C 33 A7\n";
+    file << "(000.004497)  can0  4B1   [8]  60 E4 37 4C D8 64 37 13\n";
+    file << "(000.005588)  can0  0A3   [5]  70 C6 55 0F DE\n";
+    file << "(000.259614)  can0  199043EC   [7]  2B 86 F8 52 4E D9 7D\n";
+    file << "(000.260767)  can0  0709939E   [8]  87 A4 5B 0C 01 0F C7 6D\n";
+    file << "(000.261918)  can0  11989CEC   [8]  22 F8 20 1E 43 3B C1 40\n";
+    file << "(000.263150)  can0  07602F88   [7]  2C 29 3A 33 A9 7E 3C\n";
+    file << "(000.264412)  can0  1896047E   [0] \n";
+
+    file.close();
+
+    return filename.c_str();
+}
+
+static QString createTestFile2()
+{
+    std::string filename = "testfile.log";
+    std::ofstream file(filename);
+
+    file << "(000.001103)  can0  4A1   [2]  C7 B2\n";
+    file << "(000.002232)  can0  794   [5]  06 41 1A 2F 28\n";
+    file << "(000.003365)  can0  55A   [7]  A0 0D EE 33 3C 33 A7\n";
+    file << "(000.004497)  can0  4B1   [8]  60 E4 37 4C D8 64 37 13\n";
+    file << "(000.005588)  can0  0A3   [5]  70 C6 55 0F DE\n";
+    file << "(100.259614)  can0  199043EC   [7]  2B 86 F8 52 4E D9 7D\n";
+    file << "(100.260767)  can0  0709939E   [8]  87 A4 5B 0C 01 0F C7 6D\n";
+    file << "(100.261918)  can0  11989CEC   [8]  22 F8 20 1E 43 3B C1 40\n";
+    file << "(100.263150)  can0  07602F88   [7]  2C 29 3A 33 A9 7E 3C\n";
+    file << "(100.264412)  can0  1896047E   [0] \n";
+
+    file.close();
+
+    return filename.c_str();
+}
+
+TEST_CASE("Send test", "[canrawplayer]")
+{
+    using namespace std::chrono_literals;    
+
+    CanRawPlayer c;
+    QObject props;
+    QSignalSpy sendSpy(&c, &CanRawPlayer::sendFrame);
+    QThread th;
+
+    c.moveToThread(&th);
+    
+    QObject::connect(&th, &QThread::started, &c, &CanRawPlayer::startSimulation);
+    QObject::connect(&th, &QThread::finished, &c, &CanRawPlayer::stopSimulation);
+
+    props.setProperty("file", createTestFile());
+    c.setConfig(props);
+    c.configChanged();
+
+    th.start();
+
+    std::this_thread::sleep_for(1s);
+
+    th.quit();
+    th.wait();
+
+    CHECK(sendSpy.count() == 10);
+}
+
+TEST_CASE("Send test 2", "[canrawplayer]")
+{
+    using namespace std::chrono_literals;    
+
+    CanRawPlayer c;
+    QObject props;
+    QSignalSpy sendSpy(&c, &CanRawPlayer::sendFrame);
+    QThread th;
+
+    c.moveToThread(&th);
+    
+    QObject::connect(&th, &QThread::started, &c, &CanRawPlayer::startSimulation);
+    QObject::connect(&th, &QThread::finished, &c, &CanRawPlayer::stopSimulation);
+
+    props.setProperty("file", createTestFile2());
+    c.setConfig(props);
+    c.configChanged();
+
+    th.start();
+
+    std::this_thread::sleep_for(1s);
+
+    th.quit();
+    th.wait();
+
+    CHECK(sendSpy.count() == 5);
 }
 
 int main(int argc, char* argv[])
