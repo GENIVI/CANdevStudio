@@ -1,9 +1,9 @@
 #include "canrawlogger.h"
 #include "canrawlogger_p.h"
 #include <QDateTime>
+#include <QDir>
 #include <confighelpers.h>
 #include <log.h>
-#include <QDir>
 
 CanRawLogger::CanRawLogger()
     : d_ptr(new CanRawLoggerPrivate(this))
@@ -78,10 +78,10 @@ void CanRawLogger::startSimulation()
     QString dirName = d->_props[d->_dirProperty].toString();
     QDir dir;
 
-    if(!dir.exists(dirName)) {
+    if (!dir.exists(dirName)) {
         cds_info("Dir {} does note exist", dirName.toStdString());
 
-        if(dir.mkdir(dirName)) {
+        if (dir.mkdir(dirName)) {
             cds_info("Directory '{}' created", dirName.toStdString());
         } else {
             cds_error("Failed to create '{}' directory", dirName.toStdString());
@@ -89,22 +89,24 @@ void CanRawLogger::startSimulation()
     }
 
     QString name = d->_props[d->_nameProperty].toString();
-    d->_filename = dirName + "/" + name.replace(" ", "_") + "_"
-        + QString::number(date.date().year()) + QString::number(date.date().month())
-        + QString::number(date.date().day()) + "_" + QString::number(date.time().hour())
-        + QString::number(date.time().minute()) + QString::number(date.time().second()) + ".log";
+    d->_filename = dirName + "/" + name.replace(" ", "_") + "_" + QString::number(date.date().year())
+        + QString("%1").arg(date.date().month(), 2, 10, QChar('0'))
+        + QString("%1").arg(date.date().day(), 2, 10, QChar('0')) + "_"
+        + QString("%1").arg(date.time().hour(), 2, 10, QChar('0'))
+        + QString("%1").arg(date.time().minute(), 2, 10, QChar('0'))
+        + QString("%1").arg(date.time().second(), 2, 10, QChar('0')) + ".log";
 
     cds_debug("Log filename '{}'", d->_filename.toStdString());
 
     int num = 1;
     QString tmpName = d->_filename;
-    while(QFile::exists(tmpName)) {
+    while (QFile::exists(tmpName)) {
         cds_warn("Log file '{}' already exists!", tmpName.toStdString());
         tmpName = d->_filename.left(d->_filename.lastIndexOf(".")) + "(" + QString::number(num) + ").log";
-        ++num;   
+        ++num;
     }
 
-    if(tmpName != d->_filename) {
+    if (tmpName != d->_filename) {
         d->_filename = tmpName;
         cds_warn("New name for log file '{}'", tmpName.toStdString());
     }
