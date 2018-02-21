@@ -69,6 +69,7 @@ void CanRawLogger::stopSimulation()
     d->_simStarted = false;
 
     d->_file.close();
+    d->_file.setFileName("");
 }
 
 void CanRawLogger::startSimulation()
