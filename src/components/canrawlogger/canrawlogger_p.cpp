@@ -49,15 +49,20 @@ void CanRawLoggerPrivate::logFrame(const QCanBusFrame& frame, const QString& dir
     qint64 nsec = _timer.nsecsElapsed();
 
     if (_file.exists()) {
-        auto payHex = frame.payload().toHex();
+        auto payHex = frame.payload().toHex().toUpper();
         // insert space between bytes, skip the end
         for (int ii = payHex.size() - 2; ii >= 2; ii -= 2) {
             payHex.insert(ii, ' ');
         }
 
-        std::string line = fmt::format(" ({sec:03}.{msec:06})  {iface}  {id:X}   [{dlc}]  {data}\n",
-            "sec"_a = nsec / 1000000000, "msec"_a = (nsec % 1000000000) / 1000, "iface"_a = dir.toStdString(),
-            "id"_a = frame.frameId(), "dlc"_a = frame.payload().size(), "data"_a = payHex.toStdString());
+        std::string formatString = " ({sec:03}.{msec:06})  {iface}  {id:03X}   [{dlc}]  {data}\n";
+        if (frame.hasExtendedFrameFormat()) {
+            formatString = " ({sec:03}.{msec:06})  {iface}  {id:08X}   [{dlc}]  {data}\n";
+        }
+
+        std::string line = fmt::format(formatString, "sec"_a = nsec / 1000000000, "msec"_a = (nsec % 1000000000) / 1000,
+            "iface"_a = dir.toStdString(), "id"_a = frame.frameId(), "dlc"_a = frame.payload().size(),
+            "data"_a = payHex.toStdString());
 
         _file.write(line.c_str());
     }
