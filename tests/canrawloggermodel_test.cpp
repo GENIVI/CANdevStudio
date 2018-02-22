@@ -67,8 +67,20 @@ TEST_CASE("outData", "[canrawloggerModel]")
 TEST_CASE("setInData", "[canrawloggerModel]")
 {
     CanRawLoggerModel canrawloggerModel;
+    QCanBusFrame frame;
+    QSignalSpy rxSpy(&canrawloggerModel, &CanRawLoggerModel::frameReceived);
+    QSignalSpy txSpy(&canrawloggerModel, &CanRawLoggerModel::frameSent);
 
-    canrawloggerModel.setInData({}, 1);
+    auto &&rxData = std::make_shared<CanRawLoggerDataIn>(frame, Direction::RX, true);
+    auto &&txData = std::make_shared<CanRawLoggerDataIn>(frame, Direction::TX, true);
+    auto &&errData = std::make_shared<CanRawLoggerDataIn>(frame, static_cast<Direction>(11), true);
+
+    canrawloggerModel.setInData(rxData, 1);
+    canrawloggerModel.setInData(txData, 1);
+    canrawloggerModel.setInData(errData, 1);
+
+    CHECK(txSpy.count() == 1);
+    CHECK(rxSpy.count() == 1);
 }
 
 int main(int argc, char* argv[])

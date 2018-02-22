@@ -80,7 +80,7 @@ void CanRawLogger::startSimulation()
     QDir dir;
 
     if (!dir.exists(dirName)) {
-        cds_info("Dir {} does note exist", dirName.toStdString());
+        cds_info("Dir {} does not exist", dirName.toStdString());
 
         if (dir.mkdir(dirName)) {
             cds_info("Directory '{}' created", dirName.toStdString());

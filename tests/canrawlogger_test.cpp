@@ -16,7 +16,8 @@ Q_DECLARE_METATYPE(QCanBusFrame);
 
 TEST_CASE("Stubbed methods", "[canrawlogger]")
 {
-    CanRawLogger c;
+    CanRawLoggerCtx ctx;
+    CanRawLogger c(std::move(ctx));
 
     CHECK(c.mainWidget() == nullptr);
     CHECK(c.mainWidgetDocked() == true);
@@ -209,8 +210,51 @@ TEST_CASE("logging - send/receive", "[canrawlogger]")
     c.frameReceived(frame);
     c.frameReceived(frame);
     c.frameReceived(frame);
+    
+    fileList = dir.entryList({ "*" });
+    CHECK(fileList.size() == 3);
     msgCnt = loadTraceFile(dirName + "/" + fileList[2]);
     CHECK(msgCnt == 3);
+}
+
+TEST_CASE("logging - send/receive, removed file", "[canrawlogger]")
+{
+    CanRawLogger c;
+    QObject obj;
+    QCanBusFrame frame;
+    QString dirName = "filename_test";
+    QDir dir;
+
+    dir.setPath(dirName);
+    dir.removeRecursively();
+    obj.setProperty("directory", dirName);
+
+    c.setConfig(obj);
+    c.startSimulation();
+
+    frame.setFrameId(0x3bc);
+    frame.setPayload(QByteArray::fromHex("123"));
+    c.frameReceived(frame);
+
+    frame.setFrameId(0x11abc);
+    frame.setPayload(QByteArray::fromHex("abcd"));
+    c.frameReceived(frame);
+
+    c.frameSent(true, frame);
+    c.frameSent(false, frame);
+
+    // list will include .. and .
+    auto fileList = dir.entryList({ "*" });
+    CHECK(fileList.size() == 3);
+
+    QFile rmFile(dirName + "/" + fileList[2]);
+    CHECK(rmFile.remove());
+
+    c.frameReceived(frame);
+    c.frameReceived(frame);
+    c.frameReceived(frame);
+
+    c.stopSimulation();
 }
 
 TEST_CASE("logging - send/receive while stopped", "[canrawlogger]")
