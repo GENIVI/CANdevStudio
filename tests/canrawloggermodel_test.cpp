@@ -78,6 +78,7 @@ TEST_CASE("setInData", "[canrawloggerModel]")
     canrawloggerModel.setInData(rxData, 1);
     canrawloggerModel.setInData(txData, 1);
     canrawloggerModel.setInData(errData, 1);
+    canrawloggerModel.setInData({}, 1);
 
     CHECK(txSpy.count() == 1);
     CHECK(rxSpy.count() == 1);
