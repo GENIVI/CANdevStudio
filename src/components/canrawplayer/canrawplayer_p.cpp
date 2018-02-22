@@ -83,10 +83,6 @@ void CanRawPlayerPrivate::loadTraceFile(const QString& filename)
             auto payload = QByteArray::fromHex(match.captured(4).replace(" ", "").toLatin1());
 
             QCanBusFrame frame(id, payload);
-            if (match.captured(3).length()) {
-                frame.setExtendedFrameFormat(true);
-            }
-
             _frames.push_back({ time, std::move(frame) });
         }
     }

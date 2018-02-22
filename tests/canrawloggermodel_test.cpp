@@ -18,7 +18,7 @@ TEST_CASE("Test basic functionality", "[canrawloggerModel]")
     CHECK(canrawloggerModel.caption() == "CanRawLogger");
     CHECK(canrawloggerModel.name() == "CanRawLogger");
     CHECK(canrawloggerModel.resizable() == false);
-    CHECK(canrawloggerModel.hasSeparateThread() == true);
+    CHECK(canrawloggerModel.hasSeparateThread() == false);
     CHECK(dynamic_cast<CanRawLoggerModel*>(canrawloggerModel.clone().get()) != nullptr);
     CHECK(dynamic_cast<QLabel*>(canrawloggerModel.embeddedWidget()) != nullptr);
 }
@@ -33,8 +33,8 @@ TEST_CASE("nPorts", "[canrawloggerModel]")
 {
     CanRawLoggerModel canrawloggerModel;
 
-    CHECK(canrawloggerModel.nPorts(QtNodes::PortType::Out) == 1);
-    CHECK(canrawloggerModel.nPorts(QtNodes::PortType::In) == 0);
+    CHECK(canrawloggerModel.nPorts(QtNodes::PortType::Out) == 0);
+    CHECK(canrawloggerModel.nPorts(QtNodes::PortType::In) == 1);
 }
 
 TEST_CASE("dataType", "[canrawloggerModel]")
@@ -44,14 +44,14 @@ TEST_CASE("dataType", "[canrawloggerModel]")
     NodeDataType ndt;
         
     ndt = canrawloggerModel.dataType(QtNodes::PortType::Out, 0);
-    CHECK(ndt.id == "rawsender");
-    CHECK(ndt.name == "Raw");
-
-    ndt = canrawloggerModel.dataType(QtNodes::PortType::Out, 1);
     CHECK(ndt.id == "");
     CHECK(ndt.name == "");
-    
+
     ndt = canrawloggerModel.dataType(QtNodes::PortType::In, 0);
+    CHECK(ndt.id == "rawview");
+    CHECK(ndt.name == "Raw");
+
+    ndt = canrawloggerModel.dataType(QtNodes::PortType::In, 1);
     CHECK(ndt.id == "");
     CHECK(ndt.name == "");
 }
@@ -62,11 +62,6 @@ TEST_CASE("outData", "[canrawloggerModel]")
 
     auto nd = canrawloggerModel.outData(0);
     CHECK(!nd);
-
-    QCanBusFrame frame;
-    canrawloggerModel.sendFrame(frame);
-    nd = canrawloggerModel.outData(0);
-    CHECK(nd);
 }
 
 TEST_CASE("setInData", "[canrawloggerModel]")
@@ -74,20 +69,6 @@ TEST_CASE("setInData", "[canrawloggerModel]")
     CanRawLoggerModel canrawloggerModel;
 
     canrawloggerModel.setInData({}, 1);
-}
-
-TEST_CASE("sendFrame", "[canrawloggerModel]")
-{
-    CanRawLoggerModel canrawloggerModel;
-    QCanBusFrame frame;
-
-    QSignalSpy dataUpdatedSpy(&canrawloggerModel, &CanRawLoggerModel::dataUpdated);
-
-    for(int i = 0; i < 200; ++i) {
-        canrawloggerModel.sendFrame(frame);
-    }
-
-    CHECK(dataUpdatedSpy.count() == 127);
 }
 
 int main(int argc, char* argv[])

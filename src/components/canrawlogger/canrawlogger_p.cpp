@@ -65,5 +65,7 @@ void CanRawLoggerPrivate::logFrame(const QCanBusFrame& frame, const QString& dir
             "data"_a = payHex.toStdString());
 
         _file.write(line.c_str());
+    } else {
+        cds_warn("Frame received, but file does not exist!");
     }
 }

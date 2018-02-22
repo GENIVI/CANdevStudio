@@ -829,7 +829,7 @@ TEST_CASE("configChanged", "[{nameLower}]")
     c.configChanged();
 }}
 
-TEST_CASE("getSupportedProperties", "[canrawplayer]")
+TEST_CASE("getSupportedProperties", "[{nameLower}]")
 {{
     {name} c;
 
