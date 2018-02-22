@@ -62,7 +62,7 @@ TEST_CASE("configChanged", "[canrawlogger]")
 
 TEST_CASE("getSupportedProperties", "[canrawplayer]")
 {
-    CanRawPlayer c;
+    CanRawLogger c;
 
     auto props = c.getSupportedProperties();
 

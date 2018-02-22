@@ -831,7 +831,7 @@ TEST_CASE("configChanged", "[{nameLower}]")
 
 TEST_CASE("getSupportedProperties", "[canrawplayer]")
 {{
-    CanRawPlayer c;
+    {name} c;
 
     auto props = c.getSupportedProperties();
 
@@ -923,11 +923,6 @@ TEST_CASE("outData", "[{nameLower}Model]")
 
     auto nd = {nameLower}Model.outData(0);
     CHECK(!nd);
-
-    QCanBusFrame frame;
-    {nameLower}Model.sendFrame(frame);
-    nd = {nameLower}Model.outData(0);
-    CHECK(nd);
 }}
 
 TEST_CASE("setInData", "[{nameLower}Model]")
@@ -935,20 +930,6 @@ TEST_CASE("setInData", "[{nameLower}Model]")
     {name}Model {nameLower}Model;
 
     {nameLower}Model.setInData({{}}, 1);
-}}
-
-TEST_CASE("sendFrame", "[{nameLower}Model]")
-{{
-    {name}Model {nameLower}Model;
-    QCanBusFrame frame;
-
-    QSignalSpy dataUpdatedSpy(&{nameLower}Model, &{name}Model::dataUpdated);
-
-    for(int i = 0; i < 200; ++i) {{
-        {nameLower}Model.sendFrame(frame);
-    }}
-
-    CHECK(dataUpdatedSpy.count() == 127);
 }}
 
 int main(int argc, char* argv[])
