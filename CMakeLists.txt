@@ -47,6 +47,8 @@ if(WITH_COVERAGE)
     setup_target_for_coverage(NAME coverage EXECUTABLE ctest DEPENDENCIES candevice_test)
 endif()
 
+set(CMAKE_CXX_FLAGS_RELEASE "-O3")
+
 set(SPDLOG_BUILD_TESTING CACHE FORCE OFF)
 set(BUILD_EXAMPLES CACHE FORCE OFF)
 

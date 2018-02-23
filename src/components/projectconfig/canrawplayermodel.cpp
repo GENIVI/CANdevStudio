@@ -46,7 +46,7 @@ NodeDataType CanRawPlayerModel::dataType(PortType portType, PortIndex ndx) const
         return portMappings.at(portType)[ndx];
     }
 
-    cds_error("No port mapping for ndx: { }", ndx);
+    cds_error("No port mapping for ndx: {}", ndx);
     return { };
 }
 

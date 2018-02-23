@@ -718,7 +718,7 @@ NodeDataType {name}Model::dataType(PortType portType, PortIndex ndx) const
         return portMappings.at(portType)[ndx];
     }}
 
-    cds_error("No port mapping for ndx: {{ }}", ndx);
+    cds_error("No port mapping for ndx: {{}}", ndx);
     return {{ }};
 }}
 
@@ -829,9 +829,9 @@ TEST_CASE("configChanged", "[{nameLower}]")
     c.configChanged();
 }}
 
-TEST_CASE("getSupportedProperties", "[canrawplayer]")
+TEST_CASE("getSupportedProperties", "[{nameLower}]")
 {{
-    CanRawPlayer c;
+    {name} c;
 
     auto props = c.getSupportedProperties();
 
@@ -875,80 +875,61 @@ Q_DECLARE_METATYPE(QCanBusFrame);
 TEST_CASE("Test basic functionality", "[{nameLower}Model]")
 {{
     using namespace fakeit;
-    {name}Model {nameLower}Model;
-    CHECK({nameLower}Model.caption() == "{name}");
-    CHECK({nameLower}Model.name() == "{name}");
-    CHECK({nameLower}Model.resizable() == false);
-    CHECK({nameLower}Model.hasSeparateThread() == true);
-    CHECK(dynamic_cast<{name}Model*>({nameLower}Model.clone().get()) != nullptr);
-    CHECK(dynamic_cast<QLabel*>({nameLower}Model.embeddedWidget()) != nullptr);
+    {name}Model cm;
+    CHECK(cm.caption() == "{name}");
+    CHECK(cm.name() == "{name}");
+    CHECK(cm.resizable() == false);
+    CHECK(cm.hasSeparateThread() == true);
+    CHECK(dynamic_cast<{name}Model*>(cm.clone().get()) != nullptr);
+    CHECK(dynamic_cast<QLabel*>(cm.embeddedWidget()) != nullptr);
 }}
 
 TEST_CASE("painterDelegate", "[{nameLower}Model]")
 {{
-    {name}Model {nameLower}Model;
-    CHECK({nameLower}Model.painterDelegate() != nullptr);
+    {name}Model cm;
+    CHECK(cm.painterDelegate() != nullptr);
 }}
 
 TEST_CASE("nPorts", "[{nameLower}Model]")
 {{
-    {name}Model {nameLower}Model;
+    {name}Model cm;
 
-    CHECK({nameLower}Model.nPorts(QtNodes::PortType::Out) == 1);
-    CHECK({nameLower}Model.nPorts(QtNodes::PortType::In) == 0);
+    CHECK(cm.nPorts(QtNodes::PortType::Out) == 1);
+    CHECK(cm.nPorts(QtNodes::PortType::In) == 0);
 }}
 
 TEST_CASE("dataType", "[{nameLower}Model]")
 {{
-    {name}Model {nameLower}Model;
+    {name}Model cm;
 
     NodeDataType ndt;
         
-    ndt = {nameLower}Model.dataType(QtNodes::PortType::Out, 0);
+    ndt = cm.dataType(QtNodes::PortType::Out, 0);
     CHECK(ndt.id == "rawsender");
     CHECK(ndt.name == "Raw");
 
-    ndt = {nameLower}Model.dataType(QtNodes::PortType::Out, 1);
+    ndt = cm.dataType(QtNodes::PortType::Out, 1);
     CHECK(ndt.id == "");
     CHECK(ndt.name == "");
     
-    ndt = {nameLower}Model.dataType(QtNodes::PortType::In, 0);
+    ndt = cm.dataType(QtNodes::PortType::In, 0);
     CHECK(ndt.id == "");
     CHECK(ndt.name == "");
 }}
 
 TEST_CASE("outData", "[{nameLower}Model]")
 {{
-    {name}Model {nameLower}Model;
+    {name}Model cm;
 
-    auto nd = {nameLower}Model.outData(0);
+    auto nd = cm.outData(0);
     CHECK(!nd);
-
-    QCanBusFrame frame;
-    {nameLower}Model.sendFrame(frame);
-    nd = {nameLower}Model.outData(0);
-    CHECK(nd);
 }}
 
 TEST_CASE("setInData", "[{nameLower}Model]")
 {{
-    {name}Model {nameLower}Model;
+    {name}Model cm;
 
-    {nameLower}Model.setInData({{}}, 1);
-}}
-
-TEST_CASE("sendFrame", "[{nameLower}Model]")
-{{
-    {name}Model {nameLower}Model;
-    QCanBusFrame frame;
-
-    QSignalSpy dataUpdatedSpy(&{nameLower}Model, &{name}Model::dataUpdated);
-
-    for(int i = 0; i < 200; ++i) {{
-        {nameLower}Model.sendFrame(frame);
-    }}
-
-    CHECK(dataUpdatedSpy.count() == 127);
+    cm.setInData({{}}, 1);
 }}
 
 int main(int argc, char* argv[])
