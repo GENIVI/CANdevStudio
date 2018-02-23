@@ -10,5 +10,6 @@ var searchData=
   ['loadtracefile',['loadTraceFile',['../class_can_raw_player_private.html#afd1b0302c9d6d0483607d4246c4edbe9',1,'CanRawPlayerPrivate']]],
   ['localfile',['localFile',['../main_8cpp.html#a315a8c1468a66de1f41cebc177e22ab0',1,'main.cpp']]],
   ['log_2eh',['log.h',['../log_8h.html',1,'']]],
+  ['logframe',['logFrame',['../class_can_raw_logger_private.html#aa0e67a1415c4cfaed7e3bb21fe14c0e4',1,'CanRawLoggerPrivate']]],
   ['loopcheckbox',['LoopCheckBox',['../class_new_line_manager.html#a69f0c8e8a1213f641d43b7aa019e87dca34e95545cc4adfb58415f28278ea5b00',1,'NewLineManager']]]
 ];

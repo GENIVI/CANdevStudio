@@ -1,6 +1,8 @@
 var searchData=
 [
   ['candevicectx',['CanDeviceCtx',['../context_8h.html#afc56d0ae34896093eba3bf13b06ab2dc',1,'context.h']]],
+  ['canrawloggerctx',['CanRawLoggerCtx',['../canrawlogger_8h.html#a4f5b0662efb14bfc66abb8f968505886',1,'canrawlogger.h']]],
+  ['canrawloggerdatain',['CanRawLoggerDataIn',['../canrawloggerdata_8h.html#a4c289afc8bdd9101d8085aede1f8ba8c',1,'canrawloggerdata.h']]],
   ['canrawplayerctx',['CanRawPlayerCtx',['../canrawplayer_8h.html#a2c7e342eb9c56057f2170dc914bbd711',1,'canrawplayer.h']]],
   ['canrawplayerdatain',['CanRawPlayerDataIn',['../canrawplayerdata_8h.html#a3e76a5e64c6c1bbda3aca56059c18775',1,'canrawplayerdata.h']]],
   ['canrawplayerdataout',['CanRawPlayerDataOut',['../canrawplayerdata_8h.html#a724cd7f32bbf8ca805a11f8f0d0818e7',1,'canrawplayerdata.h']]],

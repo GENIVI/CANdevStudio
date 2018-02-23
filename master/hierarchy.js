@@ -9,6 +9,7 @@ var hierarchy =
     ] ],
     [ "ComponentInterface", "struct_component_interface.html", [
       [ "CanDevice", "class_can_device.html", null ],
+      [ "CanRawLogger", "class_can_raw_logger.html", null ],
       [ "CanRawPlayer", "class_can_raw_player.html", null ],
       [ "CanRawSender", "class_can_raw_sender.html", null ],
       [ "CanRawView", "class_can_raw_view.html", null ]
@@ -17,6 +18,9 @@ var hierarchy =
       [ "ComponentModel< C, Derived >", "class_component_model.html", null ],
       [ "ComponentModel< CanDevice, CanDeviceModel >", "class_component_model.html", [
         [ "CanDeviceModel", "class_can_device_model.html", null ]
+      ] ],
+      [ "ComponentModel< CanRawLogger, CanRawLoggerModel >", "class_component_model.html", [
+        [ "CanRawLoggerModel", "class_can_raw_logger_model.html", null ]
       ] ],
       [ "ComponentModel< CanRawPlayer, CanRawPlayerModel >", "class_component_model.html", [
         [ "CanRawPlayerModel", "class_can_raw_player_model.html", null ]
@@ -53,6 +57,7 @@ var hierarchy =
     [ "NodeDataModel", null, [
       [ "ComponentModel< C, Derived >", "class_component_model.html", null ],
       [ "ComponentModel< CanDevice, CanDeviceModel >", "class_component_model.html", null ],
+      [ "ComponentModel< CanRawLogger, CanRawLoggerModel >", "class_component_model.html", null ],
       [ "ComponentModel< CanRawPlayer, CanRawPlayerModel >", "class_component_model.html", null ],
       [ "ComponentModel< CanRawSender, CanRawSenderModel >", "class_component_model.html", null ],
       [ "ComponentModel< CanRawView, CanRawViewModel >", "class_component_model.html", null ]
@@ -84,6 +89,8 @@ var hierarchy =
     ] ],
     [ "QObject", null, [
       [ "CanDevice", "class_can_device.html", null ],
+      [ "CanRawLogger", "class_can_raw_logger.html", null ],
+      [ "CanRawLoggerPrivate", "class_can_raw_logger_private.html", null ],
       [ "CanRawPlayer", "class_can_raw_player.html", null ],
       [ "CanRawPlayerPrivate", "class_can_raw_player_private.html", null ],
       [ "CanRawSender", "class_can_raw_sender.html", null ],
