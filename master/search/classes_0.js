@@ -1,7 +1,6 @@
 var searchData=
 [
   ['candevice',['CanDevice',['../class_can_device.html',1,'']]],
-  ['candevicedatain',['CanDeviceDataIn',['../class_can_device_data_in.html',1,'']]],
   ['candevicedataout',['CanDeviceDataOut',['../class_can_device_data_out.html',1,'']]],
   ['candeviceinterface',['CanDeviceInterface',['../struct_can_device_interface.html',1,'']]],
   ['candevicemodel',['CanDeviceModel',['../class_can_device_model.html',1,'']]],

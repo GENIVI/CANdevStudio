@@ -115,7 +115,6 @@ var hierarchy =
       [ "CanNodeDataModelVisitor", "struct_can_node_data_model_visitor.html", null ]
     ] ],
     [ "NodeData", null, [
-      [ "CanDeviceDataIn", "class_can_device_data_in.html", null ],
       [ "CanDeviceDataOut", "class_can_device_data_out.html", null ]
     ] ]
 ];

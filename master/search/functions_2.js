@@ -1,8 +1,7 @@
 var searchData=
 [
   ['candevice',['CanDevice',['../class_can_device.html#a7c6081d39cd9f440147686aabe156682',1,'CanDevice::CanDevice()'],['../class_can_device.html#ae04e225627487183a11f0b07584bbca3',1,'CanDevice::CanDevice(CanDeviceCtx &amp;&amp;ctx)']]],
-  ['candevicedatain',['CanDeviceDataIn',['../class_can_device_data_in.html#ae8114a4de27eab6f3c991c7b169c7d03',1,'CanDeviceDataIn::CanDeviceDataIn()'],['../class_can_device_data_in.html#a9f51d8d5c62b66e02aa88157b13215a0',1,'CanDeviceDataIn::CanDeviceDataIn(QCanBusFrame const &amp;frame)']]],
-  ['candevicedataout',['CanDeviceDataOut',['../class_can_device_data_out.html#ae3460c64a1534464c322218caa6b1136',1,'CanDeviceDataOut::CanDeviceDataOut()'],['../class_can_device_data_out.html#a33cc3b62d24af193d179273191002448',1,'CanDeviceDataOut::CanDeviceDataOut(QCanBusFrame const &amp;frame, Direction const direction, bool status)']]],
+  ['candevicedataout',['CanDeviceDataOut',['../class_can_device_data_out.html#ae3460c64a1534464c322218caa6b1136',1,'CanDeviceDataOut::CanDeviceDataOut()'],['../class_can_device_data_out.html#a0a6aedb4d262e4dd8bab50c88ee6a809',1,'CanDeviceDataOut::CanDeviceDataOut(QCanBusFrame const &amp;frame, Direction const direction=Direction::TX, bool status=true)']]],
   ['candevicemodel',['CanDeviceModel',['../class_can_device_model.html#add5985ec6435f710acc0b0b14c560dd1',1,'CanDeviceModel']]],
   ['candeviceprivate',['CanDevicePrivate',['../class_can_device_private.html#a7896dc8cab99964673232ee03a374029',1,'CanDevicePrivate']]],
   ['canrawlogger',['CanRawLogger',['../class_can_raw_logger.html#abcbfafc2ece0934ac4e4baf989c1a576',1,'CanRawLogger::CanRawLogger()'],['../class_can_raw_logger.html#ae1744c255d7a7a51154cbdd236e6abbb',1,'CanRawLogger::CanRawLogger(CanRawLoggerCtx &amp;&amp;ctx)']]],

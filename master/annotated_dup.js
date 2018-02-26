@@ -1,7 +1,6 @@
 var annotated_dup =
 [
     [ "CanDevice", "class_can_device.html", "class_can_device" ],
-    [ "CanDeviceDataIn", "class_can_device_data_in.html", "class_can_device_data_in" ],
     [ "CanDeviceDataOut", "class_can_device_data_out.html", "class_can_device_data_out" ],
     [ "CanDeviceInterface", "struct_can_device_interface.html", "struct_can_device_interface" ],
     [ "CanDeviceModel", "class_can_device_model.html", "class_can_device_model" ],
