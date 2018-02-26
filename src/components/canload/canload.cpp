@@ -82,6 +82,7 @@ void CanLoad::startSimulation()
     Q_D(CanLoad);
 
     d->_totalBits = 0;
+    d->_div = static_cast<uint32_t>(static_cast<float>(d->_bitrate) * static_cast<float>(d->_period) / 1000);
 
     d->_timer.setInterval(d->_period);
     d->_timer.start();

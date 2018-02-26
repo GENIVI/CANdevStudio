@@ -8,9 +8,9 @@ CanLoadPrivate::CanLoadPrivate(CanLoad* q, CanLoadCtx&& ctx)
     initProps();
 
     connect(&_timer, &QTimer::timeout, [this] {
-        if (_bitrate) {
-            uint8_t load = static_cast<uint8_t>((_totalBits * 100) / _bitrate);
-            cds_debug("Bus load: {}/{} = {}%", _totalBits, _bitrate, load);
+        if (_div) {
+            uint8_t load = static_cast<uint8_t>((_totalBits * 100) / _div);
+            cds_debug("Bus load: {}/{} = {}%", _totalBits, _div, load);
             _totalBits = 0;
             emit q_ptr->canLoad(load);
         }

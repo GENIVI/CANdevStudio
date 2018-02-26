@@ -30,6 +30,7 @@ public:
     const QString _bitrateProperty = "bitrate [bps]";
     uint32_t _period = 0;
     uint32_t _bitrate = 0;
+    uint32_t _div = 0;
     uint64_t _totalBits = 0;
     QTimer _timer;
 
