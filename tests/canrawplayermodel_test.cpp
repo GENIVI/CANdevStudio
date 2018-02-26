@@ -44,7 +44,7 @@ TEST_CASE("dataType", "[canrawplayerModel]")
     NodeDataType ndt;
         
     ndt = canrawplayerModel.dataType(QtNodes::PortType::Out, 0);
-    CHECK(ndt.id == "rawsender");
+    CHECK(ndt.id == "rawframe");
     CHECK(ndt.name == "Raw");
 
     ndt = canrawplayerModel.dataType(QtNodes::PortType::Out, 1);

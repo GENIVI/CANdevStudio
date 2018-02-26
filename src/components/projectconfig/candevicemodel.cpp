@@ -32,7 +32,7 @@ unsigned int CanDeviceModel::nPorts(PortType portType) const
 
 void CanDeviceModel::frameReceived(const QCanBusFrame& frame)
 {
-    bool ret = _rxQueue.try_enqueue(std::make_shared<CanDeviceDataOut>(frame, Direction::RX, false));
+    bool ret = _rxQueue.try_enqueue(std::make_shared<CanDeviceDataOut>(frame, Direction::RX));
 
     if(ret) {
         emit dataUpdated(0); // Data ready on port 0
