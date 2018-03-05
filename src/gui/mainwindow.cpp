@@ -20,6 +20,7 @@
 #include <QtWidgets/QToolButton>
 #include <QGraphicsDropShadowEffect>
 #include <version.h>
+#include <nodes/ConnectionStyle>
 
 namespace {
 const QString SETTINGS_STYLE_TAG = "style";
@@ -583,6 +584,7 @@ void MainWindow::setStyle(Styles style)
     QString stylefile;
     QString flowStyle;
     QString styletoolbar;
+    QString neStyleFile;
     QColor bgMdiColor(0x1d, 0x1d, 0x1d);
     bool darkMode = false;
 
@@ -591,14 +593,7 @@ void MainWindow::setStyle(Styles style)
         darkMode = true;
         stylefile = ":/files/css/darkStyle.css";
         styletoolbar = ":/files/css/toolBar_dark.css";
-        flowStyle = R"(
-        {
-          "FlowViewStyle": {
-              "FineGridColor": [30, 30, 30],
-              "CoarseGridColor": [20, 20, 20]
-          }
-        }
-        )";
+        neStyleFile = ":/files/json/NodeEditorStyleDark.json"; 
 
         // Setting icons for QAction in CSS does not work
         _ui->actionNew->setIcon(QIcon(":/images/files/images/light/CANbus_icon_NewProject.svg"));
@@ -612,14 +607,7 @@ void MainWindow::setStyle(Styles style)
     case Styles::lightStyle: {
         stylefile = ":/files/css/lightStyle.css";
         styletoolbar = ":/files/css/toolBar_light.css";
-        flowStyle = R"(
-        {
-          "FlowViewStyle": {
-              "FineGridColor": [195, 195, 195],
-              "CoarseGridColor": [187, 187, 187]
-          }
-        }
-        )";
+        neStyleFile = ":/files/json/NodeEditorStyleLight.json"; 
         bgMdiColor = QColor(0xd3, 0xd3, 0xd3);
 
         // Setting icons for QAction in CSS does not work
@@ -647,7 +635,18 @@ void MainWindow::setStyle(Styles style)
 
     qApp->setStyleSheet(css);
 
-    QtNodes::FlowViewStyle::setStyle(flowStyle);
+    QFile neFile(neStyleFile);
+    QString neStyle;
+    if (neFile.open(QIODevice::ReadOnly)) {
+        neStyle = QString::fromUtf8(neFile.readAll());
+    } else {
+        cds_error("Failed to open style file '{}'", neStyleFile.toStdString());
+    }
+
+    QtNodes::FlowViewStyle::setStyle(neStyle);
+    //QtNodes::NodeStyle::setNodeStyle(neStyle);
+    QtNodes::ConnectionStyle::setConnectionStyle(neStyle);
+
     // Workaround. Background is not updated via style sheet.
     if (_projectConfig) {
         _projectConfig->setColorMode(darkMode);
