@@ -644,7 +644,6 @@ void MainWindow::setStyle(Styles style)
     }
 
     QtNodes::FlowViewStyle::setStyle(neStyle);
-    //QtNodes::NodeStyle::setNodeStyle(neStyle);
     QtNodes::ConnectionStyle::setConnectionStyle(neStyle);
 
     // Workaround. Background is not updated via style sheet.
