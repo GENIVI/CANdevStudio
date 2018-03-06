@@ -136,8 +136,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a146d12d2ee40b7d2d8fea3eaa146e1cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a713654fd488f4aa1144bf1440839a2cb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_node_painter.html#a713654fd488f4aa1144bf1440839a2cb">NodePainter</a> (const QColor &amp;headerColor1, const QColor &amp;headerColor2)</td></tr>
 <tr class="separator:a713654fd488f4aa1144bf1440839a2cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3ecd2a9401d0e906f3807c8a5e5a7426"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_node_painter.html#a3ecd2a9401d0e906f3807c8a5e5a7426">paint</a> (QPainter *painter, QtNodes::NodeGeometry const &amp;geom, QtNodes::NodeDataModel const *model) override</td></tr>
-<tr class="separator:a3ecd2a9401d0e906f3807c8a5e5a7426"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf545a7cff174a1d10f38f64d437fc72"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_node_painter.html#abf545a7cff174a1d10f38f64d437fc72">paint</a> (QPainter *painter, QtNodes::NodeGeometry const &amp;geom, QtNodes::NodeDataModel const *model, QtNodes::NodeGraphicsObject const &amp;graphicsObject) override</td></tr>
+<tr class="separator:abf545a7cff174a1d10f38f64d437fc72"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a146d12d2ee40b7d2d8fea3eaa146e1cc"></a>
@@ -198,7 +198,7 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a3ecd2a9401d0e906f3807c8a5e5a7426"></a>
+<a class="anchor" id="abf545a7cff174a1d10f38f64d437fc72"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -221,7 +221,13 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">QtNodes::NodeDataModel const *&#160;</td>
-          <td class="paramname"><em>model</em>&#160;</td>
+          <td class="paramname"><em>model</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QtNodes::NodeGraphicsObject const &amp;&#160;</td>
+          <td class="paramname"><em>graphicsObject</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
