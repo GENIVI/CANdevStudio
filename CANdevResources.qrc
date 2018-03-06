@@ -90,5 +90,7 @@
         <file>files/css/lightStyle.css</file>
         <file>files/css/toolBar_light.css</file>
         <file>files/css/toolBar_dark.css</file>
+        <file>files/json/NodeEditorStyleLight.json</file>
+        <file>files/json/NodeEditorStyleDark.json</file>
     </qresource>
 </RCC>

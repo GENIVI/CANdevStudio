@@ -1,0 +1,20 @@
+{
+  "FlowViewStyle": {
+    "BackgroundColor": [53, 53, 53],
+    "FineGridColor": [30, 30, 30],
+    "CoarseGridColor": [20, 20, 20]
+  },
+  "ConnectionStyle": {
+    "ConstructionColor": "gray",
+    "NormalColor": [206, 206, 206],
+    "SelectedColor": [130, 130, 130],
+    "SelectedHaloColor": [20, 146, 202],
+    "HoveredColor": [20, 146, 202],
+
+    "LineWidth": 3.0,
+    "ConstructionLineWidth": 2.0,
+    "PointDiameter": 7.0,
+
+    "UseDataDefinedColors": false
+  }
+}

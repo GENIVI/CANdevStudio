@@ -30,7 +30,7 @@ public:
     */
     NodeDataType type() const override
     {
-        return NodeDataType{ "rawframe", "Raw" };
+        return NodeDataType{ "rawframe", "RAW" };
     }
 
     /**

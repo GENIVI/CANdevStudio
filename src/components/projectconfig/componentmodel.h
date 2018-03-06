@@ -171,9 +171,11 @@ public:
             _nodeStyle.GradientColor2 = bgColor;
             _nodeStyle.GradientColor3 = bgColor;
             _nodeStyle.NormalBoundaryColor = bgColor;
-            _nodeStyle.FontColor = QColor(240, 240, 240);
-            _nodeStyle.FontColorFaded = QColor(240, 240, 240);
+            _nodeStyle.FontColor = QColor(206, 206, 206);
+            _nodeStyle.FontColorFaded = QColor(125, 125, 125);
             _nodeStyle.ShadowColor = QColor(20, 20, 20);
+            _nodeStyle.ConnectionPointColor = QColor(125, 125, 125);
+            _nodeStyle.FilledConnectionPointColor = QColor(206, 206, 206);
         } else {
             QColor bgColor = QColor(255, 255, 255);
             _nodeStyle.GradientColor0 = bgColor;
@@ -181,12 +183,18 @@ public:
             _nodeStyle.GradientColor2 = bgColor;
             _nodeStyle.GradientColor3 = bgColor;
             _nodeStyle.NormalBoundaryColor = bgColor;
-            _nodeStyle.FontColor = QColor(20, 20, 20);
-            _nodeStyle.FontColorFaded = QColor(20, 20, 20);
+            _nodeStyle.FontColor = QColor(110, 110, 110);
+            _nodeStyle.FontColorFaded = QColor(189, 189, 198);
             _nodeStyle.ShadowColor = QColor(170, 170, 170);
+            _nodeStyle.ConnectionPointColor = QColor(170, 170, 170);
+            _nodeStyle.FilledConnectionPointColor = QColor(110, 110, 110);
         }
 
+        _nodeStyle.SelectedBoundaryColor = QColor(20, 146, 202); 
         _nodeStyle.Opacity = 1.0;
+        _nodeStyle.PenWidth = 1.5;
+        _nodeStyle.HoveredPenWidth = 2.0;
+        _nodeStyle.ConnectionPointDiameter = 3.5;
 
         setNodeStyle(_nodeStyle);
     }
