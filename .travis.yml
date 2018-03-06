@@ -17,7 +17,6 @@ branches:
 before_install:
   - env
   - echo refs/heads/$TRAVIS_BRANCH~ refs/heads/$TRAVIS_BRANCH refs/heads/$TRAVIS_BRANCH | ./.trigger_appveyor.rb || true
-  - docker pull przemyslawdraszkiewicz/can_dev_base_image
   - export ci_env=`bash <(curl -s https://codecov.io/env)`
 
 script:
@@ -38,5 +37,5 @@ after_success:
   - chmod +x .travis_doxygen.sh
   - docker run
     $ci_env -e DOXYFILE -e GH_REPO_NAME -e GH_REPO_REF -e GH_REPO_TOKEN -e TRAVIS_BUILD_NUMBER
-    -v `pwd`:/root/sources bartekt/can_dev_base_image /bin/bash
+    -v `pwd`:/root/sources rkollataj/candevstudio /bin/bash
     -c "cd /root/sources && ./.travis_doxygen.sh"
