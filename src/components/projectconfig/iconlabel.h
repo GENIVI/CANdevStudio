@@ -13,9 +13,7 @@ public:
         pix.fill(Qt::transparent);
         QPainter painter(&pix);
 
-        auto color = bgColor;
-        QPen p(color, 0);
-        painter.setPen(p);
+        painter.setPen(Qt::NoPen);
 
         painter.setRenderHint(QPainter::Antialiasing);
 
@@ -24,14 +22,17 @@ public:
         painter.drawRoundedRect(boundary, _radius, _radius);
         painter.setBrush(QBrush(headerColor1));
 
-        QRectF boundary2(1, 1, pix.width()-2, pix.height()/2 - 2);
+        QRectF boundary2(0, 0, pix.width(), _labelHeight);
         painter.drawRoundedRect(boundary2, _radius, _radius);
+
+        QRectF boundary3(0, _labelHeight/2, pix.width(), _labelHeight/2);
+        painter.drawRect(boundary3);
 
         painter.setPen({Qt::white, 1});
         QFont font({"Arial", 8});
         font.setBold(true);
         painter.setFont(font);
-        painter.drawText(8, 16, name);
+        painter.drawText(6, 15, name);
 
         setMinimumSize(_width, _height);
         setMaximumSize(_width, _height);
@@ -43,8 +44,9 @@ public:
 
 private:
     const int _width = 140;
-    const int _height = 50;
-    const double _radius = 5.0;
+    const int _height = 48;
+    const int _labelHeight = 22;
+    const double _radius = 3.0;
 };
 
 #endif /* !__ICONLABEL_H */

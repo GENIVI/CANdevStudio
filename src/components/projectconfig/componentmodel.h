@@ -191,8 +191,10 @@ public:
         }
 
         _nodeStyle.SelectedBoundaryColor = QColor(20, 146, 202); 
-        _nodeStyle.ConnectionPointDiameter = 3.5;
         _nodeStyle.Opacity = 1.0;
+        _nodeStyle.PenWidth = 1.5;
+        _nodeStyle.HoveredPenWidth = 2.0;
+        _nodeStyle.ConnectionPointDiameter = 3.5;
 
         setNodeStyle(_nodeStyle);
     }
