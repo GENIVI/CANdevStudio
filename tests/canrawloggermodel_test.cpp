@@ -49,7 +49,7 @@ TEST_CASE("dataType", "[canrawloggerModel]")
 
     ndt = canrawloggerModel.dataType(QtNodes::PortType::In, 0);
     CHECK(ndt.id == "rawframe");
-    CHECK(ndt.name == "Raw");
+    CHECK(ndt.name == "RAW");
 
     ndt = canrawloggerModel.dataType(QtNodes::PortType::In, 1);
     CHECK(ndt.id == "");

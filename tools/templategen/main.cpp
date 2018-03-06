@@ -906,7 +906,7 @@ TEST_CASE("dataType", "[{nameLower}Model]")
         
     ndt = cm.dataType(QtNodes::PortType::Out, 0);
     CHECK(ndt.id == "rawsender");
-    CHECK(ndt.name == "Raw");
+    CHECK(ndt.name == "RAW");
 
     ndt = cm.dataType(QtNodes::PortType::Out, 1);
     CHECK(ndt.id == "");
