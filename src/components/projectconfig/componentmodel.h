@@ -187,7 +187,7 @@ public:
             _nodeStyle.GradientColor3 = bgColor;
             _nodeStyle.NormalBoundaryColor = bgColor;
             _nodeStyle.FontColor = QColor(110, 110, 110);
-            _nodeStyle.FontColorFaded = QColor(189, 189, 198);
+            _nodeStyle.FontColorFaded = QColor(189, 189, 189);
             _nodeStyle.ShadowColor = QColor(170, 170, 170);
             _nodeStyle.ConnectionPointColor = QColor(170, 170, 170);
             _nodeStyle.FilledConnectionPointColor = QColor(110, 110, 110);

@@ -18,24 +18,29 @@ struct CanLoadPainter : public NodePainter {
     {
         NodePainter::paint(painter, geom, model, graphicsObject);
 
-        int s = 20;
+        QtNodes::NodeStyle const& nodeStyle = model->nodeStyle();
+        int s = 15;
 
-        //QRadialGradient radialGrad(QPointF(geom.width(), 0), s);
-        //radialGrad.setColorAt(0, Qt::red);
-        //radialGrad.setColorAt(0.5, Qt::blue);
-        //radialGrad.setColorAt(1, Qt::green);
-        //radialGrad.setSpread(QGradient::PadSpread);
+        painter->setPen(QPen(nodeStyle.FontColorFaded, 2));
+        painter->setBrush(Qt::NoBrush);
 
-        //painter->setPen(QPen(Qt::black, 5));
-        //painter->setBrush(radialGrad);
+        QFont font({ "Arial", 8 });
+        font.setBold(true);
+        painter->setFont(font);
+        QString val = QString::number(_load) + "%";
+        QFontMetrics metrics(font);
+        auto rect = metrics.boundingRect(val);
 
-        QPoint p(geom.width(), 0);
+        QPoint p(geom.width() / 2, geom.height() / 2 + 12);
         painter->drawEllipse(p, s, s);
-        painter->drawText(p, QString::number(_load));
+
+        painter->setPen(nodeStyle.FontColor);
+        QPoint t(p.x() - rect.width() / 2 + 1, p.y() + 4);
+        painter->drawText(t, val);
     }
 
 private:
-    const uint8_t &_load;
+    const uint8_t& _load;
 };
 
 #endif /* !__CANLOADPAINTER_H */
