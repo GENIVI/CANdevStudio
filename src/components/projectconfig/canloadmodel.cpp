@@ -20,13 +20,14 @@ const std::map<PortType, std::vector<NodeDataType>> portMappings = {
 
 CanLoadModel::CanLoadModel()
     : ComponentModel("CanLoad")
-    , _painter(std::make_unique<NodePainter>(headerColor1(), headerColor2()))
+    , _painter(std::make_unique<CanLoadPainter>(headerColor1(), headerColor2(), _currentLoad))
 {
     _label->setAlignment(Qt::AlignVCenter | Qt::AlignHCenter);
     _label->setFixedSize(75, 25);
     _label->setAttribute(Qt::WA_TranslucentBackground);
 
     connect(this, &CanLoadModel::frameIn, &_component, &CanLoad::frameIn);
+    connect(&_component, &CanLoad::currentLoad, this, &CanLoadModel::currentLoad);
 }
 
 QtNodes::NodePainterDelegate* CanLoadModel::painterDelegate() const
@@ -62,5 +63,15 @@ void CanLoadModel::setInData(std::shared_ptr<NodeData> nodeData, PortIndex)
         emit frameIn(d->frame());
     } else {
         cds_warn("Incorrect nodeData");
+    }
+}
+
+void CanLoadModel::currentLoad(uint8_t load)
+{
+    bool valueChanged = _currentLoad != load;
+    _currentLoad = load;
+
+    if (valueChanged) {
+        emit requestRedraw();
     }
 }

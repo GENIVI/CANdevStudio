@@ -80,6 +80,9 @@ public slots:
     */
     void sendFrame(const QCanBusFrame& frame);
 
+signals:
+    void requestRedraw();
+
 private:
     QCanBusFrame _frame;
     std::unique_ptr<NodePainter> _painter;

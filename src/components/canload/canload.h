@@ -32,7 +32,7 @@ public:
 
 signals:
     void mainWidgetDockToggled(QWidget* widget) override;
-    void canLoad(uint8_t load);
+    void currentLoad(uint8_t load);
 
 public slots:
     void stopSimulation() override;

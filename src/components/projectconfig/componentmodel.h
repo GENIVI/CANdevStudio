@@ -2,23 +2,25 @@
 #define COMPONENTMODEL_H
 
 #include "projectconfig.h"
+#include <QThread>
 #include <QtCore/QObject>
 #include <QtWidgets/QLabel>
 #include <functional>
 #include <log.h>
+#include <nodes/Node>
 #include <nodes/NodeDataModel>
-#include <QThread>
 
 struct ComponentInterface;
 
 struct ComponentModelInterface {
     virtual ~ComponentModelInterface() = default;
     virtual ComponentInterface& getComponent() = 0;
-    virtual void handleModelCreation(ProjectConfig* config, QThread* th = nullptr) = 0;
+    virtual void handleModelCreation(ProjectConfig* config, QtNodes::Node& node, QThread* th = nullptr) = 0;
     virtual void setCaption(const QString& caption) = 0;
     virtual bool restored() = 0;
     virtual void setColorMode(bool darkMode) = 0;
     virtual bool hasSeparateThread() const = 0;
+    virtual void requestRedraw() = 0;
 };
 
 template <typename C, typename Derived>
@@ -139,13 +141,14 @@ public:
         return _component;
     }
 
-    virtual void handleModelCreation(ProjectConfig* config, QThread *th = nullptr) override
+    virtual void handleModelCreation(ProjectConfig* config, QtNodes::Node& node, QThread* th = nullptr) override
     {
         connect(config, &ProjectConfig::startSimulation, &_component, &C::startSimulation);
         connect(config, &ProjectConfig::stopSimulation, &_component, &C::stopSimulation);
         connect(&_component, &C::mainWidgetDockToggled, config, &ProjectConfig::handleDock);
+        connect((Derived*)this, &Derived::requestRedraw, [&node] { node.nodeGraphicsObject().update(); });
 
-        if(th) {
+        if (th) {
             cds_info("Setting separate event loop for component {}", _caption.toStdString());
 
             this->moveToThread(th);
@@ -164,7 +167,7 @@ public:
     {
         _darkMode = darkMode;
 
-        if(darkMode) {
+        if (darkMode) {
             QColor bgColor = QColor(94, 94, 94);
             _nodeStyle.GradientColor0 = bgColor;
             _nodeStyle.GradientColor1 = bgColor;
@@ -190,7 +193,7 @@ public:
             _nodeStyle.FilledConnectionPointColor = QColor(110, 110, 110);
         }
 
-        _nodeStyle.SelectedBoundaryColor = QColor(20, 146, 202); 
+        _nodeStyle.SelectedBoundaryColor = QColor(20, 146, 202);
         _nodeStyle.Opacity = 1.0;
         _nodeStyle.PenWidth = 1.5;
         _nodeStyle.HoveredPenWidth = 2.0;

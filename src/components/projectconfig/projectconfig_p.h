@@ -128,9 +128,9 @@ public:
 
         if (iface.hasSeparateThread()) {
             // Thread will be deleted during node deletion
-            iface.handleModelCreation(q, new QThread());
+            iface.handleModelCreation(q, node, new QThread());
         } else {
-            iface.handleModelCreation(q);
+            iface.handleModelCreation(q, node);
         }
 
         iface.setColorMode(_darkMode);

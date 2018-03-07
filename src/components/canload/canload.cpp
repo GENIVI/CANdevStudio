@@ -75,6 +75,8 @@ void CanLoad::stopSimulation()
     d->_timer.stop();
 
     d->_simStarted = false;
+
+    emit currentLoad(0);
 }
 
 void CanLoad::startSimulation()

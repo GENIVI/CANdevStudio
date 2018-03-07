@@ -41,6 +41,7 @@ public slots:
 signals:
     void frameReceived(const QCanBusFrame& frame);
     void frameSent(bool status, const QCanBusFrame& frame);
+    void requestRedraw();
 
 private:
     std::unique_ptr<NodePainter> _painter;

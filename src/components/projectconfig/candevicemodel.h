@@ -101,6 +101,7 @@ signals:
      *   @param  frame Frame to be sent
      */
     void sendFrame(const QCanBusFrame& frame);
+    void requestRedraw();
 
 private:
     std::shared_ptr<NodeData> _nodeData;

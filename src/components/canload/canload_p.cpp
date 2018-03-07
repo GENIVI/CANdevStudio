@@ -10,9 +10,8 @@ CanLoadPrivate::CanLoadPrivate(CanLoad* q, CanLoadCtx&& ctx)
     connect(&_timer, &QTimer::timeout, [this] {
         if (_div) {
             uint8_t load = static_cast<uint8_t>((_totalBits * 100) / _div);
-            cds_debug("Bus load: {}/{} = {}%", _totalBits, _div, load);
             _totalBits = 0;
-            emit q_ptr->canLoad(load);
+            emit q_ptr->currentLoad(load);
         }
     });
 }

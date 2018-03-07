@@ -2,7 +2,7 @@
 #define CANLOADMODEL_H
 
 #include "componentmodel.h"
-#include "nodepainter.h"
+#include "canloadpainter.h"
 #include <QtCore/QObject>
 #include <canload.h>
 
@@ -36,12 +36,15 @@ public:
     }
 
 public slots:
+    void currentLoad(uint8_t load);
 
 signals:
     void frameIn(const QCanBusFrame& frame);
+    void requestRedraw();
 
 private:
-    std::unique_ptr<NodePainter> _painter;
+    std::unique_ptr<CanLoadPainter> _painter;
+    uint8_t _currentLoad = 0;
 };
 
 #endif // CANLOADMODEL_H
