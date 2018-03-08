@@ -14,6 +14,8 @@ Q_DECLARE_METATYPE(QCanBusFrame);
 TEST_CASE("Stubbed methods", "[canload]")
 {
     CanLoad c;
+    CanLoadCtx ctx;
+    CanLoad c2(std::move(ctx));
 
     CHECK(c.mainWidget() == nullptr);
     CHECK(c.mainWidgetDocked() == true);
