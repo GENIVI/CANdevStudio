@@ -25,32 +25,17 @@ TEST_CASE("setConfig - qobj", "[canload]")
     QObject obj;
 
     obj.setProperty("name", "Test Name");
+    obj.setProperty("period [ms]", "1111");
+    obj.setProperty("bitrate [bps]", "2222");
 
     c.setConfig(obj);
-}
+    c.setConfig(c.getConfig());
 
-TEST_CASE("setConfig - json", "[canload]")
-{
-    CanLoad c;
-    QJsonObject obj;
+    auto config = c.getQConfig();
 
-    obj["name"] = "Test Name";
-
-    c.setConfig(obj);
-}
-
-TEST_CASE("getConfig", "[canload]")
-{
-    CanLoad c;
-
-    auto abc = c.getConfig();
-}
-
-TEST_CASE("getQConfig", "[canload]")
-{
-    CanLoad c;
-
-    auto abc = c.getQConfig();
+    CHECK(config->property("name") == "Test Name");
+    CHECK(config->property("period [ms]") == "1111");
+    CHECK(config->property("bitrate [bps]") == "2222");
 }
 
 TEST_CASE("configChanged", "[canload]")
@@ -67,7 +52,39 @@ TEST_CASE("getSupportedProperties", "[canload]")
     auto props = c.getSupportedProperties();
 
     CHECK(props.find("name") != props.end());
+    CHECK(props.find("period [ms]") != props.end());
+    CHECK(props.find("bitrate [bps]") != props.end());
     CHECK(props.find("dummy") == props.end());
+}
+
+TEST_CASE("start/stop - correct timings", "[canload]")
+{
+    CanLoad c;
+    QObject obj;
+    QSignalSpy spy(&c, &CanLoad::currentLoad);
+    QCanBusFrame frame;
+    frame.setFrameId(0x11);
+    frame.setPayload({"123"});
+
+    obj.setProperty("name", "Test Name");
+    obj.setProperty("period [ms]", "10");
+    obj.setProperty("bitrate [bps]", "500000");
+
+    c.setConfig(obj);
+
+    c.startSimulation();
+
+    for(int i = 0; i < 100; ++i) {
+        c.frameIn(frame);
+    }
+
+    while(spy.count() == 0) {
+        QApplication::processEvents();
+    }
+
+    CHECK(spy.count() == 1);
+
+    c.stopSimulation();
 }
 
 int main(int argc, char* argv[])
