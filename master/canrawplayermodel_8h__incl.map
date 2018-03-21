@@ -1,9 +1,9 @@
 <map id="src/components/projectconfig/canrawplayermodel.h" name="src/components/projectconfig/canrawplayermodel.h">
-<area shape="rect" id="node2" href="$componentmodel_8h.html" title="componentmodel.h" alt="" coords="887,95,1034,121"/>
-<area shape="rect" id="node18" href="$nodepainter_8h.html" title="nodepainter.h" alt="" coords="1249,95,1360,121"/>
+<area shape="rect" id="node2" href="$componentmodel_8h.html" title="componentmodel.h" alt="" coords="1007,95,1154,121"/>
+<area shape="rect" id="node19" href="$nodepainter_8h.html" title="nodepainter.h" alt="" coords="1257,95,1368,121"/>
 <area shape="rect" id="node22" href="$canrawplayer_8h.html" title="canrawplayer.h" alt="" coords="318,95,435,121"/>
-<area shape="rect" id="node3" href="$projectconfig_8h.html" title="projectconfig.h" alt="" coords="962,169,1078,196"/>
-<area shape="rect" id="node11" href="$log_8h.html" title="log.h" alt="" coords="1103,169,1156,196"/>
-<area shape="rect" id="node5" href="$context_8h.html" title="context.h" alt="" coords="650,244,732,271"/>
+<area shape="rect" id="node3" href="$projectconfig_8h.html" title="projectconfig.h" alt="" coords="1023,169,1139,196"/>
+<area shape="rect" id="node12" href="$log_8h.html" title="log.h" alt="" coords="1163,169,1217,196"/>
+<area shape="rect" id="node5" href="$context_8h.html" title="context.h" alt="" coords="662,244,745,271"/>
 <area shape="rect" id="node24" href="$componentinterface_8h.html" title="componentinterface.h" alt="" coords="235,169,398,196"/>
 </map>

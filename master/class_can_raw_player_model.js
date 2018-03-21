@@ -6,6 +6,7 @@ var class_can_raw_player_model =
     [ "nPorts", "class_can_raw_player_model.html#a59d7865f1e476c4fa15ce39cd3dfe064", null ],
     [ "outData", "class_can_raw_player_model.html#a50d09681d1012a9d3a3936867549dbd6", null ],
     [ "painterDelegate", "class_can_raw_player_model.html#a1d60d43737c8de6ae2994c8e6c8ed54f", null ],
+    [ "requestRedraw", "class_can_raw_player_model.html#a7b4beee8274137606f6fbee7abbd0de3", null ],
     [ "sendFrame", "class_can_raw_player_model.html#ae1f9e94890df43741e246ea5bfbd1934", null ],
     [ "setInData", "class_can_raw_player_model.html#a9f0328c61bceb9566abd20e499de6d5b", null ]
 ];

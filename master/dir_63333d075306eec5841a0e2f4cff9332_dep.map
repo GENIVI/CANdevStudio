@@ -1,23 +1,26 @@
 <map id="src/components/projectconfig" name="src/components/projectconfig">
 <area shape="rect" id="node2" href="dir_62f97a503536ac85c2b09e663d236025.html" title="datamodeltypes" alt="" coords="38,159,165,207"/>
-<area shape="rect" id="edge6-headlabel" href="dir_000011_000012.html" title="5" alt="" coords="110,134,120,149"/>
+<area shape="rect" id="edge7-headlabel" href="dir_000012_000013.html" title="6" alt="" coords="110,134,120,149"/>
 <area shape="rect" id="node3" href="dir_94e65932f1e05d44d79da8e98a8aee4c.html" title="canrawsender" alt="" coords="198,159,309,207"/>
-<area shape="rect" id="edge3-headlabel" href="dir_000011_000007.html" title="1" alt="" coords="204,134,213,149"/>
+<area shape="rect" id="edge3-headlabel" href="dir_000012_000008.html" title="1" alt="" coords="204,134,213,149"/>
 <area shape="rect" id="node4" href="dir_bdfef683cdcec59763063a4d6a2f152c.html" title="canrawview" alt="" coords="333,159,427,207"/>
-<area shape="rect" id="edge4-headlabel" href="dir_000011_000009.html" title="1" alt="" coords="313,141,323,156"/>
+<area shape="rect" id="edge4-headlabel" href="dir_000012_000010.html" title="1" alt="" coords="313,141,323,156"/>
 <area shape="rect" id="node5" href="dir_6adfdfe62507540665a443b9549b49b3.html" title="canrawplayer" alt="" coords="452,159,559,207"/>
-<area shape="rect" id="edge5-headlabel" href="dir_000011_000006.html" title="1" alt="" coords="432,142,441,156"/>
-<area shape="rect" id="node6" href="dir_23e13144de5fa6cbbd4a17b4f2c6fab1.html" title="canrawlogger" alt="" coords="583,159,689,207"/>
-<area shape="rect" id="edge7-headlabel" href="dir_000011_000005.html" title="1" alt="" coords="562,142,571,157"/>
-<area shape="rect" id="node7" href="dir_fdedb0aba14d44ce9d99bc100e026e6a.html" title="common" alt="" coords="531,255,610,303"/>
-<area shape="rect" id="edge8-headlabel" href="dir_000011_000001.html" title="12" alt="" coords="621,272,639,286"/>
-<area shape="rect" id="node8" href="dir_c3a04f334b303e0e7484d59fef452afc.html" title="candevice" alt="" coords="765,159,851,207"/>
-<area shape="rect" id="edge9-headlabel" href="dir_000011_000004.html" title="1" alt="" coords="745,144,754,158"/>
-<area shape="rect" id="edge1-headlabel" href="dir_000007_000001.html" title="10" alt="" coords="505,256,522,271"/>
-<area shape="rect" id="edge2-headlabel" href="dir_000009_000001.html" title="7" alt="" coords="512,244,521,259"/>
-<area shape="rect" id="edge10-headlabel" href="dir_000006_000001.html" title="5" alt="" coords="547,227,556,242"/>
-<area shape="rect" id="edge11-headlabel" href="dir_000005_000001.html" title="5" alt="" coords="599,237,609,252"/>
-<area shape="rect" id="edge12-headlabel" href="dir_000004_000001.html" title="4" alt="" coords="625,267,634,282"/>
+<area shape="rect" id="edge5-headlabel" href="dir_000012_000007.html" title="1" alt="" coords="432,142,441,156"/>
+<area shape="rect" id="node6" href="dir_4e4d6b834f6611e210b9342d8e920ca5.html" title="canload" alt="" coords="583,159,655,207"/>
+<area shape="rect" id="edge6-headlabel" href="dir_000012_000005.html" title="1" alt="" coords="563,142,572,157"/>
+<area shape="rect" id="node7" href="dir_23e13144de5fa6cbbd4a17b4f2c6fab1.html" title="canrawlogger" alt="" coords="679,159,785,207"/>
+<area shape="rect" id="edge8-headlabel" href="dir_000012_000006.html" title="1" alt="" coords="658,142,667,157"/>
+<area shape="rect" id="node8" href="dir_fdedb0aba14d44ce9d99bc100e026e6a.html" title="common" alt="" coords="579,255,658,303"/>
+<area shape="rect" id="edge9-headlabel" href="dir_000012_000001.html" title="13" alt="" coords="669,270,686,285"/>
+<area shape="rect" id="node9" href="dir_c3a04f334b303e0e7484d59fef452afc.html" title="candevice" alt="" coords="861,159,947,207"/>
+<area shape="rect" id="edge10-headlabel" href="dir_000012_000004.html" title="1" alt="" coords="841,143,850,158"/>
+<area shape="rect" id="edge1-headlabel" href="dir_000008_000001.html" title="10" alt="" coords="553,259,570,274"/>
+<area shape="rect" id="edge2-headlabel" href="dir_000010_000001.html" title="7" alt="" coords="558,252,568,266"/>
+<area shape="rect" id="edge11-headlabel" href="dir_000007_000001.html" title="5" alt="" coords="578,229,587,244"/>
+<area shape="rect" id="edge12-headlabel" href="dir_000005_000001.html" title="5" alt="" coords="622,229,632,244"/>
+<area shape="rect" id="edge13-headlabel" href="dir_000006_000001.html" title="5" alt="" coords="661,242,670,257"/>
+<area shape="rect" id="edge14-headlabel" href="dir_000004_000001.html" title="4" alt="" coords="673,272,682,287"/>
 <area shape="rect" id="clust2" href="dir_63333d075306eec5841a0e2f4cff9332.html" alt="" coords="27,52,176,217"/>
 <area shape="rect" id="clust1" href="dir_3c4c7c1a85608ccd561c026bec818e51.html" title="components" alt="" coords="16,16,187,228"/>
 </map>

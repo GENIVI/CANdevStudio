@@ -7,7 +7,7 @@ var class_component_model =
     [ "clone", "class_component_model.html#a8a91bf58568283d1a48fdf80449532f4", null ],
     [ "embeddedWidget", "class_component_model.html#a58d7fe5bf052a2eb07a180426b447aaf", null ],
     [ "getComponent", "class_component_model.html#aebcc24df8155babad98fa4cd8e862bb3", null ],
-    [ "handleModelCreation", "class_component_model.html#a9d1be7abf854fc88cdd8cbc0061220d8", null ],
+    [ "handleModelCreation", "class_component_model.html#aa91d26d41b315db8282a09f77927e7de", null ],
     [ "hasSeparateThread", "class_component_model.html#ae7b8e2ec63bd90e2acca3cf7bb10a912", null ],
     [ "name", "class_component_model.html#a25ef150b9207c5d792a1824e124ad4bb", null ],
     [ "resizable", "class_component_model.html#a9b768221cb765be9fc8d1a41ad36e5f3", null ],

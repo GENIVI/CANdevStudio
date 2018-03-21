@@ -5,6 +5,13 @@ var dir_63333d075306eec5841a0e2f4cff9332 =
     [ "candevicemodel.h", "candevicemodel_8h.html", [
       [ "CanDeviceModel", "class_can_device_model.html", "class_can_device_model" ]
     ] ],
+    [ "canloadmodel.cpp", "canloadmodel_8cpp.html", null ],
+    [ "canloadmodel.h", "canloadmodel_8h.html", [
+      [ "CanLoadModel", "class_can_load_model.html", "class_can_load_model" ]
+    ] ],
+    [ "canloadpainter.h", "canloadpainter_8h.html", [
+      [ "CanLoadPainter", "struct_can_load_painter.html", "struct_can_load_painter" ]
+    ] ],
     [ "canrawloggermodel.cpp", "canrawloggermodel_8cpp.html", null ],
     [ "canrawloggermodel.h", "canrawloggermodel_8h.html", [
       [ "CanRawLoggerModel", "class_can_raw_logger_model.html", "class_can_raw_logger_model" ]

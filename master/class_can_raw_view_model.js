@@ -8,5 +8,6 @@ var class_can_raw_view_model =
     [ "nPorts", "class_can_raw_view_model.html#a9e366286e6593bf14168da1cadbd8654", null ],
     [ "outData", "class_can_raw_view_model.html#a761476647fc9e0290f9b89e60c921bb3", null ],
     [ "painterDelegate", "class_can_raw_view_model.html#a6de6d2804a6772e8b52ffffa800b60bc", null ],
+    [ "requestRedraw", "class_can_raw_view_model.html#ade1601549992177c17253d8ab6fedac7", null ],
     [ "setInData", "class_can_raw_view_model.html#ab6783235e23112e049953083998df571", null ]
 ];

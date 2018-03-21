@@ -108,6 +108,7 @@ $(document).ready(function(){initNavTree('class_can_raw_sender_model.html','');}
 <div class="header">
   <div class="summary">
 <a href="#pub-slots">Public Slots</a> &#124;
+<a href="#signals">Signals</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="class_can_raw_sender_model-members.html">List of all members</a>  </div>
@@ -146,6 +147,11 @@ Public Slots</h2></td></tr>
 <tr class="memitem:ad6cf38b39e63426d3efb9afcdf05c255"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_raw_sender_model.html#ad6cf38b39e63426d3efb9afcdf05c255">sendFrame</a> (const QCanBusFrame &amp;frame)</td></tr>
 <tr class="memdesc:ad6cf38b39e63426d3efb9afcdf05c255"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback, called when <a class="el" href="class_can_raw_sender.html">CanRawSender</a> emits signal sendFrame, sends frame.  <a href="#ad6cf38b39e63426d3efb9afcdf05c255">More...</a><br /></td></tr>
 <tr class="separator:ad6cf38b39e63426d3efb9afcdf05c255"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="signals"></a>
+Signals</h2></td></tr>
+<tr class="memitem:a8b356c49bdc42f1c1d36b3946edbcd3f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_can_raw_sender_model.html#a8b356c49bdc42f1c1d36b3946edbcd3f">requestRedraw</a> ()</td></tr>
+<tr class="separator:a8b356c49bdc42f1c1d36b3946edbcd3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -202,8 +208,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aebcc24df8155babad98fa4cd8e862bb3 inherit pub_methods_class_component_model"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="struct_component_interface.html">ComponentInterface</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component_model.html#aebcc24df8155babad98fa4cd8e862bb3">getComponent</a> () override</td></tr>
 <tr class="memdesc:aebcc24df8155babad98fa4cd8e862bb3 inherit pub_methods_class_component_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">Component getter.  <a href="#aebcc24df8155babad98fa4cd8e862bb3">More...</a><br /></td></tr>
 <tr class="separator:aebcc24df8155babad98fa4cd8e862bb3 inherit pub_methods_class_component_model"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d1be7abf854fc88cdd8cbc0061220d8 inherit pub_methods_class_component_model"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component_model.html#a9d1be7abf854fc88cdd8cbc0061220d8">handleModelCreation</a> (<a class="el" href="class_project_config.html">ProjectConfig</a> *config, QThread *th=nullptr) override</td></tr>
-<tr class="separator:a9d1be7abf854fc88cdd8cbc0061220d8 inherit pub_methods_class_component_model"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa91d26d41b315db8282a09f77927e7de inherit pub_methods_class_component_model"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component_model.html#aa91d26d41b315db8282a09f77927e7de">handleModelCreation</a> (<a class="el" href="class_project_config.html">ProjectConfig</a> *config, QtNodes::Node &amp;node, QThread *th=nullptr) override</td></tr>
+<tr class="separator:aa91d26d41b315db8282a09f77927e7de inherit pub_methods_class_component_model"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a92313e4bda9e50f0f57061e64143512e inherit pub_methods_class_component_model"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component_model.html#a92313e4bda9e50f0f57061e64143512e">restored</a> () override</td></tr>
 <tr class="separator:a92313e4bda9e50f0f57061e64143512e inherit pub_methods_class_component_model"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa51f469411dd71d7218b281f27e3e190 inherit pub_methods_class_component_model"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component_model.html#aa51f469411dd71d7218b281f27e3e190">setColorMode</a> (bool darkMode)</td></tr>
@@ -213,6 +219,8 @@ Public Member Functions</h2></td></tr>
 <tr class="inherit_header pub_methods_struct_component_model_interface"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_struct_component_model_interface')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="struct_component_model_interface.html">ComponentModelInterface</a></td></tr>
 <tr class="memitem:a798879d3774311685412083267f5e0f8 inherit pub_methods_struct_component_model_interface"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_component_model_interface.html#a798879d3774311685412083267f5e0f8">~ComponentModelInterface</a> ()=default</td></tr>
 <tr class="separator:a798879d3774311685412083267f5e0f8 inherit pub_methods_struct_component_model_interface"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06cdc635c5ffb40f48c3b330549f56ec inherit pub_methods_struct_component_model_interface"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_component_model_interface.html#a06cdc635c5ffb40f48c3b330549f56ec">requestRedraw</a> ()=0</td></tr>
+<tr class="separator:a06cdc635c5ffb40f48c3b330549f56ec inherit pub_methods_struct_component_model_interface"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -467,6 +475,29 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Used to provide custom painter to nodeeditor. </p>
 <dl class="section return"><dt>Returns</dt><dd>NodePainterDelegate used to perform custom node painting </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a8b356c49bdc42f1c1d36b3946edbcd3f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CanRawSenderModel::requestRedraw </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>

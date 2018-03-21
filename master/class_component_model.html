@@ -168,8 +168,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aebcc24df8155babad98fa4cd8e862bb3"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="struct_component_interface.html">ComponentInterface</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component_model.html#aebcc24df8155babad98fa4cd8e862bb3">getComponent</a> () override</td></tr>
 <tr class="memdesc:aebcc24df8155babad98fa4cd8e862bb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Component getter.  <a href="#aebcc24df8155babad98fa4cd8e862bb3">More...</a><br /></td></tr>
 <tr class="separator:aebcc24df8155babad98fa4cd8e862bb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d1be7abf854fc88cdd8cbc0061220d8"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component_model.html#a9d1be7abf854fc88cdd8cbc0061220d8">handleModelCreation</a> (<a class="el" href="class_project_config.html">ProjectConfig</a> *config, QThread *th=nullptr) override</td></tr>
-<tr class="separator:a9d1be7abf854fc88cdd8cbc0061220d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa91d26d41b315db8282a09f77927e7de"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component_model.html#aa91d26d41b315db8282a09f77927e7de">handleModelCreation</a> (<a class="el" href="class_project_config.html">ProjectConfig</a> *config, QtNodes::Node &amp;node, QThread *th=nullptr) override</td></tr>
+<tr class="separator:aa91d26d41b315db8282a09f77927e7de"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a92313e4bda9e50f0f57061e64143512e"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component_model.html#a92313e4bda9e50f0f57061e64143512e">restored</a> () override</td></tr>
 <tr class="separator:a92313e4bda9e50f0f57061e64143512e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa51f469411dd71d7218b281f27e3e190"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_component_model.html#aa51f469411dd71d7218b281f27e3e190">setColorMode</a> (bool darkMode)</td></tr>
@@ -179,6 +179,8 @@ Public Member Functions</h2></td></tr>
 <tr class="inherit_header pub_methods_struct_component_model_interface"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_struct_component_model_interface')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="struct_component_model_interface.html">ComponentModelInterface</a></td></tr>
 <tr class="memitem:a798879d3774311685412083267f5e0f8 inherit pub_methods_struct_component_model_interface"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_component_model_interface.html#a798879d3774311685412083267f5e0f8">~ComponentModelInterface</a> ()=default</td></tr>
 <tr class="separator:a798879d3774311685412083267f5e0f8 inherit pub_methods_struct_component_model_interface"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06cdc635c5ffb40f48c3b330549f56ec inherit pub_methods_struct_component_model_interface"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_component_model_interface.html#a06cdc635c5ffb40f48c3b330549f56ec">requestRedraw</a> ()=0</td></tr>
+<tr class="separator:a06cdc635c5ffb40f48c3b330549f56ec inherit pub_methods_struct_component_model_interface"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -391,7 +393,7 @@ template&lt;typename C, typename Derived&gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="a9d1be7abf854fc88cdd8cbc0061220d8"></a>
+<a class="anchor" id="aa91d26d41b315db8282a09f77927e7de"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -405,6 +407,12 @@ template&lt;typename C, typename Derived&gt; </div>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_project_config.html">ProjectConfig</a> *&#160;</td>
           <td class="paramname"><em>config</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QtNodes::Node &amp;&#160;</td>
+          <td class="paramname"><em>node</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -425,7 +433,7 @@ template&lt;typename C, typename Derived&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Implements <a class="el" href="struct_component_model_interface.html#a24fb5e05431ea9875661421c8814a71d">ComponentModelInterface</a>.</p>
+<p>Implements <a class="el" href="struct_component_model_interface.html#a26154dbf65b668f4b71ea6e12ef70543">ComponentModelInterface</a>.</p>
 
 </div>
 </div>

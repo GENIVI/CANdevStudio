@@ -6,6 +6,7 @@ var class_can_raw_sender_model =
     [ "nPorts", "class_can_raw_sender_model.html#ad2b2ba0baf9826b9b781f8d05fbefdc0", null ],
     [ "outData", "class_can_raw_sender_model.html#a5f9f15ca57fcd463dbfbcf549e1c4a88", null ],
     [ "painterDelegate", "class_can_raw_sender_model.html#af16ec58da2b8f651ce10d97025768756", null ],
+    [ "requestRedraw", "class_can_raw_sender_model.html#a8b356c49bdc42f1c1d36b3946edbcd3f", null ],
     [ "sendFrame", "class_can_raw_sender_model.html#ad6cf38b39e63426d3efb9afcdf05c255", null ],
     [ "setInData", "class_can_raw_sender_model.html#a491777ddd4abae9dcd9a501abf7705a6", null ]
 ];

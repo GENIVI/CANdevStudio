@@ -7,5 +7,6 @@ var class_can_raw_logger_model =
     [ "nPorts", "class_can_raw_logger_model.html#a48fe9f393e5bb0f94f24019e7495c3ba", null ],
     [ "outData", "class_can_raw_logger_model.html#aba24455df3dbe27d2f803312a8a06042", null ],
     [ "painterDelegate", "class_can_raw_logger_model.html#a6c158af7615e106c88bc1d055963abff", null ],
+    [ "requestRedraw", "class_can_raw_logger_model.html#a50ef64e6afefc0d41793c7175109b3c0", null ],
     [ "setInData", "class_can_raw_logger_model.html#a85ffa791a693c5b7e0344886997198d0", null ]
 ];

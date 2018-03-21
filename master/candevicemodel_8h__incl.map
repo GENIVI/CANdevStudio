@@ -1,9 +1,9 @@
 <map id="src/components/projectconfig/candevicemodel.h" name="src/components/projectconfig/candevicemodel.h">
-<area shape="rect" id="node2" href="$componentmodel_8h.html" title="componentmodel.h" alt="" coords="764,95,911,121"/>
-<area shape="rect" id="node18" href="$nodepainter_8h.html" title="nodepainter.h" alt="" coords="1163,95,1274,121"/>
-<area shape="rect" id="node23" href="$candevice_8h.html" title="candevice.h" alt="" coords="340,95,439,121"/>
-<area shape="rect" id="node3" href="$projectconfig_8h.html" title="projectconfig.h" alt="" coords="725,169,841,196"/>
-<area shape="rect" id="node11" href="$log_8h.html" title="log.h" alt="" coords="865,169,919,196"/>
-<area shape="rect" id="node5" href="$context_8h.html" title="context.h" alt="" coords="513,244,596,271"/>
-<area shape="rect" id="node25" href="$componentinterface_8h.html" title="componentinterface.h" alt="" coords="189,169,352,196"/>
+<area shape="rect" id="node2" href="$componentmodel_8h.html" title="componentmodel.h" alt="" coords="915,95,1061,121"/>
+<area shape="rect" id="node19" href="$nodepainter_8h.html" title="nodepainter.h" alt="" coords="1246,95,1357,121"/>
+<area shape="rect" id="node23" href="$candevice_8h.html" title="candevice.h" alt="" coords="507,95,605,121"/>
+<area shape="rect" id="node3" href="$projectconfig_8h.html" title="projectconfig.h" alt="" coords="1273,169,1389,196"/>
+<area shape="rect" id="node12" href="$log_8h.html" title="log.h" alt="" coords="692,169,745,196"/>
+<area shape="rect" id="node5" href="$context_8h.html" title="context.h" alt="" coords="1032,244,1115,271"/>
+<area shape="rect" id="node25" href="$componentinterface_8h.html" title="componentinterface.h" alt="" coords="159,169,321,196"/>
 </map>

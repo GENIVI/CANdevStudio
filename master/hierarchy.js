@@ -9,6 +9,7 @@ var hierarchy =
     ] ],
     [ "ComponentInterface", "struct_component_interface.html", [
       [ "CanDevice", "class_can_device.html", null ],
+      [ "CanLoad", "class_can_load.html", null ],
       [ "CanRawLogger", "class_can_raw_logger.html", null ],
       [ "CanRawPlayer", "class_can_raw_player.html", null ],
       [ "CanRawSender", "class_can_raw_sender.html", null ],
@@ -18,6 +19,9 @@ var hierarchy =
       [ "ComponentModel< C, Derived >", "class_component_model.html", null ],
       [ "ComponentModel< CanDevice, CanDeviceModel >", "class_component_model.html", [
         [ "CanDeviceModel", "class_can_device_model.html", null ]
+      ] ],
+      [ "ComponentModel< CanLoad, CanLoadModel >", "class_component_model.html", [
+        [ "CanLoadModel", "class_can_load_model.html", null ]
       ] ],
       [ "ComponentModel< CanRawLogger, CanRawLoggerModel >", "class_component_model.html", [
         [ "CanRawLoggerModel", "class_can_raw_logger_model.html", null ]
@@ -57,13 +61,16 @@ var hierarchy =
     [ "NodeDataModel", null, [
       [ "ComponentModel< C, Derived >", "class_component_model.html", null ],
       [ "ComponentModel< CanDevice, CanDeviceModel >", "class_component_model.html", null ],
+      [ "ComponentModel< CanLoad, CanLoadModel >", "class_component_model.html", null ],
       [ "ComponentModel< CanRawLogger, CanRawLoggerModel >", "class_component_model.html", null ],
       [ "ComponentModel< CanRawPlayer, CanRawPlayerModel >", "class_component_model.html", null ],
       [ "ComponentModel< CanRawSender, CanRawSenderModel >", "class_component_model.html", null ],
       [ "ComponentModel< CanRawView, CanRawViewModel >", "class_component_model.html", null ]
     ] ],
     [ "NodePainterDelegate", null, [
-      [ "NodePainter", "struct_node_painter.html", null ]
+      [ "NodePainter", "struct_node_painter.html", [
+        [ "CanLoadPainter", "struct_can_load_painter.html", null ]
+      ] ]
     ] ],
     [ "PCInterface", "struct_p_c_interface.html", [
       [ "PCImpl", "class_p_c_impl.html", null ]
@@ -89,6 +96,8 @@ var hierarchy =
     ] ],
     [ "QObject", null, [
       [ "CanDevice", "class_can_device.html", null ],
+      [ "CanLoad", "class_can_load.html", null ],
+      [ "CanLoadPrivate", "class_can_load_private.html", null ],
       [ "CanRawLogger", "class_can_raw_logger.html", null ],
       [ "CanRawLoggerPrivate", "class_can_raw_logger_private.html", null ],
       [ "CanRawPlayer", "class_can_raw_player.html", null ],
