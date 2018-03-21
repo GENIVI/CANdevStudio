@@ -73,3 +73,13 @@ add_executable(canrawloggermodel_test canrawloggermodel_test.cpp)
 target_link_libraries(canrawloggermodel_test candevice Qt5::Core Qt5::SerialBus Qt5::Test nodes cds-common projectconfig)
 target_compile_options(canrawloggermodel_test PRIVATE $<$<CXX_COMPILER_ID:GNU>:-fno-devirtualize>)
 add_test( NAME CanRawLoggerModelTest COMMAND canrawloggermodel_test)
+
+add_executable(canload_test canload_test.cpp)
+target_link_libraries(canload_test candevice Qt5::Core Qt5::SerialBus Qt5::Test nodes cds-common projectconfig canrawplayer)
+target_compile_options(canload_test PRIVATE $<$<CXX_COMPILER_ID:GNU>:-fno-devirtualize>)
+add_test( NAME CanLoadTest COMMAND canload_test)
+
+add_executable(canloadmodel_test canloadmodel_test.cpp)
+target_link_libraries(canloadmodel_test candevice Qt5::Core Qt5::SerialBus Qt5::Test nodes cds-common projectconfig)
+target_compile_options(canloadmodel_test PRIVATE $<$<CXX_COMPILER_ID:GNU>:-fno-devirtualize>)
+add_test( NAME CanLoadModelTest COMMAND canloadmodel_test)

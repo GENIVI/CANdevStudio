@@ -8,6 +8,7 @@
 struct NodePainter : public QtNodes::NodePainterDelegate {
 
     NodePainter() = default;
+    virtual ~NodePainter() = default;
 
     NodePainter(const QColor& headerColor1, const QColor& headerColor2)
         : _headerColor1(headerColor1)

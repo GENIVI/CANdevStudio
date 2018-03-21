@@ -1,12 +1,10 @@
-#ifndef CANRAWPLAYERMODEL_H
-#define CANRAWPLAYERMODEL_H
+#ifndef CANLOADMODEL_H
+#define CANLOADMODEL_H
 
 #include "componentmodel.h"
-#include "nodepainter.h"
+#include "canloadpainter.h"
 #include <QtCore/QObject>
-#include <canrawplayer.h>
-#include <QCanBusFrame>
-#include <readerwriterqueue.h>
+#include <canload.h>
 
 using QtNodes::NodeData;
 using QtNodes::NodeDataType;
@@ -15,11 +13,11 @@ using QtNodes::PortType;
 
 enum class Direction;
 
-class CanRawPlayerModel : public ComponentModel<CanRawPlayer, CanRawPlayerModel> {
+class CanLoadModel : public ComponentModel<CanLoad, CanLoadModel> {
     Q_OBJECT
 
 public:
-    CanRawPlayerModel();
+    CanLoadModel();
 
     unsigned int nPorts(PortType portType) const override;
     NodeDataType dataType(PortType portType, PortIndex portIndex) const override;
@@ -37,25 +35,16 @@ public:
         return QColor(84, 84, 84);
     }
 
-    virtual bool hasSeparateThread() const override 
-    {
-        return true;
-    }
-
 public slots:
-
-    /**
-    *   @brief  Callback, called when CanRawSender emits signal sendFrame, sends frame
-    *   @param  received frame
-    */
-    void sendFrame(const QCanBusFrame& frame);
+    void currentLoad(uint8_t load);
 
 signals:
+    void frameIn(const QCanBusFrame& frame);
     void requestRedraw();
 
 private:
-    std::unique_ptr<NodePainter> _painter;
-    moodycamel::ReaderWriterQueue<std::shared_ptr<NodeData>> _msgQueue { 127 };
+    std::unique_ptr<CanLoadPainter> _painter;
+    uint8_t _currentLoad = 0;
 };
 
-#endif // CANRAWPLAYERMODEL_H
+#endif // CANLOADMODEL_H

@@ -85,6 +85,7 @@ signals:
     *   @param frame Transmitted frame
     */
     void frameSent(bool status, const QCanBusFrame& frame);
+    void requestRedraw();
 
 private:
     QCanBusFrame _frame;
