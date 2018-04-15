@@ -653,6 +653,7 @@ public:
 public slots:
 
 signals:
+    void requestRedraw();
 
 private:
     std::unique_ptr<NodePainter> _painter;
