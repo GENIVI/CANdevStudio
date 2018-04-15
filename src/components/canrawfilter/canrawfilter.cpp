@@ -2,6 +2,7 @@
 #include "canrawfilter_p.h"
 #include <confighelpers.h>
 #include <log.h>
+#include <QCanBusFrame>
 
 CanRawFilter::CanRawFilter()
     : d_ptr(new CanRawFilterPrivate(this))
@@ -76,4 +77,22 @@ void CanRawFilter::startSimulation()
     Q_D(CanRawFilter);
 
     d->_simStarted = true;
+}
+
+void CanRawFilter::txFrameIn(const QCanBusFrame& frame)
+{
+    Q_D(CanRawFilter);
+
+    if(d->acceptTxFrame(frame)) {
+        emit txFrameOut(frame);
+    }
+}
+
+void CanRawFilter::rxFrameIn(const QCanBusFrame& frame)
+{
+    Q_D(CanRawFilter);
+
+    if(d->acceptRxFrame(frame)) {
+        emit rxFrameOut(frame);
+    }
 }

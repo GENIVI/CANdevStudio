@@ -9,6 +9,7 @@
 
 class CanRawFilterPrivate;
 class QWidget;
+class QCanBusFrame;
 struct CanRawFilterGuiInt;
 typedef Context<CanRawFilterGuiInt> CanRawFilterCtx;
 
@@ -32,8 +33,12 @@ public:
 
 signals:
     void mainWidgetDockToggled(QWidget* widget) override;
+    void txFrameOut(const QCanBusFrame& frame);
+    void rxFrameOut(const QCanBusFrame& frame);
 
 public slots:
+    void txFrameIn(const QCanBusFrame& frame);
+    void rxFrameIn(const QCanBusFrame& frame);
     void stopSimulation() override;
     void startSimulation() override;
 

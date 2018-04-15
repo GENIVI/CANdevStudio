@@ -5,12 +5,14 @@
 #include "nodepainter.h"
 #include <QtCore/QObject>
 #include <canrawfilter.h>
+#include <readerwriterqueue.h>
 
 using QtNodes::NodeData;
 using QtNodes::NodeDataType;
 using QtNodes::PortIndex;
 using QtNodes::PortType;
 
+class QCanBusFrame;
 enum class Direction;
 
 class CanRawFilterModel : public ComponentModel<CanRawFilter, CanRawFilterModel> {
@@ -36,12 +38,18 @@ public:
     }
 
 public slots:
+    void filteredTx(const QCanBusFrame &frame);
+    void filteredRx(const QCanBusFrame &frame);
 
 signals:
+    void filterTx(const QCanBusFrame &frame);
+    void filterRx(const QCanBusFrame &frame);
     void requestRedraw();
 
 private:
     std::unique_ptr<NodePainter> _painter;
+    // 127 to use 4 blocks, 512 bytes each
+    moodycamel::ReaderWriterQueue<std::shared_ptr<NodeData>> _fwdQueue { 127 };
 };
 
 #endif // CANRAWFILTERMODEL_H

@@ -40,3 +40,15 @@ void CanRawFilterPrivate::setSettings(const QJsonObject& json)
             _props[p.first] = json[p.first].toVariant();
     }
 }
+
+bool CanRawFilterPrivate::acceptRxFrame(const QCanBusFrame& frame)
+{
+    //TODO
+    return true;
+}
+
+bool CanRawFilterPrivate::acceptTxFrame(const QCanBusFrame& frame)
+{
+    //TODO
+    return true;
+}

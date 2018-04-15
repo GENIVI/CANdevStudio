@@ -8,15 +8,12 @@ namespace {
 const std::map<PortType, std::vector<NodeDataType>> portMappings = {
     { PortType::In, 
         {
-            //{CanSignalCoderDataIn{}.type() },
-            //{CanSignalCoderSignalIn{}.type() },
-            //{CanSignalCoderRawIn{}.type() }
+            {CanRawFilterDataIn{}.type() }
         }
     },
     { PortType::Out, 
         {
-            //{CanSignalCoderSignalOut{}.type()}, 
-            //{CanSignalCoderRawOut{}.type() }
+            {CanRawFilterDataOut{}.type() }
         }
     }
 };
@@ -31,6 +28,11 @@ CanRawFilterModel::CanRawFilterModel()
     _label->setAlignment(Qt::AlignVCenter | Qt::AlignHCenter);
     _label->setFixedSize(75, 25);
     _label->setAttribute(Qt::WA_TranslucentBackground);
+
+    connect(this, &CanRawFilterModel::filterTx, &_component, &CanRawFilter::txFrameIn);
+    connect(this, &CanRawFilterModel::filterRx, &_component, &CanRawFilter::rxFrameIn);
+    connect(&_component, &CanRawFilter::txFrameOut, this, &CanRawFilterModel::filteredTx);
+    connect(&_component, &CanRawFilter::rxFrameOut, this, &CanRawFilterModel::filteredRx);
 }
 
 QtNodes::NodePainterDelegate* CanRawFilterModel::painterDelegate() const
@@ -50,26 +52,59 @@ NodeDataType CanRawFilterModel::dataType(PortType portType, PortIndex ndx) const
     }
 
     cds_error("No port mapping for ndx: {}", ndx);
-    return { };
+    return {};
 }
 
 std::shared_ptr<NodeData> CanRawFilterModel::outData(PortIndex)
 {
-    // example
-    // return std::make_shared<CanDeviceDataOut>(_frame, _direction, _status);
+    std::shared_ptr<NodeData> ret;
+    bool status = _fwdQueue.try_dequeue(ret);
 
-    return { };
+    if (!status) {
+        cds_error("No data availalbe on fwd queue");
+        return {};
+    }
+
+    return ret;
 }
 
 void CanRawFilterModel::setInData(std::shared_ptr<NodeData> nodeData, PortIndex)
 {
-    // example
-    // if (nodeData) {
-    //     auto d = std::dynamic_pointer_cast<CanDeviceDataIn>(nodeData);
-    //     assert(nullptr != d);
-    //     emit sendFrame(d->frame());
-    // } else {
-    //     cds_warn("Incorrect nodeData");
-    // }
-    (void) nodeData;
+    if (nodeData) {
+        auto d = std::dynamic_pointer_cast<CanRawFilterDataIn>(nodeData);
+        assert(nullptr != d);
+        if (d->direction() == Direction::TX) {
+            if (d->status()) {
+                emit filterTx(d->frame());
+            }
+        } else if (d->direction() == Direction::RX) {
+            emit filterRx(d->frame());
+        } else {
+            cds_warn("Incorrect direction");
+        }
+    } else {
+        cds_warn("Incorrect nodeData");
+    }
+}
+
+void CanRawFilterModel::filteredTx(const QCanBusFrame& frame)
+{
+    bool ret = _fwdQueue.try_enqueue(std::make_shared<CanDeviceDataOut>(frame, Direction::TX));
+
+    if (ret) {
+        emit dataUpdated(0); // Data ready on port 0
+    } else {
+        cds_warn("Queue full. Frame dropped");
+    }
+}
+
+void CanRawFilterModel::filteredRx(const QCanBusFrame& frame)
+{
+    bool ret = _fwdQueue.try_enqueue(std::make_shared<CanDeviceDataOut>(frame, Direction::RX));
+
+    if (ret) {
+        emit dataUpdated(0); // Data ready on port 0
+    } else {
+        cds_warn("Queue full. Frame dropped");
+    }
 }
