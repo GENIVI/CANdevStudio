@@ -73,13 +73,23 @@ QTableView#tv QTableCornerButton::section {
     border: 1px solid #f7f7f7;
 }
 
-QTableView#tv {
+QTableView#rxTv QTableCornerButton::section {
+    background-color: #f7f7f7;
+    border: 1px solid #f7f7f7;
+}
+
+QTableView#txTv QTableCornerButton::section {
+    background-color: #f7f7f7;
+    border: 1px solid #f7f7f7;
+}
+
+QTableView#tv, QTableView#txTv, QTableView#rxTv {
     background: #ffffff;
     gridline-color: #d3d3d3;
     color: #626262
 }
 
-QTableView#tv::item {
+QTableView#tv::item, QTableView#txTv::item, QTableView#rxTv::item{
     background: #ffffff;
     border : 0px;
     border-color: #ff0000;

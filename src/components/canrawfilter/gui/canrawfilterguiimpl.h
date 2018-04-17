@@ -1,9 +1,11 @@
 #ifndef CANRAWFILTERGUIIMPL_H
 #define CANRAWFILTERGUIIMPL_H
 
-#include "ui_canrawfilter.h"
 #include "canrawfilterguiint.h"
+#include "ui_canrawfilter.h"
 #include <QWidget>
+#include <QtGui/QStandardItemModel>
+#include <log.h>
 
 struct CanRawFilterGuiImpl : public CanRawFilterGuiInt {
     CanRawFilterGuiImpl()
@@ -11,6 +13,18 @@ struct CanRawFilterGuiImpl : public CanRawFilterGuiInt {
         , _widget(new QWidget)
     {
         _ui->setupUi(_widget);
+
+        initTv();
+
+        QObject::connect(_ui->pbAdd, &QPushButton::pressed, [this] {
+            if (_ui->rxTv->hasFocus()) {
+                cds_info("RX focus");
+            } else if (_ui->txTv->hasFocus()) {
+                cds_info("TX focus");
+            } else {
+                cds_info("Nie ma focusa");
+            }
+        });
     }
 
     virtual QWidget* mainWidget()
@@ -19,6 +33,37 @@ struct CanRawFilterGuiImpl : public CanRawFilterGuiInt {
     }
 
 private:
+    void initTv()
+    {
+        _ui->rxTv->setModel(&_rxModel);
+        _rxModel.setHorizontalHeaderLabels(_tabList);
+        _ui->rxTv->horizontalHeader()->setSectionResizeMode(1, QHeaderView::Stretch);
+        _ui->rxTv->horizontalHeader()->setSectionResizeMode(2, QHeaderView::ResizeToContents);
+
+        QList<QStandardItem*> list;
+        list.append(new QStandardItem("[0-9,a-f,A-F]+"));
+        list.append(new QStandardItem("[0-9,a-f,A-F]*"));
+        list.append(new QStandardItem("RX"));
+        list.append(new QStandardItem("ACCEPT"));
+        _rxModel.appendRow(list);
+
+        _ui->txTv->setModel(&_txModel);
+        _txModel.setHorizontalHeaderLabels(_tabList);
+        _ui->txTv->horizontalHeader()->setSectionResizeMode(1, QHeaderView::Stretch);
+        _ui->txTv->horizontalHeader()->setSectionResizeMode(2, QHeaderView::ResizeToContents);
+
+        list.clear();
+        list.append(new QStandardItem("[0-9,a-f,A-F]+"));
+        list.append(new QStandardItem("[0-9,a-f,A-F]*"));
+        list.append(new QStandardItem("TX"));
+        list.append(new QStandardItem("ACCEPT"));
+        _txModel.appendRow(list);
+    }
+
+private:
+    QStandardItemModel _rxModel;
+    QStandardItemModel _txModel;
+    const QStringList _tabList = { "id", "payload", "dir", "policy" };
     Ui::CanRawFilterPrivate* _ui;
     QWidget* _widget;
 };
