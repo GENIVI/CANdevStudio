@@ -3,22 +3,21 @@
 
 #include <Qt>
 #include <functional>
-#include <vector>
 #include <tuple>
+#include <vector>
 
 class QWidget;
 
 struct CanRawFilterGuiInt {
-    typedef std::vector<std::tuple<QString, QString, bool>> acceptList_t;
-    typedef std::function<void(acceptList_t &list)> listUpdated_t;
+    typedef std::tuple<QString, QString, bool> AcceptListItem_t;
+    typedef std::vector<AcceptListItem_t> AcceptList_t;
+    typedef std::function<void(AcceptList_t& list)> ListUpdated_t;
 
-    virtual ~CanRawFilterGuiInt()
-    {
-    }
+    virtual ~CanRawFilterGuiInt() {}
 
     virtual QWidget* mainWidget() = 0;
-    virtual void setTxListCbk(const listUpdated_t& cb) = 0;
-    virtual void setRxListCbk(const listUpdated_t& cb) = 0;
+    virtual void setTxListCbk(const ListUpdated_t& cb) = 0;
+    virtual void setRxListCbk(const ListUpdated_t& cb) = 0;
 };
 
 #endif // CANRAWFILTERGUIINT_H

@@ -1,18 +1,27 @@
 #include "canrawfilter_p.h"
 #include <log.h>
 
-CanRawFilterPrivate::CanRawFilterPrivate(CanRawFilter *q, CanRawFilterCtx&& ctx)
+CanRawFilterPrivate::CanRawFilterPrivate(CanRawFilter* q, CanRawFilterCtx&& ctx)
     : _ctx(std::move(ctx))
     , _ui(_ctx.get<CanRawFilterGuiInt>())
     , q_ptr(q)
 {
     initProps();
+
+    _ui.setRxListCbk([this](const CanRawFilterGuiInt::AcceptList_t& list) {
+        _rxAcceptList = list;
+
+        for (auto& item : _rxAcceptList) {
+            cds_debug("id: {}, payload: {}. accept: {}", std::get<0>(item).toStdString(),
+                std::get<1>(item).toStdString(), std::get<2>(item));
+        }
+    });
+    _ui.setTxListCbk([this](const CanRawFilterGuiInt::AcceptList_t& list) { _txAcceptList = list; });
 }
 
 void CanRawFilterPrivate::initProps()
 {
-    for (const auto& p: _supportedProps)
-    {
+    for (const auto& p : _supportedProps) {
         _props[p.first];
     }
 }
@@ -43,12 +52,12 @@ void CanRawFilterPrivate::setSettings(const QJsonObject& json)
 
 bool CanRawFilterPrivate::acceptRxFrame(const QCanBusFrame& frame)
 {
-    //TODO
+    // TODO
     return true;
 }
 
 bool CanRawFilterPrivate::acceptTxFrame(const QCanBusFrame& frame)
 {
-    //TODO
+    // TODO
     return true;
 }

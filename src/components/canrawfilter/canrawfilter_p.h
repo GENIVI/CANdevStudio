@@ -31,6 +31,8 @@ public:
     std::map<QString, QVariant> _props;
 
 private:
+    CanRawFilterGuiInt::AcceptList_t _rxAcceptList;
+    CanRawFilterGuiInt::AcceptList_t _txAcceptList;
     CanRawFilter* q_ptr;
     const QString _nameProperty = "name";
     ComponentInterface::ComponentProperties _supportedProps = {
