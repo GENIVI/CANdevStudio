@@ -1,0 +1,39 @@
+Source: candevstudio
+Maintainer: Romain Forlot <romain.forlot@iot.bzh>
+Section: utils
+Priority: optional
+Build-Depends:
+ libqt5widgets5 (>= 5.8),
+ libqt5serialbus5 (>= 5.8),
+ libqt5serialport5-dev (>= 5.8),
+ libqt5test5 (>= 5.8),
+ libqt5network5 (>= 5.8),
+ libqt5opengl5-dev (>= 5.8),
+ cmake (>= 3.5),
+ qtbase5-dev,
+ debhelper (>= 9),
+Standards-Version: 3.9.0
+
+Package: candevstudio
+Architecture: amd64
+Depends:
+ ${misc:Depends},
+ libqt5widgets5 (>= 5.8),
+ libqt5serialbus5 (>= 5.8),
+ libqt5serialport5 (>= 5.8),
+ libqt5test5 (>= 5.8),
+ libqt5network5 (>= 5.8),
+ libqt5opengl5 (>= 5.8),
+ libqt5core5a (>= 5.8),
+Recommends:
+ can-utils,
+Description: Most of automotive projects need to have an access to the
+ Controller Area Network (CAN) bus. There are plenty of commercial frameworks
+ that provides CAN stacks and hardware/software tools necessary to develop
+ proper CAN networks. They are very comprehensive and thus expensive.
+ candevstudio aims to be cost-effective replacement for CAN simulation
+ software. It can work with variety of CAN hardware interfaces (e.g. Microchip,
+ Vector, PEAK-Systems) or even without it (vcan and cannelloni) . candevstudio
+ enables to simulate CAN signals such as ignition status, doors status or
+ reverse gear by every automotive developer. Thanks to modularity it is easy to
+ implement new, custom features. 
