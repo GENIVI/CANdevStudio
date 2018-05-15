@@ -5,7 +5,22 @@
 #include "ui_canrawfilter.h"
 #include <QWidget>
 #include <QtGui/QStandardItemModel>
+#include <QItemDelegate>
+#include <QItemEditorFactory>
 #include <log.h>
+#include <QComboBox>
+
+
+class PolicyCB : public QComboBox
+{
+public:
+    PolicyCB(QWidget *parent = nullptr) :
+        QComboBox(parent)
+    {
+        addItem("ACCEPT");
+        addItem("DROP");
+    }
+};
 
 struct CanRawFilterGuiImpl : public CanRawFilterGuiInt {
     CanRawFilterGuiImpl()
@@ -32,19 +47,44 @@ struct CanRawFilterGuiImpl : public CanRawFilterGuiInt {
         return _widget;
     }
 
+    virtual void setTxListCbk(const listUpdated_t& cb)
+    {
+    }
+
+    virtual void setRxListCbk(const listUpdated_t& cb)
+    {
+    }
+
 private:
     void initTv()
     {
+        QItemEditorFactory *factory = new QItemEditorFactory;
+
+        QItemEditorCreatorBase *editor = new QStandardItemEditorCreator<PolicyCB>();
+        factory->registerEditor(QVariant::String, editor);
+        _delegate.setItemEditorFactory(factory);
+        _ui->rxTv->setItemDelegateForColumn(3, &_delegate);
+        QObject::connect(&_delegate, &QItemDelegate::closeEditor, [] {
+                    cds_info("edit completed");
+                });
+
         _ui->rxTv->setModel(&_rxModel);
+
         _rxModel.setHorizontalHeaderLabels(_tabList);
         _ui->rxTv->horizontalHeader()->setSectionResizeMode(1, QHeaderView::Stretch);
         _ui->rxTv->horizontalHeader()->setSectionResizeMode(2, QHeaderView::ResizeToContents);
 
         QList<QStandardItem*> list;
-        list.append(new QStandardItem("[0-9,a-f,A-F]+"));
-        list.append(new QStandardItem("[0-9,a-f,A-F]*"));
-        list.append(new QStandardItem("RX"));
-        list.append(new QStandardItem("ACCEPT"));
+        QStandardItem *item;
+
+        item = new QStandardItem(".*");
+        list.append(item);
+        item = new QStandardItem(".*");
+        list.append(item);
+        item = new QStandardItem("RX");
+        list.append(item);
+        item = new QStandardItem("ACCEPT");
+        list.append(item);
         _rxModel.appendRow(list);
 
         _ui->txTv->setModel(&_txModel);
@@ -53,8 +93,8 @@ private:
         _ui->txTv->horizontalHeader()->setSectionResizeMode(2, QHeaderView::ResizeToContents);
 
         list.clear();
-        list.append(new QStandardItem("[0-9,a-f,A-F]+"));
-        list.append(new QStandardItem("[0-9,a-f,A-F]*"));
+        list.append(new QStandardItem(".*"));
+        list.append(new QStandardItem(".*"));
         list.append(new QStandardItem("TX"));
         list.append(new QStandardItem("ACCEPT"));
         _txModel.appendRow(list);
@@ -66,6 +106,7 @@ private:
     const QStringList _tabList = { "id", "payload", "dir", "policy" };
     Ui::CanRawFilterPrivate* _ui;
     QWidget* _widget;
+    QItemDelegate _delegate;
 };
 
 #endif // CANRAWFILTERGUIIMPL_H
