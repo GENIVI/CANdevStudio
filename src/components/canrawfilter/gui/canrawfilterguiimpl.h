@@ -56,6 +56,62 @@ struct CanRawFilterGuiImpl : public CanRawFilterGuiInt {
                 cds_info("Neither TX nor RX has focus");
             }
         });
+
+        QObject::connect(_ui->pbUp, &QPushButton::pressed, [this] {
+            if (_ui->rxTv->hasFocus()) {
+                int currRow = _ui->rxTv->currentIndex().row();
+                int currCol = _ui->rxTv->currentIndex().column();
+
+                if(currRow > 0) {
+                    const auto &row = _rxModel.takeRow(currRow);
+                    _rxModel.insertRow(currRow - 1, row);
+                    _ui->rxTv->setCurrentIndex(_rxModel.index(currRow - 1, currCol));
+                }
+
+                rxListUpdated();
+            } else if (_ui->txTv->hasFocus()) {
+                int currRow = _ui->txTv->currentIndex().row();
+                int currCol = _ui->txTv->currentIndex().column();
+
+                if(currRow > 0) {
+                    const auto &row = _txModel.takeRow(currRow);
+                    _txModel.insertRow(currRow - 1, row);
+                    _ui->txTv->setCurrentIndex(_txModel.index(currRow - 1, currCol));
+                }
+
+                txListUpdated();
+            } else {
+                cds_info("Neither TX nor RX has focus");
+            }
+        });
+
+        QObject::connect(_ui->pbDown, &QPushButton::pressed, [this] {
+            if (_ui->rxTv->hasFocus()) {
+                int currRow = _ui->rxTv->currentIndex().row();
+                int currCol = _ui->rxTv->currentIndex().column();
+
+                if(currRow < _rxModel.rowCount() - 1) {
+                    const auto &row = _rxModel.takeRow(currRow);
+                    _rxModel.insertRow(currRow + 1, row);
+                    _ui->rxTv->setCurrentIndex(_rxModel.index(currRow + 1, currCol));
+                }
+
+                rxListUpdated();
+            } else if (_ui->txTv->hasFocus()) {
+                int currRow = _ui->txTv->currentIndex().row();
+                int currCol = _ui->txTv->currentIndex().column();
+
+                if(currRow < _txModel.rowCount() - 1) {
+                    const auto &row = _txModel.takeRow(currRow);
+                    _txModel.insertRow(currRow + 1, row);
+                    _ui->txTv->setCurrentIndex(_txModel.index(currRow + 1, currCol));
+                }
+
+                txListUpdated();
+            } else {
+                cds_info("Neither TX nor RX has focus");
+            }
+        });
     }
 
     virtual QWidget* mainWidget()

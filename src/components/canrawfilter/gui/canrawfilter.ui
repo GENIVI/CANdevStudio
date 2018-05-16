@@ -68,7 +68,17 @@
         <enum>Qt::TabFocus</enum>
        </property>
        <property name="text">
-        <string>up</string>
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="../../../../CANdevResources.qrc">
+         <normaloff>:/images/files/images/light/CANbus_icon_arrow_up.svg</normaloff>:/images/files/images/light/CANbus_icon_arrow_up.svg</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>24</width>
+         <height>24</height>
+        </size>
        </property>
        <property name="flat">
         <bool>true</bool>
@@ -81,7 +91,17 @@
         <enum>Qt::TabFocus</enum>
        </property>
        <property name="text">
-        <string>down</string>
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="../../../../CANdevResources.qrc">
+         <normaloff>:/images/files/images/light/CANbus_icon_arrow_down.svg</normaloff>:/images/files/images/light/CANbus_icon_arrow_down.svg</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>24</width>
+         <height>24</height>
+        </size>
        </property>
        <property name="flat">
         <bool>true</bool>

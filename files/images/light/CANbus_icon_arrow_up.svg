@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   viewBox="0 -256 1792 1792"
+   id="svg3025"
+   version="1.1"
+   inkscape:version="0.92.2 2405546, 2018-03-11"
+   width="100%"
+   height="100%"
+   sodipodi:docname="CANbus_icon_arrow_up.svg">
+  <metadata
+     id="metadata3035">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs3033" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="956"
+     inkscape:window-height="1056"
+     id="namedview3031"
+     showgrid="false"
+     inkscape:zoom="0.13169643"
+     inkscape:cx="-630.23728"
+     inkscape:cy="896.00001"
+     inkscape:window-x="0"
+     inkscape:window-y="20"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="g3027" />
+  <g
+     transform="matrix(1,0,0,-1,53.152542,1262.6441)"
+     id="g3027">
+    <path
+       d="m 1611,565 q 0,-51 -37,-90 l -75,-75 q -38,-38 -91,-38 -54,0 -90,38 L 1024,693 V -11 q 0,-52 -37.5,-84.5 Q 949,-128 896,-128 H 768 q -53,0 -90.5,32.5 Q 640,-63 640,-11 V 693 L 346,400 q -36,-38 -90,-38 -54,0 -90,38 l -75,75 q -38,38 -38,90 0,53 38,91 l 651,651 q 35,37 90,37 54,0 91,-37 l 651,-651 q 37,-39 37,-91 z"
+       id="path3029"
+       inkscape:connector-curvature="0"
+       style="fill:#a6a6a6;fill-opacity:1" />
+  </g>
+</svg>
