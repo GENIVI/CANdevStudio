@@ -40,7 +40,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pbRemve">
+      <widget class="QPushButton" name="pbRemove">
        <property name="focusPolicy">
         <enum>Qt::TabFocus</enum>
        </property>
@@ -63,7 +63,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="pbUp">
        <property name="focusPolicy">
         <enum>Qt::TabFocus</enum>
        </property>
@@ -76,7 +76,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="pbDown">
        <property name="focusPolicy">
         <enum>Qt::TabFocus</enum>
        </property>

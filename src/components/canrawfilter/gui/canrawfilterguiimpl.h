@@ -36,8 +36,22 @@ struct CanRawFilterGuiImpl : public CanRawFilterGuiInt {
         QObject::connect(_ui->pbAdd, &QPushButton::pressed, [this] {
             if (_ui->rxTv->hasFocus()) {
                 addRow(_rxModel, "RX");
+                rxListUpdated();
             } else if (_ui->txTv->hasFocus()) {
                 addRow(_txModel, "TX");
+                txListUpdated();
+            } else {
+                cds_info("Neither TX nor RX has focus");
+            }
+        });
+
+        QObject::connect(_ui->pbRemove, &QPushButton::pressed, [this] {
+            if (_ui->rxTv->hasFocus()) {
+                _rxModel.removeRow(_ui->rxTv->currentIndex().row());
+                rxListUpdated();
+            } else if (_ui->txTv->hasFocus()) {
+                _txModel.removeRow(_ui->txTv->currentIndex().row());
+                txListUpdated();
             } else {
                 cds_info("Neither TX nor RX has focus");
             }
@@ -64,7 +78,7 @@ private:
     {
         AcceptList_t list;
 
-        for (int i = 0; i < _rxModel.rowCount(); ++i) {
+        for (int i = 0; i < model.rowCount(); ++i) {
             QString id = model.item(i, 0)->data(Qt::DisplayRole).toString();
             QString payload = model.item(i, 1)->data(Qt::DisplayRole).toString();
             bool policy = model.item(i, 3)->data(Qt::DisplayRole).toString() == "ACCEPT";
