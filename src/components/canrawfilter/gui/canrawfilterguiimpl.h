@@ -29,89 +29,22 @@ struct CanRawFilterGuiImpl : public CanRawFilterGuiInt {
         : _ui(new Ui::CanRawFilterPrivate)
         , _widget(new QWidget)
     {
-        _ui->setupUi(_widget);
+        using namespace std::placeholders;
 
+        _ui->setupUi(_widget);
         initTv();
 
-        QObject::connect(_ui->pbAdd, &QPushButton::pressed, [this] {
-            if (_ui->rxTv->hasFocus()) {
-                addRow(_rxModel, "RX");
-                rxListUpdated();
-            } else if (_ui->txTv->hasFocus()) {
-                addRow(_txModel, "TX");
-                txListUpdated();
-            } else {
-                cds_info("Neither TX nor RX has focus");
-            }
-        });
+        QObject::connect(_ui->pbAdd, &QPushButton::pressed,
+            [this] { handleListOperation(std::bind(&CanRawFilterGuiImpl::handleListAdd, this, _1)); });
 
-        QObject::connect(_ui->pbRemove, &QPushButton::pressed, [this] {
-            if (_ui->rxTv->hasFocus()) {
-                _rxModel.removeRow(_ui->rxTv->currentIndex().row());
-                rxListUpdated();
-            } else if (_ui->txTv->hasFocus()) {
-                _txModel.removeRow(_ui->txTv->currentIndex().row());
-                txListUpdated();
-            } else {
-                cds_info("Neither TX nor RX has focus");
-            }
-        });
+        QObject::connect(_ui->pbRemove, &QPushButton::pressed,
+            [this] { handleListOperation(std::bind(&CanRawFilterGuiImpl::handleListRemove, this, _1)); });
 
-        QObject::connect(_ui->pbUp, &QPushButton::pressed, [this] {
-            if (_ui->rxTv->hasFocus()) {
-                int currRow = _ui->rxTv->currentIndex().row();
-                int currCol = _ui->rxTv->currentIndex().column();
+        QObject::connect(_ui->pbUp, &QPushButton::pressed,
+            [this] { handleListOperation(std::bind(&CanRawFilterGuiImpl::handleListUp, this, _1)); });
 
-                if(currRow > 0) {
-                    const auto &row = _rxModel.takeRow(currRow);
-                    _rxModel.insertRow(currRow - 1, row);
-                    _ui->rxTv->setCurrentIndex(_rxModel.index(currRow - 1, currCol));
-                }
-
-                rxListUpdated();
-            } else if (_ui->txTv->hasFocus()) {
-                int currRow = _ui->txTv->currentIndex().row();
-                int currCol = _ui->txTv->currentIndex().column();
-
-                if(currRow > 0) {
-                    const auto &row = _txModel.takeRow(currRow);
-                    _txModel.insertRow(currRow - 1, row);
-                    _ui->txTv->setCurrentIndex(_txModel.index(currRow - 1, currCol));
-                }
-
-                txListUpdated();
-            } else {
-                cds_info("Neither TX nor RX has focus");
-            }
-        });
-
-        QObject::connect(_ui->pbDown, &QPushButton::pressed, [this] {
-            if (_ui->rxTv->hasFocus()) {
-                int currRow = _ui->rxTv->currentIndex().row();
-                int currCol = _ui->rxTv->currentIndex().column();
-
-                if(currRow < _rxModel.rowCount() - 1) {
-                    const auto &row = _rxModel.takeRow(currRow);
-                    _rxModel.insertRow(currRow + 1, row);
-                    _ui->rxTv->setCurrentIndex(_rxModel.index(currRow + 1, currCol));
-                }
-
-                rxListUpdated();
-            } else if (_ui->txTv->hasFocus()) {
-                int currRow = _ui->txTv->currentIndex().row();
-                int currCol = _ui->txTv->currentIndex().column();
-
-                if(currRow < _txModel.rowCount() - 1) {
-                    const auto &row = _txModel.takeRow(currRow);
-                    _txModel.insertRow(currRow + 1, row);
-                    _ui->txTv->setCurrentIndex(_txModel.index(currRow + 1, currCol));
-                }
-
-                txListUpdated();
-            } else {
-                cds_info("Neither TX nor RX has focus");
-            }
-        });
+        QObject::connect(_ui->pbDown, &QPushButton::pressed,
+            [this] { handleListOperation(std::bind(&CanRawFilterGuiImpl::handleListDown, this, _1)); });
     }
 
     virtual QWidget* mainWidget()
@@ -130,6 +63,79 @@ struct CanRawFilterGuiImpl : public CanRawFilterGuiInt {
     }
 
 private:
+    void handleListOperation(std::function<void(QTableView* tv)> func)
+    {
+        if (_ui->rxTv->hasFocus()) {
+            func(_ui->rxTv);
+            rxListUpdated();
+        } else if (_ui->txTv->hasFocus()) {
+            func(_ui->txTv);
+            txListUpdated();
+        } else {
+            cds_info("Neither TX nor RX has focus");
+        }
+    }
+
+    QStandardItemModel& getItemModel(QTableView* tv)
+    {
+        if (tv == _ui->txTv) {
+            return _txModel;
+        } else {
+            return _rxModel;
+        }
+    }
+
+    void handleListDown(QTableView* tv)
+    {
+        auto& model = getItemModel(tv);
+        int currRow = tv->currentIndex().row();
+        int currCol = tv->currentIndex().column();
+
+        if (currRow < model.rowCount() - 1) {
+            const auto& row = model.takeRow(currRow);
+            model.insertRow(currRow + 1, row);
+            tv->setCurrentIndex(model.index(currRow + 1, currCol));
+        }
+    }
+
+    void handleListUp(QTableView* tv)
+    {
+        auto& model = getItemModel(tv);
+        int currRow = tv->currentIndex().row();
+        int currCol = tv->currentIndex().column();
+
+        if (currRow > 0) {
+            const auto& row = model.takeRow(currRow);
+            model.insertRow(currRow - 1, row);
+            tv->setCurrentIndex(model.index(currRow - 1, currCol));
+        }
+    }
+
+    void handleListRemove(QTableView* tv)
+    {
+        auto& model = getItemModel(tv);
+        model.removeRow(tv->currentIndex().row());
+    }
+
+    void handleListAdd(QTableView* tv)
+    {
+        auto& model = getItemModel(tv);
+
+        QString dir = "RX";
+        if (tv == _ui->txTv) {
+            dir = "TX";
+        }
+
+        QList<QStandardItem*> list;
+        list.append(new QStandardItem(".*"));
+        list.append(new QStandardItem(".*"));
+        QStandardItem* item = new QStandardItem(dir);
+        item->setEditable(false);
+        list.append(item);
+        list.append(new QStandardItem("ACCEPT"));
+        model.insertRow(0, list);
+    }
+
     AcceptList_t getAcceptList(const QStandardItemModel& model)
     {
         AcceptList_t list;
@@ -178,18 +184,6 @@ private:
         QObject::connect(&del, &QAbstractItemDelegate::closeEditor, cb);
     }
 
-    void addRow(QStandardItemModel& model, const QString& dir)
-    {
-        QList<QStandardItem*> list;
-        list.append(new QStandardItem(".*"));
-        list.append(new QStandardItem(".*"));
-        QStandardItem* item = new QStandardItem(dir);
-        item->setEditable(false);
-        list.append(item);
-        list.append(new QStandardItem("ACCEPT"));
-        model.insertRow(0, list);
-    }
-
     void initTv()
     {
         setRxDelegate<QLineEdit>(_ui->rxTv, 0, _rxIdDelegate, std::bind(&CanRawFilterGuiImpl::rxListUpdated, this));
@@ -201,7 +195,7 @@ private:
         _rxModel.setHorizontalHeaderLabels(_tabList);
         _ui->rxTv->horizontalHeader()->setSectionResizeMode(1, QHeaderView::Stretch);
         _ui->rxTv->horizontalHeader()->setSectionResizeMode(2, QHeaderView::ResizeToContents);
-        addRow(_rxModel, "RX");
+        handleListAdd(_ui->rxTv);
 
         setRxDelegate<QLineEdit>(_ui->txTv, 0, _txIdDelegate, std::bind(&CanRawFilterGuiImpl::txListUpdated, this));
         setRxDelegate<QLineEdit>(
@@ -212,7 +206,7 @@ private:
         _txModel.setHorizontalHeaderLabels(_tabList);
         _ui->txTv->horizontalHeader()->setSectionResizeMode(1, QHeaderView::Stretch);
         _ui->txTv->horizontalHeader()->setSectionResizeMode(2, QHeaderView::ResizeToContents);
-        addRow(_txModel, "TX");
+        handleListAdd(_ui->txTv);
     }
 
 private:

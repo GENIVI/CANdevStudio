@@ -67,6 +67,9 @@
        <property name="focusPolicy">
         <enum>Qt::TabFocus</enum>
        </property>
+       <property name="styleSheet">
+        <string notr="true">padding : 4;</string>
+       </property>
        <property name="text">
         <string/>
        </property>
@@ -89,6 +92,9 @@
       <widget class="QPushButton" name="pbDown">
        <property name="focusPolicy">
         <enum>Qt::TabFocus</enum>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">padding: 4</string>
        </property>
        <property name="text">
         <string/>
