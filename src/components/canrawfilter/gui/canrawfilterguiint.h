@@ -18,6 +18,8 @@ struct CanRawFilterGuiInt {
     virtual QWidget* mainWidget() = 0;
     virtual void setTxListCbk(const ListUpdated_t& cb) = 0;
     virtual void setRxListCbk(const ListUpdated_t& cb) = 0;
+    virtual void setListRx(const AcceptList_t& list) = 0;
+    virtual void setListTx(const AcceptList_t& list) = 0;
 };
 
 #endif // CANRAWFILTERGUIINT_H

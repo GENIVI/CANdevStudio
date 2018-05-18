@@ -55,14 +55,39 @@ struct CanRawFilterGuiImpl : public CanRawFilterGuiInt {
     virtual void setTxListCbk(const ListUpdated_t& cb)
     {
         _txListUpdatedCbk = cb;
+
+        listUpdatedTx();
     }
 
     virtual void setRxListCbk(const ListUpdated_t& cb)
     {
         _rxListUpdatedCbk = cb;
+
+        listUpdatedRx();
+    }
+
+    virtual void setListRx(const AcceptList_t& list)
+    {
+        setList(list, _rxModel, "RX");
+        listUpdatedRx();
+    }
+
+    virtual void setListTx(const AcceptList_t& list)
+    {
+        setList(list, _txModel, "TX");
+        listUpdatedTx();
     }
 
 private:
+    void setList(const AcceptList_t& list, QStandardItemModel& model, const QString& dir)
+    {
+        model.removeRows(0, model.rowCount());
+
+        for (const auto& item : list) {
+            model.appendRow(prepareRow(std::get<0>(item), std::get<1>(item), dir, std::get<2>(item)));
+        }
+    }
+
     void handleListOperation(std::function<void(QTableView* tv)> func)
     {
         if (_ui->rxTv->hasFocus()) {
@@ -134,14 +159,21 @@ private:
             dir = "TX";
         }
 
+        auto&& list = prepareRow(".*", ".*", dir, true);
+        model.insertRow(0, list);
+    }
+
+    QList<QStandardItem*> prepareRow(const QString& id, const QString& payload, const QString& dir, bool policy)
+    {
         QList<QStandardItem*> list;
-        list.append(new QStandardItem(".*"));
-        list.append(new QStandardItem(".*"));
+        list.append(new QStandardItem(id));
+        list.append(new QStandardItem(payload));
         QStandardItem* item = new QStandardItem(dir);
         item->setEditable(false);
         list.append(item);
-        list.append(new QStandardItem("ACCEPT"));
-        model.insertRow(0, list);
+        list.append(new QStandardItem(policy ? "ACCEPT" : "DROP"));
+
+        return list;
     }
 
     AcceptList_t getAcceptList(const QStandardItemModel& model)

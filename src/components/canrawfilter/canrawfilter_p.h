@@ -22,6 +22,8 @@ public:
 
 private:
     void initProps();
+    bool acceptFrame(const CanRawFilterGuiInt::AcceptList_t &list, const QCanBusFrame &frame);
+    CanRawFilterGuiInt::AcceptList_t getAcceptList(const QJsonObject& json, const QString& listName);
 
 public:
     bool _simStarted{ false };
