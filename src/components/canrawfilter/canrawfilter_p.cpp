@@ -11,12 +11,22 @@ CanRawFilterPrivate::CanRawFilterPrivate(CanRawFilter* q, CanRawFilterCtx&& ctx)
     _ui.setRxListCbk([this](const CanRawFilterGuiInt::AcceptList_t& list) {
         _rxAcceptList = list;
 
+        cds_debug("RX list updated:");
         for (auto& item : _rxAcceptList) {
             cds_debug("id: {}, payload: {}. accept: {}", std::get<0>(item).toStdString(),
                 std::get<1>(item).toStdString(), std::get<2>(item));
         }
     });
-    _ui.setTxListCbk([this](const CanRawFilterGuiInt::AcceptList_t& list) { _txAcceptList = list; });
+
+    _ui.setTxListCbk([this](const CanRawFilterGuiInt::AcceptList_t& list) {
+        _txAcceptList = list;
+
+        cds_debug("TX list updated:");
+        for (auto& item : _txAcceptList) {
+            cds_debug("id: {}, payload: {}. accept: {}", std::get<0>(item).toStdString(),
+                std::get<1>(item).toStdString(), std::get<2>(item));
+        }
+    });
 }
 
 void CanRawFilterPrivate::initProps()
