@@ -17,4 +17,4 @@ docker run \
         make -j5 &&
         make test &&
         if [ '$WITH_COVERAGE' == 'ON' ]; then bash <(curl -s https://codecov.io/bash) -x gcov-6 || echo 'Codecov did not collect coverage reports'; fi &&
-        if [ '$PACKAGE' == 'ON' ]; then make package || echo 'Codecov did not collect coverage reports'; fi"
+        if [ '$PACKAGE' == 'ON' ]; then cpack -G DEB || echo 'Failed to create package'; fi"
