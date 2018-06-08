@@ -20,7 +20,7 @@ const std::map<PortType, std::vector<NodeDataType>> portMappings = {
 
 CanLoadModel::CanLoadModel()
     : ComponentModel("CanLoad")
-    , _painter(std::make_unique<CanLoadPainter>(headerColor1(), headerColor2(), _currentLoad))
+    , _painter(std::make_unique<CanLoadPainter>(headerColor(), _currentLoad))
 {
     _label->setAlignment(Qt::AlignVCenter | Qt::AlignHCenter);
     _label->setFixedSize(75, 25);

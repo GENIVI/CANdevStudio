@@ -73,26 +73,23 @@ public:
             bgColor = QColor(255, 255, 255);
         }
 
-        QLayoutItem* item;
-        while ((item = _ui->deviceWidget->layout()->takeAt(0)) != nullptr) {
-            delete item;
-        }
-        while ((item = _ui->rawWidget->layout()->takeAt(0)) != nullptr) {
-            delete item;
-        }
+        auto cleanIconWidgets = [](QWidget* w) {
+            QLayoutItem* item;
+            while ((item = w->layout()->takeAt(0)) != nullptr) {
+                delete item->widget();
+                delete item;
+            }
+        };
 
-        _ui->deviceWidget->layout()->addWidget(
-            new IconLabel("CanDevice", CanDeviceModel::headerColor1(), CanDeviceModel::headerColor2(), bgColor));
-        _ui->rawWidget->layout()->addWidget(new IconLabel(
-            "CanRawSender", CanRawSenderModel::headerColor1(), CanRawSenderModel::headerColor2(), bgColor));
-        _ui->rawWidget->layout()->addWidget(
-            new IconLabel("CanRawView", CanRawViewModel::headerColor1(), CanRawViewModel::headerColor2(), bgColor));
-        _ui->rawWidget->layout()->addWidget(
-            new IconLabel("CanRawPlayer", CanRawPlayerModel::headerColor1(), CanRawPlayerModel::headerColor2(), bgColor));
-        _ui->rawWidget->layout()->addWidget(
-            new IconLabel("CanRawLogger", CanRawLoggerModel::headerColor1(), CanRawLoggerModel::headerColor2(), bgColor));
-        _ui->rawWidget->layout()->addWidget(
-            new IconLabel("CanLoad", CanLoadModel::headerColor1(), CanLoadModel::headerColor2(), bgColor));
+        cleanIconWidgets(_ui->deviceWidget);
+        cleanIconWidgets(_ui->rawWidget);
+
+        _ui->deviceWidget->layout()->addWidget(new IconLabel("CanDevice", CanDeviceModel::headerColor(), bgColor));
+        _ui->rawWidget->layout()->addWidget(new IconLabel("CanRawSender", CanRawSenderModel::headerColor(), bgColor));
+        _ui->rawWidget->layout()->addWidget(new IconLabel("CanRawView", CanRawViewModel::headerColor(), bgColor));
+        _ui->rawWidget->layout()->addWidget(new IconLabel("CanRawPlayer", CanRawPlayerModel::headerColor(), bgColor));
+        _ui->rawWidget->layout()->addWidget(new IconLabel("CanRawLogger", CanRawLoggerModel::headerColor(), bgColor));
+        _ui->rawWidget->layout()->addWidget(new IconLabel("CanLoad", CanLoadModel::headerColor(), bgColor));
     }
 
     ~ProjectConfigPrivate() {}

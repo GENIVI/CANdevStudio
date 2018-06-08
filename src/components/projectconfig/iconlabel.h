@@ -2,13 +2,13 @@
 #define __ICONLABEL_H
 
 #include <QLabel>
+#include <QLayoutItem>
 #include <QPainter>
 
-class IconLabel : public QLabel
-{
+class IconLabel : public QLabel {
 public:
-    IconLabel(const QString &name, const QColor &headerColor1, const QColor &, const QColor &bgColor)
-    {        
+    IconLabel(const QString& name, const QColor& headerColor, const QColor& bgColor)
+    {
         QPixmap pix(_width, _height);
         pix.fill(Qt::transparent);
         QPainter painter(&pix);
@@ -20,16 +20,16 @@ public:
         painter.setBrush(QBrush(bgColor));
         QRectF boundary(0, 0, pix.width(), pix.height());
         painter.drawRoundedRect(boundary, _radius, _radius);
-        painter.setBrush(QBrush(headerColor1));
+        painter.setBrush(QBrush(headerColor));
 
         QRectF boundary2(0, 0, pix.width(), _labelHeight);
         painter.drawRoundedRect(boundary2, _radius, _radius);
 
-        QRectF boundary3(0, _labelHeight/2, pix.width(), _labelHeight/2);
+        QRectF boundary3(0, _labelHeight / 2, pix.width(), _labelHeight / 2);
         painter.drawRect(boundary3);
 
-        painter.setPen({Qt::white, 1});
-        QFont font({"Arial", 8});
+        painter.setPen({ Qt::white, 1 });
+        QFont font({ "Arial", 8 });
         font.setBold(true);
         painter.setFont(font);
         painter.drawText(6, 15, name);
@@ -40,6 +40,11 @@ public:
         setPixmap(pix);
 
         setProperty("type", "IconLabel");
+    }
+
+    QSize minimumSizeHint() const override
+    {
+        return { _width, _height };
     }
 
 private:

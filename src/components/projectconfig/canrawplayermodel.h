@@ -27,14 +27,9 @@ public:
     void setInData(std::shared_ptr<NodeData> nodeData, PortIndex port) override;
     QtNodes::NodePainterDelegate* painterDelegate() const override;
 
-    static QColor headerColor1()
+    static QColor headerColor()
     {
         return QColor(144, 187, 62);
-    }
-
-    static QColor headerColor2()
-    {
-        return QColor(84, 84, 84);
     }
 
     virtual bool hasSeparateThread() const override 
