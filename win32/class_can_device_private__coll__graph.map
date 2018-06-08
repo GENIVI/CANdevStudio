@@ -1,0 +1,4 @@
+<map id="CanDevicePrivate" name="CanDevicePrivate">
+<area shape="rect" id="node2" href="$struct_can_device_interface.html" title="CanDeviceInterface" alt="" coords="5,5,152,32"/>
+<area shape="rect" id="node3" href="$struct_context.html" title="Context\&lt; CanDeviceInterface \&gt;" alt="" coords="176,5,403,32"/>
+</map>
