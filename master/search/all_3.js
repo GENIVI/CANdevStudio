@@ -28,7 +28,7 @@ var searchData=
   ['canloadmodel',['CanLoadModel',['../class_can_load_model.html',1,'CanLoadModel'],['../class_can_load_model.html#ad29d2b0ba456b13bfffc6d0e7cdade34',1,'CanLoadModel::CanLoadModel()']]],
   ['canloadmodel_2ecpp',['canloadmodel.cpp',['../canloadmodel_8cpp.html',1,'']]],
   ['canloadmodel_2eh',['canloadmodel.h',['../canloadmodel_8h.html',1,'']]],
-  ['canloadpainter',['CanLoadPainter',['../struct_can_load_painter.html',1,'CanLoadPainter'],['../struct_can_load_painter.html#af6cce745eceaacef51bcfdf31180f231',1,'CanLoadPainter::CanLoadPainter()=default'],['../struct_can_load_painter.html#a640cbdedd5f375b54a27132a876b3659',1,'CanLoadPainter::CanLoadPainter(const QColor &amp;headerColor1, const QColor &amp;headerColor2, const uint8_t &amp;load)']]],
+  ['canloadpainter',['CanLoadPainter',['../struct_can_load_painter.html',1,'CanLoadPainter'],['../struct_can_load_painter.html#af6cce745eceaacef51bcfdf31180f231',1,'CanLoadPainter::CanLoadPainter()=default'],['../struct_can_load_painter.html#a533cf98cd74c281376dc6568c333164d',1,'CanLoadPainter::CanLoadPainter(const QColor &amp;headerColor, const uint8_t &amp;load)']]],
   ['canloadpainter_2eh',['canloadpainter.h',['../canloadpainter_8h.html',1,'']]],
   ['canloadprivate',['CanLoadPrivate',['../class_can_load_private.html',1,'CanLoadPrivate'],['../class_can_load_private.html#a9b585ce632deef855192fa0fd7078d5c',1,'CanLoadPrivate::CanLoadPrivate()']]],
   ['cannodedatamodelvisitor',['CanNodeDataModelVisitor',['../struct_can_node_data_model_visitor.html',1,'']]],

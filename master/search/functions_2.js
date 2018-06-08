@@ -6,7 +6,7 @@ var searchData=
   ['candeviceprivate',['CanDevicePrivate',['../class_can_device_private.html#a7896dc8cab99964673232ee03a374029',1,'CanDevicePrivate']]],
   ['canload',['CanLoad',['../class_can_load.html#a53fc897775305acf9fa32b0c00a1faab',1,'CanLoad::CanLoad()'],['../class_can_load.html#aa0e08e857783522f31b5438ec7dd1e4f',1,'CanLoad::CanLoad(CanLoadCtx &amp;&amp;ctx)']]],
   ['canloadmodel',['CanLoadModel',['../class_can_load_model.html#ad29d2b0ba456b13bfffc6d0e7cdade34',1,'CanLoadModel']]],
-  ['canloadpainter',['CanLoadPainter',['../struct_can_load_painter.html#af6cce745eceaacef51bcfdf31180f231',1,'CanLoadPainter::CanLoadPainter()=default'],['../struct_can_load_painter.html#a640cbdedd5f375b54a27132a876b3659',1,'CanLoadPainter::CanLoadPainter(const QColor &amp;headerColor1, const QColor &amp;headerColor2, const uint8_t &amp;load)']]],
+  ['canloadpainter',['CanLoadPainter',['../struct_can_load_painter.html#af6cce745eceaacef51bcfdf31180f231',1,'CanLoadPainter::CanLoadPainter()=default'],['../struct_can_load_painter.html#a533cf98cd74c281376dc6568c333164d',1,'CanLoadPainter::CanLoadPainter(const QColor &amp;headerColor, const uint8_t &amp;load)']]],
   ['canloadprivate',['CanLoadPrivate',['../class_can_load_private.html#a9b585ce632deef855192fa0fd7078d5c',1,'CanLoadPrivate']]],
   ['canrawlogger',['CanRawLogger',['../class_can_raw_logger.html#abcbfafc2ece0934ac4e4baf989c1a576',1,'CanRawLogger::CanRawLogger()'],['../class_can_raw_logger.html#ae1744c255d7a7a51154cbdd236e6abbb',1,'CanRawLogger::CanRawLogger(CanRawLoggerCtx &amp;&amp;ctx)']]],
   ['canrawloggermodel',['CanRawLoggerModel',['../class_can_raw_logger_model.html#a30df55d2490ad1208ad079c8ab0a0454',1,'CanRawLoggerModel']]],

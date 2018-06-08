@@ -1,8 +1,9 @@
 var NAVTREEINDEX3 =
 {
+"struct_can_device_qt.html#ae991500c57b2d44383ff09dd32b04d53":[1,0,5,4],
 "struct_can_device_qt.html#af1bf6677b8ac4ebade2396c2eaa75f68":[1,0,5,3],
 "struct_can_load_painter.html":[1,0,8],
-"struct_can_load_painter.html#a640cbdedd5f375b54a27132a876b3659":[1,0,8,1],
+"struct_can_load_painter.html#a533cf98cd74c281376dc6568c333164d":[1,0,8,1],
 "struct_can_load_painter.html#a895522e8712ccd337db440e4c9fe9a71":[1,0,8,2],
 "struct_can_load_painter.html#af6cce745eceaacef51bcfdf31180f231":[1,0,8,0],
 "struct_can_node_data_model_visitor.html":[1,0,10],
@@ -101,7 +102,7 @@ var NAVTREEINDEX3 =
 "struct_node_painter.html":[1,0,47],
 "struct_node_painter.html#a146d12d2ee40b7d2d8fea3eaa146e1cc":[1,0,47,0],
 "struct_node_painter.html#a267a2aca72ab62b2f0c06c67649eae11":[1,0,47,1],
-"struct_node_painter.html#a713654fd488f4aa1144bf1440839a2cb":[1,0,47,2],
+"struct_node_painter.html#a7f49679a5c5cd75c2eddd3d08e40f441":[1,0,47,2],
 "struct_node_painter.html#abf545a7cff174a1d10f38f64d437fc72":[1,0,47,3],
 "struct_p_c_interface.html":[1,0,49],
 "struct_p_c_interface.html#a5dfc8cae3820348dad7af8f69e5a368e":[1,0,49,7],

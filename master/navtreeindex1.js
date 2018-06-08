@@ -160,7 +160,8 @@ var NAVTREEINDEX1 =
 "class_enum_iterator.html#ad3a5cb5b4fa5efabdc1c4e03e980e4f0":[1,0,35,11],
 "class_enum_iterator.html#afad866db4d837e93586bbfb81a7974e2":[1,0,35,0],
 "class_icon_label.html":[1,0,37],
-"class_icon_label.html#a31537ac248df444cafbbfae3b187392a":[1,0,37,0],
+"class_icon_label.html#a715b895ee88aea13048aafb3dcee2497":[1,0,37,1],
+"class_icon_label.html#aa7d4d663113e6613870bc6ab700e6d1c":[1,0,37,0],
 "class_main_window.html":[1,0,39],
 "class_main_window.html#a03ffc218341eec996463d79739b02e89":[1,0,39,4],
 "class_main_window.html#a0d96c759dcb9385d2ec1653cc4826f0b":[1,0,39,7],
@@ -248,6 +249,5 @@ var NAVTREEINDEX1 =
 "context_8h.html#afc56d0ae34896093eba3bf13b06ab2dc":[2,0,0,0,3,1],
 "context_8h_source.html":[2,0,0,0,3],
 "crsgui_8h.html":[2,0,0,1,4,0,0],
-"crsgui_8h_source.html":[2,0,0,1,4,0,0],
-"crsguiinterface_8h.html":[2,0,0,1,4,0,1]
+"crsgui_8h_source.html":[2,0,0,1,4,0,0]
 };
