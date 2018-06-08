@@ -2,13 +2,17 @@ cmake_minimum_required(VERSION 3.0.0)
 
 project(CANdevStudio CXX)
 
+set(VERSION_MAJOR 0)
+set(VERSION_MINOR 1)
+set(VERSION_PATCH 0)
+
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 14)
 #libnodes.so will be installed to CANdevStudio dir to not override other installations. Set RPATH accordingly
-SET(CMAKE_INSTALL_RPATH ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}/CANdevStudio)
+SET(CMAKE_INSTALL_RPATH ${CMAKE_INSTALL_PREFIX}/lib/CANDevStudio)
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/Modules)
 
@@ -104,19 +108,17 @@ if(WITH_TOOLS)
     add_subdirectory(tools)
 endif()
 
-install(PROGRAMS ${CMAKE_BINARY_DIR}/lib/libnodes.so DESTINATION ${CMAKE_INSTALL_LIBDIR}/CANdevStudio)
-install(PROGRAMS ${CMAKE_BINARY_DIR}/src/components/projectconfig/libprojectconfig.so DESTINATION ${CMAKE_INSTALL_LIBDIR}/CANdevStudio)
-install(PROGRAMS ${CMAKE_BINARY_DIR}/src/components/canrawsender/libcanrawsender.so DESTINATION ${CMAKE_INSTALL_LIBDIR}/CANdevStudio)
-install(PROGRAMS ${CMAKE_BINARY_DIR}/src/components/canrawview/libcanrawview.so DESTINATION ${CMAKE_INSTALL_LIBDIR}/CANdevStudio)
-install(PROGRAMS ${CMAKE_BINARY_DIR}/src/components/candevice/libcandevice.so DESTINATION ${CMAKE_INSTALL_LIBDIR}/CANdevStudio)
+install(PROGRAMS ${CMAKE_BINARY_DIR}/lib/libnodes.so
+    DESTINATION lib/CANDevStudio
+)
 
 #Cannelloni is supported on Linux only
 if(UNIX)
     add_subdirectory(3rdParty/qtCannelloniCanBus)
 
-    list(GET Qt5SerialBus_PLUGINS 0 SB_PLUGIN)
-    get_target_property(CAN_PLUGIN_PATH ${SB_PLUGIN} LOCATION)
-    get_filename_component(CAN_PLUGIN_PATH ${CAN_PLUGIN_PATH} PATH)
-
-    install(PROGRAMS ${CMAKE_BINARY_DIR}/3rdParty/qtCannelloniCanBus/libqtCannelloniCanBusPlugin.so DESTINATION ${CAN_PLUGIN_PATH})
+    install(PROGRAMS ${CMAKE_BINARY_DIR}/3rdParty/qtCannelloniCanBus/libqtCannelloniCanBusPlugin.so 
+        DESTINATION lib/qt/plugins/canbus
+    )
 endif()
+
+include("packaging.cmake")
