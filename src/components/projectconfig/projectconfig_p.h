@@ -57,6 +57,9 @@ public:
         _ui->setupUi(this);
         _ui->layout->addWidget(_graphView);
 
+        _ui->scrollArea->setMinimumSize(165, 0);
+        _ui->scrollArea->setMaximumSize(165, 10000);
+
         connect(_ui->pbDeviceLayer, &QPushButton::toggled, _ui->deviceWidget, &QWidget::setVisible);
         _ui->pbDeviceLayer->setChecked(true);
         connect(_ui->pbRawLayer, &QPushButton::toggled, _ui->rawWidget, &QWidget::setVisible);
