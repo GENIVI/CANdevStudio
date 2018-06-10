@@ -25,17 +25,12 @@ if(UNIX)
     if(STANDALONE)
         set(INSTALL_DEST_LIB CANdevStudio)
         set(INSTALL_DEST_BIN CANdevStudio)
-        set(INSTALL_DEST_PLUG CANdevStudio)
-        #libnodes.so will be installed to CANdevStudio dir to not override other installations. Set RPATH accordingly
-        set(CMAKE_INSTALL_RPATH $ORIGIN)
+        set(INSTALL_DEST_PLUG CANdevStudio/canbus)
     else()
         set(INSTALL_DEST_LIB lib/CANdevStudio)
         set(INSTALL_DEST_BIN bin)
         set(INSTALL_DEST_PLUG lib/qt/plugins/canbus)
-        #libnodes.so will be installed to CANdevStudio dir to not override other installations. Set RPATH accordingly
-        set(CMAKE_INSTALL_RPATH ${CMAKE_INSTALL_PREFIX}/lib/CANdevStudio)
     endif()
-    set(LIBNODES_PATH ${CMAKE_BINARY_DIR}/lib/libnodes.so)
 else()
     # TODO: MSVC does not like "#define private public" need to find a way to disable it.
     option(WITH_TESTS "Build with test" OFF)
@@ -43,7 +38,6 @@ else()
     set(GUI_TYPE WIN32)
     set(INSTALL_DEST_LIB CANdevStudio)
     set(INSTALL_DEST_BIN CANdevStudio)
-    set(LIBNODES_PATH ${CMAKE_BINARY_DIR}/bin/libnodes.dll)
 endif()
 
 set(QT_REQUIRED_VERSION "5.6")
@@ -137,10 +131,6 @@ if(UNIX)
     )
 endif()
 
-install(PROGRAMS ${LIBNODES_PATH}
-    DESTINATION ${INSTALL_DEST_LIB}
-)
-
 if(STANDALONE)
     if(UNIX)
         set(SYS_LIBS
@@ -152,6 +142,8 @@ if(STANDALONE)
             libQt5Svg.so.5
             libQt5Widgets.so.5
             libQt5OpenGL.so.5
+            libQt5XcbQpa.so.5
+            libQt5DBus.so.5
             libQt5Core.so.${Qt5Core_VERSION}
             libQt5Gui.so.${Qt5Core_VERSION}
             libQt5Network.so.${Qt5Core_VERSION}
@@ -160,7 +152,11 @@ if(STANDALONE)
             libQt5Svg.so.${Qt5Core_VERSION}
             libQt5Widgets.so.${Qt5Core_VERSION}
             libQt5OpenGL.so.${Qt5Core_VERSION}
+            libQt5XcbQpa.so.${Qt5Core_VERSION}
+            libQt5DBus.so.${Qt5Core_VERSION}
         )
+
+        install(PROGRAMS files/CANdevStudio.sh DESTINATION ${INSTALL_DEST_BIN})
     else()
         set(SYS_LIBS
             libgcc_s_dw2-1.dll
@@ -202,13 +198,9 @@ if(STANDALONE)
         message(WARNING "Qt5 plugin directory cannot be detected.")
     endif()
 
-    file(GLOB CANBUS_PLUGINS
-        "${QT_PLUGINS_DIR}/canbus/*.so"
-        "${QT_PLUGINS_DIR}/canbus/*.dll"
-    )
-
-install(PROGRAMS ${CANBUS_PLUGINS}
-        DESTINATION ${INSTALL_DEST_LIB}/canbus
+    install(DIRECTORY ${QT_PLUGINS_DIR}/
+            DESTINATION ${INSTALL_DEST_LIB}
+            USE_SOURCE_PERMISSIONS
     )
 endif()
 
