@@ -1,0 +1,11 @@
+<map id="src/gui/mainwindow.cpp" name="src/gui/mainwindow.cpp">
+<area shape="rect" id="node2" href="$mainwindow_8h.html" title="mainwindow.h" alt="" coords="375,80,486,107"/>
+<area shape="rect" id="node10" href="$log_8h.html" title="log.h" alt="" coords="1483,155,1536,181"/>
+<area shape="rect" id="node15" href="$modelvisitor_8h.html" title="modelvisitor.h" alt="" coords="819,80,930,107"/>
+<area shape="rect" id="node22" href="$projectconfigvalidator_8h.html" title="projectconfigvalidator.h" alt="" coords="1547,80,1717,107"/>
+<area shape="rect" id="node25" href="$subwindow_8h.html" title="subwindow.h" alt="" coords="1355,80,1456,107"/>
+<area shape="rect" id="node6" href="$projectconfig_8h.html" title="projectconfig/projectconfig.h" alt="" coords="5,155,208,181"/>
+<area shape="rect" id="node8" href="$context_8h.html" title="context.h" alt="" coords="437,229,520,256"/>
+<area shape="rect" id="node18" href="$visitor_8h.html" title="visitor.h" alt="" coords="739,155,810,181"/>
+<area shape="rect" id="node21" href="$visitablewith_8h.html" title="visitablewith.h" alt="" coords="950,229,1061,256"/>
+</map>
