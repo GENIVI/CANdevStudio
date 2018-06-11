@@ -17,7 +17,7 @@ clone_script:
     git --no-pager log --pretty=oneline -1
 environment:
   BINTRAY_API_KEY:
-    secure: yFwC4nMxaexbKIGvEZ71D6K7Oz60swEW7Mc/beDYho1c20j2plbSgA6ZuLPeRGd8
+    secure: 5VhWtDtya2N1yL9pbFGQbFdH2+zbg7FZ0O3rONMv0GJ8uQIEyJHBPYuJjdWhcaLO
   matrix:
   - GENERATOR: '"Visual Studio 14 2015"'
     BUILD_TYPE: Release
@@ -40,8 +40,6 @@ environment:
     QT_PATH: C:\Qt\5.11.0\msvc2015_64
 build_script:
 - cmd: >-
-    set
-
     mkdir build
 
     cd build

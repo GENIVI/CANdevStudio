@@ -27,3 +27,17 @@ docker run \
             cmake . -DSTANDALONE=OFF &&
             cpack -G DEB &&
             mkdir ../rc && mv *.deb *.tar.xz ../rc || echo 'Failed to create package'; fi"
+
+if [ "$PACKAGE" == "ON" ]; then
+    cd master
+    for f in *; do
+        curl -T $f -urkollataj:$BINTRAY_API_KEY https://api.bintray.com/content/rkollataj/CANdevStudio/cds/master/$f\;override=1
+    done
+    curl -urkollataj:$BINTRAY_API_KEY -X POST https://api.bintray.com/content/rkollataj/CANdevStudio/cds/master/publish
+
+    cd ../rc
+    for f in *; do
+        curl -T $f -urkollataj:$BINTRAY_API_KEY https://api.bintray.com/content/rkollataj/CANdevStudio/cds/rc/$f\;override=1
+    done
+    curl -urkollataj:$BINTRAY_API_KEY -X POST https://api.bintray.com/content/rkollataj/CANdevStudio/cds/rc/publish
+fi
