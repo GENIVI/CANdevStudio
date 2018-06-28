@@ -1,0 +1,6 @@
+<map id="CanSignalViewerModel" name="CanSignalViewerModel">
+<area shape="rect" id="node2" href="$class_component_model.html" title="ComponentModel\&lt; CanSignal\lViewer, CanSignalViewerModel \&gt;" alt="" coords="135,171,366,212"/>
+<area shape="rect" id="node4" href="$struct_component_model_interface.html" title="ComponentModelInterface" alt="" coords="155,81,346,108"/>
+<area shape="rect" id="node5" href="$class_can_signal_viewer.html" title="CanSignalViewer" alt="" coords="371,81,499,108"/>
+<area shape="rect" id="node7" href="$struct_component_interface.html" title="Interface to be implemented by every component. " alt="" coords="426,5,579,32"/>
+</map>

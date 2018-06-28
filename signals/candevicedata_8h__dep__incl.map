@@ -1,0 +1,25 @@
+<map id="src/components/projectconfig/datamodeltypes/candevicedata.h" name="src/components/projectconfig/datamodeltypes/candevicedata.h">
+<area shape="rect" id="node2" href="$candevicemodel_8cpp.html" title="src/components/projectconfig\l/candevicemodel.cpp" alt="" coords="39,95,249,136"/>
+<area shape="rect" id="node3" href="$canloaddata_8h.html" title="src/components/projectconfig\l/datamodeltypes/canloaddata.h" alt="" coords="273,95,498,136"/>
+<area shape="rect" id="node5" href="$canrawloggerdata_8h.html" title="src/components/projectconfig\l/datamodeltypes/canrawloggerdata.h" alt="" coords="522,95,782,136"/>
+<area shape="rect" id="node7" href="$projectconfig_2datamodeltypes_2canrawplayerdata_8h.html" title="src/components/projectconfig\l/datamodeltypes/canrawplayerdata.h" alt="" coords="805,95,1064,136"/>
+<area shape="rect" id="node11" href="$canrawsenderdata_8h.html" title="src/components/projectconfig\l/datamodeltypes/canrawsenderdata.h" alt="" coords="1088,95,1352,136"/>
+<area shape="rect" id="node13" href="$canrawviewdata_8h.html" title="src/components/projectconfig\l/datamodeltypes/canrawviewdata.h" alt="" coords="1377,95,1623,136"/>
+<area shape="rect" id="node15" href="$cansignalcoderdata_8h.html" title="src/components/projectconfig\l/datamodeltypes/cansignalcoderdata.h" alt="" coords="1647,95,1918,136"/>
+<area shape="rect" id="node17" href="$cansignaldecoderdata_8h.html" title="src/components/projectconfig\l/datamodeltypes/cansignaldecoderdata.h" alt="" coords="1889,184,2175,225"/>
+<area shape="rect" id="node21" href="$cansignalencoderdata_8h.html" title="src/components/projectconfig\l/datamodeltypes/cansignalencoderdata.h" alt="" coords="2117,95,2403,136"/>
+<area shape="rect" id="node4" href="$canloadmodel_8cpp.html" title="src/components/projectconfig\l/canloadmodel.cpp" alt="" coords="5,184,216,225"/>
+<area shape="rect" id="node6" href="$canrawloggermodel_8cpp.html" title="src/components/projectconfig\l/canrawloggermodel.cpp" alt="" coords="240,184,451,225"/>
+<area shape="rect" id="node8" href="$canrawplayerdata_8cpp.html" title="src/components/canrawplayer\l/canrawplayerdata.cpp" alt="" coords="475,184,688,225"/>
+<area shape="rect" id="node9" href="$canrawplayer_2canrawplayermodel_8cpp.html" title="src/components/canrawplayer\l/canrawplayermodel.cpp" alt="" coords="712,184,925,225"/>
+<area shape="rect" id="node10" href="$projectconfig_2canrawplayermodel_8cpp.html" title="src/components/projectconfig\l/canrawplayermodel.cpp" alt="" coords="949,184,1160,225"/>
+<area shape="rect" id="node12" href="$canrawsendermodel_8cpp.html" title="src/components/projectconfig\l/canrawsendermodel.cpp" alt="" coords="1184,184,1395,225"/>
+<area shape="rect" id="node14" href="$canrawviewmodel_8cpp.html" title="src/components/projectconfig\l/canrawviewmodel.cpp" alt="" coords="1419,184,1629,225"/>
+<area shape="rect" id="node16" href="$cansignalcodermodel_8cpp.html" title="src/components/projectconfig\l/cansignalcodermodel.cpp" alt="" coords="1653,184,1864,225"/>
+<area shape="rect" id="node18" href="$cansignaldecodermodel_8cpp.html" title="src/components/projectconfig\l/cansignaldecodermodel.cpp" alt="" coords="1793,273,2004,315"/>
+<area shape="rect" id="node19" href="$cansignalviewerdata_8h.html" title="src/components/projectconfig\l/datamodeltypes/cansignalviewerdata.h" alt="" coords="2028,273,2303,315"/>
+<area shape="rect" id="node20" href="$cansignalviewermodel_8cpp.html" title="src/components/projectconfig\l/cansignalviewermodel.cpp" alt="" coords="2060,363,2271,404"/>
+<area shape="rect" id="node22" href="$cansignalencodermodel_8cpp.html" title="src/components/projectconfig\l/cansignalencodermodel.cpp" alt="" coords="2200,184,2411,225"/>
+<area shape="rect" id="node23" href="$cansignalsenderdata_8h.html" title="src/components/projectconfig\l/datamodeltypes/cansignalsenderdata.h" alt="" coords="2435,184,2714,225"/>
+<area shape="rect" id="node24" href="$cansignalsendermodel_8cpp.html" title="src/components/projectconfig\l/cansignalsendermodel.cpp" alt="" coords="2469,273,2680,315"/>
+</map>

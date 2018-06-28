@@ -1,0 +1,32 @@
+<map id="src/components/projectconfig/componentmodel.h" name="src/components/projectconfig/componentmodel.h">
+<area shape="rect" id="node2" href="$canrawplayer_2canrawplayermodel_8h.html" title="src/components/canrawplayer\l/canrawplayermodel.h" alt="" coords="241,95,455,136"/>
+<area shape="rect" id="node5" href="$canrawplayer_2canrawplayerdata_8h.html" title="src/components/canrawplayer\l/canrawplayerdata.h" alt="" coords="479,95,692,136"/>
+<area shape="rect" id="node6" href="$candevicemodel_8h.html" title="src/components/projectconfig\l/candevicemodel.h" alt="" coords="716,95,927,136"/>
+<area shape="rect" id="node10" href="$canloadmodel_8h.html" title="src/components/projectconfig\l/canloadmodel.h" alt="" coords="951,95,1161,136"/>
+<area shape="rect" id="node12" href="$canrawloggermodel_8h.html" title="src/components/projectconfig\l/canrawloggermodel.h" alt="" coords="1185,95,1396,136"/>
+<area shape="rect" id="node14" href="$projectconfig_2canrawplayermodel_8h.html" title="src/components/projectconfig\l/canrawplayermodel.h" alt="" coords="1420,95,1631,136"/>
+<area shape="rect" id="node16" href="$canrawsendermodel_8h.html" title="src/components/projectconfig\l/canrawsendermodel.h" alt="" coords="1655,95,1865,136"/>
+<area shape="rect" id="node18" href="$canrawviewmodel_8h.html" title="src/components/projectconfig\l/canrawviewmodel.h" alt="" coords="1889,95,2100,136"/>
+<area shape="rect" id="node20" href="$cansignalcodermodel_8h.html" title="src/components/projectconfig\l/cansignalcodermodel.h" alt="" coords="3297,95,3508,136"/>
+<area shape="rect" id="node22" href="$cansignaldatamodel_8h.html" title="src/components/projectconfig\l/cansignaldatamodel.h" alt="" coords="2124,95,2335,136"/>
+<area shape="rect" id="node24" href="$cansignaldecodermodel_8h.html" title="src/components/projectconfig\l/cansignaldecodermodel.h" alt="" coords="2359,95,2569,136"/>
+<area shape="rect" id="node26" href="$cansignalencodermodel_8h.html" title="src/components/projectconfig\l/cansignalencodermodel.h" alt="" coords="2593,95,2804,136"/>
+<area shape="rect" id="node28" href="$cansignalsendermodel_8h.html" title="src/components/projectconfig\l/cansignalsendermodel.h" alt="" coords="2828,95,3039,136"/>
+<area shape="rect" id="node30" href="$cansignalviewermodel_8h.html" title="src/components/projectconfig\l/cansignalviewermodel.h" alt="" coords="3063,95,3273,136"/>
+<area shape="rect" id="node3" href="$canrawplayerdata_8cpp.html" title="src/components/canrawplayer\l/canrawplayerdata.cpp" alt="" coords="243,184,456,225"/>
+<area shape="rect" id="node4" href="$canrawplayer_2canrawplayermodel_8cpp.html" title="src/components/canrawplayer\l/canrawplayermodel.cpp" alt="" coords="5,184,219,225"/>
+<area shape="rect" id="node7" href="$candevicemodel_8cpp.html" title="src/components/projectconfig\l/candevicemodel.cpp" alt="" coords="481,184,692,225"/>
+<area shape="rect" id="node8" href="$projectconfig__p_8h.html" title="src/components/projectconfig\l/projectconfig_p.h" alt="" coords="1889,184,2100,225"/>
+<area shape="rect" id="node9" href="$projectconfig_8cpp.html" title="src/components/projectconfig\l/projectconfig.cpp" alt="" coords="1889,273,2100,315"/>
+<area shape="rect" id="node11" href="$canloadmodel_8cpp.html" title="src/components/projectconfig\l/canloadmodel.cpp" alt="" coords="716,184,927,225"/>
+<area shape="rect" id="node13" href="$canrawloggermodel_8cpp.html" title="src/components/projectconfig\l/canrawloggermodel.cpp" alt="" coords="951,184,1161,225"/>
+<area shape="rect" id="node15" href="$projectconfig_2canrawplayermodel_8cpp.html" title="src/components/projectconfig\l/canrawplayermodel.cpp" alt="" coords="1185,184,1396,225"/>
+<area shape="rect" id="node17" href="$canrawsendermodel_8cpp.html" title="src/components/projectconfig\l/canrawsendermodel.cpp" alt="" coords="1420,184,1631,225"/>
+<area shape="rect" id="node19" href="$canrawviewmodel_8cpp.html" title="src/components/projectconfig\l/canrawviewmodel.cpp" alt="" coords="1655,184,1865,225"/>
+<area shape="rect" id="node21" href="$cansignalcodermodel_8cpp.html" title="src/components/projectconfig\l/cansignalcodermodel.cpp" alt="" coords="3297,184,3508,225"/>
+<area shape="rect" id="node23" href="$cansignaldatamodel_8cpp.html" title="src/components/projectconfig\l/cansignaldatamodel.cpp" alt="" coords="2124,184,2335,225"/>
+<area shape="rect" id="node25" href="$cansignaldecodermodel_8cpp.html" title="src/components/projectconfig\l/cansignaldecodermodel.cpp" alt="" coords="2359,184,2569,225"/>
+<area shape="rect" id="node27" href="$cansignalencodermodel_8cpp.html" title="src/components/projectconfig\l/cansignalencodermodel.cpp" alt="" coords="2593,184,2804,225"/>
+<area shape="rect" id="node29" href="$cansignalsendermodel_8cpp.html" title="src/components/projectconfig\l/cansignalsendermodel.cpp" alt="" coords="2828,184,3039,225"/>
+<area shape="rect" id="node31" href="$cansignalviewermodel_8cpp.html" title="src/components/projectconfig\l/cansignalviewermodel.cpp" alt="" coords="3063,184,3273,225"/>
+</map>
