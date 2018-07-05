@@ -18,7 +18,7 @@ TEST_CASE("Test basic functionality", "[canrawfilterModel]")
     CHECK(cm.caption() == "CanRawFilter");
     CHECK(cm.name() == "CanRawFilter");
     CHECK(cm.resizable() == false);
-    CHECK(cm.hasSeparateThread() == true);
+    CHECK(cm.hasSeparateThread() == false);
     CHECK(dynamic_cast<CanRawFilterModel*>(cm.clone().get()) != nullptr);
     CHECK(dynamic_cast<QLabel*>(cm.embeddedWidget()) != nullptr);
 }
@@ -34,7 +34,7 @@ TEST_CASE("nPorts", "[canrawfilterModel]")
     CanRawFilterModel cm;
 
     CHECK(cm.nPorts(QtNodes::PortType::Out) == 1);
-    CHECK(cm.nPorts(QtNodes::PortType::In) == 0);
+    CHECK(cm.nPorts(QtNodes::PortType::In) == 1);
 }
 
 TEST_CASE("dataType", "[canrawfilterModel]")
@@ -44,7 +44,7 @@ TEST_CASE("dataType", "[canrawfilterModel]")
     NodeDataType ndt;
         
     ndt = cm.dataType(QtNodes::PortType::Out, 0);
-    CHECK(ndt.id == "rawsender");
+    CHECK(ndt.id == "rawframe");
     CHECK(ndt.name == "RAW");
 
     ndt = cm.dataType(QtNodes::PortType::Out, 1);
@@ -52,6 +52,10 @@ TEST_CASE("dataType", "[canrawfilterModel]")
     CHECK(ndt.name == "");
     
     ndt = cm.dataType(QtNodes::PortType::In, 0);
+    CHECK(ndt.id == "rawframe");
+    CHECK(ndt.name == "RAW");
+
+    ndt = cm.dataType(QtNodes::PortType::In, 1);
     CHECK(ndt.id == "");
     CHECK(ndt.name == "");
 }

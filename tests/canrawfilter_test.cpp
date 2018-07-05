@@ -15,7 +15,7 @@ TEST_CASE("Stubbed methods", "[canrawfilter]")
 {
     CanRawFilter c;
 
-    CHECK(c.mainWidget() == nullptr);
+    CHECK(c.mainWidget() != nullptr);
     CHECK(c.mainWidgetDocked() == true);
 }
 

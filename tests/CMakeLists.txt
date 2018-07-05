@@ -83,3 +83,13 @@ add_executable(canloadmodel_test canloadmodel_test.cpp)
 target_link_libraries(canloadmodel_test candevice Qt5::Core Qt5::SerialBus Qt5::Test nodes cds-common projectconfig)
 target_compile_options(canloadmodel_test PRIVATE $<$<CXX_COMPILER_ID:GNU>:-fno-devirtualize>)
 add_test( NAME CanLoadModelTest COMMAND canloadmodel_test)
+
+add_executable(canrawfilter_test canrawfilter_test.cpp)
+target_link_libraries(canrawfilter_test candevice Qt5::Core Qt5::SerialBus Qt5::Test nodes cds-common projectconfig canrawplayer)
+target_compile_options(canrawfilter_test PRIVATE $<$<CXX_COMPILER_ID:GNU>:-fno-devirtualize>)
+add_test( NAME CanRawFilterTest COMMAND canrawfilter_test)
+
+add_executable(canrawfiltermodel_test canrawfiltermodel_test.cpp)
+target_link_libraries(canrawfiltermodel_test candevice Qt5::Core Qt5::SerialBus Qt5::Test nodes cds-common projectconfig)
+target_compile_options(canrawfiltermodel_test PRIVATE $<$<CXX_COMPILER_ID:GNU>:-fno-devirtualize>)
+add_test( NAME CanRawFilterModelTest COMMAND canrawfiltermodel_test)
