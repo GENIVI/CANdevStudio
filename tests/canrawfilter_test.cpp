@@ -2,9 +2,12 @@
 #include <canrawfilter.h>
 #define CATCH_CONFIG_RUNNER
 #include "log.h"
+#include <QCanBusFrame>
+#include <QJsonArray>
+#include <QJsonObject>
 #include <QSignalSpy>
 #include <fakeit.hpp>
-#include <QCanBusFrame>
+#include <gui/canrawfilterguiint.h>
 
 std::shared_ptr<spdlog::logger> kDefaultLogger;
 // needed for QSignalSpy cause according to qtbug 49623 comments
@@ -69,6 +72,82 @@ TEST_CASE("getSupportedProperties", "[canrawfilter]")
     CHECK(props.find("name") != props.end());
     CHECK(props.find("dummy") == props.end());
 }
+
+QJsonObject getConfig(const CanRawFilterGuiInt::AcceptList_t& acceptList, const QString& listName)
+{
+    QJsonObject json;
+    QJsonArray list;
+
+    for (const auto& lineItem : acceptList) {
+        QJsonObject jsonLine;
+        jsonLine["id"] = std::get<0>(lineItem);
+        jsonLine["payload"] = std::get<1>(lineItem);
+        jsonLine["policy"] = std::get<2>(lineItem);
+        list.push_back(jsonLine);
+    }
+
+    json[listName] = list;
+
+    return json;
+}
+
+TEST_CASE("default accept list RX", "[canrawfilter]")
+{
+    CanRawFilter c;
+    QCanBusFrame frame;
+    QSignalSpy spy(&c, &CanRawFilter::rxFrameOut);
+
+    c.startSimulation();
+    c.rxFrameIn(frame);
+
+    c.stopSimulation();
+    c.rxFrameIn(frame);
+
+    CHECK(spy.count() == 1);
+}
+
+template <typename M, typename TX, typename RX> void setupMock(M& mock, TX& txCbk, RX& rxCbk)
+{
+    using namespace fakeit;
+    Fake(Dtor(mock));
+    Fake(Method(mock, mainWidget));
+    When(Method(mock, setTxListCbk)).AlwaysDo([&](auto&& fn) { txCbk = fn; });
+    When(Method(mock, setRxListCbk)).AlwaysDo([&](auto&& fn) { rxCbk = fn; });
+    Fake(Method(mock, setListTx));
+    Fake(Method(mock, setListRx));
+}
+
+TEST_CASE("empty accept list RX", "[canrawfilter]")
+{
+    fakeit::Mock<CanRawFilterGuiInt> gui;
+    CanRawFilterGuiInt::ListUpdated_t txCbk;
+    CanRawFilterGuiInt::ListUpdated_t rxCbk;
+    setupMock(gui, txCbk, rxCbk);
+
+    CanRawFilter c(CanRawFilterCtx(&gui.get()));
+    QCanBusFrame frame;
+    QSignalSpy spy(&c, &CanRawFilter::rxFrameOut);
+
+    c.startSimulation();
+    c.rxFrameIn(frame);
+    CHECK(spy.count() == 0);
+}
+
+// TEST_CASE("custom list RX", "[canrawfilter]")
+//{
+// fakeit::Mock<CanRawFilterGuiInt> gui;
+// CanRawFilterGuiInt::ListUpdated_t txCbk;
+// CanRawFilterGuiInt::ListUpdated_t rxCbk;
+// setupMock(gui, txCbk, rxCbk);
+
+// CanRawFilter c(CanRawFilterCtx(&gui.get()));
+// QCanBusFrame frame;
+// QSignalSpy spy(&c, &CanRawFilter::rxFrameOut);
+
+// c.startSimulation();
+// c.rxFrameIn(frame);
+// CHECK(spy.count() == 0);
+//}
 
 int main(int argc, char* argv[])
 {

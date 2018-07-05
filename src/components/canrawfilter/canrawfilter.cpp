@@ -83,7 +83,7 @@ void CanRawFilter::txFrameIn(const QCanBusFrame& frame)
 {
     Q_D(CanRawFilter);
 
-    if(d->acceptTxFrame(frame)) {
+    if(d->acceptTxFrame(frame) && d->_simStarted) {
         emit txFrameOut(frame);
     }
 }
@@ -92,7 +92,7 @@ void CanRawFilter::rxFrameIn(const QCanBusFrame& frame)
 {
     Q_D(CanRawFilter);
 
-    if(d->acceptRxFrame(frame)) {
+    if(d->acceptRxFrame(frame) && d->_simStarted) {
         emit rxFrameOut(frame);
     }
 }

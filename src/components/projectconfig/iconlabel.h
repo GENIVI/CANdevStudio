@@ -4,6 +4,7 @@
 #include <QLabel>
 #include <QLayoutItem>
 #include <QPainter>
+#include <QVariant>
 
 class IconLabel : public QLabel {
 public:
