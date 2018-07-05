@@ -60,7 +60,7 @@ TEST_CASE("dataType", "[canrawfilterModel]")
     CHECK(ndt.name == "");
 }
 
-TEST_CASE("outData", "[canrawfilterModel]")
+TEST_CASE("outData empty", "[canrawfilterModel]")
 {
     CanRawFilterModel cm;
 
@@ -68,11 +68,103 @@ TEST_CASE("outData", "[canrawfilterModel]")
     CHECK(!nd);
 }
 
-TEST_CASE("setInData", "[canrawfilterModel]")
+TEST_CASE("setInData RX", "[canrawfilterModel]")
 {
     CanRawFilterModel cm;
+    QCanBusFrame frame;
+    auto data = std::make_shared<CanRawFilterDataIn>(frame, Direction::RX);
+    QSignalSpy spy(&cm, &CanRawFilterModel::filterRx);
 
-    cm.setInData({}, 1);
+    cm.setInData(data, 0);
+    CHECK(spy.count() == 1);
+}
+
+TEST_CASE("setInData TX success", "[canrawfilterModel]")
+{
+    CanRawFilterModel cm;
+    QCanBusFrame frame;
+    auto data = std::make_shared<CanRawFilterDataIn>(frame, Direction::TX, true);
+    QSignalSpy spy(&cm, &CanRawFilterModel::filterTx);
+
+    cm.setInData(data, 0);
+    CHECK(spy.count() == 1);
+}
+
+TEST_CASE("setInData TX fail", "[canrawfilterModel]")
+{
+    CanRawFilterModel cm;
+    QCanBusFrame frame;
+    auto data = std::make_shared<CanRawFilterDataIn>(frame, Direction::TX, false);
+    QSignalSpy spy(&cm, &CanRawFilterModel::filterTx);
+
+    cm.setInData(data, 0);
+    CHECK(spy.count() == 0);
+}
+
+TEST_CASE("setInData Undefined", "[canrawfilterModel]")
+{
+    CanRawFilterModel cm;
+    QCanBusFrame frame;
+    auto data = std::make_shared<CanRawFilterDataIn>(frame, (Direction)10, true);
+    QSignalSpy spy1(&cm, &CanRawFilterModel::filterTx);
+    QSignalSpy spy2(&cm, &CanRawFilterModel::filterRx);
+
+    cm.setInData(data, 0);
+    cm.setInData({}, 0);
+    CHECK(spy1.count() == 0);
+    CHECK(spy2.count() == 0);
+}
+
+TEST_CASE("filteredTx success", "[canrawfilterModel]")
+{
+    CanRawFilterModel cm;
+    QCanBusFrame frame;
+    QSignalSpy spy(&cm, &CanRawFilterModel::dataUpdated);
+
+    CHECK(cm.outData(0).get() == nullptr);
+
+    cm.filteredTx(frame);
+    CHECK(spy.count() == 1);
+    CHECK(cm.outData(0).get() != nullptr);
+}
+
+TEST_CASE("filteredTx queue full", "[canrawfilterModel]")
+{
+    CanRawFilterModel cm;
+    QCanBusFrame frame;
+    QSignalSpy spy(&cm, &CanRawFilterModel::dataUpdated);
+
+    for(int i = 0; i < 200; ++i) {
+        cm.filteredTx(frame);
+    }
+
+    CHECK(spy.count() == 127);
+}
+
+TEST_CASE("filteredRx success", "[canrawfilterModel]")
+{
+    CanRawFilterModel cm;
+    QCanBusFrame frame;
+    QSignalSpy spy(&cm, &CanRawFilterModel::dataUpdated);
+
+    CHECK(cm.outData(0).get() == nullptr);
+
+    cm.filteredRx(frame);
+    CHECK(spy.count() == 1);
+    CHECK(cm.outData(0).get() != nullptr);
+}
+
+TEST_CASE("filteredRx queue full", "[canrawfilterModel]")
+{
+    CanRawFilterModel cm;
+    QCanBusFrame frame;
+    QSignalSpy spy(&cm, &CanRawFilterModel::dataUpdated);
+
+    for(int i = 0; i < 200; ++i) {
+        cm.filteredRx(frame);
+    }
+
+    CHECK(spy.count() == 127);
 }
 
 int main(int argc, char* argv[])
