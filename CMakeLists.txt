@@ -2,24 +2,42 @@ cmake_minimum_required(VERSION 3.0.0)
 
 project(CANdevStudio CXX)
 
+set(VERSION_MAJOR 0)
+set(VERSION_MINOR 1)
+set(VERSION_PATCH 0)
+
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 14)
-#libnodes.so will be installed to CANdevStudio dir to not override other installations. Set RPATH accordingly
-SET(CMAKE_INSTALL_RPATH ${CMAKE_INSTALL_PREFIX}/lib/CANdevStudio)
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/Modules)
 
 option(WITH_COVERAGE "Build with coverage" OFF)
 option(WITH_TOOLS "Build tools directory" OFF)
+option(DEV_BUILD "Development build will include GIT hash and branch to versioning" ON)
+option(STANDALONE "Builds self containing package including Qt libs" OFF)
 
-if(NOT MSVC)
+if(UNIX)
     option(WITH_TESTS "Build with test" ON)
+
+    if(STANDALONE)
+        set(INSTALL_DEST_LIB CANdevStudio)
+        set(INSTALL_DEST_BIN CANdevStudio)
+        set(INSTALL_DEST_PLUG CANdevStudio/canbus)
+    else()
+        set(INSTALL_DEST_LIB lib/CANdevStudio)
+        set(INSTALL_DEST_BIN bin)
+        set(INSTALL_DEST_PLUG lib/qt/plugins/canbus)
+    endif()
 else()
     # TODO: MSVC does not like "#define private public" need to find a way to disable it.
     option(WITH_TESTS "Build with test" OFF)
+
+    set(GUI_TYPE WIN32)
+    set(INSTALL_DEST_LIB CANdevStudio)
+    set(INSTALL_DEST_BIN CANdevStudio)
 endif()
 
 set(QT_REQUIRED_VERSION "5.6")
@@ -53,7 +71,7 @@ set(SPDLOG_BUILD_TESTING CACHE FORCE OFF)
 set(BUILD_EXAMPLES CACHE FORCE OFF)
 
 # Version handling
-if(EXISTS "${CMAKE_SOURCE_DIR}/.git")
+if(EXISTS "${CMAKE_SOURCE_DIR}/.git" AND DEV_BUILD)
   execute_process(
     COMMAND git rev-parse --abbrev-ref HEAD
     WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
@@ -67,10 +85,10 @@ if(EXISTS "${CMAKE_SOURCE_DIR}/.git")
     OUTPUT_VARIABLE GIT_COMMIT_HASH
     OUTPUT_STRIP_TRAILING_WHITESPACE
   )
-else(EXISTS "${CMAKE_SOURCE_DIR}/.git")
+else()
   set(GIT_BRANCH "")
   set(GIT_COMMIT_HASH "")
-endif(EXISTS "${CMAKE_SOURCE_DIR}/.git")
+endif()
 
 message(STATUS "Git current branch: ${GIT_BRANCH}")
 message(STATUS "Git commit hash: ${GIT_COMMIT_HASH}")
@@ -104,15 +122,96 @@ if(WITH_TOOLS)
     add_subdirectory(tools)
 endif()
 
-install(PROGRAMS ${CMAKE_BINARY_DIR}/lib/libnodes.so DESTINATION lib/CANdevStudio)
-
 #Cannelloni is supported on Linux only
 if(UNIX)
     add_subdirectory(3rdParty/qtCannelloniCanBus)
 
-    list(GET Qt5SerialBus_PLUGINS 0 SB_PLUGIN)
-    get_target_property(CAN_PLUGIN_PATH ${SB_PLUGIN} LOCATION)
-    get_filename_component(CAN_PLUGIN_PATH ${CAN_PLUGIN_PATH} PATH)
-
-    install(PROGRAMS ${CMAKE_BINARY_DIR}/3rdParty/qtCannelloniCanBus/libqtCannelloniCanBusPlugin.so DESTINATION ${CAN_PLUGIN_PATH})
+    install(PROGRAMS ${CMAKE_BINARY_DIR}/3rdParty/qtCannelloniCanBus/libqtCannelloniCanBusPlugin.so 
+        DESTINATION ${INSTALL_DEST_PLUG}
+    )
 endif()
+
+if(STANDALONE)
+    if(UNIX)
+        set(SYS_LIBS
+            libQt5Core.so.5
+            libQt5Gui.so.5
+            libQt5Network.so.5
+            libQt5SerialBus.so.5
+            libQt5SerialPort.so.5
+            libQt5Svg.so.5
+            libQt5Widgets.so.5
+            libQt5OpenGL.so.5
+            libQt5XcbQpa.so.5
+            libQt5DBus.so.5
+            libQt5Core.so.${Qt5Core_VERSION}
+            libQt5Gui.so.${Qt5Core_VERSION}
+            libQt5Network.so.${Qt5Core_VERSION}
+            libQt5SerialBus.so.${Qt5Core_VERSION}
+            libQt5SerialPort.so.${Qt5Core_VERSION}
+            libQt5Svg.so.${Qt5Core_VERSION}
+            libQt5Widgets.so.${Qt5Core_VERSION}
+            libQt5OpenGL.so.${Qt5Core_VERSION}
+            libQt5XcbQpa.so.${Qt5Core_VERSION}
+            libQt5DBus.so.${Qt5Core_VERSION}
+        )
+
+        install(PROGRAMS files/CANdevStudio.sh DESTINATION ${INSTALL_DEST_BIN})
+    else()
+        set(SYS_LIBS
+            libgcc_s_dw2-1.dll
+            libstdc++-6.dll
+            libwinpthread-1.dll
+            Qt5Core.dll
+            Qt5Gui.dll
+            Qt5Network.dll
+            Qt5SerialBus.dll
+            Qt5SerialPort.dll
+            Qt5Svg.dll
+            Qt5Widgets.dll
+        )
+    endif()
+
+    get_target_property(QtCore_location Qt5::Core LOCATION)
+    get_filename_component(QtPath ${QtCore_location} DIRECTORY)
+
+    foreach(SYS_LIB ${SYS_LIBS})
+        set(SYS_LIBS_ABS ${SYS_LIBS_ABS} ${QtPath}/${SYS_LIB})
+    endforeach()
+
+    install(PROGRAMS ${SYS_LIBS_ABS}
+        DESTINATION ${INSTALL_DEST_LIB}
+    )
+
+    # execute the command "qmake -query QT_INSTALL_PLUGINS" to get the path of plugins dir.
+    if(NOT QT_QMAKE_EXECUTABLE)
+        set(QT_QMAKE_EXECUTABLE qmake)
+    endif()
+    execute_process(COMMAND ${QT_QMAKE_EXECUTABLE} -query QT_INSTALL_PLUGINS
+        OUTPUT_VARIABLE QT_PLUGINS_DIR
+        OUTPUT_STRIP_TRAILING_WHITESPACE
+    )
+
+    if(QT_PLUGINS_DIR)
+        message(STATUS "Qt5 plugin directory: " "${QT_PLUGINS_DIR}")
+    else()
+        message(WARNING "Qt5 plugin directory cannot be detected.")
+        if(WIN32)
+            set(QT_PLUGINS_DIR C:/Qt/5.11.0/mingw53_32/plugins)
+            message(WARNING "Setting to default Appveyor path: ${QT_PLUGINS_DIR}")
+        endif()
+    endif()
+
+    install(DIRECTORY
+                ${QT_PLUGINS_DIR}/platforms
+                ${QT_PLUGINS_DIR}/platforminputcontexts
+                ${QT_PLUGINS_DIR}/imageformats
+                ${QT_PLUGINS_DIR}/canbus
+                ${QT_PLUGINS_DIR}/generic
+                ${QT_PLUGINS_DIR}/iconengines
+            DESTINATION ${INSTALL_DEST_LIB}
+            USE_SOURCE_PERMISSIONS
+    )
+endif()
+
+include("packaging.cmake")

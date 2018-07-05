@@ -59,17 +59,9 @@ public:
     /**
      *   @brief Returns color that will be used to draw node header
      */
-    static QColor headerColor1()
+    static QColor headerColor()
     {
         return QColor(144, 187, 62);
-    }
-
-    /**
-     *   @brief Returns color that will be used to draw node header
-     */
-    static QColor headerColor2()
-    {
-        return QColor(84, 84, 84);
     }
 
 signals:

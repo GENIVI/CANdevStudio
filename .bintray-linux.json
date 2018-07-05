@@ -1,0 +1,6 @@
+"files":
+    [{"includePattern": "build/(.*\.deb)", "uploadPattern": "$1",
+    "matrixParams": {
+        "override": 1 }
+    }
+]

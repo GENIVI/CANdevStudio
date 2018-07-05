@@ -10,9 +10,8 @@ struct NodePainter : public QtNodes::NodePainterDelegate {
     NodePainter() = default;
     virtual ~NodePainter() = default;
 
-    NodePainter(const QColor& headerColor1, const QColor& headerColor2)
-        : _headerColor1(headerColor1)
-        , _headerColor2(headerColor2)
+    NodePainter(const QColor& headerColor)
+        : _headerColor(headerColor)
     {
     }
 
@@ -25,7 +24,7 @@ struct NodePainter : public QtNodes::NodePainterDelegate {
 
         QPen p(color, nodeStyle.PenWidth);
         painter->setPen(Qt::NoPen);
-        painter->setBrush(QBrush(_headerColor1));
+        painter->setBrush(QBrush(_headerColor));
 
         float diam = nodeStyle.ConnectionPointDiameter;
 
@@ -57,8 +56,7 @@ struct NodePainter : public QtNodes::NodePainterDelegate {
     }
 
 private:
-    const QColor _headerColor1;
-    const QColor _headerColor2;
+    const QColor _headerColor;
 };
 
 #endif /* !__NODEPAINTER_H */

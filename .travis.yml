@@ -9,7 +9,7 @@ notifications:
 services:
   docker
 
-# Blacklist
+#Blacklist
 branches:
   except:
     - gh-pages
@@ -20,18 +20,18 @@ before_install:
   - export ci_env=`bash <(curl -s https://codecov.io/env)`
 
 script:
-  - export CC=gcc-6 CXX=g++-6 CMAKE_BUILD_TYPE=Debug WITH_COVERAGE=ON
+  - export CC=gcc-6 CXX=g++-6 CMAKE_BUILD_TYPE=Debug WITH_COVERAGE=ON PACKAGE=OFF
   - ./.travis.sh
-  - export CC=gcc-53 CXX=g++-53 CMAKE_BUILD_TYPE=Release WITH_COVERAGE=OFF
+  - export CC=gcc-53 CXX=g++-53 CMAKE_BUILD_TYPE=Release WITH_COVERAGE=OFF PACKAGE=ON
   - ./.travis.sh
-  - export CC=gcc-53 CXX=g++-53 CMAKE_BUILD_TYPE=Debug WITH_COVERAGE=OFF
+  - export CC=gcc-53 CXX=g++-53 CMAKE_BUILD_TYPE=Debug WITH_COVERAGE=OFF PACKAGE=OFF
   - ./.travis.sh
-  - export CC=clang-3.5 CXX=clang++-3.5 CMAKE_BUILD_TYPE=Release WITH_COVERAGE=OFF
+  - export CC=clang-3.5 CXX=clang++-3.5 CMAKE_BUILD_TYPE=Release WITH_COVERAGE=OFF PACKAGE=OFF
   - ./.travis.sh
-  - export CC=clang-3.5 CXX=clang++-3.5 CMAKE_BUILD_TYPE=Debug WITH_COVERAGE=OFF
+  - export CC=clang-3.5 CXX=clang++-3.5 CMAKE_BUILD_TYPE=Debug WITH_COVERAGE=OFF PACKAGE=OFF
   - ./.travis.sh
 
-# Generate and deploy documentation
+#Generate and deploy documentation
 after_success:
   - cd $TRAVIS_BUILD_DIR
   - chmod +x .travis_doxygen.sh
