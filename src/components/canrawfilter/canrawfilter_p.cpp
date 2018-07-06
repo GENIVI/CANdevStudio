@@ -92,7 +92,7 @@ CanRawFilterGuiInt::AcceptList_t CanRawFilterPrivate::getAcceptList(const QJsonO
                     QString payload = itemObj["payload"].toString();
                     bool policy = itemObj["policy"].toBool();
 
-                    ret.push_back({ id, payload, policy });
+                    ret.push_back(CanRawFilterGuiInt::AcceptListItem_t(id, payload, policy));
                 } else {
                     cds_warn("{}: list item is not an object", listName.toStdString());
                 }

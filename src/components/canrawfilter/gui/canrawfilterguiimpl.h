@@ -185,7 +185,7 @@ private:
             QString payload = model.item(i, 1)->data(Qt::DisplayRole).toString();
             bool policy = model.item(i, 3)->data(Qt::DisplayRole).toString() == "ACCEPT";
 
-            list.push_back({ id, payload, policy });
+            list.push_back(CanRawFilterGuiInt::AcceptListItem_t(id, payload, policy));
         }
 
         return list;
