@@ -123,12 +123,12 @@ void CanRawFilterPrivate::setSettings(const QJsonObject& json)
 
 bool CanRawFilterPrivate::acceptFrame(const CanRawFilterGuiInt::AcceptList_t& list, const QCanBusFrame& frame)
 {
-    const QString id = QString::number(frame.frameId(), 16);
-    const QString payload = frame.payload().toHex();
+    const QString id = QString::number(frame.frameId(), 16).toLower();
+    const QString payload = frame.payload().toHex().toLower();
 
     for (auto& listItem : list) {
-        QRegularExpression reId(std::get<0>(listItem));
-        QRegularExpression rePayload(std::get<1>(listItem));
+        QRegularExpression reId(std::get<0>(listItem).toLower());
+        QRegularExpression rePayload(std::get<1>(listItem).toLower());
         bool accept = std::get<2>(listItem);
 
         auto matchId = reId.match(id);
