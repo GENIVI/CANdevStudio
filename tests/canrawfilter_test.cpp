@@ -152,6 +152,8 @@ TEST_CASE("empty accept list RX", "[canrawfilter]")
 
 TEST_CASE("custom list RX", "[canrawfilter]")
 {
+    using I = CanRawFilterGuiInt::AcceptListItem_t;
+
     fakeit::Mock<CanRawFilterGuiInt> gui;
     CanRawFilterGuiInt::ListUpdated_t txCbk;
     CanRawFilterGuiInt::ListUpdated_t rxCbk;
@@ -177,40 +179,40 @@ TEST_CASE("custom list RX", "[canrawfilter]")
 
     // clang-format off
     idTest(0, 0x7ff, 0x700, { 
-            { "1[0-9,A-F]{2}", ".*", false }, 
-            { ".*", ".*", true } 
+            I{ "1[0-9,A-F]{2}", ".*", false }, 
+            I{ ".*", ".*", true } 
         });
     
     idTest(0, 0x7ff, 0x500, { 
-            { "^[0-9,A-F]{1}$", ".*", false }, 
-            { "^[0-9,A-F]{2}$", ".*", false }, 
-            { "3[0-9,A-F]{2}", ".*", false }, 
-            { "7[0-9,A-F]{2}", ".*", false }, 
-            { ".*", ".*", true } 
+            I{ "^[0-9,A-F]{1}$", ".*", false }, 
+            I{ "^[0-9,A-F]{2}$", ".*", false }, 
+            I{ "3[0-9,A-F]{2}", ".*", false }, 
+            I{ "7[0-9,A-F]{2}", ".*", false }, 
+            I{ ".*", ".*", true } 
         });
     
     idTest(0, 0x7ff, 0x300, { 
-            { "1[0-9,A-F]{2}", ".*", true }, 
-            { "2[0-9,A-F]{2}", ".*", true }, 
-            { "3[0-9,A-F]{2}", ".*", true }, 
-            { ".*", ".*", false } 
+            I{ "1[0-9,A-F]{2}", ".*", true }, 
+            I{ "2[0-9,A-F]{2}", ".*", true }, 
+            I{ "3[0-9,A-F]{2}", ".*", true }, 
+            I{ ".*", ".*", false } 
         });
     
     idTest(0x1000, 0x2000, 0x300, { 
-            { "11[0-9,A-F]{2}", ".*", true }, 
-            { "12[0-9,A-F]{2}", ".*", true }, 
-            { "13[0-9,A-F]{2}", ".*", true }, 
-            { ".*", ".*", false } 
+            I{ "11[0-9,A-F]{2}", ".*", true }, 
+            I{ "12[0-9,A-F]{2}", ".*", true }, 
+            I{ "13[0-9,A-F]{2}", ".*", true }, 
+            I{ ".*", ".*", false } 
         });
 
     idTest(0x1fff8fff, 0x1fffffff, 0x1000, { 
-            { "1f{3}9[0-9,A-F]{3}", ".*", true }, 
-            { ".*", ".*", false } 
+            I{ "1f{3}9[0-9,A-F]{3}", ".*", true }, 
+            I{ ".*", ".*", false } 
         });
 
     idTest(0x20000000, 0x20001000, 0, { 
-            { "0", ".*", false },
-            { ".*", ".*", true } 
+            I{ "0", ".*", false },
+            I{ ".*", ".*", true } 
         });
 
     // clang-format on
@@ -234,6 +236,8 @@ TEST_CASE("empty accept list TX", "[canrawfilter]")
 
 TEST_CASE("custom list TX", "[canrawfilter]")
 {
+    using I = CanRawFilterGuiInt::AcceptListItem_t;
+
     fakeit::Mock<CanRawFilterGuiInt> gui;
     CanRawFilterGuiInt::ListUpdated_t txCbk;
     CanRawFilterGuiInt::ListUpdated_t rxCbk;
@@ -259,40 +263,40 @@ TEST_CASE("custom list TX", "[canrawfilter]")
 
     // clang-format off
     idTest(0, 0x7ff, 0x700, { 
-            { "1[0-9,A-F]{2}", ".*", false }, 
-            { ".*", ".*", true } 
+            I{ "1[0-9,A-F]{2}", ".*", false }, 
+            I{ ".*", ".*", true } 
         });
     
     idTest(0, 0x7ff, 0x500, { 
-            { "^[0-9,A-F]{1}$", ".*", false }, 
-            { "^[0-9,A-F]{2}$", ".*", false }, 
-            { "3[0-9,A-F]{2}", ".*", false }, 
-            { "7[0-9,A-F]{2}", ".*", false }, 
-            { ".*", ".*", true } 
+            I{ "^[0-9,A-F]{1}$", ".*", false }, 
+            I{ "^[0-9,A-F]{2}$", ".*", false }, 
+            I{ "3[0-9,A-F]{2}", ".*", false }, 
+            I{ "7[0-9,A-F]{2}", ".*", false }, 
+            I{ ".*", ".*", true } 
         });
     
     idTest(0, 0x7ff, 0x300, { 
-            { "1[0-9,A-F]{2}", ".*", true }, 
-            { "2[0-9,A-F]{2}", ".*", true }, 
-            { "3[0-9,A-F]{2}", ".*", true }, 
-            { ".*", ".*", false } 
+            I{ "1[0-9,A-F]{2}", ".*", true }, 
+            I{ "2[0-9,A-F]{2}", ".*", true }, 
+            I{ "3[0-9,A-F]{2}", ".*", true }, 
+            I{ ".*", ".*", false } 
         });
     
     idTest(0x1000, 0x2000, 0x300, { 
-            { "11[0-9,A-F]{2}", ".*", true }, 
-            { "12[0-9,A-F]{2}", ".*", true }, 
-            { "13[0-9,A-F]{2}", ".*", true }, 
-            { ".*", ".*", false } 
+            I{ "11[0-9,A-F]{2}", ".*", true }, 
+            I{ "12[0-9,A-F]{2}", ".*", true }, 
+            I{ "13[0-9,A-F]{2}", ".*", true }, 
+            I{ ".*", ".*", false } 
         });
 
     idTest(0x1fff8fff, 0x1fffffff, 0x1000, { 
-            { "1f{3}9[0-9,A-F]{3}", ".*", true }, 
-            { ".*", ".*", false } 
+            I{ "1f{3}9[0-9,A-F]{3}", ".*", true }, 
+            I{ ".*", ".*", false } 
         });
 
     idTest(0x20000000, 0x20001000, 0, { 
-            { "0", ".*", false },
-            { ".*", ".*", true } 
+            I{ "0", ".*", false },
+            I{ ".*", ".*", true } 
         });
 
     // clang-format on
@@ -300,6 +304,8 @@ TEST_CASE("custom list TX", "[canrawfilter]")
 
 TEST_CASE("Payload filtering", "[canrawfilter]")
 {
+    using I = CanRawFilterGuiInt::AcceptListItem_t;
+
     fakeit::Mock<CanRawFilterGuiInt> gui;
     CanRawFilterGuiInt::ListUpdated_t txCbk;
     CanRawFilterGuiInt::ListUpdated_t rxCbk;
@@ -369,44 +375,44 @@ TEST_CASE("Payload filtering", "[canrawfilter]")
     // clang-format off
 
     payloadTest(25, { 
-            { ".*", ".*", true },
+            I{ ".*", ".*", true },
         });
 
     // empty payload
     payloadTest(1, { 
-            { ".*", "^$", true },
-            { ".*", ".*", false },
+            I{ ".*", "^$", true },
+            I{ ".*", ".*", false },
         });
 
     // One byte has always two digits
     payloadTest(0, { 
-            { ".*", "^1$", true },
-            { ".*", ".*", false },
+            I{ ".*", "^1$", true },
+            I{ ".*", ".*", false },
         });
 
                               // 1  2  3  4  5  6  7  8
     std::array<uint8_t, 8> dlc { 4, 4, 3, 3, 3, 3, 2, 2 };
     for(long unsigned int i = 0; i < dlc.size(); ++i) {
         payloadTest(dlc[i], { 
-                { ".*", "^[0-9,a-f]{" + QString::number((i+1) * 2) + "}$", true },
-                { ".*", ".*", false },
+                I{ ".*", "^[0-9,a-f]{" + QString::number((i+1) * 2) + "}$", true },
+                I{ ".*", ".*", false },
             });
 
     }
 
     payloadTest(8, { 
-            { ".*", "A", true },
-            { ".*", ".*", false },
+            I{ ".*", "A", true },
+            I{ ".*", ".*", false },
         });
 
     payloadTest(8, { 
-            { ".*", "a", true },
-            { ".*", ".*", false },
+            I{ ".*", "a", true },
+            I{ ".*", ".*", false },
         });
 
     payloadTest(3, { 
-            { ".*", "CD", true },
-            { ".*", ".*", false },
+            I{ ".*", "CD", true },
+            I{ ".*", ".*", false },
         });
 
     // clang-format on
