@@ -11,6 +11,8 @@
 #include <type_traits> // is_same
 #include <utility> // swap, next, advance
 #include <vector> // vector
+#include <iconlabel.h>
+#include <QtWidgets/QApplication>
 
 
 enum class Trivial { A, B, C };
@@ -234,6 +236,14 @@ TEST_CASE("EnumIterator range-based-for trivial-start", "[common]")
 
     CHECK(a == b);
 }
+
+TEST_CASE("IconLable sizeHint", "[common]")
+{
+    IconLabel l("name", QColor(0,0,0), QColor(0,0,0));
+
+    CHECK(l.minimumSizeHint() == QSize(140, 48));
+}
+
 // -- compile-time errors:
 /*
 TEST_CASE("EnumIterator invalid-value", "[common]")
@@ -276,6 +286,7 @@ TEST_CASE("EnumIterator no-past-the-end", "[common]")
 */
 int main(int argc, char* argv[])
 {
+    QApplication a(argc, argv); // QApplication must exist when contructing QWidgets TODO check QTest
     return Catch::Session().run(argc, argv);
 }
 

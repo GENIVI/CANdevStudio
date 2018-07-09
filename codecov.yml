@@ -2,6 +2,7 @@ coverage:
     ignore:
         - "src/components/canrawsender/gui"
         - "src/components/canrawview/gui"
+        - "src/components/canrawfilter/gui"
         - "src/gui"
         - "src/common/guiinterface"
         - "tests"

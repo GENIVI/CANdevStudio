@@ -5,6 +5,7 @@
 #include "canrawviewmodel.h"
 #include "canrawplayermodel.h"
 #include "canrawloggermodel.h"
+#include "canrawfiltermodel.h"
 #include "canloadmodel.h"
 #include "flowviewwrapper.h"
 #include "iconlabel.h"
@@ -43,6 +44,7 @@ public:
         modelRegistry.registerModel<CanRawPlayerModel>();
         modelRegistry.registerModel<CanRawLoggerModel>();
         modelRegistry.registerModel<CanLoadModel>();
+        modelRegistry.registerModel<CanRawFilterModel>();
 
         _pcInt.setNodeCreatedCallback(
             &_graphScene, std::bind(&ProjectConfigPrivate::nodeCreatedCallback, this, std::placeholders::_1));
@@ -93,6 +95,7 @@ public:
         _ui->rawWidget->layout()->addWidget(new IconLabel("CanRawPlayer", CanRawPlayerModel::headerColor(), bgColor));
         _ui->rawWidget->layout()->addWidget(new IconLabel("CanRawLogger", CanRawLoggerModel::headerColor(), bgColor));
         _ui->rawWidget->layout()->addWidget(new IconLabel("CanLoad", CanLoadModel::headerColor(), bgColor));
+        _ui->rawWidget->layout()->addWidget(new IconLabel("CanRawFilter", CanRawFilterModel::headerColor(), bgColor));
     }
 
     ~ProjectConfigPrivate() {}

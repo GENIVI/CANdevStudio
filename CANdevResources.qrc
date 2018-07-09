@@ -83,6 +83,8 @@
         <file>files/images/light/CANbus_icon_CheckBoxOn_disabled.svg</file>
         <file>files/images/dark/CANbus_icon_CheckBoxOff_disabled.svg</file>
         <file>files/images/dark/CANbus_icon_CheckBoxOn_disabled.svg</file>
+        <file>files/images/light/CANbus_icon_arrow_down.svg</file>
+        <file>files/images/light/CANbus_icon_arrow_up.svg</file>
     </qresource>
     <qresource prefix="/">
         <file>files/json/projectConfigSchema.json</file>
