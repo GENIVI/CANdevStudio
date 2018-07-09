@@ -298,6 +298,119 @@ TEST_CASE("custom list TX", "[canrawfilter]")
     // clang-format on
 }
 
+TEST_CASE("Payload filtering", "[canrawfilter]")
+{
+    fakeit::Mock<CanRawFilterGuiInt> gui;
+    CanRawFilterGuiInt::ListUpdated_t txCbk;
+    CanRawFilterGuiInt::ListUpdated_t rxCbk;
+    setupMock(gui, txCbk, rxCbk);
+
+    CanRawFilter c(CanRawFilterCtx(&gui.get()));
+    std::vector<QCanBusFrame> frames;
+    QSignalSpy spyRx(&c, &CanRawFilter::rxFrameOut);
+    QSignalSpy spyTx(&c, &CanRawFilter::txFrameOut);
+
+    c.startSimulation();
+
+    auto addFrame = [&](const char* payload) {
+        QCanBusFrame frame;
+        frame.setPayload(QByteArray::fromHex(payload));
+        frames.push_back(frame);
+    };
+
+    addFrame("");
+    addFrame("1");
+    addFrame("11");
+    addFrame("112");
+    addFrame("1122");
+    addFrame("11223");
+    addFrame("112233");
+    addFrame("1122334");
+    addFrame("11223344");
+    addFrame("112233445");
+    addFrame("1122334455");
+    addFrame("11223344556");
+    addFrame("112233445566");
+    addFrame("1122334455667");
+    addFrame("11223344556677");
+    addFrame("112233445566778");
+    addFrame("1122334455667788");
+    addFrame("aa");
+    addFrame("AA");
+    addFrame("aaBB");
+    addFrame("AAbb");
+    addFrame("AAbbCC");
+    addFrame("AAbbCCdd");
+    addFrame("AAbbCCddEE");
+    addFrame("AAbbCCddEEff");
+
+    auto payloadTest = [&](uint32_t cnt, CanRawFilterGuiInt::AcceptList_t&& list) {
+        spyRx.clear();
+        spyTx.clear();
+
+        rxCbk(list);
+        txCbk(list);
+
+        for (auto& frame : frames) {
+            c.txFrameIn(frame);
+        }
+
+        CHECK(spyRx.count() == 0);
+        CHECK(spyTx.count() == cnt);
+
+        for (auto& frame : frames) {
+            c.rxFrameIn(frame);
+        }
+
+        CHECK(spyRx.count() == cnt);
+        CHECK(spyTx.count() == cnt);
+    };
+
+    // clang-format off
+
+    payloadTest(25, { 
+            { ".*", ".*", true },
+        });
+
+    // empty payload
+    payloadTest(1, { 
+            { ".*", "^$", true },
+            { ".*", ".*", false },
+        });
+
+    // One byte has always two digits
+    payloadTest(0, { 
+            { ".*", "^1$", true },
+            { ".*", ".*", false },
+        });
+
+                              // 1  2  3  4  5  6  7  8
+    std::array<uint8_t, 8> dlc { 4, 4, 3, 3, 3, 3, 2, 2 };
+    for(long unsigned int i = 0; i < dlc.size(); ++i) {
+        payloadTest(dlc[i], { 
+                { ".*", "^[0-9,a-f]{" + QString::number((i+1) * 2) + "}$", true },
+                { ".*", ".*", false },
+            });
+
+    }
+
+    payloadTest(8, { 
+            { ".*", "A", true },
+            { ".*", ".*", false },
+        });
+
+    payloadTest(8, { 
+            { ".*", "a", true },
+            { ".*", ".*", false },
+        });
+
+    payloadTest(3, { 
+            { ".*", "CD", true },
+            { ".*", ".*", false },
+        });
+
+    // clang-format on
+}
 int main(int argc, char* argv[])
 {
     bool haveDebug = std::getenv("CDS_DEBUG") != nullptr;

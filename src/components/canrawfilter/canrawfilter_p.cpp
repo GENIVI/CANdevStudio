@@ -139,12 +139,7 @@ bool CanRawFilterPrivate::acceptFrame(const CanRawFilterGuiInt::AcceptList_t& li
         }
     }
 
-    if (list.size() > 0) {
-        // In case we haven't found match return default policy (last row)
-        return std::get<2>(list[list.size() - 1]);
-    }
-
-    cds_error("Accept list is empty");
+    cds_error("No match or accept list is empty. Frame dropped");
     return false;
 }
 
