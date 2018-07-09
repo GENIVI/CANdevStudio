@@ -3,6 +3,8 @@ var searchData=
   ['_7ecandevice',['~CanDevice',['../class_can_device.html#a4a1a39d39f0de37d5a94acdb4ace1b34',1,'CanDevice']]],
   ['_7ecandeviceinterface',['~CanDeviceInterface',['../struct_can_device_interface.html#ad81788df9251ba0fa9a6b3cd854c9836',1,'CanDeviceInterface']]],
   ['_7ecanload',['~CanLoad',['../class_can_load.html#a6240943bacf215b4ff810c8a31313eba',1,'CanLoad']]],
+  ['_7ecanrawfilter',['~CanRawFilter',['../class_can_raw_filter.html#aa65a0f4cd7eace5483afefb365fcd26d',1,'CanRawFilter']]],
+  ['_7ecanrawfilterguiint',['~CanRawFilterGuiInt',['../struct_can_raw_filter_gui_int.html#adc8f88cd1769eab86167af1c4d989d9b',1,'CanRawFilterGuiInt']]],
   ['_7ecanrawlogger',['~CanRawLogger',['../class_can_raw_logger.html#ae4620624c7551e1b528027cf3d7ad270',1,'CanRawLogger']]],
   ['_7ecanrawplayer',['~CanRawPlayer',['../class_can_raw_player.html#ae751da1ef4de642130673e75d3ee3824',1,'CanRawPlayer']]],
   ['_7ecanrawsender',['~CanRawSender',['../class_can_raw_sender.html#ae62d54a7c677e6838d766fd9cb57b32b',1,'CanRawSender']]],

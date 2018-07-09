@@ -12,6 +12,10 @@ var dir_63333d075306eec5841a0e2f4cff9332 =
     [ "canloadpainter.h", "canloadpainter_8h.html", [
       [ "CanLoadPainter", "struct_can_load_painter.html", "struct_can_load_painter" ]
     ] ],
+    [ "canrawfiltermodel.cpp", "canrawfiltermodel_8cpp.html", null ],
+    [ "canrawfiltermodel.h", "canrawfiltermodel_8h.html", [
+      [ "CanRawFilterModel", "class_can_raw_filter_model.html", "class_can_raw_filter_model" ]
+    ] ],
     [ "canrawloggermodel.cpp", "canrawloggermodel_8cpp.html", null ],
     [ "canrawloggermodel.h", "canrawloggermodel_8h.html", [
       [ "CanRawLoggerModel", "class_can_raw_logger_model.html", "class_can_raw_logger_model" ]

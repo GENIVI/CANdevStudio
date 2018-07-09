@@ -34,9 +34,9 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"class_can_raw_player_model.html#abb4ffc380594e032a97a9286e8689ad8",
-"crsguiinterface_8h.html",
-"struct_can_device_qt.html#ae991500c57b2d44383ff09dd32b04d53"
+"class_can_raw_logger.html",
+"class_p_c_impl.html#a43ec52fe9212568897e6490582f63e41",
+"struct_c_r_v_gui.html#a55d7654cf9a2b83977511bf8cda3a15a"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
