@@ -1,0 +1,6 @@
+<map id="CanRawFilterModel" name="CanRawFilterModel">
+<area shape="rect" id="node2" href="$class_component_model.html" title="ComponentModel\&lt; CanRawFilter,\l CanRawFilterModel \&gt;" alt="" coords="133,171,368,212"/>
+<area shape="rect" id="node4" href="$struct_component_model_interface.html" title="ComponentModelInterface" alt="" coords="155,81,346,108"/>
+<area shape="rect" id="node5" href="$class_can_raw_filter.html" title="CanRawFilter" alt="" coords="370,81,473,108"/>
+<area shape="rect" id="node7" href="$struct_component_interface.html" title="Interface to be implemented by every component. " alt="" coords="413,5,566,32"/>
+</map>

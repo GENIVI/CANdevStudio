@@ -1,0 +1,17 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$struct_component_interface.html" title="Interface to be implemented by every component. " alt="" coords="5,157,159,184"/>
+<area shape="rect" id="node2" href="$class_can_device.html" title="The class provides abstraction layer for CAN BUS hardware. " alt="" coords="243,309,333,336"/>
+<area shape="rect" id="node3" href="$class_can_load.html" title="CanLoad" alt="" coords="249,5,327,32"/>
+<area shape="rect" id="node4" href="$class_can_raw_filter.html" title="CanRawFilter" alt="" coords="237,56,339,83"/>
+<area shape="rect" id="node5" href="$class_can_raw_logger.html" title="CanRawLogger" alt="" coords="230,107,346,133"/>
+<area shape="rect" id="node6" href="$class_can_raw_player.html" title="CanRawPlayer" alt="" coords="233,157,343,184"/>
+<area shape="rect" id="node7" href="$class_can_raw_sender.html" title="CanRawSender" alt="" coords="229,208,347,235"/>
+<area shape="rect" id="node8" href="$class_can_raw_view.html" title="CanRawView" alt="" coords="237,259,339,285"/>
+<area shape="rect" id="node10" href="$class_can_load_private.html" title="CanLoadPrivate" alt="" coords="227,360,349,387"/>
+<area shape="rect" id="node11" href="$class_can_raw_filter_private.html" title="CanRawFilterPrivate" alt="" coords="215,411,361,437"/>
+<area shape="rect" id="node12" href="$class_can_raw_logger_private.html" title="CanRawLoggerPrivate" alt="" coords="208,461,368,488"/>
+<area shape="rect" id="node13" href="$class_can_raw_player_private.html" title="CanRawPlayerPrivate" alt="" coords="211,512,365,539"/>
+<area shape="rect" id="node14" href="$class_can_raw_sender_private.html" title="This class is responsible for manage can raw sender window. " alt="" coords="207,563,369,589"/>
+<area shape="rect" id="node15" href="$class_can_raw_view_private.html" title="CanRawViewPrivate" alt="" coords="215,613,361,640"/>
+<area shape="rect" id="node16" href="$class_new_line_manager.html" title="This class holds informations about all the columns in line and relationships beteewn them..." alt="" coords="223,664,353,691"/>
+</map>
