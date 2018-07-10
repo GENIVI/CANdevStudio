@@ -640,14 +640,9 @@ public:
     void setInData(std::shared_ptr<NodeData> nodeData, PortIndex port) override;
     QtNodes::NodePainterDelegate* painterDelegate() const override;
 
-    static QColor headerColor1()
+    static QColor headerColor()
     {{
         return QColor(85, 95, 195);
-    }}
-
-    static QColor headerColor2()
-    {{
-        return QColor(84, 84, 84);
     }}
 
 public slots:
@@ -696,7 +691,7 @@ const std::map<PortType, std::vector<NodeDataType>> portMappings = {{
 
 {name}Model::{name}Model()
     : ComponentModel("{name}")
-    , _painter(std::make_unique<NodePainter>(headerColor1(), headerColor2()))
+    , _painter(std::make_unique<NodePainter>(headerColor()))
 {{
     _label->setAlignment(Qt::AlignVCenter | Qt::AlignHCenter);
     _label->setFixedSize(75, 25);
