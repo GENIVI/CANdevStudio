@@ -1,10 +1,6 @@
-**(C) 2018 Mobica**
+# CANdevStudio 
+[![Build Status](https://travis-ci.org/GENIVI/CANdevStudio.svg?branch=master)](https://travis-ci.org/GENIVI/CANdevStudio) [![Build Status](https://ci.appveyor.com/api/projects/status/y7vacbyvso12ud6e/branch/master?svg=true)](https://ci.appveyor.com/project/rkollataj/candevstudio-qflna/branch/master) [![codecov](https://codecov.io/gh/GENIVI/CANdevStudio/branch/master/graph/badge.svg)](https://codecov.io/gh/GENIVI/CANdevStudio) [![Download](https://api.bintray.com/packages/rkollataj/CANdevStudio/releases/images/download.svg) ](https://bintray.com/rkollataj/CANdevStudio/releases/_latestVersion) [![Download](https://api.bintray.com/packages/rkollataj/CANdevStudio/master/images/download.svg) ](https://bintray.com/rkollataj/CANdevStudio/master/_latestVersion)
 
-| Linux | Windows | Coverage | Stable | Master |
-| :--- | :--- | :--- | :--- | :--- |
-| [![Build Status](https://travis-ci.org/GENIVI/CANdevStudio.svg?branch=master)](https://travis-ci.org/GENIVI/CANdevStudio) | [![Build Status](https://ci.appveyor.com/api/projects/status/y7vacbyvso12ud6e/branch/master?svg=true)](https://ci.appveyor.com/project/rkollataj/candevstudio-qflna/branch/master) | [![codecov](https://codecov.io/gh/GENIVI/CANdevStudio/branch/master/graph/badge.svg)](https://codecov.io/gh/GENIVI/CANdevStudio) | [![Download](https://api.bintray.com/packages/rkollataj/CANdevStudio/releases/images/download.svg) ](https://bintray.com/rkollataj/CANdevStudio/releases/_latestVersion) | [![Download](https://api.bintray.com/packages/rkollataj/CANdevStudio/master/images/download.svg) ](https://bintray.com/rkollataj/CANdevStudio/master/_latestVersion) |
-
-List of contents
 * [Overview](#overview)
   * [Compatible CAN interfaces](#compatible-can-interfaces)
   * [Supported operating systems](#supported-operating-systems)
@@ -22,8 +18,14 @@ List of contents
   * [Linux](#linux-1)
   * [Windows](#windows-1)
 * [Quick Start](#quick-start)
+  * [CAN Hardware](#can-hardware)
+    * [Microchip CAN BUS Analyzer](#microchip-can-bus-analyzer)
+    * [Lawicel CANUSB](#lawicel-canbus)
+  * [CANdevStudio without CAN hardware](#candevstudio-without-can-hardware)
+    * [VCAN](#vcan)
+    * [Cannelloni](#cannelloni)
 
-# Overview
+## Overview
 Most of automotive projects need to have an access to the Controller Area Network (CAN) bus. There are plenty of commercial frameworks that provides CAN stacks and hardware/software tools necessary to develop proper CAN networks. They are very comprehensive and thus expensive. CANdevStudio aims to be cost-effective replacement for CAN simulation software. It can work with variety of CAN hardware interfaces (e.g. Microchip, Vector, PEAK-Systems) or even without it (vcan and [cannelloni](https://github.com/mguentner/cannelloni)) . CANdevStudio enables to simulate CAN signals such as ignition status, doors status or reverse gear by every automotive developer. Thanks to modularity it is easy to implement new, custom features.
 
 
@@ -31,18 +33,18 @@ Most of automotive projects need to have an access to the Controller Area Networ
 <img src="https://at.projects.genivi.org/wiki/download/attachments/14976114/06-light.png" width="50%" />
 </p>
 
-## Compatible CAN interfaces
+### Compatible CAN interfaces
 Access to CAN bus is based Qt framework. Current list of supported CAN interfaces can be found [here](https://doc.qt.io/qt-5/qtcanbus-backends.html).
 
 Current list of devices compatible with SocketCAN (Linux only) can be found [here](http://elinux.org/CAN_Bus).
-## Supported operating systems
+### Supported operating systems
 * Linux
 * Windows
 
-# Build instructions
+## Build instructions
 CANdevStudio project uses Travis CI (Linux) and AppVeyor (Windows) continues integration tools. You can always check .travis.yml and .appveyor.yml files for building details.
 
-## Linux
+### Linux
 ```
 git clone https://github.com/GENIVI/CANdevStudio.git
 cd CANdevStudio
@@ -52,7 +54,7 @@ cd build
 cmake ..
 make
 ```
-### To choose complier
+#### To choose complier
 ```
 cd CANdevStudio/build
 rm -rf *
@@ -61,7 +63,7 @@ export CXX=clang++
 cmake ..
 make
 ```
-### Qt in CMake
+#### Qt in CMake
 If CMake failed to find Qt in your system:
 ```
 cd CANdevStudio/build
@@ -69,8 +71,8 @@ rm -rf *
 cmake .. -DCMAKE_PREFIX_PATH=/home/genivi/Qt5.8.0/5.8/gcc_64
 make
 ```
-## Windows
-### Visual Studio 2015
+### Windows
+#### Visual Studio 2015
 ```
 git clone https://github.com/GENIVI/CANdevStudio.git
 cd CANdevStudio
@@ -80,7 +82,7 @@ cd build
 cmake .. -G "Visual Studio 14 2015" -DCMAKE_PREFIX_PATH=C:\Qt\5.9\msvc2015
 cmake --build .
 ```
-### Visual Studio 2015 Win64
+#### Visual Studio 2015 Win64
 ```
 git clone https://github.com/GENIVI/CANdevStudio.git
 cd CANdevStudio
@@ -90,7 +92,7 @@ cd build
 cmake .. -G "Visual Studio 14 2015 Win64" -DCMAKE_PREFIX_PATH=C:\Qt\5.9\msvc2015_64
 cmake --build .
 ```
-### MinGW
+#### MinGW
 ```
 git clone https://github.com/GENIVI/CANdevStudio.git
 cd CANdevStudio
@@ -100,11 +102,11 @@ cd build
 cmake .. -G "MinGW Makefiles" -DCMAKE_PREFIX_PATH=C:\Qt\5.9\mingw53_32
 cmake --build .
 ```
-# Prebuilt packages
+## Prebuilt packages
 Binary packages are automatically uploaded by CI tools (i.e. Travis and Appveyor) to [Bintray](https://bintray.com/rkollataj/CANdevStudio) artifactory for every commit on master branch.
-## Download
+### Download
 Use Bintray badges above to dowload stable or develop version (each commit on master creates corresponding binary packege in Bintray)
-## Package naming
+### Package naming
 ***CANdevStudio-X.Y.ZZZZZZZ-SYS[-standalone]***
 
 **X** - major version number of previous stable version<br/>
@@ -112,15 +114,15 @@ Use Bintray badges above to dowload stable or develop version (each commit on ma
 **Z** - SHA commit ID<br/>
 **SYS** - either **win32** or **Linux**<br/>
 **standalone** - bundle version that contains Qt libraries and all relevant plugins.<br/>
-## Linux
+### Linux
 All packages are being built on Ubuntu 16.04 LTS. You may experience problems with missing or incompatible libraries when trying to run the package on other distros. 
 
 To run standalone version use CANdevStudio.sh script.
-## Windows
+### Windows
 Packages built with MinGW 5.3.
 
 Standalone version contains Qt and MinGW runtime libs. 
-# Quick Start
+## Quick Start
 General instructions to start your first simulation:
 1. Build the latest master or release.
 2. Run the application and start a new project
@@ -132,9 +134,9 @@ General instructions to start your first simulation:
 6. Double click on CanRawView component to see CAN traffic
 
 Steps required to use specific CAN hardware or virtual interfaces require some additional steps listed in following sections.
-## CAN Hardware
+### CAN Hardware
 The list below shows hardware that has been successfuly used with CANdevStudio.
-### Microchip CAN BUS Analyzer
+#### Microchip CAN BUS Analyzer
 * Requires socketcan [driver](https://github.com/rkollataj/mcba_usb).
 * Officially supported in Linux Kernel v4.12+
 Configuration:
@@ -152,7 +154,7 @@ Configuration:
 
 CanDevice backend: socketcan
 
-### Lawicel CANUSB
+#### Lawicel CANUSB
 * Based on FTDI Serial driver
 * Requires slcand to "convert" serial device to SocketCAN.
 * Officially supported in Linux Kernel v2.6.38
@@ -165,9 +167,9 @@ Configuration:
 
 CanDevice backend: socketcan
 
-## CANdevStudio without CAN hardware
+### CANdevStudio without CAN hardware
 CANdevStudio can be used without actual CAN hardware thanks to Linux's in built emulation.
-### VCAN
+#### VCAN
 Configuration:
 ```
 sudo modprobe vcan
@@ -175,11 +177,13 @@ sudo ip link add dev can0 type vcan
 sudo ip link set can0 up
 ```
 CanDevice backend: socketcan
-### Cannelloni
+#### Cannelloni
 A SocketCAN over Ethernet tunnel.
 
 Examplary configuration:
-![cannelloni](https://at.projects.genivi.org/wiki/download/attachments/14976114/CANdevStudio-cannelloni.png?version=1&modificationDate=1515065781000&api=v2)
+<p align="left">
+<img src="https://at.projects.genivi.org/wiki/download/attachments/14976114/CANdevStudio-cannelloni.png" width="50%" />
+</p>
 
 Target configuration:
 ```
