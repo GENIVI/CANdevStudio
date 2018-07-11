@@ -20,7 +20,7 @@
 * [Quick Start](#quick-start)
   * [CAN Hardware](#can-hardware)
     * [Microchip CAN BUS Analyzer](#microchip-can-bus-analyzer)
-    * [Lawicel CANUSB](#lawicel-canbus)
+    * [Lawicel CANUSB](#lawicel-canusb)
   * [CANdevStudio without CAN hardware](#candevstudio-without-can-hardware)
     * [VCAN](#vcan)
     * [Cannelloni](#cannelloni)
