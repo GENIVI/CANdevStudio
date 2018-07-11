@@ -159,5 +159,6 @@ var searchData=
   ['crvsortmodel',['CRVSortModel',['../class_c_r_v_sort_model.html',1,'CRVSortModel'],['../class_c_r_v_sort_model.html#a7a3a59938287c0301e7f775ec99d7792',1,'CRVSortModel::CRVSortModel()']]],
   ['crvsortmodel_2ecpp',['crvsortmodel.cpp',['../crvsortmodel_8cpp.html',1,'']]],
   ['crvsortmodel_2eh',['crvsortmodel.h',['../crvsortmodel_8h.html',1,'']]],
-  ['currentload',['currentLoad',['../class_can_load.html#a83c2c7f312257e47d90db695a7119ed1',1,'CanLoad::currentLoad()'],['../class_can_load_model.html#a20206312c03bac0ca83a424a6301921e',1,'CanLoadModel::currentLoad()']]]
+  ['currentload',['currentLoad',['../class_can_load.html#a83c2c7f312257e47d90db695a7119ed1',1,'CanLoad::currentLoad()'],['../class_can_load_model.html#a20206312c03bac0ca83a424a6301921e',1,'CanLoadModel::currentLoad()']]],
+  ['candevstudio',['CANdevStudio',['../index.html',1,'']]]
 ];
