@@ -16,6 +16,12 @@ List of contents
     * [Visual Studio 2015](#visual-studio-2015)
     * [Visual Studio 2015 Win64](#visual-studio-2015-win64)
     * [MinGW](#mingw)
+* [Prebuilt packages](#prebuilt-packages)
+  * [Download](#download)
+  * [Package naming](#package-naming)
+  * [Linux](#linux-1)
+  * [Windows](#windows-1)
+* [Quick Start](#quick-start)
 
 # Overview
 Most of automotive projects need to have an access to the Controller Area Network (CAN) bus. There are plenty of commercial frameworks that provides CAN stacks and hardware/software tools necessary to develop proper CAN networks. They are very comprehensive and thus expensive. CANdevStudio aims to be cost-effective replacement for CAN simulation software. It can work with variety of CAN hardware interfaces (e.g. Microchip, Vector, PEAK-Systems) or even without it (vcan and [cannelloni](https://github.com/mguentner/cannelloni)) . CANdevStudio enables to simulate CAN signals such as ignition status, doors status or reverse gear by every automotive developer. Thanks to modularity it is easy to implement new, custom features.
@@ -94,22 +100,100 @@ cd build
 cmake .. -G "MinGW Makefiles" -DCMAKE_PREFIX_PATH=C:\Qt\5.9\mingw53_32
 cmake --build .
 ```
-# Quick Start
+# Prebuilt packages
+Binary packages are automatically uploaded by CI tools (i.e. Travis and Appveyor) to [Bintray](https://bintray.com/rkollataj/CANdevStudio) artifactory for every commit on master branch.
 ## Download
 Use Bintray badges above to dowload stable or develop version (each commit on master creates corresponding binary packege in Bintray)
-### Package naming
+## Package naming
 ***CANdevStudio-X.Y.ZZZZZZZ-SYS[-standalone]***
 
-**X** - major version number of previous stable version
-**Y** - minor version of previous stable version
-**Z** - SHA commit ID
-**SYS** - either **win32** or **Linux**
-**standalone** - bundle version that contains Qt libraries and all relevant plugins.
-### Linux
+**X** - major version number of previous stable version<br/>
+**Y** - minor version of previous stable version<br/>
+**Z** - SHA commit ID<br/>
+**SYS** - either **win32** or **Linux**<br/>
+**standalone** - bundle version that contains Qt libraries and all relevant plugins.<br/>
+## Linux
 All packages are being built on Ubuntu 16.04 LTS. You may experience problems with missing or incompatible libraries when trying to run the package on other distros. 
 
 To run standalone version use CANdevStudio.sh script.
-### Windows
+## Windows
 Packages built with MinGW 5.3.
 
 Standalone version contains Qt and MinGW runtime libs. 
+# Quick Start
+General instructions to start your first simulation:
+1. Build the latest master or release.
+2. Run the application and start a new project
+3. Drag and drop CanDevice and CanRawView components and connect them accordingly.
+4. Double click on CanDevice node to open configuration window.
+   1. set one of supported backends (e.g. socketcan) [link](http://doc.qt.io/qt-5.10/qtcanbus-backends.html).<br/>**NOTE:** List of supported backends depends on Qt version.
+   2. set name of your can interface (e.g. can0)
+5. Start the simulation
+6. Double click on CanRawView component to see CAN traffic
+
+Steps required to use specific CAN hardware or virtual interfaces require some additional steps listed in following sections.
+## CAN Hardware
+The list below shows hardware that has been successfuly used with CANdevStudio.
+### Microchip CAN BUS Analyzer
+* Requires socketcan [driver](https://github.com/rkollataj/mcba_usb).
+* Officially supported in Linux Kernel v4.12+
+Configuration:
+1. Find your interface name (e.g. can0) <br/>
+```ip link```
+2. Configure bitrate<br/>
+```sudo ip link set can0 type can bitrate 1000000```
+3. Bring the device up<br/>
+```sudo ip link set can0 up```
+4. Optionally configure CAN termination
+   1. In GitHUB based driver <br/>
+   ```sudo ip link set can0 type can termination 1```
+   2. In Linux 4.12+ driver<br/>
+   ```sudo ip link set can0 type can termination 120```
+
+CanDevice backend: socketcan
+
+### Lawicel CANUSB
+* Based on FTDI Serial driver
+* Requires slcand to "convert" serial device to SocketCAN.
+* Officially supported in Linux Kernel v2.6.38
+
+Configuration:
+1. Create SocketCAN device from serial interface<br/>
+```sudo slcand -o -c -s8 -S1000000 /dev/ttyUSB0 can0```
+2. Bring the device up<br/>
+```sudo ip link set can0 up```
+
+CanDevice backend: socketcan
+
+## CANdevStudio without CAN hardware
+CANdevStudio can be used without actual CAN hardware thanks to Linux's in built emulation.
+### VCAN
+Configuration:
+```
+sudo modprobe vcan
+sudo ip link add dev can0 type vcan
+sudo ip link set can0 up
+```
+CanDevice backend: socketcan
+### Cannelloni
+A SocketCAN over Ethernet tunnel.
+
+Examplary configuration:
+![cannelloni](https://at.projects.genivi.org/wiki/download/attachments/14976114/CANdevStudio-cannelloni.png?version=1&modificationDate=1515065781000&api=v2)
+
+Target configuration:
+```
+sudo modprobe vcan
+sudo ip link add dev can0 type vcan
+sudo ip link set can0 up
+cannelloni -I can0 -R 192.168.0.1 -r 30000 -l 20000
+```
+PC configuration:
+
+1. Install libqtCannelloniCanBusPlugin.so that is build along iwth CANdevStudio. You can either copy it manually to Qt plugins directory or use "make install" to do it automatically.
+2. Create new project in CANdevStudio and add CanDevice node
+3. Configure CanDevice:
+   1. backend: cannelloni
+   2. interface: 30000,192.168.0.2,20000 (local_port,remote_ip,remote_port)
+4. Start simulation
+
