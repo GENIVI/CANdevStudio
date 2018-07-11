@@ -94,3 +94,22 @@ cd build
 cmake .. -G "MinGW Makefiles" -DCMAKE_PREFIX_PATH=C:\Qt\5.9\mingw53_32
 cmake --build .
 ```
+# Quick Start
+## Download
+Use Bintray badges above to dowload stable or develop version (each commit on master creates corresponding binary packege in Bintray)
+### Package naming
+***CANdevStudio-X.Y.ZZZZZZZ-SYS[-standalone]***
+
+**X** - major version number of previous stable version
+**Y** - minor version of previous stable version
+**Z** - SHA commit ID
+**SYS** - either **win32** or **Linux**
+**standalone** - bundle version that contains Qt libraries and all relevant plugins.
+### Linux
+All packages are being built on Ubuntu 16.04 LTS. You may experience problems with missing or incompatible libraries when trying to run the package on other distros. 
+
+To run standalone version use CANdevStudio.sh script.
+### Windows
+Packages built with MinGW 5.3.
+
+Standalone version contains Qt and MinGW runtime libs. 
