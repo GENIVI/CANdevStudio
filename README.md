@@ -6,9 +6,9 @@
 
 List of contents
 * [Overview](#overview)
-  * [Compatible CAN interfaces](compatible-can-interfaces)
-  * [Supported operating systems](supported-operating-systems)
-* [Build instructions](build-instructions)
+  * [Compatible CAN interfaces](#compatible-can-interfaces)
+  * [Supported operating systems](#supported-operating-systems)
+* [Build instructions](#build-instructions)
   * [Linux](#linux)
     * [To choose complier](#to-choose-complier)
     * [Qt in CMake](#qt-in-cmake)
