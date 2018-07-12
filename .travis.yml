@@ -1,13 +1,17 @@
-sudo: required
 language: cpp
-dist: trusty
-group: edge
 
 notifications:
   email: false
 
-services:
-  docker
+matrix:
+  include: 
+    - os: linux
+      dist: trusty
+      sudo: required
+      services: docker
+      group: edge
+    - os: osx
+      osx_image: xcode9.4
 
 #Blacklist
 branches:
@@ -15,27 +19,11 @@ branches:
     - gh-pages
 
 before_install:
-  - env
-  - echo refs/heads/$TRAVIS_BRANCH~ refs/heads/$TRAVIS_BRANCH refs/heads/$TRAVIS_BRANCH | ./.trigger_appveyor.rb || true
-  - export ci_env=`bash <(curl -s https://codecov.io/env)`
+  - ./travis/before_install.sh
 
 script:
-  - export CC=gcc-6 CXX=g++-6 CMAKE_BUILD_TYPE=Debug WITH_COVERAGE=ON PACKAGE=OFF
-  - ./.travis.sh
-  - export CC=gcc-53 CXX=g++-53 CMAKE_BUILD_TYPE=Release WITH_COVERAGE=OFF PACKAGE=ON
-  - ./.travis.sh
-  - export CC=gcc-53 CXX=g++-53 CMAKE_BUILD_TYPE=Debug WITH_COVERAGE=OFF PACKAGE=OFF
-  - ./.travis.sh
-  - export CC=clang-3.5 CXX=clang++-3.5 CMAKE_BUILD_TYPE=Release WITH_COVERAGE=OFF PACKAGE=OFF
-  - ./.travis.sh
-  - export CC=clang-3.5 CXX=clang++-3.5 CMAKE_BUILD_TYPE=Debug WITH_COVERAGE=OFF PACKAGE=OFF
-  - ./.travis.sh
+  - ./travis/build.sh
 
 #Generate and deploy documentation
 after_success:
-  - cd $TRAVIS_BUILD_DIR
-  - chmod +x .travis_doxygen.sh
-  - docker run
-    $ci_env -e DOXYFILE -e GH_REPO_NAME -e GH_REPO_REF -e GH_REPO_TOKEN -e TRAVIS_BUILD_NUMBER
-    -v `pwd`:/root/sources rkollataj/candevstudio /bin/bash
-    -c "cd /root/sources && ./.travis_doxygen.sh"
+  - ./travis/doxygen.sh
