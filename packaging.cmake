@@ -19,4 +19,9 @@ endif()
 set(CPACK_PACKAGE_VENDOR "Mobica")
 set(CPACK_PACKAGE_CONTACT "remigiusz.kollataj@mobica.com")
 set(CPACK_RESOURCE_FILE_LICENSE ${CMAKE_SOURCE_DIR}/LICENSE)
+
+if(APPLE)
+    include("${CMAKE_SOURCE_DIR}/cmake/osx_bundle.cmake")
+endif()
+
 include(CPack)
