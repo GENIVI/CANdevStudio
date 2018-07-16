@@ -4,6 +4,8 @@
 #include <QObject>
 #include <QMenu>
 #include "pcinterface.h"
+#include "componentinterface.h"
+#include "componentmodel.h"
 #include <propertyeditordialog.h>
 
 class PCImpl : public PCInterface {

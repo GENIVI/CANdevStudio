@@ -2,6 +2,7 @@
 #define CANRAWLOGGERPLUGIN_H_QKYDNCFC
 
 #include "plugin_type.h"
+#include "canrawloggermodel.h"
 
 struct CanRawLoggerPlugin {
     using Model = CanRawLoggerModel;
