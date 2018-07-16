@@ -2,6 +2,7 @@
 #define CANRAWFILTERPLUGIN_H_MGJSE2A9
 
 #include "plugin_type.h"
+#include "canrawfiltermodel.h"
 
 struct CanRawFilterPlugin {
     using Model = CanRawFilterModel;

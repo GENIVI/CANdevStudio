@@ -1,5 +1,5 @@
 #include "canrawfiltermodel.h"
-#include <datamodeltypes/canrawfilterdata.h>
+#include <datamodeltypes/canrawdata.h>
 #include <log.h>
 
 namespace {
@@ -8,12 +8,12 @@ namespace {
 const std::map<PortType, std::vector<NodeDataType>> portMappings = {
     { PortType::In, 
         {
-            {CanRawFilterDataIn{}.type() }
+            {CanRawData{}.type() }
         }
     },
     { PortType::Out, 
         {
-            {CanRawFilterDataOut{}.type() }
+            {CanRawData{}.type() }
         }
     }
 };
@@ -71,7 +71,7 @@ std::shared_ptr<NodeData> CanRawFilterModel::outData(PortIndex)
 void CanRawFilterModel::setInData(std::shared_ptr<NodeData> nodeData, PortIndex)
 {
     if (nodeData) {
-        auto d = std::dynamic_pointer_cast<CanRawFilterDataIn>(nodeData);
+        auto d = std::dynamic_pointer_cast<CanRawData>(nodeData);
         assert(nullptr != d);
         if (d->direction() == Direction::TX) {
             if (d->status()) {
@@ -89,7 +89,7 @@ void CanRawFilterModel::setInData(std::shared_ptr<NodeData> nodeData, PortIndex)
 
 void CanRawFilterModel::filteredTx(const QCanBusFrame& frame)
 {
-    bool ret = _fwdQueue.try_enqueue(std::make_shared<CanDeviceDataOut>(frame, Direction::TX));
+    bool ret = _fwdQueue.try_enqueue(std::make_shared<CanRawData>(frame, Direction::TX));
 
     if (ret) {
         emit dataUpdated(0); // Data ready on port 0
@@ -100,7 +100,7 @@ void CanRawFilterModel::filteredTx(const QCanBusFrame& frame)
 
 void CanRawFilterModel::filteredRx(const QCanBusFrame& frame)
 {
-    bool ret = _fwdQueue.try_enqueue(std::make_shared<CanDeviceDataOut>(frame, Direction::RX));
+    bool ret = _fwdQueue.try_enqueue(std::make_shared<CanRawData>(frame, Direction::RX));
 
     if (ret) {
         emit dataUpdated(0); // Data ready on port 0

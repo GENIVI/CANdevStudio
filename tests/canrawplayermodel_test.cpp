@@ -1,6 +1,6 @@
 #include <QtWidgets/QApplication>
-#include <projectconfig/canrawplayermodel.h>
-#include <datamodeltypes/canrawplayerdata.h>
+#include <canrawplayermodel.h>
+#include <datamodeltypes/canrawdata.h>
 #define CATCH_CONFIG_RUNNER
 #include "log.h"
 #include <QSignalSpy>

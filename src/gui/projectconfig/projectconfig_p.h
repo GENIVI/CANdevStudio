@@ -1,12 +1,6 @@
 #ifndef PROJECTCONFIG_P_H
 #define PROJECTCONFIG_P_H
 
-#include "canloadmodel.h"
-#include "canrawfiltermodel.h"
-#include "canrawloggermodel.h"
-#include "canrawplayermodel.h"
-#include "canrawsendermodel.h"
-#include "canrawviewmodel.h"
 #include "flowviewwrapper.h"
 #include "iconlabel.h"
 #include "modeltoolbutton.h"
@@ -14,23 +8,13 @@
 #include "ui_projectconfig.h"
 #include <QMenu>
 #include <QtWidgets/QPushButton>
-#include <candevicemodel.h>
 #include <log.h>
 #include <modelvisitor.h> // apply_model_visitor
 #include <nodes/Node>
 #include <propertyeditordialog.h>
 
-#include "candeviceplugin.h"
-#include "canloadplugin.h"
-#include "canrawfilterplugin.h"
-#include "canrawloggerplugin.h"
-#include "canrawplayerplugin.h"
-#include "canrawsenderplugin.h"
-#include "canrawviewplugin.h"
-#include "pluginloader.h"
-
-using PluginImpls = PluginLoader<CANDevicePlugin, CANLoadPlugin, CanRawSenderPlugin, CanRawViewPlugin,
-    CanRawPlayerPlugin, CanRawLoggerPlugin, CanRawFilterPlugin>;
+#include "componentinterface.h"
+#include "plugins.hpp"
 
 namespace Ui {
 class ProjectConfigPrivate;
@@ -118,23 +102,11 @@ public:
         Q_Q(ProjectConfig);
 
         auto& iface = getComponentModel(node);
+        iface.initModel(node, _nodeCnt, _darkMode);
 
-        if (!iface.restored()) {
-            iface.setCaption(node.nodeDataModel()->caption() + " #" + QString::number(_nodeCnt));
-        }
-
-        // For some reason QWidget title is being set to name instead of caption.
-        // TODO: investigate why
-        iface.setCaption(node.nodeDataModel()->caption());
-
-        if (iface.hasSeparateThread()) {
-            // Thread will be deleted during node deletion
-            iface.handleModelCreation(q, node, new QThread());
-        } else {
-            iface.handleModelCreation(q, node);
-        }
-
-        iface.setColorMode(_darkMode);
+        connect(q, &ProjectConfig::startSimulation, &iface, &ComponentModelInterface::startSimulation);
+        connect(q, &ProjectConfig::stopSimulation, &iface, &ComponentModelInterface::stopSimulation);
+        connect(&iface, &ComponentModelInterface::handleDock, q, &ProjectConfig::handleDock);
 
         node.nodeGraphicsObject().setOpacity(node.nodeDataModel()->nodeStyle().Opacity);
         addShadow(node);
@@ -264,6 +236,6 @@ private:
     int _nodeCnt = 1;
     ProjectConfig* q_ptr;
     bool _darkMode;
-    PluginImpls _plugins;
+    Plugins _plugins;
 };
 #endif // PROJECTCONFIG_P_H

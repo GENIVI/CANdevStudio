@@ -1,6 +1,6 @@
 #include <QtWidgets/QApplication>
-#include <projectconfig/canloadmodel.h>
-#include <datamodeltypes/canloaddata.h>
+#include <canloadmodel.h>
+#include <datamodeltypes/canrawdata.h>
 #define CATCH_CONFIG_RUNNER
 #include "log.h"
 #include <QSignalSpy>
@@ -68,7 +68,7 @@ TEST_CASE("setInData", "[canloadModel]")
 {
     CanLoadModel cm;
     QCanBusFrame frame;
-    auto data = std::make_shared<CanLoadDataIn>(frame);
+    auto data = std::make_shared<CanRawData>(frame);
     QSignalSpy spy(&cm, &CanLoadModel::frameIn);
 
     CHECK(spy.count() == 0);

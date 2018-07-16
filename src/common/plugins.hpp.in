@@ -1,0 +1,9 @@
+#ifndef PLUGINS_HPP_IN_OH7O4FYA
+#define PLUGINS_HPP_IN_OH7O4FYA
+
+#include "pluginloader.h"
+@PLUGIN_INCLUDES@
+
+using Plugins = PluginLoader<@PLUGINS_IMPL_STR@>;
+
+#endif /* end of include guard: PLUGINS_HPP_IN_OH7O4FYA */

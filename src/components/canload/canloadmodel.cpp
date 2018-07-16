@@ -1,5 +1,5 @@
 #include "canloadmodel.h"
-#include <datamodeltypes/canloaddata.h>
+#include <datamodeltypes/canrawdata.h>
 #include <log.h>
 
 namespace {
@@ -8,7 +8,7 @@ namespace {
 const std::map<PortType, std::vector<NodeDataType>> portMappings = {
     { PortType::In, 
         {
-            {CanLoadDataIn{}.type() }
+            {CanRawData{}.type() }
         }
     },
     { PortType::Out, { }
@@ -58,7 +58,7 @@ std::shared_ptr<NodeData> CanLoadModel::outData(PortIndex)
 void CanLoadModel::setInData(std::shared_ptr<NodeData> nodeData, PortIndex)
 {
     if (nodeData) {
-        auto d = std::dynamic_pointer_cast<CanLoadDataIn>(nodeData);
+        auto d = std::dynamic_pointer_cast<CanRawData>(nodeData);
         assert(nullptr != d);
         emit frameIn(d->frame());
     } else {

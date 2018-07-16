@@ -1,3 +1,5 @@
+add_subdirectory(projectconfig)
+
 set(srcs
     main.cpp
     mainwindow.cpp
@@ -7,11 +9,11 @@ set(srcs
 )
 
 add_executable(CANdevStudio MACOSX_BUNDLE ${GUI_TYPE} ${srcs})
-target_link_libraries(CANdevStudio cds-common projectconfig nodes rapidjson)
+target_link_libraries(CANdevStudio projectconfig rapidjson)
 target_compile_definitions(CANdevStudio PRIVATE $<$<CONFIG:Debug>:CDS_DEBUG=true> $<$<NOT:$<CONFIG:Debug>>:CDS_DEBUG=false>)
 target_include_directories(CANdevStudio 
     PRIVATE
-        "${CMAKE_CURRENT_SOURCE_DIR}/../components/"
+        "${CMAKE_SOURCE_DIR}/components/"
         "${CMAKE_BINARY_DIR}/generated"
 )
 install(TARGETS CANdevStudio 

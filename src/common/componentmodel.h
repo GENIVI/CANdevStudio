@@ -1,7 +1,6 @@
 #ifndef COMPONENTMODEL_H
 #define COMPONENTMODEL_H
 
-#include "projectconfig.h"
 #include <QThread>
 #include <QtCore/QObject>
 #include <QtWidgets/QLabel>
@@ -12,19 +11,26 @@
 
 struct ComponentInterface;
 
-struct ComponentModelInterface {
+struct ComponentModelInterface : public QtNodes::NodeDataModel {
+
+    Q_OBJECT
+
+public:
     virtual ~ComponentModelInterface() = default;
     virtual ComponentInterface& getComponent() = 0;
-    virtual void handleModelCreation(ProjectConfig* config, QtNodes::Node& node, QThread* th = nullptr) = 0;
     virtual void setCaption(const QString& caption) = 0;
     virtual bool restored() = 0;
     virtual void setColorMode(bool darkMode) = 0;
     virtual bool hasSeparateThread() const = 0;
-    virtual void requestRedraw() = 0;
+    virtual void initModel(QtNodes::Node& node, int nodeCnt, bool darkMode) = 0;
+
+signals:
+    void startSimulation();
+    void stopSimulation();
+    void handleDock(QWidget* widget);
 };
 
-template <typename C, typename Derived>
-class ComponentModel : public QtNodes::NodeDataModel, public ComponentModelInterface {
+template <typename C, typename Derived> class ComponentModel : public ComponentModelInterface {
 
 public:
     ComponentModel() = default;
@@ -35,7 +41,42 @@ public:
     {
     }
 
-    virtual ~ComponentModel() = default;
+    virtual ~ComponentModel()
+    {
+        if(_thread) {
+            _thread->exit();
+            _thread->wait();
+        }
+    }
+
+    virtual void initModel(QtNodes::Node& node, int nodeCnt, bool darkMode) override
+    {
+        if (!restored()) {
+            setCaption(node.nodeDataModel()->caption() + " #" + QString::number(nodeCnt));
+        }
+
+        // For some reason QWidget title is being set to name instead of caption.
+        // TODO: investigate why
+        setCaption(node.nodeDataModel()->caption());
+        setColorMode(darkMode);
+
+        connect((Derived*)this, &Derived::requestRedraw,[&node] { node.nodeGraphicsObject().update(); });
+        connect(this, &ComponentModelInterface::startSimulation, &_component, &C::startSimulation);
+        connect(this, &ComponentModelInterface::stopSimulation, &_component, &C::stopSimulation);
+        connect(&_component, &C::mainWidgetDockToggled, this, &ComponentModelInterface::handleDock);
+
+        if (hasSeparateThread()) {
+            _thread = std::make_unique<QThread>();
+            if (_thread) {
+                cds_info("Setting separate event loop for component {}", _caption.toStdString());
+
+                this->moveToThread(_thread.get());
+                _component.moveToThread(_thread.get());
+
+                _thread->start();
+            }
+        }
+    }
 
     /**
      *   @brief  Used to get node caption
@@ -141,23 +182,6 @@ public:
         return _component;
     }
 
-    virtual void handleModelCreation(ProjectConfig* config, QtNodes::Node& node, QThread* th = nullptr) override
-    {
-        connect(config, &ProjectConfig::startSimulation, &_component, &C::startSimulation);
-        connect(config, &ProjectConfig::stopSimulation, &_component, &C::stopSimulation);
-        connect(&_component, &C::mainWidgetDockToggled, config, &ProjectConfig::handleDock);
-        connect((Derived*)this, &Derived::requestRedraw, [&node] { node.nodeGraphicsObject().update(); });
-
-        if (th) {
-            cds_info("Setting separate event loop for component {}", _caption.toStdString());
-
-            this->moveToThread(th);
-            _component.moveToThread(th);
-
-            th->start();
-        }
-    }
-
     virtual bool restored() override
     {
         return _restored;
@@ -217,6 +241,7 @@ protected:
     bool _restored{ false };
     bool _darkMode{ true };
     QtNodes::NodeStyle _nodeStyle;
+    std::unique_ptr<QThread> _thread;
 };
 
 #endif // COMPONENTMODEL_H

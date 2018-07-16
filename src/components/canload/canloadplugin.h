@@ -2,6 +2,7 @@
 #define CANLOADPLUGIN_H_8T2GEZMW
 
 #include "plugin_type.h"
+#include "canloadmodel.h"
 
 struct CANLoadPlugin {
     using Model = CanLoadModel;

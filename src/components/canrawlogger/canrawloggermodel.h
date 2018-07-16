@@ -1,11 +1,10 @@
-#ifndef CANRAWFILTERMODEL_H
-#define CANRAWFILTERMODEL_H
+#ifndef CANRAWLOGGERMODEL_H
+#define CANRAWLOGGERMODEL_H
 
+#include "canrawlogger.h"
 #include "componentmodel.h"
 #include "nodepainter.h"
 #include <QtCore/QObject>
-#include <canrawfilter.h>
-#include <readerwriterqueue.h>
 
 using QtNodes::NodeData;
 using QtNodes::NodeDataType;
@@ -15,11 +14,11 @@ using QtNodes::PortType;
 class QCanBusFrame;
 enum class Direction;
 
-class CanRawFilterModel : public ComponentModel<CanRawFilter, CanRawFilterModel> {
+class CanRawLoggerModel : public ComponentModel<CanRawLogger, CanRawLoggerModel> {
     Q_OBJECT
 
 public:
-    CanRawFilterModel();
+    CanRawLoggerModel();
 
     unsigned int nPorts(PortType portType) const override;
     NodeDataType dataType(PortType portType, PortIndex portIndex) const override;
@@ -33,18 +32,14 @@ public:
     }
 
 public slots:
-    void filteredTx(const QCanBusFrame &frame);
-    void filteredRx(const QCanBusFrame &frame);
 
 signals:
-    void filterTx(const QCanBusFrame &frame);
-    void filterRx(const QCanBusFrame &frame);
+    void frameReceived(const QCanBusFrame& frame);
+    void frameSent(bool status, const QCanBusFrame& frame);
     void requestRedraw();
 
 private:
     std::unique_ptr<NodePainter> _painter;
-    // 127 to use 4 blocks, 512 bytes each
-    moodycamel::ReaderWriterQueue<std::shared_ptr<NodeData>> _fwdQueue { 127 };
 };
 
-#endif // CANRAWFILTERMODEL_H
+#endif // CANRAWLOGGERMODEL_H

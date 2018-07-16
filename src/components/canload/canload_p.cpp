@@ -7,6 +7,9 @@ CanLoadPrivate::CanLoadPrivate(CanLoad* q, CanLoadCtx&& ctx)
 {
     initProps();
 
+    _bitrate = _props[_bitrateProperty].toInt();
+    _period = _props[_periodProperty].toInt();
+
     connect(&_timer, &QTimer::timeout, [this] {
         if (_div) {
             uint8_t load = static_cast<uint8_t>((_totalBits * 100) / _div);
@@ -53,3 +56,5 @@ void CanLoadPrivate::setSettings(const QJsonObject& json)
     _bitrate = _props[_bitrateProperty].toInt();
     _period = _props[_periodProperty].toInt();
 }
+
+

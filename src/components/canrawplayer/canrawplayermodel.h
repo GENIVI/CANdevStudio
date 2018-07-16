@@ -1,11 +1,11 @@
 #ifndef CANRAWPLAYERMODEL_H
 #define CANRAWPLAYERMODEL_H
 
+#include "canrawplayer.h"
 #include "componentmodel.h"
 #include "nodepainter.h"
-#include <QtCore/QObject>
-#include <canrawplayer.h>
 #include <QCanBusFrame>
+#include <QtCore/QObject>
 #include <readerwriterqueue.h>
 
 using QtNodes::NodeData;
@@ -32,7 +32,7 @@ public:
         return QColor(144, 187, 62);
     }
 
-    virtual bool hasSeparateThread() const override 
+    virtual bool hasSeparateThread() const override
     {
         return true;
     }
@@ -40,9 +40,9 @@ public:
 public slots:
 
     /**
-    *   @brief  Callback, called when CanRawSender emits signal sendFrame, sends frame
-    *   @param  received frame
-    */
+     *   @brief  Callback, called when CanRawSender emits signal sendFrame, sends frame
+     *   @param  received frame
+     */
     void sendFrame(const QCanBusFrame& frame);
 
 signals:
@@ -50,7 +50,7 @@ signals:
 
 private:
     std::unique_ptr<NodePainter> _painter;
-    moodycamel::ReaderWriterQueue<std::shared_ptr<NodeData>> _msgQueue { 127 };
+    moodycamel::ReaderWriterQueue<std::shared_ptr<NodeData>> _msgQueue{ 127 };
 };
 
 #endif // CANRAWPLAYERMODEL_H

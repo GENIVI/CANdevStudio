@@ -4,6 +4,8 @@
 #include <QPainter>
 #include <QtWidgets/QGraphicsEffect>
 #include <nodes/Node>
+#include <nodes/NodeDataModel>
+#include <nodes/NodePainterDelegate>
 
 struct NodePainter : public QtNodes::NodePainterDelegate {
 
@@ -35,7 +37,7 @@ struct NodePainter : public QtNodes::NodePainterDelegate {
             boundary = QRectF(-diam + 1, -diam + 1, 2.0 * diam + geom.width() - 2, 21);
             boundary2 = QRectF(-diam + 1, -diam + 11, 2.0 * diam + geom.width() - 2, 12);
             radius = 2.3;
-        } else if(graphicsObject.isSelected()) {
+        } else if (graphicsObject.isSelected()) {
             boundary = QRectF(-diam + 0.75, -diam + 0.75, 2.0 * diam + geom.width() - 1.5, 21.25);
             boundary2 = QRectF(-diam + 0.75, -diam + 11, 2.0 * diam + geom.width() - 1.5, 12);
             radius = 2.1;

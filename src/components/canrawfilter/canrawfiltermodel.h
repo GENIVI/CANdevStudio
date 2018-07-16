@@ -1,23 +1,25 @@
-#ifndef CANLOADMODEL_H
-#define CANLOADMODEL_H
+#ifndef CANRAWFILTERMODEL_H
+#define CANRAWFILTERMODEL_H
 
+#include "canrawfilter.h"
 #include "componentmodel.h"
-#include "canloadpainter.h"
+#include "nodepainter.h"
 #include <QtCore/QObject>
-#include <canload.h>
+#include <readerwriterqueue.h>
 
 using QtNodes::NodeData;
 using QtNodes::NodeDataType;
 using QtNodes::PortIndex;
 using QtNodes::PortType;
 
+class QCanBusFrame;
 enum class Direction;
 
-class CanLoadModel : public ComponentModel<CanLoad, CanLoadModel> {
+class CanRawFilterModel : public ComponentModel<CanRawFilter, CanRawFilterModel> {
     Q_OBJECT
 
 public:
-    CanLoadModel();
+    CanRawFilterModel();
 
     unsigned int nPorts(PortType portType) const override;
     NodeDataType dataType(PortType portType, PortIndex portIndex) const override;
@@ -31,15 +33,18 @@ public:
     }
 
 public slots:
-    void currentLoad(uint8_t load);
+    void filteredTx(const QCanBusFrame& frame);
+    void filteredRx(const QCanBusFrame& frame);
 
 signals:
-    void frameIn(const QCanBusFrame& frame);
+    void filterTx(const QCanBusFrame& frame);
+    void filterRx(const QCanBusFrame& frame);
     void requestRedraw();
 
 private:
-    std::unique_ptr<CanLoadPainter> _painter;
-    uint8_t _currentLoad = 0;
+    std::unique_ptr<NodePainter> _painter;
+    // 127 to use 4 blocks, 512 bytes each
+    moodycamel::ReaderWriterQueue<std::shared_ptr<NodeData>> _fwdQueue{ 127 };
 };
 
-#endif // CANLOADMODEL_H
+#endif // CANRAWFILTERMODEL_H

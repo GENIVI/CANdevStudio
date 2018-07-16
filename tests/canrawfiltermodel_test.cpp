@@ -1,6 +1,6 @@
 #include <QtWidgets/QApplication>
-#include <projectconfig/canrawfiltermodel.h>
-#include <datamodeltypes/canrawfilterdata.h>
+#include <canrawfiltermodel.h>
+#include <datamodeltypes/canrawdata.h>
 #define CATCH_CONFIG_RUNNER
 #include "log.h"
 #include <QSignalSpy>
@@ -72,7 +72,7 @@ TEST_CASE("setInData RX", "[canrawfilterModel]")
 {
     CanRawFilterModel cm;
     QCanBusFrame frame;
-    auto data = std::make_shared<CanRawFilterDataIn>(frame, Direction::RX);
+    auto data = std::make_shared<CanRawData>(frame, Direction::RX);
     QSignalSpy spy(&cm, &CanRawFilterModel::filterRx);
 
     cm.setInData(data, 0);
@@ -83,7 +83,7 @@ TEST_CASE("setInData TX success", "[canrawfilterModel]")
 {
     CanRawFilterModel cm;
     QCanBusFrame frame;
-    auto data = std::make_shared<CanRawFilterDataIn>(frame, Direction::TX, true);
+    auto data = std::make_shared<CanRawData>(frame, Direction::TX, true);
     QSignalSpy spy(&cm, &CanRawFilterModel::filterTx);
 
     cm.setInData(data, 0);
@@ -94,7 +94,7 @@ TEST_CASE("setInData TX fail", "[canrawfilterModel]")
 {
     CanRawFilterModel cm;
     QCanBusFrame frame;
-    auto data = std::make_shared<CanRawFilterDataIn>(frame, Direction::TX, false);
+    auto data = std::make_shared<CanRawData>(frame, Direction::TX, false);
     QSignalSpy spy(&cm, &CanRawFilterModel::filterTx);
 
     cm.setInData(data, 0);
@@ -105,7 +105,7 @@ TEST_CASE("setInData Undefined", "[canrawfilterModel]")
 {
     CanRawFilterModel cm;
     QCanBusFrame frame;
-    auto data = std::make_shared<CanRawFilterDataIn>(frame, (Direction)10, true);
+    auto data = std::make_shared<CanRawData>(frame, (Direction)10, true);
     QSignalSpy spy1(&cm, &CanRawFilterModel::filterTx);
     QSignalSpy spy2(&cm, &CanRawFilterModel::filterRx);
 

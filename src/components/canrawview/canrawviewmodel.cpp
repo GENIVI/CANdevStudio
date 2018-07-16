@@ -1,5 +1,5 @@
 #include "canrawviewmodel.h"
-#include <datamodeltypes/canrawviewdata.h>
+#include <datamodeltypes/canrawdata.h>
 #include <log.h>
 
 CanRawViewModel::CanRawViewModel()
@@ -28,18 +28,18 @@ unsigned int CanRawViewModel::nPorts(PortType portType) const
 
 NodeDataType CanRawViewModel::dataType(PortType, PortIndex) const
 {
-    return CanRawViewDataIn().type();
+    return CanRawData().type();
 }
 
 std::shared_ptr<NodeData> CanRawViewModel::outData(PortIndex)
 {
-    return std::make_shared<CanRawViewDataIn>();
+    return std::make_shared<CanRawData>();
 }
 
 void CanRawViewModel::setInData(std::shared_ptr<NodeData> nodeData, PortIndex)
 {
     if (nodeData) {
-        auto d = std::dynamic_pointer_cast<CanRawViewDataIn>(nodeData);
+        auto d = std::dynamic_pointer_cast<CanRawData>(nodeData);
         assert(nullptr != d);
         if (d->direction() == Direction::TX) {
             emit frameSent(d->status(), d->frame());

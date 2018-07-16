@@ -1,5 +1,5 @@
 #include "canrawplayermodel.h"
-#include <datamodeltypes/canrawplayerdata.h>
+#include <datamodeltypes/canrawdata.h>
 #include <log.h>
 
 namespace {
@@ -10,7 +10,7 @@ const std::map<PortType, std::vector<NodeDataType>> portMappings = {
     },
     { PortType::Out, 
         {
-            {CanRawPlayerDataOut{}.type() }
+            {CanRawData{}.type() }
         }
     }
 };
@@ -70,7 +70,7 @@ void CanRawPlayerModel::setInData(std::shared_ptr<NodeData> nodeData, PortIndex)
 
 void CanRawPlayerModel::sendFrame(const QCanBusFrame& frame)
 {
-    bool ret = _msgQueue.try_enqueue(std::make_shared<CanRawPlayerDataOut>(frame));
+    bool ret = _msgQueue.try_enqueue(std::make_shared<CanRawData>(frame));
 
     if(ret) {
         emit dataUpdated(0); // Data ready on port 0

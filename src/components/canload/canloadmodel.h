@@ -1,24 +1,23 @@
-#ifndef CANRAWLOGGERMODEL_H
-#define CANRAWLOGGERMODEL_H
+#ifndef CANLOADMODEL_H
+#define CANLOADMODEL_H
 
+#include "canload.h"
+#include "canloadpainter.h"
 #include "componentmodel.h"
-#include "nodepainter.h"
 #include <QtCore/QObject>
-#include <canrawlogger.h>
 
 using QtNodes::NodeData;
 using QtNodes::NodeDataType;
 using QtNodes::PortIndex;
 using QtNodes::PortType;
 
-class QCanBusFrame;
 enum class Direction;
 
-class CanRawLoggerModel : public ComponentModel<CanRawLogger, CanRawLoggerModel> {
+class CanLoadModel : public ComponentModel<CanLoad, CanLoadModel> {
     Q_OBJECT
 
 public:
-    CanRawLoggerModel();
+    CanLoadModel();
 
     unsigned int nPorts(PortType portType) const override;
     NodeDataType dataType(PortType portType, PortIndex portIndex) const override;
@@ -32,14 +31,15 @@ public:
     }
 
 public slots:
+    void currentLoad(uint8_t load);
 
 signals:
-    void frameReceived(const QCanBusFrame& frame);
-    void frameSent(bool status, const QCanBusFrame& frame);
+    void frameIn(const QCanBusFrame& frame);
     void requestRedraw();
 
 private:
-    std::unique_ptr<NodePainter> _painter;
+    std::unique_ptr<CanLoadPainter> _painter;
+    uint8_t _currentLoad = 0;
 };
 
-#endif // CANRAWLOGGERMODEL_H
+#endif // CANLOADMODEL_H

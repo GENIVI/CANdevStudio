@@ -1,5 +1,5 @@
-#ifndef __CANDEVICEDATA_H
-#define __CANDEVICEDATA_H
+#ifndef __CANRAWDATA_H
+#define __CANRAWDATA_H
 
 #include <nodes/NodeDataModel>
 
@@ -15,10 +15,10 @@ enum class Direction { RX, TX, Uninitialized };
 /**
 *   @brief The class describing data model used as output for CanDevice node
 */
-class CanDeviceDataOut : public NodeData {
+class CanRawData : public NodeData {
 public:
-    CanDeviceDataOut(){};
-    CanDeviceDataOut(QCanBusFrame const& frame, Direction const direction = Direction::TX, bool status = true)
+    CanRawData(){};
+    CanRawData(QCanBusFrame const& frame, Direction const direction = Direction::TX, bool status = true)
         : _frame(frame)
         , _direction(direction)
         , _status(status)
@@ -63,6 +63,4 @@ private:
     bool _status; // used only for frameSent, ignored for frameReceived
 };
 
-using CanDeviceDataIn = CanDeviceDataOut;
-
-#endif /* !__CANDEVICEDATA_H */
+#endif /* !__CANRAWDATA_H */
