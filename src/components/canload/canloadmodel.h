@@ -1,10 +1,10 @@
 #ifndef CANLOADMODEL_H
 #define CANLOADMODEL_H
 
-#include "componentmodel.h"
+#include "canload.h"
 #include "canloadpainter.h"
+#include "componentmodel.h"
 #include <QtCore/QObject>
-#include <canload.h>
 
 using QtNodes::NodeData;
 using QtNodes::NodeDataType;

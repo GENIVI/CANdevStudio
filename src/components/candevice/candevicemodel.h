@@ -1,11 +1,11 @@
 #ifndef CANDEVICEMODEL_H
 #define CANDEVICEMODEL_H
 
+#include "candevice.h"
 #include "componentmodel.h"
 #include "nodepainter.h"
 #include <QtCore/QObject>
 #include <QtSerialBus/QCanBusFrame>
-#include <candevice.h>
 #include <readerwriterqueue.h>
 
 using QtNodes::NodeData;
@@ -67,7 +67,7 @@ public:
         return QColor(245, 170, 27);
     }
 
-    virtual bool hasSeparateThread() const override 
+    virtual bool hasSeparateThread() const override
     {
         return true;
     }
@@ -102,7 +102,7 @@ private:
     QCanBusFrame _frame;
     std::unique_ptr<NodePainter> _painter;
     // 127 to use 4 blocks, 512 bytes each
-    moodycamel::ReaderWriterQueue<std::shared_ptr<NodeData>> _rxQueue { 127 };
+    moodycamel::ReaderWriterQueue<std::shared_ptr<NodeData>> _rxQueue{ 127 };
 };
 
 #endif // CANDEVICEMODEL_H

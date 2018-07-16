@@ -110,15 +110,11 @@ public:
         // For some reason QWidget title is being set to name instead of caption.
         // TODO: investigate why
         iface.setCaption(node.nodeDataModel()->caption());
-
-        if (iface.hasSeparateThread()) {
-            // Thread will be deleted during node deletion
-            iface.handleModelCreation(q, node, new QThread());
-        } else {
-            iface.handleModelCreation(q, node);
-        }
-
+        iface.setRedrawCbk([&node] { node.nodeGraphicsObject().update(); });
         iface.setColorMode(_darkMode);
+        connect(q, &ProjectConfig::startSimulation, &iface, &ComponentModelInterface::startSimulation);
+        connect(q, &ProjectConfig::stopSimulation, &iface, &ComponentModelInterface::stopSimulation);
+        connect(&iface, &ComponentModelInterface::handleDock, q, &ProjectConfig::handleDock);
 
         node.nodeGraphicsObject().setOpacity(node.nodeDataModel()->nodeStyle().Opacity);
         addShadow(node);

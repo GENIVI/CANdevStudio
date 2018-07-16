@@ -2,6 +2,7 @@
 #define CANDEVICEPLUGIN_H_R6ODXXIJ
 
 #include "plugin_type.h"
+#include "candevicemodel.h"
 
 struct CANDevicePlugin {
     using Model = CanDeviceModel;

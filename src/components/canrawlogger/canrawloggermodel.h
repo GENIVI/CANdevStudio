@@ -1,10 +1,10 @@
 #ifndef CANRAWLOGGERMODEL_H
 #define CANRAWLOGGERMODEL_H
 
+#include "canrawlogger.h"
 #include "componentmodel.h"
 #include "nodepainter.h"
 #include <QtCore/QObject>
-#include <canrawlogger.h>
 
 using QtNodes::NodeData;
 using QtNodes::NodeDataType;

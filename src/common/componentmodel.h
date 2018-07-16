@@ -1,7 +1,6 @@
 #ifndef COMPONENTMODEL_H
 #define COMPONENTMODEL_H
 
-#include "projectconfig.h"
 #include <QThread>
 #include <QtCore/QObject>
 #include <QtWidgets/QLabel>
@@ -12,27 +11,54 @@
 
 struct ComponentInterface;
 
-struct ComponentModelInterface {
+struct ComponentModelInterface : public QtNodes::NodeDataModel {
+
+    Q_OBJECT
+
+public:
     virtual ~ComponentModelInterface() = default;
     virtual ComponentInterface& getComponent() = 0;
-    virtual void handleModelCreation(ProjectConfig* config, QtNodes::Node& node, QThread* th = nullptr) = 0;
     virtual void setCaption(const QString& caption) = 0;
     virtual bool restored() = 0;
     virtual void setColorMode(bool darkMode) = 0;
     virtual bool hasSeparateThread() const = 0;
-    virtual void requestRedraw() = 0;
+    virtual void setRedrawCbk(const std::function<void()>&& func) = 0;
+
+signals:
+    void startSimulation();
+    void stopSimulation();
+    void handleDock(QWidget* widget);
 };
 
-template <typename C, typename Derived>
-class ComponentModel : public QtNodes::NodeDataModel, public ComponentModelInterface {
+template <typename C, typename Derived> class ComponentModel : public ComponentModelInterface {
 
 public:
     ComponentModel() = default;
+
+    virtual void setRedrawCbk(const std::function<void()>&& func) override
+    {
+        connect((Derived*)this, &Derived::requestRedraw, func);
+    }
 
     ComponentModel(const QString& name)
         : _caption(name)
         , _name(name)
     {
+        connect(this, &ComponentModelInterface::startSimulation, &_component, &C::startSimulation);
+        connect(this, &ComponentModelInterface::stopSimulation, &_component, &C::stopSimulation);
+        connect(&_component, &C::mainWidgetDockToggled, this, &ComponentModelInterface::handleDock);
+
+        if (hasSeparateThread()) {
+            auto th = new QThread();
+            if (th) {
+                cds_info("Setting separate event loop for component {}", _caption.toStdString());
+
+                this->moveToThread(th);
+                _component.moveToThread(th);
+
+                th->start();
+            }
+        }
     }
 
     virtual ~ComponentModel() = default;
@@ -139,23 +165,6 @@ public:
     virtual ComponentInterface& getComponent() override
     {
         return _component;
-    }
-
-    virtual void handleModelCreation(ProjectConfig* config, QtNodes::Node& node, QThread* th = nullptr) override
-    {
-        connect(config, &ProjectConfig::startSimulation, &_component, &C::startSimulation);
-        connect(config, &ProjectConfig::stopSimulation, &_component, &C::stopSimulation);
-        connect(&_component, &C::mainWidgetDockToggled, config, &ProjectConfig::handleDock);
-        connect((Derived*)this, &Derived::requestRedraw, [&node] { node.nodeGraphicsObject().update(); });
-
-        if (th) {
-            cds_info("Setting separate event loop for component {}", _caption.toStdString());
-
-            this->moveToThread(th);
-            _component.moveToThread(th);
-
-            th->start();
-        }
     }
 
     virtual bool restored() override
