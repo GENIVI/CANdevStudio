@@ -1,4 +1,4 @@
-
+add_subdirectory(projectconfig)
 
 set(srcs
     main.cpp
@@ -12,9 +12,8 @@ set(srcs
 add_definitions(-DRAPIDJSON_HAS_STDSTRING=1 -DRAPIDJSON_HAS_CXX11_RVALUE_REFS=1)
 
 add_executable(CANdevStudio MACOSX_BUNDLE ${GUI_TYPE} ${srcs})
-include_directories("${CMAKE_CURRENT_SOURCE_DIR}/../components/")
-include_directories("${CMAKE_CURRENT_SOURCE_DIR}/../../3rdParty/rapidjson/include")
-target_link_libraries(CANdevStudio cds-common projectconfig nodes)
+include_directories("${CMAKE_SOURCE_DIR}/3rdParty/rapidjson/include")
+target_link_libraries(CANdevStudio projectconfig)
 target_compile_definitions(CANdevStudio PRIVATE $<$<CONFIG:Debug>:CDS_DEBUG=true> $<$<NOT:$<CONFIG:Debug>>:CDS_DEBUG=false>)
 
 install(TARGETS CANdevStudio 
