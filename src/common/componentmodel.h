@@ -48,7 +48,8 @@ public:
         connect(this, &ComponentModelInterface::stopSimulation, &_component, &C::stopSimulation);
         connect(&_component, &C::mainWidgetDockToggled, this, &ComponentModelInterface::handleDock);
 
-        if (hasSeparateThread()) {
+        auto derived = static_cast<Derived *>(this);
+        if (derived->hasSeparateThread()) {
             auto th = new QThread();
             if (th) {
                 cds_info("Setting separate event loop for component {}", _caption.toStdString());

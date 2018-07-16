@@ -3,6 +3,7 @@ coverage:
         - "src/components/canrawsender/gui"
         - "src/components/canrawview/gui"
         - "src/components/canrawfilter/gui"
+        - "src/components/canload/canloadpainter.h"
         - "src/common/guiinterface"
         - "src/common/nodepainter.h"
         - "src/gui/main*"
