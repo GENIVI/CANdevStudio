@@ -104,36 +104,24 @@ configure_file(
   ${CMAKE_SOURCE_DIR}/src/common/version.h.in
   ${CMAKE_BINARY_DIR}/generated/version.h
 )
-include_directories(${CMAKE_BINARY_DIR}/generated)
 # end of version Handling
 
 include_directories(3rdParty/readerwriterqueue)
 include_directories(3rdParty/cxxopts/include)
 
-add_subdirectory(3rdParty/nodeeditor)
+add_subdirectory(3rdParty)
 add_subdirectory(src/common)
 add_subdirectory(src/gui)
 add_subdirectory(src/components)
 
 if(WITH_TESTS OR WITH_COVERAGE)
     enable_testing()
-    add_subdirectory(3rdParty/fakeit)
     add_subdirectory(tests)
 endif()
 
 if(WITH_TOOLS)
     find_package(Boost COMPONENTS system filesystem REQUIRED)
-
     add_subdirectory(tools)
-endif()
-
-#Cannelloni is supported on Linux only
-if(LINUX)
-    add_subdirectory(3rdParty/qtCannelloniCanBus)
-
-    install(PROGRAMS ${CMAKE_BINARY_DIR}/3rdParty/qtCannelloniCanBus/libqtCannelloniCanBusPlugin.so 
-        DESTINATION ${INSTALL_DEST_PLUG}
-    )
 endif()
 
 if(STANDALONE)
