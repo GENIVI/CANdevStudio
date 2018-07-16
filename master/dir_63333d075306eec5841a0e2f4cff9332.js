@@ -61,9 +61,7 @@ var dir_63333d075306eec5841a0e2f4cff9332 =
     ] ],
     [ "projectconfig.cpp", "projectconfig_8cpp.html", null ],
     [ "projectconfig.h", "projectconfig_8h.html", "projectconfig_8h" ],
-    [ "projectconfig_p.h", "projectconfig__p_8h.html", [
-      [ "ProjectConfigPrivate", "class_project_config_private.html", "class_project_config_private" ]
-    ] ],
+    [ "projectconfig_p.h", "projectconfig__p_8h.html", "projectconfig__p_8h" ],
     [ "projectconfigvalidator.cpp", "projectconfigvalidator_8cpp.html", null ],
     [ "projectconfigvalidator.h", "projectconfigvalidator_8h.html", [
       [ "ProjectConfigValidator", "class_project_config_validator.html", null ]

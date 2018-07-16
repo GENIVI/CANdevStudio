@@ -10,6 +10,9 @@ var dir_c3a04f334b303e0e7484d59fef452afc =
     [ "candeviceinterface.h", "candeviceinterface_8h.html", [
       [ "CanDeviceInterface", "struct_can_device_interface.html", "struct_can_device_interface" ]
     ] ],
+    [ "candeviceplugin.h", "candeviceplugin_8h.html", [
+      [ "CANDevicePlugin", "struct_c_a_n_device_plugin.html", "struct_c_a_n_device_plugin" ]
+    ] ],
     [ "candeviceqt.h", "candeviceqt_8h.html", [
       [ "CanDeviceQt", "struct_can_device_qt.html", "struct_can_device_qt" ]
     ] ]

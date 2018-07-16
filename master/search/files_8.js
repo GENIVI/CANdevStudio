@@ -2,6 +2,8 @@ var searchData=
 [
   ['pcimpl_2eh',['pcimpl.h',['../pcimpl_8h.html',1,'']]],
   ['pcinterface_2eh',['pcinterface.h',['../pcinterface_8h.html',1,'']]],
+  ['plugin_5ftype_2eh',['plugin_type.h',['../plugin__type_8h.html',1,'']]],
+  ['pluginloader_2eh',['pluginloader.h',['../pluginloader_8h.html',1,'']]],
   ['projectconfig_2ecpp',['projectconfig.cpp',['../projectconfig_8cpp.html',1,'']]],
   ['projectconfig_2eh',['projectconfig.h',['../projectconfig_8h.html',1,'']]],
   ['projectconfig_5fp_2eh',['projectconfig_p.h',['../projectconfig__p_8h.html',1,'']]],

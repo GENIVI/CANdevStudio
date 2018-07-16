@@ -13,6 +13,11 @@ var dir_fdedb0aba14d44ce9d99bc100e026e6a =
     ] ],
     [ "log.h", "log_8h.html", "log_8h" ],
     [ "modelvisitor.h", "modelvisitor_8h.html", "modelvisitor_8h" ],
+    [ "plugin_type.h", "plugin__type_8h.html", [
+      [ "DevicePlugin", "struct_device_plugin.html", null ],
+      [ "CANRawPlugin", "struct_c_a_n_raw_plugin.html", null ]
+    ] ],
+    [ "pluginloader.h", "pluginloader_8h.html", "pluginloader_8h" ],
     [ "visitablewith.h", "visitablewith_8h.html", [
       [ "VisitableWith", "struct_visitable_with.html", "struct_visitable_with" ]
     ] ],
