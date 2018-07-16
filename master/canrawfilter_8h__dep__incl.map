@@ -1,9 +1,8 @@
 <map id="src/components/canrawfilter/canrawfilter.h" name="src/components/canrawfilter/canrawfilter.h">
 <area shape="rect" id="node2" href="$canrawfilter_8cpp.html" title="src/components/canrawfilter\l/canrawfilter.cpp" alt="" coords="5,184,208,225"/>
-<area shape="rect" id="node3" href="$canrawfilter__p_8h.html" title="src/components/canrawfilter\l/canrawfilter_p.h" alt="" coords="211,95,413,136"/>
-<area shape="rect" id="node5" href="$canrawfiltermodel_8h.html" title="src/components/projectconfig\l/canrawfiltermodel.h" alt="" coords="459,95,669,136"/>
+<area shape="rect" id="node3" href="$canrawfilter__p_8h.html" title="src/components/canrawfilter\l/canrawfilter_p.h" alt="" coords="209,95,412,136"/>
+<area shape="rect" id="node5" href="$canrawfiltermodel_8h.html" title="src/components/canrawfilter\l/canrawfiltermodel.h" alt="" coords="459,95,661,136"/>
 <area shape="rect" id="node4" href="$canrawfilter__p_8cpp.html" title="src/components/canrawfilter\l/canrawfilter_p.cpp" alt="" coords="232,184,435,225"/>
-<area shape="rect" id="node6" href="$canrawfiltermodel_8cpp.html" title="src/components/projectconfig\l/canrawfiltermodel.cpp" alt="" coords="459,184,669,225"/>
-<area shape="rect" id="node7" href="$projectconfig__p_8h.html" title="src/components/projectconfig\l/projectconfig_p.h" alt="" coords="693,184,904,225"/>
-<area shape="rect" id="node8" href="$projectconfig_8cpp.html" title="src/components/projectconfig\l/projectconfig.cpp" alt="" coords="693,273,904,315"/>
+<area shape="rect" id="node6" href="$canrawfiltermodel_8cpp.html" title="src/components/canrawfilter\l/canrawfiltermodel.cpp" alt="" coords="459,184,661,225"/>
+<area shape="rect" id="node7" href="$canrawfilterplugin_8h.html" title="src/components/canrawfilter\l/canrawfilterplugin.h" alt="" coords="685,184,888,225"/>
 </map>

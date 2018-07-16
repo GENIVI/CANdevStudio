@@ -1,17 +1,17 @@
 <map id="ComponentModelInterface" name="ComponentModelInterface">
-<area shape="rect" id="node2" href="$class_component_model.html" title="ComponentModel\&lt; C,\l Derived \&gt;" alt="" coords="288,5,451,47"/>
-<area shape="rect" id="node3" href="$class_component_model.html" title="ComponentModel\&lt; CanDevice,\l CanDeviceModel \&gt;" alt="" coords="258,71,481,112"/>
-<area shape="rect" id="node5" href="$class_component_model.html" title="ComponentModel\&lt; CanLoad,\l CanLoadModel \&gt;" alt="" coords="264,136,475,177"/>
-<area shape="rect" id="node7" href="$class_component_model.html" title="ComponentModel\&lt; CanRawFilter,\l CanRawFilterModel \&gt;" alt="" coords="252,201,487,243"/>
-<area shape="rect" id="node9" href="$class_component_model.html" title="ComponentModel\&lt; CanRawLogger,\l CanRawLoggerModel \&gt;" alt="" coords="245,267,493,308"/>
-<area shape="rect" id="node11" href="$class_component_model.html" title="ComponentModel\&lt; CanRawPlayer,\l CanRawPlayerModel \&gt;" alt="" coords="248,332,491,373"/>
-<area shape="rect" id="node13" href="$class_component_model.html" title="ComponentModel\&lt; CanRawSender,\l CanRawSenderModel \&gt;" alt="" coords="244,397,495,439"/>
-<area shape="rect" id="node15" href="$class_component_model.html" title="ComponentModel\&lt; CanRawView,\l CanRawViewModel \&gt;" alt="" coords="253,463,486,504"/>
-<area shape="rect" id="node4" href="$class_can_device_model.html" title="The class provides node graphical representation of CanDevice. " alt="" coords="557,78,685,105"/>
-<area shape="rect" id="node6" href="$class_can_load_model.html" title="CanLoadModel" alt="" coords="563,143,679,170"/>
-<area shape="rect" id="node8" href="$class_can_raw_filter_model.html" title="CanRawFilterModel" alt="" coords="551,209,691,235"/>
-<area shape="rect" id="node10" href="$class_can_raw_logger_model.html" title="CanRawLoggerModel" alt="" coords="543,274,698,301"/>
-<area shape="rect" id="node12" href="$class_can_raw_player_model.html" title="CanRawPlayerModel" alt="" coords="546,339,695,366"/>
-<area shape="rect" id="node14" href="$class_can_raw_sender_model.html" title="The class provides node graphical representation of CanRawSender. " alt="" coords="543,405,699,431"/>
-<area shape="rect" id="node16" href="$class_can_raw_view_model.html" title="The class provides node graphical representation of CanRawView. " alt="" coords="551,470,690,497"/>
+<area shape="rect" id="node3" href="$class_component_model.html" title="ComponentModel\&lt; C,\l Derived \&gt;" alt="" coords="525,5,688,47"/>
+<area shape="rect" id="node4" href="$class_component_model.html" title="ComponentModel\&lt; CanDevice,\l CanDeviceModel \&gt;" alt="" coords="495,71,718,112"/>
+<area shape="rect" id="node6" href="$class_component_model.html" title="ComponentModel\&lt; CanLoad,\l CanLoadModel \&gt;" alt="" coords="501,136,712,177"/>
+<area shape="rect" id="node8" href="$class_component_model.html" title="ComponentModel\&lt; CanRawFilter,\l CanRawFilterModel \&gt;" alt="" coords="489,201,724,243"/>
+<area shape="rect" id="node10" href="$class_component_model.html" title="ComponentModel\&lt; CanRawLogger,\l CanRawLoggerModel \&gt;" alt="" coords="483,267,731,308"/>
+<area shape="rect" id="node12" href="$class_component_model.html" title="ComponentModel\&lt; CanRawPlayer,\l CanRawPlayerModel \&gt;" alt="" coords="485,332,728,373"/>
+<area shape="rect" id="node14" href="$class_component_model.html" title="ComponentModel\&lt; CanRawSender,\l CanRawSenderModel \&gt;" alt="" coords="481,397,732,439"/>
+<area shape="rect" id="node16" href="$class_component_model.html" title="ComponentModel\&lt; CanRawView,\l CanRawViewModel \&gt;" alt="" coords="490,463,723,504"/>
+<area shape="rect" id="node5" href="$class_can_device_model.html" title="The class provides node graphical representation of CanDevice. " alt="" coords="794,78,922,105"/>
+<area shape="rect" id="node7" href="$class_can_load_model.html" title="CanLoadModel" alt="" coords="800,143,916,170"/>
+<area shape="rect" id="node9" href="$class_can_raw_filter_model.html" title="CanRawFilterModel" alt="" coords="788,209,928,235"/>
+<area shape="rect" id="node11" href="$class_can_raw_logger_model.html" title="CanRawLoggerModel" alt="" coords="781,274,935,301"/>
+<area shape="rect" id="node13" href="$class_can_raw_player_model.html" title="CanRawPlayerModel" alt="" coords="783,339,933,366"/>
+<area shape="rect" id="node15" href="$class_can_raw_sender_model.html" title="The class provides node graphical representation of CanRawSender. " alt="" coords="780,405,936,431"/>
+<area shape="rect" id="node17" href="$class_can_raw_view_model.html" title="The class provides node graphical representation of CanRawView. " alt="" coords="789,470,927,497"/>
 </map>

@@ -1,7 +1,6 @@
 var searchData=
 [
   ['candevice',['CanDevice',['../class_can_device.html',1,'']]],
-  ['candevicedataout',['CanDeviceDataOut',['../class_can_device_data_out.html',1,'']]],
   ['candeviceinterface',['CanDeviceInterface',['../struct_can_device_interface.html',1,'']]],
   ['candevicemodel',['CanDeviceModel',['../class_can_device_model.html',1,'']]],
   ['candeviceplugin',['CANDevicePlugin',['../struct_c_a_n_device_plugin.html',1,'']]],
@@ -13,6 +12,7 @@ var searchData=
   ['canloadplugin',['CANLoadPlugin',['../struct_c_a_n_load_plugin.html',1,'']]],
   ['canloadprivate',['CanLoadPrivate',['../class_can_load_private.html',1,'']]],
   ['cannodedatamodelvisitor',['CanNodeDataModelVisitor',['../struct_can_node_data_model_visitor.html',1,'']]],
+  ['canrawdata',['CanRawData',['../class_can_raw_data.html',1,'']]],
   ['canrawfilter',['CanRawFilter',['../class_can_raw_filter.html',1,'']]],
   ['canrawfilterguiimpl',['CanRawFilterGuiImpl',['../struct_can_raw_filter_gui_impl.html',1,'']]],
   ['canrawfilterguiint',['CanRawFilterGuiInt',['../struct_can_raw_filter_gui_int.html',1,'']]],

@@ -1,6 +1,6 @@
 <map id="CanRawPlayerModel" name="CanRawPlayerModel">
-<area shape="rect" id="node2" href="$class_component_model.html" title="ComponentModel\&lt; CanRawPlayer,\l CanRawPlayerModel \&gt;" alt="" coords="129,171,372,212"/>
-<area shape="rect" id="node4" href="$struct_component_model_interface.html" title="ComponentModelInterface" alt="" coords="155,81,346,108"/>
-<area shape="rect" id="node5" href="$class_can_raw_player.html" title="CanRawPlayer" alt="" coords="370,81,481,108"/>
-<area shape="rect" id="node7" href="$struct_component_interface.html" title="Interface to be implemented by every component. " alt="" coords="417,5,570,32"/>
+<area shape="rect" id="node2" href="$class_component_model.html" title="ComponentModel\&lt; CanRawPlayer,\l CanRawPlayerModel \&gt;" alt="" coords="82,171,325,212"/>
+<area shape="rect" id="node3" href="$struct_component_model_interface.html" title="ComponentModelInterface" alt="" coords="5,81,196,108"/>
+<area shape="rect" id="node5" href="$class_can_raw_player.html" title="CanRawPlayer" alt="" coords="220,81,331,108"/>
+<area shape="rect" id="node7" href="$struct_component_interface.html" title="Interface to be implemented by every component. " alt="" coords="327,5,480,32"/>
 </map>

@@ -1,7 +1,6 @@
 var annotated_dup =
 [
     [ "CanDevice", "class_can_device.html", "class_can_device" ],
-    [ "CanDeviceDataOut", "class_can_device_data_out.html", "class_can_device_data_out" ],
     [ "CanDeviceInterface", "struct_can_device_interface.html", "struct_can_device_interface" ],
     [ "CanDeviceModel", "class_can_device_model.html", "class_can_device_model" ],
     [ "CANDevicePlugin", "struct_c_a_n_device_plugin.html", "struct_c_a_n_device_plugin" ],
@@ -13,6 +12,7 @@ var annotated_dup =
     [ "CANLoadPlugin", "struct_c_a_n_load_plugin.html", "struct_c_a_n_load_plugin" ],
     [ "CanLoadPrivate", "class_can_load_private.html", "class_can_load_private" ],
     [ "CanNodeDataModelVisitor", "struct_can_node_data_model_visitor.html", null ],
+    [ "CanRawData", "class_can_raw_data.html", "class_can_raw_data" ],
     [ "CanRawFilter", "class_can_raw_filter.html", "class_can_raw_filter" ],
     [ "CanRawFilterGuiImpl", "struct_can_raw_filter_gui_impl.html", "struct_can_raw_filter_gui_impl" ],
     [ "CanRawFilterGuiInt", "struct_can_raw_filter_gui_int.html", "struct_can_raw_filter_gui_int" ],

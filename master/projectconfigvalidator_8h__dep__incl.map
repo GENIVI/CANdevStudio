@@ -1,4 +1,4 @@
-<map id="src/components/projectconfig/projectconfigvalidator.h" name="src/components/projectconfig/projectconfigvalidator.h">
-<area shape="rect" id="node2" href="$projectconfigvalidator_8cpp.html" title="src/components/projectconfig\l/projectconfigvalidator.cpp" alt="" coords="5,95,216,136"/>
-<area shape="rect" id="node3" href="$mainwindow_8cpp.html" title="src/gui/mainwindow.cpp" alt="" coords="240,102,411,129"/>
+<map id="src/gui/projectconfig/projectconfigvalidator.h" name="src/gui/projectconfig/projectconfigvalidator.h">
+<area shape="rect" id="node2" href="$mainwindow_8cpp.html" title="src/gui/mainwindow.cpp" alt="" coords="5,102,176,129"/>
+<area shape="rect" id="node3" href="$projectconfigvalidator_8cpp.html" title="src/gui/projectconfig\l/projectconfigvalidator.cpp" alt="" coords="200,95,389,136"/>
 </map>

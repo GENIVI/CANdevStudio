@@ -1,4 +1,4 @@
 <map id="CanRawViewModel" name="CanRawViewModel">
-<area shape="rect" id="node2" href="$class_component_model.html" title="ComponentModel\&lt; CanRawView,\l CanRawViewModel \&gt;" alt="" coords="42,80,275,121"/>
-<area shape="rect" id="node4" href="$struct_component_model_interface.html" title="ComponentModelInterface" alt="" coords="155,5,346,32"/>
+<area shape="rect" id="node2" href="$class_component_model.html" title="ComponentModel\&lt; CanRawView,\l CanRawViewModel \&gt;" alt="" coords="5,155,239,196"/>
+<area shape="rect" id="node3" href="$struct_component_model_interface.html" title="ComponentModelInterface" alt="" coords="27,80,217,107"/>
 </map>

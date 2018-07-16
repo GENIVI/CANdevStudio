@@ -1,3 +1,10 @@
 <map id="src/components/canrawsender/canrawsenderplugin.h" name="src/components/canrawsender/canrawsenderplugin.h">
-<area shape="rect" id="node2" href="$plugin__type_8h.html" title="plugin_type.h" alt="" coords="61,95,168,121"/>
+<area shape="rect" id="node2" href="$plugin__type_8h.html" title="plugin_type.h" alt="" coords="937,95,1044,121"/>
+<area shape="rect" id="node3" href="$canrawsendermodel_8h.html" title="canrawsendermodel.h" alt="" coords="1068,95,1231,121"/>
+<area shape="rect" id="node4" href="$canrawsender_8h.html" title="canrawsender.h" alt="" coords="460,169,583,196"/>
+<area shape="rect" id="node15" href="$componentmodel_8h.html" title="componentmodel.h" alt="" coords="917,169,1064,196"/>
+<area shape="rect" id="node25" href="$nodepainter_8h.html" title="nodepainter.h" alt="" coords="1253,169,1363,196"/>
+<area shape="rect" id="node7" href="$componentinterface_8h.html" title="componentinterface.h" alt="" coords="73,244,236,271"/>
+<area shape="rect" id="node13" href="$context_8h.html" title="context.h" alt="" coords="657,244,740,271"/>
+<area shape="rect" id="node18" href="$log_8h.html" title="log.h" alt="" coords="1024,244,1077,271"/>
 </map>

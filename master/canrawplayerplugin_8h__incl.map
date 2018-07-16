@@ -1,3 +1,10 @@
 <map id="src/components/canrawplayer/canrawplayerplugin.h" name="src/components/canrawplayer/canrawplayerplugin.h">
-<area shape="rect" id="node2" href="$plugin__type_8h.html" title="plugin_type.h" alt="" coords="59,95,165,121"/>
+<area shape="rect" id="node2" href="$plugin__type_8h.html" title="plugin_type.h" alt="" coords="1120,95,1227,121"/>
+<area shape="rect" id="node3" href="$canrawplayermodel_8h.html" title="canrawplayermodel.h" alt="" coords="1251,95,1410,121"/>
+<area shape="rect" id="node4" href="$canrawplayer_8h.html" title="canrawplayer.h" alt="" coords="505,169,623,196"/>
+<area shape="rect" id="node15" href="$componentmodel_8h.html" title="componentmodel.h" alt="" coords="1057,169,1204,196"/>
+<area shape="rect" id="node25" href="$nodepainter_8h.html" title="nodepainter.h" alt="" coords="1395,169,1506,196"/>
+<area shape="rect" id="node7" href="$componentinterface_8h.html" title="componentinterface.h" alt="" coords="187,244,349,271"/>
+<area shape="rect" id="node13" href="$context_8h.html" title="context.h" alt="" coords="447,244,529,271"/>
+<area shape="rect" id="node18" href="$log_8h.html" title="log.h" alt="" coords="951,244,1004,271"/>
 </map>

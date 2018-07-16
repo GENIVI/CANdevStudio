@@ -1,13 +1,13 @@
 var searchData=
 [
   ['candevice',['CanDevice',['../class_can_device.html#a7c6081d39cd9f440147686aabe156682',1,'CanDevice::CanDevice()'],['../class_can_device.html#ae04e225627487183a11f0b07584bbca3',1,'CanDevice::CanDevice(CanDeviceCtx &amp;&amp;ctx)']]],
-  ['candevicedataout',['CanDeviceDataOut',['../class_can_device_data_out.html#ae3460c64a1534464c322218caa6b1136',1,'CanDeviceDataOut::CanDeviceDataOut()'],['../class_can_device_data_out.html#a0a6aedb4d262e4dd8bab50c88ee6a809',1,'CanDeviceDataOut::CanDeviceDataOut(QCanBusFrame const &amp;frame, Direction const direction=Direction::TX, bool status=true)']]],
   ['candevicemodel',['CanDeviceModel',['../class_can_device_model.html#add5985ec6435f710acc0b0b14c560dd1',1,'CanDeviceModel']]],
   ['candeviceprivate',['CanDevicePrivate',['../class_can_device_private.html#a7896dc8cab99964673232ee03a374029',1,'CanDevicePrivate']]],
   ['canload',['CanLoad',['../class_can_load.html#a53fc897775305acf9fa32b0c00a1faab',1,'CanLoad::CanLoad()'],['../class_can_load.html#aa0e08e857783522f31b5438ec7dd1e4f',1,'CanLoad::CanLoad(CanLoadCtx &amp;&amp;ctx)']]],
   ['canloadmodel',['CanLoadModel',['../class_can_load_model.html#ad29d2b0ba456b13bfffc6d0e7cdade34',1,'CanLoadModel']]],
   ['canloadpainter',['CanLoadPainter',['../struct_can_load_painter.html#af6cce745eceaacef51bcfdf31180f231',1,'CanLoadPainter::CanLoadPainter()=default'],['../struct_can_load_painter.html#a533cf98cd74c281376dc6568c333164d',1,'CanLoadPainter::CanLoadPainter(const QColor &amp;headerColor, const uint8_t &amp;load)']]],
   ['canloadprivate',['CanLoadPrivate',['../class_can_load_private.html#a9b585ce632deef855192fa0fd7078d5c',1,'CanLoadPrivate']]],
+  ['canrawdata',['CanRawData',['../class_can_raw_data.html#a4877a4a69a8447eade212f1684dbe3a5',1,'CanRawData::CanRawData()'],['../class_can_raw_data.html#ae773e83535e1165e2a9e43a01a380868',1,'CanRawData::CanRawData(QCanBusFrame const &amp;frame, Direction const direction=Direction::TX, bool status=true)']]],
   ['canrawfilter',['CanRawFilter',['../class_can_raw_filter.html#a1303f7ae3754a12bf6a51ef0de2731d1',1,'CanRawFilter::CanRawFilter()'],['../class_can_raw_filter.html#add21358d01ac4fa8a04c5fdd7e30fca7',1,'CanRawFilter::CanRawFilter(CanRawFilterCtx &amp;&amp;ctx)']]],
   ['canrawfilterguiimpl',['CanRawFilterGuiImpl',['../struct_can_raw_filter_gui_impl.html#a5a605db3d79b560729ee8b6649e41776',1,'CanRawFilterGuiImpl']]],
   ['canrawfiltermodel',['CanRawFilterModel',['../class_can_raw_filter_model.html#adb96565793b8d8d6c638c8236c2cc269',1,'CanRawFilterModel']]],

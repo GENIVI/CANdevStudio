@@ -1,4 +1,7 @@
-<map id="src/components/projectconfig/pcimpl.h" name="src/components/projectconfig/pcimpl.h">
+<map id="src/gui/projectconfig/pcimpl.h" name="src/gui/projectconfig/pcimpl.h">
 <area shape="rect" id="node4" href="$pcinterface_8h.html" title="pcinterface.h" alt="" coords="195,95,300,121"/>
-<area shape="rect" id="node7" href="$propertyeditordialog_8h.html" title="propertyeditordialog.h" alt="" coords="498,95,661,121"/>
+<area shape="rect" id="node7" href="$componentinterface_8h.html" title="componentinterface.h" alt="" coords="325,95,487,121"/>
+<area shape="rect" id="node12" href="$componentmodel_8h.html" title="componentmodel.h" alt="" coords="894,95,1041,121"/>
+<area shape="rect" id="node23" href="$propertyeditordialog_8h.html" title="propertyeditordialog.h" alt="" coords="1607,95,1770,121"/>
+<area shape="rect" id="node16" href="$log_8h.html" title="log.h" alt="" coords="1453,169,1506,196"/>
 </map>

@@ -27,30 +27,6 @@ var hierarchy =
       [ "CanRawSender", "class_can_raw_sender.html", null ],
       [ "CanRawView", "class_can_raw_view.html", null ]
     ] ],
-    [ "ComponentModelInterface", "struct_component_model_interface.html", [
-      [ "ComponentModel< C, Derived >", "class_component_model.html", null ],
-      [ "ComponentModel< CanDevice, CanDeviceModel >", "class_component_model.html", [
-        [ "CanDeviceModel", "class_can_device_model.html", null ]
-      ] ],
-      [ "ComponentModel< CanLoad, CanLoadModel >", "class_component_model.html", [
-        [ "CanLoadModel", "class_can_load_model.html", null ]
-      ] ],
-      [ "ComponentModel< CanRawFilter, CanRawFilterModel >", "class_component_model.html", [
-        [ "CanRawFilterModel", "class_can_raw_filter_model.html", null ]
-      ] ],
-      [ "ComponentModel< CanRawLogger, CanRawLoggerModel >", "class_component_model.html", [
-        [ "CanRawLoggerModel", "class_can_raw_logger_model.html", null ]
-      ] ],
-      [ "ComponentModel< CanRawPlayer, CanRawPlayerModel >", "class_component_model.html", [
-        [ "CanRawPlayerModel", "class_can_raw_player_model.html", null ]
-      ] ],
-      [ "ComponentModel< CanRawSender, CanRawSenderModel >", "class_component_model.html", [
-        [ "CanRawSenderModel", "class_can_raw_sender_model.html", null ]
-      ] ],
-      [ "ComponentModel< CanRawView, CanRawViewModel >", "class_component_model.html", [
-        [ "CanRawViewModel", "class_can_raw_view_model.html", null ]
-      ] ]
-    ] ],
     [ "configHelpers", "classconfig_helpers.html", null ],
     [ "Context< Args >", "struct_context.html", null ],
     [ "Context< CanDeviceInterface >", "struct_context.html", null ],
@@ -76,14 +52,30 @@ var hierarchy =
       [ "NLMFactory", "struct_n_l_m_factory.html", null ]
     ] ],
     [ "NodeDataModel", null, [
-      [ "ComponentModel< C, Derived >", "class_component_model.html", null ],
-      [ "ComponentModel< CanDevice, CanDeviceModel >", "class_component_model.html", null ],
-      [ "ComponentModel< CanLoad, CanLoadModel >", "class_component_model.html", null ],
-      [ "ComponentModel< CanRawFilter, CanRawFilterModel >", "class_component_model.html", null ],
-      [ "ComponentModel< CanRawLogger, CanRawLoggerModel >", "class_component_model.html", null ],
-      [ "ComponentModel< CanRawPlayer, CanRawPlayerModel >", "class_component_model.html", null ],
-      [ "ComponentModel< CanRawSender, CanRawSenderModel >", "class_component_model.html", null ],
-      [ "ComponentModel< CanRawView, CanRawViewModel >", "class_component_model.html", null ]
+      [ "ComponentModelInterface", "struct_component_model_interface.html", [
+        [ "ComponentModel< C, Derived >", "class_component_model.html", null ],
+        [ "ComponentModel< CanDevice, CanDeviceModel >", "class_component_model.html", [
+          [ "CanDeviceModel", "class_can_device_model.html", null ]
+        ] ],
+        [ "ComponentModel< CanLoad, CanLoadModel >", "class_component_model.html", [
+          [ "CanLoadModel", "class_can_load_model.html", null ]
+        ] ],
+        [ "ComponentModel< CanRawFilter, CanRawFilterModel >", "class_component_model.html", [
+          [ "CanRawFilterModel", "class_can_raw_filter_model.html", null ]
+        ] ],
+        [ "ComponentModel< CanRawLogger, CanRawLoggerModel >", "class_component_model.html", [
+          [ "CanRawLoggerModel", "class_can_raw_logger_model.html", null ]
+        ] ],
+        [ "ComponentModel< CanRawPlayer, CanRawPlayerModel >", "class_component_model.html", [
+          [ "CanRawPlayerModel", "class_can_raw_player_model.html", null ]
+        ] ],
+        [ "ComponentModel< CanRawSender, CanRawSenderModel >", "class_component_model.html", [
+          [ "CanRawSenderModel", "class_can_raw_sender_model.html", null ]
+        ] ],
+        [ "ComponentModel< CanRawView, CanRawViewModel >", "class_component_model.html", [
+          [ "CanRawViewModel", "class_can_raw_view_model.html", null ]
+        ] ]
+      ] ]
     ] ],
     [ "NodePainterDelegate", null, [
       [ "NodePainter", "struct_node_painter.html", [
@@ -94,7 +86,6 @@ var hierarchy =
       [ "PCImpl", "class_p_c_impl.html", null ]
     ] ],
     [ "PluginLoader< Args >", "struct_plugin_loader.html", null ],
-    [ "PluginLoader< CANDevicePlugin, CANLoadPlugin, CanRawSenderPlugin, CanRawViewPlugin, CanRawPlayerPlugin, CanRawLoggerPlugin, CanRawFilterPlugin >", "struct_plugin_loader.html", null ],
     [ "ProjectConfigValidator", "class_project_config_validator.html", null ],
     [ "PushButtonInterface", "struct_push_button_interface.html", [
       [ "NLMPushButton", "struct_n_l_m_push_button.html", null ]
@@ -149,6 +140,6 @@ var hierarchy =
       [ "CanNodeDataModelVisitor", "struct_can_node_data_model_visitor.html", null ]
     ] ],
     [ "NodeData", null, [
-      [ "CanDeviceDataOut", "class_can_device_data_out.html", null ]
+      [ "CanRawData", "class_can_raw_data.html", null ]
     ] ]
 ];

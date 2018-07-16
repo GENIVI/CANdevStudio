@@ -8,6 +8,10 @@ var dir_bdfef683cdcec59763063a4d6a2f152c =
     [ "canrawview_p.h", "canrawview__p_8h.html", [
       [ "CanRawViewPrivate", "class_can_raw_view_private.html", "class_can_raw_view_private" ]
     ] ],
+    [ "canrawviewmodel.cpp", "canrawviewmodel_8cpp.html", null ],
+    [ "canrawviewmodel.h", "canrawviewmodel_8h.html", [
+      [ "CanRawViewModel", "class_can_raw_view_model.html", "class_can_raw_view_model" ]
+    ] ],
     [ "canrawviewplugin.h", "canrawviewplugin_8h.html", [
       [ "CanRawViewPlugin", "struct_can_raw_view_plugin.html", "struct_can_raw_view_plugin" ]
     ] ],
