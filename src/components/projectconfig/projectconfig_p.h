@@ -1,12 +1,12 @@
 #ifndef PROJECTCONFIG_P_H
 #define PROJECTCONFIG_P_H
 
+#include "canloadmodel.h"
+#include "canrawfiltermodel.h"
+#include "canrawloggermodel.h"
+#include "canrawplayermodel.h"
 #include "canrawsendermodel.h"
 #include "canrawviewmodel.h"
-#include "canrawplayermodel.h"
-#include "canrawloggermodel.h"
-#include "canrawfiltermodel.h"
-#include "canloadmodel.h"
 #include "flowviewwrapper.h"
 #include "iconlabel.h"
 #include "modeltoolbutton.h"
@@ -19,6 +19,18 @@
 #include <modelvisitor.h> // apply_model_visitor
 #include <nodes/Node>
 #include <propertyeditordialog.h>
+
+#include "candeviceplugin.h"
+#include "canloadplugin.h"
+#include "canrawfilterplugin.h"
+#include "canrawloggerplugin.h"
+#include "canrawplayerplugin.h"
+#include "canrawsenderplugin.h"
+#include "canrawviewplugin.h"
+#include "pluginloader.h"
+
+using PluginImpls = PluginLoader<CANDevicePlugin, CANLoadPlugin, CanRawSenderPlugin, CanRawViewPlugin,
+    CanRawPlayerPlugin, CanRawLoggerPlugin, CanRawFilterPlugin>;
 
 namespace Ui {
 class ProjectConfigPrivate;
@@ -36,16 +48,8 @@ public:
         , _graphView(new FlowViewWrapper(&_graphScene))
         , _ui(std::make_unique<Ui::ProjectConfigPrivate>())
         , q_ptr(q)
+        , _plugins(_graphScene.registry())
     {
-        auto& modelRegistry = _graphScene.registry();
-        modelRegistry.registerModel<CanDeviceModel>();
-        modelRegistry.registerModel<CanRawSenderModel>();
-        modelRegistry.registerModel<CanRawViewModel>();
-        modelRegistry.registerModel<CanRawPlayerModel>();
-        modelRegistry.registerModel<CanRawLoggerModel>();
-        modelRegistry.registerModel<CanLoadModel>();
-        modelRegistry.registerModel<CanRawFilterModel>();
-
         _pcInt.setNodeCreatedCallback(
             &_graphScene, std::bind(&ProjectConfigPrivate::nodeCreatedCallback, this, std::placeholders::_1));
         _pcInt.setNodeDeletedCallback(
@@ -89,13 +93,7 @@ public:
         cleanIconWidgets(_ui->deviceWidget);
         cleanIconWidgets(_ui->rawWidget);
 
-        _ui->deviceWidget->layout()->addWidget(new IconLabel("CanDevice", CanDeviceModel::headerColor(), bgColor));
-        _ui->rawWidget->layout()->addWidget(new IconLabel("CanRawSender", CanRawSenderModel::headerColor(), bgColor));
-        _ui->rawWidget->layout()->addWidget(new IconLabel("CanRawView", CanRawViewModel::headerColor(), bgColor));
-        _ui->rawWidget->layout()->addWidget(new IconLabel("CanRawPlayer", CanRawPlayerModel::headerColor(), bgColor));
-        _ui->rawWidget->layout()->addWidget(new IconLabel("CanRawLogger", CanRawLoggerModel::headerColor(), bgColor));
-        _ui->rawWidget->layout()->addWidget(new IconLabel("CanLoad", CanLoadModel::headerColor(), bgColor));
-        _ui->rawWidget->layout()->addWidget(new IconLabel("CanRawFilter", CanRawFilterModel::headerColor(), bgColor));
+        _plugins.addWidgets(*_ui, bgColor);
     }
 
     ~ProjectConfigPrivate() {}
@@ -266,5 +264,6 @@ private:
     int _nodeCnt = 1;
     ProjectConfig* q_ptr;
     bool _darkMode;
+    PluginImpls _plugins;
 };
 #endif // PROJECTCONFIG_P_H
