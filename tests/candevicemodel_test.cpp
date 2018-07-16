@@ -3,7 +3,7 @@
 #define CATCH_CONFIG_RUNNER
 #include "log.h"
 #include <QSignalSpy>
-#include <datamodeltypes/candevicedata.h>
+#include <datamodeltypes/canrawdata.h>
 #include <fakeit.hpp>
 
 std::shared_ptr<spdlog::logger> kDefaultLogger;
@@ -25,8 +25,8 @@ TEST_CASE("Test basic functionality", "[candevice]")
 TEST_CASE("Port information", "[candevice]")
 {
     CanDeviceModel canDeviceModel;
-    CanDeviceDataIn canDeviceDataIn;
-    CanDeviceDataOut canDeviceDataOut;
+    CanRawData canDeviceDataIn;
+    CanRawData canDeviceDataOut;
     CHECK(canDeviceModel.nPorts(PortType::Out) == 1);
     CHECK(canDeviceModel.nPorts(PortType::In) == 1);
     CHECK(canDeviceModel.nPorts(PortType::None) == 0);
@@ -46,7 +46,7 @@ TEST_CASE("Calling frameReceived emits dataUpdated and outData returns that fram
     canDeviceModel.frameReceived(testFrame);
 
     CHECK(dataUpdatedSpy.count() == 1);
-    CHECK(std::dynamic_pointer_cast<CanDeviceDataOut>(canDeviceModel.outData(0))->frame().frameId()
+    CHECK(std::dynamic_pointer_cast<CanRawData>(canDeviceModel.outData(0))->frame().frameId()
         == testFrame.frameId());
 }
 
@@ -58,7 +58,7 @@ TEST_CASE("Calling frameSent emits dataUpdated and outData returns that frame", 
     QSignalSpy dataUpdatedSpy(&canDeviceModel, &CanDeviceModel::dataUpdated);
     canDeviceModel.frameSent(true, testFrame);
     CHECK(dataUpdatedSpy.count() == 1);
-    CHECK(std::dynamic_pointer_cast<CanDeviceDataOut>(canDeviceModel.outData(0))->frame().frameId()
+    CHECK(std::dynamic_pointer_cast<CanRawData>(canDeviceModel.outData(0))->frame().frameId()
         == testFrame.frameId());
 }
 
@@ -67,7 +67,7 @@ TEST_CASE("Calling setInData will result in sendFrame being emitted", "[candevic
     CanDeviceModel canDeviceModel;
     QCanBusFrame testFrame;
     testFrame.setFrameId(123);
-    auto canDeviceDataIn = std::make_shared<CanDeviceDataIn>(testFrame);
+    auto canDeviceDataIn = std::make_shared<CanRawData>(testFrame);
     QSignalSpy sendFrameSpy(&canDeviceModel, &CanDeviceModel::sendFrame);
 
     canDeviceModel.setInData(canDeviceDataIn, 0);

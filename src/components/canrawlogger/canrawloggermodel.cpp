@@ -1,5 +1,5 @@
 #include "canrawloggermodel.h"
-#include <datamodeltypes/canrawloggerdata.h>
+#include <datamodeltypes/canrawdata.h>
 #include <log.h>
 
 namespace {
@@ -8,7 +8,7 @@ namespace {
 const std::map<PortType, std::vector<NodeDataType>> portMappings = {
     { PortType::In, 
         {
-            {CanRawLoggerDataIn{}.type() }
+            {CanRawData{}.type() }
         }
     },
     { PortType::Out, { }
@@ -58,7 +58,7 @@ std::shared_ptr<NodeData> CanRawLoggerModel::outData(PortIndex)
 void CanRawLoggerModel::setInData(std::shared_ptr<NodeData> nodeData, PortIndex)
 {
     if (nodeData) {
-        auto d = std::dynamic_pointer_cast<CanRawLoggerDataIn>(nodeData);
+        auto d = std::dynamic_pointer_cast<CanRawData>(nodeData);
         assert(nullptr != d);
         if (d->direction() == Direction::TX) {
             emit frameSent(d->status(), d->frame());

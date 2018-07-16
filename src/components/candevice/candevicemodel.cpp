@@ -1,6 +1,6 @@
 #include "candevicemodel.h"
 #include <assert.h>
-#include <datamodeltypes/candevicedata.h>
+#include <datamodeltypes/canrawdata.h>
 #include <log.h>
 
 CanDeviceModel::CanDeviceModel()
@@ -32,7 +32,7 @@ unsigned int CanDeviceModel::nPorts(PortType portType) const
 
 void CanDeviceModel::frameReceived(const QCanBusFrame& frame)
 {
-    bool ret = _rxQueue.try_enqueue(std::make_shared<CanDeviceDataOut>(frame, Direction::RX));
+    bool ret = _rxQueue.try_enqueue(std::make_shared<CanRawData>(frame, Direction::RX));
 
     if(ret) {
         emit dataUpdated(0); // Data ready on port 0
@@ -43,7 +43,7 @@ void CanDeviceModel::frameReceived(const QCanBusFrame& frame)
 
 void CanDeviceModel::frameSent(bool status, const QCanBusFrame& frame)
 {
-    bool ret = _rxQueue.try_enqueue(std::make_shared<CanDeviceDataOut>(frame, Direction::TX, status));
+    bool ret = _rxQueue.try_enqueue(std::make_shared<CanRawData>(frame, Direction::TX, status));
 
     if(ret) {
         emit dataUpdated(0); // Data ready on port 0
@@ -56,7 +56,7 @@ NodeDataType CanDeviceModel::dataType(PortType portType, PortIndex) const
 {
     assert((PortType::In == portType) || (PortType::Out == portType)); // allowed input
 
-    return (PortType::Out == portType) ? CanDeviceDataOut{}.type() : CanDeviceDataIn{}.type();
+    return (PortType::Out == portType) ? CanRawData{}.type() : CanRawData{}.type();
 }
 
 std::shared_ptr<NodeData> CanDeviceModel::outData(PortIndex)
@@ -75,7 +75,7 @@ std::shared_ptr<NodeData> CanDeviceModel::outData(PortIndex)
 void CanDeviceModel::setInData(std::shared_ptr<NodeData> nodeData, PortIndex)
 {
     if (nodeData) {
-        auto d = std::dynamic_pointer_cast<CanDeviceDataIn>(nodeData);
+        auto d = std::dynamic_pointer_cast<CanRawData>(nodeData);
         assert(nullptr != d);
         emit sendFrame(d->frame());
     } else {

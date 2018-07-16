@@ -1,6 +1,6 @@
 #include <QtWidgets/QApplication>
 #include <canrawsendermodel.h>
-#include <datamodeltypes/canrawsenderdata.h>
+#include <datamodeltypes/canrawdata.h>
 #define CATCH_CONFIG_RUNNER
 #include <QSignalSpy>
 #include <fakeit.hpp>
@@ -21,7 +21,7 @@ TEST_CASE("Test basic functionality", "[canrawsender]")
 TEST_CASE("Port information", "[canrawsender]")
 {
     CanRawSenderModel canRawSenderModel;
-    CanRawSenderDataOut canRawSenderDataOut;
+    CanRawData canRawSenderDataOut;
     CHECK(canRawSenderModel.nPorts(PortType::Out) == 1);
     CHECK(canRawSenderModel.nPorts(PortType::In) == 0);
     CHECK(canRawSenderModel.nPorts(PortType::None) == 0);
@@ -37,7 +37,7 @@ TEST_CASE("Calling sendFrame emits dataUpdated and outData returns that frame", 
     QSignalSpy dataUpdatedSpy(&canRawSenderModel, &CanRawSenderModel::dataUpdated);
     canRawSenderModel.sendFrame(testFrame);
     CHECK(dataUpdatedSpy.count() == 1);
-    CHECK(std::dynamic_pointer_cast<CanRawSenderDataOut>(canRawSenderModel.outData(0))->frame().frameId()
+    CHECK(std::dynamic_pointer_cast<CanRawData>(canRawSenderModel.outData(0))->frame().frameId()
         == testFrame.frameId());
 }
 

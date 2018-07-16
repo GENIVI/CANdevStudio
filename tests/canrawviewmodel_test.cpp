@@ -5,7 +5,7 @@
 #include <QtCore/QJsonDocument>
 #include <QtCore/QJsonObject>
 #include <canrawviewmodel.h>
-#include <datamodeltypes/canrawviewdata.h>
+#include <datamodeltypes/canrawdata.h>
 #define CATCH_CONFIG_RUNNER
 #include <QSignalSpy>
 #include <fakeit.hpp>
@@ -30,7 +30,7 @@ TEST_CASE("Test basic functionality", "[canrawview]")
 TEST_CASE("Port information", "[canrawview]")
 {
     CanRawViewModel canRawViewModel;
-    CanRawViewDataIn canRawViewDataIn;
+    CanRawData canRawViewDataIn;
     CHECK(canRawViewModel.nPorts(PortType::Out) == 0);
     CHECK(canRawViewModel.nPorts(PortType::In) == 1);
     CHECK(canRawViewModel.nPorts(PortType::None) == 0);
@@ -43,7 +43,7 @@ TEST_CASE("Calling setInData with direction TX will result in frameSent being em
     CanRawViewModel canRawViewModel;
     QCanBusFrame testFrame;
     testFrame.setFrameId(123);
-    auto canRawViewDataIn = std::make_shared<CanRawViewDataIn>(testFrame, Direction::TX, true);
+    auto canRawViewDataIn = std::make_shared<CanRawData>(testFrame, Direction::TX, true);
     QSignalSpy frameSentSpy(&canRawViewModel, &CanRawViewModel::frameSent);
 
     canRawViewModel.setInData(canRawViewDataIn, 0);
@@ -56,7 +56,7 @@ TEST_CASE("Calling setInData with direction RX will result in frameReceived bein
     CanRawViewModel canRawViewModel;
     QCanBusFrame testFrame;
     testFrame.setFrameId(123);
-    auto canRawViewDataIn = std::make_shared<CanRawViewDataIn>(testFrame, Direction::RX, true);
+    auto canRawViewDataIn = std::make_shared<CanRawData>(testFrame, Direction::RX, true);
     QSignalSpy frameReceivedSpy(&canRawViewModel, &CanRawViewModel::frameReceived);
 
     canRawViewModel.setInData(canRawViewDataIn, 0);
@@ -69,7 +69,7 @@ TEST_CASE("Invalid direction", "[canrawview]")
     CanRawViewModel canRawViewModel;
     QCanBusFrame testFrame;
     testFrame.setFrameId(123);
-    auto canRawViewDataIn = std::make_shared<CanRawViewDataIn>(testFrame, static_cast<Direction>(11), true);
+    auto canRawViewDataIn = std::make_shared<CanRawData>(testFrame, static_cast<Direction>(11), true);
     QSignalSpy frameSentSpy(&canRawViewModel, &CanRawViewModel::frameSent);
 
     canRawViewModel.setInData(canRawViewDataIn, 0);

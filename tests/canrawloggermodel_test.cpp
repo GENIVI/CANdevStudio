@@ -1,6 +1,6 @@
 #include <QtWidgets/QApplication>
 #include <canrawloggermodel.h>
-#include <datamodeltypes/canrawloggerdata.h>
+#include <datamodeltypes/canrawdata.h>
 #define CATCH_CONFIG_RUNNER
 #include "log.h"
 #include <QSignalSpy>
@@ -71,9 +71,9 @@ TEST_CASE("setInData", "[canrawloggerModel]")
     QSignalSpy rxSpy(&canrawloggerModel, &CanRawLoggerModel::frameReceived);
     QSignalSpy txSpy(&canrawloggerModel, &CanRawLoggerModel::frameSent);
 
-    auto &&rxData = std::make_shared<CanRawLoggerDataIn>(frame, Direction::RX, true);
-    auto &&txData = std::make_shared<CanRawLoggerDataIn>(frame, Direction::TX, true);
-    auto &&errData = std::make_shared<CanRawLoggerDataIn>(frame, static_cast<Direction>(11), true);
+    auto &&rxData = std::make_shared<CanRawData>(frame, Direction::RX, true);
+    auto &&txData = std::make_shared<CanRawData>(frame, Direction::TX, true);
+    auto &&errData = std::make_shared<CanRawData>(frame, static_cast<Direction>(11), true);
 
     canrawloggerModel.setInData(rxData, 1);
     canrawloggerModel.setInData(txData, 1);

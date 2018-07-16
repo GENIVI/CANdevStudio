@@ -1,5 +1,5 @@
 #include "canrawsendermodel.h"
-#include <datamodeltypes/canrawsenderdata.h>
+#include <datamodeltypes/canrawdata.h>
 
 CanRawSenderModel::CanRawSenderModel()
     : ComponentModel("CanRawSender")
@@ -22,12 +22,12 @@ QtNodes::NodePainterDelegate* CanRawSenderModel::painterDelegate() const
 
 NodeDataType CanRawSenderModel::dataType(PortType, PortIndex) const
 {
-    return CanRawSenderDataOut().type();
+    return CanRawData().type();
 }
 
 std::shared_ptr<NodeData> CanRawSenderModel::outData(PortIndex)
 {
-    return std::make_shared<CanRawSenderDataOut>(_frame);
+    return std::make_shared<CanRawData>(_frame);
 }
 
 void CanRawSenderModel::sendFrame(const QCanBusFrame& frame)
