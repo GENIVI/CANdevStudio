@@ -4,7 +4,7 @@
 #include <QtCore/QJsonArray>
 #include <QtCore/QJsonDocument>
 #include <QtCore/QJsonObject>
-#include <projectconfig/canrawviewmodel.h>
+#include <canrawviewmodel.h>
 #include <datamodeltypes/canrawviewdata.h>
 #define CATCH_CONFIG_RUNNER
 #include <QSignalSpy>

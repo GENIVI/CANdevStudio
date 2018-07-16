@@ -1,5 +1,5 @@
 #include <QtWidgets/QApplication>
-#include <projectconfig/canrawloggermodel.h>
+#include <canrawloggermodel.h>
 #include <datamodeltypes/canrawloggerdata.h>
 #define CATCH_CONFIG_RUNNER
 #include "log.h"

@@ -112,8 +112,8 @@ include_directories(3rdParty/cxxopts/include)
 
 add_subdirectory(3rdParty/nodeeditor)
 add_subdirectory(src/common)
-add_subdirectory(src/gui)
 add_subdirectory(src/components)
+add_subdirectory(src/gui)
 
 if(WITH_TESTS OR WITH_COVERAGE)
     enable_testing()

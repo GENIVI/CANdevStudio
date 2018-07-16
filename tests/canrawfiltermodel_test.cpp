@@ -1,5 +1,5 @@
 #include <QtWidgets/QApplication>
-#include <projectconfig/canrawfiltermodel.h>
+#include <canrawfiltermodel.h>
 #include <datamodeltypes/canrawfilterdata.h>
 #define CATCH_CONFIG_RUNNER
 #include "log.h"

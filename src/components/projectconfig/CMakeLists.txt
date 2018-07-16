@@ -13,6 +13,7 @@ set(SRC
 
 add_definitions(-DRAPIDJSON_HAS_STDSTRING=1 -DRAPIDJSON_HAS_CXX11_RVALUE_REFS=1)
 
+message(STATUS ${PLUGIN_LIBRARIES})
 add_library(${COMPONENT_NAME} STATIC ${SRC})
 include_directories("${CMAKE_CURRENT_SOURCE_DIR}/..")
 include_directories("${CMAKE_CURRENT_SOURCE_DIR}/../../../3rdParty/rapidjson/include")

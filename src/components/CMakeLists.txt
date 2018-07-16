@@ -36,10 +36,6 @@ macro(get_plugin_type plugin result)
     set(${result} ${test})
 endmacro()
 
-dirlist(components ${CMAKE_CURRENT_SOURCE_DIR})
-foreach(component ${components})
-    add_subdirectory(${component})
-endforeach()
 
 plugin_list(plugins)
 set(PLUGIN_LIBRARIES ${plugins} CACHE INTERNAL "Libraries to link against for plugins")
@@ -60,3 +56,8 @@ string(REGEX REPLACE "[,].?$" ""  PLUGINS_IMPL_STR ${PLUGINS_IMPL_MSG})
 
 configure_file(${CMAKE_SOURCE_DIR}/src/common/plugins.hpp.in
     ${CMAKE_BINARY_DIR}/plugins.hpp)
+
+dirlist(components ${CMAKE_CURRENT_SOURCE_DIR})
+foreach(component ${components})
+    add_subdirectory(${component})
+endforeach()

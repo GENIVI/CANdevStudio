@@ -1,5 +1,5 @@
 #include <QtWidgets/QApplication>
-#include <projectconfig/canloadmodel.h>
+#include <canloadmodel.h>
 #include <datamodeltypes/canloaddata.h>
 #define CATCH_CONFIG_RUNNER
 #include "log.h"
