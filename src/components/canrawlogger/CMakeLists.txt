@@ -3,6 +3,7 @@ set(COMPONENT_NAME canrawlogger)
 set(SRC
     canrawlogger.cpp
     canrawlogger_p.cpp
+    canrawloggermodel.cpp
 )
 
 add_library(${COMPONENT_NAME} ${SRC})

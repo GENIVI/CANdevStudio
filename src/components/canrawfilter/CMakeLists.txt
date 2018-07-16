@@ -5,6 +5,7 @@ set(SRC
     gui/canrawfilterguiimpl.h
     canrawfilter.cpp
     canrawfilter_p.cpp
+    canrawfiltermodel.cpp
 )
 
 add_library(${COMPONENT_NAME} ${SRC})

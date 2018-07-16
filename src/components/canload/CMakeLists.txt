@@ -3,6 +3,7 @@ set(COMPONENT_NAME canload)
 set(SRC
     canload.cpp
     canload_p.cpp
+    canloadmodel.cpp
 )
 
 add_library(${COMPONENT_NAME} ${SRC})

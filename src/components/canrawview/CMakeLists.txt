@@ -5,6 +5,7 @@ set(SRC
     gui/crvgui.h
     canrawview.cpp
     crvsortmodel.cpp    
+    canrawviewmodel.cpp
 )
 
 add_library(${COMPONENT_NAME} STATIC ${SRC})

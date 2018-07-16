@@ -3,13 +3,6 @@ set(COMPONENT_NAME projectconfig)
 set(SRC
     projectconfig.ui
     projectconfig.cpp    
-    canrawviewmodel.cpp
-    canrawsendermodel.cpp
-    candevicemodel.cpp
-    canrawplayermodel.cpp
-    canrawloggermodel.cpp
-    canloadmodel.cpp
-    canrawfiltermodel.cpp
     dragwidget.cpp
     flowviewwrapper.cpp
     projectconfigvalidator.cpp

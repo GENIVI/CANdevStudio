@@ -8,7 +8,6 @@
 #include "ui_projectconfig.h"
 #include <QMenu>
 #include <QtWidgets/QPushButton>
-#include <candevicemodel.h>
 #include <log.h>
 #include <modelvisitor.h> // apply_model_visitor
 #include <nodes/Node>
