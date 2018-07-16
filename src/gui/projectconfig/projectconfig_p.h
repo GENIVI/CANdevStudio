@@ -102,16 +102,8 @@ public:
         Q_Q(ProjectConfig);
 
         auto& iface = getComponentModel(node);
+        iface.initModel(node, _nodeCnt, _darkMode);
 
-        if (!iface.restored()) {
-            iface.setCaption(node.nodeDataModel()->caption() + " #" + QString::number(_nodeCnt));
-        }
-
-        // For some reason QWidget title is being set to name instead of caption.
-        // TODO: investigate why
-        iface.setCaption(node.nodeDataModel()->caption());
-        iface.setRedrawCbk([&node] { node.nodeGraphicsObject().update(); });
-        iface.setColorMode(_darkMode);
         connect(q, &ProjectConfig::startSimulation, &iface, &ComponentModelInterface::startSimulation);
         connect(q, &ProjectConfig::stopSimulation, &iface, &ComponentModelInterface::stopSimulation);
         connect(&iface, &ComponentModelInterface::handleDock, q, &ProjectConfig::handleDock);

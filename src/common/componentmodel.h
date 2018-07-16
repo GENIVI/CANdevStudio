@@ -22,7 +22,7 @@ public:
     virtual bool restored() = 0;
     virtual void setColorMode(bool darkMode) = 0;
     virtual bool hasSeparateThread() const = 0;
-    virtual void setRedrawCbk(const std::function<void()>&& func) = 0;
+    virtual void initModel(QtNodes::Node& node, int nodeCnt, bool darkMode) = 0;
 
 signals:
     void startSimulation();
@@ -35,34 +35,48 @@ template <typename C, typename Derived> class ComponentModel : public ComponentM
 public:
     ComponentModel() = default;
 
-    virtual void setRedrawCbk(const std::function<void()>&& func) override
-    {
-        connect((Derived*)this, &Derived::requestRedraw, func);
-    }
-
     ComponentModel(const QString& name)
         : _caption(name)
         , _name(name)
     {
+    }
+
+    virtual ~ComponentModel()
+    {
+        if(_thread) {
+            _thread->exit();
+            _thread->wait();
+        }
+    }
+
+    virtual void initModel(QtNodes::Node& node, int nodeCnt, bool darkMode) override
+    {
+        if (!restored()) {
+            setCaption(node.nodeDataModel()->caption() + " #" + QString::number(nodeCnt));
+        }
+
+        // For some reason QWidget title is being set to name instead of caption.
+        // TODO: investigate why
+        setCaption(node.nodeDataModel()->caption());
+        setColorMode(darkMode);
+
+        connect((Derived*)this, &Derived::requestRedraw,[&node] { node.nodeGraphicsObject().update(); });
         connect(this, &ComponentModelInterface::startSimulation, &_component, &C::startSimulation);
         connect(this, &ComponentModelInterface::stopSimulation, &_component, &C::stopSimulation);
         connect(&_component, &C::mainWidgetDockToggled, this, &ComponentModelInterface::handleDock);
 
-        auto derived = static_cast<Derived *>(this);
-        if (derived->hasSeparateThread()) {
-            auto th = new QThread();
-            if (th) {
+        if (hasSeparateThread()) {
+            _thread = std::make_unique<QThread>();
+            if (_thread) {
                 cds_info("Setting separate event loop for component {}", _caption.toStdString());
 
-                this->moveToThread(th);
-                _component.moveToThread(th);
+                this->moveToThread(_thread.get());
+                _component.moveToThread(_thread.get());
 
-                th->start();
+                _thread->start();
             }
         }
     }
-
-    virtual ~ComponentModel() = default;
 
     /**
      *   @brief  Used to get node caption
@@ -227,6 +241,7 @@ protected:
     bool _restored{ false };
     bool _darkMode{ true };
     QtNodes::NodeStyle _nodeStyle;
+    std::unique_ptr<QThread> _thread;
 };
 
 #endif // COMPONENTMODEL_H
