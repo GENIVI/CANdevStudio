@@ -2,6 +2,7 @@
 #define CANRAWVIEWPLUGIN_H_C02HULVO
 
 #include "plugin_type.h"
+#include "canrawviewmodel.h"
 
 struct CanRawViewPlugin {
     using Model = CanRawViewModel;

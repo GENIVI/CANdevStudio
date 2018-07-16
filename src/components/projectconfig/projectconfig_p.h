@@ -1,12 +1,6 @@
 #ifndef PROJECTCONFIG_P_H
 #define PROJECTCONFIG_P_H
 
-#include "canloadmodel.h"
-#include "canrawfiltermodel.h"
-#include "canrawloggermodel.h"
-#include "canrawplayermodel.h"
-#include "canrawsendermodel.h"
-#include "canrawviewmodel.h"
 #include "flowviewwrapper.h"
 #include "iconlabel.h"
 #include "modeltoolbutton.h"
@@ -20,17 +14,8 @@
 #include <nodes/Node>
 #include <propertyeditordialog.h>
 
-#include "candeviceplugin.h"
-#include "canloadplugin.h"
-#include "canrawfilterplugin.h"
-#include "canrawloggerplugin.h"
-#include "canrawplayerplugin.h"
-#include "canrawsenderplugin.h"
-#include "canrawviewplugin.h"
-#include "pluginloader.h"
-
-using PluginImpls = PluginLoader<CANDevicePlugin, CANLoadPlugin, CanRawSenderPlugin, CanRawViewPlugin,
-    CanRawPlayerPlugin, CanRawLoggerPlugin, CanRawFilterPlugin>;
+#include "componentinterface.h"
+#include "plugins.hpp"
 
 namespace Ui {
 class ProjectConfigPrivate;
@@ -264,6 +249,6 @@ private:
     int _nodeCnt = 1;
     ProjectConfig* q_ptr;
     bool _darkMode;
-    PluginImpls _plugins;
+    Plugins _plugins;
 };
 #endif // PROJECTCONFIG_P_H

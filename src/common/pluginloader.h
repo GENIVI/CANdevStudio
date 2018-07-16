@@ -3,6 +3,8 @@
 
 #include <nodes/DataModelRegistry>
 
+#include "plugin_type.h"
+
 template <typename T> void registerModel(QtNodes::DataModelRegistry& registry)
 {
     registry.registerModel<typename T::Model>();

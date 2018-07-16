@@ -2,6 +2,7 @@
 #define CANRAWPLAYERPLUGIN_H_G8RLJWGO
 
 #include "plugin_type.h"
+#include "canrawplayermodel.h"
 
 struct CanRawPlayerPlugin {
     using Model = CanRawPlayerModel;
