@@ -6,13 +6,18 @@
 #include <QtCore/QJsonObject>
 #include <canrawsender.h>
 #include <context.h>
+#define CATCH_CONFIG_RUNNER
 #include <fakeit.hpp>
 #include <gui/crsguiinterface.h>
 #include <memory>
 #include <newlinemanager.h>
 #include <QSignalSpy>
+#include <log.h>
+#include <QApplication>
 
 using namespace fakeit;
+
+std::shared_ptr<spdlog::logger> kDefaultLogger;
 
 TEST_CASE("Add and remove frame test", "[canrawsender]")
 {
@@ -555,4 +560,16 @@ TEST_CASE("Dock/Undock", "[canrawsender]")
 
     CHECK(dockSpy.count() == 2);
     CHECK(canRawSender.mainWidgetDocked() == true);
+}
+
+int main(int argc, char* argv[])
+{
+    bool haveDebug = std::getenv("CDS_DEBUG") != nullptr;
+    kDefaultLogger = spdlog::stdout_color_mt("cds");
+    if (haveDebug) {
+        kDefaultLogger->set_level(spdlog::level::debug);
+    }
+    cds_debug("Staring unit tests");
+    QApplication a(argc, argv); // QApplication must exist when contructing QWidgets TODO check QTest
+    return Catch::Session().run(argc, argv);
 }

@@ -24,5 +24,3 @@ if(WITH_TESTS)
     target_link_libraries(${COMPONENT_NAME}model_test ${COMPONENT_NAME} Qt5::Test fakeit)
     add_test(NAME CanDeviceModelTest COMMAND ${COMPONENT_NAME}model_test)
 endif()
-
-

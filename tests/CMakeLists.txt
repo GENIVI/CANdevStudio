@@ -3,16 +3,6 @@ include_directories(${CMAKE_SOURCE_DIR}/3rdParty/rapidjson/include)
 include_directories(${CMAKE_SOURCE_DIR}/3rdParty/fakeit/config/catch)
 include_directories(${CMAKE_SOURCE_DIR}/src/components)
 
-add_executable(canrawsender_test newlinemanager_test.cpp canrawsender_test.cpp)
-target_link_libraries(canrawsender_test canrawsender Qt5::Test)
-target_compile_options(canrawsender_test PRIVATE $<$<CXX_COMPILER_ID:GNU>:-fno-devirtualize>)
-add_test( NAME CanRawSenderTest COMMAND canrawsender_test)
-
-add_executable(canrawsendermodel_test canrawsendermodel_test.cpp)
-target_link_libraries(canrawsendermodel_test canrawsender Qt5::Test)
-target_compile_options(canrawsendermodel_test PRIVATE $<$<CXX_COMPILER_ID:GNU>:-fno-devirtualize>)
-add_test( NAME CanRawSenderModelTest COMMAND canrawsendermodel_test)
-
 add_executable(canrawview_test canrawview_test.cpp)
 target_link_libraries(canrawview_test canrawview Qt5::Test)
 target_compile_options(canrawview_test PRIVATE $<$<CXX_COMPILER_ID:GNU>:-fno-devirtualize>)
@@ -63,16 +53,6 @@ add_executable(canrawloggermodel_test canrawloggermodel_test.cpp)
 target_link_libraries(canrawloggermodel_test canrawlogger Qt5::Test)
 target_compile_options(canrawloggermodel_test PRIVATE $<$<CXX_COMPILER_ID:GNU>:-fno-devirtualize>)
 add_test( NAME CanRawLoggerModelTest COMMAND canrawloggermodel_test)
-
-add_executable(canload_test canload_test.cpp)
-target_link_libraries(canload_test canload Qt5::Test)
-target_compile_options(canload_test PRIVATE $<$<CXX_COMPILER_ID:GNU>:-fno-devirtualize>)
-add_test( NAME CanLoadTest COMMAND canload_test)
-
-add_executable(canloadmodel_test canloadmodel_test.cpp)
-target_link_libraries(canloadmodel_test canload Qt5::Test)
-target_compile_options(canloadmodel_test PRIVATE $<$<CXX_COMPILER_ID:GNU>:-fno-devirtualize>)
-add_test( NAME CanLoadModelTest COMMAND canloadmodel_test)
 
 add_executable(canrawfilter_test canrawfilter_test.cpp)
 target_link_libraries(canrawfilter_test canrawfilter Qt5::Test)
