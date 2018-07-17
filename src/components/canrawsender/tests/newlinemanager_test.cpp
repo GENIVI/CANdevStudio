@@ -1,4 +1,3 @@
-#define CATCH_CONFIG_RUNNER
 #include <QSignalSpy>
 #include <QtWidgets/QApplication>
 #include <canrawsender.h>
@@ -7,9 +6,6 @@
 #include <gui/crsguiinterface.h>
 #include <log.h>
 #include <newlinemanager.h>
-
-std::shared_ptr<spdlog::logger> kDefaultLogger;
-int id = qRegisterMetaType<QCanBusFrame>("QCanBusFrame");
 
 TEST_CASE("Create CanRawSender correctly", "[newlinemanager]")
 {
@@ -247,16 +243,4 @@ TEST_CASE("Get columns wigdet test", "[newlinemanager]")
         CHECK(newLineMgr.GetColsWidget(NewLineManager::ColNameIterator{ii}) != nullptr);
     }
     CHECK(newLineMgr.GetColsWidget(NewLineManager::ColNameIterator().end()) == nullptr);
-}
-
-int main(int argc, char* argv[])
-{
-    bool haveDebug = std::getenv("CDS_DEBUG") != nullptr;
-    kDefaultLogger = spdlog::stdout_color_mt("cds");
-    if (haveDebug) {
-        kDefaultLogger->set_level(spdlog::level::debug);
-    }
-    cds_debug("Staring canrawsender unit tests");
-    QApplication a(argc, argv); // QApplication must exist when contructing QWidgets TODO check QTest
-    return Catch::Session().run(argc, argv);
 }

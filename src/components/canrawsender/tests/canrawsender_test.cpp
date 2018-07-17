@@ -216,7 +216,7 @@ public:
 
 TEST_CASE("Can raw sender restore configuration test - pass", "[canrawsender]")
 {
-    QDir dir("tests");
+    QDir dir("configfiles");
     QFile file(dir.absoluteFilePath("canrawsenderconfig.cds"));
     CHECK(file.open(QIODevice::ReadOnly) == true);
 
@@ -240,7 +240,7 @@ TEST_CASE("Can raw sender restore configuration test - pass", "[canrawsender]")
 
 TEST_CASE("Can raw sender restore configuration test - column name incorrect", "[canrawsender]")
 {
-    QDir dir("tests");
+    QDir dir("configfiles");
     QFile file(dir.absoluteFilePath("canrawsenderconfig_badcolumns.cds"));
     CHECK(file.open(QIODevice::ReadOnly) == true);
 
@@ -264,7 +264,7 @@ TEST_CASE("Can raw sender restore configuration test - column name incorrect", "
 
 TEST_CASE("Can raw sender restore configuration test - Id incorrect", "[canrawsender]")
 {
-    QDir dir("tests");
+    QDir dir("configfiles");
     QFile file(dir.absoluteFilePath("canrawsenderconfig_badId.cds"));
     CHECK(file.open(QIODevice::ReadOnly) == true);
 
@@ -288,7 +288,7 @@ TEST_CASE("Can raw sender restore configuration test - Id incorrect", "[canrawse
 
 TEST_CASE("Can raw sender restore configuration test - Data incorrect", "[canrawsender]")
 {
-    QDir dir("tests");
+    QDir dir("configfiles");
     QFile file(dir.absoluteFilePath("canrawsenderconfig_badData.cds"));
     CHECK(file.open(QIODevice::ReadOnly) == true);
 
@@ -312,7 +312,7 @@ TEST_CASE("Can raw sender restore configuration test - Data incorrect", "[canraw
 
 TEST_CASE("Can raw sender restore configuration test - Interval incorrect", "[canrawsender]")
 {
-    QDir dir("tests");
+    QDir dir("configfiles");
     QFile file(dir.absoluteFilePath("canrawsenderconfig_badInterval.cds"));
     CHECK(file.open(QIODevice::ReadOnly) == true);
 

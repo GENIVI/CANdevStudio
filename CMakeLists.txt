@@ -106,11 +106,8 @@ configure_file(
 )
 # end of version Handling
 
-include_directories(3rdParty/cxxopts/include)
-
 if(WITH_TESTS OR WITH_COVERAGE)
     enable_testing()
-    add_subdirectory(tests)
 endif()
 
 add_subdirectory(3rdParty)
