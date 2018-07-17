@@ -1,4 +1,6 @@
 <map id="src/components/candevice/candevicemodel.h" name="src/components/candevice/candevicemodel.h">
-<area shape="rect" id="node2" href="$candevicemodel_8cpp.html" title="src/components/candevice\l/candevicemodel.cpp" alt="" coords="5,95,199,136"/>
-<area shape="rect" id="node3" href="$candeviceplugin_8h.html" title="src/components/candevice\l/candeviceplugin.h" alt="" coords="223,95,416,136"/>
+<area shape="rect" id="node2" href="$candevicemodel_8cpp.html" title="src/components/candevice\l/candevicemodel.cpp" alt="" coords="5,102,199,143"/>
+<area shape="rect" id="node3" href="$candeviceplugin_8h.html" title="src/components/candevice\l/candeviceplugin.h" alt="" coords="223,102,416,143"/>
+<area shape="rect" id="node4" href="$candevicemodel__test_8cpp.html" title="src/components/candevice\l/tests/candevicemodel_test.cpp" alt="" coords="440,102,665,143"/>
+<area shape="rect" id="node5" href="$projectconfig__test_8cpp.html" title="src/gui/projectconfig\l/tests/projectconfig\l_test.cpp" alt="" coords="689,95,840,151"/>
 </map>

@@ -1,4 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$struct_p_c_interface.html" title="PCInterface" alt="" coords="5,5,100,32"/>
-<area shape="rect" id="node2" href="$class_p_c_impl.html" title="PCImpl" alt="" coords="148,5,215,32"/>
+<area shape="rect" id="node2" href="$struct_node_painter.html" title="NodePainter" alt="" coords="212,5,312,32"/>
+<area shape="rect" id="node3" href="$struct_can_load_painter.html" title="CanLoadPainter" alt="" coords="360,5,483,32"/>
 </map>

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['uint_5ftype',['uint_type',['../crv__enums_8h.html#aadc9bcbf066be7d015db5c4a7c2c8585a3c383a94c25cfa30af585e9cc4c1f395',1,'crv_enums.h']]],
-  ['uninitialized',['Uninitialized',['../canrawdata_8h.html#a224b9163917ac32fc95a60d8c1eec3aaaf704f57ea420275ad51bf55b7dec2c96',1,'canrawdata.h']]]
+  ['lightstyle',['lightStyle',['../class_main_window.html#a3ce45e5943ef06256e909456d7aaff8da8135819e91ced9d88a24be3b16021d46',1,'MainWindow']]],
+  ['loopcheckbox',['LoopCheckBox',['../class_new_line_manager.html#a69f0c8e8a1213f641d43b7aa019e87dca34e95545cc4adfb58415f28278ea5b00',1,'NewLineManager']]]
 ];

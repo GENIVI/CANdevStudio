@@ -1,8 +1,10 @@
 <map id="src/components/canrawplayer/canrawplayer.h" name="src/components/canrawplayer/canrawplayer.h">
-<area shape="rect" id="node2" href="$canrawplayer_8cpp.html" title="src/components/canrawplayer\l/canrawplayer.cpp" alt="" coords="5,184,219,225"/>
-<area shape="rect" id="node3" href="$canrawplayer__p_8h.html" title="src/components/canrawplayer\l/canrawplayer_p.h" alt="" coords="219,95,432,136"/>
+<area shape="rect" id="node2" href="$canrawplayer_8cpp.html" title="src/components/canrawplayer\l/canrawplayer.cpp" alt="" coords="5,191,219,233"/>
+<area shape="rect" id="node3" href="$canrawplayer__p_8h.html" title="src/components/canrawplayer\l/canrawplayer_p.h" alt="" coords="243,95,456,136"/>
 <area shape="rect" id="node5" href="$canrawplayermodel_8h.html" title="src/components/canrawplayer\l/canrawplayermodel.h" alt="" coords="480,95,693,136"/>
-<area shape="rect" id="node4" href="$canrawplayer__p_8cpp.html" title="src/components/canrawplayer\l/canrawplayer_p.cpp" alt="" coords="243,184,456,225"/>
-<area shape="rect" id="node6" href="$canrawplayermodel_8cpp.html" title="src/components/canrawplayer\l/canrawplayermodel.cpp" alt="" coords="480,184,693,225"/>
-<area shape="rect" id="node7" href="$canrawplayerplugin_8h.html" title="src/components/canrawplayer\l/canrawplayerplugin.h" alt="" coords="717,184,931,225"/>
+<area shape="rect" id="node9" href="$canrawplayer__test_8cpp.html" title="src/components/canrawplayer\l/tests/canrawplayer_test.cpp" alt="" coords="717,95,931,136"/>
+<area shape="rect" id="node4" href="$canrawplayer__p_8cpp.html" title="src/components/canrawplayer\l/canrawplayer_p.cpp" alt="" coords="243,191,456,233"/>
+<area shape="rect" id="node6" href="$canrawplayermodel_8cpp.html" title="src/components/canrawplayer\l/canrawplayermodel.cpp" alt="" coords="480,191,693,233"/>
+<area shape="rect" id="node7" href="$canrawplayerplugin_8h.html" title="src/components/canrawplayer\l/canrawplayerplugin.h" alt="" coords="717,191,931,233"/>
+<area shape="rect" id="node8" href="$canrawplayermodel__test_8cpp.html" title="src/components/canrawplayer\l/tests/canrawplayermodel\l_test.cpp" alt="" coords="955,184,1168,240"/>
 </map>

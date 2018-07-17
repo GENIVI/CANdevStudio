@@ -1,6 +1,7 @@
 <map id="src/gui/projectconfig/propertyeditordialog.h" name="src/gui/projectconfig/propertyeditordialog.h">
-<area shape="rect" id="node2" href="$pcimpl_8h.html" title="src/gui/projectconfig\l/pcimpl.h" alt="" coords="5,95,156,136"/>
-<area shape="rect" id="node3" href="$projectconfig__p_8h.html" title="src/gui/projectconfig\l/projectconfig_p.h" alt="" coords="61,184,212,225"/>
-<area shape="rect" id="node5" href="$propertyeditordialog_8cpp.html" title="src/gui/projectconfig\l/propertyeditordialog.cpp" alt="" coords="232,95,415,136"/>
-<area shape="rect" id="node4" href="$projectconfig_8cpp.html" title="src/gui/projectconfig\l/projectconfig.cpp" alt="" coords="61,273,212,315"/>
+<area shape="rect" id="node2" href="$pcimpl_8h.html" title="src/gui/projectconfig\l/pcimpl.h" alt="" coords="5,102,156,143"/>
+<area shape="rect" id="node3" href="$projectconfig__p_8h.html" title="src/gui/projectconfig\l/projectconfig_p.h" alt="" coords="61,199,212,240"/>
+<area shape="rect" id="node5" href="$propertyeditordialog_8cpp.html" title="src/gui/projectconfig\l/propertyeditordialog.cpp" alt="" coords="232,102,415,143"/>
+<area shape="rect" id="node6" href="$projectconfig__test__noqrc_8cpp.html" title="src/gui/projectconfig\l/tests/projectconfig\l_test_noqrc.cpp" alt="" coords="439,95,589,151"/>
+<area shape="rect" id="node4" href="$projectconfig_8cpp.html" title="src/gui/projectconfig\l/projectconfig.cpp" alt="" coords="61,288,212,329"/>
 </map>

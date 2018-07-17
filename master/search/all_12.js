@@ -44,6 +44,7 @@ var searchData=
   ['settext',['setText',['../struct_line_edit_interface.html#aa04e6d7b9c24b41829ce2ab563160496',1,'LineEditInterface::setText()'],['../struct_n_l_m_line_edit.html#af47a9be0e81384bf7ce48624c3707b70',1,'NLMLineEdit::setText()']]],
   ['settxlistcbk',['setTxListCbk',['../struct_can_raw_filter_gui_impl.html#a6412e60230973c54813696449c6cdc36',1,'CanRawFilterGuiImpl::setTxListCbk()'],['../struct_can_raw_filter_gui_int.html#addd1ef52a645b8205275d61c43d5cf8d',1,'CanRawFilterGuiInt::setTxListCbk()']]],
   ['setuplogger',['setupLogger',['../main_8cpp.html#a677cf1dd7db1d278155bd2637971a267',1,'main.cpp']]],
+  ['setupmock',['setupMock',['../canrawfilter__test_8cpp.html#af0df33a72e8dbb080ba38dd36276252b',1,'canrawfilter_test.cpp']]],
   ['setviewfrozen',['setViewFrozen',['../struct_c_r_v_gui.html#ae6557d73a968dd06383f98f8d04f2b33',1,'CRVGui::setViewFrozen()'],['../struct_c_r_v_gui_interface.html#a1fc6c3454ceb5a783810ada7c6db2a52',1,'CRVGuiInterface::setViewFrozen()']]],
   ['showcontextmenu',['showContextMenu',['../class_p_c_impl.html#ae69548edeb46b16b7c7fa456ceacffec',1,'PCImpl::showContextMenu()'],['../struct_p_c_interface.html#a87b4dbd759c35aaaaf967fb9545041cf',1,'PCInterface::showContextMenu()']]],
   ['simulationstarted',['simulationStarted',['../class_project_config.html#afd045792374c1eb6fca4ee0601db3822',1,'ProjectConfig']]],

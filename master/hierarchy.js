@@ -18,6 +18,7 @@ var hierarchy =
     [ "CheckBoxInterface", "struct_check_box_interface.html", [
       [ "NLMCheckBox", "struct_n_l_m_check_box.html", null ]
     ] ],
+    [ "commonTestClass", "classcommon_test_class.html", null ],
     [ "ComponentInterface", "struct_component_interface.html", [
       [ "CanDevice", "class_can_device.html", null ],
       [ "CanLoad", "class_can_load.html", null ],

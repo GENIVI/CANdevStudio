@@ -37,6 +37,7 @@ var annotated_dup =
     [ "CanRawViewPlugin", "struct_can_raw_view_plugin.html", "struct_can_raw_view_plugin" ],
     [ "CanRawViewPrivate", "class_can_raw_view_private.html", "class_can_raw_view_private" ],
     [ "CheckBoxInterface", "struct_check_box_interface.html", "struct_check_box_interface" ],
+    [ "commonTestClass", "classcommon_test_class.html", "classcommon_test_class" ],
     [ "ComponentInterface", "struct_component_interface.html", "struct_component_interface" ],
     [ "ComponentModel", "class_component_model.html", "class_component_model" ],
     [ "ComponentModelInterface", "struct_component_model_interface.html", "struct_component_model_interface" ],
