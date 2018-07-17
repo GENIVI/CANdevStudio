@@ -1,7 +1,4 @@
-#define private public
-#include <candevice/candevice.h>
-#undef private
-
+#include "candevice.h"
 #define CATCH_CONFIG_RUNNER
 #include <QSignalSpy>
 #include <QtSerialBus/QCanBusDevice>
@@ -46,7 +43,6 @@ TEST_CASE("Initialization failed", "[candevice]")
 
     CHECK(canDevice.init() == false);
 
-    REQUIRE_NOTHROW(canDevice.framesReceived());
     REQUIRE_NOTHROW(canDevice.startSimulation());
     REQUIRE_NOTHROW(canDevice.sendFrame(frame));
 }
@@ -55,14 +51,15 @@ TEST_CASE("Initialization succedded", "[candevice]")
 {
     using namespace fakeit;
     Mock<CanDeviceInterface> deviceMock;
+    std::function<void()> rcvCbk;
 
     Fake(Dtor(deviceMock));
     Fake(Method(deviceMock, setFramesWrittenCbk));
-    Fake(Method(deviceMock, setFramesReceivedCbk));
+    When(Method(deviceMock, setFramesReceivedCbk)).AlwaysDo([&](auto&& fn) { rcvCbk = fn; });
     Fake(Method(deviceMock, setErrorOccurredCbk));
     Fake(Method(deviceMock, clearCallbacks));
     Fake(Method(deviceMock, setParent));
-    When(Method(deviceMock, init)).AlwaysReturn(true);
+    When(Method(deviceMock, init)).Return(true).Return(true).Return(false);
 
     CanDevice canDevice{ CanDeviceCtx(&deviceMock.get()) };
     setupBackendInterface(canDevice);
@@ -72,6 +69,9 @@ TEST_CASE("Initialization succedded", "[candevice]")
     CHECK(canDevice.init() == true);
 
     Verify(Method(deviceMock, clearCallbacks)).Exactly(Once);
+
+    CHECK(canDevice.init() == false);
+    REQUIRE_NOTHROW(rcvCbk());
 }
 
 TEST_CASE("Start failed", "[candevice]")

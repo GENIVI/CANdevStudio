@@ -11,12 +11,9 @@
 
 #include <log.h>
 #include <memory>
-
-#define private public
 #include <canrawview.h>
 #include <crvsortmodel.h>
 #include <gui/crvguiinterface.h>
-#undef private
 
 #include <iostream>
 std::shared_ptr<spdlog::logger> kDefaultLogger;

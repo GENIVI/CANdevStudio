@@ -36,7 +36,6 @@ if(UNIX)
         set(INSTALL_DEST_PLUG ${CMAKE_INSTALL_LIBDIR}/qt/plugins/canbus)
     endif()
 else()
-    # TODO: MSVC does not like "#define private public" need to find a way to disable it.
     option(WITH_TESTS "Build with test" OFF)
 
     set(GUI_TYPE WIN32)
@@ -106,18 +105,14 @@ configure_file(
 )
 # end of version Handling
 
-include_directories(3rdParty/readerwriterqueue)
-include_directories(3rdParty/cxxopts/include)
+if(WITH_TESTS OR WITH_COVERAGE)
+    enable_testing()
+endif()
 
 add_subdirectory(3rdParty)
 add_subdirectory(src/common)
 add_subdirectory(src/components)
 add_subdirectory(src/gui)
-
-if(WITH_TESTS OR WITH_COVERAGE)
-    enable_testing()
-    add_subdirectory(tests)
-endif()
 
 if(WITH_TOOLS)
     find_package(Boost COMPONENTS system filesystem REQUIRED)
