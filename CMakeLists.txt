@@ -16,6 +16,7 @@ list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/Modules)
 
 option(WITH_COVERAGE "Build with coverage" OFF)
 option(WITH_TOOLS "Build tools directory" OFF)
+option(WITH_TESTS "Build with test" ON)
 option(DEV_BUILD "Development build will include GIT hash and branch to versioning" ON)
 option(STANDALONE "Builds self containing package including Qt libs" OFF)
 
@@ -25,7 +26,6 @@ endif()
 message(STATUS "CMAKE_INSTALL_LIBDIR: '${CMAKE_INSTALL_LIBDIR}'")
 
 if(UNIX)
-    option(WITH_TESTS "Build with test" ON)
     if(STANDALONE)
         set(INSTALL_DEST_LIB CANdevStudio)
         set(INSTALL_DEST_BIN CANdevStudio)
@@ -36,9 +36,6 @@ if(UNIX)
         set(INSTALL_DEST_PLUG ${CMAKE_INSTALL_LIBDIR}/qt/plugins/canbus)
     endif()
 else()
-    # TODO: MSVC does not like "#define private public" need to find a way to disable it.
-    option(WITH_TESTS "Build with test" OFF)
-
     set(GUI_TYPE WIN32)
     set(INSTALL_DEST_LIB CANdevStudio)
     set(INSTALL_DEST_BIN CANdevStudio)

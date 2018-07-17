@@ -15,5 +15,5 @@ coverage:
         - "src/gui/projectconfig/canloadpainter.h"
         - "src/gui/projectconfig/pcinterface.h"
         - "src/gui/projectconfig/pcimpl.h"
-        - "tests"
+        - ".*/tests/.*"
         - "tools"
