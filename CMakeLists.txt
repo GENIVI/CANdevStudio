@@ -106,18 +106,17 @@ configure_file(
 )
 # end of version Handling
 
-include_directories(3rdParty/readerwriterqueue)
 include_directories(3rdParty/cxxopts/include)
-
-add_subdirectory(3rdParty)
-add_subdirectory(src/common)
-add_subdirectory(src/components)
-add_subdirectory(src/gui)
 
 if(WITH_TESTS OR WITH_COVERAGE)
     enable_testing()
     add_subdirectory(tests)
 endif()
+
+add_subdirectory(3rdParty)
+add_subdirectory(src/common)
+add_subdirectory(src/components)
+add_subdirectory(src/gui)
 
 if(WITH_TOOLS)
     find_package(Boost COMPONENTS system filesystem REQUIRED)

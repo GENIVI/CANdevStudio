@@ -3,11 +3,6 @@ include_directories(${CMAKE_SOURCE_DIR}/3rdParty/rapidjson/include)
 include_directories(${CMAKE_SOURCE_DIR}/3rdParty/fakeit/config/catch)
 include_directories(${CMAKE_SOURCE_DIR}/src/components)
 
-add_executable(candevice_test candevicetest.cpp candeviceqt_test.cpp)
-target_link_libraries(candevice_test candevice  Qt5::Test)
-target_compile_options(candevice_test PRIVATE $<$<CXX_COMPILER_ID:GNU>:-fno-devirtualize>)
-add_test( NAME CanDeviceTest COMMAND candevice_test)
-
 add_executable(canrawsender_test newlinemanager_test.cpp canrawsender_test.cpp)
 target_link_libraries(canrawsender_test canrawsender Qt5::Test)
 target_compile_options(canrawsender_test PRIVATE $<$<CXX_COMPILER_ID:GNU>:-fno-devirtualize>)
@@ -27,11 +22,6 @@ add_executable(canrawviewmodel_test canrawviewmodel_test.cpp)
 target_link_libraries(canrawviewmodel_test canrawview Qt5::Test)
 target_compile_options(canrawviewmodel_test PRIVATE $<$<CXX_COMPILER_ID:GNU>:-fno-devirtualize>)
 add_test( NAME CanRawViewModelTest COMMAND canrawviewmodel_test)
-
-add_executable(candevicemodel_test candevicemodel_test.cpp)
-target_link_libraries(candevicemodel_test candevice Qt5::Test)
-target_compile_options(candevicemodel_test PRIVATE $<$<CXX_COMPILER_ID:GNU>:-fno-devirtualize>)
-add_test( NAME CanDeviceModelTest COMMAND candevicemodel_test)
 
 add_executable(common_test common_test.cpp)
 target_link_libraries(common_test Qt5::Test cds-common projectconfig)

@@ -1,4 +1,4 @@
-#include <candevice/candeviceqt.h>
+#include "candeviceqt.h"
 #include <catch.hpp>
 #include <QEventLoop>
 
