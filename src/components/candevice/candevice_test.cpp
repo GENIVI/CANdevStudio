@@ -51,14 +51,15 @@ TEST_CASE("Initialization succedded", "[candevice]")
 {
     using namespace fakeit;
     Mock<CanDeviceInterface> deviceMock;
+    std::function<void()> rcvCbk;
 
     Fake(Dtor(deviceMock));
     Fake(Method(deviceMock, setFramesWrittenCbk));
-    Fake(Method(deviceMock, setFramesReceivedCbk));
+    When(Method(deviceMock, setFramesReceivedCbk)).AlwaysDo([&](auto&& fn) { rcvCbk = fn; });
     Fake(Method(deviceMock, setErrorOccurredCbk));
     Fake(Method(deviceMock, clearCallbacks));
     Fake(Method(deviceMock, setParent));
-    When(Method(deviceMock, init)).AlwaysReturn(true);
+    When(Method(deviceMock, init)).Return(true).Return(true).Return(false);
 
     CanDevice canDevice{ CanDeviceCtx(&deviceMock.get()) };
     setupBackendInterface(canDevice);
@@ -68,17 +69,19 @@ TEST_CASE("Initialization succedded", "[candevice]")
     CHECK(canDevice.init() == true);
 
     Verify(Method(deviceMock, clearCallbacks)).Exactly(Once);
+
+    CHECK(canDevice.init() == false);
+    REQUIRE_NOTHROW(rcvCbk());
 }
 
 TEST_CASE("Start failed", "[candevice]")
 {
     using namespace fakeit;
     Mock<CanDeviceInterface> deviceMock;
-    std::function<void()> rcvCbk;
 
     Fake(Dtor(deviceMock));
     When(Method(deviceMock, setFramesWrittenCbk)).Do([](const auto& cb) { cb(100); });
-    When(Method(deviceMock, setFramesReceivedCbk)).AlwaysDo([&](auto&& fn) { rcvCbk = fn; });
+    Fake(Method(deviceMock, setFramesReceivedCbk));
     Fake(Method(deviceMock, setErrorOccurredCbk));
     Fake(Method(deviceMock, setParent));
     When(Method(deviceMock, init)).Return(false);
@@ -86,7 +89,6 @@ TEST_CASE("Start failed", "[candevice]")
     CanDevice canDevice{ CanDeviceCtx(&deviceMock.get()) };
     setupBackendInterface(canDevice);
     CHECK(canDevice.init() == false);
-    REQUIRE_NOTHROW(rcvCbk());
     REQUIRE_NOTHROW(canDevice.startSimulation());
 }
 
