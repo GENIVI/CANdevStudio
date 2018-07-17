@@ -52,8 +52,6 @@ build_script:
 
     cmake --build . --config %BUILD_TYPE%
 
-    ctest
-
     if DEFINED PACKAGE cpack -G 7Z && cmake . -DSTANDALONE=ON && cpack -G 7Z && mkdir ..\master && move *.7z ..\master && cmake . -DDEV_BUILD=OFF && cpack -G 7Z && cmake . -DSTANDALONE=OFF && cpack -G 7Z && mkdir ..\rc && move *.7z ..\rc
 
     if DEFINED PACKAGE cd ..\master && for /f %%f in ('dir /b') do curl -T %%f -urkollataj:%BINTRAY_API_KEY% https://api.bintray.com/content/rkollataj/CANdevStudio/master/%APPVEYOR_REPO_COMMIT:~0,7%/%%f;override=1

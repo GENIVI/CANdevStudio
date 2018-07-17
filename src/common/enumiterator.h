@@ -110,7 +110,7 @@ class EnumIterator
 
     EnumIterator operator++(int) const
     {
-        return (makeEnd() != _current) ? ++EnumIterator{*this} : EnumIterator{};
+        return (makeEnd() != _current) ? ++(EnumIterator{*this}) : EnumIterator{};
     }
     // }
 
