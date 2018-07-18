@@ -25,11 +25,22 @@ std::string genCMake(const std::string name)
 set(SRC
     {name}.cpp
     {name}_p.cpp
+    {name}model.cpp
 )
 
 add_library(${{COMPONENT_NAME}} ${{SRC}})
 target_link_libraries(${{COMPONENT_NAME}} Qt5::Widgets Qt5::Core Qt5::SerialBus nodes cds-common)
 target_include_directories(${{COMPONENT_NAME}} INTERFACE ${{CMAKE_CURRENT_SOURCE_DIR}})
+
+if(WITH_TESTS)
+    add_executable(${{COMPONENT_NAME}}_test tests/${{COMPONENT_NAME}}_test.cpp)
+    target_link_libraries(${{COMPONENT_NAME}}_test ${{COMPONENT_NAME}} Qt5::Test fakeit)
+    add_test(NAME ${{COMPONENT_NAME}}_test COMMAND ${{COMPONENT_NAME}}_test)
+
+    add_executable(${{COMPONENT_NAME}}model_test tests/${{COMPONENT_NAME}}model_test.cpp)
+    target_link_libraries(${{COMPONENT_NAME}}model_test ${{COMPONENT_NAME}} Qt5::Test fakeit)
+    add_test(NAME ${{COMPONENT_NAME}}model_test COMMAND ${{COMPONENT_NAME}}model_test)
+endif()
 )",
         "name"_a = name);
 }
@@ -276,11 +287,22 @@ set(SRC
     gui/{name}guiimpl.h
     {name}.cpp
     {name}_p.cpp
+    {name}model.cpp
 )
 
 add_library(${{COMPONENT_NAME}} ${{SRC}})
-target_link_libraries(${{COMPONENT_NAME}} Qt5::Widgets Qt5::Core Qt5::SerialBus nodes cds-common)
+target_link_libraries(${{COMPONENT_NAME}} cds-common)
 target_include_directories(${{COMPONENT_NAME}} INTERFACE ${{CMAKE_CURRENT_SOURCE_DIR}})
+
+if(WITH_TESTS)
+    add_executable(${{COMPONENT_NAME}}_test tests/${{COMPONENT_NAME}}_test.cpp)
+    target_link_libraries(${{COMPONENT_NAME}}_test ${{COMPONENT_NAME}} Qt5::Test fakeit)
+    add_test(NAME ${{COMPONENT_NAME}}_test COMMAND ${{COMPONENT_NAME}}_test)
+
+    add_executable(${{COMPONENT_NAME}}model_test tests/${{COMPONENT_NAME}}model_test.cpp)
+    target_link_libraries(${{COMPONENT_NAME}}model_test ${{COMPONENT_NAME}} Qt5::Test fakeit)
+    add_test(NAME ${{COMPONENT_NAME}}model_test COMMAND ${{COMPONENT_NAME}}model_test)
+endif()
 )",
         "name"_a = name);
 }
@@ -640,11 +662,6 @@ public:
     void setInData(std::shared_ptr<NodeData> nodeData, PortIndex port) override;
     QtNodes::NodePainterDelegate* painterDelegate() const override;
 
-    static QColor headerColor()
-    {{
-        return QColor(85, 95, 195);
-    }}
-
 public slots:
 
 signals:
@@ -664,7 +681,7 @@ std::string genDataModelSrc(const std::string& name)
     using namespace fmt::literals;
 
     return fmt::format(R"(#include "{nameLower}model.h"
-#include <datamodeltypes/{nameLower}data.h>
+#include "{nameLower}plugin.h"
 #include <log.h>
 
 namespace {{
@@ -673,15 +690,12 @@ namespace {{
 const std::map<PortType, std::vector<NodeDataType>> portMappings = {{
     {{ PortType::In, 
         {{
-            //{{CanSignalCoderDataIn{{}}.type() }},
-            //{{CanSignalCoderSignalIn{{}}.type() }},
-            //{{CanSignalCoderRawIn{{}}.type() }}
+            //{{CanRawData{{}}.type() }}
         }}
     }},
     {{ PortType::Out, 
         {{
-            //{{CanSignalCoderSignalOut{{}}.type()}}, 
-            //{{CanSignalCoderRawOut{{}}.type() }}
+            //{{CanRawData{{}}.type() }}
         }}
     }}
 }};
@@ -691,7 +705,7 @@ const std::map<PortType, std::vector<NodeDataType>> portMappings = {{
 
 {name}Model::{name}Model()
     : ComponentModel("{name}")
-    , _painter(std::make_unique<NodePainter>(headerColor()))
+    , _painter(std::make_unique<NodePainter>({name}Plugin::PluginType::sectionColor()))
 {{
     _label->setAlignment(Qt::AlignVCenter | Qt::AlignHCenter);
     _label->setFixedSize(75, 25);
@@ -721,7 +735,7 @@ NodeDataType {name}Model::dataType(PortType portType, PortIndex ndx) const
 std::shared_ptr<NodeData> {name}Model::outData(PortIndex)
 {{
     // example
-    // return std::make_shared<CanDeviceDataOut>(_frame, _direction, _status);
+    // return std::make_shared<CanRawData>(_frame, _direction, _status);
 
     return {{ }};
 }}
@@ -730,7 +744,7 @@ void {name}Model::setInData(std::shared_ptr<NodeData> nodeData, PortIndex)
 {{
     // example
     // if (nodeData) {{
-    //     auto d = std::dynamic_pointer_cast<CanDeviceDataIn>(nodeData);
+    //     auto d = std::dynamic_pointer_cast<CanRawData>(nodeData);
     //     assert(nullptr != d);
     //     emit sendFrame(d->frame());
     // }} else {{
@@ -742,24 +756,7 @@ void {name}Model::setInData(std::shared_ptr<NodeData> nodeData, PortIndex)
         "name"_a = name, "nameUpper"_a = str_toupper(name), "nameLower"_a = str_tolower(name));
 }
 
-std::string genDataTypes(const std::string& name)
-{
-    using namespace fmt::literals;
-
-    return fmt::format(R"(#ifndef {nameUpper}DATA_H
-#define {nameUpper}DATA_H
-
-#include "candevicedata.h"
-
-typedef CanDeviceDataIn {name}DataOut;
-typedef CanDeviceDataOut {name}DataIn;
-
-#endif // {nameUpper}DATA_H
-)",
-        "name"_a = name, "nameUpper"_a = str_toupper(name), "nameLower"_a = str_tolower(name));
-}
-
-std::string genTests(const std::string& name)
+std::string genTests(const std::string& name, bool gui)
 {
     using namespace fmt::literals;
 
@@ -780,7 +777,7 @@ TEST_CASE("Stubbed methods", "[{nameLower}]")
 {{
     {name} c;
 
-    CHECK(c.mainWidget() == nullptr);
+    CHECK(c.mainWidget() {gui} nullptr);
     CHECK(c.mainWidgetDocked() == true);
 }}
 
@@ -848,7 +845,7 @@ int main(int argc, char* argv[])
     return Catch::Session().run(argc, argv);
 }}
 )",
-        "name"_a = name, "nameUpper"_a = str_toupper(name), "nameLower"_a = str_tolower(name));
+        "name"_a = name, "nameUpper"_a = str_toupper(name), "nameLower"_a = str_tolower(name), "gui"_a = gui? "!=" : "==");
 }
 
 std::string genTestsModel(const std::string& name)
@@ -856,12 +853,12 @@ std::string genTestsModel(const std::string& name)
     using namespace fmt::literals;
 
     return fmt::format(R"(#include <QtWidgets/QApplication>
-#include <projectconfig/{nameLower}model.h>
-#include <datamodeltypes/{nameLower}data.h>
+#include <{nameLower}model.h>
 #define CATCH_CONFIG_RUNNER
 #include "log.h"
 #include <QSignalSpy>
 #include <fakeit.hpp>
+#include <QCanBusFrame>
 
 std::shared_ptr<spdlog::logger> kDefaultLogger;
 // needed for QSignalSpy cause according to qtbug 49623 comments
@@ -875,7 +872,7 @@ TEST_CASE("Test basic functionality", "[{nameLower}Model]")
     CHECK(cm.caption() == "{name}");
     CHECK(cm.name() == "{name}");
     CHECK(cm.resizable() == false);
-    CHECK(cm.hasSeparateThread() == true);
+    CHECK(cm.hasSeparateThread() == false);
     CHECK(dynamic_cast<{name}Model*>(cm.clone().get()) != nullptr);
     CHECK(dynamic_cast<QLabel*>(cm.embeddedWidget()) != nullptr);
 }}
@@ -890,7 +887,7 @@ TEST_CASE("nPorts", "[{nameLower}Model]")
 {{
     {name}Model cm;
 
-    CHECK(cm.nPorts(QtNodes::PortType::Out) == 1);
+    CHECK(cm.nPorts(QtNodes::PortType::Out) == 0);
     CHECK(cm.nPorts(QtNodes::PortType::In) == 0);
 }}
 
@@ -900,17 +897,17 @@ TEST_CASE("dataType", "[{nameLower}Model]")
 
     NodeDataType ndt;
         
-    ndt = cm.dataType(QtNodes::PortType::Out, 0);
-    CHECK(ndt.id == "rawsender");
-    CHECK(ndt.name == "RAW");
+    //ndt = cm.dataType(QtNodes::PortType::Out, 0);
+    //CHECK(ndt.id == "rawframe");
+    //CHECK(ndt.name == "RAW");
 
-    ndt = cm.dataType(QtNodes::PortType::Out, 1);
-    CHECK(ndt.id == "");
-    CHECK(ndt.name == "");
+    //ndt = cm.dataType(QtNodes::PortType::Out, 1);
+    //CHECK(ndt.id == "");
+    //CHECK(ndt.name == "");
     
-    ndt = cm.dataType(QtNodes::PortType::In, 0);
-    CHECK(ndt.id == "");
-    CHECK(ndt.name == "");
+    //ndt = cm.dataType(QtNodes::PortType::In, 0);
+    //CHECK(ndt.id == "");
+    //CHECK(ndt.name == "");
 }}
 
 TEST_CASE("outData", "[{nameLower}Model]")
@@ -945,6 +942,28 @@ int main(int argc, char* argv[])
         "name"_a = name, "nameUpper"_a = str_toupper(name), "nameLower"_a = str_tolower(name));
 }
 
+std::string genPluginHdr(const std::string& name)
+{
+    using namespace fmt::literals;
+
+    return fmt::format(R"(#ifndef {nameUpper}PLUGIN_H
+#define {nameUpper}PLUGIN_H
+
+#include "plugin_type.h"
+#include "{nameLower}model.h"
+
+using MiscPlugin = PluginBase<typestring_is("Misc Layer"), 0x555fc3, 57>;
+
+struct {name}Plugin {{
+    using Model = {name}Model;
+    static constexpr const char* name = "{name}";
+    using PluginType = MiscPlugin;
+}};
+
+#endif // {nameUpper}PLUGIN_H
+)",
+        "name"_a = name, "nameUpper"_a = str_toupper(name), "nameLower"_a = str_tolower(name));
+}
 void writeToFile(const boost::filesystem::path& filename, const std::string& content)
 {
     boost::filesystem::ofstream file(filename);
@@ -989,35 +1008,25 @@ int main(int argc, char* argv[])
     }
 
     boost::filesystem::path componentDir(componentsPath + "/" + str_tolower(componentName));
-    if (!boost::filesystem::exists(componentDir)) {
-        if (!boost::filesystem::create_directory(componentDir)) {
-            std::cerr << "Failed to create output directory" << std::endl;
+    boost::filesystem::path testsDir(componentDir / "tests");
 
-            return EXIT_FAILURE;
-        }
+    if (boost::filesystem::exists(componentDir)) {
+        boost::filesystem::remove_all(componentDir);   
     }
 
-    boost::filesystem::path projectConfigDir(componentsPath + "/projectconfig");
-    if (!boost::filesystem::exists(projectConfigDir)) {
-        std::cerr << "projectconfig directory does not exist" << std::endl;
+    if (!boost::filesystem::create_directory(componentDir)) {
+        std::cerr << "Failed to create output directory" << std::endl;
 
         return EXIT_FAILURE;
     }
 
-    boost::filesystem::path dataTypesDir(projectConfigDir / "datamodeltypes");
-    if (!boost::filesystem::exists(dataTypesDir)) {
-        std::cerr << "datamodeltypes directory does not exist" << std::endl;
+    if (!boost::filesystem::create_directory(testsDir)) {
+        std::cerr << "Failed to create output directory" << std::endl;
 
         return EXIT_FAILURE;
     }
 
-    boost::filesystem::path testsDir(componentsPath + "/../../tests");
-    if (!boost::filesystem::exists(testsDir)) {
-        std::cerr << "tests directory does not exist" << std::endl;
-
-        return EXIT_FAILURE;
-    }
-
+    bool withGui = !result.count("no-gui");
     if (result.count("no-gui")) {
         writeToFile(componentDir / "CMakeLists.txt", genCMake(componentNameLower));
         writeToFile(componentDir / (componentNameLower + ".h"), genComponentHdr(componentName));
@@ -1045,13 +1054,12 @@ int main(int argc, char* argv[])
         writeToFile(componentGuiDir / (componentNameLower + ".ui"), genGui(componentName));
     }
 
-    writeToFile(projectConfigDir / (componentNameLower + "model.h"), genDataModelHdr(componentName));
-    writeToFile(projectConfigDir / (componentNameLower + "model.cpp"), genDataModelSrc(componentName));
-    writeToFile(dataTypesDir / (componentNameLower + "data.h"), genDataTypes(componentName));
+    writeToFile(componentDir / (componentNameLower + "model.h"), genDataModelHdr(componentName));
+    writeToFile(componentDir / (componentNameLower + "model.cpp"), genDataModelSrc(componentName));
+    writeToFile(componentDir / (componentNameLower + "plugin.h"), genPluginHdr(componentName));
 
-    writeToFile(testsDir / (componentNameLower + "_test.cpp"), genTests(componentName));
+    writeToFile(testsDir / (componentNameLower + "_test.cpp"), genTests(componentName, withGui));
     writeToFile(testsDir / (componentNameLower + "model_test.cpp"), genTestsModel(componentName));
-     
     
     return EXIT_SUCCESS;
 }
