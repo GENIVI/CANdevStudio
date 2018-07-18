@@ -1,6 +1,7 @@
 #include "canrawplayermodel.h"
 #include <datamodeltypes/canrawdata.h>
 #include <log.h>
+#include "canrawplayerplugin.h"
 
 namespace {
 
@@ -21,7 +22,7 @@ const std::map<PortType, std::vector<NodeDataType>> portMappings = {
 
 CanRawPlayerModel::CanRawPlayerModel()
     : ComponentModel("CanRawPlayer")
-    , _painter(std::make_unique<NodePainter>(headerColor()))
+    , _painter(std::make_unique<NodePainter>(CanRawPlayerPlugin::PluginType::sectionColor()))
 {
     _label->setAlignment(Qt::AlignVCenter | Qt::AlignHCenter);
     _label->setFixedSize(75, 25);

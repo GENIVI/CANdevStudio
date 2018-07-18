@@ -2,12 +2,13 @@
 #include <assert.h>
 #include <datamodeltypes/canrawdata.h>
 #include <log.h>
+#include "candeviceplugin.h"
 
 CanDeviceModel::CanDeviceModel()
     : ComponentModel("CanDevice")
     , _status(false)
     , _direction(Direction::Uninitialized)
-    , _painter(std::make_unique<NodePainter>(headerColor()))
+    , _painter(std::make_unique<NodePainter>(CanDevicePlugin::PluginType::sectionColor()))
 {
     _label->setAlignment(Qt::AlignVCenter | Qt::AlignHCenter);
     _label->setFixedSize(75, 25);

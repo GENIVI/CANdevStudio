@@ -1,6 +1,7 @@
 #include "canloadmodel.h"
 #include <datamodeltypes/canrawdata.h>
 #include <log.h>
+#include "canloadplugin.h"
 
 namespace {
 
@@ -20,7 +21,7 @@ const std::map<PortType, std::vector<NodeDataType>> portMappings = {
 
 CanLoadModel::CanLoadModel()
     : ComponentModel("CanLoad")
-    , _painter(std::make_unique<CanLoadPainter>(headerColor(), _currentLoad))
+    , _painter(std::make_unique<CanLoadPainter>(CanLoadPlugin::PluginType::sectionColor(), _currentLoad))
 {
     _label->setAlignment(Qt::AlignVCenter | Qt::AlignHCenter);
     _label->setFixedSize(75, 25);

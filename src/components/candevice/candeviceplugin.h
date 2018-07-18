@@ -6,7 +6,7 @@
 
 using DevicePlugin = PluginBase<typestring_is("Device Layer"), 0xf7aa1b, 43>;
 
-struct CANDevicePlugin {
+struct CanDevicePlugin {
     using Model = CanDeviceModel;
     static constexpr const char* name = "CanDevice";
     using PluginType = DevicePlugin;

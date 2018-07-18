@@ -1,9 +1,10 @@
 #include "canrawsendermodel.h"
 #include <datamodeltypes/canrawdata.h>
+#include "canrawsenderplugin.h"
 
 CanRawSenderModel::CanRawSenderModel()
     : ComponentModel("CanRawSender")
-    , _painter(std::make_unique<NodePainter>(headerColor()))
+    , _painter(std::make_unique<NodePainter>(CanRawSenderPlugin::PluginType::sectionColor()))
 {
     _label->setAlignment(Qt::AlignVCenter | Qt::AlignHCenter);
     _label->setFixedSize(75, 25);

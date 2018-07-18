@@ -26,7 +26,7 @@ macro(get_plugin_type plugin result section)
     set(pluginName "" CACHE STRING "" FORCE)
     file(STRINGS ${plugin}/${plugin}plugin.h 
         test 
-        REGEX "^[struct|class].*"
+        REGEX "^(struct)|(class).*"
     )
     string(REPLACE "struct" "" test ${test})
     string(REPLACE "class" "" test ${test})

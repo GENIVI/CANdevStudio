@@ -59,14 +59,6 @@ public:
      */
     QtNodes::NodePainterDelegate* painterDelegate() const override;
 
-    /**
-     *   @brief Returns color that will be used to draw node header
-     */
-    static QColor headerColor()
-    {
-        return QColor(245, 170, 27);
-    }
-
     virtual bool hasSeparateThread() const override
     {
         return true;

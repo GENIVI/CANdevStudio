@@ -56,14 +56,6 @@ public:
      */
     QtNodes::NodePainterDelegate* painterDelegate() const override;
 
-    /**
-     *   @brief Returns color that will be used to draw node header
-     */
-    static QColor headerColor()
-    {
-        return QColor(144, 187, 62);
-    }
-
 public slots:
 
     /**

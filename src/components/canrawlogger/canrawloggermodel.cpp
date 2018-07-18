@@ -1,6 +1,7 @@
 #include "canrawloggermodel.h"
 #include <datamodeltypes/canrawdata.h>
 #include <log.h>
+#include "canrawloggerplugin.h"
 
 namespace {
 
@@ -20,7 +21,7 @@ const std::map<PortType, std::vector<NodeDataType>> portMappings = {
 
 CanRawLoggerModel::CanRawLoggerModel()
     : ComponentModel("CanRawLogger")
-    , _painter(std::make_unique<NodePainter>(headerColor()))
+    , _painter(std::make_unique<NodePainter>(CanRawLoggerPlugin::PluginType::sectionColor()))
 {
     _label->setAlignment(Qt::AlignVCenter | Qt::AlignHCenter);
     _label->setFixedSize(75, 25);
