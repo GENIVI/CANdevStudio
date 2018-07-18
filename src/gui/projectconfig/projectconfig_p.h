@@ -49,11 +49,7 @@ public:
 
         _ui->scrollArea->setMinimumSize(165, 0);
         _ui->scrollArea->setMaximumSize(165, 10000);
-
-        connect(_ui->pbDeviceLayer, &QPushButton::toggled, _ui->deviceWidget, &QWidget::setVisible);
-        _ui->pbDeviceLayer->setChecked(true);
-        connect(_ui->pbRawLayer, &QPushButton::toggled, _ui->rawWidget, &QWidget::setVisible);
-        _ui->pbRawLayer->setChecked(true);
+        _plugins.initSections(*_ui);
     }
 
     void addModelIcons()
@@ -66,18 +62,8 @@ public:
             bgColor = QColor(255, 255, 255);
         }
 
-        auto cleanIconWidgets = [](QWidget* w) {
-            QLayoutItem* item;
-            while ((item = w->layout()->takeAt(0)) != nullptr) {
-                delete item->widget();
-                delete item;
-            }
-        };
-
-        cleanIconWidgets(_ui->deviceWidget);
-        cleanIconWidgets(_ui->rawWidget);
-
-        _plugins.addWidgets(*_ui, bgColor);
+        _plugins.clearSections();
+        _plugins.addWidgets(bgColor);
     }
 
     ~ProjectConfigPrivate() {}

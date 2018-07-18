@@ -7,7 +7,7 @@
 struct CANLoadPlugin {
     using Model = CanLoadModel;
     static constexpr const char* name = "CanLoad";
-    using PluginType = CANRawPlugin;
+    using PluginType = CanRawPlugin;
 };
 
 #endif /* end of include guard: CANLOADPLUGIN_H_8T2GEZMW */

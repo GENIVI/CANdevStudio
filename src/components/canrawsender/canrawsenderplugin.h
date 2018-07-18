@@ -7,7 +7,7 @@
 struct CanRawSenderPlugin {
     using Model = CanRawSenderModel;
     static constexpr const char* name = "CanRawSender";
-    using PluginType = CANRawPlugin;
+    using PluginType = CanRawPlugin;
 };
 
 

@@ -7,7 +7,7 @@
 struct CanRawPlayerPlugin {
     using Model = CanRawPlayerModel;
     static constexpr const char* name = "CanRawPlayer";
-    using PluginType = CANRawPlugin;
+    using PluginType = CanRawPlugin;
 };
 
 

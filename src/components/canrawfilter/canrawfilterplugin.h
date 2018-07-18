@@ -7,7 +7,7 @@
 struct CanRawFilterPlugin {
     using Model = CanRawFilterModel;
     static constexpr const char* name = "CanRawFilter";
-    using PluginType = CANRawPlugin;
+    using PluginType = CanRawPlugin;
 };
 
 #endif /* end of include guard: CANRAWFILTERPLUGIN_H_MGJSE2A9 */
