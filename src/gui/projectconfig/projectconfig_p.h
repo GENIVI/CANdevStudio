@@ -49,7 +49,7 @@ public:
 
         _ui->scrollArea->setMinimumSize(165, 0);
         _ui->scrollArea->setMaximumSize(165, 10000);
-        _plugins.initSections<Sections>(*_ui);
+        _plugins.initSections(*_ui);
     }
 
     void addModelIcons()
@@ -63,7 +63,7 @@ public:
         }
 
         _plugins.clearSections();
-        _plugins.addWidgets<Sections>(bgColor);
+        _plugins.addWidgets(bgColor);
     }
 
     ~ProjectConfigPrivate() {}

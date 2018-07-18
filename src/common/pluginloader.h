@@ -68,24 +68,23 @@ private:
     std::vector<QWidget*>& _widgets;
 };
 
-template <typename... Args> struct PluginLoader {
+template <typename S, typename... Args> struct PluginLoader {
     PluginLoader(QtNodes::DataModelRegistry& registry)
     {
         registerModel<Args...>(registry);
     }
 
-    template <typename T> void initSections(Ui::ProjectConfigPrivate& ui)
+    void initSections(Ui::ProjectConfigPrivate& ui)
     {
-        SectionLoader<T> sections(_widgets, ui);
+        SectionLoader<S> sections(_widgets, ui);
 
         auto spacer = new QSpacerItem(17, 410, QSizePolicy::Minimum, QSizePolicy::Expanding);
         ui.verticalLayout->addItem(spacer);
     }
 
-    template<typename S>
     void addWidgets(const QColor& bg)
     {
-        addWidget<S, Args...>(bg);
+        addWidget<Args...>(bg);
     }
 
     void clearSections()
@@ -100,7 +99,7 @@ template <typename... Args> struct PluginLoader {
     };
 
 private:
-    template <typename S, typename T> void addWidget(const QColor& bg)
+    template <typename T> void addWidget(const QColor& bg)
     {
         size_t ndx = SectionNdx<typename T::PluginType, S>::value;
 
@@ -111,10 +110,10 @@ private:
         }
     }
 
-    template <typename S, typename W, typename Z, typename... Plugs> void addWidget(const QColor& bg)
+    template <typename W, typename Z, typename... Plugs> void addWidget(const QColor& bg)
     {
-        addWidget<S, W>(bg);
-        addWidget<S, Z, Plugs...>(bg);
+        addWidget<W>(bg);
+        addWidget<Z, Plugs...>(bg);
     }
 
     std::vector<QWidget*> _widgets;
