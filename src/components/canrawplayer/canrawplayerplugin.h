@@ -4,6 +4,8 @@
 #include "plugin_type.h"
 #include "canrawplayermodel.h"
 
+using CanRawPlugin = PluginBase<typestring_is("Raw Layer"), 0x90bb3e, 58>;
+
 struct CanRawPlayerPlugin {
     using Model = CanRawPlayerModel;
     static constexpr const char* name = "CanRawPlayer";

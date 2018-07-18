@@ -4,6 +4,8 @@
 #include "plugin_type.h"
 #include "canloadmodel.h"
 
+using CanRawPlugin = PluginBase<typestring_is("Raw Layer"), 0x90bb3e, 58>;
+
 struct CANLoadPlugin {
     using Model = CanLoadModel;
     static constexpr const char* name = "CanLoad";

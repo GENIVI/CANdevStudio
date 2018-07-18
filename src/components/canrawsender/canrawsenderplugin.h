@@ -4,6 +4,8 @@
 #include "plugin_type.h"
 #include "canrawsendermodel.h"
 
+using CanRawPlugin = PluginBase<typestring_is("Raw Layer"), 0x90bb3e, 58>;
+
 struct CanRawSenderPlugin {
     using Model = CanRawSenderModel;
     static constexpr const char* name = "CanRawSender";

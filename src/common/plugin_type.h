@@ -23,7 +23,4 @@ struct PluginBase {
     }
 };
 
-using DevicePlugin = PluginBase<typestring_is("Device Layer"), 0xf7aa1b, 43>;
-using CanRawPlugin = PluginBase<typestring_is("Raw Layer"), 0x90bb3e, 58>;
-
 #endif /* end of include guard: PLUGIN_TYPE_H_AGCRIYX2 */
