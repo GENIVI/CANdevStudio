@@ -63,7 +63,7 @@ public:
         }
 
         _plugins.clearSections();
-        _plugins.addWidgets(bgColor);
+        _plugins.addWidgets<Sections>(bgColor);
     }
 
     ~ProjectConfigPrivate() {}

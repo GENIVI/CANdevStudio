@@ -5,6 +5,19 @@
 
 #include "plugin_type.h"
 
+template <class T, class Tuple>
+struct SectionNdx;
+
+template <class T, class... Types>
+struct SectionNdx<T, std::tuple<T, Types...>> {
+    static const std::size_t value = 0;
+};
+
+template <class T, class U, class... Types>
+struct SectionNdx<T, std::tuple<U, Types...>> {
+    static const std::size_t value = 1 + SectionNdx<T, std::tuple<Types...>>::value;
+};
+
 template <typename T> void registerModel(QtNodes::DataModelRegistry& registry)
 {
     registry.registerModel<typename T::Model>();
@@ -69,9 +82,10 @@ template <typename... Args> struct PluginLoader {
         ui.verticalLayout->addItem(spacer);
     }
 
+    template<typename S>
     void addWidgets(const QColor& bg)
     {
-        addWidget<Args...>(bg);
+        addWidget<S, Args...>(bg);
     }
 
     void clearSections()
@@ -86,25 +100,21 @@ template <typename... Args> struct PluginLoader {
     };
 
 private:
-    template <typename T> void addWidget(const QColor& bg)
+    template <typename S, typename T> void addWidget(const QColor& bg)
     {
-        if (T::PluginType::typeNdx() < (int)_widgets.size()) {
-            auto wdg = _widgets[T::PluginType::typeNdx()];
+        size_t ndx = SectionNdx<typename T::PluginType, S>::value;
 
-            if (wdg) {
-                wdg->layout()->addWidget(new IconLabel(T::name, T::PluginType::sectionColor(), bg));
-            } else {
-                cds_error("No widget for typeNdx: {}", T::PluginType::typeNdx());
-            }
+        if ((ndx < _widgets.size()) && _widgets[ndx]) {
+            _widgets[ndx]->layout()->addWidget(new IconLabel(T::name, T::PluginType::sectionColor(), bg));
         } else {
-            cds_error("Widgets vector too small");
+            cds_error("Sections initialization error");
         }
     }
 
-    template <typename W, typename Z, typename... Plugs> void addWidget(const QColor& bg)
+    template <typename S, typename W, typename Z, typename... Plugs> void addWidget(const QColor& bg)
     {
-        addWidget<W>(bg);
-        addWidget<Z, Plugs...>(bg);
+        addWidget<S, W>(bg);
+        addWidget<S, Z, Plugs...>(bg);
     }
 
     std::vector<QWidget*> _widgets;
