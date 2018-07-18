@@ -16,44 +16,22 @@ template <typename W, typename Z, typename... Args> void registerModel(QtNodes::
     registerModel<Z, Args...>(registry);
 }
 
-//template <typename T>
-//std::enable_if_t<std::is_same<typename T::PluginType, DevicePlugin>::value> addWidget(
-    //Ui::ProjectConfigPrivate& ui, const QColor& bg)
-//{
-    //ui.deviceWidget->layout()->addWidget(new IconLabel(T::name, T::Model::headerColor(), bg));
-//}
+template <typename... Args> struct SectionLoader;
 
-
-template <typename... Args> struct PluginLoader {
-    PluginLoader(QtNodes::DataModelRegistry& registry)
+template <typename... Args> struct SectionLoader<std::tuple<Args...>> {
+    SectionLoader(std::vector<QWidget*>& widgets, Ui::ProjectConfigPrivate& ui)
+        : _widgets(widgets)
     {
-        registerModel<Args...>(registry);
+        initSection<Args...>(ui);
     }
-
-    void initSections(Ui::ProjectConfigPrivate& ui)
-    {
-        initSection<DevicePlugin, CanRawPlugin>(ui);
-
-        auto spacer = new QSpacerItem(17, 410, QSizePolicy::Minimum, QSizePolicy::Expanding);
-        ui.verticalLayout->addItem(spacer);
-    } 
-
-    void addWidgets(const QColor& bg)
-    {
-        addWidget<Args...>(bg);
-    }
-
-    void clearSections() {
-        for(auto wdg : _widgets) {
-            QLayoutItem* item;
-            while ((item = wdg->layout()->takeAt(0)) != nullptr) {
-                delete item->widget();
-                delete item;
-            }
-        }
-    };
 
 private:
+    template <typename W, typename Z, typename... Secs> void initSection(Ui::ProjectConfigPrivate& ui)
+    {
+        initSection<W>(ui);
+        initSection<Z, Secs...>(ui);
+    }
+
     template <typename T> void initSection(Ui::ProjectConfigPrivate& ui)
     {
         auto pb = new QCheckBox(T::sectionName(), ui.frame);
@@ -74,19 +52,46 @@ private:
         QObject::connect(pb, &QPushButton::toggled, wdg, &QWidget::setVisible);
     }
 
-    template <typename W, typename Z, typename... Secs> void initSection(Ui::ProjectConfigPrivate& ui)
+    std::vector<QWidget*>& _widgets;
+};
+
+template <typename... Args> struct PluginLoader {
+    PluginLoader(QtNodes::DataModelRegistry& registry)
     {
-        initSection<W>(ui);
-        initSection<Z, Secs...>(ui);
+        registerModel<Args...>(registry);
     }
 
-    template <typename T>
-    void addWidget(const QColor& bg)
+    template <typename T> void initSections(Ui::ProjectConfigPrivate& ui)
     {
-        if(T::PluginType::typeNdx() < (int)_widgets.size()) {
+        SectionLoader<T> sections(_widgets, ui);
+
+        auto spacer = new QSpacerItem(17, 410, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        ui.verticalLayout->addItem(spacer);
+    }
+
+    void addWidgets(const QColor& bg)
+    {
+        addWidget<Args...>(bg);
+    }
+
+    void clearSections()
+    {
+        for (auto wdg : _widgets) {
+            QLayoutItem* item;
+            while ((item = wdg->layout()->takeAt(0)) != nullptr) {
+                delete item->widget();
+                delete item;
+            }
+        }
+    };
+
+private:
+    template <typename T> void addWidget(const QColor& bg)
+    {
+        if (T::PluginType::typeNdx() < (int)_widgets.size()) {
             auto wdg = _widgets[T::PluginType::typeNdx()];
 
-            if(wdg) {
+            if (wdg) {
                 wdg->layout()->addWidget(new IconLabel(T::name, T::PluginType::sectionColor(), bg));
             } else {
                 cds_error("No widget for typeNdx: {}", T::PluginType::typeNdx());

@@ -49,7 +49,7 @@ public:
 
         _ui->scrollArea->setMinimumSize(165, 0);
         _ui->scrollArea->setMaximumSize(165, 10000);
-        _plugins.initSections(*_ui);
+        _plugins.initSections<Sections>(*_ui);
     }
 
     void addModelIcons()
