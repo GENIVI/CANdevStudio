@@ -14,6 +14,11 @@
 #include <projectconfig.h>
 #include <projectconfigvalidator.h>
 
+#include "ui_projectconfig.h"
+#include <QPushButton>
+#include <iconlabel.h>
+#include <plugins.hpp>
+
 std::shared_ptr<spdlog::logger> kDefaultLogger;
 
 TEST_CASE("Loading and saving", "[projectconfig]")
@@ -150,6 +155,14 @@ TEST_CASE("callbacks test", "[projectconfig]")
 
     fs->removeNode(node);
     fs->removeNode(node2);
+}
+
+TEST_CASE("Plugin loading - sections not initialized", "[common]")
+{
+
+    QtNodes::FlowScene graphScene;
+    Plugins plugins(graphScene.registry());
+    REQUIRE_NOTHROW(plugins.addWidgets({ 0x11223344 }));
 }
 
 int main(int argc, char* argv[])

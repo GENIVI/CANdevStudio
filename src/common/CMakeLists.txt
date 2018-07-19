@@ -13,6 +13,5 @@ if(WITH_TESTS)
     add_executable(common_test tests/common_test.cpp)
     target_link_libraries(common_test Qt5::Test cds-common fakeit projectconfig)
     add_test(NAME common_test COMMAND common_test)
-    target_include_directories(common_test INTERFACE PRIVATE ${CMAKE_BINARY_DIR})
 endif()
 

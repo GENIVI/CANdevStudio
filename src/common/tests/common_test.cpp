@@ -2,24 +2,17 @@
 #include "enumiterator.h"
 
 #define CATCH_CONFIG_RUNNER
-#include <QPushButton>
-#include <QtWidgets/QApplication>
 #include <fakeit.hpp>
-#include <iconlabel.h>
-#include <log.h>
 
-#include "../../gui/projectconfig/ui_projectconfig.h"
-#include "plugins.hpp"
+#include <QtWidgets/QApplication>
 #include <cstddef> // size_t, ptrdiff_t
 #include <cstdint> // uint16_t
+#include <iconlabel.h>
 #include <iterator> // iterator_traits, begin, end
 #include <limits> // numeric_limits
-#include <nodes/FlowScene>
 #include <type_traits> // is_same
 #include <utility> // swap, next, advance
 #include <vector> // vector
-
-std::shared_ptr<spdlog::logger> kDefaultLogger;
 
 enum class Trivial { A, B, C };
 
@@ -245,15 +238,6 @@ TEST_CASE("IconLable sizeHint", "[common]")
     CHECK(l.minimumSizeHint() == QSize(140, 48));
 }
 
-
-TEST_CASE("Plugin loading - sections not initialized", "[common]")
-{
-
-    QtNodes::FlowScene graphScene;
-    Plugins plugins(graphScene.registry());
-    REQUIRE_NOTHROW(plugins.addWidgets({ 0x11223344 }));
-}
-
 // -- compile-time errors:
 /*
 TEST_CASE("EnumIterator invalid-value", "[common]")
@@ -296,12 +280,6 @@ TEST_CASE("EnumIterator no-past-the-end", "[common]")
 */
 int main(int argc, char* argv[])
 {
-    bool haveDebug = std::getenv("CDS_DEBUG") != nullptr;
-    kDefaultLogger = spdlog::stdout_color_mt("cds");
-    if (haveDebug) {
-        kDefaultLogger->set_level(spdlog::level::debug);
-    }
-    cds_debug("Staring unit tests");
     QApplication a(argc, argv); // QApplication must exist when contructing QWidgets TODO check QTest
     return Catch::Session().run(argc, argv);
 }
