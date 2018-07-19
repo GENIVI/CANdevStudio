@@ -5,7 +5,6 @@ var searchData=
   ['addmodelicons',['addModelIcons',['../class_project_config_private.html#a08d6edd05c191ba28fd37ead6cef82f0',1,'ProjectConfigPrivate']]],
   ['addnewframe',['addNewFrame',['../canrawview__test_8cpp.html#a4238babf1484c02047b31f4fb2b430f4',1,'canrawview_test.cpp']]],
   ['addnode',['addNode',['../struct_flow_view_wrapper.html#a7a04e16d482fb9d5bfff87c5e94217ff',1,'FlowViewWrapper']]],
-  ['addwidget',['addWidget',['../pluginloader_8h.html#a0781163da4daf882eb329cdcbd13fc38',1,'addWidget(Ui::ProjectConfigPrivate &amp;ui, const QColor &amp;bg):&#160;pluginloader.h'],['../pluginloader_8h.html#ad20de5b7e803fdbe9f59b355c325b0af',1,'addWidget(Ui::ProjectConfigPrivate &amp;ui, const QColor &amp;bg):&#160;pluginloader.h'],['../pluginloader_8h.html#a93f597ebffa42b6ea4d5c1c365e3624d',1,'addWidget(Ui::ProjectConfigPrivate &amp;ui, const QColor &amp;bg):&#160;pluginloader.h']]],
-  ['addwidgets',['addWidgets',['../struct_plugin_loader.html#ac6ff12013efb57eb6d5a2433cbb89fb3',1,'PluginLoader']]],
+  ['addwidgets',['addWidgets',['../struct_plugin_loader.html#a2f946d117849aee8a096d5ca0beb87b9',1,'PluginLoader']]],
   ['apply_5fmodel_5fvisitor',['apply_model_visitor',['../modelvisitor_8h.html#a3f0b12d06c46bd1ae981eaa43f3bd3fc',1,'apply_model_visitor(QtNodes::NodeDataModel &amp;m, CanNodeDataModelVisitor v):&#160;modelvisitor.h'],['../modelvisitor_8h.html#ae6d8d219e9ab208c433804e0c33d9ae9',1,'apply_model_visitor(QtNodes::NodeDataModel &amp;m, Actions &amp;&amp;...actions):&#160;modelvisitor.h']]]
 ];

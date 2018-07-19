@@ -1,10 +1,10 @@
 <map id="src/components/canrawlogger/canrawlogger.h" name="src/components/canrawlogger/canrawlogger.h">
 <area shape="rect" id="node2" href="$canrawlogger_8cpp.html" title="src/components/canrawlogger\l/canrawlogger.cpp" alt="" coords="5,191,220,233"/>
-<area shape="rect" id="node3" href="$canrawlogger__p_8h.html" title="src/components/canrawlogger\l/canrawlogger_p.h" alt="" coords="244,95,459,136"/>
-<area shape="rect" id="node5" href="$canrawloggermodel_8h.html" title="src/components/canrawlogger\l/canrawloggermodel.h" alt="" coords="483,95,697,136"/>
-<area shape="rect" id="node9" href="$canrawlogger__test_8cpp.html" title="src/components/canrawlogger\l/tests/canrawlogger_test.cpp" alt="" coords="721,95,936,136"/>
+<area shape="rect" id="node3" href="$canrawlogger__p_8h.html" title="src/components/canrawlogger\l/canrawlogger_p.h" alt="" coords="197,95,412,136"/>
+<area shape="rect" id="node5" href="$canrawloggermodel_8h.html" title="src/components/canrawlogger\l/canrawloggermodel.h" alt="" coords="436,95,651,136"/>
+<area shape="rect" id="node9" href="$canrawlogger__test_8cpp.html" title="src/components/canrawlogger\l/tests/canrawlogger_test.cpp" alt="" coords="675,95,889,136"/>
 <area shape="rect" id="node4" href="$canrawlogger__p_8cpp.html" title="src/components/canrawlogger\l/canrawlogger_p.cpp" alt="" coords="244,191,459,233"/>
-<area shape="rect" id="node6" href="$canrawloggermodel_8cpp.html" title="src/components/canrawlogger\l/canrawloggermodel.cpp" alt="" coords="483,191,697,233"/>
-<area shape="rect" id="node7" href="$canrawloggerplugin_8h.html" title="src/components/canrawlogger\l/canrawloggerplugin.h" alt="" coords="721,191,936,233"/>
-<area shape="rect" id="node8" href="$canrawloggermodel__test_8cpp.html" title="src/components/canrawlogger\l/tests/canrawloggermodel\l_test.cpp" alt="" coords="960,184,1175,240"/>
+<area shape="rect" id="node6" href="$canrawloggermodel_8cpp.html" title="src/components/canrawlogger\l/canrawloggermodel.cpp" alt="" coords="461,288,676,329"/>
+<area shape="rect" id="node7" href="$canrawloggerplugin_8h.html" title="src/components/canrawlogger\l/canrawloggerplugin.h" alt="" coords="535,191,749,233"/>
+<area shape="rect" id="node8" href="$canrawloggermodel__test_8cpp.html" title="src/components/canrawlogger\l/tests/canrawloggermodel\l_test.cpp" alt="" coords="773,184,988,240"/>
 </map>

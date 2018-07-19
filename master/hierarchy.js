@@ -3,16 +3,15 @@ var hierarchy =
     [ "CanDeviceInterface", "struct_can_device_interface.html", [
       [ "CanDeviceQt", "struct_can_device_qt.html", null ]
     ] ],
-    [ "CANDevicePlugin", "struct_c_a_n_device_plugin.html", null ],
+    [ "CanDevicePlugin", "struct_can_device_plugin.html", null ],
     [ "CanDevicePrivate", "class_can_device_private.html", null ],
-    [ "CANLoadPlugin", "struct_c_a_n_load_plugin.html", null ],
+    [ "CanLoadPlugin", "struct_can_load_plugin.html", null ],
     [ "CanRawFilterGuiInt", "struct_can_raw_filter_gui_int.html", [
       [ "CanRawFilterGuiImpl", "struct_can_raw_filter_gui_impl.html", null ]
     ] ],
     [ "CanRawFilterPlugin", "struct_can_raw_filter_plugin.html", null ],
     [ "CanRawLoggerPlugin", "struct_can_raw_logger_plugin.html", null ],
     [ "CanRawPlayerPlugin", "struct_can_raw_player_plugin.html", null ],
-    [ "CANRawPlugin", "struct_c_a_n_raw_plugin.html", null ],
     [ "CanRawSenderPlugin", "struct_can_raw_sender_plugin.html", null ],
     [ "CanRawViewPlugin", "struct_can_raw_view_plugin.html", null ],
     [ "CheckBoxInterface", "struct_check_box_interface.html", [
@@ -41,7 +40,6 @@ var hierarchy =
     [ "CRVGuiInterface", "struct_c_r_v_gui_interface.html", [
       [ "CRVGui", "struct_c_r_v_gui.html", null ]
     ] ],
-    [ "DevicePlugin", "struct_device_plugin.html", null ],
     [ "EnumIterator< T, start, stop >", "class_enum_iterator.html", null ],
     [ "FlowView", null, [
       [ "FlowViewWrapper", "struct_flow_view_wrapper.html", null ]
@@ -86,7 +84,8 @@ var hierarchy =
     [ "PCInterface", "struct_p_c_interface.html", [
       [ "PCImpl", "class_p_c_impl.html", null ]
     ] ],
-    [ "PluginLoader< Args >", "struct_plugin_loader.html", null ],
+    [ "PluginBase< Name, Color, Space >", "struct_plugin_base.html", null ],
+    [ "PluginLoader< S, Args >", "struct_plugin_loader.html", null ],
     [ "ProjectConfigValidator", "class_project_config_validator.html", null ],
     [ "PushButtonInterface", "struct_push_button_interface.html", [
       [ "NLMPushButton", "struct_n_l_m_push_button.html", null ]
@@ -135,6 +134,12 @@ var hierarchy =
       [ "ProjectConfig", "class_project_config.html", null ],
       [ "ProjectConfigPrivate", "class_project_config_private.html", null ]
     ] ],
+    [ "section_ndx< T, Tuple >", "structsection__ndx.html", null ],
+    [ "section_ndx< T, std::tuple< T, Types... > >", "structsection__ndx_3_01_t_00_01std_1_1tuple_3_01_t_00_01_types_8_8_8_01_4_01_4.html", null ],
+    [ "section_ndx< T, std::tuple< U, Types... > >", "structsection__ndx_3_01_t_00_01std_1_1tuple_3_01_u_00_01_types_8_8_8_01_4_01_4.html", null ],
+    [ "SectionLoader< Array, Args >", "struct_section_loader.html", null ],
+    [ "SectionLoader< Array, std::tuple< Args... > >", "struct_section_loader_3_01_array_00_01std_1_1tuple_3_01_args_8_8_8_01_4_01_4.html", null ],
+    [ "irqus::typestring< C >", "structirqus_1_1typestring.html", null ],
     [ "VisitableWith< Visitor >", "struct_visitable_with.html", null ],
     [ "Visitor< Tag, Visitables >", "class_visitor.html", null ],
     [ "Visitor< CanNodeDataModelVisitor, CanRawViewModel, CanRawSenderModel, CanDeviceModel >", "class_visitor.html", [

@@ -14,9 +14,7 @@ var dir_94e65932f1e05d44d79da8e98a8aee4c =
     [ "canrawsendermodel.h", "canrawsendermodel_8h.html", [
       [ "CanRawSenderModel", "class_can_raw_sender_model.html", "class_can_raw_sender_model" ]
     ] ],
-    [ "canrawsenderplugin.h", "canrawsenderplugin_8h.html", [
-      [ "CanRawSenderPlugin", "struct_can_raw_sender_plugin.html", "struct_can_raw_sender_plugin" ]
-    ] ],
+    [ "canrawsenderplugin.h", "canrawsenderplugin_8h.html", "canrawsenderplugin_8h" ],
     [ "newlinemanager.cpp", "newlinemanager_8cpp.html", null ],
     [ "newlinemanager.h", "newlinemanager_8h.html", [
       [ "NewLineManager", "class_new_line_manager.html", "class_new_line_manager" ]

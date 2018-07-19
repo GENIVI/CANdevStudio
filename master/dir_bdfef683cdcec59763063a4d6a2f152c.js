@@ -13,9 +13,7 @@ var dir_bdfef683cdcec59763063a4d6a2f152c =
     [ "canrawviewmodel.h", "canrawviewmodel_8h.html", [
       [ "CanRawViewModel", "class_can_raw_view_model.html", "class_can_raw_view_model" ]
     ] ],
-    [ "canrawviewplugin.h", "canrawviewplugin_8h.html", [
-      [ "CanRawViewPlugin", "struct_can_raw_view_plugin.html", "struct_can_raw_view_plugin" ]
-    ] ],
+    [ "canrawviewplugin.h", "canrawviewplugin_8h.html", "canrawviewplugin_8h" ],
     [ "crv_enums.h", "crv__enums_8h.html", "crv__enums_8h" ],
     [ "crvsortmodel.cpp", "crvsortmodel_8cpp.html", null ],
     [ "crvsortmodel.h", "crvsortmodel_8h.html", [

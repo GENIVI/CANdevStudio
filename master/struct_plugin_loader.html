@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>CANdevStudio: PluginLoader&lt; Args &gt; Struct Template Reference</title>
+<title>CANdevStudio: PluginLoader&lt; S, Args &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -110,7 +110,7 @@ $(document).ready(function(){initNavTree('struct_plugin_loader.html','');});
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="struct_plugin_loader-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">PluginLoader&lt; Args &gt; Struct Template Reference</div>  </div>
+<div class="title">PluginLoader&lt; S, Args &gt; Struct Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -118,23 +118,27 @@ $(document).ready(function(){initNavTree('struct_plugin_loader.html','');});
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a4a77640033f3c0d8e3137b823a3fde03"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_plugin_loader.html#a4a77640033f3c0d8e3137b823a3fde03">PluginLoader</a> (QtNodes::DataModelRegistry &amp;registry)</td></tr>
-<tr class="separator:a4a77640033f3c0d8e3137b823a3fde03"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac6ff12013efb57eb6d5a2433cbb89fb3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_plugin_loader.html#ac6ff12013efb57eb6d5a2433cbb89fb3">addWidgets</a> (Ui::ProjectConfigPrivate &amp;ui, const QColor &amp;bg)</td></tr>
-<tr class="separator:ac6ff12013efb57eb6d5a2433cbb89fb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8085e1cc5ea81d7d8a8bb05fd962d2b3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_plugin_loader.html#a8085e1cc5ea81d7d8a8bb05fd962d2b3">PluginLoader</a> (QtNodes::DataModelRegistry &amp;registry)</td></tr>
+<tr class="separator:a8085e1cc5ea81d7d8a8bb05fd962d2b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e795514049ada15611bc79b562a7202"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_plugin_loader.html#a2e795514049ada15611bc79b562a7202">initSections</a> (Ui::ProjectConfigPrivate &amp;ui)</td></tr>
+<tr class="separator:a2e795514049ada15611bc79b562a7202"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f946d117849aee8a096d5ca0beb87b9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_plugin_loader.html#a2f946d117849aee8a096d5ca0beb87b9">addWidgets</a> (const QColor &amp;bg)</td></tr>
+<tr class="separator:a2f946d117849aee8a096d5ca0beb87b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7333d5a74317d21f90472f6c626c1792"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_plugin_loader.html#a7333d5a74317d21f90472f6c626c1792">clearSections</a> ()</td></tr>
+<tr class="separator:a7333d5a74317d21f90472f6c626c1792"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a4a77640033f3c0d8e3137b823a3fde03"></a>
+<a class="anchor" id="a8085e1cc5ea81d7d8a8bb05fd962d2b3"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename... Args&gt; </div>
+template&lt;typename S , typename... Args&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="struct_plugin_loader.html">PluginLoader</a>&lt; Args &gt;::<a class="el" href="struct_plugin_loader.html">PluginLoader</a> </td>
+          <td class="memname"><a class="el" href="struct_plugin_loader.html">PluginLoader</a>&lt; S, Args &gt;::<a class="el" href="struct_plugin_loader.html">PluginLoader</a> </td>
           <td>(</td>
           <td class="paramtype">QtNodes::DataModelRegistry &amp;&#160;</td>
           <td class="paramname"><em>registry</em></td><td>)</td>
@@ -151,31 +155,72 @@ template&lt;typename... Args&gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="ac6ff12013efb57eb6d5a2433cbb89fb3"></a>
+<a class="anchor" id="a2f946d117849aee8a096d5ca0beb87b9"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename... Args&gt; </div>
+template&lt;typename S , typename... Args&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="struct_plugin_loader.html">PluginLoader</a>&lt; Args &gt;::addWidgets </td>
+          <td class="memname">void <a class="el" href="struct_plugin_loader.html">PluginLoader</a>&lt; S, Args &gt;::addWidgets </td>
+          <td>(</td>
+          <td class="paramtype">const QColor &amp;&#160;</td>
+          <td class="paramname"><em>bg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a7333d5a74317d21f90472f6c626c1792"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename S , typename... Args&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="struct_plugin_loader.html">PluginLoader</a>&lt; S, Args &gt;::clearSections </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a2e795514049ada15611bc79b562a7202"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename S , typename... Args&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="struct_plugin_loader.html">PluginLoader</a>&lt; S, Args &gt;::initSections </td>
           <td>(</td>
           <td class="paramtype">Ui::ProjectConfigPrivate &amp;&#160;</td>
-          <td class="paramname"><em>ui</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"><em>ui</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">const QColor &amp;&#160;</td>
-          <td class="paramname"><em>bg</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
   </td>

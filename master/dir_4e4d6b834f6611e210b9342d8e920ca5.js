@@ -14,7 +14,5 @@ var dir_4e4d6b834f6611e210b9342d8e920ca5 =
     [ "canloadpainter.h", "canloadpainter_8h.html", [
       [ "CanLoadPainter", "struct_can_load_painter.html", "struct_can_load_painter" ]
     ] ],
-    [ "canloadplugin.h", "canloadplugin_8h.html", [
-      [ "CANLoadPlugin", "struct_c_a_n_load_plugin.html", "struct_c_a_n_load_plugin" ]
-    ] ]
+    [ "canloadplugin.h", "canloadplugin_8h.html", "canloadplugin_8h" ]
 ];

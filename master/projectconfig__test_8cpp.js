@@ -11,5 +11,6 @@ var projectconfig__test_8cpp =
     [ "TEST_CASE", "projectconfig__test_8cpp.html#a91f9187a38f996ac11b0885b707cbe43", null ],
     [ "TEST_CASE", "projectconfig__test_8cpp.html#a6dc1b09db0c9a8d812d3734fffac7186", null ],
     [ "TEST_CASE", "projectconfig__test_8cpp.html#a48c99c8737f8365f75a7ff238c3463fe", null ],
+    [ "TEST_CASE", "projectconfig__test_8cpp.html#a142b7a82668c87f2e02d815ed2118d9f", null ],
     [ "kDefaultLogger", "projectconfig__test_8cpp.html#a20e4133288a6dd5e9b289bf4407d57d6", null ]
 ];

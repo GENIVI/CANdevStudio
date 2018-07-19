@@ -23,10 +23,10 @@ var dir_fdedb0aba14d44ce9d99bc100e026e6a =
       [ "NodePainter", "struct_node_painter.html", "struct_node_painter" ]
     ] ],
     [ "plugin_type.h", "plugin__type_8h.html", [
-      [ "DevicePlugin", "struct_device_plugin.html", null ],
-      [ "CANRawPlugin", "struct_c_a_n_raw_plugin.html", null ]
+      [ "PluginBase", "struct_plugin_base.html", null ]
     ] ],
     [ "pluginloader.h", "pluginloader_8h.html", "pluginloader_8h" ],
+    [ "typestring.hh", "typestring_8hh.html", "typestring_8hh" ],
     [ "visitablewith.h", "visitablewith_8h.html", [
       [ "VisitableWith", "struct_visitable_with.html", "struct_visitable_with" ]
     ] ],

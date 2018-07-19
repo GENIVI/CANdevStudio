@@ -12,7 +12,5 @@ var dir_aab40e2df4e375319a2f40654d9d5998 =
     [ "canrawfiltermodel.h", "canrawfiltermodel_8h.html", [
       [ "CanRawFilterModel", "class_can_raw_filter_model.html", "class_can_raw_filter_model" ]
     ] ],
-    [ "canrawfilterplugin.h", "canrawfilterplugin_8h.html", [
-      [ "CanRawFilterPlugin", "struct_can_raw_filter_plugin.html", "struct_can_raw_filter_plugin" ]
-    ] ]
+    [ "canrawfilterplugin.h", "canrawfilterplugin_8h.html", "canrawfilterplugin_8h" ]
 ];

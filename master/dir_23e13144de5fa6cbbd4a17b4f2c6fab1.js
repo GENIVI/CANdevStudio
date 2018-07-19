@@ -11,7 +11,5 @@ var dir_23e13144de5fa6cbbd4a17b4f2c6fab1 =
     [ "canrawloggermodel.h", "canrawloggermodel_8h.html", [
       [ "CanRawLoggerModel", "class_can_raw_logger_model.html", "class_can_raw_logger_model" ]
     ] ],
-    [ "canrawloggerplugin.h", "canrawloggerplugin_8h.html", [
-      [ "CanRawLoggerPlugin", "struct_can_raw_logger_plugin.html", "struct_can_raw_logger_plugin" ]
-    ] ]
+    [ "canrawloggerplugin.h", "canrawloggerplugin_8h.html", "canrawloggerplugin_8h" ]
 ];

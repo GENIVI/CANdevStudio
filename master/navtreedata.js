@@ -2,7 +2,12 @@ var NAVTREE =
 [
   [ "CANdevStudio", "index.html", [
     [ "Namespaces", null, [
-      [ "Namespace List", "namespaces.html", "namespaces" ]
+      [ "Namespace List", "namespaces.html", "namespaces" ],
+      [ "Namespace Members", "namespacemembers.html", [
+        [ "All", "namespacemembers.html", null ],
+        [ "Functions", "namespacemembers_func.html", null ],
+        [ "Typedefs", "namespacemembers_type.html", null ]
+      ] ]
     ] ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
@@ -34,11 +39,11 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"canrawsender__test_8cpp.html#a9bce2e868744cb72f78cedaaecd77c6e",
-"class_can_raw_player.html#a13b7a549d53faec45a94e03fdb2b5ae9",
-"class_property_editor_dialog.html#a0502bb194829b5ebabe029e03bf2813c",
-"pcinterface_8h.html",
-"struct_n_l_m_factory_interface.html#a217f14adc09c34b22ce116da1adc63dc"
+"canrawsender__test_8cpp.html#a3dfb1a391b5cd32fa8ddc83a2d251fff",
+"class_can_raw_logger_private.html#aa0e67a1415c4cfaed7e3bb21fe14c0e4",
+"class_project_config_private.html#a944a2e96dbb65c4ae62a2eb91f7fd379",
+"nlmfactory_8h_source.html",
+"struct_n_l_m_check_box.html#acaa701e46a68049ba08335d960b50426"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

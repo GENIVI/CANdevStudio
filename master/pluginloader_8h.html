@@ -119,6 +119,7 @@ Include dependency graph for pluginloader.h:</div>
 <div class="center"><img src="pluginloader_8h__incl.png" border="0" usemap="#src_2common_2pluginloader_8h" alt=""/></div>
 <map name="src_2common_2pluginloader_8h" id="src_2common_2pluginloader_8h">
 <area shape="rect" id="node3" href="plugin__type_8h.html" title="plugin_type.h" alt="" coords="213,80,320,107"/>
+<area shape="rect" id="node6" href="typestring_8hh.html" title="typestring.hh" alt="" coords="339,155,445,181"/>
 </map>
 </div>
 </div>
@@ -126,7 +127,17 @@ Include dependency graph for pluginloader.h:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_plugin_loader.html">PluginLoader&lt; Args &gt;</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsection__ndx.html">section_ndx&lt; T, Tuple &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsection__ndx_3_01_t_00_01std_1_1tuple_3_01_t_00_01_types_8_8_8_01_4_01_4.html">section_ndx&lt; T, std::tuple&lt; T, Types... &gt; &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsection__ndx_3_01_t_00_01std_1_1tuple_3_01_u_00_01_types_8_8_8_01_4_01_4.html">section_ndx&lt; T, std::tuple&lt; U, Types... &gt; &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_section_loader.html">SectionLoader&lt; Array, Args &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_section_loader_3_01_array_00_01std_1_1tuple_3_01_args_8_8_8_01_4_01_4.html">SectionLoader&lt; Array, std::tuple&lt; Args... &gt; &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_plugin_loader.html">PluginLoader&lt; S, Args &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
@@ -137,101 +148,8 @@ Functions</h2></td></tr>
 <tr class="memitem:a00b6d6117806ca125e1fcf289a23ce4e"><td class="memTemplParams" colspan="2">template&lt;typename W , typename Z , typename... Args&gt; </td></tr>
 <tr class="memitem:a00b6d6117806ca125e1fcf289a23ce4e"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="pluginloader_8h.html#a00b6d6117806ca125e1fcf289a23ce4e">registerModel</a> (QtNodes::DataModelRegistry &amp;registry)</td></tr>
 <tr class="separator:a00b6d6117806ca125e1fcf289a23ce4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0781163da4daf882eb329cdcbd13fc38"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:a0781163da4daf882eb329cdcbd13fc38"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; std::is_same&lt; typename T::PluginType, <a class="el" href="struct_device_plugin.html">DevicePlugin</a> &gt;::value &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="pluginloader_8h.html#a0781163da4daf882eb329cdcbd13fc38">addWidget</a> (Ui::ProjectConfigPrivate &amp;ui, const QColor &amp;bg)</td></tr>
-<tr class="separator:a0781163da4daf882eb329cdcbd13fc38"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad20de5b7e803fdbe9f59b355c325b0af"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:ad20de5b7e803fdbe9f59b355c325b0af"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; std::is_same&lt; typename T::PluginType, <a class="el" href="struct_c_a_n_raw_plugin.html">CANRawPlugin</a> &gt;::value &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="pluginloader_8h.html#ad20de5b7e803fdbe9f59b355c325b0af">addWidget</a> (Ui::ProjectConfigPrivate &amp;ui, const QColor &amp;bg)</td></tr>
-<tr class="separator:ad20de5b7e803fdbe9f59b355c325b0af"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a93f597ebffa42b6ea4d5c1c365e3624d"><td class="memTemplParams" colspan="2">template&lt;typename W , typename Z , typename... Args&gt; </td></tr>
-<tr class="memitem:a93f597ebffa42b6ea4d5c1c365e3624d"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="pluginloader_8h.html#a93f597ebffa42b6ea4d5c1c365e3624d">addWidget</a> (Ui::ProjectConfigPrivate &amp;ui, const QColor &amp;bg)</td></tr>
-<tr class="separator:a93f597ebffa42b6ea4d5c1c365e3624d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="a0781163da4daf882eb329cdcbd13fc38"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">std::enable_if_t&lt;std::is_same&lt;typename T::PluginType, <a class="el" href="struct_device_plugin.html">DevicePlugin</a>&gt;::value&gt; addWidget </td>
-          <td>(</td>
-          <td class="paramtype">Ui::ProjectConfigPrivate &amp;&#160;</td>
-          <td class="paramname"><em>ui</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const QColor &amp;&#160;</td>
-          <td class="paramname"><em>bg</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="ad20de5b7e803fdbe9f59b355c325b0af"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">std::enable_if_t&lt;std::is_same&lt;typename T::PluginType, <a class="el" href="struct_c_a_n_raw_plugin.html">CANRawPlugin</a>&gt;::value&gt; addWidget </td>
-          <td>(</td>
-          <td class="paramtype">Ui::ProjectConfigPrivate &amp;&#160;</td>
-          <td class="paramname"><em>ui</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const QColor &amp;&#160;</td>
-          <td class="paramname"><em>bg</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a93f597ebffa42b6ea4d5c1c365e3624d"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename W , typename Z , typename... Args&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">void addWidget </td>
-          <td>(</td>
-          <td class="paramtype">Ui::ProjectConfigPrivate &amp;&#160;</td>
-          <td class="paramname"><em>ui</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const QColor &amp;&#160;</td>
-          <td class="paramname"><em>bg</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a class="anchor" id="a1bb85969f7e8a5f2cde0f18e4dc08050"></a>
 <div class="memitem">
 <div class="memproto">

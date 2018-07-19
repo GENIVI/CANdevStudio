@@ -1,10 +1,11 @@
 <map id="src/components/canrawfilter/canrawfilterplugin.h" name="src/components/canrawfilter/canrawfilterplugin.h">
-<area shape="rect" id="node2" href="$plugin__type_8h.html" title="plugin_type.h" alt="" coords="863,95,969,121"/>
-<area shape="rect" id="node3" href="$canrawfiltermodel_8h.html" title="canrawfiltermodel.h" alt="" coords="993,95,1140,121"/>
-<area shape="rect" id="node4" href="$canrawfilter_8h.html" title="canrawfilter.h" alt="" coords="511,169,617,196"/>
-<area shape="rect" id="node15" href="$componentmodel_8h.html" title="componentmodel.h" alt="" coords="993,169,1140,196"/>
-<area shape="rect" id="node25" href="$nodepainter_8h.html" title="nodepainter.h" alt="" coords="1439,169,1550,196"/>
-<area shape="rect" id="node7" href="$componentinterface_8h.html" title="componentinterface.h" alt="" coords="187,244,349,271"/>
-<area shape="rect" id="node13" href="$context_8h.html" title="context.h" alt="" coords="447,244,529,271"/>
-<area shape="rect" id="node18" href="$log_8h.html" title="log.h" alt="" coords="951,244,1004,271"/>
+<area shape="rect" id="node2" href="$plugin__type_8h.html" title="plugin_type.h" alt="" coords="255,95,361,121"/>
+<area shape="rect" id="node6" href="$canrawfiltermodel_8h.html" title="canrawfiltermodel.h" alt="" coords="660,95,807,121"/>
+<area shape="rect" id="node5" href="$typestring_8hh.html" title="typestring.hh" alt="" coords="317,169,424,196"/>
+<area shape="rect" id="node7" href="$canrawfilter_8h.html" title="canrawfilter.h" alt="" coords="499,169,605,196"/>
+<area shape="rect" id="node18" href="$componentmodel_8h.html" title="componentmodel.h" alt="" coords="777,169,924,196"/>
+<area shape="rect" id="node28" href="$nodepainter_8h.html" title="nodepainter.h" alt="" coords="1235,169,1346,196"/>
+<area shape="rect" id="node10" href="$componentinterface_8h.html" title="componentinterface.h" alt="" coords="352,244,515,271"/>
+<area shape="rect" id="node16" href="$context_8h.html" title="context.h" alt="" coords="640,244,723,271"/>
+<area shape="rect" id="node21" href="$log_8h.html" title="log.h" alt="" coords="1007,244,1060,271"/>
 </map>

@@ -2,6 +2,7 @@ var searchData=
 [
   ['pcimpl',['PCImpl',['../class_p_c_impl.html',1,'']]],
   ['pcinterface',['PCInterface',['../struct_p_c_interface.html',1,'']]],
+  ['pluginbase',['PluginBase',['../struct_plugin_base.html',1,'']]],
   ['pluginloader',['PluginLoader',['../struct_plugin_loader.html',1,'']]],
   ['policycb',['PolicyCB',['../class_policy_c_b.html',1,'']]],
   ['projectconfig',['ProjectConfig',['../class_project_config.html',1,'']]],
