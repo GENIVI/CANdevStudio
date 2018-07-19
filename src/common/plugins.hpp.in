@@ -4,6 +4,6 @@
 #include "pluginloader.h"
 @PLUGIN_INCLUDES@
 
-using Plugins = PluginLoader<@PLUGINS_IMPL_STR@>;
+using Plugins = PluginLoader<std::tuple<@SECTIONS_IMPL@>, @PLUGINS_IMPL_STR@>;
 
 #endif /* end of include guard: PLUGINS_HPP_IN_OH7O4FYA */

@@ -1,6 +1,7 @@
 #include "canrawfiltermodel.h"
 #include <datamodeltypes/canrawdata.h>
 #include <log.h>
+#include "canrawfilterplugin.h"
 
 namespace {
 
@@ -23,7 +24,7 @@ const std::map<PortType, std::vector<NodeDataType>> portMappings = {
 
 CanRawFilterModel::CanRawFilterModel()
     : ComponentModel("CanRawFilter")
-    , _painter(std::make_unique<NodePainter>(headerColor()))
+    , _painter(std::make_unique<NodePainter>(CanRawFilterPlugin::PluginType::sectionColor()))
 {
     _label->setAlignment(Qt::AlignVCenter | Qt::AlignHCenter);
     _label->setFixedSize(75, 25);

@@ -145,38 +145,30 @@ QToolButton#toolSwitch {
     image: url(:/images/files/images/light/CANbus_icon_Switch.svg);
 }
 
-QCheckBox#pbRawLayer, QCheckBox#pbDeviceLayer{
+QCheckBox[type=sectionHeader] {
     background: #dcdcdc;
     spacing: 43px;
     color: #767676;
 }
 
-QCheckBox#pbRawLayer {
-    spacing: 58px;
-}
-
-QCheckBox#pbRawLayer::indicator, QCheckBox#pbDeviceLayer::indicator {
+QCheckBox[type=sectionHeader]::indicator {
     background: #dcdcdc;
     padding-top: 4px;
     width: 16px;
     height: 16px;
 }
 
-QCheckBox#pbRawLayer::indicator:checked, #pbDeviceLayer::indicator:checked {
+QCheckBox[type=sectionHeader]::indicator:checked {
     background: #dcdcdc;
     image: url(:/images/files/images/light/Angle-down-01.svg);
 }
 
-QCheckBox#pbRawLayer::indicator:unchecked, #pbDeviceLayer::indicator:unchecked {
+QCheckBox[type=sectionHeader]::indicator:unchecked {
     background: #dcdcdc;
     image: url(:/images/files/images/light/Angle-up-01.svg);
 }
 
-QWidget#deviceWidget {
-    background: #dcdcdc;
-}
-
-QWidget#rawWidget {
+QWidget[type=sectionWidget] {
     background: #dcdcdc;
 }
 

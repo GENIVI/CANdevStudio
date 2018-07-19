@@ -22,11 +22,11 @@ macro(plugin_list result)
     endforeach()
 endmacro()
 
-macro(get_plugin_type plugin result)
+macro(get_plugin_type plugin result section)
     set(pluginName "" CACHE STRING "" FORCE)
     file(STRINGS ${plugin}/${plugin}plugin.h 
         test 
-        REGEX "^[struct|class].*"
+        REGEX "^(struct)|(class).*"
     )
     string(REPLACE "struct" "" test ${test})
     string(REPLACE "class" "" test ${test})
@@ -34,8 +34,19 @@ macro(get_plugin_type plugin result)
     string(STRIP ${test} test)
     message(STATUS "Found Plugin: ${test}")
     set(${result} ${test})
-endmacro()
 
+    file(STRINGS ${plugin}/${plugin}plugin.h 
+        secTest
+        REGEX "PluginType"
+    )
+
+    string(REPLACE "PluginType" "" secTest ${secTest})
+    string(REPLACE "using" "" secTest ${secTest})
+    string(REPLACE "=" "" secTest ${secTest})
+    string(REPLACE ";" "" secTest ${secTest})
+    string(STRIP ${secTest} secTest)
+    set(${section} ${secTest})
+endmacro()
 
 plugin_list(plugins)
 set(PLUGIN_LIBRARIES ${plugins} CACHE INTERNAL "Libraries to link against for plugins")
@@ -43,9 +54,13 @@ set(PLUGINS_IMPL "")
 set(PLUGIN_INCLUDES "")
 foreach(component ${plugins})
     set(PLUGIN_INCLUDES "${PLUGIN_INCLUDES}#include <${CMAKE_CURRENT_SOURCE_DIR}/${component}/${component}plugin.h>\n")
-    get_plugin_type(${component} pluginType)
+    get_plugin_type(${component} pluginType sectionType)
     list(APPEND PLUGINS_IMPL ${pluginType})
+    list(APPEND SECTIONS ${sectionType})
 endforeach()
+
+list(REMOVE_DUPLICATES SECTIONS)
+message(STATUS "Sections: ${SECTIONS}")
 
 set(PLUGINS_IMPL_MSG "")
 foreach(plugin_str ${PLUGINS_IMPL})
@@ -53,6 +68,12 @@ foreach(plugin_str ${PLUGINS_IMPL})
 endforeach()
 string(STRIP ${PLUGINS_IMPL_MSG} PLUGINS_IMPL_MSG)
 string(REGEX REPLACE "[,].?$" ""  PLUGINS_IMPL_STR ${PLUGINS_IMPL_MSG})
+
+set(SECTIONS_IMPL "")
+foreach(sections_str ${SECTIONS})
+    set(SECTIONS_IMPL "${SECTIONS_IMPL}${sections_str}, ")
+endforeach()
+string(REGEX REPLACE "[,].?$" ""  SECTIONS_IMPL ${SECTIONS_IMPL})
 
 configure_file(${CMAKE_SOURCE_DIR}/src/common/plugins.hpp.in
     ${CMAKE_BINARY_DIR}/plugins.hpp)

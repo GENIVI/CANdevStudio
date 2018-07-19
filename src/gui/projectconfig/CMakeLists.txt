@@ -20,6 +20,7 @@ if(WITH_TESTS)
     add_executable(${COMPONENT_NAME}_test tests/${COMPONENT_NAME}_test.cpp)
     target_link_libraries(${COMPONENT_NAME}_test ${COMPONENT_NAME} Qt5::Test fakeit)
     add_test(NAME ProjectConfigTestTest COMMAND ${COMPONENT_NAME}_test)
+    target_include_directories(${COMPONENT_NAME}_test INTERFACE PRIVATE ${CMAKE_BINARY_DIR})
 
     add_executable(${COMPONENT_NAME}_test_noqrc tests/${COMPONENT_NAME}_test_noqrc.cpp)
     target_link_libraries(${COMPONENT_NAME}_test_noqrc ${COMPONENT_NAME} Qt5::Test fakeit)

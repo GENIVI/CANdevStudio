@@ -4,7 +4,9 @@
 #include "plugin_type.h"
 #include "candevicemodel.h"
 
-struct CANDevicePlugin {
+using DevicePlugin = PluginBase<typestring_is("Device Layer"), 0xf7aa1b, 43>;
+
+struct CanDevicePlugin {
     using Model = CanDeviceModel;
     static constexpr const char* name = "CanDevice";
     using PluginType = DevicePlugin;

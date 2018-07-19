@@ -1,10 +1,11 @@
 #include "canrawviewmodel.h"
 #include <datamodeltypes/canrawdata.h>
 #include <log.h>
+#include "canrawviewplugin.h"
 
 CanRawViewModel::CanRawViewModel()
     : ComponentModel("CanRawView")
-    , _painter(std::make_unique<NodePainter>(headerColor()))
+    , _painter(std::make_unique<NodePainter>(CanRawViewPlugin::PluginType::sectionColor()))
 {
     _label->setAlignment(Qt::AlignVCenter | Qt::AlignHCenter);
     _label->setFixedSize(75, 25);
