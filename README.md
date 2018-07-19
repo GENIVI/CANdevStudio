@@ -12,11 +12,13 @@
     * [Visual Studio 2015](#visual-studio-2015)
     * [Visual Studio 2015 Win64](#visual-studio-2015-win64)
     * [MinGW](#mingw)
+  * [macOS / OS X](#macos--os-x)
 * [Prebuilt packages](#prebuilt-packages)
   * [Download](#download)
   * [Package naming](#package-naming)
   * [Linux](#linux-1)
   * [Windows](#windows-1)
+  * [macOS / OS X](#macos--os-x-1)
 * [Quick Start](#quick-start)
   * [CAN Hardware](#can-hardware)
     * [Microchip CAN BUS Analyzer](#microchip-can-bus-analyzer)
@@ -102,6 +104,16 @@ cd build
 cmake .. -G "MinGW Makefiles" -DCMAKE_PREFIX_PATH=C:\Qt\5.9\mingw53_32
 cmake --build .
 ```
+### macOS / OS X
+```
+git clone https://github.com/GENIVI/CANdevStudio.git
+cd CANdevStudio
+git submodule update --init --recursive
+mkdir build
+cd build
+cmake .. -GNinja
+ninja
+```
 ## Prebuilt packages
 Binary packages are automatically uploaded by CI tools (i.e. Travis and Appveyor) to [Bintray](https://bintray.com/rkollataj/CANdevStudio) artifactory for every commit on master branch.
 ### Download
@@ -112,7 +124,7 @@ Use Bintray badges above to dowload stable or develop version (each commit on ma
 **X** - major version number of previous stable version<br/>
 **Y** - minor version of previous stable version<br/>
 **Z** - SHA commit ID<br/>
-**SYS** - either **win32** or **Linux**<br/>
+**SYS** - either **win32**, **Linux** or **Darwin**<br/>
 **standalone** - bundle version that contains Qt libraries and all relevant plugins.<br/>
 ### Linux
 All packages are being built on Ubuntu 16.04 LTS. You may experience problems with missing or incompatible libraries when trying to run the package on other distros. 
@@ -121,7 +133,9 @@ To run standalone version use CANdevStudio.sh script.
 ### Windows
 Packages built with MinGW 5.3.
 
-Standalone version contains Qt and MinGW runtime libs. 
+Standalone version contains Qt and MinGW runtime libs.
+### macOS / OS X
+Package is a DMG installer.
 ## Quick Start
 General instructions to start your first simulation:
 1. Build the latest master or release.
