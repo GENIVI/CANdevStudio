@@ -2,20 +2,19 @@
 #include "enumiterator.h"
 
 #define CATCH_CONFIG_RUNNER
+#include <QPushButton>
+#include <QtWidgets/QApplication>
 #include <fakeit.hpp>
+#include <iconlabel.h>
+#include <log.h>
 
 #include "../../gui/projectconfig/ui_projectconfig.h"
 #include "plugins.hpp"
-#include <QPushButton>
-#include <QtWidgets/QApplication>
 #include <cstddef> // size_t, ptrdiff_t
 #include <cstdint> // uint16_t
-#include <iconlabel.h>
 #include <iterator> // iterator_traits, begin, end
 #include <limits> // numeric_limits
-#include <log.h>
 #include <nodes/FlowScene>
-#include <nodes/FlowView>
 #include <type_traits> // is_same
 #include <utility> // swap, next, advance
 #include <vector> // vector
@@ -246,11 +245,11 @@ TEST_CASE("IconLable sizeHint", "[common]")
     CHECK(l.minimumSizeHint() == QSize(140, 48));
 }
 
+
 TEST_CASE("Plugin loading - sections not initialized", "[common]")
 {
 
     QtNodes::FlowScene graphScene;
-    QtNodes::FlowView fv(&graphScene);
     Plugins plugins(graphScene.registry());
     REQUIRE_NOTHROW(plugins.addWidgets({ 0x11223344 }));
 }
