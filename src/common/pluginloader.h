@@ -119,7 +119,7 @@ private:
         addWidget<Z, Plugs...>(bg);
     }
 
-    std::array<QWidget*, std::tuple_size<S>::value> _widgets;
+    std::array<QWidget*, std::tuple_size<S>::value> _widgets {};
 };
 
 #endif /* end of include guard: PLUGINLOADER_H_QWADUNZ7 */
