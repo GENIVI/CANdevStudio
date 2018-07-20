@@ -111,7 +111,7 @@ cd CANdevStudio
 git submodule update --init --recursive
 mkdir build
 cd build
-cmake .. -GNinja
+cmake .. -GNinja -DCMAKE_PREFIX_PATH=/path/to/Qt/lib/cmake
 ninja
 ```
 ## Prebuilt packages
