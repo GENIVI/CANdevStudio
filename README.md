@@ -26,6 +26,7 @@
   * [CANdevStudio without CAN hardware](#candevstudio-without-can-hardware)
     * [VCAN](#vcan)
     * [Cannelloni](#cannelloni)
+* [CAN Signals](#can-signals)
 
 ## Overview
 Most of automotive projects need to have an access to the Controller Area Network (CAN) bus. There are plenty of commercial frameworks that provides CAN stacks and hardware/software tools necessary to develop proper CAN networks. They are very comprehensive and thus expensive. CANdevStudio aims to be cost-effective replacement for CAN simulation software. It can work with variety of CAN hardware interfaces (e.g. Microchip, Vector, PEAK-Systems) or even without it (vcan and [cannelloni](https://github.com/mguentner/cannelloni)) . CANdevStudio enables to simulate CAN signals such as ignition status, doors status or reverse gear by every automotive developer. Thanks to modularity it is easy to implement new, custom features.
@@ -215,3 +216,7 @@ PC configuration:
    2. interface: 30000,192.168.0.2,20000 (local_port,remote_ip,remote_port)
 4. Start simulation
 
+## CAN Signals
+CANdevStudio provides experimental support for CAN Signals (see [signals](https://github.com/GENIVI/CANdevStudio/tree/signals) branch). Currently only [DBC](http://socialledge.com/sjsu/index.php/DBC_Format) format is supported as a decription of database, but it shouldn't be hard to add new formats.
+
+The work on moving components from signal to master branch is onging.
