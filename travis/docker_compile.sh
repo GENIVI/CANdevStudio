@@ -19,6 +19,7 @@ docker run \
         $cmake_command &&
         make -j5 &&
         make test &&
+        ./3rdParty/CANdb/tests/opendbc_tests &&
         if [ '$WITH_COVERAGE' == 'ON' ]; then bash <(curl -s https://codecov.io/bash) -x gcov-6 || echo 'Codecov did not collect coverage reports'; fi &&
         if [ '$PACKAGE' == 'ON' ]; then 
             cpack -G DEB &&
