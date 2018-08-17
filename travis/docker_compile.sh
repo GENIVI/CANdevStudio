@@ -18,6 +18,7 @@ docker run \
      -c "sudo ip link add name can0 type vcan && sudo ip link set can0 up && ip link && sudo service xvfb start && sudo chown cds:cds /home/sources && cd /home/sources && rm -rf build && mkdir -p build && cd build && source /opt/qt58/bin/qt58-env.sh &&
         $cmake_command &&
         make -j5 &&
+        ls ../3rdParty/CANdb/tests/dbc/opendbc/ &&
         ./3rdParty/CANdb/tests/opendbc_tests &&
         make test &&
         if [ '$WITH_COVERAGE' == 'ON' ]; then bash <(curl -s https://codecov.io/bash) -x gcov-6 || echo 'Codecov did not collect coverage reports'; fi &&
