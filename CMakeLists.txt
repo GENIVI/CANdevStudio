@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.0.0)
 project(CANdevStudio CXX)
 
 set(VERSION_MAJOR 0)
-set(VERSION_MINOR 2)
+set(VERSION_MINOR 3)
 set(VERSION_PATCH 0)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
