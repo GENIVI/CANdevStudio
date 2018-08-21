@@ -4,7 +4,7 @@
 #include "plugin_type.h"
 #include "cansignaldatamodel.h"
 
-using MiscPlugin = PluginBase<typestring_is("Misc Layer"), 0x555fc3, 57>;
+using MiscPlugin = PluginBase<typestring_is("Signal Layer"), 0x1492ca, 47>;
 
 struct CanSignalDataPlugin {
     using Model = CanSignalDataModel;

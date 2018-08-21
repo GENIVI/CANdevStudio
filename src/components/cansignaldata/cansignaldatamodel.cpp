@@ -1,19 +1,17 @@
 #include "cansignaldatamodel.h"
 #include "cansignaldataplugin.h"
+#include <datamodeltypes/candbdata.h>
 #include <log.h>
 
 namespace {
 
 // clang-format off
 const std::map<PortType, std::vector<NodeDataType>> portMappings = {
-    { PortType::In, 
-        {
-            //{CanRawData{}.type() }
-        }
+    { PortType::In, { }
     },
     { PortType::Out, 
         {
-            //{CanRawData{}.type() }
+            { CanDbData{}.type() }
         }
     }
 };
@@ -28,6 +26,8 @@ CanSignalDataModel::CanSignalDataModel()
     _label->setAlignment(Qt::AlignVCenter | Qt::AlignHCenter);
     _label->setFixedSize(75, 25);
     _label->setAttribute(Qt::WA_TranslucentBackground);
+
+    connect(&_component, &CanSignalData::canDbUpdated, this, &CanSignalDataModel::canDbUpdated);
 }
 
 QtNodes::NodePainterDelegate* CanSignalDataModel::painterDelegate() const
@@ -47,26 +47,16 @@ NodeDataType CanSignalDataModel::dataType(PortType portType, PortIndex ndx) cons
     }
 
     cds_error("No port mapping for ndx: {}", ndx);
-    return { };
+    return {};
 }
 
 std::shared_ptr<NodeData> CanSignalDataModel::outData(PortIndex)
 {
-    // example
-    // return std::make_shared<CanRawData>(_frame, _direction, _status);
-
-    return { };
+    return std::make_shared<CanDbData>(_messages);
 }
 
-void CanSignalDataModel::setInData(std::shared_ptr<NodeData> nodeData, PortIndex)
+void CanSignalDataModel::canDbUpdated(const CANmessages_t& messages)
 {
-    // example
-    // if (nodeData) {
-    //     auto d = std::dynamic_pointer_cast<CanRawData>(nodeData);
-    //     assert(nullptr != d);
-    //     emit sendFrame(d->frame());
-    // } else {
-    //     cds_warn("Incorrect nodeData");
-    // }
-    (void) nodeData;
+    _messages = messages;
+    emit dataUpdated(0); // Data ready on port 0
 }

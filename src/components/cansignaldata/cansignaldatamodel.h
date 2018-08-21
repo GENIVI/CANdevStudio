@@ -22,16 +22,18 @@ public:
     unsigned int nPorts(PortType portType) const override;
     NodeDataType dataType(PortType portType, PortIndex portIndex) const override;
     std::shared_ptr<NodeData> outData(PortIndex port) override;
-    void setInData(std::shared_ptr<NodeData> nodeData, PortIndex port) override;
+    void setInData(std::shared_ptr<NodeData>, PortIndex) override{};
     QtNodes::NodePainterDelegate* painterDelegate() const override;
 
 public slots:
+    void canDbUpdated(const CANmessages_t& messages);
 
 signals:
     void requestRedraw();
 
 private:
     std::unique_ptr<NodePainter> _painter;
+    CANmessages_t _messages;
 };
 
 #endif // CANSIGNALDATAMODEL_H
