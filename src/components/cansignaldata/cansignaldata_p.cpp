@@ -187,10 +187,12 @@ std::string CanSignalDataPrivate::loadFile(const std::string& filename)
 
 void CanSignalDataPrivate::loadDbc(const std::string& filename)
 {
-    if(_currentDbcFile == filename) {
+    if (_currentDbcFile == filename) {
         cds_info("DBC filename not changed. Loading aborted");
         return;
     }
+
+    _currentDbcFile = filename;
 
     CANdb::DBCParser parser;
     bool success = parser.parse(loadFile(filename));
@@ -206,8 +208,6 @@ void CanSignalDataPrivate::loadDbc(const std::string& filename)
 
     _tvModel.removeRows(0, _tvModel.rowCount());
     _tvModelSettings.removeRows(0, _tvModelSettings.rowCount());
-
-    emit q_ptr->canDbUpdated(_messages);
 
     for (auto& message : _messages) {
         QList<QStandardItem*> settingsList;
@@ -249,6 +249,8 @@ void CanSignalDataPrivate::loadDbc(const std::string& filename)
             _tvModel.appendRow(list);
         }
     }
+
+    emit q_ptr->canDbUpdated(_messages);
 }
 
 std::pair<CANmessage, std::vector<CANsignal>>* CanSignalDataPrivate::findInDb(uint32_t id)
