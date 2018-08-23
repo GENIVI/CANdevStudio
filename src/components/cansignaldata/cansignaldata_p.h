@@ -1,12 +1,12 @@
 #ifndef CANSIGNALDATA_P_H
 #define CANSIGNALDATA_P_H
 
+#include "cansignaldata.h"
+#include "gui/cansignaldataguiimpl.h"
+#include "searchmodel.h"
+#include <QStandardItemModel>
 #include <QtCore/QObject>
 #include <memory>
-#include "gui/cansignaldataguiimpl.h"
-#include "cansignaldata.h"
-#include <QStandardItemModel>
-#include "searchmodel.h"
 
 class CanSignalData;
 
@@ -25,6 +25,9 @@ public:
 private:
     void initProps();
     std::string loadFile(const std::string& filename);
+    using msgSettings_t = std::map<uint32_t, std::pair<QString, QString>>;
+    msgSettings_t getMsgSettings();
+    void setMsgSettings(const msgSettings_t& msgSettings);
 
 public:
     bool _simStarted{ false };
@@ -42,14 +45,12 @@ public:
     CANmessages_t _messages;
 
 private:
-    std::map<uint32_t, std::pair<QString, QString>> _msgSettings;
     CanSignalData* q_ptr;
     const QString _fileProperty = "file";
     const QString _nameProperty = "name";
-    ComponentInterface::ComponentProperties _supportedProps = {
-            {_nameProperty,   {QVariant::String, true}},
-            {_fileProperty,   {QVariant::String, true}}
-    };
+    ComponentInterface::ComponentProperties _supportedProps
+        = { { _nameProperty, { QVariant::String, true } }, { _fileProperty, { QVariant::String, true } } };
+    std::string _currentDbcFile;
 };
 
 #endif // CANSIGNALDATA_P_H

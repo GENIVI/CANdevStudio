@@ -5,6 +5,10 @@
 #include "cansignaldataguiint.h"
 #include "ui_cansignaldata.h"
 #include "searchmodel.h"
+#include <QItemDelegate>
+#include <QItemEditorFactory>
+#include <QStyledItemDelegate>
+#include <log.h>
 
 struct CanSignalDataGuiImpl : public CanSignalDataGuiInt {
     CanSignalDataGuiImpl()
@@ -25,9 +29,25 @@ struct CanSignalDataGuiImpl : public CanSignalDataGuiInt {
         QObject::connect(_ui->pbSettings, &QPushButton::toggled, cb);
     }
 
+    virtual void setSettingsUpdatedCbk(const settingsUpdated_t& cb) override 
+    {
+        _settingsUpdatedCbk = cb;
+    }
+
     virtual QWidget* mainWidget() override
     {
         return _widget;
+    }
+
+    template <typename F>
+    void setDelegate(QTableView* tv, int col, QStyledItemDelegate& del, const std::function<void()>& cb)
+    {
+        QItemEditorFactory* factory = new QItemEditorFactory;
+        QItemEditorCreatorBase* editor = new QStandardItemEditorCreator<F>();
+        factory->registerEditor(QVariant::String, editor);
+        del.setItemEditorFactory(factory);
+        tv->setItemDelegateForColumn(col, &del);
+        QObject::connect(&del, &QAbstractItemDelegate::closeEditor, cb);
     }
 
     virtual void initSettings(QAbstractItemModel& tvModel) override
@@ -45,6 +65,16 @@ struct CanSignalDataGuiImpl : public CanSignalDataGuiInt {
         _ui->tv->setColumnHidden(0, false);
 
         _settingsState = _ui->tv->horizontalHeader()->saveState();
+
+        setDelegate<QLineEdit>(_ui->tv, 4, _cycleDelegate, std::bind(&CanSignalDataGuiImpl::settingsUpdated, this));
+        setDelegate<QLineEdit>(_ui->tv, 5, _initValDelegate, std::bind(&CanSignalDataGuiImpl::settingsUpdated, this));
+    }
+
+    void settingsUpdated()
+    {
+        if(_settingsUpdatedCbk) {
+            _settingsUpdatedCbk();
+        }
     }
 
     virtual void initTableView(QAbstractItemModel& tvModel) override
@@ -64,13 +94,6 @@ struct CanSignalDataGuiImpl : public CanSignalDataGuiInt {
         _ui->tv->horizontalHeader()->setSectionResizeMode(6, QHeaderView::ResizeToContents);
 
         _tableState = _ui->tv->horizontalHeader()->saveState();
-
-        //tvModel.setHeaderData(0, Qt::Horizontal, QVariant::fromValue(CRV_ColType::uint_type), Qt::UserRole); // rowID
-        //tvModel.setHeaderData(1, Qt::Horizontal, QVariant::fromValue(CRV_ColType::double_type), Qt::UserRole); // time
-        //tvModel.setHeaderData(2, Qt::Horizontal, QVariant::fromValue(CRV_ColType::hex_type), Qt::UserRole); // frame ID
-        //tvModel.setHeaderData(3, Qt::Horizontal, QVariant::fromValue(CRV_ColType::str_type), Qt::UserRole); // direction
-        //tvModel.setHeaderData(4, Qt::Horizontal, QVariant::fromValue(CRV_ColType::uint_type), Qt::UserRole); // length
-        //tvModel.setHeaderData(5, Qt::Horizontal, QVariant::fromValue(CRV_ColType::str_type), Qt::UserRole); // data
     }
 
     void initSearch(SearchModel& model) override
@@ -84,6 +107,9 @@ private:
     QWidget* _widget;
     QByteArray _settingsState;
     QByteArray _tableState;
+    QStyledItemDelegate _cycleDelegate;
+    QStyledItemDelegate _initValDelegate;
+    settingsUpdated_t _settingsUpdatedCbk{ nullptr };
 };
 
 #endif // CANSIGNALDATAGUIIMPL_H

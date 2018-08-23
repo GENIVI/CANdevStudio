@@ -1,8 +1,8 @@
 #include "cansignaldata_p.h"
+#include <QJsonArray>
 #include <dbcparser.h>
 #include <fstream>
 #include <log.h>
-#include <QJsonArray>
 
 CanSignalDataPrivate::CanSignalDataPrivate(CanSignalData* q, CanSignalDataCtx&& ctx)
     : _ctx(std::move(ctx))
@@ -18,14 +18,14 @@ CanSignalDataPrivate::CanSignalDataPrivate(CanSignalData* q, CanSignalDataCtx&& 
     _tvModelFilter.setSourceModel(&_tvModel);
     _ui.initTableView(_tvModelFilter);
     _ui.initSearch(_tvModelFilter);
-    
+
     _tvModelSettingsFilter.setSourceModel(&_tvModelSettings);
     _ui.initSearch(_tvModelSettingsFilter);
 
     _ui.setSettingsCbk([this] {
         _settings = !_settings;
 
-        if(_settings) {
+        if (_settings) {
             _ui.initSettings(_tvModelSettingsFilter);
         } else {
             _ui.initTableView(_tvModelFilter);
@@ -36,6 +36,8 @@ CanSignalDataPrivate::CanSignalDataPrivate(CanSignalData* q, CanSignalDataCtx&& 
         _docked = !_docked;
         emit q_ptr->mainWidgetDockToggled(_ui.mainWidget());
     });
+
+    _ui.setSettingsUpdatedCbk([this] { setMsgSettings(getMsgSettings()); });
 }
 
 void CanSignalDataPrivate::initProps()
@@ -50,6 +52,52 @@ ComponentInterface::ComponentProperties CanSignalDataPrivate::getSupportedProper
     return _supportedProps;
 }
 
+CanSignalDataPrivate::msgSettings_t CanSignalDataPrivate::getMsgSettings()
+{
+    msgSettings_t msgSettings;
+
+    for (int i = 0; i < _tvModelSettings.rowCount(); ++i) {
+        uint32_t id = _tvModelSettings.item(i, 0)->data(Qt::DisplayRole).toString().toUInt(nullptr, 16);
+        auto cyclePtr = _tvModelSettings.item(i, 4);
+        auto initValPtr = _tvModelSettings.item(i, 5);
+        QVariant cycle;
+        QVariant initVal;
+
+        if (cyclePtr) {
+            cycle = cyclePtr->data(Qt::DisplayRole);
+        }
+
+        if (initValPtr) {
+            initVal = initValPtr->data(Qt::DisplayRole);
+        }
+
+        if (cycle.isValid() || initVal.isValid()) {
+            msgSettings[id] = std::make_pair(cycle.toString(), initVal.toString());
+        }
+    }
+
+    return msgSettings;
+}
+
+void CanSignalDataPrivate::setMsgSettings(const msgSettings_t& msgSettings)
+{
+    // Clear current settings
+    for (std::pair<CANmessage, std::vector<CANsignal>>&& msg : _messages) {
+        msg.first.updateCycle = 0;
+        msg.first.initValue = "";
+    }
+
+    for (const auto& msg : msgSettings) {
+        auto msgDb = findInDb(msg.first);
+        if (msgDb) {
+            msgDb->first.updateCycle = msg.second.first.toUInt();
+            msgDb->first.initValue = msg.second.second.toStdString();
+        }
+    }
+
+    emit q_ptr->canDbUpdated(_messages);
+}
+
 QJsonObject CanSignalDataPrivate::getSettings()
 {
     QJsonObject json;
@@ -58,47 +106,18 @@ QJsonObject CanSignalDataPrivate::getSettings()
         json[p.first] = QJsonValue::fromVariant(p.second);
     }
 
-    _msgSettings.clear();
     QJsonArray array;
-    for(int i = 0; i < _tvModelSettings.rowCount(); ++i) {
-        uint32_t id = _tvModelSettings.item(i, 0)->data(Qt::DisplayRole).toString().toUInt(nullptr, 16);
-        auto cyclePtr = _tvModelSettings.item(i, 4);
-        auto initValPtr = _tvModelSettings.item(i, 5);
-        QVariant cycle;
-        QVariant initVal;
 
-        if(cyclePtr) {
-            cycle = cyclePtr->data(Qt::DisplayRole);
-        }
+    for (const auto& msg : getMsgSettings()) {
+        QJsonObject obj;
+        obj["id"] = QString::number(msg.first, 16);
+        obj["cycle"] = msg.second.first;
+        obj["initVal"] = msg.second.second;
 
-        if(initValPtr) {
-            initVal = initValPtr->data(Qt::DisplayRole);
-        }
-
-        if(cycle.isValid() || initVal.isValid()) {
-            _msgSettings[id] = std::make_pair(cycle.toString(), initVal.toString());
-
-            QJsonObject obj;
-            obj["id"] = QString::number(id, 16);
-            obj["cycle"] = cycle.toString();
-            obj["initVal"] = initVal.toString();
-
-            array.append(obj);
-        }
+        array.append(obj);
     }
 
     json["msgSettings"] = array;
-
-    for(const auto& msg : _msgSettings) {
-        auto msgDb = findInDb(msg.first);
-        if(msgDb) {
-            msgDb->first.updateCycle = msg.second.first.toUInt();
-            msgDb->first.initValue = msg.second.second.toStdString();
-        }
-    }
-    cds_warn("dupa dupa");
-    // After saving update all listening nodes
-    emit q_ptr->canDbUpdated(_messages);
 
     return json;
 }
@@ -110,7 +129,7 @@ void CanSignalDataPrivate::setSettings(const QJsonObject& json)
             _props[p.first] = json[p.first].toVariant();
     }
 
-    _msgSettings.clear();
+    msgSettings_t msgSettings;
     if (json.contains("msgSettings")) {
         if (json["msgSettings"].type() == QJsonValue::Array) {
             auto rowArray = json["msgSettings"].toArray();
@@ -132,8 +151,8 @@ void CanSignalDataPrivate::setSettings(const QJsonObject& json)
                         initVal = row["initVal"].toString();
                     }
 
-                    if(id.length() && (cycle.length() || initVal.length())) {
-                        _msgSettings[id.toUInt(nullptr, 16)] = std::make_pair(cycle, initVal);
+                    if (id.length() && (cycle.length() || initVal.length())) {
+                        msgSettings[id.toUInt(nullptr, 16)] = std::make_pair(cycle, initVal);
                     }
                 } else {
                     cds_warn("rows array element expected to be object!");
@@ -146,15 +165,7 @@ void CanSignalDataPrivate::setSettings(const QJsonObject& json)
         cds_info("Rows to restore not found");
     }
 
-    for(const auto& msg : _msgSettings) {
-        auto msgDb = findInDb(msg.first);
-        if(msgDb) {
-            msgDb->first.updateCycle = msg.second.first.toUInt();
-            msgDb->first.initValue = msg.second.second.toStdString();
-        }
-    }
-
-    emit q_ptr->canDbUpdated(_messages);
+    setMsgSettings(msgSettings);
 }
 
 std::string CanSignalDataPrivate::loadFile(const std::string& filename)
@@ -176,6 +187,11 @@ std::string CanSignalDataPrivate::loadFile(const std::string& filename)
 
 void CanSignalDataPrivate::loadDbc(const std::string& filename)
 {
+    if(_currentDbcFile == filename) {
+        cds_info("DBC filename not changed. Loading aborted");
+        return;
+    }
+
     CANdb::DBCParser parser;
     bool success = parser.parse(loadFile(filename));
 
@@ -189,18 +205,11 @@ void CanSignalDataPrivate::loadDbc(const std::string& filename)
     cds_info("CAN DB load successful. {} records found", _messages.size());
 
     _tvModel.removeRows(0, _tvModel.rowCount());
-
-    for(const auto& msg : _msgSettings) {
-        auto msgDb = findInDb(msg.first);
-        if(msgDb) {
-            msgDb->first.updateCycle = msg.second.first.toUInt();
-            msgDb->first.initValue = msg.second.second.toStdString();
-        }
-    }
+    _tvModelSettings.removeRows(0, _tvModelSettings.rowCount());
 
     emit q_ptr->canDbUpdated(_messages);
 
-    for(auto &message : _messages) {
+    for (auto& message : _messages) {
         QList<QStandardItem*> settingsList;
         uint32_t id = message.first.id;
         QString frameID = QString("0x" + QString::number(id, 16));
@@ -210,7 +219,7 @@ void CanSignalDataPrivate::loadDbc(const std::string& filename)
         settingsList.append(new QStandardItem(QString::number(message.first.dlc)));
         settingsList.append(new QStandardItem(message.first.ecu.c_str()));
 
-        for(auto &i : settingsList) {
+        for (auto& i : settingsList) {
             i->setEditable(false);
         }
 
@@ -219,7 +228,7 @@ void CanSignalDataPrivate::loadDbc(const std::string& filename)
 
         _tvModelSettings.appendRow(settingsList);
 
-        for(auto &signal : message.second) {
+        for (auto& signal : message.second) {
             QList<QStandardItem*> list;
 
             list.append(new QStandardItem(frameID));
@@ -233,7 +242,7 @@ void CanSignalDataPrivate::loadDbc(const std::string& filename)
             list.append(new QStandardItem(QString::number(signal.min)));
             list.append(new QStandardItem(QString::number(signal.max)));
 
-            for(auto &i : list) {
+            for (auto& i : list) {
                 i->setEditable(false);
             }
 
@@ -244,8 +253,8 @@ void CanSignalDataPrivate::loadDbc(const std::string& filename)
 
 std::pair<CANmessage, std::vector<CANsignal>>* CanSignalDataPrivate::findInDb(uint32_t id)
 {
-    for(auto &msg : _messages) {
-        if(msg.first.id == id) {
+    for (auto& msg : _messages) {
+        if (msg.first.id == id) {
             // TODO: find a better way to do this...
             return (std::pair<CANmessage, std::vector<CANsignal>>*)&msg;
         }

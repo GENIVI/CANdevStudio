@@ -11,6 +11,7 @@ class SearchModel;
 struct CanSignalDataGuiInt {
     typedef std::function<void()> settings_t;
     typedef std::function<void()> dockUndock_t;
+    typedef std::function<void()> settingsUpdated_t;
 
     virtual ~CanSignalDataGuiInt()
     {
@@ -20,6 +21,7 @@ struct CanSignalDataGuiInt {
     virtual void initSettings(QAbstractItemModel& tvModel) = 0;
     virtual void initTableView(QAbstractItemModel& tvModel) = 0;
     virtual void setSettingsCbk(const settings_t& cb) = 0;
+    virtual void setSettingsUpdatedCbk(const settingsUpdated_t& cb) = 0;
     virtual void setDockUndockCbk(const dockUndock_t& cb) = 0;
     virtual void initSearch(SearchModel& model) = 0;
 };
