@@ -235,3 +235,7 @@ QCheckBox::indicator:unchecked:disabled {
 QCheckBox::indicator:checked:disabled {
     image: url(:/images/files/images/dark/CANbus_icon_CheckBoxOn_disabled.svg);
 }
+
+QLabel[type="policyLabel"] {
+    background: #616161;
+}
