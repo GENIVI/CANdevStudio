@@ -45,6 +45,10 @@ struct CanRawFilterGuiImpl : public CanRawFilterGuiInt {
 
         QObject::connect(_ui->pbDown, &QPushButton::pressed,
             [this] { handleListOperation(std::bind(&CanRawFilterGuiImpl::handleListDown, this, _1)); });
+
+        QObject::connect(_ui->rxPolicy, &QComboBox::currentTextChanged, [this] { listUpdatedRx(); });
+
+        QObject::connect(_ui->txPolicy, &QComboBox::currentTextChanged, [this] { listUpdatedTx(); });
     }
 
     virtual QWidget* mainWidget()
@@ -83,8 +87,25 @@ private:
     {
         model.removeRows(0, model.rowCount());
 
-        for (const auto& item : list) {
-            model.appendRow(prepareRow(std::get<0>(item), std::get<1>(item), dir, std::get<2>(item)));
+        if (list.size() >= 1) {
+            // Last element used as default policy
+            for (AcceptList_t::size_type i = 0; i < list.size() - 1; ++i) {
+                const auto& item = list[i];
+                model.appendRow(prepareRow(std::get<0>(item), std::get<1>(item), dir, std::get<2>(item)));
+            }
+
+            if (dir == "RX") {
+                const auto& item = list[list.size() - 1];
+                _ui->rxPolicy->setCurrentText(std::get<2>(item) ? "ACCEPT" : "DROP");
+            } else if (dir == "TX") {
+                const auto& item = list[list.size() - 1];
+                _ui->txPolicy->setCurrentText(std::get<2>(item) ? "ACCEPT" : "DROP");
+            } else {
+                cds_warn("Wrong direction ({})", dir.toStdString());
+            }
+
+        } else {
+            cds_warn("{} list expected to have at least 1 element", dir.toStdString());
         }
     }
 
@@ -141,13 +162,7 @@ private:
     void handleListRemove(QTableView* tv)
     {
         auto& model = getItemModel(tv);
-        int currRow = tv->currentIndex().row();
-
-        // Do not remove the last row
-        if (currRow < model.rowCount() - 1) {
-            auto& model = getItemModel(tv);
-            model.removeRow(tv->currentIndex().row());
-        }
+        model.removeRow(tv->currentIndex().row());
     }
 
     void handleListAdd(QTableView* tv)
@@ -176,7 +191,7 @@ private:
         return list;
     }
 
-    AcceptList_t getAcceptList(const QStandardItemModel& model)
+    AcceptList_t getAcceptList(const QStandardItemModel& model, bool policy)
     {
         AcceptList_t list;
 
@@ -188,12 +203,14 @@ private:
             list.push_back(CanRawFilterGuiInt::AcceptListItem_t(id, payload, policy));
         }
 
+        list.push_back(CanRawFilterGuiInt::AcceptListItem_t(".*", ".*", policy));
+
         return list;
     }
 
-    void listUpdated(const QStandardItemModel& model, const ListUpdated_t& cb)
+    void listUpdated(const QStandardItemModel& model, const ListUpdated_t& cb, bool policy)
     {
-        AcceptList_t list = getAcceptList(model);
+        AcceptList_t list = getAcceptList(model, policy);
 
         if (cb) {
             cb(list);
@@ -204,12 +221,12 @@ private:
 
     void listUpdatedRx()
     {
-        listUpdated(_rxModel, _rxListUpdatedCbk);
+        listUpdated(_rxModel, _rxListUpdatedCbk, _ui->rxPolicy->currentText() == "ACCEPT");
     }
 
     void listUpdatedTx()
     {
-        listUpdated(_txModel, _txListUpdatedCbk);
+        listUpdated(_txModel, _txListUpdatedCbk, _ui->txPolicy->currentText() == "ACCEPT");
     }
 
     template <typename F>
@@ -234,9 +251,6 @@ private:
         _rxModel.setHorizontalHeaderLabels(_tabList);
         _ui->rxTv->horizontalHeader()->setSectionResizeMode(1, QHeaderView::Stretch);
         _ui->rxTv->horizontalHeader()->setSectionResizeMode(2, QHeaderView::ResizeToContents);
-        handleListAdd(_ui->rxTv);
-        _rxModel.item(0, 0)->setEditable(false);
-        _rxModel.item(0, 1)->setEditable(false);
 
         setRxDelegate<QLineEdit>(_ui->txTv, 0, _txIdDelegate, std::bind(&CanRawFilterGuiImpl::listUpdatedTx, this));
         setRxDelegate<QLineEdit>(
@@ -247,9 +261,6 @@ private:
         _txModel.setHorizontalHeaderLabels(_tabList);
         _ui->txTv->horizontalHeader()->setSectionResizeMode(1, QHeaderView::Stretch);
         _ui->txTv->horizontalHeader()->setSectionResizeMode(2, QHeaderView::ResizeToContents);
-        handleListAdd(_ui->txTv);
-        _txModel.item(0, 0)->setEditable(false);
-        _txModel.item(0, 1)->setEditable(false);
     }
 
 private:
