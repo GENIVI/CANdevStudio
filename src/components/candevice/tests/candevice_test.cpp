@@ -47,7 +47,7 @@ TEST_CASE("Initialization failed", "[candevice]")
     REQUIRE_NOTHROW(canDevice.sendFrame(frame));
 }
 
-TEST_CASE("Initialization succedded", "[candevice]")
+TEST_CASE("Initialization succeeded", "[candevice]")
 {
     using namespace fakeit;
     Mock<CanDeviceInterface> deviceMock;
@@ -245,7 +245,7 @@ TEST_CASE("sendFrame, writeframe returns true, no signal emitted", "[candevice]"
     CHECK(frameSentSpy.count() == 0);
 }
 
-TEST_CASE("sendFrame, no device availablie, frameSent is not emitted", "[candevice]")
+TEST_CASE("sendFrame, no device available, frameSent is not emitted", "[candevice]")
 {
     using namespace fakeit;
 
@@ -328,7 +328,7 @@ TEST_CASE("Emits all available frames when notified by backend", "[candevice]")
     }
 }
 
-TEST_CASE("WriteError causes emitting frameSent with framSent=false", "[candevice]")
+TEST_CASE("WriteError causes emitting frameSent with frameSent=false", "[candevice]")
 {
     using namespace fakeit;
     Mock<CanDeviceInterface> deviceMock;
@@ -414,7 +414,7 @@ int main(int argc, char* argv[])
     if (haveDebug) {
         kDefaultLogger->set_level(spdlog::level::debug);
     }
-    cds_debug("Staring unit tests");
+    cds_debug("Starting unit tests");
     qRegisterMetaType<QCanBusFrame>(); // required by QSignalSpy
     return Catch::Session().run(argc, argv);
 }
