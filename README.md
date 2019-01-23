@@ -6,7 +6,7 @@
   * [Supported operating systems](#supported-operating-systems)
 * [Build instructions](#build-instructions)
   * [Linux](#linux)
-    * [To choose complier](#to-choose-complier)
+    * [To choose compiler](#to-choose-compiler)
     * [Qt in CMake](#qt-in-cmake)
   * [Windows](#windows)
     * [Visual Studio 2015](#visual-studio-2015)
@@ -37,7 +37,7 @@ Most of automotive projects need to have an access to the Controller Area Networ
 </p>
 
 ### Compatible CAN interfaces
-Access to CAN bus is based Qt framework. Current list of supported CAN interfaces can be found [here](https://doc.qt.io/qt-5/qtcanbus-backends.html).
+Access to CAN bus is based on Qt framework. Current list of supported CAN interfaces can be found [here](https://doc.qt.io/qt-5/qtcanbus-backends.html).
 
 Current list of devices compatible with SocketCAN (Linux only) can be found [here](http://elinux.org/CAN_Bus).
 ### Supported operating systems
@@ -45,7 +45,7 @@ Current list of devices compatible with SocketCAN (Linux only) can be found [her
 * Windows
 
 ## Build instructions
-CANdevStudio project uses Travis CI (Linux) and AppVeyor (Windows) continues integration tools. You can always check .travis.yml and .appveyor.yml files for building details.
+CANdevStudio project uses Travis CI (Linux) and AppVeyor (Windows) continuous integration tools. You can always check .travis.yml and .appveyor.yml files for building details.
 
 ### Linux
 ```
@@ -57,7 +57,7 @@ cd build
 cmake ..
 make
 ```
-#### To choose complier
+#### To choose compiler
 ```
 cd CANdevStudio/build
 rm -rf *
@@ -183,7 +183,7 @@ Configuration:
 CanDevice backend: socketcan
 
 ### CANdevStudio without CAN hardware
-CANdevStudio can be used without actual CAN hardware thanks to Linux's in built emulation.
+CANdevStudio can be used without actual CAN hardware thanks to Linux's built-in emulation.
 #### VCAN
 Configuration:
 ```
@@ -209,7 +209,7 @@ cannelloni -I can0 -R 192.168.0.1 -r 30000 -l 20000
 ```
 PC configuration:
 
-1. Install libqtCannelloniCanBusPlugin.so that is build along iwth CANdevStudio. You can either copy it manually to Qt plugins directory or use "make install" to do it automatically.
+1. Install libqtCannelloniCanBusPlugin.so that is built along with CANdevStudio. You can either copy it manually to Qt plugins directory or use "make install" to do it automatically.
 2. Create new project in CANdevStudio and add CanDevice node
 3. Configure CanDevice:
    1. backend: cannelloni
@@ -217,6 +217,6 @@ PC configuration:
 4. Start simulation
 
 ## CAN Signals
-CANdevStudio provides experimental support for CAN Signals (see [signals](https://github.com/GENIVI/CANdevStudio/tree/signals) branch). Currently only [DBC](http://socialledge.com/sjsu/index.php/DBC_Format) format is supported as a decription of database, but it shouldn't be hard to add new formats.
+CANdevStudio provides experimental support for CAN Signals (see [signals](https://github.com/GENIVI/CANdevStudio/tree/signals) branch). Currently only [DBC](http://socialledge.com/sjsu/index.php/DBC_Format) format is supported as a description of database, but it shouldn't be hard to add new formats.
 
-The work on moving components from signal to master branch is onging.
+The work on moving components from signal to master branch is ongoing.
