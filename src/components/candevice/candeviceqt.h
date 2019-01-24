@@ -7,7 +7,7 @@
 #include <log.h>
 
 struct CanDeviceQt : public CanDeviceInterface {
-    virtual void setParent(QObject *parent) override
+    virtual void setParent(QObject* parent) override
     {
         _parent = parent;
     }
@@ -53,7 +53,7 @@ struct CanDeviceQt : public CanDeviceInterface {
             return false;
         }
 
-        if(_parent && _parent->thread()) {
+        if (_parent && _parent->thread()) {
             _device->moveToThread(_parent->thread());
             _device->setParent(_parent);
         }
@@ -122,9 +122,19 @@ struct CanDeviceQt : public CanDeviceInterface {
         }
     }
 
+    virtual void setConfigurationParameter(int key, const QVariant& value) override
+    {
+        if (_device) {
+            setConfigurationParameter(key, value);
+        } else {
+            cds_error("candevice is null. Call init firts!");
+            throw std::runtime_error("candevice is null. Call init first!");
+        }
+    }
+
 private:
-    QCanBusDevice* _device{nullptr};
-    QObject* _parent{nullptr};
+    QCanBusDevice* _device{ nullptr };
+    QObject* _parent{ nullptr };
 };
 
 #endif /* end of include guard: CANDEVICEQT_H_JYBV8GIQ */
