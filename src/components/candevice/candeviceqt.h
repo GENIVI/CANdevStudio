@@ -125,7 +125,7 @@ struct CanDeviceQt : public CanDeviceInterface {
     virtual void setConfigurationParameter(int key, const QVariant& value) override
     {
         if (_device) {
-            setConfigurationParameter(key, value);
+            _device->setConfigurationParameter(key, value);
         } else {
             cds_error("candevice is null. Call init firts!");
             throw std::runtime_error("candevice is null. Call init first!");
