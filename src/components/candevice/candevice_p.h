@@ -110,7 +110,7 @@ private:
             cds_error("RawFilterKey not supported");
             res = false;
         } else if (keyStr == "ErrorFilterKey") {
-            cds_error("RawFilterKey not supported");
+            cds_error("ErrorFilterKey not supported");
             res = false;
         } else if (keyStr == "LoopbackKey") {
             key = QCanBusDevice::LoopbackKey;
