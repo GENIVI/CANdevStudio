@@ -66,7 +66,7 @@ struct CanDeviceQt : public CanDeviceInterface {
         if (_device) {
             return _device->writeFrame(frame);
         } else {
-            cds_error("candevice is null. Call init firts!");
+            cds_error("candevice is null. Call init first!");
             throw std::runtime_error("candevice is null. Call init first!");
         }
 
@@ -78,7 +78,7 @@ struct CanDeviceQt : public CanDeviceInterface {
         if (_device) {
             return _device->connectDevice();
         } else {
-            cds_error("candevice is null. Call init firts!");
+            cds_error("candevice is null. Call init first!");
             throw std::runtime_error("candevice is null. Call init first!");
         }
     }
@@ -87,7 +87,7 @@ struct CanDeviceQt : public CanDeviceInterface {
         if (_device) {
             return _device->framesAvailable();
         } else {
-            cds_error("candevice is null. Call init firts!");
+            cds_error("candevice is null. Call init first!");
             throw std::runtime_error("candevice is null. Call init first!");
         }
     }
@@ -97,7 +97,7 @@ struct CanDeviceQt : public CanDeviceInterface {
         if (_device) {
             return _device->readFrame();
         } else {
-            cds_error("candevice is null. Call init firts!");
+            cds_error("candevice is null. Call init first!");
             throw std::runtime_error("candevice is null. Call init first!");
         }
     }
@@ -107,7 +107,7 @@ struct CanDeviceQt : public CanDeviceInterface {
         if (_device) {
             return _device->disconnectDevice();
         } else {
-            cds_error("candevice is null. Call init firts!");
+            cds_error("candevice is null. Call init first!");
             throw std::runtime_error("candevice is null. Call init first!");
         }
     }
@@ -117,7 +117,7 @@ struct CanDeviceQt : public CanDeviceInterface {
         if (_device) {
             _device->disconnect();
         } else {
-            cds_error("candevice is null. Call init firts!");
+            cds_error("candevice is null. Call init first!");
             throw std::runtime_error("candevice is null. Call init first!");
         }
     }
