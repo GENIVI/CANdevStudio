@@ -2,10 +2,10 @@
 #include <canrawplayer.h>
 #define CATCH_CONFIG_RUNNER
 #include "log.h"
+#include <QCanBusFrame>
 #include <QSignalSpy>
 #include <catch.hpp>
 #include <fakeit.hpp>
-#include <QCanBusFrame>
 
 std::shared_ptr<spdlog::logger> kDefaultLogger;
 // needed for QSignalSpy cause according to qtbug 49623 comments
@@ -80,10 +80,14 @@ TEST_CASE("getSupportedProperties", "[canrawplayer]")
 
     auto props = c.getSupportedProperties();
 
-    CHECK(props.find("name") != props.end());
-    CHECK(props.find("file") != props.end());
-    CHECK(props.find("timer tick [ms]") != props.end());
-    CHECK(props.find("dummy") == props.end());
+    CHECK(std::find(std::begin(props), std::end(props), std::make_tuple("name", QVariant::String, true))
+        != std::end(props));
+    CHECK(std::find(std::begin(props), std::end(props), std::make_tuple("file", QVariant::String, true))
+        != std::end(props));
+    CHECK(std::find(std::begin(props), std::end(props), std::make_tuple("timer tick [ms]", QVariant::String, true))
+        != std::end(props));
+    CHECK(std::find(std::begin(props), std::end(props), std::make_tuple("dummy", QVariant::String, true))
+        == std::end(props));
 }
 
 static QString createTestFile()
@@ -130,7 +134,7 @@ static QString createTestFile2()
 
 TEST_CASE("Send test", "[canrawplayer]")
 {
-    using namespace std::chrono_literals;    
+    using namespace std::chrono_literals;
 
     CanRawPlayer c;
     QObject props;
@@ -138,7 +142,7 @@ TEST_CASE("Send test", "[canrawplayer]")
     QThread th;
 
     c.moveToThread(&th);
-    
+
     QObject::connect(&th, &QThread::started, &c, &CanRawPlayer::startSimulation);
     QObject::connect(&th, &QThread::finished, &c, &CanRawPlayer::stopSimulation);
 
@@ -158,7 +162,7 @@ TEST_CASE("Send test", "[canrawplayer]")
 
 TEST_CASE("Send test 2", "[canrawplayer]")
 {
-    using namespace std::chrono_literals;    
+    using namespace std::chrono_literals;
 
     CanRawPlayer c;
     QObject props;
@@ -166,7 +170,7 @@ TEST_CASE("Send test 2", "[canrawplayer]")
     QThread th;
 
     c.moveToThread(&th);
-    
+
     QObject::connect(&th, &QThread::started, &c, &CanRawPlayer::startSimulation);
     QObject::connect(&th, &QThread::finished, &c, &CanRawPlayer::stopSimulation);
 

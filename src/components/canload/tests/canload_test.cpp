@@ -54,10 +54,14 @@ TEST_CASE("getSupportedProperties", "[canload]")
 
     auto props = c.getSupportedProperties();
 
-    CHECK(props.find("name") != props.end());
-    CHECK(props.find("period [ms]") != props.end());
-    CHECK(props.find("bitrate [bps]") != props.end());
-    CHECK(props.find("dummy") == props.end());
+    CHECK(std::find(std::begin(props), std::end(props), std::make_tuple("name", QVariant::String, true))
+        != std::end(props));
+    CHECK(std::find(std::begin(props), std::end(props), std::make_tuple("period [ms]", QVariant::String, true))
+        != std::end(props));
+    CHECK(std::find(std::begin(props), std::end(props), std::make_tuple("bitrate [bps]", QVariant::String, true))
+        != std::end(props));
+    CHECK(std::find(std::begin(props), std::end(props), std::make_tuple("dummy", QVariant::String, true))
+        == std::end(props));
 }
 
 TEST_CASE("start/stop - correct timings", "[canload]")

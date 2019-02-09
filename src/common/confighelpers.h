@@ -8,42 +8,40 @@
 #include <map>
 #include <memory>
 
-class configHelpers
-{
+class configHelpers {
 
 public:
-static std::shared_ptr<QObject> getQConfig(const ComponentInterface::ComponentProperties& sp,
-        const std::map<QString, QVariant>& properties)
-{
-    std::shared_ptr<QObject> q = std::make_shared<QObject>();
-
-    QStringList props;
-    for (auto& p: sp)
+    static std::shared_ptr<QObject> getQConfig(
+        const ComponentInterface::ComponentProperties& sp, const std::map<QString, QVariant>& properties)
     {
-        if (p.second.second) // property editable
-        {
-            props.push_back(p.first);
-            q->setProperty(p.first.toStdString().c_str(), properties.at(p.first));
+        std::shared_ptr<QObject> q = std::make_shared<QObject>();
+
+        QStringList props;
+        for (auto& p : sp) {
+            if (std::get<2>(p)) {
+                // property editable
+                QString propName = std::get<0>(p);
+                props.push_back(propName);
+                q->setProperty(propName.toStdString().c_str(), properties.at(propName));
+            }
+        }
+
+        q->setProperty("exposedProperties", props);
+
+        return q;
+    }
+
+    static void setQConfig(const QObject& qobject, const ComponentInterface::ComponentProperties& sp,
+        std::map<QString, QVariant>& properties)
+    {
+        for (auto& p : sp) {
+            QString propName = std::get<0>(p);
+            QVariant v = qobject.property(propName.toStdString().c_str());
+            if (v.isValid() && v.type() == std::get<1>(p)) {
+                properties[propName] = v;
+            }
         }
     }
-
-    q->setProperty("exposedProperties", props);
-
-    return q;
-}
-
-static void setQConfig(const QObject& qobject,
-        const ComponentInterface::ComponentProperties& sp,
-        std::map<QString, QVariant>& properties)
-{
-    for (auto& p: sp)
-    {
-        QVariant v = qobject.property(p.first.toStdString().c_str());
-        if (v.isValid() && v.type() == p.second.first)
-            properties[p.first] = v;
-    }
-}
-
 };
 
 #endif /* SRC_COMMON_CONFIGHELPERS_H_ */

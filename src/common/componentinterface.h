@@ -63,8 +63,7 @@ struct ComponentInterface {
     virtual std::shared_ptr<QObject> getQConfig() const = 0;
 
     using PropertyEditable = bool;
-    using ComponentProperties = std::map<QString,
-            std::pair<QVariant::Type, PropertyEditable>>;
+    using ComponentProperties = std::vector<std::tuple<QString, QVariant::Type, PropertyEditable>>;
 
     /**
      * Gets list of properties supported by this component

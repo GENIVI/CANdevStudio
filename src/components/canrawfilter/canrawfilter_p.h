@@ -1,8 +1,8 @@
 #ifndef CANRAWFILTER_P_H
 #define CANRAWFILTER_P_H
 
-#include "gui/canrawfilterguiimpl.h"
 #include "canrawfilter.h"
+#include "gui/canrawfilterguiimpl.h"
 #include <QtCore/QObject>
 #include <memory>
 
@@ -22,7 +22,7 @@ public:
 
 private:
     void initProps();
-    bool acceptFrame(const CanRawFilterGuiInt::AcceptList_t &list, const QCanBusFrame &frame);
+    bool acceptFrame(const CanRawFilterGuiInt::AcceptList_t& list, const QCanBusFrame& frame);
     CanRawFilterGuiInt::AcceptList_t getAcceptList(const QJsonObject& json, const QString& listName);
 
 public:
@@ -37,9 +37,11 @@ private:
     CanRawFilterGuiInt::AcceptList_t _txAcceptList;
     CanRawFilter* q_ptr;
     const QString _nameProperty = "name";
+    // clang-format off
     ComponentInterface::ComponentProperties _supportedProps = {
-            {_nameProperty,   {QVariant::String, true}}
+            {_nameProperty, QVariant::String, true}
     };
+    // clang-format on
 };
 
 #endif // CANRAWFILTER_P_H
