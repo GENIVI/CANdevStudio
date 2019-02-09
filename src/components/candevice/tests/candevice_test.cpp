@@ -3,6 +3,7 @@
 #include <QSignalSpy>
 #include <QtSerialBus/QCanBusDevice>
 #include <candeviceinterface.h>
+#include <catch.hpp>
 #include <context.h>
 #include <fakeit.hpp>
 #include <log.h>
@@ -20,7 +21,6 @@ bool isEqual(const QCanBusFrame& f1, const QCanBusFrame& f2)
         && f1.payload() == f2.payload();
 }
 
-
 void setupBackendInterface(CanDevice& canDevice)
 {
     QObject qo;
@@ -29,7 +29,7 @@ void setupBackendInterface(CanDevice& canDevice)
     canDevice.setConfig(qo);
 }
 
-}
+} // namespace
 
 TEST_CASE("Initialization failed", "[candevice]")
 {
@@ -38,7 +38,7 @@ TEST_CASE("Initialization failed", "[candevice]")
 
     // properties not set
     CHECK(canDevice.init() == false);
-    
+
     setupBackendInterface(canDevice);
 
     CHECK(canDevice.init() == false);
@@ -372,7 +372,7 @@ TEST_CASE("read configuration to json format", "[candevice]")
 TEST_CASE("setConfig using JSON read with QObject", "[candevice]")
 {
     using namespace fakeit;
- 
+
     Mock<CanDeviceInterface> deviceMock;
     Fake(Dtor(deviceMock));
     Fake(Method(deviceMock, setParent));

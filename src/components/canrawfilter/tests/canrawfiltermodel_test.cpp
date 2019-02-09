@@ -4,6 +4,7 @@
 #define CATCH_CONFIG_RUNNER
 #include "log.h"
 #include <QSignalSpy>
+#include <catch.hpp>
 #include <fakeit.hpp>
 
 std::shared_ptr<spdlog::logger> kDefaultLogger;
@@ -42,7 +43,7 @@ TEST_CASE("dataType", "[canrawfilterModel]")
     CanRawFilterModel cm;
 
     NodeDataType ndt;
-        
+
     ndt = cm.dataType(QtNodes::PortType::Out, 0);
     CHECK(ndt.id == "rawframe");
     CHECK(ndt.name == "RAW");
@@ -50,7 +51,7 @@ TEST_CASE("dataType", "[canrawfilterModel]")
     ndt = cm.dataType(QtNodes::PortType::Out, 1);
     CHECK(ndt.id == "");
     CHECK(ndt.name == "");
-    
+
     ndt = cm.dataType(QtNodes::PortType::In, 0);
     CHECK(ndt.id == "rawframe");
     CHECK(ndt.name == "RAW");
@@ -134,7 +135,7 @@ TEST_CASE("filteredTx queue full", "[canrawfilterModel]")
     QCanBusFrame frame;
     QSignalSpy spy(&cm, &CanRawFilterModel::dataUpdated);
 
-    for(int i = 0; i < 200; ++i) {
+    for (int i = 0; i < 200; ++i) {
         cm.filteredTx(frame);
     }
 
@@ -160,7 +161,7 @@ TEST_CASE("filteredRx queue full", "[canrawfilterModel]")
     QCanBusFrame frame;
     QSignalSpy spy(&cm, &CanRawFilterModel::dataUpdated);
 
-    for(int i = 0; i < 200; ++i) {
+    for (int i = 0; i < 200; ++i) {
         cm.filteredRx(frame);
     }
 
@@ -179,4 +180,3 @@ int main(int argc, char* argv[])
     QApplication a(argc, argv); // QApplication must exist when contructing QWidgets TODO check QTest
     return Catch::Session().run(argc, argv);
 }
-

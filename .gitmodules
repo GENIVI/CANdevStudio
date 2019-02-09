@@ -19,3 +19,6 @@
 [submodule "3rdParty/cxxopts"]
 	path = 3rdParty/cxxopts
 	url = https://github.com/jarro2783/cxxopts.git
+[submodule "3rdParty/catch"]
+	path = 3rdParty/catch
+	url = https://github.com/catchorg/Catch2

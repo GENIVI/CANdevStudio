@@ -1,13 +1,14 @@
-#include <QtWidgets/QApplication>
 #include <QtCore/QDir>
 #include <QtCore/QFile>
 #include <QtCore/QJsonArray>
 #include <QtCore/QJsonDocument>
 #include <QtCore/QJsonObject>
+#include <QtWidgets/QApplication>
 #include <canrawviewmodel.h>
 #include <datamodeltypes/canrawdata.h>
 #define CATCH_CONFIG_RUNNER
 #include <QSignalSpy>
+#include <catch.hpp>
 #include <fakeit.hpp>
 #include <log.h>
 
@@ -138,7 +139,7 @@ bool compareJson(const QJsonObject& patern, const QJsonObject& check)
 TEST_CASE("setCaption", "[canrawview]")
 {
     CanRawViewModel canRawViewModel;
-    
+
     REQUIRE_NOTHROW(canRawViewModel.setCaption("foobar"));
 }
 
@@ -148,7 +149,7 @@ TEST_CASE("Test restore - no name", "[canrawview]")
     jsonObject["name"] = "aaa";
 
     CanRawViewModel canRawViewModel;
-    
+
     REQUIRE_NOTHROW(canRawViewModel.restore(jsonObject));
 }
 
@@ -158,7 +159,7 @@ TEST_CASE("Test restore - no caption", "[canrawview]")
     jsonObject["caption"] = "aaa";
 
     CanRawViewModel canRawViewModel;
-    
+
     REQUIRE_NOTHROW(canRawViewModel.restore(jsonObject));
 }
 
@@ -254,7 +255,6 @@ TEST_CASE("Getters", "[canrawview]")
     CHECK(crvModel.painterDelegate() != nullptr);
     CHECK(crvModel.outData(0));
 }
-
 
 int main(int argc, char* argv[])
 {

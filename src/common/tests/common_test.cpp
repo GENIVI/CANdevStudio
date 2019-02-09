@@ -2,6 +2,7 @@
 #include "enumiterator.h"
 
 #define CATCH_CONFIG_RUNNER
+#include <catch.hpp>
 #include <fakeit.hpp>
 
 #include <QtWidgets/QApplication>

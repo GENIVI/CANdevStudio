@@ -1,6 +1,7 @@
 #include <QSignalSpy>
 #include <QtWidgets/QApplication>
 #include <canrawsender.h>
+#include <catch.hpp>
 #include <context.h>
 #include <fakeit.hpp>
 #include <gui/crsguiinterface.h>
@@ -239,8 +240,8 @@ TEST_CASE("Get columns wigdet test", "[newlinemanager]")
 
     NewLineManager newLineMgr{ &canRawSender, true, nlmFactoryMock.get() };
 
-    for (NewLineManager::ColName ii : NewLineManager::ColNameIterator{NewLineManager::ColName::IdLine}) {
-        CHECK(newLineMgr.GetColsWidget(NewLineManager::ColNameIterator{ii}) != nullptr);
+    for (NewLineManager::ColName ii : NewLineManager::ColNameIterator{ NewLineManager::ColName::IdLine }) {
+        CHECK(newLineMgr.GetColsWidget(NewLineManager::ColNameIterator{ ii }) != nullptr);
     }
     CHECK(newLineMgr.GetColsWidget(NewLineManager::ColNameIterator().end()) == nullptr);
 }

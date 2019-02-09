@@ -1,10 +1,11 @@
+#include "log.h"
+#include <QCanBusFrame>
+#include <QSignalSpy>
 #include <QtWidgets/QApplication>
 #include <canload.h>
 #define CATCH_CONFIG_RUNNER
-#include "log.h"
-#include <QSignalSpy>
+#include <catch.hpp>
 #include <fakeit.hpp>
-#include <QCanBusFrame>
 
 std::shared_ptr<spdlog::logger> kDefaultLogger;
 // needed for QSignalSpy cause according to qtbug 49623 comments
@@ -66,7 +67,7 @@ TEST_CASE("start/stop - correct timings", "[canload]")
     QSignalSpy spy(&c, &CanLoad::currentLoad);
     QCanBusFrame frame;
     frame.setFrameId(0x11);
-    frame.setPayload({"123"});
+    frame.setPayload({ "123" });
 
     obj.setProperty("name", "Test Name");
     obj.setProperty("period [ms]", "10");
@@ -76,11 +77,11 @@ TEST_CASE("start/stop - correct timings", "[canload]")
 
     c.startSimulation();
 
-    for(int i = 0; i < 100; ++i) {
+    for (int i = 0; i < 100; ++i) {
         c.frameIn(frame);
     }
 
-    while(spy.count() == 0) {
+    while (spy.count() == 0) {
         QApplication::processEvents();
     }
 

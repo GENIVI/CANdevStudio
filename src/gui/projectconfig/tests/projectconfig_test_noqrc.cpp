@@ -1,10 +1,11 @@
 #define CATCH_CONFIG_RUNNER
-#include <projectconfigvalidator.h>
+#include <QApplication>
+#include <candevice.h>
+#include <catch.hpp>
 #include <fakeit.hpp>
 #include <log.h>
+#include <projectconfigvalidator.h>
 #include <propertyeditordialog.h>
-#include <candevice.h>
-#include <QApplication>
 
 std::shared_ptr<spdlog::logger> kDefaultLogger;
 
@@ -50,4 +51,3 @@ int main(int argc, char* argv[])
     QApplication a(argc, argv);
     return Catch::Session().run(argc, argv);
 }
-

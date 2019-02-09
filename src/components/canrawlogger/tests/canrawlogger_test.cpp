@@ -4,10 +4,11 @@
 #include "log.h"
 #include <QCanBusFrame>
 #include <QDir>
-#include <QSignalSpy>
-#include <fakeit.hpp>
 #include <QRegularExpression>
+#include <QSignalSpy>
 #include <QTextStream>
+#include <catch.hpp>
+#include <fakeit.hpp>
 
 std::shared_ptr<spdlog::logger> kDefaultLogger;
 // needed for QSignalSpy cause according to qtbug 49623 comments
@@ -210,7 +211,7 @@ TEST_CASE("logging - send/receive", "[canrawlogger]")
     c.frameReceived(frame);
     c.frameReceived(frame);
     c.frameReceived(frame);
-    
+
     fileList = dir.entryList({ "*" });
     CHECK(fileList.size() == 3);
     msgCnt = loadTraceFile(dirName + "/" + fileList[2]);

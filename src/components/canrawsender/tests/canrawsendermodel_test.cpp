@@ -3,6 +3,7 @@
 #include <datamodeltypes/canrawdata.h>
 #define CATCH_CONFIG_RUNNER
 #include <QSignalSpy>
+#include <catch.hpp>
 #include <fakeit.hpp>
 #include <log.h>
 
@@ -37,8 +38,8 @@ TEST_CASE("Calling sendFrame emits dataUpdated and outData returns that frame", 
     QSignalSpy dataUpdatedSpy(&canRawSenderModel, &CanRawSenderModel::dataUpdated);
     canRawSenderModel.sendFrame(testFrame);
     CHECK(dataUpdatedSpy.count() == 1);
-    CHECK(std::dynamic_pointer_cast<CanRawData>(canRawSenderModel.outData(0))->frame().frameId()
-        == testFrame.frameId());
+    CHECK(
+        std::dynamic_pointer_cast<CanRawData>(canRawSenderModel.outData(0))->frame().frameId() == testFrame.frameId());
 }
 
 TEST_CASE("Test save configuration", "[canrawsender]")

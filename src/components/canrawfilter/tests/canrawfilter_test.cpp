@@ -6,6 +6,7 @@
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QSignalSpy>
+#include <catch.hpp>
 #include <fakeit.hpp>
 #include <gui/canrawfilterguiint.h>
 

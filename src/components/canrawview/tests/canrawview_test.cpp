@@ -6,14 +6,15 @@
 #include <QTableView>
 #include <Qt>
 #include <QtWidgets/QApplication>
+#include <catch.hpp>
 #include <context.h>
 #include <fakeit.hpp>
 
-#include <log.h>
-#include <memory>
 #include <canrawview.h>
 #include <crvsortmodel.h>
 #include <gui/crvguiinterface.h>
+#include <log.h>
+#include <memory>
 
 #include <iostream>
 std::shared_ptr<spdlog::logger> kDefaultLogger;

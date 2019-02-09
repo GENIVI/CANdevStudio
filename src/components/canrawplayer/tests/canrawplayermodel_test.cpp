@@ -4,6 +4,7 @@
 #define CATCH_CONFIG_RUNNER
 #include "log.h"
 #include <QSignalSpy>
+#include <catch.hpp>
 #include <fakeit.hpp>
 
 std::shared_ptr<spdlog::logger> kDefaultLogger;
@@ -42,7 +43,7 @@ TEST_CASE("dataType", "[canrawplayerModel]")
     CanRawPlayerModel canrawplayerModel;
 
     NodeDataType ndt;
-        
+
     ndt = canrawplayerModel.dataType(QtNodes::PortType::Out, 0);
     CHECK(ndt.id == "rawframe");
     CHECK(ndt.name == "RAW");
@@ -50,7 +51,7 @@ TEST_CASE("dataType", "[canrawplayerModel]")
     ndt = canrawplayerModel.dataType(QtNodes::PortType::Out, 1);
     CHECK(ndt.id == "");
     CHECK(ndt.name == "");
-    
+
     ndt = canrawplayerModel.dataType(QtNodes::PortType::In, 0);
     CHECK(ndt.id == "");
     CHECK(ndt.name == "");
@@ -83,7 +84,7 @@ TEST_CASE("sendFrame", "[canrawplayerModel]")
 
     QSignalSpy dataUpdatedSpy(&canrawplayerModel, &CanRawPlayerModel::dataUpdated);
 
-    for(int i = 0; i < 200; ++i) {
+    for (int i = 0; i < 200; ++i) {
         canrawplayerModel.sendFrame(frame);
     }
 
@@ -102,4 +103,3 @@ int main(int argc, char* argv[])
     QApplication a(argc, argv); // QApplication must exist when contructing QWidgets TODO check QTest
     return Catch::Session().run(argc, argv);
 }
-

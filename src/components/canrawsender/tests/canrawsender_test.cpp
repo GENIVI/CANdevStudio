@@ -7,13 +7,14 @@
 #include <canrawsender.h>
 #include <context.h>
 #define CATCH_CONFIG_RUNNER
+#include <QApplication>
+#include <QSignalSpy>
+#include <catch.hpp>
 #include <fakeit.hpp>
 #include <gui/crsguiinterface.h>
+#include <log.h>
 #include <memory>
 #include <newlinemanager.h>
-#include <QSignalSpy>
-#include <log.h>
-#include <QApplication>
 
 using namespace fakeit;
 

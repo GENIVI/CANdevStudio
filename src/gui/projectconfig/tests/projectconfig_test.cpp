@@ -7,6 +7,7 @@
 #include <QWindow>
 #include <candevicemodel.h>
 #include <canrawviewmodel.h>
+#include <catch.hpp>
 #include <fakeit.hpp>
 #include <log.h>
 #include <nodes/FlowScene>
