@@ -217,9 +217,11 @@ public:
 private:
     {name}* q_ptr;
     const QString _nameProperty = "name";
+    // clang-format off
     ComponentInterface::ComponentProperties _supportedProps = {{
-            {{_nameProperty,   {{QVariant::String, true}}}}
+            {{ _nameProperty, QVariant::String, true }}
     }};
+    // clang-format on
 }};
 
 #endif // {nameUpper}_P_H
@@ -243,9 +245,8 @@ std::string genPrivateSrc(const std::string& name)
 
 void {name}Private::initProps()
 {{
-    for (const auto& p: _supportedProps)
-    {{
-        _props[p.first];
+    for (const auto& p: _supportedProps) {{
+        _props[std::get<0>(p)];
     }}
 }}
 
@@ -259,7 +260,7 @@ QJsonObject {name}Private::getSettings()
     QJsonObject json;
 
     for (const auto& p : _props) {{
-        json[p.first] = QJsonValue::fromVariant(p.second);
+        json[std::get<0>(p)] = QJsonValue::fromVariant(p.second);
     }}
 
     return json;
@@ -268,8 +269,9 @@ QJsonObject {name}Private::getSettings()
 void {name}Private::setSettings(const QJsonObject& json)
 {{
     for (const auto& p : _supportedProps) {{
-        if (json.contains(p.first))
-            _props[p.first] = json[p.first].toVariant();
+        QString propName = std::get<0>(p);
+        if (json.contains(propName))
+            _props[propName] = json[propName].toVariant();
     }}
 }}
 )",
@@ -483,9 +485,11 @@ public:
 private:
     {name}* q_ptr;
     const QString _nameProperty = "name";
+    // clang-format off
     ComponentInterface::ComponentProperties _supportedProps = {{
-            {{_nameProperty,   {{QVariant::String, true}}}}
+            {{ _nameProperty, QVariant::String, true }}
     }};
+    // clang-format on
 }};
 
 #endif // {nameUpper}_P_H
@@ -512,7 +516,7 @@ void {name}Private::initProps()
 {{
     for (const auto& p: _supportedProps)
     {{
-        _props[p.first];
+        _props[std::get<0>(p)];
     }}
 }}
 
@@ -526,7 +530,7 @@ QJsonObject {name}Private::getSettings()
     QJsonObject json;
 
     for (const auto& p : _props) {{
-        json[p.first] = QJsonValue::fromVariant(p.second);
+        json[std::get<0>(p)] = QJsonValue::fromVariant(p.second);
     }}
 
     return json;
@@ -535,8 +539,9 @@ QJsonObject {name}Private::getSettings()
 void {name}Private::setSettings(const QJsonObject& json)
 {{
     for (const auto& p : _supportedProps) {{
-        if (json.contains(p.first))
-            _props[p.first] = json[p.first].toVariant();
+        QString propName = std::get<0>(p);
+        if (json.contains(propName))
+            _props[propName] = json[propName].toVariant();
     }}
 }}
 )",
@@ -556,10 +561,7 @@ std::string genGuiInt(const std::string& name)
 class QWidget;
 
 struct {name}GuiInt {{
-    virtual ~{name}GuiInt()
-    {{
-    }}
-
+    virtual ~{name}GuiInt() {{}}
     virtual QWidget* mainWidget() = 0;
 }};
 
@@ -829,8 +831,10 @@ TEST_CASE("getSupportedProperties", "[{nameLower}]")
 
     auto props = c.getSupportedProperties();
 
-    CHECK(props.find("name") != props.end());
-    CHECK(props.find("dummy") == props.end());
+    CHECK(std::find(std::begin(props), std::end(props), std::make_tuple("name", QVariant::String, true))
+        != std::end(props));
+    CHECK(std::find(std::begin(props), std::end(props), std::make_tuple("dummy", QVariant::String, true))
+        == std::end(props));
 }}
 
 int main(int argc, char* argv[])
