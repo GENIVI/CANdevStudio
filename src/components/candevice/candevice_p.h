@@ -123,9 +123,11 @@ private:
         } else if (keyStr == "CanFdKey") {
             key = QCanBusDevice::CanFdKey;
             val = valStr.toUpper() == "TRUE";
+#if QT_VERSION >= 0x050900
         } else if (keyStr == "DataBitRateKey") {
             key = QCanBusDevice::DataBitRateKey;
             val = valStr.toUInt(&res);
+#endif
         } else if (keyStr == "UserKey") {
             key = QCanBusDevice::UserKey;
             val = valStr;
