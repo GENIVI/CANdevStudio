@@ -37,7 +37,6 @@ TEST_CASE("setConfig - json", "[canrawfilter]")
 {
     using namespace fakeit;
     Mock<CanRawFilterGuiInt> mock;
-    Fake(Dtor(mock));
     Fake(Method(mock, mainWidget));
     Fake(Method(mock, setTxListCbk));
     Fake(Method(mock, setRxListCbk));
@@ -127,7 +126,6 @@ TEST_CASE("default accept list RX", "[canrawfilter]")
 template <typename M, typename TX, typename RX> void setupMock(M& mock, TX& txCbk, RX& rxCbk)
 {
     using namespace fakeit;
-    Fake(Dtor(mock));
     Fake(Method(mock, mainWidget));
     When(Method(mock, setTxListCbk)).AlwaysDo([&](auto&& fn) { txCbk = fn; });
     When(Method(mock, setRxListCbk)).AlwaysDo([&](auto&& fn) { rxCbk = fn; });

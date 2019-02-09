@@ -121,7 +121,6 @@ TEST_CASE("callbacks test", "[projectconfig]")
 
     Mock<PCInterface> pcMock;
 
-    Fake(Dtor(pcMock));
     When(Method(pcMock, setNodeCreatedCallback)).Do([&](auto flow, auto&& fn) {
         fs = flow;
         nodeCreated = fn;

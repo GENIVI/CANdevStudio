@@ -129,7 +129,7 @@ void {name}::setConfig(const QJsonObject& json)
 {{
     Q_D({name});
 
-    d_ptr->setSettings(json);
+    d->setSettings(json);
 }}
 
 void {name}::setConfig(const QObject& qobject)
@@ -764,9 +764,10 @@ std::string genTests(const std::string& name, bool gui)
 #include <{nameLower}.h>
 #define CATCH_CONFIG_RUNNER
 #include "log.h"
-#include <QSignalSpy>
-#include <fakeit.hpp>
 #include <QCanBusFrame>
+#include <QSignalSpy>
+#include <catch.hpp>
+#include <fakeit.hpp>
 
 std::shared_ptr<spdlog::logger> kDefaultLogger;
 // needed for QSignalSpy cause according to qtbug 49623 comments
@@ -856,9 +857,10 @@ std::string genTestsModel(const std::string& name)
 #include <{nameLower}model.h>
 #define CATCH_CONFIG_RUNNER
 #include "log.h"
-#include <QSignalSpy>
-#include <fakeit.hpp>
 #include <QCanBusFrame>
+#include <QSignalSpy>
+#include <catch.hpp>
+#include <fakeit.hpp>
 
 std::shared_ptr<spdlog::logger> kDefaultLogger;
 // needed for QSignalSpy cause according to qtbug 49623 comments
@@ -896,18 +898,18 @@ TEST_CASE("dataType", "[{nameLower}Model]")
     {name}Model cm;
 
     NodeDataType ndt;
-        
-    //ndt = cm.dataType(QtNodes::PortType::Out, 0);
-    //CHECK(ndt.id == "rawframe");
-    //CHECK(ndt.name == "RAW");
 
-    //ndt = cm.dataType(QtNodes::PortType::Out, 1);
-    //CHECK(ndt.id == "");
-    //CHECK(ndt.name == "");
-    
-    //ndt = cm.dataType(QtNodes::PortType::In, 0);
-    //CHECK(ndt.id == "");
-    //CHECK(ndt.name == "");
+    // ndt = cm.dataType(QtNodes::PortType::Out, 0);
+    // CHECK(ndt.id == "rawframe");
+    // CHECK(ndt.name == "RAW");
+
+    // ndt = cm.dataType(QtNodes::PortType::Out, 1);
+    // CHECK(ndt.id == "");
+    // CHECK(ndt.name == "");
+
+    // ndt = cm.dataType(QtNodes::PortType::In, 0);
+    // CHECK(ndt.id == "");
+    // CHECK(ndt.name == "");
 }}
 
 TEST_CASE("outData", "[{nameLower}Model]")
@@ -937,7 +939,6 @@ int main(int argc, char* argv[])
     QApplication a(argc, argv); // QApplication must exist when contructing QWidgets TODO check QTest
     return Catch::Session().run(argc, argv);
 }}
-
 )",
         "name"_a = name, "nameUpper"_a = str_toupper(name), "nameLower"_a = str_tolower(name));
 }

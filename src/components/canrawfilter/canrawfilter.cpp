@@ -29,7 +29,7 @@ void CanRawFilter::setConfig(const QJsonObject& json)
 {
     Q_D(CanRawFilter);
 
-    d_ptr->setSettings(json);
+    d->setSettings(json);
 }
 
 void CanRawFilter::setConfig(const QObject& qobject)

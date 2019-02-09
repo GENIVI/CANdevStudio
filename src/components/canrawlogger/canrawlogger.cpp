@@ -27,7 +27,7 @@ void CanRawLogger::setConfig(const QJsonObject& json)
 {
     Q_D(CanRawLogger);
 
-    d_ptr->setSettings(json);
+    d->setSettings(json);
 }
 
 void CanRawLogger::setConfig(const QObject& qobject)
