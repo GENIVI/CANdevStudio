@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# do not indicate failure if doxygen generation failed
-set +e
+set -e
 
-if [ "$TRAVIS_OS_NAME" == "linux" ]; then
+# Execute for GENIVI repository only
+if [ "$TRAVIS_OS_NAME" == "linux" -a "$TRAVIS_REPO_SLUG" == "GENIVI/CANdevStudio" ]; then
   cd "$TRAVIS_BUILD_DIR" || exit
   chmod +x .travis_doxygen.sh
   docker run \
