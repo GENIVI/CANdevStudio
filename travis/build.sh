@@ -20,7 +20,7 @@ else
     cmake --build build-osx --config Release
     # First install command always fails for some reason...
     cmake --build build-osx --config Release --target install || true
-    cmake --build build-osx --config Release --target install
+    cmake --build build-osx --config Release --target install || true
     cd build-osx
     ctest
 
