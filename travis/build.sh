@@ -12,6 +12,8 @@ if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
     export CC=clang-3.5 CXX=clang++-3.5 CMAKE_BUILD_TYPE=Debug WITH_COVERAGE=OFF PACKAGE=OFF
     ./travis/docker_compile.sh
 else
+    set +e
+
     chmod -R 755 "$(brew --prefix qt5)/lib/"
     echo "Building for OSX"
     cmake -H. -Bbuild-osx -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH="$(brew --prefix qt5)/lib/cmake" -GNinja -DWITH_TESTS=ON -DCMAKE_INSTALL_PREFIX=install

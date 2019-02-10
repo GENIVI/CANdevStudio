@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# do not indicate failure if doxygen generation failed
+set +e
+
 if [ "$TRAVIS_OS_NAME" == "linux" ]; then
   cd "$TRAVIS_BUILD_DIR" || exit
   chmod +x .travis_doxygen.sh
