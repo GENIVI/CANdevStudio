@@ -840,9 +840,9 @@ int main(int argc, char* argv[])
     if (haveDebug) {{
         kDefaultLogger->set_level(spdlog::level::debug);
     }}
-    cds_debug("Staring unit tests");
+    cds_debug("Starting unit tests");
     qRegisterMetaType<QCanBusFrame>(); // required by QSignalSpy
-    QApplication a(argc, argv); // QApplication must exist when contructing QWidgets TODO check QTest
+    QApplication a(argc, argv); // QApplication must exist when constructing QWidgets TODO check QTest
     return Catch::Session().run(argc, argv);
 }}
 )",
@@ -934,9 +934,9 @@ int main(int argc, char* argv[])
     if (haveDebug) {{
         kDefaultLogger->set_level(spdlog::level::debug);
     }}
-    cds_debug("Staring unit tests");
+    cds_debug("Starting unit tests");
     qRegisterMetaType<QCanBusFrame>(); // required by QSignalSpy
-    QApplication a(argc, argv); // QApplication must exist when contructing QWidgets TODO check QTest
+    QApplication a(argc, argv); // QApplication must exist when constructing QWidgets TODO check QTest
     return Catch::Session().run(argc, argv);
 }}
 )",
@@ -983,7 +983,7 @@ int main(int argc, char* argv[])
     ("n, name", "Component name", cxxopts::value<std::string>(), "name")
     ("o, output", "Output directory. Shall point to src/components directory", cxxopts::value<std::string>(), "path")
     ("g, no-gui", "Component without GUI", cxxopts::value<bool>())
-    ("h,help", "Show help message");
+    ("h, help", "Show help message");
     // clang-format on
 
     const auto&& result = options.parse(argc, argv);
