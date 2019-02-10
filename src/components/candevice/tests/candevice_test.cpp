@@ -415,7 +415,10 @@ auto prepareConfigTestMock()
     Fake(Method(deviceMock, clearCallbacks));
     Fake(Method(deviceMock, setParent));
     When(Method(deviceMock, init)).AlwaysReturn(true);
-    Fake(Method(deviceMock, setConfigurationParameter));
+    // Fake(Method(deviceMock, setConfigurationParameter));
+    When(Method(deviceMock, setConfigurationParameter)).AlwaysDo([&](int key, const QVariant& v) {
+        cds_info("A qqq {} : {}", key, v.toString().toStdString());
+    });
     return deviceMock;
 }
 
@@ -433,15 +436,14 @@ void testConfig(fakeit::Mock<CanDeviceInterface>& deviceMock, CanDevice& canDevi
 }
 
 // Use macro so Catch could show exact line of failure
-#define testConfig_Expect0(mock, dev, str) \
-    testConfig(mock, dev, str); \
+#define testConfig_Expect0(mock, dev, str)                                                                             \
+    testConfig(mock, dev, str);                                                                                        \
     fakeit::Verify(Method(mock, setConfigurationParameter)).Exactly(0);
 
 // Use macro so Catch could show exact line of failure
-#define testConfig_Expect1(mock, dev, key, val, str) \
-    testConfig(mock, dev, str); \
+#define testConfig_Expect1(mock, dev, key, val, str)                                                                   \
+    testConfig(mock, dev, str);                                                                                        \
     fakeit::Verify(Method(mock, setConfigurationParameter).Using(key, val)).Exactly(1);
-
 
 TEST_CASE("Config parameter - invalid format and unsupported", "[candevice]")
 {
@@ -561,15 +563,17 @@ TEST_CASE("Config parameter - UserKey", "[candevice]")
     testConfig_Expect0(deviceMock, canDevice, "  UserKey  =    ");
 
     const int key = QCanBusDevice::UserKey;
-    //testConfig_Expect1(deviceMock, canDevice, key, "True", "UserKey=True");
-    //testConfig_Expect1(deviceMock, canDevice, key, "TexT", "UserKey=TexT;dummy=dummy");
-    //testConfig_Expect1(deviceMock, canDevice, key, 123456, "; dummy =    dummy;   UserKey=123456;dummy=dummy");
-    //testConfig_Expect1(deviceMock, canDevice, key, -111, "  UserKey =  -111; dummy=dummy");
-    testConfig_Expect1(deviceMock, canDevice, key, 0, "UserKey=0");
-    //testConfig_Expect1(deviceMock, canDevice, key, false, "UserKey=FALSE;dummy=dummy");
-    //testConfig_Expect1(deviceMock, canDevice, key, false, "; dummy =    dummy;   UserKey=TRU;dummy=dummy");
-    //testConfig_Expect1(deviceMock, canDevice, key, false, "  UserKey =  false; dummy=dummy");
-    //testConfig_Expect1(deviceMock, canDevice, key, false, "UserKey=dummy");
+    // testConfig_Expect1(deviceMock, canDevice, key, "True", "UserKey=True");
+    // testConfig_Expect1(deviceMock, canDevice, key, "TexT", "UserKey=TexT;dummy=dummy");
+    // testConfig_Expect1(deviceMock, canDevice, key, 123456, "; dummy =    dummy;   UserKey=123456;dummy=dummy");
+    // testConfig_Expect1(deviceMock, canDevice, key, -111, "  UserKey =  -111; dummy=dummy");
+    testConfig_Expect1(deviceMock, canDevice, key, QVariant("123"), "UserKey=123");
+    testConfig_Expect1(deviceMock, canDevice, key, QVariant("123"), "UserKey=123");
+    testConfig_Expect1(deviceMock, canDevice, key, "123", "UserKey=123");
+    // testConfig_Expect1(deviceMock, canDevice, key, false, "UserKey=FALSE;dummy=dummy");
+    // testConfig_Expect1(deviceMock, canDevice, key, false, "; dummy =    dummy;   UserKey=TRU;dummy=dummy");
+    // testConfig_Expect1(deviceMock, canDevice, key, false, "  UserKey =  false; dummy=dummy");
+    // testConfig_Expect1(deviceMock, canDevice, key, false, "UserKey=dummy");
 }
 
 #if QT_VERSION >= 0x050900
@@ -588,7 +592,8 @@ TEST_CASE("Config parameter - DataBitRateKey", "[candevice]")
 
     const int key = QCanBusDevice::DataBitRateKey;
     testConfig_Expect1(deviceMock, canDevice, key, 1000000, "DataBitRateKey=1000000");
-    testConfig_Expect1(deviceMock, canDevice, key, 123456789, "; dummy =    dummy;   DataBitRateKey=123456789;dummy=dummy");
+    testConfig_Expect1(
+        deviceMock, canDevice, key, 123456789, "; dummy =    dummy;   DataBitRateKey=123456789;dummy=dummy");
     testConfig_Expect1(deviceMock, canDevice, key, 1, "  DataBitRateKey =  1; dummy=dummy");
     testConfig_Expect1(deviceMock, canDevice, key, 0, "DataBitRateKey=0");
 }
