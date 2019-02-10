@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -x
+
 if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
     #export CC=gcc-6 CXX=g++-6 CMAKE_BUILD_TYPE=Debug WITH_COVERAGE=ON PACKAGE=OFF
     #./travis/docker_compile.sh
@@ -22,9 +24,10 @@ else
     cmake --build build-osx --config Release
     cmake --build build-osx --config Release --target install
     cmake --build build-osx --config Release --target install
+    cd build-osx
+
     set -e
 
-    cd build-osx
     ctest
 
     # DEV_BUILD=ON (master)
