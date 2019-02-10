@@ -16,17 +16,17 @@ if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
     #./travis/docker_compile.sh
 else
 
-    chmod -R 755 "$(brew --prefix qt5)/lib/"
-    echo "Building for OSX"
-    cmake -H. -Bbuild-osx -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH="$(brew --prefix qt5)/lib/cmake" -GNinja -DWITH_TESTS=ON -DCMAKE_INSTALL_PREFIX=install
+    #chmod -R 755 "$(brew --prefix qt5)/lib/"
+    #echo "Building for OSX"
+    #cmake -H. -Bbuild-osx -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH="$(brew --prefix qt5)/lib/cmake" -GNinja -DWITH_TESTS=ON -DCMAKE_INSTALL_PREFIX=install
 
-    # First install command always fails for some reason...
-    cmake --build build-osx --config Release
-    cmake --build build-osx --config Release --target install || true
-    cmake --build build-osx --config Release --target install
+    ## First install command always fails for some reason...
+    #cmake --build build-osx --config Release
+    #cmake --build build-osx --config Release --target install || true
+    #cmake --build build-osx --config Release --target install
 
     cd build-osx || true
-    ctest
+    #ctest
 
     # DEV_BUILD=ON (master)
     cpack -G DragNDrop
