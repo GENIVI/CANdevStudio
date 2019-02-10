@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -x
+set -e
 
 if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
     #export CC=gcc-6 CXX=g++-6 CMAKE_BUILD_TYPE=Debug WITH_COVERAGE=ON PACKAGE=OFF
@@ -20,14 +21,11 @@ else
     cmake -H. -Bbuild-osx -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH="$(brew --prefix qt5)/lib/cmake" -GNinja -DWITH_TESTS=ON -DCMAKE_INSTALL_PREFIX=install
 
     # First install command always fails for some reason...
-    set +e
     cmake --build build-osx --config Release
+    cmake --build build-osx --config Release --target install || true
     cmake --build build-osx --config Release --target install
-    cmake --build build-osx --config Release --target install
-    cd build-osx
 
-    set -e
-
+    cd build-osx || true
     ctest
 
     # DEV_BUILD=ON (master)
@@ -36,12 +34,12 @@ else
     mv *.dmg master
 
     # Deploy (master)
-    cd master
+    cd master || true
     for f in *.dmg; do
         curl -T $f -urkollataj:$BINTRAY_API_KEY https://api.bintray.com/content/rkollataj/CANdevStudio/master/${TRAVIS_COMMIT:0:7}/$f\;override=1
     done
     curl -urkollataj:$BINTRAY_API_KEY -X POST https://api.bintray.com/content/rkollataj/CANdevStudio/master/${TRAVIS_COMMIT:0:7}/publish
-    cd ..
+    cd .. || true
 
     # DEV_BUILD=OFF (rc)
     cmake . -DDEV_BUILD=OFF
@@ -50,10 +48,10 @@ else
     mv *.dmg rc
 
     # Deploy (rc)
-    cd rc
+    cd rc || true
     for f in *.dmg; do
         curl -T $f -urkollataj:$BINTRAY_API_KEY https://api.bintray.com/content/rkollataj/CANdevStudio/cds/rc/$f\;override=1
     done
     curl -urkollataj:$BINTRAY_API_KEY -X POST https://api.bintray.com/content/rkollataj/CANdevStudio/cds/rc/publish
-    cd ..
+    cd .. || true
 fi
