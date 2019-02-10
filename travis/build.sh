@@ -27,7 +27,7 @@ else
 
     mkdir build-osx
     pwd
-    ls . -al 
+    ls -al 
     cd build-osx || true
     #ctest
 
