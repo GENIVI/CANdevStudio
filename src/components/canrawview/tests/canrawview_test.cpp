@@ -6,14 +6,15 @@
 #include <QTableView>
 #include <Qt>
 #include <QtWidgets/QApplication>
+#include <catch.hpp>
 #include <context.h>
 #include <fakeit.hpp>
 
-#include <log.h>
-#include <memory>
 #include <canrawview.h>
 #include <crvsortmodel.h>
 #include <gui/crvguiinterface.h>
+#include <log.h>
+#include <memory>
 
 #include <iostream>
 std::shared_ptr<spdlog::logger> kDefaultLogger;
@@ -40,7 +41,6 @@ void addNewFrame(uint& rowID, double time, uint frameID, uint data, QStandardIte
 TEST_CASE("Initialize table", "[canrawview]")
 {
     Mock<CRVGuiInterface> crvMock;
-    Fake(Dtor(crvMock));
 
     Fake(Method(crvMock, setClearCbk));
     Fake(Method(crvMock, setDockUndockCbk));
@@ -261,7 +261,6 @@ TEST_CASE("Dock/Undock", "[canrawview]")
     CRVGuiInterface::dockUndock_t dockUndock;
 
     Mock<CRVGuiInterface> crvMock;
-    Fake(Dtor(crvMock));
     Fake(Method(crvMock, setClearCbk));
     Fake(Method(crvMock, setSectionClikedCbk));
     Fake(Method(crvMock, setFilterCbk));
@@ -292,7 +291,6 @@ TEST_CASE("Section clicked", "[canrawview]")
     QAbstractItemModel* model = nullptr;
 
     Mock<CRVGuiInterface> crvMock;
-    Fake(Dtor(crvMock));
     Fake(Method(crvMock, setClearCbk));
     When(Method(crvMock, setSectionClikedCbk)).AlwaysDo([&](auto&& fn) { sectionClicked = fn; });
     Fake(Method(crvMock, setFilterCbk));
@@ -354,7 +352,6 @@ TEST_CASE("Filter callback", "[canrawview]")
     QAbstractItemModel* model = nullptr;
 
     Mock<CRVGuiInterface> crvMock;
-    Fake(Dtor(crvMock));
     Fake(Method(crvMock, setClearCbk));
     When(Method(crvMock, setFilterCbk)).Do([&](auto&& fn) { filter = fn; });
     Fake(Method(crvMock, setSectionClikedCbk));
@@ -401,7 +398,6 @@ TEST_CASE("Stress test", "[canrawview]")
     CRVGuiInterface::filter_t filter;
 
     Mock<CRVGuiInterface> crvMock;
-    Fake(Dtor(crvMock));
     Fake(Method(crvMock, setClearCbk));
     When(Method(crvMock, setFilterCbk)).Do([&](auto&& fn) { filter = fn; });
     Fake(Method(crvMock, setSectionClikedCbk));

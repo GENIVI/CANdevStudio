@@ -187,7 +187,7 @@ public:
         return _restored;
     }
 
-    virtual void setColorMode(bool darkMode)
+    virtual void setColorMode(bool darkMode) override
     {
         _darkMode = darkMode;
 

@@ -28,7 +28,7 @@ void CanLoad::setConfig(const QJsonObject& json)
 {
     Q_D(CanLoad);
 
-    d_ptr->setSettings(json);
+    d->setSettings(json);
 }
 
 void CanLoad::setConfig(const QObject& qobject)

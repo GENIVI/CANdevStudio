@@ -4,6 +4,7 @@
 #define CATCH_CONFIG_RUNNER
 #include "log.h"
 #include <QSignalSpy>
+#include <catch.hpp>
 #include <fakeit.hpp>
 
 std::shared_ptr<spdlog::logger> kDefaultLogger;

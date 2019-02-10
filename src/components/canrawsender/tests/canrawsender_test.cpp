@@ -7,13 +7,14 @@
 #include <canrawsender.h>
 #include <context.h>
 #define CATCH_CONFIG_RUNNER
+#include <QApplication>
+#include <QSignalSpy>
+#include <catch.hpp>
 #include <fakeit.hpp>
 #include <gui/crsguiinterface.h>
+#include <log.h>
 #include <memory>
 #include <newlinemanager.h>
-#include <QSignalSpy>
-#include <log.h>
-#include <QApplication>
 
 using namespace fakeit;
 
@@ -53,10 +54,8 @@ TEST_CASE("Add and remove frame test", "[canrawsender]")
     Mock<PushButtonInterface> nlmPushButtonMock;
 
     Mock<NLMFactoryInterface> nlmFactoryMock;
-    Fake(Dtor(nlmFactoryMock));
     helpTestClass mHelp;
 
-    Fake(Dtor(nlmLineEditMock));
     Fake(Method(nlmLineEditMock, textChangedCbk));
     When(Method(nlmLineEditMock, mainWidget)).AlwaysDo([&]() {
         return reinterpret_cast<QWidget*>(&nlmLineEditMock.get());
@@ -69,7 +68,6 @@ TEST_CASE("Add and remove frame test", "[canrawsender]")
     Fake(Method(nlmLineEditMock, setText));
     When(Method(nlmFactoryMock, createLineEdit)).AlwaysDo([&]() { return &nlmLineEditMock.get(); });
 
-    Fake(Dtor(nlmCheckBoxMock));
     Fake(Method(nlmCheckBoxMock, toggledCbk));
     When(Method(nlmCheckBoxMock, mainWidget)).AlwaysReturn(reinterpret_cast<QWidget*>(&nlmCheckBoxMock.get()));
     Fake(Method(nlmCheckBoxMock, getState));
@@ -77,7 +75,6 @@ TEST_CASE("Add and remove frame test", "[canrawsender]")
     Fake(Method(nlmCheckBoxMock, setDisabled));
     When(Method(nlmFactoryMock, createCheckBox)).AlwaysReturn(&nlmCheckBoxMock.get());
 
-    Fake(Dtor(nlmPushButtonMock));
     Fake(Method(nlmPushButtonMock, init));
     When(Method(nlmPushButtonMock, pressedCbk)).AlwaysDo([&](auto&& fn) { sendPressed = fn; });
     Fake(Method(nlmPushButtonMock, setDisabled));
@@ -89,7 +86,6 @@ TEST_CASE("Add and remove frame test", "[canrawsender]")
     When(Method(nlmPushButtonMock, mainWidget)).AlwaysReturn(reinterpret_cast<QWidget*>(&nlmPushButtonMock.get()));
     When(Method(nlmFactoryMock, createPushButton)).AlwaysReturn(&nlmPushButtonMock.get());
 
-    Fake(Dtor(crsMock));
     When(Method(crsMock, setAddCbk)).Do([&](auto&& fn) { addLineCbk = fn; });
     When(Method(crsMock, setRemoveCbk)).Do([&](auto&& fn) { removeLineCbk = fn; });
     Fake(Method(crsMock, setDockUndockCbk));
@@ -118,7 +114,6 @@ TEST_CASE("Add and remove frame test", "[canrawsender]")
 TEST_CASE("Can raw sender save configuration test", "[canrawsender]")
 {
     Mock<CRSGuiInterface> crsMock;
-    Fake(Dtor(crsMock));
     Fake(Method(crsMock, setAddCbk));
     Fake(Method(crsMock, setRemoveCbk));
     Fake(Method(crsMock, setDockUndockCbk));
@@ -128,7 +123,6 @@ TEST_CASE("Can raw sender save configuration test", "[canrawsender]")
     Fake(Method(crsMock, setIndexWidget));
 
     Mock<NLMFactoryInterface> nlmFactoryMock;
-    Fake(Dtor(nlmFactoryMock));
 
     CanRawSender canRawSender{ CanRawSenderCtx(&crsMock.get(), &nlmFactoryMock.get()) };
 
@@ -161,7 +155,6 @@ public:
     commonTestClass() = delete;
     commonTestClass(const QString& id, const QString& data, const QString& interval, bool loop)
     {
-        Fake(Dtor(crsMock));
         Fake(Method(crsMock, setAddCbk));
         Fake(Method(crsMock, setRemoveCbk));
         Fake(Method(crsMock, setDockUndockCbk));
@@ -169,9 +162,7 @@ public:
         Fake(Method(crsMock, initTableView));
         Fake(Method(crsMock, getSelectedRows));
         Fake(Method(crsMock, setIndexWidget));
-        Fake(Dtor(nlmFactoryMock));
 
-        Fake(Dtor(nlmLineEditMock));
         Fake(Method(nlmLineEditMock, textChangedCbk));
         Fake(Method(nlmLineEditMock, init));
         Fake(Method(nlmLineEditMock, setPlaceholderText));
@@ -183,20 +174,17 @@ public:
         });
         When(Method(nlmFactoryMock, createLineEdit)).AlwaysDo([&]() { return &nlmLineEditMock.get(); });
 
-        Fake(Dtor(nlmCheckBoxMock));
         Fake(Method(nlmCheckBoxMock, toggledCbk));
         When(Method(nlmCheckBoxMock, getState)).Return(true, loop);
         Fake(Method(nlmCheckBoxMock, setState));
         When(Method(nlmCheckBoxMock, mainWidget)).Return(reinterpret_cast<QWidget*>(&nlmCheckBoxMock.get()));
         When(Method(nlmFactoryMock, createCheckBox)).Return(&nlmCheckBoxMock.get());
 
-        Fake(Dtor(nlmPushButtonMock));
         Fake(Method(nlmPushButtonMock, init));
         Fake(Method(nlmPushButtonMock, pressedCbk));
         When(Method(nlmPushButtonMock, mainWidget)).Return(reinterpret_cast<QWidget*>(&nlmPushButtonMock.get()));
         When(Method(nlmFactoryMock, createPushButton)).Return(&nlmPushButtonMock.get());
 
-        Fake(Dtor(crsMock));
         Fake(Method(crsMock, setAddCbk));
         Fake(Method(crsMock, setRemoveCbk));
         Fake(Method(crsMock, setDockUndockCbk));
@@ -534,7 +522,6 @@ TEST_CASE("Dock/Undock", "[canrawsender]")
     CRSGuiInterface::dockUndock_t dockUndock;
 
     Mock<CRSGuiInterface> crsMock;
-    Fake(Dtor(crsMock));
     Fake(Method(crsMock, setAddCbk));
     Fake(Method(crsMock, setRemoveCbk));
     When(Method(crsMock, setDockUndockCbk)).Do([&](auto&& fn) { dockUndock = fn; });
@@ -544,7 +531,6 @@ TEST_CASE("Dock/Undock", "[canrawsender]")
     Fake(Method(crsMock, setIndexWidget));
 
     Mock<NLMFactoryInterface> nlmFactoryMock;
-    Fake(Dtor(nlmFactoryMock));
 
     CanRawSender canRawSender{ CanRawSenderCtx(&crsMock.get(), &nlmFactoryMock.get()) };
     QSignalSpy dockSpy(&canRawSender, &CanRawSender::mainWidgetDockToggled);

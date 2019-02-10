@@ -27,7 +27,7 @@ void CanRawPlayer::setConfig(const QJsonObject& json)
 {
     Q_D(CanRawPlayer);
 
-    d_ptr->setSettings(json);
+    d->setSettings(json);
 }
 
 void CanRawPlayer::setConfig(const QObject& qobject)

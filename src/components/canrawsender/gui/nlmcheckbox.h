@@ -49,7 +49,7 @@ struct NLMCheckBox : public CheckBoxInterface {
         }
     }
 
-    void setDisabled(bool state)
+    void setDisabled(bool state) override
     {
         qCheckBox->setDisabled(state);
     }

@@ -4,6 +4,7 @@
 #define CATCH_CONFIG_RUNNER
 #include "log.h"
 #include <QSignalSpy>
+#include <catch.hpp>
 #include <fakeit.hpp>
 
 std::shared_ptr<spdlog::logger> kDefaultLogger;
@@ -42,7 +43,7 @@ TEST_CASE("dataType", "[canrawloggerModel]")
     CanRawLoggerModel canrawloggerModel;
 
     NodeDataType ndt;
-        
+
     ndt = canrawloggerModel.dataType(QtNodes::PortType::Out, 0);
     CHECK(ndt.id == "");
     CHECK(ndt.name == "");
@@ -71,9 +72,9 @@ TEST_CASE("setInData", "[canrawloggerModel]")
     QSignalSpy rxSpy(&canrawloggerModel, &CanRawLoggerModel::frameReceived);
     QSignalSpy txSpy(&canrawloggerModel, &CanRawLoggerModel::frameSent);
 
-    auto &&rxData = std::make_shared<CanRawData>(frame, Direction::RX, true);
-    auto &&txData = std::make_shared<CanRawData>(frame, Direction::TX, true);
-    auto &&errData = std::make_shared<CanRawData>(frame, static_cast<Direction>(11), true);
+    auto&& rxData = std::make_shared<CanRawData>(frame, Direction::RX, true);
+    auto&& txData = std::make_shared<CanRawData>(frame, Direction::TX, true);
+    auto&& errData = std::make_shared<CanRawData>(frame, static_cast<Direction>(11), true);
 
     canrawloggerModel.setInData(rxData, 1);
     canrawloggerModel.setInData(txData, 1);
@@ -96,4 +97,3 @@ int main(int argc, char* argv[])
     QApplication a(argc, argv); // QApplication must exist when contructing QWidgets TODO check QTest
     return Catch::Session().run(argc, argv);
 }
-

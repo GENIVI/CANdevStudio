@@ -7,6 +7,7 @@
 #include <QWindow>
 #include <candevicemodel.h>
 #include <canrawviewmodel.h>
+#include <catch.hpp>
 #include <fakeit.hpp>
 #include <log.h>
 #include <nodes/FlowScene>
@@ -120,7 +121,6 @@ TEST_CASE("callbacks test", "[projectconfig]")
 
     Mock<PCInterface> pcMock;
 
-    Fake(Dtor(pcMock));
     When(Method(pcMock, setNodeCreatedCallback)).Do([&](auto flow, auto&& fn) {
         fs = flow;
         nodeCreated = fn;
