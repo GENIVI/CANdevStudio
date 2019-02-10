@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
   export CC=gcc-6 CXX=g++-6 CMAKE_BUILD_TYPE=Debug WITH_COVERAGE=ON PACKAGE=OFF
   ./travis/docker_compile.sh
