@@ -180,7 +180,7 @@ TEST_CASE("Test restore configuration", "[canrawview]")
     CHECK(compareJson(jsonObject, json) == true);
 }
 
-TEST_CASE("Test restore configuration - luck of column", "[canrawview]")
+TEST_CASE("Test restore configuration - lack of column", "[canrawview]")
 {
     QDir dir("configfiles");
     QFile file(dir.absoluteFilePath("canrawviewconfig_columnluck.cds"));
@@ -263,8 +263,8 @@ int main(int argc, char* argv[])
     if (haveDebug) {
         kDefaultLogger->set_level(spdlog::level::debug);
     }
-    cds_debug("Staring unit configfiles");
+    cds_debug("Starting unit configfiles");
     qRegisterMetaType<QCanBusFrame>(); // required by QSignalSpy
-    QApplication a(argc, argv); // QApplication must exist when contructing QWidgets TODO check QTest
+    QApplication a(argc, argv); // QApplication must exist when constructing QWidgets TODO check QTest
     return Catch::Session().run(argc, argv);
 }
