@@ -26,7 +26,7 @@ else
     #cmake --build build-osx --config Release --target install
 
     mkdir build-osx
-    cd build-osx
+    cd build-osx || true
     #ctest
 
     # DEV_BUILD=ON (master)
