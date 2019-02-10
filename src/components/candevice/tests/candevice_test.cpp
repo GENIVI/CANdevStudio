@@ -403,3 +403,82 @@ int main(int argc, char* argv[])
     qRegisterMetaType<QCanBusFrame>(); // required by QSignalSpy
     return Catch::Session().run(argc, argv);
 }
+
+auto prepareConfigTestMock()
+{
+    using namespace fakeit;
+    Mock<CanDeviceInterface> deviceMock;
+
+    Fake(Method(deviceMock, setFramesWrittenCbk));
+    Fake(Method(deviceMock, setFramesReceivedCbk));
+    Fake(Method(deviceMock, setErrorOccurredCbk));
+    Fake(Method(deviceMock, clearCallbacks));
+    Fake(Method(deviceMock, setParent));
+    When(Method(deviceMock, init)).AlwaysReturn(true);
+    Fake(Method(deviceMock, setConfigurationParameter));
+    return deviceMock;
+}
+
+void testConfig(fakeit::Mock<CanDeviceInterface>& deviceMock, CanDevice& canDevice, const QString& configStr)
+{
+    QObject qo;
+
+    deviceMock.ClearInvocationHistory();
+
+    qo.setProperty("backend", "dummy");
+    qo.setProperty("interface", "dummy");
+    qo.setProperty("configuration", configStr);
+    canDevice.setConfig(qo);
+    CHECK(canDevice.init() == true);
+}
+
+// Use macro so Catch could show exact line of failure
+#define testConfig_Expect0(mock, dev, str) \
+    testConfig(mock, dev, str); \
+    fakeit::Verify(Method(mock, setConfigurationParameter)).Exactly(0);
+
+// Use macro so Catch could show exact line of failure
+#define testConfig_Expect1(mock, dev, key, val, str) \
+    testConfig(mock, dev, str); \
+    fakeit::Verify(Method(mock, setConfigurationParameter).Using(key, val)).Exactly(1);
+
+
+TEST_CASE("Config parameter - invalid format and unsupported", "[candevice]")
+{
+    using namespace fakeit;
+    auto&& deviceMock = prepareConfigTestMock();
+
+    CanDevice canDevice{ CanDeviceCtx(&deviceMock.get()) };
+
+    testConfig_Expect0(deviceMock, canDevice, "dummy");
+    testConfig_Expect0(deviceMock, canDevice, "=");
+    testConfig_Expect0(deviceMock, canDevice, "    ");
+    testConfig_Expect0(deviceMock, canDevice, "dummy=dummy");
+    testConfig_Expect0(deviceMock, canDevice, "dummy=dummy;");
+    testConfig_Expect0(deviceMock, canDevice, ";");
+    testConfig_Expect0(deviceMock, canDevice, "RawFilterKey=123");
+    testConfig_Expect0(deviceMock, canDevice, "ErrorFilterKey=123");
+}
+
+TEST_CASE("Config parameter - LoopbackKey", "[candevice]")
+{
+    using namespace fakeit;
+    auto&& deviceMock = prepareConfigTestMock();
+
+    CanDevice canDevice{ CanDeviceCtx(&deviceMock.get()) };
+
+    testConfig_Expect0(deviceMock, canDevice, "LoopbackKey");
+    testConfig_Expect0(deviceMock, canDevice, "LoopbackKey=");
+    testConfig_Expect0(deviceMock, canDevice, "  LoopbackKey  =    ");
+
+    const int key = QCanBusDevice::LoopbackKey;
+    testConfig_Expect1(deviceMock, canDevice, key, true, "LoopbackKey=True");
+    testConfig_Expect1(deviceMock, canDevice, key, true, "LoopbackKey=TRUE;dummy=dummy");
+    testConfig_Expect1(deviceMock, canDevice, key, true, "; dummy =    dummy;   LoopbackKey=TRUE;dummy=dummy");
+    testConfig_Expect1(deviceMock, canDevice, key, true, "  LoopbackKey =  true; dummy=dummy");
+    testConfig_Expect1(deviceMock, canDevice, key, false, "LoopbackKey=False");
+    testConfig_Expect1(deviceMock, canDevice, key, false, "LoopbackKey=FALSE;dummy=dummy");
+    testConfig_Expect1(deviceMock, canDevice, key, false, "; dummy =    dummy;   LoopbackKey=TRU;dummy=dummy");
+    testConfig_Expect1(deviceMock, canDevice, key, false, "  LoopbackKey =  false; dummy=dummy");
+    testConfig_Expect1(deviceMock, canDevice, key, false, "LoopbackKey=dummy");
+}
