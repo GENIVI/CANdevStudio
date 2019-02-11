@@ -219,7 +219,7 @@ private:
     const QString _nameProperty = "name";
     // clang-format off
     ComponentInterface::ComponentProperties _supportedProps = {{
-            {{ _nameProperty, QVariant::String, true }}
+            std::make_tuple(_nameProperty, QVariant::String, true)
     }};
     // clang-format on
 }};
@@ -395,7 +395,7 @@ void {name}::setConfig(const QJsonObject& json)
 {{
     Q_D({name});
 
-    d_ptr->setSettings(json);
+    d->setSettings(json);
 }}
 
 void {name}::setConfig(const QObject& qobject)
@@ -487,7 +487,7 @@ private:
     const QString _nameProperty = "name";
     // clang-format off
     ComponentInterface::ComponentProperties _supportedProps = {{
-            {{ _nameProperty, QVariant::String, true }}
+            std::make_tuple(_nameProperty, QVariant::String, true)
     }};
     // clang-format on
 }};
