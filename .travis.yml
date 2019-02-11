@@ -19,11 +19,11 @@ branches:
     - gh-pages
 
 before_install:
-  - ./travis/before_install.sh
+  - source ./travis/before_install.sh
 
 script:
-  - ./travis/build.sh
+  - source ./travis/build.sh
 
 #Generate and deploy documentation
 after_success:
-  - ./travis/doxygen.sh
+  - source ./travis/doxygen.sh
