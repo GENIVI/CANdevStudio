@@ -116,6 +116,7 @@ $(document).ready(function(){initNavTree('candevice__test_8cpp.html','');});
 <code>#include &lt;QSignalSpy&gt;</code><br />
 <code>#include &lt;QtSerialBus/QCanBusDevice&gt;</code><br />
 <code>#include &lt;<a class="el" href="candeviceinterface_8h_source.html">candeviceinterface.h</a>&gt;</code><br />
+<code>#include &lt;catch.hpp&gt;</code><br />
 <code>#include &lt;<a class="el" href="context_8h_source.html">context.h</a>&gt;</code><br />
 <code>#include &lt;fakeit.hpp&gt;</code><br />
 <code>#include &lt;<a class="el" href="log_8h_source.html">log.h</a>&gt;</code><br />
@@ -127,7 +128,7 @@ Include dependency graph for candevice_test.cpp:</div>
 <area shape="rect" id="node2" href="candevice_8h.html" title="candevice.h" alt="" coords="300,95,399,121"/>
 <area shape="rect" id="node11" href="context_8h.html" title="context.h" alt="" coords="488,169,571,196"/>
 <area shape="rect" id="node15" href="candeviceinterface_8h.html" title="candeviceinterface.h" alt="" coords="820,95,975,121"/>
-<area shape="rect" id="node19" href="log_8h.html" title="log.h" alt="" coords="1189,95,1243,121"/>
+<area shape="rect" id="node20" href="log_8h.html" title="log.h" alt="" coords="1221,95,1275,121"/>
 <area shape="rect" id="node5" href="componentinterface_8h.html" title="componentinterface.h" alt="" coords="301,169,464,196"/>
 </map>
 </div>
@@ -143,8 +144,8 @@ Functions</h2></td></tr>
 <tr class="separator:a53b87bfa93af7d20e6d7fe80b85c4679"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a55de5f8de85c97640bda740d02d961db"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="candevice__test_8cpp.html#a55de5f8de85c97640bda740d02d961db">TEST_CASE</a> (&quot;Initialization failed&quot;,&quot;[candevice]&quot;)</td></tr>
 <tr class="separator:a55de5f8de85c97640bda740d02d961db"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a23e1f9f6203715d91b4ac20181115186"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="candevice__test_8cpp.html#a23e1f9f6203715d91b4ac20181115186">TEST_CASE</a> (&quot;Initialization succedded&quot;,&quot;[candevice]&quot;)</td></tr>
-<tr class="separator:a23e1f9f6203715d91b4ac20181115186"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab949203d1b70b69dc22c288a7613b07c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="candevice__test_8cpp.html#ab949203d1b70b69dc22c288a7613b07c">TEST_CASE</a> (&quot;Initialization succeeded&quot;,&quot;[candevice]&quot;)</td></tr>
+<tr class="separator:ab949203d1b70b69dc22c288a7613b07c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a298356c14267f01c9ee809c4af21182c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="candevice__test_8cpp.html#a298356c14267f01c9ee809c4af21182c">TEST_CASE</a> (&quot;Start failed&quot;,&quot;[candevice]&quot;)</td></tr>
 <tr class="separator:a298356c14267f01c9ee809c4af21182c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a46c5a653d9829b0a632f41b963f41861"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="candevice__test_8cpp.html#a46c5a653d9829b0a632f41b963f41861">TEST_CASE</a> (&quot;Start failed - could not connect to device&quot;,&quot;[candevice]&quot;)</td></tr>
@@ -161,14 +162,14 @@ Functions</h2></td></tr>
 <tr class="separator:a6f9bf465010e062011d035d50e0c58b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a33eec3ee93525a190dd17d74feaf8d74"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="candevice__test_8cpp.html#a33eec3ee93525a190dd17d74feaf8d74">TEST_CASE</a> (&quot;sendFrame, writeframe returns true, no signal emitted&quot;,&quot;[candevice]&quot;)</td></tr>
 <tr class="separator:a33eec3ee93525a190dd17d74feaf8d74"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2aeafd0037405e8792b52fc1de01ba34"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="candevice__test_8cpp.html#a2aeafd0037405e8792b52fc1de01ba34">TEST_CASE</a> (&quot;sendFrame, no device availablie, frameSent is not emitted&quot;,&quot;[candevice]&quot;)</td></tr>
-<tr class="separator:a2aeafd0037405e8792b52fc1de01ba34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97254e24c23ba74338081b2cde01c2f5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="candevice__test_8cpp.html#a97254e24c23ba74338081b2cde01c2f5">TEST_CASE</a> (&quot;sendFrame, no device available, frameSent is not emitted&quot;,&quot;[candevice]&quot;)</td></tr>
+<tr class="separator:a97254e24c23ba74338081b2cde01c2f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae7431b6bdf074ac53982655a7a6c1722"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="candevice__test_8cpp.html#ae7431b6bdf074ac53982655a7a6c1722">TEST_CASE</a> (&quot;sendFrame defers FrameSent until backend emits frameWritten&quot;,&quot;[candevice]&quot;)</td></tr>
 <tr class="separator:ae7431b6bdf074ac53982655a7a6c1722"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a48c8dd8815b6a1c6023ada1e72900b44"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="candevice__test_8cpp.html#a48c8dd8815b6a1c6023ada1e72900b44">TEST_CASE</a> (&quot;Emits all available frames when notified by backend&quot;,&quot;[candevice]&quot;)</td></tr>
 <tr class="separator:a48c8dd8815b6a1c6023ada1e72900b44"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7f7b3f0cb40e408a02eaff30d6635a6e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="candevice__test_8cpp.html#a7f7b3f0cb40e408a02eaff30d6635a6e">TEST_CASE</a> (&quot;WriteError causes emitting frameSent with framSent=false&quot;,&quot;[candevice]&quot;)</td></tr>
-<tr class="separator:a7f7b3f0cb40e408a02eaff30d6635a6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ddbaf284ba7a9bf7494f2d923f66c5d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="candevice__test_8cpp.html#a4ddbaf284ba7a9bf7494f2d923f66c5d">TEST_CASE</a> (&quot;WriteError causes emitting frameSent with frameSent=false&quot;,&quot;[candevice]&quot;)</td></tr>
+<tr class="separator:a4ddbaf284ba7a9bf7494f2d923f66c5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af702b5751c2bf134a99350000f3f2592"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="candevice__test_8cpp.html#af702b5751c2bf134a99350000f3f2592">TEST_CASE</a> (&quot;read configuration to json format&quot;,&quot;[candevice]&quot;)</td></tr>
 <tr class="separator:af702b5751c2bf134a99350000f3f2592"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8fdfd1322fab0692541d04145f1baf4a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="candevice__test_8cpp.html#a8fdfd1322fab0692541d04145f1baf4a">TEST_CASE</a> (&quot;setConfig using JSON read with QObject&quot;,&quot;[candevice]&quot;)</td></tr>
@@ -265,14 +266,14 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a23e1f9f6203715d91b4ac20181115186"></a>
+<a class="anchor" id="ab949203d1b70b69dc22c288a7613b07c"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">TEST_CASE </td>
           <td>(</td>
-          <td class="paramtype">&quot;Initialization succedded&quot;&#160;</td>
+          <td class="paramtype">&quot;Initialization succeeded&quot;&#160;</td>
           <td class="paramname">, </td>
         </tr>
         <tr>
@@ -511,7 +512,7 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a2aeafd0037405e8792b52fc1de01ba34"></a>
+<a class="anchor" id="a97254e24c23ba74338081b2cde01c2f5"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -525,7 +526,7 @@ Variables</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">no device&#160;</td>
-          <td class="paramname"><em>availablie</em>, </td>
+          <td class="paramname"><em>available</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -601,7 +602,7 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a7f7b3f0cb40e408a02eaff30d6635a6e"></a>
+<a class="anchor" id="a4ddbaf284ba7a9bf7494f2d923f66c5d"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">

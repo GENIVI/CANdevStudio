@@ -14,7 +14,7 @@ var canrawviewmodel__test_8cpp =
     [ "TEST_CASE", "canrawviewmodel__test_8cpp.html#ae821ce96874df24932804e83c1724d60", null ],
     [ "TEST_CASE", "canrawviewmodel__test_8cpp.html#a7c501a41d66123dd804c79909ce57c9e", null ],
     [ "TEST_CASE", "canrawviewmodel__test_8cpp.html#aa9d3fd4cb5afd26689d0c3af9249bf65", null ],
-    [ "TEST_CASE", "canrawviewmodel__test_8cpp.html#a2d4883ee2d8c545c4bd6a696e4689898", null ],
+    [ "TEST_CASE", "canrawviewmodel__test_8cpp.html#aea5f22873a240d24e4651b3e793e049a", null ],
     [ "TEST_CASE", "canrawviewmodel__test_8cpp.html#a3a9994ef8b53099cb0c877ffe48ba926", null ],
     [ "TEST_CASE", "canrawviewmodel__test_8cpp.html#a07b5640aeaf4a73996f0a4bc95e7dea5", null ],
     [ "TEST_CASE", "canrawviewmodel__test_8cpp.html#a61c9590abf35c252c589be4ee57905da", null ],

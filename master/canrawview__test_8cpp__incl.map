@@ -1,8 +1,8 @@
 <map id="src/components/canrawview/tests/canrawview_test.cpp" name="src/components/canrawview/tests/canrawview_test.cpp">
-<area shape="rect" id="node9" href="$context_8h.html" title="context.h" alt="" coords="675,169,758,196"/>
-<area shape="rect" id="node13" href="$log_8h.html" title="log.h" alt="" coords="1263,95,1317,121"/>
-<area shape="rect" id="node18" href="$canrawview_8h.html" title="canrawview.h" alt="" coords="964,95,1069,121"/>
-<area shape="rect" id="node26" href="$crvsortmodel_8h.html" title="crvsortmodel.h" alt="" coords="1763,95,1881,121"/>
-<area shape="rect" id="node28" href="$crvguiinterface_8h.html" title="gui/crvguiinterface.h" alt="" coords="737,95,888,121"/>
-<area shape="rect" id="node21" href="$componentinterface_8h.html" title="componentinterface.h" alt="" coords="489,169,651,196"/>
+<area shape="rect" id="node10" href="$context_8h.html" title="context.h" alt="" coords="633,169,715,196"/>
+<area shape="rect" id="node14" href="$canrawview_8h.html" title="canrawview.h" alt="" coords="964,95,1069,121"/>
+<area shape="rect" id="node22" href="$crvsortmodel_8h.html" title="crvsortmodel.h" alt="" coords="1741,95,1860,121"/>
+<area shape="rect" id="node24" href="$crvguiinterface_8h.html" title="gui/crvguiinterface.h" alt="" coords="737,95,888,121"/>
+<area shape="rect" id="node25" href="$log_8h.html" title="log.h" alt="" coords="1187,95,1241,121"/>
+<area shape="rect" id="node17" href="$componentinterface_8h.html" title="componentinterface.h" alt="" coords="446,169,609,196"/>
 </map>
