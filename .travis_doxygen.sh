@@ -48,6 +48,8 @@ echo 'Generating Doxygen code documentation...'
 # Redirect both stderr and stdout to the log file AND the console.
 doxygen $DOXYFILE 2>&1
 
+pwd 
+
 ################################################################################
 ##### Upload the documentation to the gh-pages branch of the repository.   #####
 # Only upload if Doxygen successfully created the documentation.
@@ -60,10 +62,14 @@ if [ -d "html" ] && [ -f "html/index.html" ]; then
     # to NO, which it is by default. So creating the file just in case.
     echo "" > html/.nojekyll
 
+    echo 11111111111111111111111
+
     if [ $TRAVIS_PULL_REQUEST == "false" ]; then
+        echo 222222222222222222
         rm -rf repo/$TRAVIS_BRANCH
         mv html repo/$TRAVIS_BRANCH
     else
+        echo 333333333333333333333
         rm -rf repo/PR$TRAVIS_PULL_REQUEST
         mv html repo/PR$TRAVIS_PULL_REQUEST
     fi
