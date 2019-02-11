@@ -1,6 +1,7 @@
 #include "candeviceqt.h"
 #include <catch.hpp>
 #include <QEventLoop>
+#include <QVariant>
 
 TEST_CASE("Invalid parameters init fails", "[candeviceqt]")
 {
@@ -22,6 +23,7 @@ TEST_CASE("Uninitialized device", "[candeviceqt]")
     REQUIRE_THROWS(dev.framesAvailable());
     REQUIRE_THROWS(dev.disconnectDevice());
     REQUIRE_THROWS(dev.clearCallbacks());
+    REQUIRE_THROWS(dev.setConfigurationParameter(0, 0));
 }
 
 TEST_CASE("Correct init parameters", "[candeviceqt]")
@@ -46,6 +48,7 @@ TEST_CASE("Initialized device", "[candeviceqt]")
     REQUIRE_NOTHROW(dev.framesAvailable());
     REQUIRE_NOTHROW(dev.disconnectDevice());
     REQUIRE_NOTHROW(dev.clearCallbacks());
+    REQUIRE_NOTHROW(dev.setConfigurationParameter(0, 0));
 }
 
 TEST_CASE("Thread", "[candeviceqt]")
