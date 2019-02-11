@@ -138,8 +138,8 @@ Inheritance diagram for ComponentInterface:</div>
 Public Types</h2></td></tr>
 <tr class="memitem:a13df045216851d6a58c84457c9b59669"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_component_interface.html#a13df045216851d6a58c84457c9b59669">PropertyEditable</a> = bool</td></tr>
 <tr class="separator:a13df045216851d6a58c84457c9b59669"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abae8e9374776c7527ab23d29c8e320f3"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_component_interface.html#abae8e9374776c7527ab23d29c8e320f3">ComponentProperties</a> = std::map&lt; QString, std::pair&lt; QVariant::Type, <a class="el" href="struct_component_interface.html#a13df045216851d6a58c84457c9b59669">PropertyEditable</a> &gt;&gt;</td></tr>
-<tr class="separator:abae8e9374776c7527ab23d29c8e320f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1e64f93d5dbfe186e89060d2f6c4c4f"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_component_interface.html#ac1e64f93d5dbfe186e89060d2f6c4c4f">ComponentProperties</a> = std::vector&lt; std::tuple&lt; QString, QVariant::Type, <a class="el" href="struct_component_interface.html#a13df045216851d6a58c84457c9b59669">PropertyEditable</a> &gt;&gt;</td></tr>
+<tr class="separator:ac1e64f93d5dbfe186e89060d2f6c4c4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -169,7 +169,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a0ea3f40f79c703dcda11a29bf4d65cfb"><td class="memItemLeft" align="right" valign="top">virtual std::shared_ptr&lt; QObject &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_component_interface.html#a0ea3f40f79c703dcda11a29bf4d65cfb">getQConfig</a> () const =0</td></tr>
 <tr class="memdesc:a0ea3f40f79c703dcda11a29bf4d65cfb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets current component configuation.  <a href="#a0ea3f40f79c703dcda11a29bf4d65cfb">More...</a><br /></td></tr>
 <tr class="separator:a0ea3f40f79c703dcda11a29bf4d65cfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a522477c76981a2921384cd6abb2839b4"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="struct_component_interface.html#abae8e9374776c7527ab23d29c8e320f3">ComponentProperties</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_component_interface.html#a522477c76981a2921384cd6abb2839b4">getSupportedProperties</a> () const =0</td></tr>
+<tr class="memitem:a522477c76981a2921384cd6abb2839b4"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="struct_component_interface.html#ac1e64f93d5dbfe186e89060d2f6c4c4f">ComponentProperties</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_component_interface.html#a522477c76981a2921384cd6abb2839b4">getSupportedProperties</a> () const =0</td></tr>
 <tr class="separator:a522477c76981a2921384cd6abb2839b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a80ad120ef1adf35f3d9e85ebd931d3dd"><td class="memItemLeft" align="right" valign="top">virtual QWidget *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_component_interface.html#a80ad120ef1adf35f3d9e85ebd931d3dd">mainWidget</a> ()=0</td></tr>
 <tr class="memdesc:a80ad120ef1adf35f3d9e85ebd931d3dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets components's main widget.  <a href="#a80ad120ef1adf35f3d9e85ebd931d3dd">More...</a><br /></td></tr>
@@ -181,12 +181,12 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Interface to be implemented by every component. </p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
-<a class="anchor" id="abae8e9374776c7527ab23d29c8e320f3"></a>
+<a class="anchor" id="ac1e64f93d5dbfe186e89060d2f6c4c4f"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="struct_component_interface.html#abae8e9374776c7527ab23d29c8e320f3">ComponentInterface::ComponentProperties</a> =  std::map&lt;QString, std::pair&lt;QVariant::Type, <a class="el" href="struct_component_interface.html#a13df045216851d6a58c84457c9b59669">PropertyEditable</a>&gt;&gt;</td>
+          <td class="memname">using <a class="el" href="struct_component_interface.html#ac1e64f93d5dbfe186e89060d2f6c4c4f">ComponentInterface::ComponentProperties</a> =  std::vector&lt;std::tuple&lt;QString, QVariant::Type, <a class="el" href="struct_component_interface.html#a13df045216851d6a58c84457c9b59669">PropertyEditable</a>&gt;&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -321,7 +321,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual <a class="el" href="struct_component_interface.html#abae8e9374776c7527ab23d29c8e320f3">ComponentProperties</a> ComponentInterface::getSupportedProperties </td>
+          <td class="memname">virtual <a class="el" href="struct_component_interface.html#ac1e64f93d5dbfe186e89060d2f6c4c4f">ComponentProperties</a> ComponentInterface::getSupportedProperties </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>

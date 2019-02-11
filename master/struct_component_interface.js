@@ -1,6 +1,6 @@
 var struct_component_interface =
 [
-    [ "ComponentProperties", "struct_component_interface.html#abae8e9374776c7527ab23d29c8e320f3", null ],
+    [ "ComponentProperties", "struct_component_interface.html#ac1e64f93d5dbfe186e89060d2f6c4c4f", null ],
     [ "PropertyEditable", "struct_component_interface.html#a13df045216851d6a58c84457c9b59669", null ],
     [ "~ComponentInterface", "struct_component_interface.html#a3886256e350e41fe89687a5497308333", null ],
     [ "configChanged", "struct_component_interface.html#a454beb59c1467a3eaba31a038c54613a", null ],
