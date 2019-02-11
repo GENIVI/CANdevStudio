@@ -2,10 +2,10 @@
 #define CANRAWLOGGER_P_H
 
 #include "canrawlogger.h"
+#include <QElapsedTimer>
+#include <QFile>
 #include <QtCore/QObject>
 #include <memory>
-#include <QFile>
-#include <QElapsedTimer>
 
 class CanRawLogger;
 
@@ -35,10 +35,12 @@ private:
     CanRawLogger* q_ptr;
     const QString _nameProperty = "name";
     const QString _dirProperty = "directory";
+    // clang-format off
     ComponentInterface::ComponentProperties _supportedProps = {
-            {_dirProperty,   {QVariant::String, true}},
-            {_nameProperty,   {QVariant::String, true}}
+            std::make_tuple(_nameProperty,  QVariant::String, true),
+            std::make_tuple(_dirProperty,  QVariant::String, true)
     };
+    // clang-format on
 };
 
 #endif // CANRAWLOGGER_P_H

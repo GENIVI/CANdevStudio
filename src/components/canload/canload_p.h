@@ -36,11 +36,13 @@ public:
 
 private:
     CanLoad* q_ptr;
+    // clang-format off
     ComponentInterface::ComponentProperties _supportedProps = {
-            {_bitrateProperty,   {QVariant::String, true}},
-            {_periodProperty,   {QVariant::String, true}},
-            {_nameProperty,   {QVariant::String, true}}
+            std::make_tuple(_nameProperty, QVariant::String, true),
+            std::make_tuple(_bitrateProperty, QVariant::String, true),
+            std::make_tuple(_periodProperty, QVariant::String, true)
     };
+    // clang-format on
 };
 
 #endif // CANLOAD_P_H

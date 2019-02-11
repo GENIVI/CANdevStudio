@@ -71,8 +71,12 @@ TEST_CASE("getSupportedProperties", "[canrawlogger]")
 
     auto props = c.getSupportedProperties();
 
-    CHECK(props.find("name") != props.end());
-    CHECK(props.find("dummy") == props.end());
+    CHECK(std::find(std::begin(props), std::end(props), std::make_tuple("name", QVariant::String, true))
+        != std::end(props));
+    CHECK(std::find(std::begin(props), std::end(props), std::make_tuple("directory", QVariant::String, true))
+        != std::end(props));
+    CHECK(std::find(std::begin(props), std::end(props), std::make_tuple("dummy", QVariant::String, true))
+        == std::end(props));
 }
 
 TEST_CASE("logging - directories", "[canrawlogger]")
@@ -211,7 +215,7 @@ TEST_CASE("logging - send/receive", "[canrawlogger]")
     c.frameReceived(frame);
     c.frameReceived(frame);
     c.frameReceived(frame);
-
+    
     fileList = dir.entryList({ "*" });
     CHECK(fileList.size() == 3);
     msgCnt = loadTraceFile(dirName + "/" + fileList[2]);

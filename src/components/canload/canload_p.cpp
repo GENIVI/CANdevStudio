@@ -22,7 +22,7 @@ CanLoadPrivate::CanLoadPrivate(CanLoad* q, CanLoadCtx&& ctx)
 void CanLoadPrivate::initProps()
 {
     for (const auto& p : _supportedProps) {
-        _props[p.first];
+        _props[std::get<0>(p)];
     }
 
     // Default value
@@ -40,7 +40,7 @@ QJsonObject CanLoadPrivate::getSettings()
     QJsonObject json;
 
     for (const auto& p : _props) {
-        json[p.first] = QJsonValue::fromVariant(p.second);
+        json[std::get<0>(p)] = QJsonValue::fromVariant(p.second);
     }
 
     return json;
@@ -49,8 +49,9 @@ QJsonObject CanLoadPrivate::getSettings()
 void CanLoadPrivate::setSettings(const QJsonObject& json)
 {
     for (const auto& p : _supportedProps) {
-        if (json.contains(p.first))
-            _props[p.first] = json[p.first].toVariant();
+        QString propName = std::get<0>(p);
+        if (json.contains(propName))
+            _props[propName] = json[propName].toVariant();
     }
 
     _bitrate = _props[_bitrateProperty].toInt();

@@ -45,6 +45,10 @@ bool CanDevice::init()
         d->_canDevice.setFramesReceivedCbk(std::bind(&CanDevice::framesReceived, this));
         d->_canDevice.setErrorOccurredCbk(std::bind(&CanDevice::errorOccurred, this, std::placeholders::_1));
 
+        for (auto &item : d->getDevConfig()) {
+            d->_canDevice.setConfigurationParameter(item.first, item.second);
+        }
+
         d->_initialized = true;
     }
 

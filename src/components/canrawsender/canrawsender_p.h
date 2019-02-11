@@ -98,7 +98,7 @@ private:
     {
         for (const auto& p: _supportedProps)
         {
-            _props[p.first];
+            _props[std::get<0>(p)];
         }
     }
 
@@ -126,9 +126,11 @@ private:
 
     const QString _nameProperty = "name";
 
+    // clang-format off
     ComponentInterface::ComponentProperties _supportedProps = {
-            {_nameProperty,   {QVariant::String, true}}
+            std::make_tuple(_nameProperty, QVariant::String, true)
     };
+    // clang-format on
 };
 
 #endif // CANRAWSENDER_P_H

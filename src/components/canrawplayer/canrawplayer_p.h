@@ -44,11 +44,13 @@ private:
     uint32_t _frameNdx;
     uint32_t _ticks;
     QTimer _timer;
+    // clang-format off
     ComponentInterface::ComponentProperties _supportedProps = {
-            {_nameProperty,   {QVariant::String, true}},
-            {_fileProperty,   {QVariant::String, true}},
-            {_tickProperty,   {QVariant::String, true}}
+            std::make_tuple(_nameProperty, QVariant::String, true),
+            std::make_tuple(_fileProperty, QVariant::String, true),
+            std::make_tuple(_tickProperty, QVariant::String, true)
     };
+    // clang-format on
 };
 
 #endif // CANRAWPLAYER_P_H
