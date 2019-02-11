@@ -2,8 +2,8 @@
 
 set -e
 
-# Execute for GENIVI repository only
-if [ "$TRAVIS_OS_NAME" == "linux" -a "$TRAVIS_REPO_SLUG" == "GENIVI/CANdevStudio" ]; then
+# Execute for GENIVI repository only. Exclude PR.
+if [ "$TRAVIS_OS_NAME" == "linux" -a "$TRAVIS_REPO_SLUG" == "GENIVI/CANdevStudio" -a "$TRAVIS_PULL_REQUEST" == "false" ]; then
   cd "$TRAVIS_BUILD_DIR" || exit
   chmod +x .travis_doxygen.sh
   docker run \
