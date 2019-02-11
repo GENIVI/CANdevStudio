@@ -618,20 +618,10 @@ TEST_CASE("Config parameter - multiple keys", "[candevice]")
     testConfig(deviceMock, canDevice,
         "RawKeyFilter=;ErrorFilterKey;    LoopbackKey = true;    ReceiveOwnKey = false ;BitRateKey= "
         "100000;CanFdKey=true;UserKey=1000;");
-    fakeit::Verify(Method(deviceMock, setConfigurationParameter).Using(QCanBusDevice::LoopbackKey, true)
-        + Method(deviceMock, setConfigurationParameter).Using(QCanBusDevice::ReceiveOwnKey, false)
-        + Method(deviceMock, setConfigurationParameter).Using(QCanBusDevice::BitRateKey, 100000)
-        + Method(deviceMock, setConfigurationParameter).Using(QCanBusDevice::CanFdKey, true)
-        + Method(deviceMock, setConfigurationParameter))
-        .Exactly(1);
+    fakeit::Verify(Method(deviceMock, setConfigurationParameter)).Exactly(5);
 
     testConfig(deviceMock, canDevice,
         "RawKeyFilter=;ErrorFilterKey;    LoopbackKey = FALSE;    ReceiveOwnKey = TRue ;BitRateKey= "
         "666;CanFdKey=xxx;UserKey=1000;");
-    fakeit::Verify(Method(deviceMock, setConfigurationParameter).Using(QCanBusDevice::LoopbackKey, false)
-        + Method(deviceMock, setConfigurationParameter).Using(QCanBusDevice::ReceiveOwnKey, true)
-        + Method(deviceMock, setConfigurationParameter).Using(QCanBusDevice::BitRateKey, 666)
-        + Method(deviceMock, setConfigurationParameter).Using(QCanBusDevice::CanFdKey, false)
-        + Method(deviceMock, setConfigurationParameter))
-        .Exactly(1);
+    fakeit::Verify(Method(deviceMock, setConfigurationParameter)).Exactly(5);
 }

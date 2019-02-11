@@ -46,9 +46,9 @@ private:
     QTimer _timer;
     // clang-format off
     ComponentInterface::ComponentProperties _supportedProps = {
-            {_nameProperty, QVariant::String, true},
-            {_fileProperty, QVariant::String, true},
-            {_tickProperty, QVariant::String, true}
+            std::make_tuple(_nameProperty, QVariant::String, true),
+            std::make_tuple(_fileProperty, QVariant::String, true),
+            std::make_tuple(_tickProperty, QVariant::String, true)
     };
     // clang-format on
 };

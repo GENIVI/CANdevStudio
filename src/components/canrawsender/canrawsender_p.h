@@ -128,7 +128,7 @@ private:
 
     // clang-format off
     ComponentInterface::ComponentProperties _supportedProps = {
-            {_nameProperty, QVariant::String, true}
+            std::make_tuple(_nameProperty, QVariant::String, true)
     };
     // clang-format on
 };

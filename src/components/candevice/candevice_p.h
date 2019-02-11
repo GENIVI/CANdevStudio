@@ -75,10 +75,10 @@ public:
 
     // clang-format off
     ComponentInterface::ComponentProperties _supportedProps = {
-            {_nameProperty,  QVariant::String, true},
-            {_backendProperty, QVariant::String, true},
-            {_interfaceProperty, QVariant::String, true},
-            {_configProperty, QVariant::String, true}
+            std::make_tuple(_nameProperty,  QVariant::String, true),
+            std::make_tuple(_backendProperty, QVariant::String, true),
+            std::make_tuple(_interfaceProperty, QVariant::String, true),
+            std::make_tuple(_configProperty, QVariant::String, true)
     };
     // clang-format on
 
