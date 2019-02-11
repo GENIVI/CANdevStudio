@@ -79,7 +79,7 @@ if [ -d "html" ] && [ -f "html/index.html" ]; then
     
     ##### Configure git.
     # Set the push default to simple i.e. push only the current branch.
-    git config --global push.default simple
+    git config push.default simple
     # Pretend to be an user called Travis CI.
         echo 4444444444444444444
     git config user.name "Travis CI"
