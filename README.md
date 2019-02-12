@@ -52,6 +52,7 @@ Current list of devices compatible with SocketCAN (Linux only) can be found [her
 ### Supported operating systems
 * Linux
 * Windows
+* macOS
 
 ## Build instructions
 CANdevStudio project uses Travis CI (Linux) and AppVeyor (Windows) continuous integration tools. You can always check .travis.yml and .appveyor.yml files for building details.
