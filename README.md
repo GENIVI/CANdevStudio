@@ -25,6 +25,8 @@
   * [CAN Hardware](#can-hardware)
     * [Microchip CAN BUS Analyzer](#microchip-can-bus-analyzer)
     * [Lawicel CANUSB](#lawicel-canusb)
+    * [PeakCAN PCAN-USB](#peakcan-pcan-usb)
+    * [PassThruCAN Plugin](#passthrucan-plugin)
   * [CANdevStudio without CAN hardware](#candevstudio-without-can-hardware)
     * [VCAN](#vcan)
     * [Cannelloni](#cannelloni)
@@ -154,6 +156,7 @@ Steps required to use specific CAN hardware or virtual interfaces require some a
 ### CAN Hardware
 The list below shows hardware that has been successfuly used with CANdevStudio.
 #### Microchip CAN BUS Analyzer
+* Tested on Linux
 * Requires socketcan [driver](https://github.com/rkollataj/mcba_usb).
 * Officially supported in Linux Kernel v4.12+
 Configuration:
@@ -172,6 +175,7 @@ Configuration:
 CanDevice backend: socketcan
 
 #### Lawicel CANUSB
+* Tested on Linux
 * Based on FTDI Serial driver
 * Requires slcand to "convert" serial device to SocketCAN.
 * Officially supported in Linux Kernel v2.6.38
@@ -184,6 +188,30 @@ Configuration:
 
 CanDevice backend: socketcan
 
+#### PeakCAN PCAN-USB
+* Tested on Windows
+
+CanDevice settings example:
+```
+backend: peakcan
+interface: usb0
+configuration: BitRateKey = 250000
+```
+#### PassThruCAN Plugin
+* Tested on Windows
+
+CanDevice settings example for PEAK-PCAN:
+```
+backend: passthrucan
+configuration: BitRateKey = 250000
+interface: PCANPT32
+```
+CanDevice settings example for SIE_CANUSB:
+```
+backend: passthrucan
+configuration: BitRateKey = 250000
+interface: CANUSB
+```
 ### CANdevStudio without CAN hardware
 CANdevStudio can be used without actual CAN hardware thanks to Linux's built-in emulation.
 #### VCAN
