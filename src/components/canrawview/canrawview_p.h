@@ -90,7 +90,12 @@ public:
             payHex.insert(ii, ' ');
         }
 
-        QString frameID = QString("0x" + QString::number(frame.frameId(), 16));
+        int idPadding = 3;
+        if (frame.hasExtendedFrameFormat()) {
+            idPadding = 8;
+        }
+
+        QString frameID = QString("0x" + QString::number(frame.frameId(), 16).rightJustified(idPadding, '0'));
         QString time = QString::number((_timer.elapsed() / 1000.0), 'f', 2);
         QString size = QString::number(frame.payload().size());
         QString data = QString::fromUtf8(payHex.data(), payHex.size());
@@ -118,9 +123,16 @@ public:
 
         _tvModel.appendRow(list);
 
+        quint32 fId = frame.frameId();
+        if (frame.hasExtendedFrameFormat()) {
+            // Frame id has 29 bits. Set 31 bit if we are dealing with EFF.
+            // This will separate frames in unique view
+            fId |= 0x80000000;
+        }
+
         if (direction == "RX") {
-            if (_uniqueRxMap.count(frame.frameId())) {
-                auto& row = _uniqueRxMap[frame.frameId()];
+            if (_uniqueRxMap.count(fId)) {
+                auto& row = _uniqueRxMap[fId];
 
                 std::get<0>(row)->setText(QString::number(_rowID));
                 std::get<1>(row)->setText(time);
@@ -137,11 +149,11 @@ public:
                 auto dataEl = new QStandardItem(data);
 
                 _tvModelUnique.appendRow({ rowEl, timeEl, frameEl, dirEl, sizeEl, dataEl });
-                _uniqueRxMap[frame.frameId()] = std::make_tuple(rowEl, timeEl, frameEl, dirEl, sizeEl, dataEl);
+                _uniqueRxMap[fId] = std::make_tuple(rowEl, timeEl, frameEl, dirEl, sizeEl, dataEl);
             }
         } else if (direction == "TX") {
-            if (_uniqueTxMap.count(frame.frameId())) {
-                auto& row = _uniqueTxMap[frame.frameId()];
+            if (_uniqueTxMap.count(fId)) {
+                auto& row = _uniqueTxMap[fId];
 
                 std::get<0>(row)->setText(QString::number(_rowID));
                 std::get<1>(row)->setText(time);
@@ -158,7 +170,7 @@ public:
                 auto dataEl = new QStandardItem(data);
 
                 _tvModelUnique.appendRow({ rowEl, timeEl, frameEl, dirEl, sizeEl, dataEl });
-                _uniqueTxMap[frame.frameId()] = std::make_tuple(rowEl, timeEl, frameEl, dirEl, sizeEl, dataEl);
+                _uniqueTxMap[fId] = std::make_tuple(rowEl, timeEl, frameEl, dirEl, sizeEl, dataEl);
             }
         } else {
             cds_warn("Invalid direction string: {}", direction.toStdString());
