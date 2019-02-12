@@ -19,6 +19,7 @@
   * [Download](#download)
   * [Package naming](#package-naming)
   * [Linux](#linux-1)
+  * [ARCH Linux](#arch-linux)
   * [Windows](#windows-1)
   * [macOS / OS X](#macos--os-x-1)
 * [Quick Start](#quick-start)
@@ -30,8 +31,12 @@
   * [CANdevStudio without CAN hardware](#candevstudio-without-can-hardware)
     * [VCAN](#vcan)
     * [Cannelloni](#cannelloni)
-* [CAN Signals](#can-signals)
-
+* [Help](#help)
+  * [CAN Signals](#can-signals)
+  * [CanDevice configuration](#candevice-configuration)
+  * [CanRawFilter](#canrawfilter)
+  * [Adding new components](#adding-new-components)
+  
 ## Overview
 Most of automotive projects need to have an access to the Controller Area Network (CAN) bus. There are plenty of commercial frameworks that provides CAN stacks and hardware/software tools necessary to develop proper CAN networks. They are very comprehensive and thus expensive. CANdevStudio aims to be cost-effective replacement for CAN simulation software. It can work with variety of CAN hardware interfaces (e.g. Microchip, Vector, PEAK-Systems) or even without it (vcan and [cannelloni](https://github.com/mguentner/cannelloni)) . CANdevStudio enables to simulate CAN signals such as ignition status, doors status or reverse gear by every automotive developer. Thanks to modularity it is easy to implement new, custom features.
 
@@ -78,6 +83,9 @@ rm -rf *
 cmake .. -DCMAKE_PREFIX_PATH=/home/genivi/Qt5.8.0/5.8/gcc_64
 make
 ```
+### ARCH Linux
+Install AUR package: [candevstudio-git](https://aur.archlinux.org/packages/candevstudio-git/)
+
 ### Windows
 #### Visual Studio 2015
 ```
@@ -246,7 +254,67 @@ PC configuration:
    2. interface: 30000,192.168.0.2,20000 (local_port,remote_ip,remote_port)
 4. Start simulation
 
-## CAN Signals
+## Help
+### CAN Signals
 CANdevStudio provides experimental support for CAN Signals (see [signals](https://github.com/GENIVI/CANdevStudio/tree/signals) branch). Currently only [DBC](http://socialledge.com/sjsu/index.php/DBC_Format) format is supported as a description of database, but it shouldn't be hard to add new formats.
 
 The work on moving components from signal to master branch is ongoing.
+### CanDevice configuration
+CanDevice component can be confiugred using "configuration" property:
+* Format - "key1=value1;key2=value2;keyX=valueX"
+* Keys names are case sensitive, values are case insensitive
+* Configuration keys are taken from [ConfigurationKey enum](https://doc.qt.io/qt-5/qcanbusdevice.html#ConfigurationKey-enum). 
+* RawFilterKey and ErrorFilterKey are currently not supported
+* DataBitRateKey is available since Qt 5.9
+* Whitespaces are ignored
+
+E.g.
+```
+BitRateKey=100000;ReceiveOwnKey=false;LoopbackKey=true
+```
+### CanRawFilter
+CanRawFilter component enables to filter (i.e. accept or drop) incoming and outgoing frames:
+* [Qt](https://doc.qt.io/qt-5/qregularexpression.html) regular expressions are used to match filter rules.
+* Rules are matched from top to bottom
+* Default policy is applied to frames unmatched by any filter
+
+Examples:
+* match 0x222 and 0x333 frames only [id field]
+```
+222|333
+```
+* match 0x200 - 0x300 frames only [id field]
+```
+^[23]..$
+```
+* match empty payload (DLC 0) [payload field]
+```
+^$
+```
+* match 2 byte payload (DLC 2) [payload field]
+```
+^.{4}$
+```
+### Adding new components
+1. Configure build to include *templategen* tool
+```
+cd build
+cmake .. -DWITH_TOOLS=ON
+make
+```
+2. Generate component (use -g option if you don't need component to have GUI)
+```
+./tools/templategen/templategen -n MyNewComponent -o ../src/components -g
+```
+3. CMake script automatically detects new components. It has to be invoked manually.
+```
+cmake ..
+```
+4. Build project 
+``` 
+make
+```
+5. Your component is now integrated with CANdevStudio
+6. You may want to modify *src/components/mynewcomponent/mynewcomponentplugin.h* to configure section name, color and spacing
+7. Define component inputs and outputs in *src/components/mynewcomponent/mynewcomponentmodel.cpp*. Look for examples in other components.
+8. Modify automatically generated unit tests *src/components/mynewcomponent/tests*
