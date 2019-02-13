@@ -54,6 +54,7 @@ TEST_CASE("Constructor with correct arguments", "[newlinemanager]")
     Fake(Method(nlmLineEditMock, init));
     Fake(Method(nlmLineEditMock, setPlaceholderText));
     Fake(Method(nlmLineEditMock, setDisabled));
+    Fake(Method(nlmLineEditMock, editingFinishedCbk));
     When(Method(nlmFactoryMock, createLineEdit)).AlwaysDo([&]() { return &nlmLineEditMock.get(); });
 
     Mock<CheckBoxInterface> nlmCheckBoxMock;
@@ -88,6 +89,7 @@ TEST_CASE("Send button clicked - send one frame test", "[newlinemanager]")
 
     Mock<LineEditInterface> nlmLineEditMock;
     Fake(Method(nlmLineEditMock, textChangedCbk));
+    Fake(Method(nlmLineEditMock, editingFinishedCbk));
     Fake(Method(nlmLineEditMock, mainWidget));
     Fake(Method(nlmLineEditMock, init));
     Fake(Method(nlmLineEditMock, setPlaceholderText));
@@ -140,13 +142,14 @@ TEST_CASE("Send button clicked - send several frame test", "[newlinemanager]")
 
     Mock<LineEditInterface> nlmLineEditMock;
     Fake(Method(nlmLineEditMock, textChangedCbk));
+    Fake(Method(nlmLineEditMock, editingFinishedCbk));
     Fake(Method(nlmLineEditMock, mainWidget));
     Fake(Method(nlmLineEditMock, init));
     Fake(Method(nlmLineEditMock, setPlaceholderText));
     Fake(Method(nlmLineEditMock, setDisabled));
     When(Method(nlmLineEditMock, getTextLength)).AlwaysDo([&]() { return 2; });
     // When(Method(nlmLineEditMock, getText)).AlwaysDo([&]() {return "22";});
-    When(Method(nlmLineEditMock, getText)).Return("2", "2", "1");
+    When(Method(nlmLineEditMock, getText)).Return("2", "2", "2", "2");
     When(Method(nlmFactoryMock, createLineEdit)).AlwaysDo([&]() { return &nlmLineEditMock.get(); });
 
     Mock<CheckBoxInterface> nlmCheckBoxMock;
@@ -194,6 +197,7 @@ TEST_CASE("Get columns wigdet test", "[newlinemanager]")
 
     Mock<LineEditInterface> nlmLineEditMock;
     Fake(Method(nlmLineEditMock, textChangedCbk));
+    Fake(Method(nlmLineEditMock, editingFinishedCbk));
     Fake(Method(nlmLineEditMock, init));
     Fake(Method(nlmLineEditMock, setPlaceholderText));
     Fake(Method(nlmLineEditMock, setDisabled));
