@@ -110,8 +110,16 @@ void NewLineManager::SendButtonPressed()
     if (_send->checked()) {
         StopTimer();
     } else {
-        _frame.setFrameId(_id->getText().toUInt(nullptr, 16));
+        quint32 id = _id->getText().toUInt(nullptr, 16);
+
+        _frame.setFrameId(id);
         _frame.setPayload(QByteArray::fromHex(_data->getText().toUtf8()));
+
+        if((id > 0x7ff) || (_id->getText().length() == 8)) {
+            _frame.setExtendedFrameFormat(true);
+        } else {
+            _frame.setExtendedFrameFormat(false);
+        }
 
         if (_simState) {
             emit _canRawSender->sendFrame(_frame);
