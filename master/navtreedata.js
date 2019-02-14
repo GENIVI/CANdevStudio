@@ -43,7 +43,7 @@ var NAVTREEINDEX =
 "class_can_raw_logger_model.html#a48fe9f393e5bb0f94f24019e7495c3ba",
 "class_project_config.html#aa58b2f890829fc2ab177578d5926d4b1",
 "namespacemembers_func.html",
-"struct_line_edit_interface.html#a0ab80a54979d5136225412b80d271630"
+"struct_line_edit_interface.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

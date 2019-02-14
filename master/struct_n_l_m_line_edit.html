@@ -136,6 +136,8 @@ Collaboration diagram for NLMLineEdit:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a4184867968f2a1eab828e36068c1d338"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_n_l_m_line_edit.html#a4184867968f2a1eab828e36068c1d338">NLMLineEdit</a> ()</td></tr>
 <tr class="separator:a4184867968f2a1eab828e36068c1d338"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa798d00290f9b8c75f5304b12437ff4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_n_l_m_line_edit.html#aaa798d00290f9b8c75f5304b12437ff4">editingFinishedCbk</a> (const <a class="el" href="struct_line_edit_interface.html#a442df82a3c962f6d9e8fddeff07dcc95">textChanged_t</a> &amp;cb) override</td></tr>
+<tr class="separator:aaa798d00290f9b8c75f5304b12437ff4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac7ba8843fffb2db11e367269eed33144"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_n_l_m_line_edit.html#ac7ba8843fffb2db11e367269eed33144">textChangedCbk</a> (const <a class="el" href="struct_line_edit_interface.html#a442df82a3c962f6d9e8fddeff07dcc95">textChanged_t</a> &amp;cb) override</td></tr>
 <tr class="separator:ac7ba8843fffb2db11e367269eed33144"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9ddf396d162288fc15eb5994cea91967"><td class="memItemLeft" align="right" valign="top">QWidget *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_n_l_m_line_edit.html#a9ddf396d162288fc15eb5994cea91967">mainWidget</a> () override</td></tr>
@@ -150,8 +152,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a5bad9a3ad2b96c43096b94d4a64a9a76"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a59dfc04909018e71ede202d3cb0e4f9b"><td class="memItemLeft" align="right" valign="top">const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_n_l_m_line_edit.html#a59dfc04909018e71ede202d3cb0e4f9b">getText</a> () override</td></tr>
 <tr class="separator:a59dfc04909018e71ede202d3cb0e4f9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af47a9be0e81384bf7ce48624c3707b70"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_n_l_m_line_edit.html#af47a9be0e81384bf7ce48624c3707b70">setText</a> (QString &amp;text) override</td></tr>
-<tr class="separator:af47a9be0e81384bf7ce48624c3707b70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3176431fb1919bc017b06a4042a56c2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_n_l_m_line_edit.html#ad3176431fb1919bc017b06a4042a56c2">setText</a> (const QString &amp;text) override</td></tr>
+<tr class="separator:ad3176431fb1919bc017b06a4042a56c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_struct_line_edit_interface"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_struct_line_edit_interface')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="struct_line_edit_interface.html">LineEditInterface</a></td></tr>
 <tr class="memitem:a0ab80a54979d5136225412b80d271630 inherit pub_methods_struct_line_edit_interface"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_line_edit_interface.html#a0ab80a54979d5136225412b80d271630">~LineEditInterface</a> ()</td></tr>
 <tr class="separator:a0ab80a54979d5136225412b80d271630 inherit pub_methods_struct_line_edit_interface"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -187,6 +189,32 @@ Additional Inherited Members</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="aaa798d00290f9b8c75f5304b12437ff4"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NLMLineEdit::editingFinishedCbk </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_line_edit_interface.html#a442df82a3c962f6d9e8fddeff07dcc95">textChanged_t</a> &amp;&#160;</td>
+          <td class="paramname"><em>cb</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="struct_line_edit_interface.html#ab66bef650579604e52d6c5f30629a388">LineEditInterface</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a59dfc04909018e71ede202d3cb0e4f9b"></a>
 <div class="memitem">
 <div class="memproto">
@@ -350,7 +378,7 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="af47a9be0e81384bf7ce48624c3707b70"></a>
+<a class="anchor" id="ad3176431fb1919bc017b06a4042a56c2"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -360,7 +388,7 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname">void NLMLineEdit::setText </td>
           <td>(</td>
-          <td class="paramtype">QString &amp;&#160;</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
           <td class="paramname"><em>text</em></td><td>)</td>
           <td></td>
         </tr>
@@ -372,7 +400,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Implements <a class="el" href="struct_line_edit_interface.html#aa04e6d7b9c24b41829ce2ab563160496">LineEditInterface</a>.</p>
+<p>Implements <a class="el" href="struct_line_edit_interface.html#a3b4c5ac40ba2a8c8c9f57287d15a84c6">LineEditInterface</a>.</p>
 
 </div>
 </div>

@@ -1,7 +1,7 @@
 <map id="src/components/canrawview/canrawview_p.h" name="src/components/canrawview/canrawview_p.h">
-<area shape="rect" id="node2" href="$crvsortmodel_8h.html" title="crvsortmodel.h" alt="" coords="234,95,353,121"/>
-<area shape="rect" id="node4" href="$crvgui_8h.html" title="gui/crvgui.h" alt="" coords="706,95,801,121"/>
-<area shape="rect" id="node12" href="$log_8h.html" title="log.h" alt="" coords="372,169,425,196"/>
-<area shape="rect" id="node5" href="$crv__enums_8h.html" title="crv_enums.h" alt="" coords="633,169,737,196"/>
-<area shape="rect" id="node6" href="$crvguiinterface_8h.html" title="crvguiinterface.h" alt="" coords="192,169,320,196"/>
+<area shape="rect" id="node2" href="$crvsortmodel_8h.html" title="crvsortmodel.h" alt="" coords="195,95,314,121"/>
+<area shape="rect" id="node4" href="$crvgui_8h.html" title="gui/crvgui.h" alt="" coords="586,95,681,121"/>
+<area shape="rect" id="node12" href="$log_8h.html" title="log.h" alt="" coords="267,169,320,196"/>
+<area shape="rect" id="node5" href="$crv__enums_8h.html" title="crv_enums.h" alt="" coords="443,169,547,196"/>
+<area shape="rect" id="node6" href="$crvguiinterface_8h.html" title="crvguiinterface.h" alt="" coords="1003,169,1131,196"/>
 </map>

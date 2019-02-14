@@ -7,6 +7,7 @@ var NAVTREEINDEX4 =
 "newlinemanager_8h.html":[2,0,0,1,5,10],
 "newlinemanager_8h_source.html":[2,0,0,1,5,10],
 "newlinemanager__test_8cpp.html":[2,0,0,1,5,1,2],
+"newlinemanager__test_8cpp.html#a2e94975feaa782ba989d19ef602595ca":[2,0,0,1,5,1,2,6],
 "newlinemanager__test_8cpp.html#a5b4eee49902ce451212f11d46feb69b2":[2,0,0,1,5,1,2,2],
 "newlinemanager__test_8cpp.html#a96f6074a6730727b35ff72f5ea79c7e5":[2,0,0,1,5,1,2,4],
 "newlinemanager__test_8cpp.html#aa16217d2a83cb2afa3161e15a45f9374":[2,0,0,1,5,1,2,5],
@@ -248,6 +249,5 @@ var NAVTREEINDEX4 =
 "struct_flow_view_wrapper.html#a34cf7f1df7d68357e8936919ff68c8c3":[1,0,50,0],
 "struct_flow_view_wrapper.html#a7a04e16d482fb9d5bfff87c5e94217ff":[1,0,50,1],
 "struct_flow_view_wrapper.html#a89684432eb08d0e3ee584be45774f725":[1,0,50,2],
-"struct_flow_view_wrapper.html#ac41f3090738944dd6a01674f70950af8":[1,0,50,3],
-"struct_line_edit_interface.html":[1,0,52]
+"struct_flow_view_wrapper.html#ac41f3090738944dd6a01674f70950af8":[1,0,50,3]
 };
