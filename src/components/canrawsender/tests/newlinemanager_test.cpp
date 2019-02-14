@@ -295,7 +295,7 @@ TEST_CASE("EditionFinished", "[newlinemanager]")
     editFinCbk();
     editFinCbk();
 
-    // Fakeit is not able to Verify parameters passed by refernce
+    // Fakeit is not able to Verify parameters passed by reference
     CHECK(validOut.size() == 7);
     CHECK(validOut[0] == "001");
     CHECK(validOut[1] == "012");
