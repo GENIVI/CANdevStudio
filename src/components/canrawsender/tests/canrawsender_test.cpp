@@ -66,6 +66,7 @@ TEST_CASE("Add and remove frame test", "[canrawsender]")
     Fake(Method(nlmLineEditMock, getTextLength));
     Fake(Method(nlmLineEditMock, getText));
     Fake(Method(nlmLineEditMock, setText));
+    Fake(Method(nlmLineEditMock, editingFinishedCbk));
     When(Method(nlmFactoryMock, createLineEdit)).AlwaysDo([&]() { return &nlmLineEditMock.get(); });
 
     Fake(Method(nlmCheckBoxMock, toggledCbk));
@@ -164,6 +165,7 @@ public:
         Fake(Method(crsMock, setIndexWidget));
 
         Fake(Method(nlmLineEditMock, textChangedCbk));
+        Fake(Method(nlmLineEditMock, editingFinishedCbk));
         Fake(Method(nlmLineEditMock, init));
         Fake(Method(nlmLineEditMock, setPlaceholderText));
         Fake(Method(nlmLineEditMock, setDisabled));

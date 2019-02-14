@@ -16,10 +16,25 @@ NewLineManager::NewLineManager(CanRawSender* q, bool _simulationState, NLMFactor
     }
     // Id
     _id.reset(mFactory.createLineEdit());
-    QRegExp qRegExp("[1]?[0-9A-Fa-f]{7}");
+    QRegExp qRegExp("[0-9A-Fa-f]{1,8}");
     _vIdHex = new QRegExpValidator(qRegExp, this);
     _id->init("Id in hex", _vIdHex);
     _id->textChangedCbk(std::bind(&NewLineManager::SetSendButtonState, this));
+    _id->editingFinishedCbk([&] {
+        QString text = _id->getText();
+        bool ok;
+        quint32 id = text.toUInt(&ok, 16);
+
+        if (ok && id > 0x1fffffff) {
+            _id->setText("1fffffff");
+        } else {
+            if (text.length() < 3) {
+                _id->setText(text.rightJustified(3, '0'));
+            } else if (text.length() > 3 && text.length() < 8) {
+                _id->setText(text.rightJustified(8, '0'));
+            }
+        }
+    });
 
     // Data
     _data.reset(mFactory.createLineEdit());
@@ -92,16 +107,24 @@ void NewLineManager::SetSendButtonState()
 
 void NewLineManager::SendButtonPressed()
 {
-    if(_send->checked()) {
+    if (_send->checked()) {
         StopTimer();
     } else {
-        _frame.setFrameId(_id->getText().toUInt(nullptr, 16));
+        quint32 id = _id->getText().toUInt(nullptr, 16);
+
+        _frame.setFrameId(id);
         _frame.setPayload(QByteArray::fromHex(_data->getText().toUtf8()));
 
-        if(_simState) {
+        if((id > 0x7ff) || (_id->getText().length() == 8)) {
+            _frame.setExtendedFrameFormat(true);
+        } else {
+            _frame.setExtendedFrameFormat(false);
+        }
+
+        if (_simState) {
             emit _canRawSender->sendFrame(_frame);
 
-            if (_send->checkable()){
+            if (_send->checkable()) {
                 StartTimer();
             }
         }
@@ -141,7 +164,7 @@ void NewLineManager::SetSimulationState(bool state)
     SetSendButtonState();
 
     if (_simState) {
-        if(_send->checked()) {
+        if (_send->checked()) {
             StartTimer();
         }
     } else {
@@ -172,7 +195,7 @@ bool NewLineManager::RestoreLine(QString& id, QString data, QString interval, bo
         _loop->setState(loop);
     }
 
-    if(loop && send) {
+    if (loop && send) {
         _send->setChecked(true);
     }
 

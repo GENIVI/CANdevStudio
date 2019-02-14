@@ -52,7 +52,7 @@ TEST_CASE("Initialize table", "[canrawview]")
     Fake(Method(crvMock, initTableView));
     Fake(Method(crvMock, scrollToBottom));
     When(Method(crvMock, mainWidget)).Return(NULL);
-    When(Method(crvMock, isViewFrozen)).Return(false).Return(true).Return(true);
+    When(Method(crvMock, isViewFrozen)).Return(false).Return(true).Return(true).Return(false).Return(true).Return(true);
     When(Method(crvMock, getSortOrder)).Return(Qt::AscendingOrder);
     When(Method(crvMock, getClickedColumn)).Return("rowID", "time", "id", "dir", "dlc", "data");
     When(Method(crvMock, isColumnHidden)).Return(true, false, false, false, false, false);
@@ -68,6 +68,12 @@ TEST_CASE("Initialize table", "[canrawview]")
     frame.setPayload({ "123" });
 
     REQUIRE_NOTHROW(canRawView.startSimulation());
+
+    REQUIRE_NOTHROW(canRawView.frameReceived(frame));
+    REQUIRE_NOTHROW(canRawView.frameSent(true, frame));
+    REQUIRE_NOTHROW(canRawView.frameSent(false, frame));
+
+    frame.setExtendedFrameFormat(true);
     REQUIRE_NOTHROW(canRawView.frameReceived(frame));
     REQUIRE_NOTHROW(canRawView.frameSent(true, frame));
     REQUIRE_NOTHROW(canRawView.frameSent(false, frame));

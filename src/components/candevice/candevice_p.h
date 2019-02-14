@@ -48,6 +48,11 @@ public:
         QString c = _props.at(_configProperty).toString().simplified().replace(" ", "");
         std::vector<devConfigPair> ret;
 
+        if (c.length() == 0) {
+            // Skip parsing for empty parameter
+            return {};
+        }
+
         auto&& propList = c.split(";");
 
         for (auto& item : propList) {

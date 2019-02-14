@@ -12,9 +12,14 @@ struct NLMLineEdit : public LineEditInterface {
         qLineEdit->setProperty("type", "nlmItem");
     }
 
+    void editingFinishedCbk(const textChanged_t& cb) override
+    {
+        QObject::connect(qLineEdit, &QLineEdit::editingFinished, cb);
+    }
+
     void textChangedCbk(const textChanged_t& cb) override
     {
-        QObject::connect(qLineEdit, &QLineEdit::textChanged, cb);
+        QObject::connect(qLineEdit, &QLineEdit::textEdited, cb);
     }
 
     QWidget* mainWidget() override
@@ -52,7 +57,7 @@ struct NLMLineEdit : public LineEditInterface {
         return qLineEdit->text();
     }
 
-    void setText(QString& text) override
+    void setText(const QString& text) override
     {
         // Inserts new text and validates the result
         qLineEdit->clear();

@@ -4,10 +4,10 @@
 #include "crv_enums.h"
 #include "crvguiinterface.h"
 #include "ui_canrawview.h"
-#include <QWidget>
-#include <memory>
-#include <log.h>
 #include <QStandardItemModel>
+#include <QWidget>
+#include <log.h>
+#include <memory>
 
 struct CRVGui : public CRVGuiInterface {
 
@@ -55,6 +55,7 @@ struct CRVGui : public CRVGuiInterface {
         ui->tv->horizontalHeader()->setSectionsMovable(true);
         ui->tv->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
         ui->tv->setColumnHidden(0, true);
+        ui->tv->setColumnWidth(2, 85);
     }
 
     virtual bool isViewFrozen() override

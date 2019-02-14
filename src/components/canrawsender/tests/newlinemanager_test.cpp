@@ -54,6 +54,7 @@ TEST_CASE("Constructor with correct arguments", "[newlinemanager]")
     Fake(Method(nlmLineEditMock, init));
     Fake(Method(nlmLineEditMock, setPlaceholderText));
     Fake(Method(nlmLineEditMock, setDisabled));
+    Fake(Method(nlmLineEditMock, editingFinishedCbk));
     When(Method(nlmFactoryMock, createLineEdit)).AlwaysDo([&]() { return &nlmLineEditMock.get(); });
 
     Mock<CheckBoxInterface> nlmCheckBoxMock;
@@ -88,12 +89,12 @@ TEST_CASE("Send button clicked - send one frame test", "[newlinemanager]")
 
     Mock<LineEditInterface> nlmLineEditMock;
     Fake(Method(nlmLineEditMock, textChangedCbk));
+    Fake(Method(nlmLineEditMock, editingFinishedCbk));
     Fake(Method(nlmLineEditMock, mainWidget));
     Fake(Method(nlmLineEditMock, init));
     Fake(Method(nlmLineEditMock, setPlaceholderText));
     Fake(Method(nlmLineEditMock, setDisabled));
-    When(Method(nlmLineEditMock, getTextLength)).AlwaysDo([&]() { return 2; });
-    When(Method(nlmLineEditMock, getText)).AlwaysDo([&]() { return "22"; });
+    When(Method(nlmLineEditMock, getText)).Return("12345678", "12345678", "800", "800", "001", "001", "001");
     When(Method(nlmFactoryMock, createLineEdit)).AlwaysDo([&]() { return &nlmLineEditMock.get(); });
 
     Mock<CheckBoxInterface> nlmCheckBoxMock;
@@ -119,6 +120,8 @@ TEST_CASE("Send button clicked - send one frame test", "[newlinemanager]")
     NewLineManager newLineMgr{ &canRawSender, true, nlmFactoryMock.get() };
     QSignalSpy canRawSenderSpy(&canRawSender, &CanRawSender::sendFrame);
     pressedCbk();
+    pressedCbk();
+    pressedCbk();
     CHECK(canRawSenderSpy.count() > 0);
 }
 
@@ -140,13 +143,14 @@ TEST_CASE("Send button clicked - send several frame test", "[newlinemanager]")
 
     Mock<LineEditInterface> nlmLineEditMock;
     Fake(Method(nlmLineEditMock, textChangedCbk));
+    Fake(Method(nlmLineEditMock, editingFinishedCbk));
     Fake(Method(nlmLineEditMock, mainWidget));
     Fake(Method(nlmLineEditMock, init));
     Fake(Method(nlmLineEditMock, setPlaceholderText));
     Fake(Method(nlmLineEditMock, setDisabled));
     When(Method(nlmLineEditMock, getTextLength)).AlwaysDo([&]() { return 2; });
     // When(Method(nlmLineEditMock, getText)).AlwaysDo([&]() {return "22";});
-    When(Method(nlmLineEditMock, getText)).Return("2", "2", "1");
+    When(Method(nlmLineEditMock, getText)).Return("2", "2", "2", "2");
     When(Method(nlmFactoryMock, createLineEdit)).AlwaysDo([&]() { return &nlmLineEditMock.get(); });
 
     Mock<CheckBoxInterface> nlmCheckBoxMock;
@@ -194,6 +198,7 @@ TEST_CASE("Get columns wigdet test", "[newlinemanager]")
 
     Mock<LineEditInterface> nlmLineEditMock;
     Fake(Method(nlmLineEditMock, textChangedCbk));
+    Fake(Method(nlmLineEditMock, editingFinishedCbk));
     Fake(Method(nlmLineEditMock, init));
     Fake(Method(nlmLineEditMock, setPlaceholderText));
     Fake(Method(nlmLineEditMock, setDisabled));
@@ -221,4 +226,85 @@ TEST_CASE("Get columns wigdet test", "[newlinemanager]")
         CHECK(newLineMgr.GetColsWidget(NewLineManager::ColNameIterator{ ii }) != nullptr);
     }
     CHECK(newLineMgr.GetColsWidget(NewLineManager::ColNameIterator().end()) == nullptr);
+}
+
+TEST_CASE("EditionFinished", "[newlinemanager]")
+{
+    using namespace fakeit;
+    PushButtonInterface::pressed_t pressedCbk;
+    LineEditInterface::textChanged_t editFinCbk;
+    std::vector<QString> validOut;
+
+    Mock<NLMFactoryInterface> nlmFactoryMock;
+
+    Mock<CRSGuiInterface> crsMock;
+    Fake(Method(crsMock, setAddCbk));
+    Fake(Method(crsMock, setRemoveCbk));
+    Fake(Method(crsMock, setDockUndockCbk));
+    Fake(Method(crsMock, mainWidget));
+    Fake(Method(crsMock, initTableView));
+    Fake(Method(crsMock, getSelectedRows));
+    Fake(Method(crsMock, setIndexWidget));
+
+    Mock<LineEditInterface> nlmLineEditMock;
+    Fake(Method(nlmLineEditMock, textChangedCbk));
+    When(Method(nlmLineEditMock, editingFinishedCbk)).Do([&](auto&& fn) { editFinCbk = fn; });
+    Fake(Method(nlmLineEditMock, mainWidget));
+    Fake(Method(nlmLineEditMock, init));
+    Fake(Method(nlmLineEditMock, setPlaceholderText));
+    Fake(Method(nlmLineEditMock, setDisabled));
+    When(Method(nlmLineEditMock, setText)).AlwaysDo([&](QString t) {
+        // Fakeit is not able to verify const refs by Verify function. Collect values to vector
+        validOut.push_back(t);
+    });
+
+    When(Method(nlmLineEditMock, getText))
+        .Return("1", "12", "123", "1234", "12345", "123456", "1234567", "12345678", "123456789", "ffffffff");
+    When(Method(nlmFactoryMock, createLineEdit)).AlwaysDo([&]() { return &nlmLineEditMock.get(); });
+
+    Mock<CheckBoxInterface> nlmCheckBoxMock;
+    Fake(Method(nlmCheckBoxMock, toggledCbk));
+    Fake(Method(nlmCheckBoxMock, mainWidget));
+    When(Method(nlmCheckBoxMock, getState)).Return(false);
+    When(Method(nlmFactoryMock, createCheckBox)).Return(&nlmCheckBoxMock.get());
+
+    Mock<PushButtonInterface> nlmPushButtonMock;
+    Fake(Method(nlmPushButtonMock, init));
+    Fake(Method(nlmPushButtonMock, pressedCbk));
+    Fake(Method(nlmPushButtonMock, mainWidget));
+    Fake(Method(nlmPushButtonMock, setDisabled));
+    Fake(Method(nlmPushButtonMock, isEnabled));
+    Fake(Method(nlmPushButtonMock, setCheckable));
+    Fake(Method(nlmPushButtonMock, checkable));
+    Fake(Method(nlmPushButtonMock, checked));
+    Fake(Method(nlmPushButtonMock, setChecked));
+    When(Method(nlmFactoryMock, createPushButton)).Return(&nlmPushButtonMock.get());
+
+    CanRawSender canRawSender(CanRawSenderCtx(&crsMock.get(), &nlmFactoryMock.get()));
+
+    NewLineManager newLineMgr{ &canRawSender, true, nlmFactoryMock.get() };
+
+    editFinCbk();
+    editFinCbk();
+    editFinCbk();
+    editFinCbk();
+    editFinCbk();
+    editFinCbk();
+    editFinCbk();
+    editFinCbk();
+    editFinCbk();
+    editFinCbk();
+
+    // Fakeit is not able to Verify parameters passed by reference
+    CHECK(validOut.size() == 7);
+    CHECK(validOut[0] == "001");
+    CHECK(validOut[1] == "012");
+    // "123" skipped - do not have to be adjusted
+    CHECK(validOut[2] == "00001234");
+    CHECK(validOut[3] == "00012345");
+    CHECK(validOut[4] == "00123456");
+    CHECK(validOut[5] == "01234567");
+    // "12345678" skipped - do not have to be adjusted
+    // "123456789" Failed to convert (bigger than 32 bits)
+    CHECK(validOut[6] == "1fffffff");
 }
