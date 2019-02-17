@@ -24,7 +24,7 @@ TEST_CASE("Stubbed methods", "[canrawplayer]")
 TEST_CASE("setConfig - qobj", "[canrawplayer]")
 {
     CanRawPlayer c;
-    QObject obj;
+    QWidget obj;
 
     obj.setProperty("name", "Test Name");
 
@@ -58,7 +58,7 @@ TEST_CASE("getQConfig", "[canrawplayer]")
 TEST_CASE("configChanged", "[canrawplayer]")
 {
     CanRawPlayer c;
-    QObject obj;
+    QWidget obj;
     std::string filename = "wrongFile";
 
     c.configChanged();
@@ -80,13 +80,13 @@ TEST_CASE("getSupportedProperties", "[canrawplayer]")
 
     auto props = c.getSupportedProperties();
 
-    CHECK(std::find(std::begin(props), std::end(props), std::make_tuple("name", QVariant::String, true))
+    CHECK(std::find(std::begin(props), std::end(props), std::make_tuple("name", QVariant::String, true, nullptr))
         != std::end(props));
-    CHECK(std::find(std::begin(props), std::end(props), std::make_tuple("file", QVariant::String, true))
+    CHECK(std::find(std::begin(props), std::end(props), std::make_tuple("file", QVariant::String, true, nullptr))
         != std::end(props));
-    CHECK(std::find(std::begin(props), std::end(props), std::make_tuple("timer tick [ms]", QVariant::String, true))
+    CHECK(std::find(std::begin(props), std::end(props), std::make_tuple("timer tick [ms]", QVariant::String, true, nullptr))
         != std::end(props));
-    CHECK(std::find(std::begin(props), std::end(props), std::make_tuple("dummy", QVariant::String, true))
+    CHECK(std::find(std::begin(props), std::end(props), std::make_tuple("dummy", QVariant::String, true, nullptr))
         == std::end(props));
 }
 
@@ -137,7 +137,7 @@ TEST_CASE("Send test", "[canrawplayer]")
     using namespace std::chrono_literals;
 
     CanRawPlayer c;
-    QObject props;
+    QWidget props;
     QSignalSpy sendSpy(&c, &CanRawPlayer::sendFrame);
     QThread th;
 
@@ -165,7 +165,7 @@ TEST_CASE("Send test 2", "[canrawplayer]")
     using namespace std::chrono_literals;
 
     CanRawPlayer c;
-    QObject props;
+    QWidget props;
     QSignalSpy sendSpy(&c, &CanRawPlayer::sendFrame);
     QThread th;
 

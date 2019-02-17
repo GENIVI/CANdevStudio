@@ -31,7 +31,7 @@ void CanLoad::setConfig(const QJsonObject& json)
     d->setSettings(json);
 }
 
-void CanLoad::setConfig(const QObject& qobject)
+void CanLoad::setConfig(const QWidget& qobject)
 {
     Q_D(CanLoad);
 
@@ -46,7 +46,7 @@ QJsonObject CanLoad::getConfig() const
     return d_ptr->getSettings();
 }
 
-std::shared_ptr<QObject> CanLoad::getQConfig() const
+std::shared_ptr<QWidget> CanLoad::getQConfig() const
 {
     const Q_D(CanLoad);
 

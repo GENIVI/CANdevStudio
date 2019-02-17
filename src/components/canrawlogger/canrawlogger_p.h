@@ -37,8 +37,8 @@ private:
     const QString _dirProperty = "directory";
     // clang-format off
     ComponentInterface::ComponentProperties _supportedProps = {
-            std::make_tuple(_nameProperty,  QVariant::String, true),
-            std::make_tuple(_dirProperty,  QVariant::String, true)
+            std::make_tuple(_nameProperty,  QVariant::String, true, nullptr),
+            std::make_tuple(_dirProperty,  QVariant::String, true, nullptr)
     };
     // clang-format on
 };

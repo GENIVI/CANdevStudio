@@ -52,7 +52,7 @@ std::string genComponentHdr(const std::string& name)
     return fmt::format(R"(#ifndef {nameUpper}_H
 #define {nameUpper}_H
 
-#include <QtCore/QObject>
+#include <QWidget>
 #include <QtCore/QScopedPointer>
 #include <componentinterface.h>
 #include <context.h>
@@ -73,9 +73,9 @@ public:
 
     QWidget* mainWidget() override;
     void setConfig(const QJsonObject& json) override;
-    void setConfig(const QObject& qobject) override;
+    void setConfig(const QWidget& qobject) override;
     QJsonObject getConfig() const override;
-    std::shared_ptr<QObject> getQConfig() const override;
+    std::shared_ptr<QWidget> getQConfig() const override;
     void configChanged() override;
     bool mainWidgetDocked() const override;
     ComponentInterface::ComponentProperties getSupportedProperties() const override;
@@ -132,7 +132,7 @@ void {name}::setConfig(const QJsonObject& json)
     d->setSettings(json);
 }}
 
-void {name}::setConfig(const QObject& qobject)
+void {name}::setConfig(const QWidget& qobject)
 {{
     Q_D({name});
 
@@ -144,7 +144,7 @@ QJsonObject {name}::getConfig() const
     return d_ptr->getSettings();
 }}
 
-std::shared_ptr<QObject> {name}::getQConfig() const
+std::shared_ptr<QWidget> {name}::getQConfig() const
 {{
     const Q_D({name});
 
@@ -191,7 +191,6 @@ std::string genPrivateHdr(const std::string& name)
 #define {nameUpper}_P_H
 
 #include "{nameLower}.h"
-#include <QtCore/QObject>
 #include <memory>
 
 class {name};
@@ -219,7 +218,7 @@ private:
     const QString _nameProperty = "name";
     // clang-format off
     ComponentInterface::ComponentProperties _supportedProps = {{
-            std::make_tuple(_nameProperty, QVariant::String, true)
+            std::make_tuple(_nameProperty, QVariant::String, true, nullptr)
     }};
     // clang-format on
 }};
@@ -246,7 +245,7 @@ std::string genPrivateSrc(const std::string& name)
 void {name}Private::initProps()
 {{
     for (const auto& p: _supportedProps) {{
-        _props[std::get<0>(p)];
+        _props[ComponentInterface::propertyName(p)];
     }}
 }}
 
@@ -260,7 +259,7 @@ QJsonObject {name}Private::getSettings()
     QJsonObject json;
 
     for (const auto& p : _props) {{
-        json[std::get<0>(p)] = QJsonValue::fromVariant(p.second);
+        json[p.first] = QJsonValue::fromVariant(p.second);
     }}
 
     return json;
@@ -269,7 +268,7 @@ QJsonObject {name}Private::getSettings()
 void {name}Private::setSettings(const QJsonObject& json)
 {{
     for (const auto& p : _supportedProps) {{
-        QString propName = std::get<0>(p);
+        const QString& propName = ComponentInterface::propertyName(p);
         if (json.contains(propName))
             _props[propName] = json[propName].toVariant();
     }}
@@ -316,7 +315,7 @@ std::string genGuiComponentHdr(const std::string& name)
     return fmt::format(R"(#ifndef {nameUpper}_H
 #define {nameUpper}_H
 
-#include <QtCore/QObject>
+#include <QWidget>
 #include <QtCore/QScopedPointer>
 #include <componentinterface.h>
 #include <context.h>
@@ -338,9 +337,9 @@ public:
 
     QWidget* mainWidget() override;
     void setConfig(const QJsonObject& json) override;
-    void setConfig(const QObject& qobject) override;
+    void setConfig(const QWidget& qobject) override;
     QJsonObject getConfig() const override;
-    std::shared_ptr<QObject> getQConfig() const override;
+    std::shared_ptr<QWidget> getQConfig() const override;
     void configChanged() override;
     bool mainWidgetDocked() const override;
     ComponentInterface::ComponentProperties getSupportedProperties() const override;
@@ -398,7 +397,7 @@ void {name}::setConfig(const QJsonObject& json)
     d->setSettings(json);
 }}
 
-void {name}::setConfig(const QObject& qobject)
+void {name}::setConfig(const QWidget& qobject)
 {{
     Q_D({name});
 
@@ -410,7 +409,7 @@ QJsonObject {name}::getConfig() const
     return d_ptr->getSettings();
 }}
 
-std::shared_ptr<QObject> {name}::getQConfig() const
+std::shared_ptr<QWidget> {name}::getQConfig() const
 {{
     const Q_D({name});
 
@@ -457,7 +456,6 @@ std::string genGuiPrivateHdr(const std::string& name)
 
 #include "gui/{nameLower}guiimpl.h"
 #include "{nameLower}.h"
-#include <QtCore/QObject>
 #include <memory>
 
 class {name};
@@ -487,7 +485,7 @@ private:
     const QString _nameProperty = "name";
     // clang-format off
     ComponentInterface::ComponentProperties _supportedProps = {{
-            std::make_tuple(_nameProperty, QVariant::String, true)
+            std::make_tuple(_nameProperty, QVariant::String, true, nullptr)
     }};
     // clang-format on
 }};
@@ -516,7 +514,7 @@ void {name}Private::initProps()
 {{
     for (const auto& p: _supportedProps)
     {{
-        _props[std::get<0>(p)];
+        _props[ComponentInterface::propertyName(p)];
     }}
 }}
 
@@ -530,7 +528,7 @@ QJsonObject {name}Private::getSettings()
     QJsonObject json;
 
     for (const auto& p : _props) {{
-        json[std::get<0>(p)] = QJsonValue::fromVariant(p.second);
+        json[p.first] = QJsonValue::fromVariant(p.second);
     }}
 
     return json;
@@ -539,7 +537,7 @@ QJsonObject {name}Private::getSettings()
 void {name}Private::setSettings(const QJsonObject& json)
 {{
     for (const auto& p : _supportedProps) {{
-        QString propName = std::get<0>(p);
+        const QString& propName = ComponentInterface::propertyName(p);
         if (json.contains(propName))
             _props[propName] = json[propName].toVariant();
     }}
@@ -787,7 +785,7 @@ TEST_CASE("Stubbed methods", "[{nameLower}]")
 TEST_CASE("setConfig - qobj", "[{nameLower}]")
 {{
     {name} c;
-    QObject obj;
+    QWidget obj;
 
     obj.setProperty("name", "Test Name");
 
@@ -831,9 +829,9 @@ TEST_CASE("getSupportedProperties", "[{nameLower}]")
 
     auto props = c.getSupportedProperties();
 
-    CHECK(std::find(std::begin(props), std::end(props), std::make_tuple("name", QVariant::String, true))
+    CHECK(std::find(std::begin(props), std::end(props), std::make_tuple("name", QVariant::String, true, nullptr))
         != std::end(props));
-    CHECK(std::find(std::begin(props), std::end(props), std::make_tuple("dummy", QVariant::String, true))
+    CHECK(std::find(std::begin(props), std::end(props), std::make_tuple("dummy", QVariant::String, true, nullptr))
         == std::end(props));
 }}
 

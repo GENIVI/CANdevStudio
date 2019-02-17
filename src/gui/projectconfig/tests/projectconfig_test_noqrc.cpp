@@ -29,7 +29,7 @@ TEST_CASE("PropertyEditorDialog", "[projectconfig]")
 
 TEST_CASE("PropertyEditorDialog no exposed props", "[projectconfig]")
 {
-    QObject obj;
+    QWidget obj;
     PropertyEditorDialog dialog("title", obj);
 
     auto props = dialog.properties();

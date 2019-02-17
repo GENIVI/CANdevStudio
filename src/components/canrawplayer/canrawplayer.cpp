@@ -30,7 +30,7 @@ void CanRawPlayer::setConfig(const QJsonObject& json)
     d->setSettings(json);
 }
 
-void CanRawPlayer::setConfig(const QObject& qobject)
+void CanRawPlayer::setConfig(const QWidget& qobject)
 {
     Q_D(CanRawPlayer);
 
@@ -42,7 +42,7 @@ QJsonObject CanRawPlayer::getConfig() const
     return d_ptr->getSettings();
 }
 
-std::shared_ptr<QObject> CanRawPlayer::getQConfig() const
+std::shared_ptr<QWidget> CanRawPlayer::getQConfig() const
 {
     const Q_D(CanRawPlayer);
 

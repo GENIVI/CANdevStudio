@@ -22,7 +22,7 @@ CanRawPlayerPrivate::CanRawPlayerPrivate(CanRawPlayer* q, CanRawPlayerCtx&& ctx)
 void CanRawPlayerPrivate::initProps()
 {
     for (const auto& p : _supportedProps) {
-        _props[std::get<0>(p)];
+        _props[ComponentInterface::propertyName(p)];
     }
     
     _props[_tickProperty] = _tick;
@@ -38,7 +38,7 @@ QJsonObject CanRawPlayerPrivate::getSettings()
     QJsonObject json;
 
     for (const auto& p : _props) {
-        json[std::get<0>(p)] = QJsonValue::fromVariant(p.second);
+        json[p.first] = QJsonValue::fromVariant(p.second);
     }
 
     return json;
@@ -47,7 +47,7 @@ QJsonObject CanRawPlayerPrivate::getSettings()
 void CanRawPlayerPrivate::setSettings(const QJsonObject& json)
 {
     for (const auto& p : _supportedProps) {
-        QString propName = std::get<0>(p);
+        QString propName = ComponentInterface::propertyName(p);
         if (json.contains(propName))
             _props[propName] = json[propName].toVariant();
     }

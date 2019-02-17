@@ -2,7 +2,7 @@
 #include "ui_propertyeditordialog.h"
 #include <log.h>
 
-PropertyEditorDialog::PropertyEditorDialog(const QString& title, const QObject& propertySource, QWidget* parent)
+PropertyEditorDialog::PropertyEditorDialog(const QString& title, const QWidget& propertySource, QWidget* parent)
     : QDialog(parent)
     , _ui(std::make_unique<Ui::PropertyEditorDialog>())
 {
@@ -20,9 +20,9 @@ PropertyEditorDialog::PropertyEditorDialog(const QString& title, const QObject& 
 
 PropertyEditorDialog::~PropertyEditorDialog() {}
 
-std::shared_ptr<QObject> PropertyEditorDialog::properties()
+std::shared_ptr<QWidget> PropertyEditorDialog::properties()
 {
-    std::shared_ptr<QObject> ret = std::make_shared<QObject>();
+    std::shared_ptr<QWidget> ret = std::make_shared<QWidget>();
 
     for (int i = 0; i < _model.rowCount(); ++i) {
         auto&& propName = _model.item(i, 0)->data(Qt::DisplayRole).toString().toStdString();
@@ -35,7 +35,7 @@ std::shared_ptr<QObject> PropertyEditorDialog::properties()
     return ret;
 }
 
-void PropertyEditorDialog::fillModel(const QObject& propsObj)
+void PropertyEditorDialog::fillModel(const QWidget& propsObj)
 {
     auto prop = propsObj.property("exposedProperties");
 

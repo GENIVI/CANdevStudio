@@ -17,14 +17,14 @@ CanRawSender::~CanRawSender()
 {
 }
 
-void CanRawSender::setConfig(const QObject& qobject)
+void CanRawSender::setConfig(const QWidget& qobject)
 {
     Q_D(CanRawSender);
 
     configHelpers::setQConfig(qobject, getSupportedProperties(), d->_props);
 }
 
-std::shared_ptr<QObject> CanRawSender::getQConfig() const
+std::shared_ptr<QWidget> CanRawSender::getQConfig() const
 {
     const Q_D(CanRawSender);
 

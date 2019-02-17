@@ -25,7 +25,7 @@ TEST_CASE("Stubbed methods", "[canload]")
 TEST_CASE("setConfig - qobj", "[canload]")
 {
     CanLoad c;
-    QObject obj;
+    QWidget obj;
 
     obj.setProperty("name", "Test Name");
     obj.setProperty("period [ms]", "1111");
@@ -54,20 +54,20 @@ TEST_CASE("getSupportedProperties", "[canload]")
 
     auto props = c.getSupportedProperties();
 
-    CHECK(std::find(std::begin(props), std::end(props), std::make_tuple("name", QVariant::String, true))
+    CHECK(std::find(std::begin(props), std::end(props), std::make_tuple("name", QVariant::String, true, nullptr))
         != std::end(props));
-    CHECK(std::find(std::begin(props), std::end(props), std::make_tuple("period [ms]", QVariant::String, true))
+    CHECK(std::find(std::begin(props), std::end(props), std::make_tuple("period [ms]", QVariant::String, true, nullptr))
         != std::end(props));
-    CHECK(std::find(std::begin(props), std::end(props), std::make_tuple("bitrate [bps]", QVariant::String, true))
+    CHECK(std::find(std::begin(props), std::end(props), std::make_tuple("bitrate [bps]", QVariant::String, true, nullptr))
         != std::end(props));
-    CHECK(std::find(std::begin(props), std::end(props), std::make_tuple("dummy", QVariant::String, true))
+    CHECK(std::find(std::begin(props), std::end(props), std::make_tuple("dummy", QVariant::String, true, nullptr))
         == std::end(props));
 }
 
 TEST_CASE("start/stop - correct timings", "[canload]")
 {
     CanLoad c;
-    QObject obj;
+    QWidget obj;
     QSignalSpy spy(&c, &CanLoad::currentLoad);
     QCanBusFrame frame;
     frame.setFrameId(0x11);

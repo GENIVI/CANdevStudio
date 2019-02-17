@@ -27,7 +27,7 @@ TEST_CASE("Stubbed methods", "[canrawlogger]")
 TEST_CASE("setConfig - qobj", "[canrawlogger]")
 {
     CanRawLogger c;
-    QObject obj;
+    QWidget obj;
 
     obj.setProperty("name", "Test Name");
 
@@ -71,18 +71,18 @@ TEST_CASE("getSupportedProperties", "[canrawlogger]")
 
     auto props = c.getSupportedProperties();
 
-    CHECK(std::find(std::begin(props), std::end(props), std::make_tuple("name", QVariant::String, true))
+    CHECK(std::find(std::begin(props), std::end(props), std::make_tuple("name", QVariant::String, true, nullptr))
         != std::end(props));
-    CHECK(std::find(std::begin(props), std::end(props), std::make_tuple("directory", QVariant::String, true))
+    CHECK(std::find(std::begin(props), std::end(props), std::make_tuple("directory", QVariant::String, true, nullptr))
         != std::end(props));
-    CHECK(std::find(std::begin(props), std::end(props), std::make_tuple("dummy", QVariant::String, true))
+    CHECK(std::find(std::begin(props), std::end(props), std::make_tuple("dummy", QVariant::String, true, nullptr))
         == std::end(props));
 }
 
 TEST_CASE("logging - directories", "[canrawlogger]")
 {
     CanRawLogger c;
-    QObject obj;
+    QWidget obj;
     QString dirName = "dummy";
     QDir dir;
 
@@ -116,7 +116,7 @@ TEST_CASE("logging - directories", "[canrawlogger]")
 TEST_CASE("logging - filenames", "[canrawlogger]")
 {
     CanRawLogger c1, c2, c3;
-    QObject obj;
+    QWidget obj;
     QString dirName = "filename_test";
     QDir dir;
 
@@ -179,7 +179,7 @@ static uint32_t loadTraceFile(const QString& filename)
 TEST_CASE("logging - send/receive", "[canrawlogger]")
 {
     CanRawLogger c;
-    QObject obj;
+    QWidget obj;
     QCanBusFrame frame;
     QString dirName = "filename_test";
     QDir dir;
@@ -225,7 +225,7 @@ TEST_CASE("logging - send/receive", "[canrawlogger]")
 TEST_CASE("logging - send/receive, removed file", "[canrawlogger]")
 {
     CanRawLogger c;
-    QObject obj;
+    QWidget obj;
     QCanBusFrame frame;
     QString dirName = "filename_test";
     QDir dir;
@@ -265,7 +265,7 @@ TEST_CASE("logging - send/receive, removed file", "[canrawlogger]")
 TEST_CASE("logging - send/receive while stopped", "[canrawlogger]")
 {
     CanRawLogger c;
-    QObject obj;
+    QWidget obj;
     QCanBusFrame frame;
     QString dirName = "filename_test";
     QDir dir;

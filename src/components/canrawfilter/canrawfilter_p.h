@@ -39,7 +39,7 @@ private:
     const QString _nameProperty = "name";
     // clang-format off
     ComponentInterface::ComponentProperties _supportedProps = {
-            std::make_tuple(_nameProperty, QVariant::String, true)
+            std::make_tuple(_nameProperty, QVariant::String, true, nullptr)
     };
     // clang-format on
 };

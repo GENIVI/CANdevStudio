@@ -2,7 +2,7 @@
 #define __CANDEVICE_H
 
 #include <QScopedPointer>
-#include <QtCore/QObject>
+#include <QWidget>
 #include <componentinterface.h>
 #include <context.h>
 
@@ -43,7 +43,7 @@ public:
     /**
      *  @see ComponentInterface
      */
-    void setConfig(const QObject& qobject) override;
+    void setConfig(const QWidget& qobject) override;
 
     /**
     *   @see ComponentInterface
@@ -53,7 +53,7 @@ public:
     /**
     *   @see ComponentInterface
     */
-    std::shared_ptr<QObject> getQConfig() const override;
+    std::shared_ptr<QWidget> getQConfig() const override;
 
     /**
     *   @see ComponentInterface

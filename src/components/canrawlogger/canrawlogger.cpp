@@ -30,7 +30,7 @@ void CanRawLogger::setConfig(const QJsonObject& json)
     d->setSettings(json);
 }
 
-void CanRawLogger::setConfig(const QObject& qobject)
+void CanRawLogger::setConfig(const QWidget& qobject)
 {
     Q_D(CanRawLogger);
 
@@ -42,7 +42,7 @@ QJsonObject CanRawLogger::getConfig() const
     return d_ptr->getSettings();
 }
 
-std::shared_ptr<QObject> CanRawLogger::getQConfig() const
+std::shared_ptr<QWidget> CanRawLogger::getQConfig() const
 {
     const Q_D(CanRawLogger);
 

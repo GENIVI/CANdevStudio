@@ -98,7 +98,7 @@ private:
     {
         for (const auto& p: _supportedProps)
         {
-            _props[std::get<0>(p)];
+            _props[ComponentInterface::propertyName(p)];
         }
     }
 
@@ -128,7 +128,7 @@ private:
 
     // clang-format off
     ComponentInterface::ComponentProperties _supportedProps = {
-            std::make_tuple(_nameProperty, QVariant::String, true)
+            std::make_tuple(_nameProperty, QVariant::String, true, nullptr)
     };
     // clang-format on
 };

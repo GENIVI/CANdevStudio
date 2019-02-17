@@ -19,16 +19,16 @@ class PropertyEditorDialog : public QDialog {
     Q_OBJECT
 
 public:
-    PropertyEditorDialog(const QString& title, const QObject& propertySource, QWidget* parent = nullptr);
+    PropertyEditorDialog(const QString& title, const QWidget& propertySource, QWidget* parent = nullptr);
     virtual ~PropertyEditorDialog();
 
-    std::shared_ptr<QObject> properties();
+    std::shared_ptr<QWidget> properties();
 
 private:
     std::unique_ptr<Ui::PropertyEditorDialog> _ui;
     QStandardItemModel _model;
 
-    void fillModel(const QObject& propsObj);
+    void fillModel(const QWidget& propsObj);
 };
 
 #endif /* SRC_GUI_PROPERTYEDITORDIALOG_H_ */

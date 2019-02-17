@@ -35,7 +35,7 @@ public:
     bool restoreConfiguration(const QJsonObject& json)
     {
         for (const auto& p : _supportedProps) {
-            QString propName = std::get<0>(p);
+            QString propName = ComponentInterface::propertyName(p);
             if (json.contains(propName))
                 _props[propName] = json[propName].toVariant();
         }
@@ -80,10 +80,10 @@ public:
 
     // clang-format off
     ComponentInterface::ComponentProperties _supportedProps = {
-            std::make_tuple(_nameProperty,  QVariant::String, true),
-            std::make_tuple(_backendProperty, QVariant::String, true),
-            std::make_tuple(_interfaceProperty, QVariant::String, true),
-            std::make_tuple(_configProperty, QVariant::String, true)
+            std::make_tuple(_nameProperty,  QVariant::String, true, nullptr),
+            std::make_tuple(_backendProperty, QVariant::String, true, nullptr),
+            std::make_tuple(_interfaceProperty, QVariant::String, true, nullptr),
+            std::make_tuple(_configProperty, QVariant::String, true, nullptr)
     };
     // clang-format on
 
@@ -93,7 +93,7 @@ private:
     void initProps()
     {
         for (const auto& p : _supportedProps) {
-            _props[std::get<0>(p)];
+            _props[ComponentInterface::propertyName(p)];
         }
     }
 

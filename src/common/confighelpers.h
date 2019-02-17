@@ -2,7 +2,7 @@
 #define SRC_COMMON_CONFIGHELPERS_H_
 
 #include "componentinterface.h"
-#include <QObject>
+#include <QWidget>
 #include <QVariant>
 
 #include <map>
@@ -11,16 +11,16 @@
 class configHelpers {
 
 public:
-    static std::shared_ptr<QObject> getQConfig(
+    static std::shared_ptr<QWidget> getQConfig(
         const ComponentInterface::ComponentProperties& sp, const std::map<QString, QVariant>& properties)
     {
-        std::shared_ptr<QObject> q = std::make_shared<QObject>();
+        std::shared_ptr<QWidget> q = std::make_shared<QWidget>();
 
         QStringList props;
         for (auto& p : sp) {
-            if (std::get<2>(p)) {
+            if (ComponentInterface::propertyEditability(p)) {
                 // property editable
-                QString propName = std::get<0>(p);
+                const QString& propName = ComponentInterface::propertyName(p);
                 props.push_back(propName);
                 q->setProperty(propName.toStdString().c_str(), properties.at(propName));
             }
@@ -31,13 +31,13 @@ public:
         return q;
     }
 
-    static void setQConfig(const QObject& qobject, const ComponentInterface::ComponentProperties& sp,
+    static void setQConfig(const QWidget& qobject, const ComponentInterface::ComponentProperties& sp,
         std::map<QString, QVariant>& properties)
     {
         for (auto& p : sp) {
-            QString propName = std::get<0>(p);
+            const QString& propName = ComponentInterface::propertyName(p);
             QVariant v = qobject.property(propName.toStdString().c_str());
-            if (v.isValid() && v.type() == std::get<1>(p)) {
+            if (v.isValid() && v.type() == ComponentInterface::propertyType(p)) {
                 properties[propName] = v;
             }
         }

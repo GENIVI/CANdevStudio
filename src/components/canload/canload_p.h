@@ -2,7 +2,7 @@
 #define CANLOAD_P_H
 
 #include "canload.h"
-#include <QtCore/QObject>
+#include <QObject>
 #include <memory>
 #include <QTimer>
 
@@ -38,9 +38,9 @@ private:
     CanLoad* q_ptr;
     // clang-format off
     ComponentInterface::ComponentProperties _supportedProps = {
-            std::make_tuple(_nameProperty, QVariant::String, true),
-            std::make_tuple(_bitrateProperty, QVariant::String, true),
-            std::make_tuple(_periodProperty, QVariant::String, true)
+            std::make_tuple(_nameProperty, QVariant::String, true, nullptr),
+            std::make_tuple(_bitrateProperty, QVariant::String, true, nullptr),
+            std::make_tuple(_periodProperty, QVariant::String, true, nullptr)
     };
     // clang-format on
 };

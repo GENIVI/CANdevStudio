@@ -26,7 +26,7 @@ TEST_CASE("Stubbed methods", "[canrawfilter]")
 TEST_CASE("setConfig - qobj", "[canrawfilter]")
 {
     CanRawFilter c;
-    QObject obj;
+    QWidget obj;
 
     obj.setProperty("name", "Test Name");
 
@@ -104,9 +104,9 @@ TEST_CASE("getSupportedProperties", "[canrawfilter]")
 
     auto props = c.getSupportedProperties();
 
-    CHECK(std::find(std::begin(props), std::end(props), std::make_tuple("name", QVariant::String, true))
+    CHECK(std::find(std::begin(props), std::end(props), std::make_tuple("name", QVariant::String, true, nullptr))
         != std::end(props));
-    CHECK(std::find(std::begin(props), std::end(props), std::make_tuple("dummy", QVariant::String, true))
+    CHECK(std::find(std::begin(props), std::end(props), std::make_tuple("dummy", QVariant::String, true, nullptr))
         == std::end(props));
 }
 
