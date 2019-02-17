@@ -11,11 +11,12 @@ PropertyEditorDialog::PropertyEditorDialog(const QString& title, const QWidget& 
     setWindowFlags(Qt::Dialog | Qt::WindowTitleHint);
     _model.setHorizontalHeaderLabels({ "Property", "Value" });
 
-    fillModel(propertySource);
     _ui->tableView->verticalHeader()->hide();
     _ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
     _ui->tableView->horizontalHeader()->setStretchLastSection(true);
     _ui->tableView->setModel(&_model);
+
+    fillModel(propertySource);
 }
 
 PropertyEditorDialog::~PropertyEditorDialog() {}
@@ -58,6 +59,11 @@ void PropertyEditorDialog::fillModel(const QWidget& propsObj)
             _model.appendRow(list);
 
             cds_debug("Adding '{}' to model", p.toStdString());
+
+            QWidget* w = propsObj.findChild<QWidget*>(p + "Widget");
+            if (w) {
+                _ui->tableView->setIndexWidget(_model.index(_model.rowCount() - 1, 1), w);
+            }
         }
     }
 }

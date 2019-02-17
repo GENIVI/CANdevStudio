@@ -2,8 +2,8 @@
 #define SRC_COMMON_CONFIGHELPERS_H_
 
 #include "componentinterface.h"
-#include <QWidget>
 #include <QVariant>
+#include <QWidget>
 
 #include <map>
 #include <memory>
@@ -23,6 +23,13 @@ public:
                 const QString& propName = ComponentInterface::propertyName(p);
                 props.push_back(propName);
                 q->setProperty(propName.toStdString().c_str(), properties.at(propName));
+
+                auto&& fun = ComponentInterface::propertyEditField(p);
+                if (fun) {
+                    QWidget* w = fun();
+                    w->setParent(q.get());
+                    w->setObjectName(propName + "Widget");
+                }
             }
         }
 
