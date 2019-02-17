@@ -3,8 +3,8 @@
 
 #include "canload.h"
 #include <QObject>
-#include <memory>
 #include <QTimer>
+#include <memory>
 
 class CanLoad;
 
@@ -36,11 +36,15 @@ public:
 
 private:
     CanLoad* q_ptr;
+
+    // workaround for clang 3.5
+    using cf = ComponentInterface::CustomEditFieldCbk;
+
     // clang-format off
     ComponentInterface::ComponentProperties _supportedProps = {
-            std::make_tuple(_nameProperty, QVariant::String, true, nullptr),
-            std::make_tuple(_bitrateProperty, QVariant::String, true, nullptr),
-            std::make_tuple(_periodProperty, QVariant::String, true, nullptr)
+            std::make_tuple(_nameProperty, QVariant::String, true, cf(nullptr)),
+            std::make_tuple(_bitrateProperty, QVariant::String, true, cf(nullptr)),
+            std::make_tuple(_periodProperty, QVariant::String, true, cf(nullptr))
     };
     // clang-format on
 };

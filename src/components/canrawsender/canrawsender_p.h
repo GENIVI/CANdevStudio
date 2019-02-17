@@ -126,9 +126,12 @@ private:
 
     const QString _nameProperty = "name";
 
+    // workaround for clang 3.5
+    using cf = ComponentInterface::CustomEditFieldCbk;
+
     // clang-format off
     ComponentInterface::ComponentProperties _supportedProps = {
-            std::make_tuple(_nameProperty, QVariant::String, true, nullptr)
+            std::make_tuple(_nameProperty, QVariant::String, true, cf(nullptr))
     };
     // clang-format on
 };

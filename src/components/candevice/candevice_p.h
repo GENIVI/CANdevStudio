@@ -78,12 +78,15 @@ public:
     const QString _interfaceProperty = "interface";
     const QString _configProperty = "configuration";
 
+    // workaround for clang 3.5
+    using cf = ComponentInterface::CustomEditFieldCbk;
+
     // clang-format off
     ComponentInterface::ComponentProperties _supportedProps = {
-            std::make_tuple(_nameProperty,  QVariant::String, true, nullptr),
-            std::make_tuple(_backendProperty, QVariant::String, true, nullptr),
-            std::make_tuple(_interfaceProperty, QVariant::String, true, nullptr),
-            std::make_tuple(_configProperty, QVariant::String, true, nullptr)
+            std::make_tuple(_nameProperty,  QVariant::String, true, cf(nullptr)),
+            std::make_tuple(_backendProperty, QVariant::String, true, cf(nullptr)),
+            std::make_tuple(_interfaceProperty, QVariant::String, true, cf(nullptr)),
+            std::make_tuple(_configProperty, QVariant::String, true, cf(nullptr))
     };
     // clang-format on
 
