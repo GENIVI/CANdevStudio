@@ -7,6 +7,7 @@
 
 #include <map>
 #include <memory>
+#include <propertyfields.h>
 
 class configHelpers {
 
@@ -25,11 +26,16 @@ public:
                 q->setProperty(propName.toStdString().c_str(), properties.at(propName));
 
                 auto&& fun = ComponentInterface::propertyEditField(p);
+                QWidget* w;
+
                 if (fun) {
-                    QWidget* w = fun();
-                    w->setParent(q.get());
-                    w->setObjectName(propName + "Widget");
+                    w = fun();
+                } else {
+                    w = new PropertyTextEdit();
                 }
+
+                w->setParent(q.get());
+                w->setObjectName(propName + "Widget");
             }
         }
 

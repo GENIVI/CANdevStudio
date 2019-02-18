@@ -1,5 +1,6 @@
 #include "propertyeditordialog.h"
 #include "ui_propertyeditordialog.h"
+#include <propertyfields.h>
 #include <log.h>
 
 PropertyEditorDialog::PropertyEditorDialog(const QString& title, const QWidget& propertySource, QWidget* parent)
@@ -52,7 +53,7 @@ void PropertyEditorDialog::fillModel(const QWidget& propsObj)
             QList<QStandardItem*> list;
 
             auto propName = new QStandardItem(p);
-            propName->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+            propName->setFlags(Qt::NoItemFlags);
             list.append(propName);
             list.append(new QStandardItem(propsObj.property(p.toStdString().c_str()).toString()));
 
@@ -60,8 +61,11 @@ void PropertyEditorDialog::fillModel(const QWidget& propsObj)
 
             cds_debug("Adding '{}' to model", p.toStdString());
 
-            QWidget* w = propsObj.findChild<QWidget*>(p + "Widget");
+            auto w = propsObj.findChild<QWidget*>(p + "Widget");
+            //auto pi = propsObj.findChild<PropertyFieldInterface*>(p + "Widget");
+            PropertyFieldInterface *pi = dynamic_cast<PropertyFieldInterface*>(w);
             if (w) {
+                pi->setPropText(propsObj.property(p.toStdString().c_str()).toString());
                 _ui->tableView->setIndexWidget(_model.index(_model.rowCount() - 1, 1), w);
             }
         }
