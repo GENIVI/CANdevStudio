@@ -80,7 +80,7 @@ struct ComponentInterface {
         return std::get<2>(p);
     }
 
-    static constexpr const CustomEditFieldCbk& propertyEditField(const ComponentProperty& p)
+    static constexpr const CustomEditFieldCbk& propertyField(const ComponentProperty& p)
     {
         return std::get<3>(p);
     }

@@ -203,6 +203,12 @@ QPushButton:pressed[type="recentProjectName"], QPushButton:pressed[type="recentP
     border: 0px;
 }
 
+QPushButton[type="PropertyFieldPath"] {
+    margin-top: 2px;
+    margin-bottom: 1px;
+    margin-right: 3px;
+}
+
 QLabel[type="aboutLabel"] {
     background: #ffffff;
     color: #282828;

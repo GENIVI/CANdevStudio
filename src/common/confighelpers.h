@@ -25,13 +25,13 @@ public:
                 props.push_back(propName);
                 q->setProperty(propName.toStdString().c_str(), properties.at(propName));
 
-                auto&& fun = ComponentInterface::propertyEditField(p);
+                auto&& fun = ComponentInterface::propertyField(p);
                 QWidget* w;
 
                 if (fun) {
                     w = fun();
                 } else {
-                    w = new PropertyTextEdit();
+                    w = new PropertyFieldPath();
                 }
 
                 w->setParent(q.get());

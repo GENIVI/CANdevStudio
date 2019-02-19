@@ -1,7 +1,7 @@
 #include "propertyeditordialog.h"
 #include "ui_propertyeditordialog.h"
-#include <propertyfields.h>
 #include <log.h>
+#include <propertyfields.h>
 
 PropertyEditorDialog::PropertyEditorDialog(const QString& title, const QWidget& propertySource, QWidget* parent)
     : QDialog(parent)
@@ -28,7 +28,9 @@ std::shared_ptr<QWidget> PropertyEditorDialog::properties()
 
     for (int i = 0; i < _model.rowCount(); ++i) {
         auto&& propName = _model.item(i, 0)->data(Qt::DisplayRole).toString().toStdString();
-        auto&& propVal = _model.item(i, 1)->data(Qt::DisplayRole).toString();
+
+        auto w = static_cast<PropertyField*>(_ui->tableView->indexWidget(_model.index(i, 1)));
+        auto&& propVal = w->propText();
 
         cds_debug("Setting property '{}' = '{}'", propName, propVal.toStdString());
         ret->setProperty(propName.c_str(), propVal);
@@ -61,12 +63,11 @@ void PropertyEditorDialog::fillModel(const QWidget& propsObj)
 
             cds_debug("Adding '{}' to model", p.toStdString());
 
-            auto w = propsObj.findChild<QWidget*>(p + "Widget");
-            //auto pi = propsObj.findChild<PropertyFieldInterface*>(p + "Widget");
-            PropertyFieldInterface *pi = dynamic_cast<PropertyFieldInterface*>(w);
+            auto w = propsObj.findChild<PropertyField*>(p + "Widget");
             if (w) {
-                pi->setPropText(propsObj.property(p.toStdString().c_str()).toString());
-                _ui->tableView->setIndexWidget(_model.index(_model.rowCount() - 1, 1), w);
+                w->setPropText(propsObj.property(p.toStdString().c_str()).toString());
+                auto ndx = _model.index(_model.rowCount() - 1, 1);
+                _ui->tableView->setIndexWidget(ndx, w);
             }
         }
     }
