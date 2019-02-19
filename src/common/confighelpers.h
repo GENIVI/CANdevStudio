@@ -31,7 +31,7 @@ public:
                 if (fun) {
                     w = fun();
                 } else {
-                    w = new PropertyFieldPath();
+                    w = new PropertyFieldText();
                 }
 
                 w->setParent(q.get());

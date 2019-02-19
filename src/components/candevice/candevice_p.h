@@ -89,7 +89,9 @@ public:
     // clang-format off
     ComponentInterface::ComponentProperties _supportedProps = {
             std::make_tuple(_nameProperty,  QVariant::String, true, cf(nullptr)),
+
 #if QT_VERSION >= 0x050900
+
             std::make_tuple(_backendProperty,  QVariant::String, true, cf([this] {
                     auto *p = new PropertyFieldCombo();
                     p->addItems(QCanBus::instance()->plugins());

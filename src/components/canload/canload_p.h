@@ -5,6 +5,7 @@
 #include <QObject>
 #include <QTimer>
 #include <memory>
+#include <propertyfields.h>
 
 class CanLoad;
 
@@ -43,8 +44,8 @@ private:
     // clang-format off
     ComponentInterface::ComponentProperties _supportedProps = {
             std::make_tuple(_nameProperty, QVariant::String, true, cf(nullptr)),
-            std::make_tuple(_bitrateProperty, QVariant::String, true, cf(nullptr)),
-            std::make_tuple(_periodProperty, QVariant::String, true, cf(nullptr))
+            std::make_tuple(_bitrateProperty, QVariant::String, true, cf([] { return new PropertyFieldText(true); } )),
+            std::make_tuple(_periodProperty, QVariant::String, true, cf([] { return new PropertyFieldText(true); } ))
     };
     // clang-format on
 };

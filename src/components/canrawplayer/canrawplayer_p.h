@@ -6,6 +6,7 @@
 #include <QtCore/QTimer>
 #include <memory>
 #include "canrawplayer.h"
+#include <propertyfields.h>
 
 class CanRawPlayer;
 
@@ -51,8 +52,8 @@ private:
     // clang-format off
     ComponentInterface::ComponentProperties _supportedProps = {
             std::make_tuple(_nameProperty, QVariant::String, true, cf(nullptr)),
-            std::make_tuple(_fileProperty, QVariant::String, true, cf(nullptr)),
-            std::make_tuple(_tickProperty, QVariant::String, true, cf(nullptr))
+            std::make_tuple(_fileProperty, QVariant::String, true, cf([] { return new PropertyFieldPath; } )),
+            std::make_tuple(_tickProperty, QVariant::String, true, cf([] { return new PropertyFieldText(true); } ))
     };
     // clang-format on
 };

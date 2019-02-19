@@ -6,6 +6,7 @@
 #include <QFile>
 #include <QtCore/QObject>
 #include <memory>
+#include <propertyfields.h>
 
 class CanRawLogger;
 
@@ -42,7 +43,7 @@ private:
     // clang-format off
     ComponentInterface::ComponentProperties _supportedProps = {
             std::make_tuple(_nameProperty,  QVariant::String, true, cf(nullptr)),
-            std::make_tuple(_dirProperty,  QVariant::String, true, cf(nullptr))
+            std::make_tuple(_dirProperty,  QVariant::String, true, cf([] { return new PropertyFieldPath(true); } ))
     };
     // clang-format on
 };
