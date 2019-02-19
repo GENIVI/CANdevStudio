@@ -1,6 +1,7 @@
 #ifndef __PROPERTYFIELDS_H
 #define __PROPERTYFIELDS_H
 
+#include <QComboBox>
 #include <QFileDialog>
 #include <QHBoxLayout>
 #include <QIntValidator>
@@ -81,4 +82,42 @@ private:
     const bool _folderOnly;
 };
 
+class PropertyFieldCombo : public PropertyField {
+    Q_OBJECT
+
+public:
+    PropertyFieldCombo()
+    {
+        setLayout(new QHBoxLayout);
+        layout()->setContentsMargins(0, 0, 0, 0);
+        _cb = new QComboBox();
+        _cb->setFrame(false);
+        _cb->setEditable(true);
+        layout()->addWidget(_cb);
+        connect(_cb, static_cast<void (QComboBox::*)(const QString&)>(&QComboBox::currentIndexChanged), this,
+            &PropertyFieldCombo::currentTextChanged);
+    }
+
+    void setPropText(const QString& text) override
+    {
+        _cb->setCurrentText(text);
+    }
+
+    QString propText() override
+    {
+        return _cb->currentText();
+    }
+
+    void addItems(const QStringList& list)
+    {
+        _cb->clear();
+        _cb->addItems(list);
+    }
+
+signals:
+    void currentTextChanged(const QString& text);
+
+private:
+    QComboBox* _cb;
+};
 #endif /* !__PROPERTYFIELDS_H */

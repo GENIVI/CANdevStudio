@@ -253,3 +253,21 @@ QCheckBox::indicator:checked:disabled {
     image: url(:/images/files/images/light/CANbus_icon_CheckBoxOn_disabled.svg);
     background-color: #ffffff;
 }
+
+QComboBox::drop-down {
+    background: white;
+}
+
+QComboBox::down-arrow {
+    background: white;
+    width: 18px;
+    height: 18px;
+    image: url(:/images/files/images/light/Angle-down-01.svg);
+    padding-top: 3px;
+    padding-right: 8px;
+}
+
+QComboBox::down-arrow:on {
+    image: url(:/images/files/images/light/Angle-up-01.svg);
+}
+
