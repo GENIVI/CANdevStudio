@@ -71,12 +71,17 @@ TEST_CASE("getSupportedProperties", "[canrawlogger]")
 
     auto props = c.getSupportedProperties();
 
-    CHECK(std::find(std::begin(props), std::end(props), std::make_tuple("name", QVariant::String, true, nullptr))
-        != std::end(props));
-    CHECK(std::find(std::begin(props), std::end(props), std::make_tuple("directory", QVariant::String, true, nullptr))
-        != std::end(props));
-    CHECK(std::find(std::begin(props), std::end(props), std::make_tuple("dummy", QVariant::String, true, nullptr))
-        == std::end(props));
+    REQUIRE(props.size() == 2);
+
+    REQUIRE(ComponentInterface::propertyName(props[0]) == "name");
+    REQUIRE(ComponentInterface::propertyType(props[0]) == QVariant::String);
+    REQUIRE(ComponentInterface::propertyEditability(props[0]) == true);
+    REQUIRE(ComponentInterface::propertyField(props[0]) == nullptr);
+
+    REQUIRE(ComponentInterface::propertyName(props[1]) == "directory");
+    REQUIRE(ComponentInterface::propertyType(props[1]) == QVariant::String);
+    REQUIRE(ComponentInterface::propertyEditability(props[1]) == true);
+    REQUIRE(ComponentInterface::propertyField(props[1]) != nullptr);
 }
 
 TEST_CASE("logging - directories", "[canrawlogger]")
@@ -215,7 +220,7 @@ TEST_CASE("logging - send/receive", "[canrawlogger]")
     c.frameReceived(frame);
     c.frameReceived(frame);
     c.frameReceived(frame);
-    
+
     fileList = dir.entryList({ "*" });
     CHECK(fileList.size() == 3);
     msgCnt = loadTraceFile(dirName + "/" + fileList[2]);
