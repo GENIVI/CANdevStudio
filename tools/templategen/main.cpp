@@ -837,10 +837,12 @@ TEST_CASE("getSupportedProperties", "[{nameLower}]")
 
     auto props = c.getSupportedProperties();
 
-    CHECK(std::find(std::begin(props), std::end(props), std::make_tuple("name", QVariant::String, true, nullptr))
-        != std::end(props));
-    CHECK(std::find(std::begin(props), std::end(props), std::make_tuple("dummy", QVariant::String, true, nullptr))
-        == std::end(props));
+    REQUIRE(props.size() == 1);
+
+    REQUIRE(ComponentInterface::propertyName(props[0]) == "name");
+    REQUIRE(ComponentInterface::propertyType(props[0]) == QVariant::String);
+    REQUIRE(ComponentInterface::propertyEditability(props[0]) == true);
+    REQUIRE(ComponentInterface::propertyField(props[0]) == nullptr);
 }}
 
 int main(int argc, char* argv[])
