@@ -6,6 +6,7 @@ coverage:
         - "src/components/canload/canloadpainter.h"
         - "src/common/guiinterface"
         - "src/common/nodepainter.h"
+        - "src/common/propertyfields.h"
         - "src/gui/main*"
         - "src/gui/subwindow.h"
         - "src/gui/projectconfig/flowviewwrapper.h"
