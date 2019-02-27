@@ -1,0 +1,20 @@
+<map id="src/components/canrawsender/canrawsender.cpp" name="src/components/canrawsender/canrawsender.cpp">
+<area shape="rect" id="node2" href="$canrawsender_8h.html" title="canrawsender.h" alt="" coords="1889,169,2011,196"/>
+<area shape="rect" id="node13" href="$canrawsender__p_8h.html" title="canrawsender_p.h" alt="" coords="1426,95,1565,121"/>
+<area shape="rect" id="node44" href="$confighelpers_8h.html" title="confighelpers.h" alt="" coords="2267,169,2385,196"/>
+<area shape="rect" id="node5" href="$componentinterface_8h.html" title="componentinterface.h" alt="" coords="2245,244,2407,271"/>
+<area shape="rect" id="node11" href="$context_8h.html" title="context.h" alt="" coords="1789,244,1871,271"/>
+<area shape="rect" id="node14" href="$crsgui_8h.html" title="gui/crsgui.h" alt="" coords="1448,169,1543,196"/>
+<area shape="rect" id="node18" href="$newlinemanager_8h.html" title="newlinemanager.h" alt="" coords="877,169,1015,196"/>
+<area shape="rect" id="node26" href="$nlmfactory_8h.html" title="nlmfactory.h" alt="" coords="391,244,491,271"/>
+<area shape="rect" id="node15" href="$crsguiinterface_8h.html" title="crsguiinterface.h" alt="" coords="1637,244,1765,271"/>
+<area shape="rect" id="node19" href="$enumiterator_8h.html" title="enumiterator.h" alt="" coords="627,244,745,271"/>
+<area shape="rect" id="node27" href="$nlmcheckbox_8h.html" title="gui/nlmcheckbox.h" alt="" coords="339,319,481,345"/>
+<area shape="rect" id="node32" href="$nlmlineedit_8h.html" title="gui/nlmlineedit.h" alt="" coords="188,319,315,345"/>
+<area shape="rect" id="node35" href="$nlmpushbutton_8h.html" title="gui/nlmpushbutton.h" alt="" coords="505,319,659,345"/>
+<area shape="rect" id="node38" href="$nlmfactoryinterface_8h.html" title="nlmfactoryinterface.h" alt="" coords="5,319,164,345"/>
+<area shape="rect" id="node31" href="$checkboxinterface_8h.html" title="guiinterface/checkboxinterface.h" alt="" coords="589,393,818,420"/>
+<area shape="rect" id="node33" href="$lineeditinterface_8h.html" title="guiinterface/lineeditinterface.h" alt="" coords="124,393,339,420"/>
+<area shape="rect" id="node37" href="$pushbuttoninterface_8h.html" title="guiinterface/pushbuttoninterface.h" alt="" coords="842,393,1085,420"/>
+<area shape="rect" id="node45" href="$propertyfields_8h.html" title="propertyfields.h" alt="" coords="2464,319,2585,345"/>
+</map>
