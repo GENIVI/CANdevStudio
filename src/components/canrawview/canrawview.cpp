@@ -86,14 +86,14 @@ QJsonObject CanRawView::getConfig() const
     return config;
 }
 
-void CanRawView::setConfig(const QObject& qobject)
+void CanRawView::setConfig(const QWidget& qobject)
 {
     Q_D(CanRawView);
 
     configHelpers::setQConfig(qobject, getSupportedProperties(), d->_props);
 }
 
-std::shared_ptr<QObject> CanRawView::getQConfig() const
+std::shared_ptr<QWidget> CanRawView::getQConfig() const
 {
     const Q_D(CanRawView);
 

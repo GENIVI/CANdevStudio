@@ -25,7 +25,7 @@ TEST_CASE("Stubbed methods", "[canload]")
 TEST_CASE("setConfig - qobj", "[canload]")
 {
     CanLoad c;
-    QObject obj;
+    QWidget obj;
 
     obj.setProperty("name", "Test Name");
     obj.setProperty("period [ms]", "1111");
@@ -54,20 +54,28 @@ TEST_CASE("getSupportedProperties", "[canload]")
 
     auto props = c.getSupportedProperties();
 
-    CHECK(std::find(std::begin(props), std::end(props), std::make_tuple("name", QVariant::String, true))
-        != std::end(props));
-    CHECK(std::find(std::begin(props), std::end(props), std::make_tuple("period [ms]", QVariant::String, true))
-        != std::end(props));
-    CHECK(std::find(std::begin(props), std::end(props), std::make_tuple("bitrate [bps]", QVariant::String, true))
-        != std::end(props));
-    CHECK(std::find(std::begin(props), std::end(props), std::make_tuple("dummy", QVariant::String, true))
-        == std::end(props));
+    REQUIRE(props.size() == 3);
+
+    REQUIRE(ComponentInterface::propertyName(props[0]) == "name");
+    REQUIRE(ComponentInterface::propertyType(props[0]) == QVariant::String);
+    REQUIRE(ComponentInterface::propertyEditability(props[0]) == true);
+    REQUIRE(ComponentInterface::propertyField(props[0]) == nullptr);
+
+    REQUIRE(ComponentInterface::propertyName(props[1]) == "bitrate [bps]");
+    REQUIRE(ComponentInterface::propertyType(props[1]) == QVariant::String);
+    REQUIRE(ComponentInterface::propertyEditability(props[1]) == true);
+    REQUIRE(ComponentInterface::propertyField(props[1]) != nullptr);
+
+    REQUIRE(ComponentInterface::propertyName(props[2]) == "period [ms]");
+    REQUIRE(ComponentInterface::propertyType(props[2]) == QVariant::String);
+    REQUIRE(ComponentInterface::propertyEditability(props[2]) == true);
+    REQUIRE(ComponentInterface::propertyField(props[2]) != nullptr);
 }
 
 TEST_CASE("start/stop - correct timings", "[canload]")
 {
     CanLoad c;
-    QObject obj;
+    QWidget obj;
     QSignalSpy spy(&c, &CanLoad::currentLoad);
     QCanBusFrame frame;
     frame.setFrameId(0x11);

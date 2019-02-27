@@ -335,7 +335,7 @@ TEST_CASE("Misc", "[canrawsender]")
 TEST_CASE("setConfig using QObject", "[canrawsender]")
 {
     CanRawSender crs;
-    QObject config;
+    QWidget config;
 
     config.setProperty("name", "CAN1");
     config.setProperty("fake", "unsupported");

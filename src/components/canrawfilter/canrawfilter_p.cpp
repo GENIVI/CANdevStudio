@@ -35,7 +35,7 @@ CanRawFilterPrivate::CanRawFilterPrivate(CanRawFilter* q, CanRawFilterCtx&& ctx)
 void CanRawFilterPrivate::initProps()
 {
     for (const auto& p : _supportedProps) {
-        _props[std::get<0>(p)];
+        _props[ComponentInterface::propertyName(p)];
     }
 }
 
@@ -110,7 +110,7 @@ CanRawFilterGuiInt::AcceptList_t CanRawFilterPrivate::getAcceptList(const QJsonO
 void CanRawFilterPrivate::setSettings(const QJsonObject& json)
 {
     for (const auto& p : _supportedProps) {
-        QString propName = std::get<0>(p);
+        QString propName = ComponentInterface::propertyName(p);
         if (json.contains(propName))
             _props[propName] = json[propName].toVariant();
     }

@@ -187,6 +187,14 @@ QPushButton:pressed[type="recentProjectName"], QPushButton:pressed[type="recentP
     background: #3a3a3a;
 }
 
+QPushButton[type="PropertyFieldPath"] {
+    background: #1d1d1d;
+    color: #cccccc;
+    margin-top: 2px;
+    margin-bottom: 1px;
+    margin-right: 3px;
+}
+
 QLabel[type="aboutLabel"] {
     background: #3a3a3a;
     color: #ffffff;
@@ -239,3 +247,22 @@ QCheckBox::indicator:checked:disabled {
 QLabel[type="policyLabel"] {
     background: #616161;
 }
+
+
+QComboBox::drop-down {
+    background: #1d1d1d;
+}
+
+QComboBox::down-arrow {
+    background: #1d1d1d;
+    width: 18px;
+    height: 18px;
+    image: url(:/images/files/images/dark/Angle-down-01.svg);
+    padding-top: 3px;
+    padding-right: 8px;
+}
+
+QComboBox::down-arrow:on {
+    image: url(:/images/files/images/dark/Angle-up-01.svg);
+}
+

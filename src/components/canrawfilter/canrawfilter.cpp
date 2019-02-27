@@ -32,7 +32,7 @@ void CanRawFilter::setConfig(const QJsonObject& json)
     d->setSettings(json);
 }
 
-void CanRawFilter::setConfig(const QObject& qobject)
+void CanRawFilter::setConfig(const QWidget& qobject)
 {
     Q_D(CanRawFilter);
 
@@ -44,7 +44,7 @@ QJsonObject CanRawFilter::getConfig() const
     return d_ptr->getSettings();
 }
 
-std::shared_ptr<QObject> CanRawFilter::getQConfig() const
+std::shared_ptr<QWidget> CanRawFilter::getQConfig() const
 {
     const Q_D(CanRawFilter);
 

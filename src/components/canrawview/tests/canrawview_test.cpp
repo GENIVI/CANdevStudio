@@ -111,7 +111,7 @@ TEST_CASE("Sort test", "[canrawview]")
 TEST_CASE("setConfig using QObject", "[canrawview]")
 {
     CanRawView crv;
-    QObject config;
+    QWidget config;
 
     config.setProperty("name", "CAN1");
     config.setProperty("fake", "unsupported");

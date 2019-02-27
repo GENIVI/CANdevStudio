@@ -1,7 +1,7 @@
 #ifndef CANRAWPLAYER_H
 #define CANRAWPLAYER_H
 
-#include <QtCore/QObject>
+#include <QWidget>
 #include <QtCore/QScopedPointer>
 #include <componentinterface.h>
 #include <context.h>
@@ -23,9 +23,9 @@ public:
 
     QWidget* mainWidget() override;
     void setConfig(const QJsonObject& json) override;
-    void setConfig(const QObject& qobject) override;
+    void setConfig(const QWidget& qobject) override;
     QJsonObject getConfig() const override;
-    std::shared_ptr<QObject> getQConfig() const override;
+    std::shared_ptr<QWidget> getQConfig() const override;
     void configChanged() override;
     bool mainWidgetDocked() const override;
     ComponentInterface::ComponentProperties getSupportedProperties() const override;

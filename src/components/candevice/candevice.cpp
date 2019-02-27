@@ -132,14 +132,14 @@ QJsonObject CanDevice::getConfig() const
     return config;
 }
 
-void CanDevice::setConfig(const QObject& qobject)
+void CanDevice::setConfig(const QWidget& qobject)
 {
     Q_D(CanDevice);
 
     configHelpers::setQConfig(qobject, getSupportedProperties(), d->_props);
 }
 
-std::shared_ptr<QObject> CanDevice::getQConfig() const
+std::shared_ptr<QWidget> CanDevice::getQConfig() const
 {
     const Q_D(CanDevice);
 

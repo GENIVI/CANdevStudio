@@ -1,5 +1,6 @@
 #include "candevice.h"
 #define CATCH_CONFIG_RUNNER
+#include <QApplication>
 #include <QSignalSpy>
 #include <QtSerialBus/QCanBusDevice>
 #include <candeviceinterface.h>
@@ -23,7 +24,7 @@ bool isEqual(const QCanBusFrame& f1, const QCanBusFrame& f2)
 
 void setupBackendInterface(CanDevice& canDevice)
 {
-    QObject qo;
+    QWidget qo;
     qo.setProperty("backend", "dummy");
     qo.setProperty("interface", "dummy");
     canDevice.setConfig(qo);
@@ -392,19 +393,7 @@ TEST_CASE("Stubbed methods", "[candevice]")
     CHECK(canDevice.mainWidgetDocked() == true);
 }
 
-int main(int argc, char* argv[])
-{
-    bool haveDebug = std::getenv("CDS_DEBUG") != nullptr;
-    kDefaultLogger = spdlog::stdout_color_mt("cds");
-    if (haveDebug) {
-        kDefaultLogger->set_level(spdlog::level::debug);
-    }
-    cds_debug("Starting unit tests");
-    qRegisterMetaType<QCanBusFrame>(); // required by QSignalSpy
-    return Catch::Session().run(argc, argv);
-}
-
-auto prepareConfigTestMock()
+auto prepareConfigTestMock(std::vector<std::pair<int, QVariant>>& ver)
 {
     using namespace fakeit;
     Mock<CanDeviceInterface> deviceMock;
@@ -417,14 +406,14 @@ auto prepareConfigTestMock()
     When(Method(deviceMock, init)).AlwaysReturn(true);
     // Fake(Method(deviceMock, setConfigurationParameter));
     When(Method(deviceMock, setConfigurationParameter)).AlwaysDo([&](int key, const QVariant& v) {
-        cds_info("A qqq {} : {}", key, v.toString().toStdString());
+        ver.push_back(std::make_pair(key, v));
     });
     return deviceMock;
 }
 
 void testConfig(fakeit::Mock<CanDeviceInterface>& deviceMock, CanDevice& canDevice, const QString& configStr)
 {
-    QObject qo;
+    QWidget qo;
 
     deviceMock.ClearInvocationHistory();
 
@@ -441,19 +430,17 @@ void testConfig(fakeit::Mock<CanDeviceInterface>& deviceMock, CanDevice& canDevi
     fakeit::Verify(Method(mock, setConfigurationParameter)).Exactly(0);
 
 // Use macro so Catch could show exact line of failure
-#define testConfig_Expect1Using(mock, dev, key, val, str)                                                              \
+#define testConfig_Expect1(mock, dev, key, val, str)                                                                   \
     testConfig(mock, dev, str);                                                                                        \
-    fakeit::Verify(Method(mock, setConfigurationParameter).Using(key, val)).Exactly(1);
-
-// Use macro so Catch could show exact line of failure
-#define testConfig_Expect1(mock, dev, str)                                                                             \
-    testConfig(mock, dev, str);                                                                                        \
-    fakeit::Verify(Method(mock, setConfigurationParameter)).Exactly(1);
+    fakeit::Verify(Method(mock, setConfigurationParameter)).Exactly(1);                                                \
+    CHECK(v.back().first == key);                                                                                      \
+    CHECK(v.back().second == val);
 
 TEST_CASE("Config parameter - invalid format and unsupported", "[candevice]")
 {
     using namespace fakeit;
-    auto&& deviceMock = prepareConfigTestMock();
+    std::vector<std::pair<int, QVariant>> v;
+    auto&& deviceMock = prepareConfigTestMock(v);
 
     CanDevice canDevice{ CanDeviceCtx(&deviceMock.get()) };
 
@@ -470,7 +457,8 @@ TEST_CASE("Config parameter - invalid format and unsupported", "[candevice]")
 TEST_CASE("Config parameter - LoopbackKey", "[candevice]")
 {
     using namespace fakeit;
-    auto&& deviceMock = prepareConfigTestMock();
+    std::vector<std::pair<int, QVariant>> v;
+    auto&& deviceMock = prepareConfigTestMock(v);
 
     CanDevice canDevice{ CanDeviceCtx(&deviceMock.get()) };
 
@@ -479,21 +467,22 @@ TEST_CASE("Config parameter - LoopbackKey", "[candevice]")
     testConfig_Expect0(deviceMock, canDevice, "  LoopbackKey  =    ");
 
     const int key = QCanBusDevice::LoopbackKey;
-    testConfig_Expect1Using(deviceMock, canDevice, key, true, "LoopbackKey=True");
-    testConfig_Expect1Using(deviceMock, canDevice, key, true, "LoopbackKey=TRUE;dummy=dummy");
-    testConfig_Expect1Using(deviceMock, canDevice, key, true, "; dummy =    dummy;   LoopbackKey=TRUE;dummy=dummy");
-    testConfig_Expect1Using(deviceMock, canDevice, key, true, "  LoopbackKey =  true; dummy=dummy");
-    testConfig_Expect1Using(deviceMock, canDevice, key, false, "LoopbackKey=False");
-    testConfig_Expect1Using(deviceMock, canDevice, key, false, "LoopbackKey=FALSE;dummy=dummy");
-    testConfig_Expect1Using(deviceMock, canDevice, key, false, "; dummy =    dummy;   LoopbackKey=TRU;dummy=dummy");
-    testConfig_Expect1Using(deviceMock, canDevice, key, false, "  LoopbackKey =  false; dummy=dummy");
-    testConfig_Expect1Using(deviceMock, canDevice, key, false, "LoopbackKey=dummy");
+    testConfig_Expect1(deviceMock, canDevice, key, true, "LoopbackKey=True");
+    testConfig_Expect1(deviceMock, canDevice, key, true, "LoopbackKey=TRUE;dummy=dummy");
+    testConfig_Expect1(deviceMock, canDevice, key, true, "; dummy =    dummy;   LoopbackKey=TRUE;dummy=dummy");
+    testConfig_Expect1(deviceMock, canDevice, key, true, "  LoopbackKey =  true; dummy=dummy");
+    testConfig_Expect1(deviceMock, canDevice, key, false, "LoopbackKey=False");
+    testConfig_Expect1(deviceMock, canDevice, key, false, "LoopbackKey=FALSE;dummy=dummy");
+    testConfig_Expect1(deviceMock, canDevice, key, false, "; dummy =    dummy;   LoopbackKey=TRU;dummy=dummy");
+    testConfig_Expect1(deviceMock, canDevice, key, false, "  LoopbackKey =  false; dummy=dummy");
+    testConfig_Expect1(deviceMock, canDevice, key, false, "LoopbackKey=dummy");
 }
 
 TEST_CASE("Config parameter - ReceiveOwnKey", "[candevice]")
 {
     using namespace fakeit;
-    auto&& deviceMock = prepareConfigTestMock();
+    std::vector<std::pair<int, QVariant>> v;
+    auto&& deviceMock = prepareConfigTestMock(v);
 
     CanDevice canDevice{ CanDeviceCtx(&deviceMock.get()) };
 
@@ -502,21 +491,22 @@ TEST_CASE("Config parameter - ReceiveOwnKey", "[candevice]")
     testConfig_Expect0(deviceMock, canDevice, "  ReceiveOwnKey  =    ");
 
     const int key = QCanBusDevice::ReceiveOwnKey;
-    testConfig_Expect1Using(deviceMock, canDevice, key, true, "ReceiveOwnKey=True");
-    testConfig_Expect1Using(deviceMock, canDevice, key, true, "ReceiveOwnKey=TRUE;dummy=dummy");
-    testConfig_Expect1Using(deviceMock, canDevice, key, true, "; dummy =    dummy;   ReceiveOwnKey=TRUE;dummy=dummy");
-    testConfig_Expect1Using(deviceMock, canDevice, key, true, "  ReceiveOwnKey =  true; dummy=dummy");
-    testConfig_Expect1Using(deviceMock, canDevice, key, false, "ReceiveOwnKey=False");
-    testConfig_Expect1Using(deviceMock, canDevice, key, false, "ReceiveOwnKey=FALSE;dummy=dummy");
-    testConfig_Expect1Using(deviceMock, canDevice, key, false, "; dummy =    dummy;   ReceiveOwnKey=TRU;dummy=dummy");
-    testConfig_Expect1Using(deviceMock, canDevice, key, false, "  ReceiveOwnKey =  false; dummy=dummy");
-    testConfig_Expect1Using(deviceMock, canDevice, key, false, "ReceiveOwnKey=dummy");
+    testConfig_Expect1(deviceMock, canDevice, key, true, "ReceiveOwnKey=True");
+    testConfig_Expect1(deviceMock, canDevice, key, true, "ReceiveOwnKey=TRUE;dummy=dummy");
+    testConfig_Expect1(deviceMock, canDevice, key, true, "; dummy =    dummy;   ReceiveOwnKey=TRUE;dummy=dummy");
+    testConfig_Expect1(deviceMock, canDevice, key, true, "  ReceiveOwnKey =  true; dummy=dummy");
+    testConfig_Expect1(deviceMock, canDevice, key, false, "ReceiveOwnKey=False");
+    testConfig_Expect1(deviceMock, canDevice, key, false, "ReceiveOwnKey=FALSE;dummy=dummy");
+    testConfig_Expect1(deviceMock, canDevice, key, false, "; dummy =    dummy;   ReceiveOwnKey=TRU;dummy=dummy");
+    testConfig_Expect1(deviceMock, canDevice, key, false, "  ReceiveOwnKey =  false; dummy=dummy");
+    testConfig_Expect1(deviceMock, canDevice, key, false, "ReceiveOwnKey=dummy");
 }
 
 TEST_CASE("Config parameter - CanFdKey", "[candevice]")
 {
     using namespace fakeit;
-    auto&& deviceMock = prepareConfigTestMock();
+    std::vector<std::pair<int, QVariant>> v;
+    auto&& deviceMock = prepareConfigTestMock(v);
 
     CanDevice canDevice{ CanDeviceCtx(&deviceMock.get()) };
 
@@ -525,21 +515,22 @@ TEST_CASE("Config parameter - CanFdKey", "[candevice]")
     testConfig_Expect0(deviceMock, canDevice, "  CanFdKey  =    ");
 
     const int key = QCanBusDevice::CanFdKey;
-    testConfig_Expect1Using(deviceMock, canDevice, key, true, "CanFdKey=True");
-    testConfig_Expect1Using(deviceMock, canDevice, key, true, "CanFdKey=TRUE;dummy=dummy");
-    testConfig_Expect1Using(deviceMock, canDevice, key, true, "; dummy =    dummy;   CanFdKey=TRUE;dummy=dummy");
-    testConfig_Expect1Using(deviceMock, canDevice, key, true, "  CanFdKey =  true; dummy=dummy");
-    testConfig_Expect1Using(deviceMock, canDevice, key, false, "CanFdKey=False");
-    testConfig_Expect1Using(deviceMock, canDevice, key, false, "CanFdKey=FALSE;dummy=dummy");
-    testConfig_Expect1Using(deviceMock, canDevice, key, false, "; dummy =    dummy;   CanFdKey=TRU;dummy=dummy");
-    testConfig_Expect1Using(deviceMock, canDevice, key, false, "  CanFdKey =  false; dummy=dummy");
-    testConfig_Expect1Using(deviceMock, canDevice, key, false, "CanFdKey=dummy");
+    testConfig_Expect1(deviceMock, canDevice, key, true, "CanFdKey=True");
+    testConfig_Expect1(deviceMock, canDevice, key, true, "CanFdKey=TRUE;dummy=dummy");
+    testConfig_Expect1(deviceMock, canDevice, key, true, "; dummy =    dummy;   CanFdKey=TRUE;dummy=dummy");
+    testConfig_Expect1(deviceMock, canDevice, key, true, "  CanFdKey =  true; dummy=dummy");
+    testConfig_Expect1(deviceMock, canDevice, key, false, "CanFdKey=False");
+    testConfig_Expect1(deviceMock, canDevice, key, false, "CanFdKey=FALSE;dummy=dummy");
+    testConfig_Expect1(deviceMock, canDevice, key, false, "; dummy =    dummy;   CanFdKey=TRU;dummy=dummy");
+    testConfig_Expect1(deviceMock, canDevice, key, false, "  CanFdKey =  false; dummy=dummy");
+    testConfig_Expect1(deviceMock, canDevice, key, false, "CanFdKey=dummy");
 }
 
 TEST_CASE("Config parameter - BitRateKey", "[candevice]")
 {
     using namespace fakeit;
-    auto&& deviceMock = prepareConfigTestMock();
+    std::vector<std::pair<int, QVariant>> v;
+    auto&& deviceMock = prepareConfigTestMock(v);
 
     CanDevice canDevice{ CanDeviceCtx(&deviceMock.get()) };
 
@@ -550,17 +541,17 @@ TEST_CASE("Config parameter - BitRateKey", "[candevice]")
     testConfig_Expect0(deviceMock, canDevice, "  BitRateKey  =   asdasd ");
 
     const int key = QCanBusDevice::BitRateKey;
-    testConfig_Expect1Using(deviceMock, canDevice, key, 1000000, "BitRateKey=1000000");
-    testConfig_Expect1Using(
-        deviceMock, canDevice, key, 123456789, "; dummy =    dummy;   BitRateKey=123456789;dummy=dummy");
-    testConfig_Expect1Using(deviceMock, canDevice, key, 1, "  BitRateKey =  1; dummy=dummy");
-    testConfig_Expect1Using(deviceMock, canDevice, key, 0, "BitRateKey=0");
+    testConfig_Expect1(deviceMock, canDevice, key, 1000000, "BitRateKey=1000000");
+    testConfig_Expect1(deviceMock, canDevice, key, 123456789, "; dummy =    dummy;   BitRateKey=123456789;dummy=dummy");
+    testConfig_Expect1(deviceMock, canDevice, key, 1, "  BitRateKey =  1; dummy=dummy");
+    testConfig_Expect1(deviceMock, canDevice, key, 0, "BitRateKey=0");
 }
 
 TEST_CASE("Config parameter - UserKey", "[candevice]")
 {
     using namespace fakeit;
-    auto&& deviceMock = prepareConfigTestMock();
+    std::vector<std::pair<int, QVariant>> v;
+    auto&& deviceMock = prepareConfigTestMock(v);
 
     CanDevice canDevice{ CanDeviceCtx(&deviceMock.get()) };
 
@@ -568,22 +559,23 @@ TEST_CASE("Config parameter - UserKey", "[candevice]")
     testConfig_Expect0(deviceMock, canDevice, "UserKey=");
     testConfig_Expect0(deviceMock, canDevice, "  UserKey  =    ");
 
-    // Fakeit has problems with checking parameters of invokation in this particular case.
-    testConfig_Expect1(deviceMock, canDevice, "UserKey=True");
-    testConfig_Expect1(deviceMock, canDevice, "UserKey=TexT;dummy=dummy");
-    testConfig_Expect1(deviceMock, canDevice, "; dummy =    dummy;   UserKey=123456;dummy=dummy");
-    testConfig_Expect1(deviceMock, canDevice, "  UserKey =  -111; dummy=dummy");
-    testConfig_Expect1(deviceMock, canDevice, "UserKey=FALSE;dummy=dummy");
-    testConfig_Expect1(deviceMock, canDevice, "; dummy =    dummy;   UserKey=TRU;dummy=dummy");
-    testConfig_Expect1(deviceMock, canDevice, "  UserKey =  false; dummy=dummy");
-    testConfig_Expect1(deviceMock, canDevice, "UserKey=dummy");
+    const int key = QCanBusDevice::UserKey;
+    testConfig_Expect1(deviceMock, canDevice, key, "True", "UserKey=True");
+    testConfig_Expect1(deviceMock, canDevice, key, "TexT", "UserKey=TexT;dummy=dummy");
+    testConfig_Expect1(deviceMock, canDevice, key, "123456", "; dummy =    dummy;   UserKey=123456;dummy=dummy");
+    testConfig_Expect1(deviceMock, canDevice, key, "-111", "  UserKey =  -111; dummy=dummy");
+    testConfig_Expect1(deviceMock, canDevice, key, "FALSE", "UserKey=FALSE;dummy=dummy");
+    testConfig_Expect1(deviceMock, canDevice, key, "TRU", "; dummy =    dummy;   UserKey=TRU;dummy=dummy");
+    testConfig_Expect1(deviceMock, canDevice, key, "false", "  UserKey =  false; dummy=dummy");
+    testConfig_Expect1(deviceMock, canDevice, key, "dummy", "UserKey=dummy");
 }
 
 #if QT_VERSION >= 0x050900
 TEST_CASE("Config parameter - DataBitRateKey", "[candevice]")
 {
     using namespace fakeit;
-    auto&& deviceMock = prepareConfigTestMock();
+    std::vector<std::pair<int, QVariant>> v;
+    auto&& deviceMock = prepareConfigTestMock(v);
 
     CanDevice canDevice{ CanDeviceCtx(&deviceMock.get()) };
 
@@ -594,18 +586,19 @@ TEST_CASE("Config parameter - DataBitRateKey", "[candevice]")
     testConfig_Expect0(deviceMock, canDevice, "  DataBitRateKey  =   asdasd ");
 
     const int key = QCanBusDevice::DataBitRateKey;
-    testConfig_Expect1Using(deviceMock, canDevice, key, 1000000, "DataBitRateKey=1000000");
-    testConfig_Expect1Using(
+    testConfig_Expect1(deviceMock, canDevice, key, 1000000, "DataBitRateKey=1000000");
+    testConfig_Expect1(
         deviceMock, canDevice, key, 123456789, "; dummy =    dummy;   DataBitRateKey=123456789;dummy=dummy");
-    testConfig_Expect1Using(deviceMock, canDevice, key, 1, "  DataBitRateKey =  1; dummy=dummy");
-    testConfig_Expect1Using(deviceMock, canDevice, key, 0, "DataBitRateKey=0");
+    testConfig_Expect1(deviceMock, canDevice, key, 1, "  DataBitRateKey =  1; dummy=dummy");
+    testConfig_Expect1(deviceMock, canDevice, key, 0, "DataBitRateKey=0");
 }
 #endif
 
 TEST_CASE("Config parameter - multiple keys", "[candevice]")
 {
     using namespace fakeit;
-    auto&& deviceMock = prepareConfigTestMock();
+    std::vector<std::pair<int, QVariant>> v;
+    auto&& deviceMock = prepareConfigTestMock(v);
 
     CanDevice canDevice{ CanDeviceCtx(&deviceMock.get()) };
 
@@ -619,9 +612,42 @@ TEST_CASE("Config parameter - multiple keys", "[candevice]")
         "RawKeyFilter=;ErrorFilterKey;    LoopbackKey = true;    ReceiveOwnKey = false ;BitRateKey= "
         "100000;CanFdKey=true;UserKey=1000;");
     fakeit::Verify(Method(deviceMock, setConfigurationParameter)).Exactly(5);
+    CHECK(v[0].first == QCanBusDevice::LoopbackKey);
+    CHECK(v[0].second == true);
+    CHECK(v[1].first == QCanBusDevice::ReceiveOwnKey);
+    CHECK(v[1].second == false);
+    CHECK(v[2].first == QCanBusDevice::BitRateKey);
+    CHECK(v[2].second == 100000);
+    CHECK(v[3].first == QCanBusDevice::CanFdKey);
+    CHECK(v[3].second == true);
+    CHECK(v[4].first == QCanBusDevice::UserKey);
+    CHECK(v[4].second == "1000");
 
     testConfig(deviceMock, canDevice,
         "RawKeyFilter=;ErrorFilterKey;    LoopbackKey = FALSE;    ReceiveOwnKey = TRue ;BitRateKey= "
         "666;CanFdKey=xxx;UserKey=1000;");
     fakeit::Verify(Method(deviceMock, setConfigurationParameter)).Exactly(5);
+    CHECK(v[5].first == QCanBusDevice::LoopbackKey);
+    CHECK(v[5].second == false);
+    CHECK(v[6].first == QCanBusDevice::ReceiveOwnKey);
+    CHECK(v[6].second == true);
+    CHECK(v[7].first == QCanBusDevice::BitRateKey);
+    CHECK(v[7].second == 666);
+    CHECK(v[8].first == QCanBusDevice::CanFdKey);
+    CHECK(v[8].second == false);
+    CHECK(v[9].first == QCanBusDevice::UserKey);
+    CHECK(v[9].second == "1000");
+}
+
+int main(int argc, char* argv[])
+{
+    bool haveDebug = std::getenv("CDS_DEBUG") != nullptr;
+    kDefaultLogger = spdlog::stdout_color_mt("cds");
+    if (haveDebug) {
+        kDefaultLogger->set_level(spdlog::level::debug);
+    }
+    cds_debug("Starting unit tests");
+    qRegisterMetaType<QCanBusFrame>(); // required by QSignalSpy
+    QApplication a(argc, argv); // QApplication must exist when contructing QWidgets TODO check QTest
+    return Catch::Session().run(argc, argv);
 }

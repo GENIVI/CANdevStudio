@@ -4,13 +4,14 @@
 #include "candevice.h"
 #include "candeviceqt.h"
 #include <QJsonArray>
+#include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonValue>
 #include <QtCore/QVector>
+#include <propertyfields.h>
 
-#include <QJsonDocument>
-
-class CanDevicePrivate {
+class CanDevicePrivate : public QObject {
+    Q_OBJECT
     Q_DECLARE_PUBLIC(CanDevice)
 
 public:
@@ -35,7 +36,7 @@ public:
     bool restoreConfiguration(const QJsonObject& json)
     {
         for (const auto& p : _supportedProps) {
-            QString propName = std::get<0>(p);
+            QString propName = ComponentInterface::propertyName(p);
             if (json.contains(propName))
                 _props[propName] = json[propName].toVariant();
         }
@@ -67,6 +68,10 @@ public:
         return ret;
     }
 
+signals:
+    void backendChanged(const QString& backend);
+
+public:
     CanDeviceCtx _ctx;
     QVector<QCanBusFrame> _sendQueue;
     CanDeviceInterface& _canDevice;
@@ -78,12 +83,54 @@ public:
     const QString _interfaceProperty = "interface";
     const QString _configProperty = "configuration";
 
+    // workaround for clang 3.5
+    using cf = ComponentInterface::CustomEditFieldCbk;
+
     // clang-format off
     ComponentInterface::ComponentProperties _supportedProps = {
-            std::make_tuple(_nameProperty,  QVariant::String, true),
-            std::make_tuple(_backendProperty, QVariant::String, true),
-            std::make_tuple(_interfaceProperty, QVariant::String, true),
-            std::make_tuple(_configProperty, QVariant::String, true)
+            std::make_tuple(_nameProperty,  QVariant::String, true, cf(nullptr)),
+
+#if QT_VERSION >= 0x050900
+
+            std::make_tuple(_backendProperty,  QVariant::String, true, cf([this] {
+                    auto *p = new PropertyFieldCombo();
+                    p->addItems(QCanBus::instance()->plugins());
+                    connect(p, &PropertyFieldCombo::currentTextChanged, this, &CanDevicePrivate::backendChanged);
+
+                    return p;
+                })),
+
+            std::make_tuple(_interfaceProperty, QVariant::String, true, cf([&] {
+                    auto *p = new PropertyFieldCombo();
+
+                    // Connection needs to be destroyed manually. We expect to have only one such conn at a time
+                    disconnect(_prevConn);
+                    _prevConn = connect(this, &CanDevicePrivate::backendChanged, [p](const QString& backend){
+                            QString errorString;
+                            const QList<QCanBusDeviceInfo> devices = QCanBus::instance()->availableDevices(
+                                backend, &errorString);
+
+                            QStringList list;
+                            for(auto&& d : devices) {
+                                list.append(d.name());
+                            }
+
+                            if (errorString.isEmpty()) {
+                                p->addItems(list);
+                            } else {
+                                p->setPropText("");
+                                cds_error("Failed to get interface for '{}' backend", backend.toStdString());
+                                cds_error("{}", errorString.toStdString());
+                            }
+                        });
+
+                    return p;
+                })),
+#else
+            std::make_tuple(_backendProperty, QVariant::String, true, cf(nullptr)),
+            std::make_tuple(_interfaceProperty, QVariant::String, true, cf(nullptr)),
+#endif
+            std::make_tuple(_configProperty, QVariant::String, true, cf(nullptr))
     };
     // clang-format on
 
@@ -93,7 +140,7 @@ private:
     void initProps()
     {
         for (const auto& p : _supportedProps) {
-            _props[std::get<0>(p)];
+            _props[ComponentInterface::propertyName(p)];
         }
     }
 
@@ -153,6 +200,7 @@ private:
     }
 
     CanDevice* q_ptr;
+    QMetaObject::Connection _prevConn;
 };
 
 #endif /* !__CANDEVICE_P_H */
