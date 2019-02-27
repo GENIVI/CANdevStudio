@@ -105,7 +105,7 @@ public:
 
                     // Connection needs to be destroyed manually. We expect to have only one such conn at a time
                     disconnect(_prevConn);
-                    _prevConn = connect(this, &CanDevicePrivate::backendChanged, [this, p](const QString& backend){
+                    _prevConn = connect(this, &CanDevicePrivate::backendChanged, [p](const QString& backend){
                             QString errorString;
                             const QList<QCanBusDeviceInfo> devices = QCanBus::instance()->availableDevices(
                                 backend, &errorString);
