@@ -66,7 +66,7 @@ std::shared_ptr<NodeData> CanDeviceModel::outData(PortIndex)
     bool status = _rxQueue.try_dequeue(ret);
 
     if (!status) {
-        cds_error("No data availalbe on rx queue");
+        cds_error("No data available on rx queue");
         return {};
     }
 
