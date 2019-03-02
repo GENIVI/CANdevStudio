@@ -57,7 +57,7 @@ std::shared_ptr<NodeData> CanRawPlayerModel::outData(PortIndex)
     bool status = _msgQueue.try_dequeue(ret);
 
     if (!status) {
-        cds_error("No data availalbe on rx queue");
+        cds_error("No data available on rx queue");
         return {};
     }
 
