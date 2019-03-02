@@ -62,7 +62,7 @@ std::shared_ptr<NodeData> CanRawFilterModel::outData(PortIndex)
     bool status = _fwdQueue.try_dequeue(ret);
 
     if (!status) {
-        cds_error("No data availalbe on fwd queue");
+        cds_error("No data available on fwd queue");
         return {};
     }
 
