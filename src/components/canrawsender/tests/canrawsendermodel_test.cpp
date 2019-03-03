@@ -68,6 +68,6 @@ int main(int argc, char* argv[])
         kDefaultLogger->set_level(spdlog::level::debug);
     }
     cds_debug("Starting unit tests");
-    QApplication a(argc, argv); // QApplication must exist when contructing QWidgets TODO check QTest
+    QApplication a(argc, argv); // QApplication must exist when constructing QWidgets TODO check QTest
     return Catch::Session().run(argc, argv);
 }
