@@ -223,7 +223,7 @@ void MainWindow::handleDock(QWidget* component)
         && _ui->mdiArea->subWindowList().contains(static_cast<QMdiSubWindow*>(component->parentWidget()))) {
         cds_debug("Undock action");
         auto parent = component->parentWidget();
-        _ui->mdiArea->removeSubWindow(component); // removeSubwWndow only removes widget, not window
+        _ui->mdiArea->removeSubWindow(component); // removeSubWindow only removes widget, not window
 
         component->show();
         parent->close();
@@ -352,7 +352,7 @@ void MainWindow::handleLoadAction()
 
     // TODO nodeeditor is not validating data. Improve schema file (using required fields) to be safe.
     if (!ProjectConfigValidator::validateConfiguration(wholeFile)) {
-        QMessageBox::warning(nullptr, "File corrupted", "Invailid file. Project loading aborted");
+        QMessageBox::warning(nullptr, "File corrupted", "Invalid file. Project loading aborted");
         return;
     }
 
