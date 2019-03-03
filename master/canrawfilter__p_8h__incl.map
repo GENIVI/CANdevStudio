@@ -1,8 +1,8 @@
 <map id="src/components/canrawfilter/canrawfilter_p.h" name="src/components/canrawfilter/canrawfilter_p.h">
-<area shape="rect" id="node2" href="$canrawfilter_8h.html" title="canrawfilter.h" alt="" coords="439,95,545,121"/>
-<area shape="rect" id="node13" href="$canrawfilterguiimpl_8h.html" title="gui/canrawfilterguiimpl.h" alt="" coords="1287,95,1463,121"/>
-<area shape="rect" id="node5" href="$componentinterface_8h.html" title="componentinterface.h" alt="" coords="352,169,515,196"/>
-<area shape="rect" id="node11" href="$context_8h.html" title="context.h" alt="" coords="589,169,672,196"/>
-<area shape="rect" id="node14" href="$canrawfilterguiint_8h.html" title="canrawfilterguiint.h" alt="" coords="1067,169,1210,196"/>
-<area shape="rect" id="node25" href="$log_8h.html" title="log.h" alt="" coords="1235,169,1288,196"/>
+<area shape="rect" id="node2" href="$canrawfilter_8h.html" title="canrawfilter.h" alt="" coords="395,95,501,121"/>
+<area shape="rect" id="node13" href="$canrawfilterguiimpl_8h.html" title="gui/canrawfilterguiimpl.h" alt="" coords="1047,95,1223,121"/>
+<area shape="rect" id="node5" href="$componentinterface_8h.html" title="componentinterface.h" alt="" coords="208,169,371,196"/>
+<area shape="rect" id="node11" href="$context_8h.html" title="context.h" alt="" coords="445,169,528,196"/>
+<area shape="rect" id="node14" href="$canrawfilterguiint_8h.html" title="canrawfilterguiint.h" alt="" coords="702,169,845,196"/>
+<area shape="rect" id="node24" href="$log_8h.html" title="log.h" alt="" coords="1967,169,2020,196"/>
 </map>

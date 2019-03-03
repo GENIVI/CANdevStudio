@@ -1,8 +1,8 @@
 <map id="src/components/canrawplayer/canrawplayermodel.h" name="src/components/canrawplayer/canrawplayermodel.h">
-<area shape="rect" id="node2" href="$canrawplayer_8h.html" title="canrawplayer.h" alt="" coords="507,95,624,121"/>
-<area shape="rect" id="node13" href="$componentmodel_8h.html" title="componentmodel.h" alt="" coords="1057,95,1204,121"/>
-<area shape="rect" id="node23" href="$nodepainter_8h.html" title="nodepainter.h" alt="" coords="1395,95,1506,121"/>
-<area shape="rect" id="node5" href="$componentinterface_8h.html" title="componentinterface.h" alt="" coords="187,169,349,196"/>
-<area shape="rect" id="node11" href="$context_8h.html" title="context.h" alt="" coords="447,169,529,196"/>
-<area shape="rect" id="node16" href="$log_8h.html" title="log.h" alt="" coords="951,169,1004,196"/>
+<area shape="rect" id="node2" href="$canrawplayer_8h.html" title="canrawplayer.h" alt="" coords="257,95,375,121"/>
+<area shape="rect" id="node13" href="$componentmodel_8h.html" title="componentmodel.h" alt="" coords="1017,95,1164,121"/>
+<area shape="rect" id="node24" href="$nodepainter_8h.html" title="nodepainter.h" alt="" coords="1290,95,1401,121"/>
+<area shape="rect" id="node5" href="$componentinterface_8h.html" title="componentinterface.h" alt="" coords="163,169,325,196"/>
+<area shape="rect" id="node11" href="$context_8h.html" title="context.h" alt="" coords="5,169,88,196"/>
+<area shape="rect" id="node17" href="$log_8h.html" title="log.h" alt="" coords="1105,169,1159,196"/>
 </map>

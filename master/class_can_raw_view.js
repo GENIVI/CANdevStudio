@@ -7,13 +7,13 @@ var class_can_raw_view =
     [ "frameReceived", "class_can_raw_view.html#ace7bb231aa483369b389d02b353a8a17", null ],
     [ "frameSent", "class_can_raw_view.html#a81d095b9dfd03fbc2f53ca8c298abf4f", null ],
     [ "getConfig", "class_can_raw_view.html#aff603c7645cc138a8eb690cae7be452d", null ],
-    [ "getQConfig", "class_can_raw_view.html#a36dff81123f872f28eaa39b9f8f0cd73", null ],
+    [ "getQConfig", "class_can_raw_view.html#ae3a3163c8232995c5180224f885ea803", null ],
     [ "getSupportedProperties", "class_can_raw_view.html#aa288f2d6b4f17079aff745e3060d9002", null ],
     [ "mainWidget", "class_can_raw_view.html#a2240af6f7fb33b4c3e9a3e38b7c86968", null ],
     [ "mainWidgetDocked", "class_can_raw_view.html#aecdd9f260504d86551091a5eeb110d2b", null ],
     [ "mainWidgetDockToggled", "class_can_raw_view.html#afa5d8fe52213a5aaa96dd125eda02e26", null ],
     [ "setConfig", "class_can_raw_view.html#a0e1d7de48f97af5b7876985054e70554", null ],
-    [ "setConfig", "class_can_raw_view.html#a8add9c18189d2ae7cf42324055c18e00", null ],
+    [ "setConfig", "class_can_raw_view.html#a88d645c4fb425540b78018865a26fff6", null ],
     [ "startSimulation", "class_can_raw_view.html#a07b2bfca592ad37fcd170343fc904793", null ],
     [ "stopSimulation", "class_can_raw_view.html#a1ea137e8b0b4e6e23a7d84a9c7218ddc", null ]
 ];

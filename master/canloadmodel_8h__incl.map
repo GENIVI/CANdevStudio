@@ -1,9 +1,9 @@
 <map id="src/components/canload/canloadmodel.h" name="src/components/canload/canloadmodel.h">
-<area shape="rect" id="node2" href="$canload_8h.html" title="canload.h" alt="" coords="531,95,615,121"/>
-<area shape="rect" id="node13" href="$canloadpainter_8h.html" title="canloadpainter.h" alt="" coords="1316,95,1444,121"/>
-<area shape="rect" id="node20" href="$componentmodel_8h.html" title="componentmodel.h" alt="" coords="1040,95,1187,121"/>
-<area shape="rect" id="node5" href="$componentinterface_8h.html" title="componentinterface.h" alt="" coords="212,169,375,196"/>
-<area shape="rect" id="node11" href="$context_8h.html" title="context.h" alt="" coords="455,169,537,196"/>
-<area shape="rect" id="node14" href="$nodepainter_8h.html" title="nodepainter.h" alt="" coords="1449,169,1559,196"/>
-<area shape="rect" id="node23" href="$log_8h.html" title="log.h" alt="" coords="1119,169,1172,196"/>
+<area shape="rect" id="node2" href="$canload_8h.html" title="canload.h" alt="" coords="464,95,548,121"/>
+<area shape="rect" id="node13" href="$canloadpainter_8h.html" title="canloadpainter.h" alt="" coords="1049,95,1177,121"/>
+<area shape="rect" id="node20" href="$componentmodel_8h.html" title="componentmodel.h" alt="" coords="1270,95,1417,121"/>
+<area shape="rect" id="node5" href="$componentinterface_8h.html" title="componentinterface.h" alt="" coords="205,169,367,196"/>
+<area shape="rect" id="node11" href="$context_8h.html" title="context.h" alt="" coords="541,169,623,196"/>
+<area shape="rect" id="node14" href="$nodepainter_8h.html" title="nodepainter.h" alt="" coords="989,169,1100,196"/>
+<area shape="rect" id="node24" href="$log_8h.html" title="log.h" alt="" coords="1503,169,1557,196"/>
 </map>

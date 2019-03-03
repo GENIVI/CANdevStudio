@@ -1,11 +1,11 @@
 <map id="src/components/canrawlogger/canrawloggerplugin.h" name="src/components/canrawlogger/canrawloggerplugin.h">
-<area shape="rect" id="node2" href="$plugin__type_8h.html" title="plugin_type.h" alt="" coords="189,95,296,121"/>
-<area shape="rect" id="node6" href="$canrawloggermodel_8h.html" title="canrawloggermodel.h" alt="" coords="414,95,573,121"/>
-<area shape="rect" id="node5" href="$typestring_8hh.html" title="typestring.hh" alt="" coords="252,169,359,196"/>
-<area shape="rect" id="node7" href="$canrawlogger_8h.html" title="canrawlogger.h" alt="" coords="434,169,553,196"/>
-<area shape="rect" id="node18" href="$componentmodel_8h.html" title="componentmodel.h" alt="" coords="777,169,924,196"/>
-<area shape="rect" id="node28" href="$nodepainter_8h.html" title="nodepainter.h" alt="" coords="1309,169,1419,196"/>
-<area shape="rect" id="node10" href="$componentinterface_8h.html" title="componentinterface.h" alt="" coords="352,244,515,271"/>
-<area shape="rect" id="node16" href="$context_8h.html" title="context.h" alt="" coords="640,244,723,271"/>
-<area shape="rect" id="node21" href="$log_8h.html" title="log.h" alt="" coords="1007,244,1060,271"/>
+<area shape="rect" id="node2" href="$plugin__type_8h.html" title="plugin_type.h" alt="" coords="251,95,357,121"/>
+<area shape="rect" id="node6" href="$canrawloggermodel_8h.html" title="canrawloggermodel.h" alt="" coords="681,95,839,121"/>
+<area shape="rect" id="node5" href="$typestring_8hh.html" title="typestring.hh" alt="" coords="313,169,420,196"/>
+<area shape="rect" id="node7" href="$canrawlogger_8h.html" title="canrawlogger.h" alt="" coords="445,169,563,196"/>
+<area shape="rect" id="node18" href="$componentmodel_8h.html" title="componentmodel.h" alt="" coords="876,169,1023,196"/>
+<area shape="rect" id="node29" href="$nodepainter_8h.html" title="nodepainter.h" alt="" coords="1407,169,1518,196"/>
+<area shape="rect" id="node10" href="$componentinterface_8h.html" title="componentinterface.h" alt="" coords="304,244,467,271"/>
+<area shape="rect" id="node16" href="$context_8h.html" title="context.h" alt="" coords="592,244,675,271"/>
+<area shape="rect" id="node22" href="$log_8h.html" title="log.h" alt="" coords="1105,244,1159,271"/>
 </map>

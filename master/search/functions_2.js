@@ -50,5 +50,6 @@ var searchData=
   ['crsgui',['CRSGui',['../struct_c_r_s_gui.html#aa16dee0fca89a03a8749b924fb03851d',1,'CRSGui']]],
   ['crvgui',['CRVGui',['../struct_c_r_v_gui.html#a59e9be0249f8a0b880cf6de78ebebb68',1,'CRVGui']]],
   ['crvsortmodel',['CRVSortModel',['../class_c_r_v_sort_model.html#a7a3a59938287c0301e7f775ec99d7792',1,'CRVSortModel']]],
-  ['currentload',['currentLoad',['../class_can_load.html#a83c2c7f312257e47d90db695a7119ed1',1,'CanLoad::currentLoad()'],['../class_can_load_model.html#a20206312c03bac0ca83a424a6301921e',1,'CanLoadModel::currentLoad()']]]
+  ['currentload',['currentLoad',['../class_can_load.html#a83c2c7f312257e47d90db695a7119ed1',1,'CanLoad::currentLoad()'],['../class_can_load_model.html#a20206312c03bac0ca83a424a6301921e',1,'CanLoadModel::currentLoad()']]],
+  ['currenttextchanged',['currentTextChanged',['../class_property_field_combo.html#afafbec0156e7d6af95e557e9d8d9fa7b',1,'PropertyFieldCombo']]]
 ];

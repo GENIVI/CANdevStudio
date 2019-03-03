@@ -4,7 +4,6 @@ var hierarchy =
       [ "CanDeviceQt", "struct_can_device_qt.html", null ]
     ] ],
     [ "CanDevicePlugin", "struct_can_device_plugin.html", null ],
-    [ "CanDevicePrivate", "class_can_device_private.html", null ],
     [ "CanLoadPlugin", "struct_can_load_plugin.html", null ],
     [ "CanRawFilterGuiInt", "struct_can_raw_filter_gui_int.html", [
       [ "CanRawFilterGuiImpl", "struct_can_raw_filter_gui_impl.html", null ]
@@ -110,6 +109,7 @@ var hierarchy =
     ] ],
     [ "QObject", null, [
       [ "CanDevice", "class_can_device.html", null ],
+      [ "CanDevicePrivate", "class_can_device_private.html", null ],
       [ "CanLoad", "class_can_load.html", null ],
       [ "CanLoadPrivate", "class_can_load_private.html", null ],
       [ "CanRawFilter", "class_can_raw_filter.html", null ],
@@ -132,7 +132,13 @@ var hierarchy =
     ] ],
     [ "QWidget", null, [
       [ "ProjectConfig", "class_project_config.html", null ],
-      [ "ProjectConfigPrivate", "class_project_config_private.html", null ]
+      [ "ProjectConfigPrivate", "class_project_config_private.html", null ],
+      [ "PropertyField", "struct_property_field.html", [
+        [ "PropertyFieldCombo", "class_property_field_combo.html", null ],
+        [ "PropertyFieldText", "struct_property_field_text.html", [
+          [ "PropertyFieldPath", "struct_property_field_path.html", null ]
+        ] ]
+      ] ]
     ] ],
     [ "section_ndx< T, Tuple >", "structsection__ndx.html", null ],
     [ "section_ndx< T, std::tuple< T, Types... > >", "structsection__ndx_3_01_t_00_01std_1_1tuple_3_01_t_00_01_types_8_8_8_01_4_01_4.html", null ],

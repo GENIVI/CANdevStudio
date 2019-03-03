@@ -1,10 +1,10 @@
 <map id="src/components/candevice/tests/candevicemodel_test.cpp" name="src/components/candevice/tests/candevicemodel_test.cpp">
-<area shape="rect" id="node3" href="$candevicemodel_8h.html" title="candevicemodel.h" alt="" coords="767,95,905,121"/>
-<area shape="rect" id="node18" href="$log_8h.html" title="log.h" alt="" coords="645,244,699,271"/>
-<area shape="rect" id="node32" href="$canrawdata_8h.html" title="datamodeltypes/canrawdata.h" alt="" coords="929,95,1145,121"/>
-<area shape="rect" id="node4" href="$candevice_8h.html" title="candevice.h" alt="" coords="384,169,483,196"/>
-<area shape="rect" id="node15" href="$componentmodel_8h.html" title="componentmodel.h" alt="" coords="763,169,909,196"/>
-<area shape="rect" id="node25" href="$nodepainter_8h.html" title="nodepainter.h" alt="" coords="1075,169,1186,196"/>
-<area shape="rect" id="node7" href="$componentinterface_8h.html" title="componentinterface.h" alt="" coords="352,244,515,271"/>
-<area shape="rect" id="node13" href="$context_8h.html" title="context.h" alt="" coords="539,244,621,271"/>
+<area shape="rect" id="node3" href="$candevicemodel_8h.html" title="candevicemodel.h" alt="" coords="749,95,887,121"/>
+<area shape="rect" id="node19" href="$log_8h.html" title="log.h" alt="" coords="222,244,275,271"/>
+<area shape="rect" id="node33" href="$canrawdata_8h.html" title="datamodeltypes/canrawdata.h" alt="" coords="911,95,1127,121"/>
+<area shape="rect" id="node4" href="$candevice_8h.html" title="candevice.h" alt="" coords="1731,169,1830,196"/>
+<area shape="rect" id="node15" href="$componentmodel_8h.html" title="componentmodel.h" alt="" coords="491,169,638,196"/>
+<area shape="rect" id="node26" href="$nodepainter_8h.html" title="nodepainter.h" alt="" coords="1113,169,1224,196"/>
+<area shape="rect" id="node7" href="$componentinterface_8h.html" title="componentinterface.h" alt="" coords="1615,244,1778,271"/>
+<area shape="rect" id="node13" href="$context_8h.html" title="context.h" alt="" coords="2050,244,2133,271"/>
 </map>

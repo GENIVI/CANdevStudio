@@ -26,6 +26,12 @@ var dir_fdedb0aba14d44ce9d99bc100e026e6a =
       [ "PluginBase", "struct_plugin_base.html", null ]
     ] ],
     [ "pluginloader.h", "pluginloader_8h.html", "pluginloader_8h" ],
+    [ "propertyfields.h", "propertyfields_8h.html", [
+      [ "PropertyField", "struct_property_field.html", "struct_property_field" ],
+      [ "PropertyFieldText", "struct_property_field_text.html", "struct_property_field_text" ],
+      [ "PropertyFieldPath", "struct_property_field_path.html", "struct_property_field_path" ],
+      [ "PropertyFieldCombo", "class_property_field_combo.html", "class_property_field_combo" ]
+    ] ],
     [ "typestring.hh", "typestring_8hh.html", "typestring_8hh" ],
     [ "visitablewith.h", "visitablewith_8h.html", [
       [ "VisitableWith", "struct_visitable_with.html", "struct_visitable_with" ]

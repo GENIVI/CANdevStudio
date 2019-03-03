@@ -2,10 +2,9 @@ var candevice__test_8cpp =
 [
     [ "CATCH_CONFIG_RUNNER", "candevice__test_8cpp.html#a34b4c3eca7342fbc4cba090d02139902", null ],
     [ "testConfig_Expect0", "candevice__test_8cpp.html#adc97ac13c28c38b13c5770c519283226", null ],
-    [ "testConfig_Expect1", "candevice__test_8cpp.html#a7a279d825705715966b3c3173cdc5539", null ],
-    [ "testConfig_Expect1Using", "candevice__test_8cpp.html#a8217c41daf234bf6347923e4c85736be", null ],
+    [ "testConfig_Expect1", "candevice__test_8cpp.html#aa6a9d0011661b3cb1630f8589919170a", null ],
     [ "main", "candevice__test_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97", null ],
-    [ "prepareConfigTestMock", "candevice__test_8cpp.html#a3626ca2317731fe9646a1ec55c1cdd9c", null ],
+    [ "prepareConfigTestMock", "candevice__test_8cpp.html#a790c346b2b058dc5e3fd6d46fc0f3588", null ],
     [ "Q_DECLARE_METATYPE", "candevice__test_8cpp.html#a53b87bfa93af7d20e6d7fe80b85c4679", null ],
     [ "TEST_CASE", "candevice__test_8cpp.html#a55de5f8de85c97640bda740d02d961db", null ],
     [ "TEST_CASE", "candevice__test_8cpp.html#ab949203d1b70b69dc22c288a7613b07c", null ],
