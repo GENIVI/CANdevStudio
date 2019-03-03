@@ -47,7 +47,7 @@ int main(int argc, char* argv[])
     if (haveDebug) {
         kDefaultLogger->set_level(spdlog::level::debug);
     }
-    cds_debug("Staring unit tests");
+    cds_debug("Starting unit tests");
     QApplication a(argc, argv);
     return Catch::Session().run(argc, argv);
 }
