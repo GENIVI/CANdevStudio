@@ -55,11 +55,11 @@ public:
     /// \param[in] state Actual simulator state
     void setSimulationState(bool state);
 
-    /// \brief This method writes to json format actual can raw senred window properties
+    /// \brief This method writes to json format actual can raw sender window properties
     /// \param[in] json Json object
     void saveSettings(QJsonObject& json) const;
 
-    /// \brief This method return actual number of lines in table
+    /// \brief This method returns actual number of lines in table
     /// \return Line count
     int getLineCount() const;
 
@@ -77,12 +77,12 @@ private:
     /// \param[in] json Json object
     void writeColumnsOrder(QJsonObject& json) const;
 
-    /// \brief This method writes columns order
+    /// \brief This method writes sorting rules
     /// \param[in] json Json object
     void writeSortingRules(QJsonObject& json) const;
 
     /// \brief This method adopts column properties
-    /// \return true if column properties ware adopted successfully, false otherwise
+    /// \return true if column properties were adopted successfully, false otherwise
     bool columnAdopt(QJsonObject const& json);
 
     /// \brief This method adopts sorting properties
@@ -90,7 +90,7 @@ private:
     bool sortingAdopt(QJsonObject const& json);
 
     /// \brief This method adopts content properties
-    /// \return true if contents ware adopted successfully, false otherwise
+    /// \return true if contents were adopted successfully, false otherwise
     bool contentAdopt(QJsonObject const& json);
 
     /// \brief This method initializes property member
@@ -103,7 +103,7 @@ private:
     }
 
 private slots:
-    /// \brief This method remove selected rows from table
+    /// \brief This method removes selected rows from table
     void removeRowsSelectedByMouse();
 
     /// \brief This method adds new line to table
