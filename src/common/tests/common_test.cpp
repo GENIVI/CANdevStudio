@@ -281,6 +281,6 @@ TEST_CASE("EnumIterator no-past-the-end", "[common]")
 */
 int main(int argc, char* argv[])
 {
-    QApplication a(argc, argv); // QApplication must exist when contructing QWidgets TODO check QTest
+    QApplication a(argc, argv); // QApplication must exist when constructing QWidgets TODO check QTest
     return Catch::Session().run(argc, argv);
 }
