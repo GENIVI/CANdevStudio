@@ -220,8 +220,8 @@ private:
         json["viewColumns"] = std::move(columnArray);
     }
 
-    /* In the future for create log file below code can be use it.
-     * Temporary is commented.
+    /* In the future to create log file below code can be used.
+     * Temporarily commented.
         void writeViewModel(QJsonArray& jsonArray) const
         {
             for (auto row = 0; row < _tvModel.rowCount(); ++row) {
@@ -241,12 +241,12 @@ private:
     {
         auto scrolling = json.find("scrolling");
         if (scrolling == json.end()) {
-            cds_error("Scrolling item not found it");
+            cds_error("Scrolling item not found");
             return false;
         }
 
         if (scrolling.value().type() != QJsonValue::Bool) {
-            cds_error("Scrolling format is different then bool");
+            cds_error("Scrolling format is different than bool");
             return false;
         }
         auto frozen = json["scrolling"].toBool();
@@ -262,18 +262,18 @@ private:
     {
         auto columnIter = json.find("viewColumns");
         if (columnIter == json.end()) {
-            cds_error("Columns item not found it");
+            cds_error("Columns item not found");
             return false;
         }
 
         if (columnIter.value().type() != QJsonValue::Array) {
-            cds_error("Columns format is different then array");
+            cds_error("Columns format is different than array");
             return false;
         }
 
         auto colArray = json["viewColumns"].toArray();
         if (colArray.size() != 5) {
-            cds_error("Columns array size must by 5 not {}", std::to_string(colArray.size()));
+            cds_error("Columns array size must be 5 not {}", std::to_string(colArray.size()));
             return false;
         }
 
@@ -296,7 +296,7 @@ private:
                     // Check column name
                     //==================
                     if (colArray[jj].isObject() == false) {
-                        cds_error("Columns description does not an object.");
+                        cds_error("Columns description is not an object.");
                         return false;
                     }
                     auto colObj = colArray[jj].toObject();
@@ -305,7 +305,7 @@ private:
                         return false;
                     }
                     if (colObj["name"].isString() == false) {
-                        cds_error("name does not a String format.");
+                        cds_error("name is not a String format.");
                         return false;
                     }
                     // auto nameConf = colObj["name"].toString();
@@ -321,7 +321,7 @@ private:
                         return false;
                     }
                     if (colObj["vIdx"].isDouble() == false) {
-                        cds_error("vIdx does not a Number format.");
+                        cds_error("vIdx is not a Number format.");
                         return false;
                     }
                     auto vIdxConf = colObj["vIdx"].toInt();
@@ -330,7 +330,7 @@ private:
                     break;
                 }
                 if (jj == colArray.size()) {
-                    cds_error("Requred parameter in column description was not found.");
+                    cds_error("Required parameter in column description was not found.");
                     return false;
                 }
             }
@@ -344,7 +344,7 @@ private:
                 _ui.setColumnProper(vIdx, pp.vIdxConf);
             }
         }
-        cds_info("Column proporties ware restored correctly");
+        cds_info("Column properties were restored correctly");
 
         return true;
     }
