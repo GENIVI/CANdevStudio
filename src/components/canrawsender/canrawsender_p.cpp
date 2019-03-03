@@ -86,18 +86,18 @@ bool CanRawSenderPrivate::columnAdopt(QJsonObject const& json)
 {
     auto columnIter = json.find("senderColumns");
     if (columnIter == json.end()) {
-        cds_error("Columns item not found it");
+        cds_error("Columns item not found");
         return false;
     }
 
     if (columnIter.value().type() != QJsonValue::Array) {
-        cds_error("Columns format is different then array");
+        cds_error("Columns format is different than array");
         return false;
     }
 
     auto colArray = json["senderColumns"].toArray();
     if (colArray.size() != 5) {
-        cds_error("Columns array size is {} - must by 5!", std::to_string(colArray.size()));
+        cds_error("Columns array size is {} - must be 5!", std::to_string(colArray.size()));
         return false;
     }
     if (colArray.contains("Id") == false) {
@@ -125,17 +125,17 @@ bool CanRawSenderPrivate::sortingAdopt(QJsonObject const& json)
 {
     auto sortingIter = json.find("sorting");
     if (sortingIter == json.end()) {
-        cds_error("Sorting item not found it");
+        cds_error("Sorting item not found");
         return false;
     }
     if (sortingIter.value().type() != QJsonValue::Object) {
-        cds_error("Sorting format is different then object");
+        cds_error("Sorting format is different than object");
         return false;
     }
 
     auto sortingObj = json["sorting"].toObject();
     if (sortingObj.count() != 1) {
-        cds_error("Sorting object count {} is different then 1.", std::to_string(sortingObj.count()));
+        cds_error("Sorting object count {} is different than 1.", std::to_string(sortingObj.count()));
         return false;
     }
     if (sortingObj.contains("currentIndex") == false) {
@@ -169,11 +169,11 @@ bool CanRawSenderPrivate::contentAdopt(QJsonObject const& json)
 
     auto contentIter = json.find("content");
     if (contentIter == json.end()) {
-        cds_error("Content item not found it");
+        cds_error("Content item not found");
         return false;
     }
     if (contentIter.value().type() != QJsonValue::Array) {
-        cds_error("Content format is different then array");
+        cds_error("Content format is different than array");
         return false;
     }
 
