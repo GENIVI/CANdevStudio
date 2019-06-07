@@ -89,6 +89,7 @@ private slots:
     void SetSendButtonState();
     void SendButtonPressed();
     void TimerExpired();
+    void FrameDataChanged();
 };
 
 #endif // NEWLINEMANAGER_H
