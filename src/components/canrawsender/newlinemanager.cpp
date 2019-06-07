@@ -19,7 +19,7 @@ NewLineManager::NewLineManager(CanRawSender* q, bool _simulationState, NLMFactor
     QRegExp qRegExp("[0-9A-Fa-f]{1,8}");
     _vIdHex = new QRegExpValidator(qRegExp, this);
     _id->init("Id in hex", _vIdHex);
-    _id->textChangedCbk(std::bind(&NewLineManager::SetSendButtonState, this));
+    _id->textChangedCbk(std::bind(&NewLineManager::FrameDataChanged, this));
     _id->editingFinishedCbk([&] {
         QString text = _id->getText();
         bool ok;
@@ -41,7 +41,7 @@ NewLineManager::NewLineManager(CanRawSender* q, bool _simulationState, NLMFactor
     qRegExp.setPattern("[0-9A-Fa-f]{16}");
     _vDataHex = new QRegExpValidator(qRegExp, this);
     _data->init("Data in hex", _vDataHex);
-    _data->textChangedCbk(std::bind(&NewLineManager::SetSendButtonState, this));
+    _data->textChangedCbk(std::bind(&NewLineManager::FrameDataChanged, this));
 
     // Interval
     _interval.reset(mFactory.createLineEdit());
@@ -206,4 +206,15 @@ bool NewLineManager::RestoreLine(QString& id, QString data, QString interval, bo
     }
 
     return true;
+}
+
+void NewLineManager::FrameDataChanged()
+{
+    // Update frame data
+    quint32 id = _id->getText().toUInt(nullptr, 16);
+    _frame.setFrameId(id);
+    _frame.setPayload(QByteArray::fromHex(_data->getText().toUtf8()));
+
+    // Update Send button state
+    SetSendButtonState();
 }
