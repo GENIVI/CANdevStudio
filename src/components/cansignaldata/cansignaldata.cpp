@@ -26,12 +26,10 @@ QWidget* CanSignalData::mainWidget()
 
 void CanSignalData::setConfig(const QJsonObject& json)
 {
-    Q_D(CanSignalData);
-
     d_ptr->setSettings(json);
 }
 
-void CanSignalData::setConfig(const QObject& qobject)
+void CanSignalData::setConfig(const QWidget& qobject)
 {
     Q_D(CanSignalData);
 
@@ -43,7 +41,7 @@ QJsonObject CanSignalData::getConfig() const
     return d_ptr->getSettings();
 }
 
-std::shared_ptr<QObject> CanSignalData::getQConfig() const
+std::shared_ptr<QWidget> CanSignalData::getQConfig() const
 {
     const Q_D(CanSignalData);
 

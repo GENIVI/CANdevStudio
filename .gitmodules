@@ -22,3 +22,6 @@
 [submodule "3rdParty/CANdb"]
 	path = 3rdParty/CANdb
 	url = https://github.com/GENIVI/CANdb.git
+[submodule "3rdParty/catch"]
+	path = 3rdParty/catch
+	url = https://github.com/catchorg/Catch2

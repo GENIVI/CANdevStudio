@@ -43,7 +43,8 @@ CanSignalDataPrivate::CanSignalDataPrivate(CanSignalData* q, CanSignalDataCtx&& 
 void CanSignalDataPrivate::initProps()
 {
     for (const auto& p : _supportedProps) {
-        _props[p.first];
+        QString propName = ComponentInterface::propertyName(p);
+        _props[propName];
     }
 }
 
@@ -125,8 +126,9 @@ QJsonObject CanSignalDataPrivate::getSettings()
 void CanSignalDataPrivate::setSettings(const QJsonObject& json)
 {
     for (const auto& p : _supportedProps) {
-        if (json.contains(p.first))
-            _props[p.first] = json[p.first].toVariant();
+        QString propName = ComponentInterface::propertyName(p);
+        if (json.contains(propName))
+            _props[propName] = json[propName].toVariant();
     }
 
     msgSettings_t msgSettings;

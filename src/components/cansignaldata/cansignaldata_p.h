@@ -7,6 +7,7 @@
 #include <QStandardItemModel>
 #include <QtCore/QObject>
 #include <memory>
+#include <propertyfields.h>
 
 class CanSignalData;
 
@@ -48,8 +49,16 @@ private:
     CanSignalData* q_ptr;
     const QString _fileProperty = "file";
     const QString _nameProperty = "name";
-    ComponentInterface::ComponentProperties _supportedProps
-        = { { _nameProperty, { QVariant::String, true } }, { _fileProperty, { QVariant::String, true } } };
+    // workaround for clang 3.5
+    using cf = ComponentInterface::CustomEditFieldCbk;
+
+    // clang-format off
+    ComponentInterface::ComponentProperties _supportedProps = {
+            std::make_tuple(_nameProperty,  QVariant::String, true, cf(nullptr)),
+            std::make_tuple(_fileProperty, QVariant::String, true, cf([] { return new PropertyFieldPath; } ))
+    };
+    // clang-format on
+
     std::string _currentDbcFile;
 };
 

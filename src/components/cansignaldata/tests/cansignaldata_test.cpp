@@ -3,8 +3,10 @@
 #define CATCH_CONFIG_RUNNER
 #include "log.h"
 #include <QSignalSpy>
+#include <catch.hpp>
 #include <fakeit.hpp>
 #include <QCanBusFrame>
+#include <QWidget>
 
 std::shared_ptr<spdlog::logger> kDefaultLogger;
 // needed for QSignalSpy cause according to qtbug 49623 comments
@@ -22,7 +24,7 @@ TEST_CASE("Stubbed methods", "[cansignaldata]")
 TEST_CASE("setConfig - qobj", "[cansignaldata]")
 {
     CanSignalData c;
-    QObject obj;
+    QWidget obj;
 
     obj.setProperty("name", "Test Name");
 
@@ -66,8 +68,17 @@ TEST_CASE("getSupportedProperties", "[cansignaldata]")
 
     auto props = c.getSupportedProperties();
 
-    CHECK(props.find("name") != props.end());
-    CHECK(props.find("dummy") == props.end());
+    REQUIRE(props.size() == 2);
+
+    REQUIRE(ComponentInterface::propertyName(props[0]) == "name");
+    REQUIRE(ComponentInterface::propertyType(props[0]) == QVariant::String);
+    REQUIRE(ComponentInterface::propertyEditability(props[0]) == true);
+    REQUIRE(ComponentInterface::propertyField(props[0]) == nullptr);
+
+    REQUIRE(ComponentInterface::propertyName(props[1]) == "file");
+    REQUIRE(ComponentInterface::propertyType(props[1]) == QVariant::String);
+    REQUIRE(ComponentInterface::propertyEditability(props[1]) == true);
+    REQUIRE(ComponentInterface::propertyField(props[1]) != nullptr);
 }
 
 int main(int argc, char* argv[])
