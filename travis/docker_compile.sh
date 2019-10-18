@@ -31,7 +31,7 @@ docker run \
             cpack -G DEB &&
             mkdir ../rc && mv *.deb *.tar.xz ../rc || echo 'Failed to create package'; fi"
 
-if [ "$PACKAGE" == "ON" ]; then
+if [ "$PACKAGE" == "ON" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "master" ]; then
     cd master
     for f in *; do
         curl -T $f -urkollataj:$BINTRAY_API_KEY https://api.bintray.com/content/rkollataj/CANdevStudio/master/${TRAVIS_COMMIT:0:7}/$f\;override=1

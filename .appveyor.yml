@@ -1,20 +1,5 @@
 version: 1.0.{build}
 image: Visual Studio 2015
-clone_script:
-- cmd: >-
-    set REPO_PATH=%APPVEYOR_REPO_NAME%
-
-    IF NOT "%REPO_PATH:~0,8%"=="https://" set REPO_PATH=https://github.com/%APPVEYOR_REPO_NAME%.git
-
-    git clone -q --branch=%APPVEYOR_REPO_BRANCH% %REPO_PATH% %APPVEYOR_BUILD_FOLDER%
-
-    rem git fetch origin pull/XXX/merge
-
-    rem git checkout FETCH_HEAD
-
-    git submodule update --init --recursive
-
-    git --no-pager log --pretty=oneline -1
 environment:
   BINTRAY_API_KEY:
     secure: 5VhWtDtya2N1yL9pbFGQbFdH2+zbg7FZ0O3rONMv0GJ8uQIEyJHBPYuJjdWhcaLO
@@ -38,6 +23,8 @@ environment:
   - GENERATOR: '"Visual Studio 14 2015 Win64"'
     BUILD_TYPE: Release
     QT_PATH: C:\Qt\5.11\msvc2015_64
+install:
+- cmd: git submodule update --init --recursive
 build_script:
 - cmd: >-
     mkdir build
@@ -52,13 +39,17 @@ build_script:
 
     cmake --build . --config %BUILD_TYPE%
 
-    if DEFINED PACKAGE cpack -G 7Z && cmake . -DSTANDALONE=ON && cpack -G 7Z && mkdir ..\master && move *.7z ..\master && cmake . -DDEV_BUILD=OFF && cpack -G 7Z && cmake . -DSTANDALONE=OFF && cpack -G 7Z && mkdir ..\rc && move *.7z ..\rc
+    set MAKE_PACKAGE=false
 
-    if DEFINED PACKAGE cd ..\master && for /f %%f in ('dir /b') do curl -T %%f -urkollataj:%BINTRAY_API_KEY% https://api.bintray.com/content/rkollataj/CANdevStudio/master/%APPVEYOR_REPO_COMMIT:~0,7%/%%f;override=1
+    if DEFINED PACKAGE if "%APPVEYOR_REPO_BRANCH%"=="master" if not DEFINED APPVEYOR_PULL_REQUEST_NUMBER set MAKE_PACKAGE=true
 
-    if DEFINED PACKAGE curl -urkollataj:%BINTRAY_API_KEY% -X POST https://api.bintray.com/content/rkollataj/CANdevStudio/master/%APPVEYOR_REPO_COMMIT:~0,7%/publish
+    if "%MAKE_PACKAGE%"=="true" cpack -G 7Z && cmake . -DSTANDALONE=ON && cpack -G 7Z && mkdir ..\master && move *.7z ..\master && cmake . -DDEV_BUILD=OFF && cpack -G 7Z && cmake . -DSTANDALONE=OFF && cpack -G 7Z && mkdir ..\rc && move *.7z ..\rc
 
-    if DEFINED PACKAGE cd ..\rc && for /f %%f in ('dir /b') do curl -T %%f -urkollataj:%BINTRAY_API_KEY% https://api.bintray.com/content/rkollataj/CANdevStudio/cds/rc/%%f;override=1
+    if "%MAKE_PACKAGE%"=="true" cd ..\master && for /f %%f in ('dir /b') do curl -T %%f -urkollataj:%BINTRAY_API_KEY% https://api.bintray.com/content/rkollataj/CANdevStudio/master/%APPVEYOR_REPO_COMMIT:~0,7%/%%f;override=1
 
-    if DEFINED PACKAGE curl -urkollataj:%BINTRAY_API_KEY% -X POST https://api.bintray.com/content/rkollataj/CANdevStudio/cds/rc/publish
+    if "%MAKE_PACKAGE%"=="true" curl -urkollataj:%BINTRAY_API_KEY% -X POST https://api.bintray.com/content/rkollataj/CANdevStudio/master/%APPVEYOR_REPO_COMMIT:~0,7%/publish
+
+    if "%MAKE_PACKAGE%"=="true" cd ..\rc && for /f %%f in ('dir /b') do curl -T %%f -urkollataj:%BINTRAY_API_KEY% https://api.bintray.com/content/rkollataj/CANdevStudio/cds/rc/%%f;override=1
+
+    if "%MAKE_PACKAGE%"=="true" curl -urkollataj:%BINTRAY_API_KEY% -X POST https://api.bintray.com/content/rkollataj/CANdevStudio/cds/rc/publish
 test: off
