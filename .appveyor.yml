@@ -39,15 +39,17 @@ build_script:
 
     cmake --build . --config %BUILD_TYPE%
 
-    set
+    set MAKE_PACKAGE=false
 
-    if DEFINED PACKAGE cpack -G 7Z && cmake . -DSTANDALONE=ON && cpack -G 7Z && mkdir ..\master && move *.7z ..\master && cmake . -DDEV_BUILD=OFF && cpack -G 7Z && cmake . -DSTANDALONE=OFF && cpack -G 7Z && mkdir ..\rc && move *.7z ..\rc
+    if DEFINED PACKAGE if "%APPVEYOR_REPO_BRANCH%"="master" if not DEFINED APPVEYOR_PULL_REQUEST_NUMBER set MAKE_PACKAGE=true
 
-    if DEFINED PACKAGE cd ..\master && for /f %%f in ('dir /b') do curl -T %%f -urkollataj:%BINTRAY_API_KEY% https://api.bintray.com/content/rkollataj/CANdevStudio/master/%APPVEYOR_REPO_COMMIT:~0,7%/%%f;override=1
+    if "%MAKE_PACKAGE%"="true" cpack -G 7Z && cmake . -DSTANDALONE=ON && cpack -G 7Z && mkdir ..\master && move *.7z ..\master && cmake . -DDEV_BUILD=OFF && cpack -G 7Z && cmake . -DSTANDALONE=OFF && cpack -G 7Z && mkdir ..\rc && move *.7z ..\rc
 
-    if DEFINED PACKAGE curl -urkollataj:%BINTRAY_API_KEY% -X POST https://api.bintray.com/content/rkollataj/CANdevStudio/master/%APPVEYOR_REPO_COMMIT:~0,7%/publish
+    if "%MAKE_PACKAGE%"="true" cd ..\master && for /f %%f in ('dir /b') do curl -T %%f -urkollataj:%BINTRAY_API_KEY% https://api.bintray.com/content/rkollataj/CANdevStudio/master/%APPVEYOR_REPO_COMMIT:~0,7%/%%f;override=1
 
-    if DEFINED PACKAGE cd ..\rc && for /f %%f in ('dir /b') do curl -T %%f -urkollataj:%BINTRAY_API_KEY% https://api.bintray.com/content/rkollataj/CANdevStudio/cds/rc/%%f;override=1
+    if "%MAKE_PACKAGE%"="true" curl -urkollataj:%BINTRAY_API_KEY% -X POST https://api.bintray.com/content/rkollataj/CANdevStudio/master/%APPVEYOR_REPO_COMMIT:~0,7%/publish
 
-    if DEFINED PACKAGE curl -urkollataj:%BINTRAY_API_KEY% -X POST https://api.bintray.com/content/rkollataj/CANdevStudio/cds/rc/publish
+    if "%MAKE_PACKAGE%"="true" cd ..\rc && for /f %%f in ('dir /b') do curl -T %%f -urkollataj:%BINTRAY_API_KEY% https://api.bintray.com/content/rkollataj/CANdevStudio/cds/rc/%%f;override=1
+
+    if "%MAKE_PACKAGE%"="true" curl -urkollataj:%BINTRAY_API_KEY% -X POST https://api.bintray.com/content/rkollataj/CANdevStudio/cds/rc/publish
 test: off
