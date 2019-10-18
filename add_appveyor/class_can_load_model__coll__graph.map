@@ -1,0 +1,6 @@
+<map id="CanLoadModel" name="CanLoadModel">
+<area shape="rect" id="node2" href="$class_component_model.html" title="ComponentModel\&lt; CanLoad,\l CanLoadModel \&gt;" alt="" coords="89,171,299,212"/>
+<area shape="rect" id="node3" href="$struct_component_model_interface.html" title="ComponentModelInterface" alt="" coords="5,81,196,108"/>
+<area shape="rect" id="node5" href="$class_can_load.html" title="CanLoad" alt="" coords="220,81,299,108"/>
+<area shape="rect" id="node7" href="$struct_component_interface.html" title="Interface to be implemented by every component. " alt="" coords="319,5,472,32"/>
+</map>

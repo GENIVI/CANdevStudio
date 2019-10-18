@@ -1,0 +1,17 @@
+<map id="src/common/plugin_type.h" name="src/common/plugin_type.h">
+<area shape="rect" id="node2" href="$pluginloader_8h.html" title="src/common/pluginloader.h" alt="" coords="5,87,200,114"/>
+<area shape="rect" id="node3" href="$candeviceplugin_8h.html" title="src/components/candevice\l/candeviceplugin.h" alt="" coords="225,80,418,121"/>
+<area shape="rect" id="node5" href="$canloadplugin_8h.html" title="src/components/canload\l/canloadplugin.h" alt="" coords="443,80,621,121"/>
+<area shape="rect" id="node7" href="$canrawfilterplugin_8h.html" title="src/components/canrawfilter\l/canrawfilterplugin.h" alt="" coords="645,80,848,121"/>
+<area shape="rect" id="node9" href="$canrawloggerplugin_8h.html" title="src/components/canrawlogger\l/canrawloggerplugin.h" alt="" coords="873,80,1087,121"/>
+<area shape="rect" id="node11" href="$canrawplayerplugin_8h.html" title="src/components/canrawplayer\l/canrawplayerplugin.h" alt="" coords="1112,80,1325,121"/>
+<area shape="rect" id="node13" href="$canrawsenderplugin_8h.html" title="src/components/canrawsender\l/canrawsenderplugin.h" alt="" coords="1349,80,1568,121"/>
+<area shape="rect" id="node15" href="$canrawviewplugin_8h.html" title="src/components/canrawview\l/canrawviewplugin.h" alt="" coords="1593,80,1794,121"/>
+<area shape="rect" id="node4" href="$candevicemodel_8cpp.html" title="src/components/candevice\l/candevicemodel.cpp" alt="" coords="225,169,418,211"/>
+<area shape="rect" id="node6" href="$canloadmodel_8cpp.html" title="src/components/canload\l/canloadmodel.cpp" alt="" coords="443,169,621,211"/>
+<area shape="rect" id="node8" href="$canrawfiltermodel_8cpp.html" title="src/components/canrawfilter\l/canrawfiltermodel.cpp" alt="" coords="645,169,848,211"/>
+<area shape="rect" id="node10" href="$canrawloggermodel_8cpp.html" title="src/components/canrawlogger\l/canrawloggermodel.cpp" alt="" coords="873,169,1087,211"/>
+<area shape="rect" id="node12" href="$canrawplayermodel_8cpp.html" title="src/components/canrawplayer\l/canrawplayermodel.cpp" alt="" coords="1112,169,1325,211"/>
+<area shape="rect" id="node14" href="$canrawsendermodel_8cpp.html" title="src/components/canrawsender\l/canrawsendermodel.cpp" alt="" coords="1349,169,1568,211"/>
+<area shape="rect" id="node16" href="$canrawviewmodel_8cpp.html" title="src/components/canrawview\l/canrawviewmodel.cpp" alt="" coords="1593,169,1794,211"/>
+</map>
