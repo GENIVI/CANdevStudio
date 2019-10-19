@@ -5,8 +5,6 @@
 
 struct CanLoadPainter : public NodePainter {
 
-    CanLoadPainter() = default;
-
     CanLoadPainter(const QColor& headerColor, const uint8_t& load)
         : NodePainter(headerColor)
         , _load(load)
