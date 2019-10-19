@@ -30,7 +30,7 @@ var searchData=
   ['canloadmodel_2ecpp',['canloadmodel.cpp',['../canloadmodel_8cpp.html',1,'']]],
   ['canloadmodel_2eh',['canloadmodel.h',['../canloadmodel_8h.html',1,'']]],
   ['canloadmodel_5ftest_2ecpp',['canloadmodel_test.cpp',['../canloadmodel__test_8cpp.html',1,'']]],
-  ['canloadpainter',['CanLoadPainter',['../struct_can_load_painter.html',1,'CanLoadPainter'],['../struct_can_load_painter.html#af6cce745eceaacef51bcfdf31180f231',1,'CanLoadPainter::CanLoadPainter()=default'],['../struct_can_load_painter.html#a533cf98cd74c281376dc6568c333164d',1,'CanLoadPainter::CanLoadPainter(const QColor &amp;headerColor, const uint8_t &amp;load)']]],
+  ['canloadpainter',['CanLoadPainter',['../struct_can_load_painter.html',1,'CanLoadPainter'],['../struct_can_load_painter.html#a533cf98cd74c281376dc6568c333164d',1,'CanLoadPainter::CanLoadPainter()']]],
   ['canloadpainter_2eh',['canloadpainter.h',['../canloadpainter_8h.html',1,'']]],
   ['canloadplugin',['CanLoadPlugin',['../struct_can_load_plugin.html',1,'']]],
   ['canloadplugin_2eh',['canloadplugin.h',['../canloadplugin_8h.html',1,'']]],
