@@ -7,28 +7,29 @@
 CanSignalDataPrivate::CanSignalDataPrivate(CanSignalData* q, CanSignalDataCtx&& ctx)
     : _ctx(std::move(ctx))
     , _ui(_ctx.get<CanSignalDataGuiInt>())
-    , _columnsOrder({ "id", "name", "start", "length", "type", "order", "factor", "offset", "min", "max" })
-    , _columnsSettings({ "id", "name", "dlc", "ecu", "cycle", "initial value" })
+    , _columnsSig({ "id", "name", "start", "length", "type", "order", "factor", "offset", "min", "max" })
+    , _columnsMsg({ "id", "name", "dlc", "ecu", "cycle", "initial value" })
     , q_ptr(q)
 {
     initProps();
 
-    _tvModelSettings.setHorizontalHeaderLabels(_columnsSettings);
-    _tvModel.setHorizontalHeaderLabels(_columnsOrder);
-    _tvModelFilter.setSourceModel(&_tvModel);
-    _ui.initTableView(_tvModelFilter);
-    _ui.initSearch(_tvModelFilter);
+    _tvModelSig.setHorizontalHeaderLabels(_columnsSig);
+    _tvModelSigFilter.setSourceModel(&_tvModelSig);
+    _ui.initSearch(_tvModelSigFilter);
 
-    _tvModelSettingsFilter.setSourceModel(&_tvModelSettings);
-    _ui.initSearch(_tvModelSettingsFilter);
+    _tvModelMsg.setHorizontalHeaderLabels(_columnsMsg);
+    _tvModelMsgFilter.setSourceModel(&_tvModelMsg);
+    _ui.initSearch(_tvModelMsgFilter);
 
-    _ui.setSettingsCbk([this] {
-        _settings = !_settings;
+    _ui.setMsgView(_tvModelMsgFilter);
 
-        if (_settings) {
-            _ui.initSettings(_tvModelSettingsFilter);
+    _ui.setMsgViewCbk([this] {
+        _msgView = !_msgView;
+
+        if (_msgView) {
+            _ui.setMsgView(_tvModelMsgFilter);
         } else {
-            _ui.initTableView(_tvModelFilter);
+            _ui.setSigView(_tvModelSigFilter);
         }
     });
 
@@ -37,7 +38,7 @@ CanSignalDataPrivate::CanSignalDataPrivate(CanSignalData* q, CanSignalDataCtx&& 
         emit q_ptr->mainWidgetDockToggled(_ui.mainWidget());
     });
 
-    _ui.setSettingsUpdatedCbk([this] { setMsgSettings(getMsgSettings()); });
+    _ui.setMsgSettingsUpdatedCbk([this] { setMsgSettings(getMsgSettings()); });
 }
 
 void CanSignalDataPrivate::initProps()
@@ -57,10 +58,10 @@ CanSignalDataPrivate::msgSettings_t CanSignalDataPrivate::getMsgSettings()
 {
     msgSettings_t msgSettings;
 
-    for (int i = 0; i < _tvModelSettings.rowCount(); ++i) {
-        uint32_t id = _tvModelSettings.item(i, 0)->data(Qt::DisplayRole).toString().toUInt(nullptr, 16);
-        auto cyclePtr = _tvModelSettings.item(i, 4);
-        auto initValPtr = _tvModelSettings.item(i, 5);
+    for (int i = 0; i < _tvModelMsg.rowCount(); ++i) {
+        uint32_t id = _tvModelMsg.item(i, 0)->data(Qt::DisplayRole).toString().toUInt(nullptr, 16);
+        auto cyclePtr = _tvModelMsg.item(i, 4);
+        auto initValPtr = _tvModelMsg.item(i, 5);
         QVariant cycle;
         QVariant initVal;
 
@@ -208,8 +209,8 @@ void CanSignalDataPrivate::loadDbc(const std::string& filename)
 
     cds_info("CAN DB load successful. {} records found", _messages.size());
 
-    _tvModel.removeRows(0, _tvModel.rowCount());
-    _tvModelSettings.removeRows(0, _tvModelSettings.rowCount());
+    _tvModelSig.removeRows(0, _tvModelSig.rowCount());
+    _tvModelMsg.removeRows(0, _tvModelMsg.rowCount());
 
     for (auto& message : _messages) {
         QList<QStandardItem*> settingsList;
@@ -228,7 +229,7 @@ void CanSignalDataPrivate::loadDbc(const std::string& filename)
         settingsList.append(new QStandardItem(QString::number(message.first.updateCycle)));
         settingsList.append(new QStandardItem(message.first.initValue.c_str()));
 
-        _tvModelSettings.appendRow(settingsList);
+        _tvModelMsg.appendRow(settingsList);
 
         for (auto& signal : message.second) {
             QList<QStandardItem*> list;
@@ -248,7 +249,7 @@ void CanSignalDataPrivate::loadDbc(const std::string& filename)
                 i->setEditable(false);
             }
 
-            _tvModel.appendRow(list);
+            _tvModelSig.appendRow(list);
         }
     }
 

@@ -35,14 +35,14 @@ public:
     CanSignalDataCtx _ctx;
     CanSignalDataGuiInt& _ui;
     bool _docked{ true };
-    bool _settings{ false };
+    bool _msgView{ true };
     std::map<QString, QVariant> _props;
-    QStringList _columnsOrder;
-    QStringList _columnsSettings;
-    QStandardItemModel _tvModel;
-    SearchModel _tvModelFilter;
-    QStandardItemModel _tvModelSettings;
-    SearchModel _tvModelSettingsFilter;
+    QStringList _columnsSig;
+    QStringList _columnsMsg;
+    QStandardItemModel _tvModelSig;
+    SearchModel _tvModelSigFilter;
+    QStandardItemModel _tvModelMsg;
+    SearchModel _tvModelMsgFilter;
     CANmessages_t _messages;
 
 private:

@@ -9,19 +9,19 @@ class QAbstractItemModel;
 class SearchModel;
 
 struct CanSignalDataGuiInt {
-    typedef std::function<void()> settings_t;
+    typedef std::function<void()> msgView_t;
     typedef std::function<void()> dockUndock_t;
-    typedef std::function<void()> settingsUpdated_t;
+    typedef std::function<void()> msgSettingsUpdated_t;
 
     virtual ~CanSignalDataGuiInt()
     {
     }
 
     virtual QWidget* mainWidget() = 0;
-    virtual void initSettings(QAbstractItemModel& tvModel) = 0;
-    virtual void initTableView(QAbstractItemModel& tvModel) = 0;
-    virtual void setSettingsCbk(const settings_t& cb) = 0;
-    virtual void setSettingsUpdatedCbk(const settingsUpdated_t& cb) = 0;
+    virtual void setMsgView(QAbstractItemModel& tvModel) = 0;
+    virtual void setSigView(QAbstractItemModel& tvModel) = 0;
+    virtual void setMsgViewCbk(const msgView_t& cb) = 0;
+    virtual void setMsgSettingsUpdatedCbk(const msgSettingsUpdated_t& cb) = 0;
     virtual void setDockUndockCbk(const dockUndock_t& cb) = 0;
     virtual void initSearch(SearchModel& model) = 0;
 };

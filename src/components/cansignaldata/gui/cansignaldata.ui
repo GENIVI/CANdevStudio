@@ -17,22 +17,80 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QPushButton" name="pbSettings">
+      <widget class="QPushButton" name="pbMsg">
+       <property name="minimumSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Tahoma</family>
+         <pointsize>14</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
        <property name="toolTip">
-        <string>Settings</string>
+        <string>Messages View</string>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
        </property>
        <property name="text">
-        <string/>
-       </property>
-       <property name="icon">
-        <iconset resource="../../../../CANdevResources.qrc">
-         <normaloff>:/images/files/images/light/CANbus_icon_Combine.svg</normaloff>:/images/files/images/light/CANbus_icon_Combine.svg</iconset>
+        <string>M</string>
        </property>
        <property name="iconSize">
         <size>
          <width>32</width>
          <height>32</height>
         </size>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pbSig">
+       <property name="minimumSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Tahoma</family>
+         <pointsize>14</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="toolTip">
+        <string>Signals View</string>
+       </property>
+       <property name="text">
+        <string>S</string>
        </property>
        <property name="checkable">
         <bool>true</bool>
@@ -64,7 +122,7 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="../../../../CANdevResources.qrc">
+        <iconset>
          <normaloff>:/images/files/images/light/CANbus_icon_Undock.svg</normaloff>:/images/files/images/light/CANbus_icon_Undock.svg</iconset>
        </property>
        <property name="iconSize">
@@ -87,12 +145,17 @@
     <widget class="QLineEdit" name="searchLine"/>
    </item>
    <item>
-    <widget class="QTableView" name="tv"/>
+    <widget class="QTableView" name="tv">
+     <property name="focusPolicy">
+      <enum>Qt::NoFocus</enum>
+     </property>
+     <property name="selectionMode">
+      <enum>QAbstractItemView::NoSelection</enum>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>
- <resources>
-  <include location="../../../../CANdevResources.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>
