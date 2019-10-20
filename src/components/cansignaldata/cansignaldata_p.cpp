@@ -73,7 +73,7 @@ CanSignalDataPrivate::msgSettings_t CanSignalDataPrivate::getMsgSettings()
             initVal = initValPtr->data(Qt::DisplayRole);
         }
 
-        if (cycle.isValid() || initVal.isValid()) {
+        if (cycle.toString().length() > 0 || initVal.toString().length() > 0) {
             msgSettings[id] = std::make_pair(cycle.toString(), initVal.toString());
         }
     }
@@ -97,6 +97,8 @@ void CanSignalDataPrivate::setMsgSettings(const msgSettings_t& msgSettings)
         }
     }
 
+    _msgSettings = msgSettings;
+
     emit q_ptr->canDbUpdated(_messages);
 }
 
@@ -110,7 +112,7 @@ QJsonObject CanSignalDataPrivate::getSettings()
 
     QJsonArray array;
 
-    for (const auto& msg : getMsgSettings()) {
+    for (const auto& msg : _msgSettings) {
         QJsonObject obj;
         obj["id"] = QString::number(msg.first, 16);
         obj["cycle"] = msg.second.first;
@@ -132,7 +134,7 @@ void CanSignalDataPrivate::setSettings(const QJsonObject& json)
             _props[propName] = json[propName].toVariant();
     }
 
-    msgSettings_t msgSettings;
+    _msgSettings.clear();
     if (json.contains("msgSettings")) {
         if (json["msgSettings"].type() == QJsonValue::Array) {
             auto rowArray = json["msgSettings"].toArray();
@@ -155,7 +157,7 @@ void CanSignalDataPrivate::setSettings(const QJsonObject& json)
                     }
 
                     if (id.length() && (cycle.length() || initVal.length())) {
-                        msgSettings[id.toUInt(nullptr, 16)] = std::make_pair(cycle, initVal);
+                        _msgSettings[id.toUInt(nullptr, 16)] = std::make_pair(cycle, initVal);
                     }
                 } else {
                     cds_warn("rows array element expected to be object!");
@@ -168,7 +170,7 @@ void CanSignalDataPrivate::setSettings(const QJsonObject& json)
         cds_info("Rows to restore not found");
     }
 
-    setMsgSettings(msgSettings);
+    setMsgSettings(_msgSettings);
 }
 
 std::string CanSignalDataPrivate::loadFile(const std::string& filename)
@@ -209,6 +211,8 @@ void CanSignalDataPrivate::loadDbc(const std::string& filename)
 
     cds_info("CAN DB load successful. {} records found", _messages.size());
 
+    setMsgSettings(_msgSettings);
+
     _tvModelSig.removeRows(0, _tvModelSig.rowCount());
     _tvModelMsg.removeRows(0, _tvModelMsg.rowCount());
 
@@ -226,7 +230,12 @@ void CanSignalDataPrivate::loadDbc(const std::string& filename)
             i->setEditable(false);
         }
 
-        settingsList.append(new QStandardItem(QString::number(message.first.updateCycle)));
+        if (message.first.updateCycle > 0) {
+            settingsList.append(new QStandardItem(QString::number(message.first.updateCycle)));
+        } else {
+            settingsList.append(new QStandardItem());
+        }
+
         settingsList.append(new QStandardItem(message.first.initValue.c_str()));
 
         _tvModelMsg.appendRow(settingsList);

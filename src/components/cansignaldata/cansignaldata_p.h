@@ -60,6 +60,7 @@ private:
     // clang-format on
 
     std::string _currentDbcFile;
+    msgSettings_t _msgSettings;
 };
 
 #endif // CANSIGNALDATA_P_H
