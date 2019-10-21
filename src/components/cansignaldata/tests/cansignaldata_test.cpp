@@ -7,6 +7,7 @@
 #include <fakeit.hpp>
 #include <QCanBusFrame>
 #include <QWidget>
+#include <gui/cansignaldataguiint.h>
 
 std::shared_ptr<spdlog::logger> kDefaultLogger;
 // needed for QSignalSpy cause according to qtbug 49623 comments
@@ -16,9 +17,19 @@ Q_DECLARE_METATYPE(QCanBusFrame);
 TEST_CASE("Stubbed methods", "[cansignaldata]")
 {
     CanSignalData c;
-
     CHECK(c.mainWidget() != nullptr);
     CHECK(c.mainWidgetDocked() == true);
+
+    using namespace fakeit;
+    Mock<CanSignalDataGuiInt> guiInt;
+    Fake(Method(guiInt, initSearch));
+    Fake(Method(guiInt, setMsgView));
+    Fake(Method(guiInt, setMsgViewCbk));
+    Fake(Method(guiInt, setDockUndockCbk));
+    Fake(Method(guiInt, setMsgSettingsUpdatedCbk));
+
+    CanSignalDataCtx ctx(&guiInt.get());
+    CanSignalData c2(std::move(ctx));
 }
 
 TEST_CASE("setConfig - qobj", "[cansignaldata]")
@@ -79,6 +90,18 @@ TEST_CASE("getSupportedProperties", "[cansignaldata]")
     REQUIRE(ComponentInterface::propertyType(props[1]) == QVariant::String);
     REQUIRE(ComponentInterface::propertyEditability(props[1]) == true);
     REQUIRE(ComponentInterface::propertyField(props[1]) != nullptr);
+}
+
+TEST_CASE("loadDbc", "[cansignaldata]")
+{
+    CanSignalData c;
+    QJsonObject obj;
+
+    obj["name"] = "Test Name";
+    obj["file"] = QString(DBC_PATH) + "/tesla_can.dbc";
+
+    c.setConfig(obj);
+    c.configChanged();
 }
 
 int main(int argc, char* argv[])
