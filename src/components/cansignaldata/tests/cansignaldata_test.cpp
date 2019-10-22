@@ -2,11 +2,12 @@
 #include <cansignaldata.h>
 #define CATCH_CONFIG_RUNNER
 #include "log.h"
+#include <QAbstractItemModel>
+#include <QCanBusFrame>
 #include <QSignalSpy>
+#include <QWidget>
 #include <catch.hpp>
 #include <fakeit.hpp>
-#include <QCanBusFrame>
-#include <QWidget>
 #include <gui/cansignaldataguiint.h>
 
 std::shared_ptr<spdlog::logger> kDefaultLogger;

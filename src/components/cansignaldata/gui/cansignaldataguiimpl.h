@@ -1,15 +1,57 @@
 #ifndef CANSIGNALDATAGUIIMPL_H
 #define CANSIGNALDATAGUIIMPL_H
 
-#include <QWidget>
 #include "cansignaldataguiint.h"
-#include "ui_cansignaldata.h"
 #include "searchmodel.h"
+#include "ui_cansignaldata.h"
+#include <QButtonGroup>
 #include <QItemDelegate>
 #include <QItemEditorFactory>
 #include <QStyledItemDelegate>
+#include <QWidget>
 #include <log.h>
-#include <QButtonGroup>
+
+class IntervalLE : public QLineEdit {
+public:
+    IntervalLE(uint32_t, QWidget* parent)
+        : QLineEdit(parent)
+    {
+        QRegExp qRegExp("[0-9]*");
+        auto v = new QRegExpValidator(qRegExp, this);
+        setValidator(v);
+    }
+};
+
+class ValueLE : public QLineEdit {
+public:
+    ValueLE(uint32_t len, QWidget* parent)
+        : QLineEdit(parent)
+    {
+        QRegExp qRegExp("[0-9A-Fa-f]{" + QString::number(len * 2) + "}");
+        auto v = new QRegExpValidator(qRegExp, this);
+        setValidator(v);
+        setPlaceholderText(QString(" %1 hex digits expected").arg(len*2));
+    }
+};
+
+template <typename T> class MyDelegate : public QStyledItemDelegate {
+public:
+    MyDelegate(QAbstractItemModel* model, QObject* parent = nullptr)
+        : QStyledItemDelegate(parent)
+        , _model(model)
+    {
+    }
+
+    virtual QWidget* createEditor(QWidget* parent, const QStyleOptionViewItem&, const QModelIndex& index) const override
+    {
+        uint32_t dlc = _model->data(_model->index(index.row(), 2)).toUInt();
+
+        return new T(dlc, parent);
+    }
+
+private:
+    QAbstractItemModel* _model;
+};
 
 struct CanSignalDataGuiImpl : public CanSignalDataGuiInt {
     CanSignalDataGuiImpl()
@@ -19,7 +61,7 @@ struct CanSignalDataGuiImpl : public CanSignalDataGuiInt {
         _ui->setupUi(_widget);
         _widget->setMinimumSize(_ui->tv->minimumSize());
 
-        QButtonGroup *bg = new QButtonGroup(_widget);
+        QButtonGroup* bg = new QButtonGroup(_widget);
         bg->addButton(_ui->pbMsg);
         bg->addButton(_ui->pbSig);
     }
@@ -29,12 +71,12 @@ struct CanSignalDataGuiImpl : public CanSignalDataGuiInt {
         QObject::connect(_ui->pbDockUndock, &QPushButton::toggled, cb);
     }
 
-    virtual void setMsgViewCbk(const msgView_t& cb) override 
+    virtual void setMsgViewCbk(const msgView_t& cb) override
     {
         QObject::connect(_ui->pbMsg, &QPushButton::toggled, cb);
     }
 
-    virtual void setMsgSettingsUpdatedCbk(const msgSettingsUpdated_t& cb) override 
+    virtual void setMsgSettingsUpdatedCbk(const msgSettingsUpdated_t& cb) override
     {
         _msgSettingsUpdatedCbk = cb;
     }
@@ -44,23 +86,12 @@ struct CanSignalDataGuiImpl : public CanSignalDataGuiInt {
         return _widget;
     }
 
-    template <typename F>
-    void setDelegate(QTableView* tv, int col, QStyledItemDelegate& del, const std::function<void()>& cb)
-    {
-        QItemEditorFactory* factory = new QItemEditorFactory;
-        QItemEditorCreatorBase* editor = new QStandardItemEditorCreator<F>();
-        factory->registerEditor(QVariant::String, editor);
-        del.setItemEditorFactory(factory);
-        tv->setItemDelegateForColumn(col, &del);
-        QObject::connect(&del, &QAbstractItemDelegate::closeEditor, cb);
-    }
-
     virtual void setMsgView(QAbstractItemModel& tvModel) override
     {
-        if(_settingsState.size() > 0) {
+        if (_settingsState.size() > 0) {
             _ui->tv->horizontalHeader()->restoreState(_settingsState);
         }
-        
+
         _ui->tv->setModel(&tvModel);
         _ui->tv->horizontalHeader()->setSectionsMovable(true);
         _ui->tv->horizontalHeader()->setSectionResizeMode(1, QHeaderView::Stretch);
@@ -71,20 +102,27 @@ struct CanSignalDataGuiImpl : public CanSignalDataGuiInt {
 
         _settingsState = _ui->tv->horizontalHeader()->saveState();
 
-        setDelegate<QLineEdit>(_ui->tv, 4, _cycleDelegate, std::bind(&CanSignalDataGuiImpl::msgSettingUpdated, this));
-        setDelegate<QLineEdit>(_ui->tv, 5, _initValDelegate, std::bind(&CanSignalDataGuiImpl::msgSettingUpdated, this));
+        _cycleDelegate = new MyDelegate<IntervalLE>(&tvModel, _ui->tv);
+        _ui->tv->setItemDelegateForColumn(4, _cycleDelegate);
+        QObject::connect(_cycleDelegate, &QAbstractItemDelegate::closeEditor,
+            std::bind(&CanSignalDataGuiImpl::msgSettingUpdated, this));
+
+        _initValDelegate = new MyDelegate<ValueLE>(&tvModel, _ui->tv);
+        _ui->tv->setItemDelegateForColumn(5, _initValDelegate);
+        QObject::connect(_initValDelegate, &QAbstractItemDelegate::closeEditor,
+            std::bind(&CanSignalDataGuiImpl::msgSettingUpdated, this));
     }
 
     void msgSettingUpdated()
     {
-        if(_msgSettingsUpdatedCbk) {
+        if (_msgSettingsUpdatedCbk) {
             _msgSettingsUpdatedCbk();
         }
     }
 
     virtual void setSigView(QAbstractItemModel& tvModel) override
     {
-        if(_tableState.size() > 0) {
+        if (_tableState.size() > 0) {
             _ui->tv->horizontalHeader()->restoreState(_tableState);
         }
 
@@ -106,14 +144,13 @@ struct CanSignalDataGuiImpl : public CanSignalDataGuiInt {
         QObject::connect(_ui->searchLine, &QLineEdit::textChanged, &model, &SearchModel::updateFilter);
     }
 
-
 private:
     Ui::CanSignalDataPrivate* _ui;
     QWidget* _widget;
     QByteArray _settingsState;
     QByteArray _tableState;
-    QStyledItemDelegate _cycleDelegate;
-    QStyledItemDelegate _initValDelegate;
+    MyDelegate<IntervalLE>* _cycleDelegate;
+    MyDelegate<ValueLE>* _initValDelegate;
     msgSettingsUpdated_t _msgSettingsUpdatedCbk{ nullptr };
 };
 
