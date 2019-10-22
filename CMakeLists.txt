@@ -71,8 +71,6 @@ endif()
 
 if(UNIX)
     set(CMAKE_CXX_FLAGS_RELEASE "-O3")
-else()
-    set(CMAKE_CXX_FLAGS_RELEASE "/O2")
 endif()
 
 set(SPDLOG_BUILD_TESTING OFF CACHE BOOL "")
