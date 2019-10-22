@@ -69,7 +69,11 @@ if(WITH_COVERAGE)
     setup_target_for_coverage(NAME coverage EXECUTABLE ctest DEPENDENCIES candevice_test)
 endif()
 
-set(CMAKE_CXX_FLAGS_RELEASE "-O3")
+if(UNIX)
+    set(CMAKE_CXX_FLAGS_RELEASE "-O3")
+else()
+    set(CMAKE_CXX_FLAGS_RELEASE "/O2")
+endif()
 
 set(SPDLOG_BUILD_TESTING OFF CACHE BOOL "")
 set(BUILD_EXAMPLES OFF CACHE BOOL "")
