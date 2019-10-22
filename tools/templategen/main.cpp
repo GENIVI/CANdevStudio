@@ -965,6 +965,7 @@ std::string genPluginHdr(const std::string& name)
 #include "plugin_type.h"
 #include "{nameLower}model.h"
 
+// Note that max typestring length is limited to 32 chars. 64 causes VS2015 internal error.
 using MiscPlugin = PluginBase<typestring_is("Misc Layer"), 0x555fc3, 57>;
 
 struct {name}Plugin {{
