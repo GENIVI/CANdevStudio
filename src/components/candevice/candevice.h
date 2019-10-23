@@ -17,8 +17,8 @@ class CanDevice : public QObject, public ComponentInterface {
     Q_DECLARE_PRIVATE(CanDevice)
 
 public:
-    CanDevice();
-    CanDevice(CanDeviceCtx&& ctx);
+    explicit CanDevice();
+    explicit CanDevice(CanDeviceCtx&& ctx);
     ~CanDevice();
 
     /**
@@ -95,7 +95,7 @@ public slots:
 
 private slots:
     void errorOccurred(int error);
-    void framesWritten(qint64 framesCnt);
+    void framesWritten(qint64 cnt);
     void framesReceived();
 
 private:

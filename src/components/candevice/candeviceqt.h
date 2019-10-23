@@ -7,6 +7,9 @@
 #include <log.h>
 
 struct CanDeviceQt : public CanDeviceInterface {
+
+    CanDeviceQt() = default;
+
     virtual void setParent(QObject* parent) override
     {
         _parent = parent;
