@@ -148,7 +148,7 @@ private:
     {
         auto configStr = in.split("=");
 
-        if ((configStr.length() != 2) || ((configStr.length() == 2) && (configStr[1].length() == 0))) {
+        if ((configStr.length() != 2) || (configStr[1].length() == 0)) {
             cds_error("Config parameter parse error");
             return false;
         }
