@@ -1015,7 +1015,7 @@ int main(int argc, char* argv[])
     auto componentsPath = result["o"].as<std::string>();
     auto componentNameLower = str_tolower(componentName);
 
-    if (!boost::filesystem::exists({ componentsPath })) {
+    if (!boost::filesystem::exists(boost::filesystem::path(componentsPath))) {
         std::cerr << "component dir does not exist" << std::endl;
 
         return EXIT_FAILURE;
