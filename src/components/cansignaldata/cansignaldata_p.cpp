@@ -271,11 +271,12 @@ void CanSignalDataPrivate::loadDbc(const std::string& filename)
 
 std::pair<CANmessage, std::vector<CANsignal>>* CanSignalDataPrivate::findInDb(uint32_t id)
 {
-    for (auto& msg : _messages) {
-        if (msg.first.id == id) {
-            // TODO: find a better way to do this...
-            return (std::pair<CANmessage, std::vector<CANsignal>>*)&msg;
-        }
+    CANmessage key(id);
+    auto msg = _messages.find(key);
+
+    if (msg != std::end(_messages)) {
+        return (std::pair<CANmessage, std::vector<CANsignal>>*) &(*msg);
     }
+
     return nullptr;
 }

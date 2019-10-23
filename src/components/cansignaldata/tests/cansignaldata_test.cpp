@@ -4,13 +4,15 @@
 #include "log.h"
 #include <QAbstractItemModel>
 #include <QCanBusFrame>
+#include <QJsonArray>
+#include <QJsonDocument>
 #include <QSignalSpy>
+#include <QStandardItemModel>
 #include <QWidget>
 #include <catch.hpp>
 #include <fakeit.hpp>
 #include <gui/cansignaldataguiint.h>
 #include <searchmodel.h>
-#include <QJsonDocument>
 
 std::shared_ptr<spdlog::logger> kDefaultLogger;
 // needed for QSignalSpy cause according to qtbug 49623 comments
@@ -20,8 +22,8 @@ Q_DECLARE_METATYPE(QCanBusFrame);
 TEST_CASE("Stubbed methods", "[cansignaldata]")
 {
     CanSignalData c;
-    CHECK(c.mainWidget() != nullptr);
-    CHECK(c.mainWidgetDocked() == true);
+    REQUIRE(c.mainWidget() != nullptr);
+    REQUIRE(c.mainWidgetDocked() == true);
 
     using namespace fakeit;
     Mock<CanSignalDataGuiInt> guiInt;
@@ -49,9 +51,16 @@ TEST_CASE("setConfig - json", "[cansignaldata]")
 {
     CanSignalData c;
     QJsonObject obj;
+    QJsonArray arr;
 
     obj["name"] = "Test Name";
 
+    obj["msgSettings"] = "abc";
+    c.setConfig(obj);
+
+    arr.append("dsds");
+    arr.append("bbb");
+    obj["msgSettings"] = arr;
     c.setConfig(obj);
 }
 
@@ -69,11 +78,12 @@ TEST_CASE("getQConfig", "[cansignaldata]")
     auto abc = c.getQConfig();
 }
 
-TEST_CASE("configChanged", "[cansignaldata]")
+TEST_CASE("start/stop", "[cansignaldata]")
 {
     CanSignalData c;
 
-    c.configChanged();
+    c.startSimulation();
+    c.stopSimulation();
 }
 
 TEST_CASE("getSupportedProperties", "[cansignaldata]")
@@ -113,27 +123,27 @@ TEST_CASE("loadDbc", "[cansignaldata]")
     c.setConfig(obj);
     c.configChanged();
 
-    CHECK(updateSpy.count() == 1);
+    REQUIRE(updateSpy.count() == 1);
     msgs = qvariant_cast<CANmessages_t>(updateSpy.takeFirst().at(0));
-    CHECK(msgs.size() == 17);
+    REQUIRE(msgs.size() == 17);
 
     // File does not exist
     obj["file"] = QString(DBC_PATH) + "/tesla_can";
     c.setConfig(obj);
     c.configChanged();
 
-    CHECK(updateSpy.count() == 1);
+    REQUIRE(updateSpy.count() == 1);
     msgs = qvariant_cast<CANmessages_t>(updateSpy.takeFirst().at(0));
-    CHECK(msgs.size() == 0);
+    REQUIRE(msgs.size() == 0);
 
     // Wrong file
     obj["file"] = QString(DBC_PATH) + "/project.cds";
     c.setConfig(obj);
     c.configChanged();
 
-    CHECK(updateSpy.count() == 1);
+    REQUIRE(updateSpy.count() == 1);
     msgs = qvariant_cast<CANmessages_t>(updateSpy.takeFirst().at(0));
-    CHECK(msgs.size() == 0);
+    REQUIRE(msgs.size() == 0);
 }
 
 QString testJson = R"(
@@ -179,7 +189,151 @@ TEST_CASE("loadDbc with settings", "[cansignaldata]")
     c.setConfig(obj);
     c.configChanged();
 
-    CHECK(updateSpy.count() == 1);
+    REQUIRE(updateSpy.count() == 1);
+    auto msgs = qvariant_cast<CANmessages_t>(updateSpy.takeFirst().at(0));
+    REQUIRE(msgs.size() == 17);
+
+    auto msg = msgs.find({ 0x3 });
+    REQUIRE(msg != std::end(msgs));
+    REQUIRE(msg->first.updateCycle == 123);
+    REQUIRE(msg->first.initValue == "");
+
+    msg = msgs.find({ 0xe });
+    REQUIRE(msg != std::end(msgs));
+    REQUIRE(msg->first.updateCycle == 0);
+    REQUIRE(msg->first.initValue == "1122334455667788");
+
+    msg = msgs.find({ 0x45 });
+    REQUIRE(msg != std::end(msgs));
+    REQUIRE(msg->first.updateCycle == 1234567890);
+    REQUIRE(msg->first.initValue == "aabbccddeeff0099");
+
+    msg = msgs.find({ 0x6d });
+    REQUIRE(msg != std::end(msgs));
+    REQUIRE(msg->first.updateCycle == 0);
+    REQUIRE(msg->first.initValue == "AABBCCDD");
+
+    msg = msgs.find({ 0x101 });
+    REQUIRE(msg != std::end(msgs));
+    REQUIRE(msg->first.updateCycle == 1);
+    REQUIRE(msg->first.initValue == "EEFF00");
+}
+
+TEST_CASE("dock/undock", "[cansignaldata]")
+{
+    CanSignalDataGuiInt::dockUndock_t dockUndock;
+
+    using namespace fakeit;
+    Mock<CanSignalDataGuiInt> guiInt;
+    Fake(Method(guiInt, initSearch));
+    Fake(Method(guiInt, setMsgView));
+    Fake(Method(guiInt, setMsgViewCbk));
+    When(Method(guiInt, setDockUndockCbk)).Do([&](auto&& fn) { dockUndock = fn; });
+    Fake(Method(guiInt, setMsgSettingsUpdatedCbk));
+    Fake(Method(guiInt, mainWidget));
+
+    CanSignalDataCtx ctx(&guiInt.get());
+    CanSignalData c(std::move(ctx));
+    QSignalSpy dockSpy(&c, &CanSignalData::mainWidgetDockToggled);
+
+    dockUndock();
+    dockUndock();
+    dockUndock();
+
+    REQUIRE(dockSpy.count() == 3);
+
+    Verify(Method(guiInt, mainWidget)).Exactly(3);
+}
+
+TEST_CASE("View switch test", "[cansignaldata]")
+{
+    CanSignalDataGuiInt::dockUndock_t dockUndock;
+    CanSignalDataGuiInt::msgView_t msgView;
+    CanSignalDataGuiInt::msgSettingsUpdated_t settingsUpdated;
+
+    QAbstractItemModel* msgModel = nullptr;
+    QAbstractItemModel* sigModel = nullptr;
+
+    using namespace fakeit;
+    Mock<CanSignalDataGuiInt> guiInt;
+    Fake(Method(guiInt, initSearch));
+    When(Method(guiInt, setMsgView)).AlwaysDo([&](auto&& model) { msgModel = &model; });
+    When(Method(guiInt, setSigView)).AlwaysDo([&](auto&& model) { sigModel = &model; });
+    When(Method(guiInt, setMsgViewCbk)).Do([&](auto&& fn) { msgView = fn; });
+    When(Method(guiInt, setDockUndockCbk)).Do([&](auto&& fn) { dockUndock = fn; });
+    When(Method(guiInt, setMsgSettingsUpdatedCbk)).Do([&](auto&& fn) { settingsUpdated = fn; });
+
+    CanSignalDataCtx ctx(&guiInt.get());
+    CanSignalData c2(std::move(ctx));
+
+    REQUIRE(msgModel != nullptr);
+    REQUIRE(sigModel == nullptr);
+
+    msgView();
+
+    REQUIRE(msgModel != nullptr);
+    REQUIRE(sigModel != nullptr);
+    REQUIRE(sigModel != msgModel);
+
+    msgView();
+    msgView();
+
+    Verify(
+        Method(guiInt, setMsgView), Method(guiInt, setSigView), Method(guiInt, setMsgView), Method(guiInt, setSigView));
+}
+
+TEST_CASE("settings callback", "[cansignaldata]")
+{
+    CanSignalDataGuiInt::msgSettingsUpdated_t settingsUpdated;
+    QStandardItemModel* msgModel = nullptr;
+
+    using namespace fakeit;
+    Mock<CanSignalDataGuiInt> guiInt;
+    Fake(Method(guiInt, initSearch));
+    When(Method(guiInt, setMsgView)).AlwaysDo([&](auto&& model) {
+        auto proxy = dynamic_cast<QAbstractProxyModel*>(&model);
+        msgModel = dynamic_cast<QStandardItemModel*>(proxy->sourceModel());
+    });
+    Fake(Method(guiInt, setMsgViewCbk));
+    Fake(Method(guiInt, setDockUndockCbk));
+    When(Method(guiInt, setMsgSettingsUpdatedCbk)).Do([&](auto&& fn) { settingsUpdated = fn; });
+
+    CanSignalDataCtx ctx(&guiInt.get());
+    CanSignalData c(std::move(ctx));
+    QSignalSpy settingsSpy(&c, &CanSignalData::canDbUpdated);
+    QJsonObject obj;
+
+    obj["file"] = QString(DBC_PATH) + "/tesla_can.dbc";
+    c.setConfig(obj);
+    c.configChanged();
+
+    REQUIRE(settingsSpy.count() == 1);
+    auto msgs = qvariant_cast<CANmessages_t>(settingsSpy.takeFirst().at(0));
+    REQUIRE(msgs.size() == 17);
+
+    auto msg = msgs.find({ 0x45 });
+    REQUIRE(msg != std::end(msgs));
+    REQUIRE(msg->first.updateCycle == 0);
+    REQUIRE(msg->first.initValue == "");
+
+    msgModel->setItem(2, 4, new QStandardItem("123"));
+    msgModel->setItem(2, 5, new QStandardItem("456"));
+
+    settingsUpdated();
+
+    REQUIRE(settingsSpy.count() == 1);
+    msgs = qvariant_cast<CANmessages_t>(settingsSpy.takeFirst().at(0));
+    REQUIRE(msgs.size() == 17);
+
+    msg = msgs.find({ 0x45 });
+    REQUIRE(msg != std::end(msgs));
+    REQUIRE(msg->first.updateCycle == 123);
+    REQUIRE(msg->first.initValue == "456");
+
+    QJsonObject settings = c.getConfig();
+    REQUIRE(settings["msgSettings"].toArray()[0].toObject()["id"].toString() == "45");
+    REQUIRE(settings["msgSettings"].toArray()[0].toObject()["cycle"].toString() == "123");
+    REQUIRE(settings["msgSettings"].toArray()[0].toObject()["initVal"].toString() == "456");
 }
 
 int main(int argc, char* argv[])
