@@ -38,7 +38,10 @@ CanSignalDataPrivate::CanSignalDataPrivate(CanSignalData* q, CanSignalDataCtx&& 
         emit q_ptr->mainWidgetDockToggled(_ui.mainWidget());
     });
 
-    _ui.setMsgSettingsUpdatedCbk([this] { setMsgSettings(getMsgSettings()); });
+    _ui.setMsgSettingsUpdatedCbk([this] {
+        setMsgSettings(getMsgSettings());
+        emit q_ptr->canDbUpdated(_messages);
+    });
 }
 
 void CanSignalDataPrivate::initProps()
@@ -98,8 +101,6 @@ void CanSignalDataPrivate::setMsgSettings(const msgSettings_t& msgSettings)
     }
 
     _msgSettings = msgSettings;
-
-    emit q_ptr->canDbUpdated(_messages);
 }
 
 QJsonObject CanSignalDataPrivate::getSettings()
@@ -198,12 +199,15 @@ void CanSignalDataPrivate::loadDbc(const std::string& filename)
     }
 
     _currentDbcFile = filename;
+    _messages.clear();
 
     CANdb::DBCParser parser;
     bool success = parser.parse(loadFile(filename));
 
     if (!success) {
         cds_error("Failed to load CAN DB from '{}' file", filename);
+        // send empty messages to indicate problem
+        emit q_ptr->canDbUpdated(_messages);
         return;
     }
 

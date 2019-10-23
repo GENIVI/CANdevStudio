@@ -10,6 +10,7 @@
 #include <fakeit.hpp>
 #include <gui/cansignaldataguiint.h>
 #include <searchmodel.h>
+#include <QJsonDocument>
 
 std::shared_ptr<spdlog::logger> kDefaultLogger;
 // needed for QSignalSpy cause according to qtbug 49623 comments
@@ -98,12 +99,87 @@ TEST_CASE("loadDbc", "[cansignaldata]")
 {
     CanSignalData c;
     QJsonObject obj;
+    CANmessages_t msgs;
+
+    QSignalSpy updateSpy(&c, &CanSignalData::canDbUpdated);
 
     obj["name"] = "Test Name";
-    obj["file"] = QString(DBC_PATH) + "/tesla_can.dbc";
 
+    obj["file"] = QString(DBC_PATH) + "/tesla_can.dbc";
     c.setConfig(obj);
     c.configChanged();
+
+    // Load again (this should not trigger another signal)
+    c.setConfig(obj);
+    c.configChanged();
+
+    CHECK(updateSpy.count() == 1);
+    msgs = qvariant_cast<CANmessages_t>(updateSpy.takeFirst().at(0));
+    CHECK(msgs.size() == 17);
+
+    // File does not exist
+    obj["file"] = QString(DBC_PATH) + "/tesla_can";
+    c.setConfig(obj);
+    c.configChanged();
+
+    CHECK(updateSpy.count() == 1);
+    msgs = qvariant_cast<CANmessages_t>(updateSpy.takeFirst().at(0));
+    CHECK(msgs.size() == 0);
+
+    // Wrong file
+    obj["file"] = QString(DBC_PATH) + "/project.cds";
+    c.setConfig(obj);
+    c.configChanged();
+
+    CHECK(updateSpy.count() == 1);
+    msgs = qvariant_cast<CANmessages_t>(updateSpy.takeFirst().at(0));
+    CHECK(msgs.size() == 0);
+}
+
+QString testJson = R"(
+{
+    "msgSettings": [
+        {
+            "cycle": "123",
+            "id": "3",
+            "initVal": ""
+        },
+        {
+            "cycle": "",
+            "id": "e",
+            "initVal": "1122334455667788"
+        },
+        {
+            "cycle": "1234567890",
+            "id": "45",
+            "initVal": "aabbccddeeff0099"
+        },
+        {
+            "cycle": "",
+            "id": "6d",
+            "initVal": "AABBCCDD"
+        },
+        {
+            "cycle": "1",
+            "id": "101",
+            "initVal": "EEFF00"
+        }
+    ],
+    "name": "CanSignalData"
+}
+)";
+
+TEST_CASE("loadDbc with settings", "[cansignaldata]")
+{
+    CanSignalData c;
+    QJsonObject obj = QJsonDocument::fromJson(testJson.toUtf8()).object();
+    QSignalSpy updateSpy(&c, &CanSignalData::canDbUpdated);
+
+    obj["file"] = QString(DBC_PATH) + "/tesla_can.dbc";
+    c.setConfig(obj);
+    c.configChanged();
+
+    CHECK(updateSpy.count() == 1);
 }
 
 int main(int argc, char* argv[])

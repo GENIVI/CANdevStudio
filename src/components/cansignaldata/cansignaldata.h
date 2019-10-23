@@ -3,16 +3,17 @@
 
 #include <QtCore/QObject>
 #include <QtCore/QScopedPointer>
+#include <cantypes.hpp>
 #include <componentinterface.h>
 #include <context.h>
 #include <memory>
-#include <cantypes.hpp>
 
 class CanSignalDataPrivate;
 class QWidget;
 struct CanSignalDataGuiInt;
 typedef Context<CanSignalDataGuiInt> CanSignalDataCtx;
 
+Q_DECLARE_METATYPE(CANmessages_t);
 
 class CanSignalData : public QObject, public ComponentInterface {
     Q_OBJECT
@@ -44,4 +45,4 @@ private:
     QScopedPointer<CanSignalDataPrivate> d_ptr;
 };
 
-#endif //CANSIGNALDATA_H
+#endif // CANSIGNALDATA_H
