@@ -54,7 +54,7 @@ message(STATUS "Qt Version found: ${Qt5Core_VERSION}")
 set_property(TARGET Qt5::SerialBus PROPERTY INTERFACE_COMPILE_FEATURES "")
 set_property(TARGET Qt5::Core PROPERTY INTERFACE_COMPILE_FEATURES "")
 
-# Limit TYPESTRING to 32 (i.e. 2^5). 64 causes VS2015 internal error.
+# Limit TYPESTRING to 128 (i.e. 2^7). 64 causes VS2015 internal error.
 if(NOT MSVC)
     add_definitions(-Wall -Wextra -DUSE_TYPESTRING=7)
 else()
