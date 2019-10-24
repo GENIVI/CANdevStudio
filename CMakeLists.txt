@@ -54,10 +54,11 @@ message(STATUS "Qt Version found: ${Qt5Core_VERSION}")
 set_property(TARGET Qt5::SerialBus PROPERTY INTERFACE_COMPILE_FEATURES "")
 set_property(TARGET Qt5::Core PROPERTY INTERFACE_COMPILE_FEATURES "")
 
+# Limit TYPESTRING to 128 (i.e. 2^7). 64 causes VS2015 internal error.
 if(NOT MSVC)
-    add_definitions(-Wall -Wextra)
+    add_definitions(-Wall -Wextra -DUSE_TYPESTRING=7)
 else()
-    add_definitions( /bigobj)
+    add_definitions( /bigobj /D USE_TYPESTRING=7)
 endif()
 
 include(CompilerVersion)
@@ -69,7 +70,9 @@ if(WITH_COVERAGE)
     setup_target_for_coverage(NAME coverage EXECUTABLE ctest DEPENDENCIES candevice_test)
 endif()
 
-set(CMAKE_CXX_FLAGS_RELEASE "-O3")
+if(UNIX)
+    set(CMAKE_CXX_FLAGS_RELEASE "-O3")
+endif()
 
 set(SPDLOG_BUILD_TESTING OFF CACHE BOOL "")
 set(BUILD_EXAMPLES OFF CACHE BOOL "")

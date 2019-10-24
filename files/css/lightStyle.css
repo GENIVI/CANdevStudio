@@ -129,11 +129,13 @@ QPushButton[flat="true"] {
     margin: 0px;
     padding: 0px;
     background-color: #ffffff;
+    color: #a6a6a6;
 }
 
 QPushButton[flat="true"]:pressed {
     border: 2px solid #adadad;
     background-color: #eeeeee;
+    color: #a6a6a6;
 }
 
 QPushButton[flat="true"]:checked {
@@ -143,6 +145,11 @@ QPushButton[flat="true"]:checked {
 
 QToolButton#toolSwitch {
     image: url(:/images/files/images/light/CANbus_icon_Switch.svg);
+}
+
+QLineEdit#searchLine {
+    border : 1px solid #adadad;
+    padding: 2px;
 }
 
 QCheckBox[type=sectionHeader] {
@@ -199,7 +206,19 @@ QPushButton[type="recentProjectFile"] {
     font-size: 12px;
 }
 
-QPushButton:pressed[type="recentProjectName"], QPushButton:pressed[type="recentProjectFile"], #pbStartNew, #pbStartOpen, #close {
+QPushButton:pressed[type="recentProjectFile"] {
+    border: 0px;
+    background: #ffffff;
+    color: #919191;
+}
+
+QPushButton:pressed[type="recentProjectName"] {
+    border: 0px;
+    background: #ffffff;
+    color: #0d6188;
+}
+
+QPushButton:pressed#pbStartNew, #pbStartOpen, #close {
     border: 0px;
 }
 

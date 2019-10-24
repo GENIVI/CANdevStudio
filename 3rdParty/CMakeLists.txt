@@ -12,6 +12,9 @@ target_include_directories(rwqueue INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/readerw
 
 add_subdirectory(nodeeditor)
 
+
+add_subdirectory(CANdb)
+
 if(LINUX)
     add_subdirectory(3rdParty/qtCannelloniCanBus)
 

@@ -131,12 +131,18 @@ QPushButton#pbStartNew, #pbStartOpen, #close {
     border: 0px;
 }
 
-QWidget#CanRawSenderPrivate, #CanRawViewPrivate, #CanRawFilterPrivate {
+QWidget#CanRawSenderPrivate, #CanRawViewPrivate, #CanRawFilterPrivate, #CanSignalDataPrivate {
     background-color: #616161;
 }
 
 QToolButton#toolSwitch {
     image: url(:/images/files/images/light/CANbus_icon_Switch_dark.svg);
+}
+
+QLineEdit#searchLine {
+    background-color: #3a3a3a;
+    border : 1px solid #adadad;
+    padding: 2px;
 }
 
 QCheckBox[type=sectionHeader] {
