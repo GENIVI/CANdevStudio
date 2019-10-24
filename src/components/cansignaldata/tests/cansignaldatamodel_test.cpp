@@ -16,26 +16,26 @@ TEST_CASE("Test basic functionality", "[cansignaldataModel]")
 {
     using namespace fakeit;
     CanSignalDataModel cm;
-    CHECK(cm.caption() == "CanSignalData");
-    CHECK(cm.name() == "CanSignalData");
-    CHECK(cm.resizable() == false);
-    CHECK(cm.hasSeparateThread() == false);
-    CHECK(dynamic_cast<CanSignalDataModel*>(cm.clone().get()) != nullptr);
-    CHECK(dynamic_cast<QLabel*>(cm.embeddedWidget()) != nullptr);
+    REQUIRE(cm.caption() == "CanSignalData");
+    REQUIRE(cm.name() == "CanSignalData");
+    REQUIRE(cm.resizable() == false);
+    REQUIRE(cm.hasSeparateThread() == false);
+    REQUIRE(dynamic_cast<CanSignalDataModel*>(cm.clone().get()) != nullptr);
+    REQUIRE(dynamic_cast<QLabel*>(cm.embeddedWidget()) != nullptr);
 }
 
 TEST_CASE("painterDelegate", "[cansignaldataModel]")
 {
     CanSignalDataModel cm;
-    CHECK(cm.painterDelegate() != nullptr);
+    REQUIRE(cm.painterDelegate() != nullptr);
 }
 
 TEST_CASE("nPorts", "[cansignaldataModel]")
 {
     CanSignalDataModel cm;
 
-    CHECK(cm.nPorts(QtNodes::PortType::Out) == 1);
-    CHECK(cm.nPorts(QtNodes::PortType::In) == 0);
+    REQUIRE(cm.nPorts(QtNodes::PortType::Out) == 1);
+    REQUIRE(cm.nPorts(QtNodes::PortType::In) == 0);
 }
 
 TEST_CASE("dataType", "[cansignaldataModel]")
@@ -44,25 +44,25 @@ TEST_CASE("dataType", "[cansignaldataModel]")
 
     NodeDataType ndt;
         
-    //ndt = cm.dataType(QtNodes::PortType::Out, 0);
-    //CHECK(ndt.id == "rawframe");
-    //CHECK(ndt.name == "RAW");
+    ndt = cm.dataType(QtNodes::PortType::Out, 0);
+    REQUIRE(ndt.id == "DbData");
+    REQUIRE(ndt.name == "DB");
 
-    //ndt = cm.dataType(QtNodes::PortType::Out, 1);
-    //CHECK(ndt.id == "");
-    //CHECK(ndt.name == "");
+    ndt = cm.dataType(QtNodes::PortType::Out, 1);
+    REQUIRE(ndt.id == "");
+    REQUIRE(ndt.name == "");
     
-    //ndt = cm.dataType(QtNodes::PortType::In, 0);
-    //CHECK(ndt.id == "");
-    //CHECK(ndt.name == "");
+    ndt = cm.dataType(QtNodes::PortType::In, 0);
+    REQUIRE(ndt.id == "");
+    REQUIRE(ndt.name == "");
 }
 
 TEST_CASE("outData", "[cansignaldataModel]")
 {
-    //CanSignalDataModel cm;
+    CanSignalDataModel cm;
 
-    //auto nd = cm.outData(0);
-    //CHECK(!nd);
+    auto nd = cm.outData(0);
+    REQUIRE(nd);
 }
 
 TEST_CASE("setInData", "[cansignaldataModel]")
@@ -70,6 +70,17 @@ TEST_CASE("setInData", "[cansignaldataModel]")
     CanSignalDataModel cm;
 
     cm.setInData({}, 1);
+}
+
+TEST_CASE("canDbUpdated", "[cansignaldataModel]")
+{
+    CanSignalDataModel cm;
+    CANmessages_t msgs;
+    QSignalSpy dbSpy(&cm, &CanSignalDataModel::dataUpdated);
+
+    cm.canDbUpdated(msgs);
+    REQUIRE(dbSpy.count() == 1);
+    REQUIRE(dbSpy.takeFirst().at(0).toUInt() == 0);
 }
 
 int main(int argc, char* argv[])
