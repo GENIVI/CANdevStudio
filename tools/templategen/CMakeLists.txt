@@ -5,9 +5,12 @@ set(SRC
     main.cpp
     )
 
-set_property(SOURCE main.cpp PROPERTY SKIP_AUTOMOC ON)
-set_property(SOURCE main.cpp PROPERTY SKIP_AUTOUIC ON)
+set(CMAKE_AUTOMOC OFF)
+set(CMAKE_AUTOUIC OFF)
 
 add_executable(templategen ${SRC})
 target_link_libraries(templategen ${Boost_SYSTEM_LIBRARY} ${Boost_FILESYSTEM_LIBRARY})
+
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTOUIC ON)
 

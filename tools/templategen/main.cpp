@@ -1,6 +1,7 @@
 #include <boost/filesystem.hpp>
 #include <cxxopts.hpp>
 #include <spdlog/fmt/fmt.h>
+#include <fstream>
 
 namespace {
 
@@ -979,7 +980,7 @@ struct {name}Plugin {{
 }
 void writeToFile(const boost::filesystem::path& filename, const std::string& content)
 {
-    boost::filesystem::ofstream file(filename);
+    std::ofstream file(filename.string());
     file << content;
     file.close();
 }
