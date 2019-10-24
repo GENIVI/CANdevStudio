@@ -9,7 +9,7 @@ bool SearchModel::filterAcceptsRow(int sourceRow, const QModelIndex& sourceParen
 {
     bool result = false;
 
-    for(int i = 0; i < sourceModel()->rowCount(); ++i) {
+    for(int i = 0; i < sourceModel()->columnCount(); ++i) {
         QString str = sourceModel()->index(sourceRow, i, sourceParent).data().toString().toLower();
         
         result |= str.contains(_filter);

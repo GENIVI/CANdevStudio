@@ -336,6 +336,130 @@ TEST_CASE("settings callback", "[cansignaldata]")
     REQUIRE(settings["msgSettings"].toArray()[0].toObject()["initVal"].toString() == "456");
 }
 
+TEST_CASE("Filter test", "[cansignaldata]")
+{
+    CanSignalDataGuiInt::dockUndock_t dockUndock;
+    CanSignalDataGuiInt::msgView_t msgView;
+    CanSignalDataGuiInt::msgSettingsUpdated_t settingsUpdated;
+
+    SearchModel* msgModel = nullptr;
+    SearchModel* sigModel = nullptr;
+
+    using namespace fakeit;
+    Mock<CanSignalDataGuiInt> guiInt;
+    Fake(Method(guiInt, initSearch));
+    When(Method(guiInt, setMsgView)).AlwaysDo([&](auto&& model) { msgModel = dynamic_cast<SearchModel*>(&model); });
+    When(Method(guiInt, setSigView)).AlwaysDo([&](auto&& model) { sigModel = dynamic_cast<SearchModel*>(&model); });
+    When(Method(guiInt, setMsgViewCbk)).Do([&](auto&& fn) { msgView = fn; });
+    When(Method(guiInt, setDockUndockCbk)).Do([&](auto&& fn) { dockUndock = fn; });
+    When(Method(guiInt, setMsgSettingsUpdatedCbk)).Do([&](auto&& fn) { settingsUpdated = fn; });
+
+    CanSignalDataCtx ctx(&guiInt.get());
+    CanSignalData c(std::move(ctx));
+    QSignalSpy settingsSpy(&c, &CanSignalData::canDbUpdated);
+    QJsonObject obj = QJsonDocument::fromJson(testJson.toUtf8()).object();
+
+    obj["file"] = QString(DBC_PATH) + "/tesla_can.dbc";
+    c.setConfig(obj);
+    c.configChanged();
+
+    REQUIRE(msgModel != nullptr);
+    REQUIRE(sigModel == nullptr);
+
+    REQUIRE(msgModel->rowCount() == 17);
+
+    msgView();
+
+    REQUIRE(msgModel != nullptr);
+    REQUIRE(sigModel != nullptr);
+    REQUIRE(sigModel != msgModel);
+
+    REQUIRE(msgModel->rowCount() == 17);
+    REQUIRE(msgModel->isFilterActive() == false);
+
+    // filter msg by Id
+    msgModel->updateFilter("0x45");
+    REQUIRE(msgModel->rowCount() == 1);
+    REQUIRE(msgModel->isFilterActive() == true);
+
+    // filter msg by name
+    msgModel->updateFilter("STW_");
+    REQUIRE(msgModel->rowCount() == 3);
+    REQUIRE(msgModel->isFilterActive() == true);
+
+    // filter msg by id, dlc and cycle
+    msgModel->updateFilter("5");
+    REQUIRE(msgModel->rowCount() == 3);
+    REQUIRE(msgModel->isFilterActive() == true);
+
+    // filter msg by ecu
+    msgModel->updateFilter("DI");
+    REQUIRE(msgModel->rowCount() == 3);
+    REQUIRE(msgModel->isFilterActive() == true);
+
+    // filter msg by cycle
+    msgModel->updateFilter("123456789");
+    REQUIRE(msgModel->rowCount() == 1);
+    REQUIRE(msgModel->isFilterActive() == true);
+
+    // filter msg by initVal
+    msgModel->updateFilter("aabbccddeeff0099");
+    REQUIRE(msgModel->rowCount() == 1);
+    REQUIRE(msgModel->isFilterActive() == true);
+
+    // cancel msg filter
+    msgModel->updateFilter("");
+    REQUIRE(msgModel->rowCount() == 17);
+    REQUIRE(msgModel->isFilterActive() == false);
+
+    REQUIRE(sigModel->rowCount() == 199);
+    REQUIRE(sigModel->isFilterActive() == false);
+
+    // filter sig by Id
+    sigModel->updateFilter("0x45");
+    REQUIRE(sigModel->rowCount() == 31);
+    REQUIRE(sigModel->isFilterActive() == true);
+
+    // filter sig by name
+    sigModel->updateFilter("DTR_");
+    REQUIRE(sigModel->rowCount() == 1);
+    REQUIRE(sigModel->isFilterActive() == true);
+    sigModel->updateFilter("");
+
+    // filter sig by start bit
+    sigModel->updateFilter("22");
+    REQUIRE(sigModel->rowCount() == 1);
+    REQUIRE(sigModel->isFilterActive() == true);
+
+    // filter sig by length
+    sigModel->updateFilter("14");
+    REQUIRE(sigModel->rowCount() == 10);
+    REQUIRE(sigModel->isFilterActive() == true);
+
+    // filter sig by type
+    sigModel->updateFilter("unsigned");
+    REQUIRE(sigModel->rowCount() == 136);
+    REQUIRE(sigModel->isFilterActive() == true);
+
+    // filter sig by offset and min
+    sigModel->updateFilter("-4096");
+    REQUIRE(sigModel->rowCount() == 1);
+    REQUIRE(sigModel->isFilterActive() == true);
+
+    // filter sig by max
+    sigModel->updateFilter("4095");
+    REQUIRE(sigModel->rowCount() == 1);
+    REQUIRE(sigModel->isFilterActive() == true);
+    // filter sig by offset and min
+    sigModel->updateFilter("-4096");
+    REQUIRE(sigModel->rowCount() == 1);
+    REQUIRE(sigModel->isFilterActive() == true);
+
+    sigModel->updateFilter("");
+    REQUIRE(sigModel->rowCount() == 199);
+    REQUIRE(sigModel->isFilterActive() == false);
+}
+
 int main(int argc, char* argv[])
 {
     bool haveDebug = std::getenv("CDS_DEBUG") != nullptr;
