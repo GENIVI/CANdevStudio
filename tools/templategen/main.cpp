@@ -1,6 +1,7 @@
 #include <boost/filesystem.hpp>
 #include <cxxopts.hpp>
 #include <spdlog/fmt/fmt.h>
+#include <fstream>
 
 namespace {
 
@@ -980,7 +981,7 @@ struct {name}Plugin {{
 }
 void writeToFile(const boost::filesystem::path& filename, const std::string& content)
 {
-    boost::filesystem::ofstream file(filename);
+    std::ofstream file(filename.string());
     file << content;
     file.close();
 }
@@ -1015,7 +1016,7 @@ int main(int argc, char* argv[])
     auto componentsPath = result["o"].as<std::string>();
     auto componentNameLower = str_tolower(componentName);
 
-    if (!boost::filesystem::exists({ componentsPath })) {
+    if (!boost::filesystem::exists(boost::filesystem::path(componentsPath))) {
         std::cerr << "component dir does not exist" << std::endl;
 
         return EXIT_FAILURE;

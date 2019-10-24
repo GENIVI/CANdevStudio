@@ -3,7 +3,7 @@
 # exit when any command fails
 set -e
 
-cmake_command="cmake .. -DCMAKE_BUILD_TYPE=$CMAKE_BUILD_TYPE"
+cmake_command="cmake .. -DCMAKE_BUILD_TYPE=$CMAKE_BUILD_TYPE -DWITH_TOOLS=ON"
 
 if [ "$WITH_COVERAGE" == "ON" ]; then
     cmake_command="$cmake_command -DWITH_COVERAGE=ON"
