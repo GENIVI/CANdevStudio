@@ -16,7 +16,7 @@ var searchData=
   ['candeviceplugin',['CanDevicePlugin',['../struct_can_device_plugin.html',1,'']]],
   ['candeviceplugin_2eh',['candeviceplugin.h',['../candeviceplugin_8h.html',1,'']]],
   ['candeviceprivate',['CanDevicePrivate',['../class_can_device_private.html',1,'CanDevicePrivate'],['../class_can_device_private.html#a7896dc8cab99964673232ee03a374029',1,'CanDevicePrivate::CanDevicePrivate()']]],
-  ['candeviceqt',['CanDeviceQt',['../struct_can_device_qt.html',1,'']]],
+  ['candeviceqt',['CanDeviceQt',['../struct_can_device_qt.html',1,'CanDeviceQt'],['../struct_can_device_qt.html#afe5f4752d7dcbf0080960244cd1ac656',1,'CanDeviceQt::CanDeviceQt()']]],
   ['candeviceqt_2eh',['candeviceqt.h',['../candeviceqt_8h.html',1,'']]],
   ['candeviceqt_5ftest_2ecpp',['candeviceqt_test.cpp',['../candeviceqt__test_8cpp.html',1,'']]],
   ['canload',['CanLoad',['../class_can_load.html',1,'CanLoad'],['../class_can_load.html#a53fc897775305acf9fa32b0c00a1faab',1,'CanLoad::CanLoad()'],['../class_can_load.html#aa0e08e857783522f31b5438ec7dd1e4f',1,'CanLoad::CanLoad(CanLoadCtx &amp;&amp;ctx)']]],
