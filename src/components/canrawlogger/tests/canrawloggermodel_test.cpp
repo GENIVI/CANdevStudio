@@ -16,26 +16,26 @@ TEST_CASE("Test basic functionality", "[canrawloggerModel]")
 {
     using namespace fakeit;
     CanRawLoggerModel canrawloggerModel;
-    CHECK(canrawloggerModel.caption() == "CanRawLogger");
-    CHECK(canrawloggerModel.name() == "CanRawLogger");
-    CHECK(canrawloggerModel.resizable() == false);
-    CHECK(canrawloggerModel.hasSeparateThread() == false);
-    CHECK(dynamic_cast<CanRawLoggerModel*>(canrawloggerModel.clone().get()) != nullptr);
-    CHECK(dynamic_cast<QLabel*>(canrawloggerModel.embeddedWidget()) != nullptr);
+    REQUIRE(canrawloggerModel.caption() == "CanRawLogger");
+    REQUIRE(canrawloggerModel.name() == "CanRawLogger");
+    REQUIRE(canrawloggerModel.resizable() == false);
+    REQUIRE(canrawloggerModel.hasSeparateThread() == false);
+    REQUIRE(dynamic_cast<CanRawLoggerModel*>(canrawloggerModel.clone().get()) != nullptr);
+    REQUIRE(dynamic_cast<QLabel*>(canrawloggerModel.embeddedWidget()) != nullptr);
 }
 
 TEST_CASE("painterDelegate", "[canrawloggerModel]")
 {
     CanRawLoggerModel canrawloggerModel;
-    CHECK(canrawloggerModel.painterDelegate() != nullptr);
+    REQUIRE(canrawloggerModel.painterDelegate() != nullptr);
 }
 
 TEST_CASE("nPorts", "[canrawloggerModel]")
 {
     CanRawLoggerModel canrawloggerModel;
 
-    CHECK(canrawloggerModel.nPorts(QtNodes::PortType::Out) == 0);
-    CHECK(canrawloggerModel.nPorts(QtNodes::PortType::In) == 1);
+    REQUIRE(canrawloggerModel.nPorts(QtNodes::PortType::Out) == 0);
+    REQUIRE(canrawloggerModel.nPorts(QtNodes::PortType::In) == 1);
 }
 
 TEST_CASE("dataType", "[canrawloggerModel]")
@@ -45,16 +45,16 @@ TEST_CASE("dataType", "[canrawloggerModel]")
     NodeDataType ndt;
 
     ndt = canrawloggerModel.dataType(QtNodes::PortType::Out, 0);
-    CHECK(ndt.id == "");
-    CHECK(ndt.name == "");
+    REQUIRE(ndt.id == "");
+    REQUIRE(ndt.name == "");
 
     ndt = canrawloggerModel.dataType(QtNodes::PortType::In, 0);
-    CHECK(ndt.id == "rawframe");
-    CHECK(ndt.name == "RAW");
+    REQUIRE(ndt.id == "rawframe");
+    REQUIRE(ndt.name == "RAW");
 
     ndt = canrawloggerModel.dataType(QtNodes::PortType::In, 1);
-    CHECK(ndt.id == "");
-    CHECK(ndt.name == "");
+    REQUIRE(ndt.id == "");
+    REQUIRE(ndt.name == "");
 }
 
 TEST_CASE("outData", "[canrawloggerModel]")
@@ -62,7 +62,7 @@ TEST_CASE("outData", "[canrawloggerModel]")
     CanRawLoggerModel canrawloggerModel;
 
     auto nd = canrawloggerModel.outData(0);
-    CHECK(!nd);
+    REQUIRE(!nd);
 }
 
 TEST_CASE("setInData", "[canrawloggerModel]")
@@ -81,8 +81,8 @@ TEST_CASE("setInData", "[canrawloggerModel]")
     canrawloggerModel.setInData(errData, 1);
     canrawloggerModel.setInData({}, 1);
 
-    CHECK(txSpy.count() == 1);
-    CHECK(rxSpy.count() == 1);
+    REQUIRE(txSpy.count() == 1);
+    REQUIRE(rxSpy.count() == 1);
 }
 
 int main(int argc, char* argv[])

@@ -83,3 +83,9 @@ ComponentInterface::ComponentProperties CanRawSender::getSupportedProperties() c
 {
     return d_ptr->getSupportedProperties();
 }
+
+void CanRawSender::simBcastRcv(const QJsonObject &msg, const QVariant &param)
+{
+    Q_UNUSED(msg);
+    Q_UNUSED(param);
+}

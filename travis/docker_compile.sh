@@ -29,7 +29,14 @@ docker run \
             cpack -G TXZ &&
             cmake . -DSTANDALONE=OFF &&
             cpack -G DEB &&
-            mkdir ../rc && mv *.deb *.tar.xz ../rc || echo 'Failed to create package'; fi"
+            mkdir ../rc && mv *.deb *.tar.xz ../rc || echo 'ERROR: Failed to create package'; fi &&
+        if [ '$TEMPLATEGEN' == 'ON' ]; then
+            ./tools/templategen/templategen -n WithGUI -o ../src/components &&
+            ./tools/templategen/templategen -n NoGUI -o ../src/components -g &&
+            cmake . &&
+            make -j5 &&
+            make test &&
+            rm -rf ../src/components/NoGUI ../src/components/WithGUI || echo 'ERROR: Failed to test templategen'; fi"
 
 if [ "$PACKAGE" == "ON" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "master" ]; then
     cd master

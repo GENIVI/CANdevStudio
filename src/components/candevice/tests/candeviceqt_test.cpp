@@ -6,7 +6,7 @@
 TEST_CASE("Invalid parameters init fails", "[candeviceqt]")
 {
     CanDeviceQt dev;
-    CHECK(dev.init("", "") == false);
+    REQUIRE(dev.init("", "") == false);
 }
 
 TEST_CASE("Uninitialized device", "[candeviceqt]")
@@ -29,7 +29,7 @@ TEST_CASE("Uninitialized device", "[candeviceqt]")
 TEST_CASE("Correct init parameters", "[candeviceqt]")
 {
     CanDeviceQt dev;
-    CHECK(dev.init("socketcan", "can0") == true);
+    REQUIRE(dev.init("socketcan", "can0") == true);
 }
 
 TEST_CASE("Initialized device", "[candeviceqt]")
@@ -37,7 +37,7 @@ TEST_CASE("Initialized device", "[candeviceqt]")
     CanDeviceQt dev;
     QCanBusFrame frame;
 
-    CHECK(dev.init("socketcan", "can0") == true);
+    REQUIRE(dev.init("socketcan", "can0") == true);
 
     REQUIRE_NOTHROW(dev.connectDevice());
     REQUIRE_NOTHROW(dev.setFramesWrittenCbk({}));
@@ -57,5 +57,5 @@ TEST_CASE("Thread", "[candeviceqt]")
     QEventLoop el;
 
     dev.setParent(&el);
-    CHECK(dev.init("socketcan", "can0") == true);
+    REQUIRE(dev.init("socketcan", "can0") == true);
 }

@@ -21,22 +21,22 @@ TEST_CASE("Test basic functionality", "[canrawview]")
 {
     using namespace fakeit;
     CanRawViewModel canRawViewModel;
-    CHECK(canRawViewModel.caption() == "CanRawView");
-    CHECK(canRawViewModel.name() == "CanRawView");
-    CHECK(canRawViewModel.resizable() == false);
-    CHECK(dynamic_cast<CanRawViewModel*>(canRawViewModel.clone().get()) != nullptr);
-    CHECK(dynamic_cast<QLabel*>(canRawViewModel.embeddedWidget()) != nullptr);
+    REQUIRE(canRawViewModel.caption() == "CanRawView");
+    REQUIRE(canRawViewModel.name() == "CanRawView");
+    REQUIRE(canRawViewModel.resizable() == false);
+    REQUIRE(dynamic_cast<CanRawViewModel*>(canRawViewModel.clone().get()) != nullptr);
+    REQUIRE(dynamic_cast<QLabel*>(canRawViewModel.embeddedWidget()) != nullptr);
 }
 
 TEST_CASE("Port information", "[canrawview]")
 {
     CanRawViewModel canRawViewModel;
     CanRawData canRawViewDataIn;
-    CHECK(canRawViewModel.nPorts(PortType::Out) == 0);
-    CHECK(canRawViewModel.nPorts(PortType::In) == 1);
-    CHECK(canRawViewModel.nPorts(PortType::None) == 0);
-    CHECK(canRawViewModel.dataType(PortType::In, 0).id == canRawViewDataIn.type().id);
-    CHECK(canRawViewModel.dataType(PortType::In, 0).name == canRawViewDataIn.type().name);
+    REQUIRE(canRawViewModel.nPorts(PortType::Out) == 0);
+    REQUIRE(canRawViewModel.nPorts(PortType::In) == 1);
+    REQUIRE(canRawViewModel.nPorts(PortType::None) == 0);
+    REQUIRE(canRawViewModel.dataType(PortType::In, 0).id == canRawViewDataIn.type().id);
+    REQUIRE(canRawViewModel.dataType(PortType::In, 0).name == canRawViewDataIn.type().name);
 }
 
 TEST_CASE("Calling setInData with direction TX will result in frameSent being emitted", "[canrawview]")
@@ -48,8 +48,8 @@ TEST_CASE("Calling setInData with direction TX will result in frameSent being em
     QSignalSpy frameSentSpy(&canRawViewModel, &CanRawViewModel::frameSent);
 
     canRawViewModel.setInData(canRawViewDataIn, 0);
-    CHECK(frameSentSpy.count() == 1);
-    CHECK(qvariant_cast<QCanBusFrame>(frameSentSpy.takeFirst().at(1)).frameId() == testFrame.frameId());
+    REQUIRE(frameSentSpy.count() == 1);
+    REQUIRE(qvariant_cast<QCanBusFrame>(frameSentSpy.takeFirst().at(1)).frameId() == testFrame.frameId());
 }
 
 TEST_CASE("Calling setInData with direction RX will result in frameReceived being emitted", "[canrawview]")
@@ -61,8 +61,8 @@ TEST_CASE("Calling setInData with direction RX will result in frameReceived bein
     QSignalSpy frameReceivedSpy(&canRawViewModel, &CanRawViewModel::frameReceived);
 
     canRawViewModel.setInData(canRawViewDataIn, 0);
-    CHECK(frameReceivedSpy.count() == 1);
-    CHECK(qvariant_cast<QCanBusFrame>(frameReceivedSpy.takeFirst().at(0)).frameId() == testFrame.frameId());
+    REQUIRE(frameReceivedSpy.count() == 1);
+    REQUIRE(qvariant_cast<QCanBusFrame>(frameReceivedSpy.takeFirst().at(0)).frameId() == testFrame.frameId());
 }
 
 TEST_CASE("Invalid direction", "[canrawview]")
@@ -74,16 +74,16 @@ TEST_CASE("Invalid direction", "[canrawview]")
     QSignalSpy frameSentSpy(&canRawViewModel, &CanRawViewModel::frameSent);
 
     canRawViewModel.setInData(canRawViewDataIn, 0);
-    CHECK(frameSentSpy.count() == 0);
+    REQUIRE(frameSentSpy.count() == 0);
 }
 
 TEST_CASE("Test save configuration", "[canrawview]")
 {
     CanRawViewModel canRawViewModel;
     QJsonObject json = canRawViewModel.save();
-    CHECK(json.find("name") != json.end());
-    CHECK(json.find("viewColumns") != json.end());
-    CHECK(json.find("scrolling") != json.end());
+    REQUIRE(json.find("name") != json.end());
+    REQUIRE(json.find("viewColumns") != json.end());
+    REQUIRE(json.find("scrolling") != json.end());
 }
 
 bool compareJson(const QJsonObject& patern, const QJsonObject& check)
@@ -167,7 +167,7 @@ TEST_CASE("Test restore configuration", "[canrawview]")
 {
     QDir dir("configfiles");
     QFile file(dir.absoluteFilePath("canrawviewconfig.cds"));
-    CHECK(file.open(QIODevice::ReadOnly) == true);
+    REQUIRE(file.open(QIODevice::ReadOnly) == true);
 
     QByteArray wholeFile = file.readAll();
     QJsonDocument jsonFile(QJsonDocument::fromJson(wholeFile));
@@ -177,14 +177,14 @@ TEST_CASE("Test restore configuration", "[canrawview]")
     canRawViewModel.restore(jsonObject);
     QJsonObject json = canRawViewModel.save();
 
-    CHECK(compareJson(jsonObject, json) == true);
+    REQUIRE(compareJson(jsonObject, json) == true);
 }
 
 TEST_CASE("Test restore configuration - lack of column", "[canrawview]")
 {
     QDir dir("configfiles");
     QFile file(dir.absoluteFilePath("canrawviewconfig_columnluck.cds"));
-    CHECK(file.open(QIODevice::ReadOnly) == true);
+    REQUIRE(file.open(QIODevice::ReadOnly) == true);
 
     QByteArray wholeFile = file.readAll();
     QJsonDocument jsonFile(QJsonDocument::fromJson(wholeFile));
@@ -194,14 +194,14 @@ TEST_CASE("Test restore configuration - lack of column", "[canrawview]")
     canRawViewModel.restore(jsonObject);
     QJsonObject json = canRawViewModel.save();
 
-    CHECK(compareJson(jsonObject, json) == false);
+    REQUIRE(compareJson(jsonObject, json) == false);
 }
 
 TEST_CASE("Test restore configuration - sorting format incorrect", "[canrawview]")
 {
     QDir dir("configfiles");
     QFile file(dir.absoluteFilePath("canrawviewconfig_sortingformat.cds"));
-    CHECK(file.open(QIODevice::ReadOnly) == true);
+    REQUIRE(file.open(QIODevice::ReadOnly) == true);
 
     QByteArray wholeFile = file.readAll();
     QJsonDocument jsonFile(QJsonDocument::fromJson(wholeFile));
@@ -211,14 +211,14 @@ TEST_CASE("Test restore configuration - sorting format incorrect", "[canrawview]
     canRawViewModel.restore(jsonObject);
     QJsonObject json = canRawViewModel.save();
 
-    CHECK(compareJson(jsonObject, json) == false);
+    REQUIRE(compareJson(jsonObject, json) == false);
 }
 
 TEST_CASE("Test restore configuration - visual index incorrect", "[canrawview]")
 {
     QDir dir("configfiles");
     QFile file(dir.absoluteFilePath("canrawviewconfig_visualindexproblem.cds"));
-    CHECK(file.open(QIODevice::ReadOnly) == true);
+    REQUIRE(file.open(QIODevice::ReadOnly) == true);
 
     QByteArray wholeFile = file.readAll();
     QJsonDocument jsonFile(QJsonDocument::fromJson(wholeFile));
@@ -228,14 +228,14 @@ TEST_CASE("Test restore configuration - visual index incorrect", "[canrawview]")
     canRawViewModel.restore(jsonObject);
     QJsonObject json = canRawViewModel.save();
 
-    CHECK(compareJson(jsonObject, json) == false);
+    REQUIRE(compareJson(jsonObject, json) == false);
 }
 
 TEST_CASE("Test restore configuration - width incorrect", "[canrawview]")
 {
     QDir dir("configfiles");
     QFile file(dir.absoluteFilePath("canrawviewconfig_widthproblem.cds"));
-    CHECK(file.open(QIODevice::ReadOnly) == true);
+    REQUIRE(file.open(QIODevice::ReadOnly) == true);
 
     QByteArray wholeFile = file.readAll();
     QJsonDocument jsonFile(QJsonDocument::fromJson(wholeFile));
@@ -245,15 +245,15 @@ TEST_CASE("Test restore configuration - width incorrect", "[canrawview]")
     canRawViewModel.restore(jsonObject);
     QJsonObject json = canRawViewModel.save();
 
-    CHECK(compareJson(jsonObject, json) == false);
+    REQUIRE(compareJson(jsonObject, json) == false);
 }
 
 TEST_CASE("Getters", "[canrawview]")
 {
     CanRawViewModel crvModel;
 
-    CHECK(crvModel.painterDelegate() != nullptr);
-    CHECK(crvModel.outData(0));
+    REQUIRE(crvModel.painterDelegate() != nullptr);
+    REQUIRE(crvModel.outData(0));
 }
 
 int main(int argc, char* argv[])

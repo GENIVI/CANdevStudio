@@ -17,8 +17,8 @@ TEST_CASE("Stubbed methods", "[canrawplayer]")
     CanRawPlayerCtx ctx;
     CanRawPlayer c(std::move(ctx));
 
-    CHECK(c.mainWidget() == nullptr);
-    CHECK(c.mainWidgetDocked() == true);
+    REQUIRE(c.mainWidget() == nullptr);
+    REQUIRE(c.mainWidgetDocked() == true);
 }
 
 TEST_CASE("setConfig - qobj", "[canrawplayer]")
@@ -165,7 +165,7 @@ TEST_CASE("Send test", "[canrawplayer]")
     th.quit();
     th.wait();
 
-    CHECK(sendSpy.count() == 10);
+    REQUIRE(sendSpy.count() == 10);
 }
 
 TEST_CASE("Send test 2", "[canrawplayer]")
@@ -193,7 +193,7 @@ TEST_CASE("Send test 2", "[canrawplayer]")
     th.quit();
     th.wait();
 
-    CHECK(sendSpy.count() == 5);
+    REQUIRE(sendSpy.count() == 5);
 }
 
 int main(int argc, char* argv[])

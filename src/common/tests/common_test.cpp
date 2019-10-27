@@ -38,8 +38,8 @@ TEST_CASE("EnumIterator singularity", "[common]")
     using I = EnumIterator<Trivial, Trivial::A, Trivial::C>;
 
     I it;
-    CHECK(it.end() == it);
-    CHECK(it.begin() != it);
+    REQUIRE(it.end() == it);
+    REQUIRE(it.begin() != it);
 }
 
 TEST_CASE("EnumIterator non-singular", "[common]")
@@ -49,9 +49,9 @@ TEST_CASE("EnumIterator non-singular", "[common]")
     using I = EnumIterator<Trivial, Trivial::A, Trivial::C>;
 
     I it{ Trivial::B };
-    CHECK(it.end() != it);
-    CHECK(it.begin() != it);
-    CHECK(I{ Trivial::C } == ++it);
+    REQUIRE(it.end() != it);
+    REQUIRE(it.begin() != it);
+    REQUIRE(I{ Trivial::C } == ++it);
 }
 
 TEST_CASE("EnumIterator operator*", "[common]")
@@ -61,17 +61,17 @@ TEST_CASE("EnumIterator operator*", "[common]")
     using I = EnumIterator<Trivial, Trivial::A, Trivial::C>;
 
     I it{ Trivial::A };
-    CHECK(it.end() != it);
+    REQUIRE(it.end() != it);
 
-    CHECK(I{ Trivial::B } == ++it);
-    CHECK(Trivial::B == *it);
-    CHECK(I{ Trivial::C } == ++it);
-    CHECK(Trivial::C == *it);
+    REQUIRE(I{ Trivial::B } == ++it);
+    REQUIRE(Trivial::B == *it);
+    REQUIRE(I{ Trivial::C } == ++it);
+    REQUIRE(Trivial::C == *it);
 
     const I it1{ Trivial::A };
-    CHECK(it1.end() != it1);
-    CHECK(Trivial::A == *it1);
-    CHECK(it.begin() == it1);
+    REQUIRE(it1.end() != it1);
+    REQUIRE(Trivial::A == *it1);
+    REQUIRE(it.begin() == it1);
 }
 
 TEST_CASE("EnumIterator operator->", "[common]")
@@ -81,17 +81,17 @@ TEST_CASE("EnumIterator operator->", "[common]")
     using I = EnumIterator<Trivial, Trivial::A, Trivial::C>;
 
     I it{ Trivial::A };
-    CHECK(it.end() != it);
+    REQUIRE(it.end() != it);
 
-    CHECK(I{ Trivial::B } == ++it);
-    CHECK(Trivial::B == it.operator->());
-    CHECK(I{ Trivial::C } == ++it);
-    CHECK(Trivial::C == it.operator->());
+    REQUIRE(I{ Trivial::B } == ++it);
+    REQUIRE(Trivial::B == it.operator->());
+    REQUIRE(I{ Trivial::C } == ++it);
+    REQUIRE(Trivial::C == it.operator->());
 
     const I it1{ Trivial::A };
-    CHECK(it1.end() != it1);
-    CHECK(Trivial::A == it1.operator->());
-    CHECK(it.begin() == it1);
+    REQUIRE(it1.end() != it1);
+    REQUIRE(Trivial::A == it1.operator->());
+    REQUIRE(it.begin() == it1);
 }
 
 TEST_CASE("EnumIterator operator++", "[common]")
@@ -101,24 +101,24 @@ TEST_CASE("EnumIterator operator++", "[common]")
     using I = EnumIterator<Trivial, Trivial::A, Trivial::C>;
 
     I it1{ Trivial::A };
-    CHECK(it1.end() != it1);
-    CHECK(Trivial::B == *++it1);
-    CHECK(Trivial::C == *++it1);
-    CHECK(it1.end() == ++it1);
-    CHECK(it1.end() == ++it1);
+    REQUIRE(it1.end() != it1);
+    REQUIRE(Trivial::B == *++it1);
+    REQUIRE(Trivial::C == *++it1);
+    REQUIRE(it1.end() == ++it1);
+    REQUIRE(it1.end() == ++it1);
 
     I it2{ Trivial::A };
-    CHECK(it2.end() != it2);
-    CHECK(Trivial::B == *it2++);
-    CHECK(Trivial::A == *it2);
+    REQUIRE(it2.end() != it2);
+    REQUIRE(Trivial::B == *it2++);
+    REQUIRE(Trivial::A == *it2);
 
     const I it3{ Trivial::A };
-    CHECK(it3.end() != it3);
-    CHECK(it3.begin() == it3);
+    REQUIRE(it3.end() != it3);
+    REQUIRE(it3.begin() == it3);
 
     I it4;
-    CHECK(it4.end() == it4);
-    CHECK(it4.end() == ++it4);
+    REQUIRE(it4.end() == it4);
+    REQUIRE(it4.end() == ++it4);
 }
 
 TEST_CASE("EnumIterator swap", "[common]")
@@ -129,14 +129,14 @@ TEST_CASE("EnumIterator swap", "[common]")
 
     I it1{ Trivial::B };
     I it2{ Trivial::C };
-    CHECK(Trivial::B == *it1);
-    CHECK(Trivial::C == *it2);
+    REQUIRE(Trivial::B == *it1);
+    REQUIRE(Trivial::C == *it2);
 
     using std::swap;
     swap(it1, it2);
 
-    CHECK(Trivial::C == *it1);
-    CHECK(Trivial::B == *it2);
+    REQUIRE(Trivial::C == *it1);
+    REQUIRE(Trivial::B == *it2);
 }
 
 TEST_CASE("EnumIterator non-trivial", "[common]")
@@ -146,13 +146,13 @@ TEST_CASE("EnumIterator non-trivial", "[common]")
     using I = EnumIterator<NonTrivial, NonTrivial::A, NonTrivial::C>;
 
     I it{ NonTrivial::A };
-    CHECK(it.end() != it);
-    CHECK(it.begin() == it);
+    REQUIRE(it.end() != it);
+    REQUIRE(it.begin() == it);
 
-    CHECK(NonTrivial::A == *it);
-    CHECK(NonTrivial::B == *++it);
-    CHECK(NonTrivial::C == *++it);
-    CHECK(it.end() == ++it);
+    REQUIRE(NonTrivial::A == *it);
+    REQUIRE(NonTrivial::B == *++it);
+    REQUIRE(NonTrivial::C == *++it);
+    REQUIRE(it.end() == ++it);
 }
 
 TEST_CASE("EnumIterator iterator_traits", "[common]")
@@ -173,14 +173,14 @@ TEST_CASE("EnumIterator next", "[common]")
     using I = EnumIterator<NonTrivial, NonTrivial::A, NonTrivial::C>;
 
     I it{ NonTrivial::A };
-    CHECK(I{ NonTrivial::B } == std::next(it));
-    CHECK(NonTrivial::A == *it);
+    REQUIRE(I{ NonTrivial::B } == std::next(it));
+    REQUIRE(NonTrivial::A == *it);
 
     std::advance(it, 2);
-    CHECK(NonTrivial::C == *it);
+    REQUIRE(NonTrivial::C == *it);
 
     std::advance(it, 666);
-    CHECK(it.end() == it);
+    REQUIRE(it.end() == it);
 }
 
 TEST_CASE("EnumIterator range-based-for non-trivial", "[common]")
@@ -196,7 +196,7 @@ TEST_CASE("EnumIterator range-based-for non-trivial", "[common]")
         b.emplace_back(i);
     }
 
-    CHECK(a == b);
+    REQUIRE(a == b);
 }
 
 TEST_CASE("EnumIterator range-based-for trivial", "[common]")
@@ -212,7 +212,7 @@ TEST_CASE("EnumIterator range-based-for trivial", "[common]")
         b.emplace_back(i);
     }
 
-    CHECK(a == b);
+    REQUIRE(a == b);
 }
 
 TEST_CASE("EnumIterator range-based-for trivial-start", "[common]")
@@ -229,14 +229,14 @@ TEST_CASE("EnumIterator range-based-for trivial-start", "[common]")
         b.emplace_back(i);
     }
 
-    CHECK(a == b);
+    REQUIRE(a == b);
 }
 
 TEST_CASE("IconLable sizeHint", "[common]")
 {
     IconLabel l("name", QColor(0, 0, 0), QColor(0, 0, 0));
 
-    CHECK(l.minimumSizeHint() == QSize(140, 48));
+    REQUIRE(l.minimumSizeHint() == QSize(140, 48));
 }
 
 // -- compile-time errors:

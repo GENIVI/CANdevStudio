@@ -132,3 +132,9 @@ void CanRawLogger::frameSent(bool status, const QCanBusFrame& frame)
         d_ptr->logFrame(frame, "TX");
     }
 }
+
+void CanRawLogger::simBcastRcv(const QJsonObject &msg, const QVariant &param)
+{
+    Q_UNUSED(msg);
+    Q_UNUSED(param);
+}

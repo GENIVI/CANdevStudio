@@ -96,3 +96,9 @@ void CanRawFilter::rxFrameIn(const QCanBusFrame& frame)
         emit rxFrameOut(frame);
     }
 }
+
+void CanRawFilter::simBcastRcv(const QJsonObject &msg, const QVariant &param)
+{
+    Q_UNUSED(msg);
+    Q_UNUSED(param);
+}

@@ -16,26 +16,26 @@ TEST_CASE("Test basic functionality", "[canrawfilterModel]")
 {
     using namespace fakeit;
     CanRawFilterModel cm;
-    CHECK(cm.caption() == "CanRawFilter");
-    CHECK(cm.name() == "CanRawFilter");
-    CHECK(cm.resizable() == false);
-    CHECK(cm.hasSeparateThread() == false);
-    CHECK(dynamic_cast<CanRawFilterModel*>(cm.clone().get()) != nullptr);
-    CHECK(dynamic_cast<QLabel*>(cm.embeddedWidget()) != nullptr);
+    REQUIRE(cm.caption() == "CanRawFilter");
+    REQUIRE(cm.name() == "CanRawFilter");
+    REQUIRE(cm.resizable() == false);
+    REQUIRE(cm.hasSeparateThread() == false);
+    REQUIRE(dynamic_cast<CanRawFilterModel*>(cm.clone().get()) != nullptr);
+    REQUIRE(dynamic_cast<QLabel*>(cm.embeddedWidget()) != nullptr);
 }
 
 TEST_CASE("painterDelegate", "[canrawfilterModel]")
 {
     CanRawFilterModel cm;
-    CHECK(cm.painterDelegate() != nullptr);
+    REQUIRE(cm.painterDelegate() != nullptr);
 }
 
 TEST_CASE("nPorts", "[canrawfilterModel]")
 {
     CanRawFilterModel cm;
 
-    CHECK(cm.nPorts(QtNodes::PortType::Out) == 1);
-    CHECK(cm.nPorts(QtNodes::PortType::In) == 1);
+    REQUIRE(cm.nPorts(QtNodes::PortType::Out) == 1);
+    REQUIRE(cm.nPorts(QtNodes::PortType::In) == 1);
 }
 
 TEST_CASE("dataType", "[canrawfilterModel]")
@@ -45,20 +45,20 @@ TEST_CASE("dataType", "[canrawfilterModel]")
     NodeDataType ndt;
 
     ndt = cm.dataType(QtNodes::PortType::Out, 0);
-    CHECK(ndt.id == "rawframe");
-    CHECK(ndt.name == "RAW");
+    REQUIRE(ndt.id == "rawframe");
+    REQUIRE(ndt.name == "RAW");
 
     ndt = cm.dataType(QtNodes::PortType::Out, 1);
-    CHECK(ndt.id == "");
-    CHECK(ndt.name == "");
+    REQUIRE(ndt.id == "");
+    REQUIRE(ndt.name == "");
 
     ndt = cm.dataType(QtNodes::PortType::In, 0);
-    CHECK(ndt.id == "rawframe");
-    CHECK(ndt.name == "RAW");
+    REQUIRE(ndt.id == "rawframe");
+    REQUIRE(ndt.name == "RAW");
 
     ndt = cm.dataType(QtNodes::PortType::In, 1);
-    CHECK(ndt.id == "");
-    CHECK(ndt.name == "");
+    REQUIRE(ndt.id == "");
+    REQUIRE(ndt.name == "");
 }
 
 TEST_CASE("outData empty", "[canrawfilterModel]")
@@ -66,7 +66,7 @@ TEST_CASE("outData empty", "[canrawfilterModel]")
     CanRawFilterModel cm;
 
     auto nd = cm.outData(0);
-    CHECK(!nd);
+    REQUIRE(!nd);
 }
 
 TEST_CASE("setInData RX", "[canrawfilterModel]")
@@ -77,7 +77,7 @@ TEST_CASE("setInData RX", "[canrawfilterModel]")
     QSignalSpy spy(&cm, &CanRawFilterModel::filterRx);
 
     cm.setInData(data, 0);
-    CHECK(spy.count() == 1);
+    REQUIRE(spy.count() == 1);
 }
 
 TEST_CASE("setInData TX success", "[canrawfilterModel]")
@@ -88,7 +88,7 @@ TEST_CASE("setInData TX success", "[canrawfilterModel]")
     QSignalSpy spy(&cm, &CanRawFilterModel::filterTx);
 
     cm.setInData(data, 0);
-    CHECK(spy.count() == 1);
+    REQUIRE(spy.count() == 1);
 }
 
 TEST_CASE("setInData TX fail", "[canrawfilterModel]")
@@ -99,7 +99,7 @@ TEST_CASE("setInData TX fail", "[canrawfilterModel]")
     QSignalSpy spy(&cm, &CanRawFilterModel::filterTx);
 
     cm.setInData(data, 0);
-    CHECK(spy.count() == 0);
+    REQUIRE(spy.count() == 0);
 }
 
 TEST_CASE("setInData Undefined", "[canrawfilterModel]")
@@ -112,8 +112,8 @@ TEST_CASE("setInData Undefined", "[canrawfilterModel]")
 
     cm.setInData(data, 0);
     cm.setInData({}, 0);
-    CHECK(spy1.count() == 0);
-    CHECK(spy2.count() == 0);
+    REQUIRE(spy1.count() == 0);
+    REQUIRE(spy2.count() == 0);
 }
 
 TEST_CASE("filteredTx success", "[canrawfilterModel]")
@@ -122,11 +122,11 @@ TEST_CASE("filteredTx success", "[canrawfilterModel]")
     QCanBusFrame frame;
     QSignalSpy spy(&cm, &CanRawFilterModel::dataUpdated);
 
-    CHECK(cm.outData(0).get() == nullptr);
+    REQUIRE(cm.outData(0).get() == nullptr);
 
     cm.filteredTx(frame);
-    CHECK(spy.count() == 1);
-    CHECK(cm.outData(0).get() != nullptr);
+    REQUIRE(spy.count() == 1);
+    REQUIRE(cm.outData(0).get() != nullptr);
 }
 
 TEST_CASE("filteredTx queue full", "[canrawfilterModel]")
@@ -139,7 +139,7 @@ TEST_CASE("filteredTx queue full", "[canrawfilterModel]")
         cm.filteredTx(frame);
     }
 
-    CHECK(spy.count() == 127);
+    REQUIRE(spy.count() == 127);
 }
 
 TEST_CASE("filteredRx success", "[canrawfilterModel]")
@@ -148,11 +148,11 @@ TEST_CASE("filteredRx success", "[canrawfilterModel]")
     QCanBusFrame frame;
     QSignalSpy spy(&cm, &CanRawFilterModel::dataUpdated);
 
-    CHECK(cm.outData(0).get() == nullptr);
+    REQUIRE(cm.outData(0).get() == nullptr);
 
     cm.filteredRx(frame);
-    CHECK(spy.count() == 1);
-    CHECK(cm.outData(0).get() != nullptr);
+    REQUIRE(spy.count() == 1);
+    REQUIRE(cm.outData(0).get() != nullptr);
 }
 
 TEST_CASE("filteredRx queue full", "[canrawfilterModel]")
@@ -165,7 +165,7 @@ TEST_CASE("filteredRx queue full", "[canrawfilterModel]")
         cm.filteredRx(frame);
     }
 
-    CHECK(spy.count() == 127);
+    REQUIRE(spy.count() == 127);
 }
 
 int main(int argc, char* argv[])

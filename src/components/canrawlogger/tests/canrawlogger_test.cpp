@@ -20,8 +20,8 @@ TEST_CASE("Stubbed methods", "[canrawlogger]")
     CanRawLoggerCtx ctx;
     CanRawLogger c(std::move(ctx));
 
-    CHECK(c.mainWidget() == nullptr);
-    CHECK(c.mainWidgetDocked() == true);
+    REQUIRE(c.mainWidget() == nullptr);
+    REQUIRE(c.mainWidgetDocked() == true);
 }
 
 TEST_CASE("setConfig - qobj", "[canrawlogger]")
@@ -94,26 +94,26 @@ TEST_CASE("logging - directories", "[canrawlogger]")
     dir.setPath(dirName);
     dir.removeRecursively();
 
-    CHECK(dir.exists() == false);
+    REQUIRE(dir.exists() == false);
 
     obj.setProperty("directory", dirName);
     c.setConfig(obj);
     c.startSimulation();
 
-    CHECK(dir.exists() == true);
+    REQUIRE(dir.exists() == true);
 
     c.stopSimulation();
 
     dirName = "/dummy";
     dir.setPath(dirName);
 
-    CHECK(dir.exists() == false);
+    REQUIRE(dir.exists() == false);
 
     obj.setProperty("directory", dirName);
     c.setConfig(obj);
     c.startSimulation();
 
-    CHECK(dir.exists() == false);
+    REQUIRE(dir.exists() == false);
 
     c.stopSimulation();
 }
@@ -138,15 +138,15 @@ TEST_CASE("logging - filenames", "[canrawlogger]")
     c3.startSimulation();
 
     auto fileList = dir.entryList({ "*(1).log" });
-    CHECK(fileList.size() == 1);
+    REQUIRE(fileList.size() == 1);
 
     auto fileName = fileList[0].replace("(1)", "*");
     fileList = dir.entryList({ fileName });
-    CHECK(fileList.size() == 3);
+    REQUIRE(fileList.size() == 3);
 
     fileName = fileName.replace("*.log", "(2).log");
     fileList = dir.entryList({ fileName });
-    CHECK(fileList.size() == 1);
+    REQUIRE(fileList.size() == 1);
 
     c1.stopSimulation();
     c2.stopSimulation();
@@ -209,12 +209,12 @@ TEST_CASE("logging - send/receive", "[canrawlogger]")
 
     // list will include .. and .
     auto fileList = dir.entryList({ "*" });
-    CHECK(fileList.size() == 3);
+    REQUIRE(fileList.size() == 3);
 
     c.stopSimulation();
 
     auto msgCnt = loadTraceFile(dirName + "/" + fileList[2]);
-    CHECK(msgCnt == 3);
+    REQUIRE(msgCnt == 3);
 
     c.frameReceived(frame);
     c.frameReceived(frame);
@@ -222,9 +222,9 @@ TEST_CASE("logging - send/receive", "[canrawlogger]")
     c.frameReceived(frame);
 
     fileList = dir.entryList({ "*" });
-    CHECK(fileList.size() == 3);
+    REQUIRE(fileList.size() == 3);
     msgCnt = loadTraceFile(dirName + "/" + fileList[2]);
-    CHECK(msgCnt == 3);
+    REQUIRE(msgCnt == 3);
 }
 
 TEST_CASE("logging - send/receive, removed file", "[canrawlogger]")
@@ -255,10 +255,10 @@ TEST_CASE("logging - send/receive, removed file", "[canrawlogger]")
 
     // list will include .. and .
     auto fileList = dir.entryList({ "*" });
-    CHECK(fileList.size() == 3);
+    REQUIRE(fileList.size() == 3);
 
     QFile rmFile(dirName + "/" + fileList[2]);
-    CHECK(rmFile.remove());
+    REQUIRE(rmFile.remove());
 
     c.frameReceived(frame);
     c.frameReceived(frame);
@@ -286,7 +286,7 @@ TEST_CASE("logging - send/receive while stopped", "[canrawlogger]")
     c.frameSent(false, frame);
 
     auto fileList = dir.entryList({ "*" });
-    CHECK(fileList.size() == 0);
+    REQUIRE(fileList.size() == 0);
 }
 
 int main(int argc, char* argv[])

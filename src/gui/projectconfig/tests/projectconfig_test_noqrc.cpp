@@ -11,7 +11,7 @@ std::shared_ptr<spdlog::logger> kDefaultLogger;
 
 TEST_CASE("Validation - failed to load schema", "[projectconfig]")
 {
-    CHECK(ProjectConfigValidator::validateConfiguration({}) == false);
+    REQUIRE(ProjectConfigValidator::validateConfiguration({}) == false);
 }
 
 TEST_CASE("PropertyEditorDialog", "[projectconfig]")
@@ -21,10 +21,10 @@ TEST_CASE("PropertyEditorDialog", "[projectconfig]")
 
     auto props = dialog.properties();
 
-    CHECK(props->property("name").isValid());
-    CHECK(props->property("backend").isValid());
-    CHECK(props->property("interface").isValid());
-    CHECK(props->property("unsupported").isValid() == false);
+    REQUIRE(props->property("name").isValid());
+    REQUIRE(props->property("backend").isValid());
+    REQUIRE(props->property("interface").isValid());
+    REQUIRE(props->property("unsupported").isValid() == false);
 }
 
 TEST_CASE("PropertyEditorDialog no exposed props", "[projectconfig]")
@@ -34,10 +34,10 @@ TEST_CASE("PropertyEditorDialog no exposed props", "[projectconfig]")
 
     auto props = dialog.properties();
 
-    CHECK(props->property("name").isValid() == false);
-    CHECK(props->property("backend").isValid() == false);
-    CHECK(props->property("interface").isValid() == false);
-    CHECK(props->property("unsupported").isValid() == false);
+    REQUIRE(props->property("name").isValid() == false);
+    REQUIRE(props->property("backend").isValid() == false);
+    REQUIRE(props->property("interface").isValid() == false);
+    REQUIRE(props->property("unsupported").isValid() == false);
 }
 
 int main(int argc, char* argv[])

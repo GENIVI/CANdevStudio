@@ -30,6 +30,11 @@ public:
         QObject::connect(scene, &QtNodes::FlowScene::nodeContextMenu, cb);
     }
 
+    virtual void setConfigChangedCbk(const node_t cb)
+    {
+        _configUpdated = cb;
+    }
+
     virtual void openProperties(QtNodes::Node& node) override
     {
         auto& component = getComponent(node);
@@ -48,6 +53,8 @@ public:
 
             component.setConfig(*conf);
             component.configChanged();
+
+            _configUpdated(node);
         }
     }
 
@@ -60,6 +67,8 @@ public:
     }
 
 private:
+    node_t _configUpdated;
+
     ComponentInterface& getComponent(QtNodes::Node& node)
     {
         auto& iface = getComponentModel(node);

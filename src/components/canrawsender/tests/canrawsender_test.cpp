@@ -97,17 +97,17 @@ TEST_CASE("Add and remove frame test", "[canrawsender]")
 
     CanRawSender canRawSender{ CanRawSenderCtx(&crsMock.get(), &nlmFactoryMock.get()) };
 
-    CHECK(canRawSender.getLineCount() == 0);
+    REQUIRE(canRawSender.getLineCount() == 0);
 
     addLineCbk();
     addLineCbk();
-    CHECK(canRawSender.getLineCount() == 2);
+    REQUIRE(canRawSender.getLineCount() == 2);
 
     canRawSender.stopSimulation();
     canRawSender.startSimulation();
 
     removeLineCbk();
-    CHECK(canRawSender.getLineCount() == 1);
+    REQUIRE(canRawSender.getLineCount() == 1);
 
     sendPressed();
 }
@@ -129,26 +129,26 @@ TEST_CASE("Can raw sender save configuration test", "[canrawsender]")
 
     QJsonObject json = canRawSender.getConfig();
 
-    CHECK(json.empty() == false);
-    CHECK(json.count() == 3);
+    REQUIRE(json.empty() == false);
+    REQUIRE(json.count() == 3);
     const auto colIter = json.find("senderColumns");
-    CHECK(colIter != json.end());
-    CHECK(colIter.value().type() == QJsonValue::Array);
+    REQUIRE(colIter != json.end());
+    REQUIRE(colIter.value().type() == QJsonValue::Array);
     const auto colArray = json["senderColumns"].toArray();
-    CHECK(colArray.empty() == false);
-    CHECK(colArray.size() == 5);
-    CHECK(colArray.contains("Id") == true);
-    CHECK(colArray.contains("Data") == true);
-    CHECK(colArray.contains("Loop") == true);
-    CHECK(colArray.contains("Interval") == true);
+    REQUIRE(colArray.empty() == false);
+    REQUIRE(colArray.size() == 5);
+    REQUIRE(colArray.contains("Id") == true);
+    REQUIRE(colArray.contains("Data") == true);
+    REQUIRE(colArray.contains("Loop") == true);
+    REQUIRE(colArray.contains("Interval") == true);
 
-    CHECK(json.contains("content") == true);
+    REQUIRE(json.contains("content") == true);
 
     const auto sortIter = json.find("sorting");
-    CHECK(sortIter != json.end());
-    CHECK(sortIter.value().type() == QJsonValue::Object);
+    REQUIRE(sortIter != json.end());
+    REQUIRE(sortIter.value().type() == QJsonValue::Object);
     const auto sortObj = json["sorting"].toObject();
-    CHECK(sortObj.contains("currentIndex") == true);
+    REQUIRE(sortObj.contains("currentIndex") == true);
 }
 
 class commonTestClass {
@@ -208,7 +208,7 @@ TEST_CASE("Can raw sender restore configuration test - pass", "[canrawsender]")
 {
     QDir dir("configfiles");
     QFile file(dir.absoluteFilePath("canrawsenderconfig.cds"));
-    CHECK(file.open(QIODevice::ReadOnly) == true);
+    REQUIRE(file.open(QIODevice::ReadOnly) == true);
 
     QByteArray wholeFile = file.readAll();
     QJsonDocument jsonFile(QJsonDocument::fromJson(wholeFile));
@@ -221,18 +221,18 @@ TEST_CASE("Can raw sender restore configuration test - pass", "[canrawsender]")
     commonTestClass commontest(idConfStr, dataConfStr, intervalConfStr, loopConfBool);
     CanRawSender canRawSender{ CanRawSenderCtx(&commontest.crsMock.get(), &commontest.nlmFactoryMock.get()) };
 
-    CHECK(canRawSender.getLineCount() == 0);
+    REQUIRE(canRawSender.getLineCount() == 0);
     // Add new line
     canRawSender.setConfig(jsonObject);
     // If configuration is corrected create new line - check it
-    CHECK(canRawSender.getLineCount() == 1);
+    REQUIRE(canRawSender.getLineCount() == 1);
 }
 
 TEST_CASE("Can raw sender restore configuration test - column name incorrect", "[canrawsender]")
 {
     QDir dir("configfiles");
     QFile file(dir.absoluteFilePath("canrawsenderconfig_badcolumns.cds"));
-    CHECK(file.open(QIODevice::ReadOnly) == true);
+    REQUIRE(file.open(QIODevice::ReadOnly) == true);
 
     QByteArray wholeFile = file.readAll();
     QJsonDocument jsonFile(QJsonDocument::fromJson(wholeFile));
@@ -245,18 +245,18 @@ TEST_CASE("Can raw sender restore configuration test - column name incorrect", "
     commonTestClass commontest(idConfStr, dataConfStr, intervalConfStr, loopConfBool);
     CanRawSender canRawSender{ CanRawSenderCtx(&commontest.crsMock.get(), &commontest.nlmFactoryMock.get()) };
 
-    CHECK(canRawSender.getLineCount() == 0);
+    REQUIRE(canRawSender.getLineCount() == 0);
     // Add new line
     canRawSender.setConfig(jsonObject);
     // If configuration is corrected create new line - check it
-    CHECK(canRawSender.getLineCount() == 0);
+    REQUIRE(canRawSender.getLineCount() == 0);
 }
 
 TEST_CASE("Can raw sender restore configuration test - Id incorrect", "[canrawsender]")
 {
     QDir dir("configfiles");
     QFile file(dir.absoluteFilePath("canrawsenderconfig_badId.cds"));
-    CHECK(file.open(QIODevice::ReadOnly) == true);
+    REQUIRE(file.open(QIODevice::ReadOnly) == true);
 
     QByteArray wholeFile = file.readAll();
     QJsonDocument jsonFile(QJsonDocument::fromJson(wholeFile));
@@ -269,18 +269,18 @@ TEST_CASE("Can raw sender restore configuration test - Id incorrect", "[canrawse
     commonTestClass commontest(idConfStr, dataConfStr, intervalConfStr, loopConfBool);
     CanRawSender canRawSender{ CanRawSenderCtx(&commontest.crsMock.get(), &commontest.nlmFactoryMock.get()) };
 
-    CHECK(canRawSender.getLineCount() == 0);
+    REQUIRE(canRawSender.getLineCount() == 0);
     // Add new line
     canRawSender.setConfig(jsonObject);
     // If configuration is corrected create new line - check it
-    CHECK(canRawSender.getLineCount() == 0);
+    REQUIRE(canRawSender.getLineCount() == 0);
 }
 
 TEST_CASE("Can raw sender restore configuration test - Data incorrect", "[canrawsender]")
 {
     QDir dir("configfiles");
     QFile file(dir.absoluteFilePath("canrawsenderconfig_badData.cds"));
-    CHECK(file.open(QIODevice::ReadOnly) == true);
+    REQUIRE(file.open(QIODevice::ReadOnly) == true);
 
     QByteArray wholeFile = file.readAll();
     QJsonDocument jsonFile(QJsonDocument::fromJson(wholeFile));
@@ -293,18 +293,18 @@ TEST_CASE("Can raw sender restore configuration test - Data incorrect", "[canraw
     commonTestClass commontest(idConfStr, dataConfStr, intervalConfStr, loopConfBool);
     CanRawSender canRawSender{ CanRawSenderCtx(&commontest.crsMock.get(), &commontest.nlmFactoryMock.get()) };
 
-    CHECK(canRawSender.getLineCount() == 0);
+    REQUIRE(canRawSender.getLineCount() == 0);
     // Add new line
     canRawSender.setConfig(jsonObject);
     // If configuration is corrected create new line - check it
-    CHECK(canRawSender.getLineCount() == 0);
+    REQUIRE(canRawSender.getLineCount() == 0);
 }
 
 TEST_CASE("Can raw sender restore configuration test - Interval incorrect", "[canrawsender]")
 {
     QDir dir("configfiles");
     QFile file(dir.absoluteFilePath("canrawsenderconfig_badInterval.cds"));
-    CHECK(file.open(QIODevice::ReadOnly) == true);
+    REQUIRE(file.open(QIODevice::ReadOnly) == true);
 
     QByteArray wholeFile = file.readAll();
     QJsonDocument jsonFile(QJsonDocument::fromJson(wholeFile));
@@ -317,19 +317,19 @@ TEST_CASE("Can raw sender restore configuration test - Interval incorrect", "[ca
     commonTestClass commontest(idConfStr, dataConfStr, intervalConfStr, loopConfBool);
     CanRawSender canRawSender{ CanRawSenderCtx(&commontest.crsMock.get(), &commontest.nlmFactoryMock.get()) };
 
-    CHECK(canRawSender.getLineCount() == 0);
+    REQUIRE(canRawSender.getLineCount() == 0);
     // Add new line
     canRawSender.setConfig(jsonObject);
     // If configuration is corrected create new line - check it
-    CHECK(canRawSender.getLineCount() == 0);
+    REQUIRE(canRawSender.getLineCount() == 0);
 }
 
 TEST_CASE("Misc", "[canrawsender]")
 {
     CanRawSender canRawSender;
 
-    CHECK(canRawSender.mainWidgetDocked() == true);
-    CHECK(canRawSender.mainWidget() != nullptr);
+    REQUIRE(canRawSender.mainWidgetDocked() == true);
+    REQUIRE(canRawSender.mainWidget() != nullptr);
 }
 
 TEST_CASE("setConfig using QObject", "[canrawsender]")
@@ -344,8 +344,8 @@ TEST_CASE("setConfig using QObject", "[canrawsender]")
 
     auto qConfig = crs.getQConfig();
 
-    CHECK(qConfig->property("name").toString() == "CAN1");
-    CHECK(qConfig->property("fake").isValid() == false);
+    REQUIRE(qConfig->property("name").toString() == "CAN1");
+    REQUIRE(qConfig->property("fake").isValid() == false);
 }
 
 TEST_CASE("Restore config paths - columnAdopt", "[canrawsender]")
@@ -537,17 +537,17 @@ TEST_CASE("Dock/Undock", "[canrawsender]")
     CanRawSender canRawSender{ CanRawSenderCtx(&crsMock.get(), &nlmFactoryMock.get()) };
     QSignalSpy dockSpy(&canRawSender, &CanRawSender::mainWidgetDockToggled);
 
-    CHECK(canRawSender.mainWidgetDocked() == true);
+    REQUIRE(canRawSender.mainWidgetDocked() == true);
 
     dockUndock();
 
-    CHECK(dockSpy.count() == 1);
-    CHECK(canRawSender.mainWidgetDocked() == false);
+    REQUIRE(dockSpy.count() == 1);
+    REQUIRE(canRawSender.mainWidgetDocked() == false);
 
     dockUndock();
 
-    CHECK(dockSpy.count() == 2);
-    CHECK(canRawSender.mainWidgetDocked() == true);
+    REQUIRE(dockSpy.count() == 2);
+    REQUIRE(canRawSender.mainWidgetDocked() == true);
 }
 
 int main(int argc, char* argv[])

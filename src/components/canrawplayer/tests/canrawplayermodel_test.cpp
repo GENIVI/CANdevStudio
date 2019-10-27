@@ -16,26 +16,26 @@ TEST_CASE("Test basic functionality", "[canrawplayerModel]")
 {
     using namespace fakeit;
     CanRawPlayerModel canrawplayerModel;
-    CHECK(canrawplayerModel.caption() == "CanRawPlayer");
-    CHECK(canrawplayerModel.name() == "CanRawPlayer");
-    CHECK(canrawplayerModel.resizable() == false);
-    CHECK(canrawplayerModel.hasSeparateThread() == true);
-    CHECK(dynamic_cast<CanRawPlayerModel*>(canrawplayerModel.clone().get()) != nullptr);
-    CHECK(dynamic_cast<QLabel*>(canrawplayerModel.embeddedWidget()) != nullptr);
+    REQUIRE(canrawplayerModel.caption() == "CanRawPlayer");
+    REQUIRE(canrawplayerModel.name() == "CanRawPlayer");
+    REQUIRE(canrawplayerModel.resizable() == false);
+    REQUIRE(canrawplayerModel.hasSeparateThread() == true);
+    REQUIRE(dynamic_cast<CanRawPlayerModel*>(canrawplayerModel.clone().get()) != nullptr);
+    REQUIRE(dynamic_cast<QLabel*>(canrawplayerModel.embeddedWidget()) != nullptr);
 }
 
 TEST_CASE("painterDelegate", "[canrawplayerModel]")
 {
     CanRawPlayerModel canrawplayerModel;
-    CHECK(canrawplayerModel.painterDelegate() != nullptr);
+    REQUIRE(canrawplayerModel.painterDelegate() != nullptr);
 }
 
 TEST_CASE("nPorts", "[canrawplayerModel]")
 {
     CanRawPlayerModel canrawplayerModel;
 
-    CHECK(canrawplayerModel.nPorts(QtNodes::PortType::Out) == 1);
-    CHECK(canrawplayerModel.nPorts(QtNodes::PortType::In) == 0);
+    REQUIRE(canrawplayerModel.nPorts(QtNodes::PortType::Out) == 1);
+    REQUIRE(canrawplayerModel.nPorts(QtNodes::PortType::In) == 0);
 }
 
 TEST_CASE("dataType", "[canrawplayerModel]")
@@ -45,16 +45,16 @@ TEST_CASE("dataType", "[canrawplayerModel]")
     NodeDataType ndt;
 
     ndt = canrawplayerModel.dataType(QtNodes::PortType::Out, 0);
-    CHECK(ndt.id == "rawframe");
-    CHECK(ndt.name == "RAW");
+    REQUIRE(ndt.id == "rawframe");
+    REQUIRE(ndt.name == "RAW");
 
     ndt = canrawplayerModel.dataType(QtNodes::PortType::Out, 1);
-    CHECK(ndt.id == "");
-    CHECK(ndt.name == "");
+    REQUIRE(ndt.id == "");
+    REQUIRE(ndt.name == "");
 
     ndt = canrawplayerModel.dataType(QtNodes::PortType::In, 0);
-    CHECK(ndt.id == "");
-    CHECK(ndt.name == "");
+    REQUIRE(ndt.id == "");
+    REQUIRE(ndt.name == "");
 }
 
 TEST_CASE("outData", "[canrawplayerModel]")
@@ -62,12 +62,12 @@ TEST_CASE("outData", "[canrawplayerModel]")
     CanRawPlayerModel canrawplayerModel;
 
     auto nd = canrawplayerModel.outData(0);
-    CHECK(!nd);
+    REQUIRE(!nd);
 
     QCanBusFrame frame;
     canrawplayerModel.sendFrame(frame);
     nd = canrawplayerModel.outData(0);
-    CHECK(nd);
+    REQUIRE(nd);
 }
 
 TEST_CASE("setInData", "[canrawplayerModel]")
@@ -88,7 +88,7 @@ TEST_CASE("sendFrame", "[canrawplayerModel]")
         canrawplayerModel.sendFrame(frame);
     }
 
-    CHECK(dataUpdatedSpy.count() == 127);
+    REQUIRE(dataUpdatedSpy.count() == 127);
 }
 
 int main(int argc, char* argv[])

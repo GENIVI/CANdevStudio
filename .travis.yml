@@ -17,6 +17,7 @@ matrix:
          - WITH_COVERAGE=ON
          - PACKAGE=OFF
          - DOXYGEN=OFF
+         - TEMPLATEGEN=OFF
     - os: linux
       dist: trusty
       sudo: required
@@ -29,6 +30,7 @@ matrix:
          - WITH_COVERAGE=OFF
          - PACKAGE=ON
          - DOXYGEN=OFF
+         - TEMPLATEGEN=OFF
     - os: linux
       dist: trusty
       sudo: required
@@ -41,6 +43,7 @@ matrix:
          - WITH_COVERAGE=OFF
          - PACKAGE=OFF
          - DOXYGEN=ON
+         - TEMPLATEGEN=ON
     - os: osx
       osx_image: xcode9.4
 

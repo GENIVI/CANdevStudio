@@ -88,3 +88,9 @@ void CanRawPlayer::startSimulation()
     d->_simStarted = true;
     d->startPlayback();
 }
+
+void CanRawPlayer::simBcastRcv(const QJsonObject &msg, const QVariant &param)
+{
+    Q_UNUSED(msg);
+    Q_UNUSED(param);
+}

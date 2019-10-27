@@ -65,6 +65,7 @@ signals:
     *   @see ComponentInterface
     */
     void mainWidgetDockToggled(QWidget* widget) override;
+    void simBcastSnd(const QJsonObject &msg, const QVariant &param = QVariant());
 
 public slots:
     void frameReceived(const QCanBusFrame& frame);
@@ -79,6 +80,8 @@ public slots:
     *   @see ComponentInterface
     */
     void startSimulation() override;
+
+    void simBcastRcv(const QJsonObject &msg, const QVariant &param) override;
 
 private:
     QScopedPointer<CanRawViewPrivate> d_ptr;

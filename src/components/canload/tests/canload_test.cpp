@@ -18,8 +18,8 @@ TEST_CASE("Stubbed methods", "[canload]")
     CanLoadCtx ctx;
     CanLoad c2(std::move(ctx));
 
-    CHECK(c.mainWidget() == nullptr);
-    CHECK(c.mainWidgetDocked() == true);
+    REQUIRE(c.mainWidget() == nullptr);
+    REQUIRE(c.mainWidgetDocked() == true);
 }
 
 TEST_CASE("setConfig - qobj", "[canload]")
@@ -36,9 +36,9 @@ TEST_CASE("setConfig - qobj", "[canload]")
 
     auto config = c.getQConfig();
 
-    CHECK(config->property("name") == "Test Name");
-    CHECK(config->property("period [ms]") == "1111");
-    CHECK(config->property("bitrate [bps]") == "2222");
+    REQUIRE(config->property("name") == "Test Name");
+    REQUIRE(config->property("period [ms]") == "1111");
+    REQUIRE(config->property("bitrate [bps]") == "2222");
 }
 
 TEST_CASE("configChanged", "[canload]")
@@ -97,7 +97,7 @@ TEST_CASE("start/stop - correct timings", "[canload]")
         QApplication::processEvents();
     }
 
-    CHECK(spy.count() == 1);
+    REQUIRE(spy.count() == 1);
 
     c.stopSimulation();
 }

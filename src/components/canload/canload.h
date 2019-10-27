@@ -33,11 +33,13 @@ public:
 signals:
     void mainWidgetDockToggled(QWidget* widget) override;
     void currentLoad(uint8_t load);
+    void simBcastSnd(const QJsonObject &msg, const QVariant &param = QVariant());
 
 public slots:
     void stopSimulation() override;
     void startSimulation() override;
     void frameIn(const QCanBusFrame& frame);
+    void simBcastRcv(const QJsonObject &msg, const QVariant &param) override;
 
 private:
     QScopedPointer<CanLoadPrivate> d_ptr;

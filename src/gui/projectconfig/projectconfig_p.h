@@ -50,6 +50,24 @@ public:
         _ui->scrollArea->setMinimumSize(165, 0);
         _ui->scrollArea->setMaximumSize(165, 10000);
         _plugins.initSections(*_ui);
+
+        _pcInt.setConfigChangedCbk([this](QtNodes::Node& node) {
+            QJsonObject msg = initBcast(node);
+            msg["msg"] = "config_changed";
+
+            auto& component = getComponent(node);
+            auto propObj = component.getQConfig();
+            auto prop = propObj->property("exposedProperties");
+
+            QJsonObject confObj;
+            for (const auto& p : prop.toStringList()) {
+                confObj[p] = propObj->property(p.toStdString().c_str()).toString();
+            }
+
+            msg["config"] = confObj;
+
+            emit simBcast(msg);
+        });
     }
 
     void addModelIcons()
@@ -93,6 +111,8 @@ public:
         connect(q, &ProjectConfig::startSimulation, &iface, &ComponentModelInterface::startSimulation);
         connect(q, &ProjectConfig::stopSimulation, &iface, &ComponentModelInterface::stopSimulation);
         connect(&iface, &ComponentModelInterface::handleDock, q, &ProjectConfig::handleDock);
+        connect(&iface, &ComponentModelInterface::simBcastSnd, this, &ProjectConfigPrivate::simBcast);
+        connect(this, &ProjectConfigPrivate::simBcast, &iface, &ComponentModelInterface::simBcastRcv);
 
         node.nodeGraphicsObject().setOpacity(node.nodeDataModel()->nodeStyle().Opacity);
         addShadow(node);
@@ -101,6 +121,11 @@ public:
         _nodeCnt++;
 
         cds_debug("Node '{}' created", node.nodeDataModel()->caption().toStdString());
+
+        QJsonObject msg = initBcast(node);
+        msg["msg"] = "node_created";
+
+        emit simBcast(msg);
     }
 
     void nodeDeletedCallback(QtNodes::Node& node)
@@ -111,6 +136,11 @@ public:
         cds_debug("Node '{}' deleted", node.nodeDataModel()->caption().toStdString());
 
         emit q->handleWidgetDeletion(component.mainWidget());
+
+        QJsonObject msg = initBcast(node);
+        msg["msg"] = "node_deleted";
+
+        emit simBcast(msg);
     }
 
     void nodeDoubleClickedCallback(QtNodes::Node& node)
@@ -174,6 +204,9 @@ public:
         });
     }
 
+signals:
+    void simBcast(const QJsonObject& msg, const QVariant& param = QVariant());
+
 private:
     void openWidget(QtNodes::Node& node)
     {
@@ -208,6 +241,16 @@ private:
         effect->setBlurRadius(20);
         effect->setColor(nodeStyle.ShadowColor);
         node.nodeGraphicsObject().setGraphicsEffect(effect);
+    }
+
+    QJsonObject initBcast(const QtNodes::Node& node)
+    {
+        QJsonObject msg;
+        msg["id"] = node.id().toString();
+        msg["name"] = node.nodeDataModel()->name();
+        msg["caption"] = node.nodeDataModel()->caption();
+
+        return msg;
     }
 
 public:

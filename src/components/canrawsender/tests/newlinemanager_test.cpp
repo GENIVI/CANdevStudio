@@ -122,7 +122,7 @@ TEST_CASE("Send button clicked - send one frame test", "[newlinemanager]")
     pressedCbk();
     pressedCbk();
     pressedCbk();
-    CHECK(canRawSenderSpy.count() > 0);
+    REQUIRE(canRawSenderSpy.count() > 0);
 }
 
 TEST_CASE("Send button clicked - send several frame test", "[newlinemanager]")
@@ -176,9 +176,9 @@ TEST_CASE("Send button clicked - send several frame test", "[newlinemanager]")
     NewLineManager newLineMgr{ &canRawSender, true, nlmFactoryMock.get() };
     QSignalSpy canRawSenderSpy(&canRawSender, &CanRawSender::sendFrame);
     pressedCbk();
-    CHECK(canRawSenderSpy.count() == 1);
+    REQUIRE(canRawSenderSpy.count() == 1);
     canRawSenderSpy.wait(100);
-    CHECK(canRawSenderSpy.count() > 1);
+    REQUIRE(canRawSenderSpy.count() > 1);
 }
 
 TEST_CASE("Get columns wigdet test", "[newlinemanager]")
@@ -223,9 +223,9 @@ TEST_CASE("Get columns wigdet test", "[newlinemanager]")
     NewLineManager newLineMgr{ &canRawSender, true, nlmFactoryMock.get() };
 
     for (NewLineManager::ColName ii : NewLineManager::ColNameIterator{ NewLineManager::ColName::IdLine }) {
-        CHECK(newLineMgr.GetColsWidget(NewLineManager::ColNameIterator{ ii }) != nullptr);
+        REQUIRE(newLineMgr.GetColsWidget(NewLineManager::ColNameIterator{ ii }) != nullptr);
     }
-    CHECK(newLineMgr.GetColsWidget(NewLineManager::ColNameIterator().end()) == nullptr);
+    REQUIRE(newLineMgr.GetColsWidget(NewLineManager::ColNameIterator().end()) == nullptr);
 }
 
 TEST_CASE("EditionFinished", "[newlinemanager]")
@@ -296,15 +296,15 @@ TEST_CASE("EditionFinished", "[newlinemanager]")
     editFinCbk();
 
     // Fakeit is not able to Verify parameters passed by reference
-    CHECK(validOut.size() == 7);
-    CHECK(validOut[0] == "001");
-    CHECK(validOut[1] == "012");
+    REQUIRE(validOut.size() == 7);
+    REQUIRE(validOut[0] == "001");
+    REQUIRE(validOut[1] == "012");
     // "123" skipped - do not have to be adjusted
-    CHECK(validOut[2] == "00001234");
-    CHECK(validOut[3] == "00012345");
-    CHECK(validOut[4] == "00123456");
-    CHECK(validOut[5] == "01234567");
+    REQUIRE(validOut[2] == "00001234");
+    REQUIRE(validOut[3] == "00012345");
+    REQUIRE(validOut[4] == "00123456");
+    REQUIRE(validOut[5] == "01234567");
     // "12345678" skipped - do not have to be adjusted
     // "123456789" Failed to convert (bigger than 32 bits)
-    CHECK(validOut[6] == "1fffffff");
+    REQUIRE(validOut[6] == "1fffffff");
 }

@@ -213,3 +213,9 @@ void CanDevice::configChanged()
         startSimulation();
     }
 }
+
+void CanDevice::simBcastRcv(const QJsonObject &msg, const QVariant &param)
+{
+    Q_UNUSED(msg);
+    Q_UNUSED(param);
+}

@@ -101,3 +101,8 @@ void CanLoad::frameIn(const QCanBusFrame& frame)
     }
 }
 
+void CanLoad::simBcastRcv(const QJsonObject &msg, const QVariant &param)
+{
+    Q_UNUSED(msg);
+    Q_UNUSED(param);
+}

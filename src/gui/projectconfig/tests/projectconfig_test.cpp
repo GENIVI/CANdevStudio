@@ -7,6 +7,7 @@
 #include <QWindow>
 #include <candevicemodel.h>
 #include <canrawviewmodel.h>
+#include <cansignaldata.h>
 #include <catch.hpp>
 #include <fakeit.hpp>
 #include <log.h>
@@ -29,7 +30,7 @@ TEST_CASE("Loading and saving", "[projectconfig]")
     ProjectConfig pc(new QWidget);
     QByteArray outConfig;
 
-    CHECK(file.open(QIODevice::ReadOnly) == true);
+    REQUIRE(file.open(QIODevice::ReadOnly) == true);
     auto inConfig = file.readAll();
 
     REQUIRE_NOTHROW(pc.load(inConfig));
@@ -44,7 +45,7 @@ TEST_CASE("Color mode", "[projectconfig]")
     QFile file(dir.absoluteFilePath("projectconfig.cds"));
     ProjectConfig pc(new QWidget);
 
-    CHECK(file.open(QIODevice::ReadOnly) == true);
+    REQUIRE(file.open(QIODevice::ReadOnly) == true);
     auto inConfig = file.readAll();
     REQUIRE_NOTHROW(pc.load(inConfig));
 
@@ -60,54 +61,54 @@ TEST_CASE("Close event", "[projectconfig]")
 
     pc.closeEvent(&e);
 
-    CHECK(closeSpy.count() == 1);
+    REQUIRE(closeSpy.count() == 1);
 }
 
 TEST_CASE("Validation schema parse error", "[projectconfig]")
 {
-    CHECK(ProjectConfigValidator::loadConfigSchema("Makefile") == false);
+    REQUIRE(ProjectConfigValidator::loadConfigSchema("Makefile") == false);
 }
 
 TEST_CASE("Validation JSON format error", "[projectconfig]")
 {
     QDir dir("configfiles");
     QFile file(dir.absoluteFilePath("projectconfig_wrong.cds"));
-    CHECK(file.open(QIODevice::ReadOnly) == true);
+    REQUIRE(file.open(QIODevice::ReadOnly) == true);
     auto inConfig = file.read(40);
 
-    CHECK(ProjectConfigValidator::validateConfiguration(inConfig) == false);
+    REQUIRE(ProjectConfigValidator::validateConfiguration(inConfig) == false);
 }
 
 TEST_CASE("Validation schema validation failed", "[projectconfig]")
 {
     QDir dir("configfiles");
     QFile file(dir.absoluteFilePath("projectconfig_wrong.cds"));
-    CHECK(file.open(QIODevice::ReadOnly) == true);
+    REQUIRE(file.open(QIODevice::ReadOnly) == true);
     auto inConfig = file.readAll();
 
-    CHECK(ProjectConfigValidator::validateConfiguration(inConfig) == false);
+    REQUIRE(ProjectConfigValidator::validateConfiguration(inConfig) == false);
 }
 
 TEST_CASE("Validation succeeded", "[projectconfig]")
 {
     QDir dir("configfiles");
     QFile file(dir.absoluteFilePath("projectconfig.cds"));
-    CHECK(file.open(QIODevice::ReadOnly) == true);
+    REQUIRE(file.open(QIODevice::ReadOnly) == true);
     auto inConfig = file.readAll();
 
-    CHECK(ProjectConfigValidator::validateConfiguration(inConfig));
+    REQUIRE(ProjectConfigValidator::validateConfiguration(inConfig));
 }
 
 TEST_CASE("Validator validate", "[projectconfig]")
 {
     QDir dir("configfiles");
     QFile file(dir.absoluteFilePath("projectconfig.cds"));
-    CHECK(file.open(QIODevice::ReadOnly) == true);
+    REQUIRE(file.open(QIODevice::ReadOnly) == true);
     auto inConfig = file.readAll();
 
     ProjectConfigValidator pcv;
-    CHECK(pcv.loadConfigSchema());
-    CHECK(pcv.validateConfiguration(inConfig));
+    REQUIRE(pcv.loadConfigSchema());
+    REQUIRE(pcv.validateConfiguration(inConfig));
 }
 
 TEST_CASE("callbacks test", "[projectconfig]")
@@ -116,6 +117,7 @@ TEST_CASE("callbacks test", "[projectconfig]")
     PCInterface::node_t nodeCreated;
     PCInterface::node_t nodeDeleted;
     PCInterface::node_t nodeClicked;
+    PCInterface::node_t configChanged;
     PCInterface::menu_t nodeMenu;
     QtNodes::FlowScene* fs;
 
@@ -128,6 +130,7 @@ TEST_CASE("callbacks test", "[projectconfig]")
     When(Method(pcMock, setNodeDeletedCallback)).Do([&](auto, auto&& fn) { nodeDeleted = fn; });
     When(Method(pcMock, setNodeDoubleClickedCallback)).Do([&](auto, auto&& fn) { nodeClicked = fn; });
     When(Method(pcMock, setNodeContextMenuCallback)).Do([&](auto, auto&& fn) { nodeMenu = fn; });
+    When(Method(pcMock, setConfigChangedCbk)).Do([&](auto&& fn) { configChanged = fn; });
     Fake(Method(pcMock, showContextMenu));
     Fake(Method(pcMock, openProperties));
 
@@ -144,17 +147,22 @@ TEST_CASE("callbacks test", "[projectconfig]")
     auto& node2 = fs->createNode(std::make_unique<CanRawViewModel>());
     nodeClicked(node2);
     nodeMenu(node2, QPointF());
-    CHECK(showingSpy.count() == 1);
+    REQUIRE(showingSpy.count() == 1);
 
     pc.simulationStopped();
+
+    auto& node3 = fs->createNode(std::make_unique<CanSignalDataModel>());
 
     nodeClicked(node);
     nodeMenu(node, QPointF());
     nodeClicked(node2);
     nodeMenu(node2, QPointF());
 
+    configChanged(node2);
+
     fs->removeNode(node);
     fs->removeNode(node2);
+    fs->removeNode(node3);
 }
 
 TEST_CASE("Plugin loading - sections not initialized", "[common]")

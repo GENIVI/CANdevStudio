@@ -35,12 +35,14 @@ signals:
     void mainWidgetDockToggled(QWidget* widget) override;
     void txFrameOut(const QCanBusFrame& frame);
     void rxFrameOut(const QCanBusFrame& frame);
+    void simBcastSnd(const QJsonObject &msg, const QVariant &param = QVariant());
 
 public slots:
     void txFrameIn(const QCanBusFrame& frame);
     void rxFrameIn(const QCanBusFrame& frame);
     void stopSimulation() override;
     void startSimulation() override;
+    void simBcastRcv(const QJsonObject &msg, const QVariant &param) override;
 
 private:
     QScopedPointer<CanRawFilterPrivate> d_ptr;

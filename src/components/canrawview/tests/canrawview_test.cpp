@@ -103,8 +103,8 @@ TEST_CASE("Sort test", "[canrawview]")
         _sortModel.sort(i, Qt::DescendingOrder);
     }
 
-    CHECK(_tvModel.rowCount() == 4);
-    CHECK(_sortModel.isFilterActive() == false);
+    REQUIRE(_tvModel.rowCount() == 4);
+    REQUIRE(_sortModel.isFilterActive() == false);
     // TODO spy sectionClicked signal...
 }
 
@@ -120,8 +120,8 @@ TEST_CASE("setConfig using QObject", "[canrawview]")
 
     auto qConfig = crv.getQConfig();
 
-    CHECK(qConfig->property("name").toString() == "CAN1");
-    CHECK(qConfig->property("fake").isValid() == false);
+    REQUIRE(qConfig->property("name").toString() == "CAN1");
+    REQUIRE(qConfig->property("fake").isValid() == false);
 }
 
 TEST_CASE("Restore config paths", "[canrawview]")
@@ -246,8 +246,8 @@ TEST_CASE("Misc", "[canrawview]")
 {
     CanRawView canRawView;
 
-    CHECK(canRawView.mainWidgetDocked() == true);
-    CHECK(canRawView.mainWidget() != nullptr);
+    REQUIRE(canRawView.mainWidgetDocked() == true);
+    REQUIRE(canRawView.mainWidget() != nullptr);
 }
 
 int main(int argc, char* argv[])
@@ -278,17 +278,17 @@ TEST_CASE("Dock/Undock", "[canrawview]")
     CanRawView canRawView{ CanRawViewCtx(&crvMock.get()) };
     QSignalSpy dockSpy(&canRawView, &CanRawView::mainWidgetDockToggled);
 
-    CHECK(canRawView.mainWidgetDocked() == true);
+    REQUIRE(canRawView.mainWidgetDocked() == true);
 
     dockUndock();
 
-    CHECK(dockSpy.count() == 1);
-    CHECK(canRawView.mainWidgetDocked() == false);
+    REQUIRE(dockSpy.count() == 1);
+    REQUIRE(canRawView.mainWidgetDocked() == false);
 
     dockUndock();
 
-    CHECK(dockSpy.count() == 2);
-    CHECK(canRawView.mainWidgetDocked() == true);
+    REQUIRE(dockSpy.count() == 2);
+    REQUIRE(canRawView.mainWidgetDocked() == true);
 }
 
 TEST_CASE("Section clicked", "[canrawview]")
@@ -304,7 +304,7 @@ TEST_CASE("Section clicked", "[canrawview]")
     Fake(Method(crvMock, mainWidget));
     When(Method(crvMock, setModel)).AlwaysDo([&](auto&& m) { model = m; });
     When(Method(crvMock, setSorting)).AlwaysDo([&](int sortNdx, Qt::SortOrder order) {
-        CHECK(model != nullptr);
+        REQUIRE(model != nullptr);
         model->sort(sortNdx, order);
     });
     Fake(Method(crvMock, initTableView));
@@ -375,7 +375,7 @@ TEST_CASE("Filter callback", "[canrawview]")
     filter(true);
     REQUIRE_NOTHROW(canRawView.startSimulation());
 
-    CHECK(model != nullptr);
+    REQUIRE(model != nullptr);
     model->sort(0, Qt::AscendingOrder);
 
     QCanBusFrame frame;

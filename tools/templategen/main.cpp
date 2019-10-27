@@ -83,10 +83,12 @@ public:
 
 signals:
     void mainWidgetDockToggled(QWidget* widget) override;
+    void simBcastSnd(const QJsonObject &msg, const QVariant &param = QVariant());
 
 public slots:
     void stopSimulation() override;
     void startSimulation() override;
+    void simBcastRcv(const QJsonObject &msg, const QVariant &param) override;
 
 private:
     QScopedPointer<{name}Private> d_ptr;
@@ -179,6 +181,12 @@ void {name}::startSimulation()
     Q_D({name});
 
     d->_simStarted = true;
+}}
+
+void {name}::simBcastRcv(const QJsonObject &msg, const QVariant &param)
+{{
+    Q_UNUSED(msg);
+    Q_UNUSED(param);
 }}
 )",
         "name"_a = name, "nameLower"_a = str_tolower(name));
@@ -351,10 +359,12 @@ public:
 
 signals:
     void mainWidgetDockToggled(QWidget* widget) override;
+    void simBcastSnd(const QJsonObject &msg, const QVariant &param = QVariant());
 
 public slots:
     void stopSimulation() override;
     void startSimulation() override;
+    void simBcastRcv(const QJsonObject &msg, const QVariant &param) override;
 
 private:
     QScopedPointer<{name}Private> d_ptr;
@@ -447,6 +457,12 @@ void {name}::startSimulation()
     Q_D({name});
 
     d->_simStarted = true;
+}}
+
+void {name}::simBcastRcv(const QJsonObject &msg, const QVariant &param)
+{{
+    Q_UNUSED(msg);
+    Q_UNUSED(param);
 }}
 )",
         "name"_a = name, "nameLower"_a = str_tolower(name));
@@ -787,8 +803,8 @@ TEST_CASE("Stubbed methods", "[{nameLower}]")
 {{
     {name} c;
 
-    CHECK(c.mainWidget() {gui} nullptr);
-    CHECK(c.mainWidgetDocked() == true);
+    REQUIRE(c.mainWidget() {gui} nullptr);
+    REQUIRE(c.mainWidgetDocked() == true);
 }}
 
 TEST_CASE("setConfig - qobj", "[{nameLower}]")
@@ -884,26 +900,26 @@ TEST_CASE("Test basic functionality", "[{nameLower}Model]")
 {{
     using namespace fakeit;
     {name}Model cm;
-    CHECK(cm.caption() == "{name}");
-    CHECK(cm.name() == "{name}");
-    CHECK(cm.resizable() == false);
-    CHECK(cm.hasSeparateThread() == false);
-    CHECK(dynamic_cast<{name}Model*>(cm.clone().get()) != nullptr);
-    CHECK(dynamic_cast<QLabel*>(cm.embeddedWidget()) != nullptr);
+    REQUIRE(cm.caption() == "{name}");
+    REQUIRE(cm.name() == "{name}");
+    REQUIRE(cm.resizable() == false);
+    REQUIRE(cm.hasSeparateThread() == false);
+    REQUIRE(dynamic_cast<{name}Model*>(cm.clone().get()) != nullptr);
+    REQUIRE(dynamic_cast<QLabel*>(cm.embeddedWidget()) != nullptr);
 }}
 
 TEST_CASE("painterDelegate", "[{nameLower}Model]")
 {{
     {name}Model cm;
-    CHECK(cm.painterDelegate() != nullptr);
+    REQUIRE(cm.painterDelegate() != nullptr);
 }}
 
 TEST_CASE("nPorts", "[{nameLower}Model]")
 {{
     {name}Model cm;
 
-    CHECK(cm.nPorts(QtNodes::PortType::Out) == 0);
-    CHECK(cm.nPorts(QtNodes::PortType::In) == 0);
+    REQUIRE(cm.nPorts(QtNodes::PortType::Out) == 0);
+    REQUIRE(cm.nPorts(QtNodes::PortType::In) == 0);
 }}
 
 TEST_CASE("dataType", "[{nameLower}Model]")
@@ -913,16 +929,16 @@ TEST_CASE("dataType", "[{nameLower}Model]")
     NodeDataType ndt;
 
     // ndt = cm.dataType(QtNodes::PortType::Out, 0);
-    // CHECK(ndt.id == "rawframe");
-    // CHECK(ndt.name == "RAW");
+    // REQUIRE(ndt.id == "rawframe");
+    // REQUIRE(ndt.name == "RAW");
 
     // ndt = cm.dataType(QtNodes::PortType::Out, 1);
-    // CHECK(ndt.id == "");
-    // CHECK(ndt.name == "");
+    // REQUIRE(ndt.id == "");
+    // REQUIRE(ndt.name == "");
 
     // ndt = cm.dataType(QtNodes::PortType::In, 0);
-    // CHECK(ndt.id == "");
-    // CHECK(ndt.name == "");
+    // REQUIRE(ndt.id == "");
+    // REQUIRE(ndt.name == "");
 }}
 
 TEST_CASE("outData", "[{nameLower}Model]")
@@ -930,7 +946,7 @@ TEST_CASE("outData", "[{nameLower}Model]")
     {name}Model cm;
 
     auto nd = cm.outData(0);
-    CHECK(!nd);
+    REQUIRE(!nd);
 }}
 
 TEST_CASE("setInData", "[{nameLower}Model]")

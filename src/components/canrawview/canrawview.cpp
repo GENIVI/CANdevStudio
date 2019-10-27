@@ -104,3 +104,9 @@ bool CanRawView::mainWidgetDocked() const
 {
     return d_ptr->docked;
 }
+
+void CanRawView::simBcastRcv(const QJsonObject &msg, const QVariant &param)
+{
+    Q_UNUSED(msg);
+    Q_UNUSED(param);
+}

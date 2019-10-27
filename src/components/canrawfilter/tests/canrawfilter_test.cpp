@@ -19,8 +19,8 @@ TEST_CASE("Stubbed methods", "[canrawfilter]")
 {
     CanRawFilter c;
 
-    CHECK(c.mainWidget() != nullptr);
-    CHECK(c.mainWidgetDocked() == true);
+    REQUIRE(c.mainWidget() != nullptr);
+    REQUIRE(c.mainWidgetDocked() == true);
 }
 
 TEST_CASE("setConfig - qobj", "[canrawfilter]")
@@ -41,15 +41,15 @@ TEST_CASE("setConfig - json", "[canrawfilter]")
     Fake(Method(mock, setTxListCbk));
     Fake(Method(mock, setRxListCbk));
     When(Method(mock, setListRx))
-        .Do([](auto& list) { CHECK(list.size() == 0); })
-        .Do([](auto& list) { CHECK(list.size() == 0); })
-        .Do([](auto& list) { CHECK(list.size() == 0); })
-        .Do([](auto& list) { CHECK(list.size() == 1); });
+        .Do([](auto& list) { REQUIRE(list.size() == 0); })
+        .Do([](auto& list) { REQUIRE(list.size() == 0); })
+        .Do([](auto& list) { REQUIRE(list.size() == 0); })
+        .Do([](auto& list) { REQUIRE(list.size() == 1); });
     When(Method(mock, setListTx))
-        .Do([](auto& list) { CHECK(list.size() == 0); })
-        .Do([](auto& list) { CHECK(list.size() == 0); })
-        .Do([](auto& list) { CHECK(list.size() == 0); })
-        .Do([](auto& list) { CHECK(list.size() == 1); });
+        .Do([](auto& list) { REQUIRE(list.size() == 0); })
+        .Do([](auto& list) { REQUIRE(list.size() == 0); })
+        .Do([](auto& list) { REQUIRE(list.size() == 0); })
+        .Do([](auto& list) { REQUIRE(list.size() == 1); });
 
     CanRawFilter c(CanRawFilterCtx(&mock.get()));
     QJsonObject obj;
@@ -104,9 +104,9 @@ TEST_CASE("getSupportedProperties", "[canrawfilter]")
 
     auto props = c.getSupportedProperties();
 
-    CHECK(std::find(std::begin(props), std::end(props), std::make_tuple("name", QVariant::String, true, nullptr))
+    REQUIRE(std::find(std::begin(props), std::end(props), std::make_tuple("name", QVariant::String, true, nullptr))
         != std::end(props));
-    CHECK(std::find(std::begin(props), std::end(props), std::make_tuple("dummy", QVariant::String, true, nullptr))
+    REQUIRE(std::find(std::begin(props), std::end(props), std::make_tuple("dummy", QVariant::String, true, nullptr))
         == std::end(props));
 }
 
@@ -122,7 +122,7 @@ TEST_CASE("default accept list RX", "[canrawfilter]")
     c.stopSimulation();
     c.rxFrameIn(frame);
 
-    CHECK(spy.count() == 1);
+    REQUIRE(spy.count() == 1);
 }
 
 template <typename M, typename TX, typename RX> void setupMock(M& mock, TX& txCbk, RX& rxCbk)
@@ -148,7 +148,7 @@ TEST_CASE("empty accept list RX", "[canrawfilter]")
 
     c.startSimulation();
     c.rxFrameIn(frame);
-    CHECK(spy.count() == 0);
+    REQUIRE(spy.count() == 0);
 }
 
 TEST_CASE("custom list RX", "[canrawfilter]")
@@ -175,7 +175,7 @@ TEST_CASE("custom list RX", "[canrawfilter]")
             c.rxFrameIn(frame);
         }
 
-        CHECK(spy.count() == cnt);
+        REQUIRE(spy.count() == cnt);
     };
 
     // clang-format off
@@ -232,7 +232,7 @@ TEST_CASE("empty accept list TX", "[canrawfilter]")
 
     c.startSimulation();
     c.txFrameIn(frame);
-    CHECK(spy.count() == 0);
+    REQUIRE(spy.count() == 0);
 }
 
 TEST_CASE("custom list TX", "[canrawfilter]")
@@ -259,7 +259,7 @@ TEST_CASE("custom list TX", "[canrawfilter]")
             c.txFrameIn(frame);
         }
 
-        CHECK(spy.count() == cnt);
+        REQUIRE(spy.count() == cnt);
     };
 
     // clang-format off
@@ -362,15 +362,15 @@ TEST_CASE("Payload filtering", "[canrawfilter]")
             c.txFrameIn(frame);
         }
 
-        CHECK(spyRx.count() == 0);
-        CHECK(spyTx.count() == cnt);
+        REQUIRE(spyRx.count() == 0);
+        REQUIRE(spyTx.count() == cnt);
 
         for (auto& frame : frames) {
             c.rxFrameIn(frame);
         }
 
-        CHECK(spyRx.count() == cnt);
-        CHECK(spyTx.count() == cnt);
+        REQUIRE(spyRx.count() == cnt);
+        REQUIRE(spyTx.count() == cnt);
     };
 
     // clang-format off

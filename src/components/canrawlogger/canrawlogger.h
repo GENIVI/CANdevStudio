@@ -32,12 +32,14 @@ public:
 
 signals:
     void mainWidgetDockToggled(QWidget* widget) override;
+    void simBcastSnd(const QJsonObject &msg, const QVariant &param = QVariant());
 
 public slots:
     void stopSimulation() override;
     void startSimulation() override;
     void frameReceived(const QCanBusFrame& frame);
     void frameSent(bool status, const QCanBusFrame& frame);
+    void simBcastRcv(const QJsonObject &msg, const QVariant &param) override;
 
 private:
     QScopedPointer<CanRawLoggerPrivate> d_ptr;

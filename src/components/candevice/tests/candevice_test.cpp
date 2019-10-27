@@ -38,11 +38,11 @@ TEST_CASE("Initialization failed", "[candevice]")
     QCanBusFrame frame;
 
     // properties not set
-    CHECK(canDevice.init() == false);
+    REQUIRE(canDevice.init() == false);
 
     setupBackendInterface(canDevice);
 
-    CHECK(canDevice.init() == false);
+    REQUIRE(canDevice.init() == false);
 
     REQUIRE_NOTHROW(canDevice.startSimulation());
     REQUIRE_NOTHROW(canDevice.sendFrame(frame));
@@ -63,14 +63,14 @@ TEST_CASE("Initialization succeeded", "[candevice]")
 
     CanDevice canDevice{ CanDeviceCtx(&deviceMock.get()) };
     setupBackendInterface(canDevice);
-    CHECK(canDevice.init() == true);
+    REQUIRE(canDevice.init() == true);
 
     // clearCallbacks
-    CHECK(canDevice.init() == true);
+    REQUIRE(canDevice.init() == true);
 
     Verify(Method(deviceMock, clearCallbacks)).Exactly(Once);
 
-    CHECK(canDevice.init() == false);
+    REQUIRE(canDevice.init() == false);
     REQUIRE_NOTHROW(rcvCbk());
 }
 
@@ -87,7 +87,7 @@ TEST_CASE("Start failed", "[candevice]")
 
     CanDevice canDevice{ CanDeviceCtx(&deviceMock.get()) };
     setupBackendInterface(canDevice);
-    CHECK(canDevice.init() == false);
+    REQUIRE(canDevice.init() == false);
     REQUIRE_NOTHROW(canDevice.startSimulation());
 }
 
@@ -106,7 +106,7 @@ TEST_CASE("Start failed - could not connect to device", "[candevice]")
 
     CanDevice canDevice{ CanDeviceCtx(&deviceMock.get()) };
     setupBackendInterface(canDevice);
-    CHECK(canDevice.init() == true);
+    REQUIRE(canDevice.init() == true);
 
     REQUIRE_NOTHROW(canDevice.startSimulation());
     // startSimulation will try to reconnect
@@ -117,7 +117,7 @@ TEST_CASE("Start failed - could not connect to device", "[candevice]")
     Verify(Method(deviceMock, init)).Exactly(3);
     Verify(Method(deviceMock, connectDevice)).Exactly(4);
 
-    CHECK(canDevice.init() == false);
+    REQUIRE(canDevice.init() == false);
     REQUIRE_NOTHROW(canDevice.startSimulation());
     Verify(Method(deviceMock, init)).Exactly(4);
     Verify(Method(deviceMock, connectDevice)).Exactly(4);
@@ -137,7 +137,7 @@ TEST_CASE("Start succeeded", "[candevice]")
 
     CanDevice canDevice{ CanDeviceCtx(&deviceMock.get()) };
     setupBackendInterface(canDevice);
-    CHECK(canDevice.init() == true);
+    REQUIRE(canDevice.init() == true);
     REQUIRE_NOTHROW(canDevice.startSimulation());
 }
 
@@ -168,7 +168,7 @@ TEST_CASE("Stop initialized", "[candevice]")
 
     CanDevice canDevice{ CanDeviceCtx(&deviceMock.get()) };
     setupBackendInterface(canDevice);
-    CHECK(canDevice.init() == true);
+    REQUIRE(canDevice.init() == true);
 
     REQUIRE_NOTHROW(canDevice.stopSimulation());
 }
@@ -211,7 +211,7 @@ TEST_CASE("writeFrame results in error", "[candevice]")
 
     CanDevice canDevice{ CanDeviceCtx(&deviceMock.get()) };
     setupBackendInterface(canDevice);
-    CHECK(canDevice.init() == true);
+    REQUIRE(canDevice.init() == true);
 
     canDevice.sendFrame(testFrame);
 }
@@ -234,7 +234,7 @@ TEST_CASE("sendFrame, writeframe returns true, no signal emitted", "[candevice]"
     QSignalSpy frameSentSpy(&canDevice, &CanDevice::frameSent);
 
     canDevice.sendFrame(testFrame);
-    CHECK(frameSentSpy.count() == 0);
+    REQUIRE(frameSentSpy.count() == 0);
 }
 
 TEST_CASE("sendFrame, no device available, frameSent is not emitted", "[candevice]")
@@ -246,10 +246,10 @@ TEST_CASE("sendFrame, no device available, frameSent is not emitted", "[candevic
 
     QSignalSpy frameSentSpy(&canDevice, &CanDevice::frameSent);
     setupBackendInterface(canDevice);
-    CHECK(canDevice.init() == false);
+    REQUIRE(canDevice.init() == false);
 
     canDevice.sendFrame(testFrame);
-    CHECK(frameSentSpy.count() == 0);
+    REQUIRE(frameSentSpy.count() == 0);
 }
 
 TEST_CASE("sendFrame defers FrameSent until backend emits frameWritten", "[candevice]")
@@ -271,14 +271,14 @@ TEST_CASE("sendFrame defers FrameSent until backend emits frameWritten", "[cande
     CanDevice canDevice{ CanDeviceCtx(&deviceMock.get()) };
     QSignalSpy frameSentSpy(&canDevice, &CanDevice::frameSent);
     setupBackendInterface(canDevice);
-    CHECK(canDevice.init() == true);
+    REQUIRE(canDevice.init() == true);
 
     canDevice.sendFrame(frame);
     writtenCbk(1);
-    CHECK(frameSentSpy.count() == 1);
+    REQUIRE(frameSentSpy.count() == 1);
     auto args = frameSentSpy.takeFirst();
-    CHECK(args.at(0) == true);
-    CHECK(isEqual(qvariant_cast<QCanBusFrame>(args.at(1)), frame));
+    REQUIRE(args.at(0) == true);
+    REQUIRE(isEqual(qvariant_cast<QCanBusFrame>(args.at(1)), frame));
 }
 
 TEST_CASE("Emits all available frames when notified by backend", "[candevice]")
@@ -308,13 +308,13 @@ TEST_CASE("Emits all available frames when notified by backend", "[candevice]")
     CanDevice canDevice{ CanDeviceCtx(&deviceMock.get()) };
     QSignalSpy frameReceivedSpy(&canDevice, &CanDevice::frameReceived);
     setupBackendInterface(canDevice);
-    CHECK(canDevice.init() == true);
+    REQUIRE(canDevice.init() == true);
 
     receivedCbk();
-    CHECK(frameReceivedSpy.count() == static_cast<int>(frames.size()));
+    REQUIRE(frameReceivedSpy.count() == static_cast<int>(frames.size()));
     for (auto i = 0u; i < frames.size(); ++i) {
         auto signalArgs = frameReceivedSpy.takeFirst();
-        CHECK(isEqual(qvariant_cast<QCanBusFrame>(signalArgs.at(0)), frames[i]));
+        REQUIRE(isEqual(qvariant_cast<QCanBusFrame>(signalArgs.at(0)), frames[i]));
     }
 }
 
@@ -337,14 +337,14 @@ TEST_CASE("WriteError causes emitting frameSent with frameSent=false", "[candevi
     CanDevice canDevice{ CanDeviceCtx(&deviceMock.get()) };
     QSignalSpy frameSentSpy(&canDevice, &CanDevice::frameSent);
     setupBackendInterface(canDevice);
-    CHECK(canDevice.init() == true);
+    REQUIRE(canDevice.init() == true);
 
     canDevice.sendFrame(frame);
     errorCbk(QCanBusDevice::WriteError);
-    CHECK(frameSentSpy.count() == 1);
+    REQUIRE(frameSentSpy.count() == 1);
     auto args = frameSentSpy.takeFirst();
-    CHECK(args.at(0) == false);
-    CHECK(isEqual(qvariant_cast<QCanBusFrame>(args.at(1)), frame));
+    REQUIRE(args.at(0) == false);
+    REQUIRE(isEqual(qvariant_cast<QCanBusFrame>(args.at(1)), frame));
 }
 
 TEST_CASE("read configuration to json format", "[candevice]")
@@ -354,7 +354,7 @@ TEST_CASE("read configuration to json format", "[candevice]")
     Fake(Method(deviceMock, setParent));
     CanDevice canDevice{ CanDeviceCtx(&deviceMock.get()) };
     QJsonObject config = canDevice.getConfig();
-    CHECK(config.count() == canDevice.getSupportedProperties().size());
+    REQUIRE(config.count() == canDevice.getSupportedProperties().size());
 }
 
 TEST_CASE("setConfig using JSON read with QObject", "[candevice]")
@@ -376,10 +376,10 @@ TEST_CASE("setConfig using JSON read with QObject", "[candevice]")
 
     auto qConfig = canDevice.getQConfig();
 
-    CHECK(qConfig->property("name").toString() == "CAN1");
-    CHECK(qConfig->property("backend").toString() == "socketcan");
-    CHECK(qConfig->property("interface").toString() == "can0");
-    CHECK(qConfig->property("fake").isValid() == false);
+    REQUIRE(qConfig->property("name").toString() == "CAN1");
+    REQUIRE(qConfig->property("backend").toString() == "socketcan");
+    REQUIRE(qConfig->property("interface").toString() == "can0");
+    REQUIRE(qConfig->property("fake").isValid() == false);
 }
 
 TEST_CASE("Stubbed methods", "[candevice]")
@@ -389,8 +389,8 @@ TEST_CASE("Stubbed methods", "[candevice]")
     Fake(Method(deviceMock, setParent));
     CanDevice canDevice{ CanDeviceCtx(&deviceMock.get()) };
 
-    CHECK(canDevice.mainWidget() == nullptr);
-    CHECK(canDevice.mainWidgetDocked() == true);
+    REQUIRE(canDevice.mainWidget() == nullptr);
+    REQUIRE(canDevice.mainWidgetDocked() == true);
 }
 
 auto prepareConfigTestMock(std::vector<std::pair<int, QVariant>>& ver)
@@ -421,7 +421,7 @@ void testConfig(fakeit::Mock<CanDeviceInterface>& deviceMock, CanDevice& canDevi
     qo.setProperty("interface", "dummy");
     qo.setProperty("configuration", configStr);
     canDevice.setConfig(qo);
-    CHECK(canDevice.init() == true);
+    REQUIRE(canDevice.init() == true);
 }
 
 // Use macro so Catch could show exact line of failure
@@ -433,8 +433,8 @@ void testConfig(fakeit::Mock<CanDeviceInterface>& deviceMock, CanDevice& canDevi
 #define testConfig_Expect1(mock, dev, key, val, str)                                                                   \
     testConfig(mock, dev, str);                                                                                        \
     fakeit::Verify(Method(mock, setConfigurationParameter)).Exactly(1);                                                \
-    CHECK(v.back().first == key);                                                                                      \
-    CHECK(v.back().second == val);
+    REQUIRE(v.back().first == key);                                                                                      \
+    REQUIRE(v.back().second == val);
 
 TEST_CASE("Config parameter - invalid format and unsupported", "[candevice]")
 {
@@ -612,31 +612,31 @@ TEST_CASE("Config parameter - multiple keys", "[candevice]")
         "RawKeyFilter=;ErrorFilterKey;    LoopbackKey = true;    ReceiveOwnKey = false ;BitRateKey= "
         "100000;CanFdKey=true;UserKey=1000;");
     fakeit::Verify(Method(deviceMock, setConfigurationParameter)).Exactly(5);
-    CHECK(v[0].first == QCanBusDevice::LoopbackKey);
-    CHECK(v[0].second == true);
-    CHECK(v[1].first == QCanBusDevice::ReceiveOwnKey);
-    CHECK(v[1].second == false);
-    CHECK(v[2].first == QCanBusDevice::BitRateKey);
-    CHECK(v[2].second == 100000);
-    CHECK(v[3].first == QCanBusDevice::CanFdKey);
-    CHECK(v[3].second == true);
-    CHECK(v[4].first == QCanBusDevice::UserKey);
-    CHECK(v[4].second == "1000");
+    REQUIRE(v[0].first == QCanBusDevice::LoopbackKey);
+    REQUIRE(v[0].second == true);
+    REQUIRE(v[1].first == QCanBusDevice::ReceiveOwnKey);
+    REQUIRE(v[1].second == false);
+    REQUIRE(v[2].first == QCanBusDevice::BitRateKey);
+    REQUIRE(v[2].second == 100000);
+    REQUIRE(v[3].first == QCanBusDevice::CanFdKey);
+    REQUIRE(v[3].second == true);
+    REQUIRE(v[4].first == QCanBusDevice::UserKey);
+    REQUIRE(v[4].second == "1000");
 
     testConfig(deviceMock, canDevice,
         "RawKeyFilter=;ErrorFilterKey;    LoopbackKey = FALSE;    ReceiveOwnKey = TRue ;BitRateKey= "
         "666;CanFdKey=xxx;UserKey=1000;");
     fakeit::Verify(Method(deviceMock, setConfigurationParameter)).Exactly(5);
-    CHECK(v[5].first == QCanBusDevice::LoopbackKey);
-    CHECK(v[5].second == false);
-    CHECK(v[6].first == QCanBusDevice::ReceiveOwnKey);
-    CHECK(v[6].second == true);
-    CHECK(v[7].first == QCanBusDevice::BitRateKey);
-    CHECK(v[7].second == 666);
-    CHECK(v[8].first == QCanBusDevice::CanFdKey);
-    CHECK(v[8].second == false);
-    CHECK(v[9].first == QCanBusDevice::UserKey);
-    CHECK(v[9].second == "1000");
+    REQUIRE(v[5].first == QCanBusDevice::LoopbackKey);
+    REQUIRE(v[5].second == false);
+    REQUIRE(v[6].first == QCanBusDevice::ReceiveOwnKey);
+    REQUIRE(v[6].second == true);
+    REQUIRE(v[7].first == QCanBusDevice::BitRateKey);
+    REQUIRE(v[7].second == 666);
+    REQUIRE(v[8].first == QCanBusDevice::CanFdKey);
+    REQUIRE(v[8].second == false);
+    REQUIRE(v[9].first == QCanBusDevice::UserKey);
+    REQUIRE(v[9].second == "1000");
 }
 
 int main(int argc, char* argv[])

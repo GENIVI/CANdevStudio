@@ -70,6 +70,8 @@ signals:
     */
     void mainWidgetDockToggled(QWidget* widget) override;
 
+    void simBcastSnd(const QJsonObject &msg, const QVariant &param = QVariant());
+
 public slots:
     /**
     *   @see ComponentInterface
@@ -79,6 +81,8 @@ public slots:
     *   @see ComponentInterface
     */
     void startSimulation() override;
+
+    void simBcastRcv(const QJsonObject &msg, const QVariant &param) override;
 
 private:
     QScopedPointer<CanRawSenderPrivate> d_ptr;

@@ -23,11 +23,13 @@ public:
     virtual void setColorMode(bool darkMode) = 0;
     virtual bool hasSeparateThread() const = 0;
     virtual void initModel(QtNodes::Node& node, int nodeCnt, bool darkMode) = 0;
+    virtual void simBcastRcv(const QJsonObject &msg, const QVariant &param) = 0;
 
 signals:
     void startSimulation();
     void stopSimulation();
     void handleDock(QWidget* widget);
+    void simBcastSnd(const QJsonObject &msg, const QVariant &param);
 };
 
 template <typename C, typename Derived> class ComponentModel : public ComponentModelInterface {
@@ -64,6 +66,9 @@ public:
         connect(this, &ComponentModelInterface::startSimulation, &_component, &C::startSimulation);
         connect(this, &ComponentModelInterface::stopSimulation, &_component, &C::stopSimulation);
         connect(&_component, &C::mainWidgetDockToggled, this, &ComponentModelInterface::handleDock);
+        connect(&_component, &C::simBcastSnd, this, &ComponentModelInterface::simBcastSnd);
+
+        _id = node.id();
 
         if (hasSeparateThread()) {
             _thread = std::make_unique<QThread>();
@@ -232,6 +237,13 @@ public:
         return false;
     }
 
+    void simBcastRcv(const QJsonObject &msg, const QVariant &param)
+    {
+        if (msg["id"].toString() != _id.toString()) {
+            _component.simBcastRcv(msg, param);
+        }
+    }
+
 protected:
     C _component;
     QLabel* _label{ new QLabel };
@@ -242,6 +254,7 @@ protected:
     bool _darkMode{ true };
     QtNodes::NodeStyle _nodeStyle;
     std::unique_ptr<QThread> _thread;
+    QUuid _id;
 };
 
 #endif // COMPONENTMODEL_H

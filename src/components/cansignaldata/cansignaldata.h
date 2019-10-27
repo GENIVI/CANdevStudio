@@ -36,10 +36,12 @@ public:
 signals:
     void mainWidgetDockToggled(QWidget* widget) override;
     void canDbUpdated(const CANmessages_t& messages);
+    void simBcastSnd(const QJsonObject &msg, const QVariant &param = QVariant());
 
 public slots:
     void stopSimulation() override;
     void startSimulation() override;
+    void simBcastRcv(const QJsonObject &msg, const QVariant &param) override;
 
 private:
     QScopedPointer<CanSignalDataPrivate> d_ptr;
