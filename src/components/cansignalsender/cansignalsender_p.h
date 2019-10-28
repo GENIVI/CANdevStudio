@@ -8,6 +8,7 @@
 #include <log.h>
 #include <memory>
 #include <propertyfields.h>
+#include <candbhandler.h>
 
 class CanSignalSender;
 
@@ -31,9 +32,7 @@ public:
     CanSignalSenderGuiInt& _ui;
     bool _docked{ true };
     std::map<QString, QVariant> _props;
-    std::map<QUuid, QString> _dbNames;
-    std::map<QUuid, CANmessages_t> _candb;
-    QUuid _currentDb;
+    CanDbHandler _db;
 
 private:
     CanSignalSender* q_ptr;
@@ -50,7 +49,7 @@ private:
             std::make_tuple(_dbProperty, QVariant::String, true, cf([this] {
                 auto *p = new PropertyFieldCombo();
 
-                for (auto &item : _dbNames) {
+                for (auto &item : _db._dbNames) {
                     p->addItem(item.second, item.first);
                 }
 

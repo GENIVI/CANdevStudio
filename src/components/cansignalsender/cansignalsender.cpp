@@ -5,7 +5,6 @@
 #include <confighelpers.h>
 #include <log.h>
 
-Q_DECLARE_METATYPE(CANmessages_t);
 
 CanSignalSender::CanSignalSender()
     : d_ptr(new CanSignalSenderPrivate(this))
@@ -86,38 +85,5 @@ void CanSignalSender::simBcastRcv(const QJsonObject& msg, const QVariant& param)
 
     Q_D(CanSignalSender);
 
-    QVariant vId = msg["id"];
-    QUuid id;
-    if (vId.isValid()) {
-        id = qvariant_cast<QUuid>(vId);
-    }
-
-    QString name = msg["caption"].toString();
-
-    QVariant vMsg = msg["msg"];
-    if (vMsg.isValid() && vMsg.toString() == BcastMsg::CanDbUpdated) {
-        CANmessages_t paramMsg;
-        if (param.isValid()) {
-            paramMsg = qvariant_cast<CANmessages_t>(param);
-        }
-
-        d->_candb[id] = paramMsg;
-        d->_dbNames[id] = name;
-
-        if (d->_currentDb.isNull()) {
-            d->_currentDb = id;
-            d->_props[d->_dbProperty] = name;
-        }
-    } else if (vMsg.isValid() && vMsg.toString() == BcastMsg::ConfigChanged) {
-        d->_dbNames[id] = name;
-
-        if (id == d->_currentDb) {
-            d->_props[d->_dbProperty] = name;
-        }
-    } else if (vMsg.isValid() && vMsg.toString() == BcastMsg::InitDone) {
-        QJsonObject msg;
-        msg["msg"] = BcastMsg::RequestCanDb;
-
-        emit simBcastSnd(msg);
-    }
+    d->_db.processBcast(msg, param);
 }
