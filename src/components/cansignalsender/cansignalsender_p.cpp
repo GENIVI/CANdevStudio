@@ -8,9 +8,6 @@ CanSignalSenderPrivate::CanSignalSenderPrivate(CanSignalSender* q, CanSignalSend
 {
     initProps();
 
-    connect(
-        &_db, &CanDbHandler::currentDbNameChanged, [this](const QString& name) { _props[_dbProperty] = name; });
-
     connect(&_db, &CanDbHandler::sendCanDbRequest, [this] {
         QJsonObject msg;
         msg["msg"] = BcastMsg::RequestCanDb;
@@ -49,4 +46,6 @@ void CanSignalSenderPrivate::setSettings(const QJsonObject& json)
         if (json.contains(propName))
             _props[propName] = json[propName].toVariant();
     }
+
+    _db.updateCurrentDb(_props[_dbProperty]);
 }

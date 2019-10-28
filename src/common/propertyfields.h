@@ -105,7 +105,13 @@ public:
 
     QString propText() override
     {
-        return _cb->currentText();
+        QVariant data = _cb->currentData();
+
+        if (data.isValid()) {
+            return data.toString();
+        } else {
+            return _cb->currentText();
+        }
     }
 
     void addItems(const QStringList& list)
@@ -114,7 +120,7 @@ public:
         _cb->addItems(list);
     }
 
-    void addItem(const QString &text, const QVariant v = QVariant())
+    void addItem(const QString& text, const QVariant v = QVariant())
     {
         _cb->addItem(text, v);
     }

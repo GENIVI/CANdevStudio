@@ -4,11 +4,11 @@
 #include "cansignalsender.h"
 #include "gui/cansignalsenderguiimpl.h"
 #include <QUuid>
+#include <candbhandler.h>
 #include <cantypes.hpp>
 #include <log.h>
 #include <memory>
 #include <propertyfields.h>
-#include <candbhandler.h>
 
 class CanSignalSender;
 
@@ -52,6 +52,8 @@ private:
                 for (auto &item : _db._dbNames) {
                     p->addItem(item.second, item.first);
                 }
+
+                p->setPropText(_db.getName());
 
                 return p;
             }))

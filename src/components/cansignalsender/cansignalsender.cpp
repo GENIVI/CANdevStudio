@@ -37,6 +37,8 @@ void CanSignalSender::setConfig(const QWidget& qobject)
     Q_D(CanSignalSender);
 
     configHelpers::setQConfig(qobject, getSupportedProperties(), d->_props);
+
+    d->_db.updateCurrentDb(d->_props[d->_dbProperty]);
 }
 
 QJsonObject CanSignalSender::getConfig() const
