@@ -114,6 +114,11 @@ public:
         _cb->addItems(list);
     }
 
+    void addItem(const QString &text, const QVariant v = QVariant())
+    {
+        _cb->addItem(text, v);
+    }
+
 signals:
     void currentTextChanged(const QString& text);
 

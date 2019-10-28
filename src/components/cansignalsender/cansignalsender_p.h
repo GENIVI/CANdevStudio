@@ -1,11 +1,13 @@
 #ifndef CANSIGNALSENDER_P_H
 #define CANSIGNALSENDER_P_H
 
-#include "gui/cansignalsenderguiimpl.h"
 #include "cansignalsender.h"
-#include <memory>
-#include <cantypes.hpp>
+#include "gui/cansignalsenderguiimpl.h"
 #include <QUuid>
+#include <cantypes.hpp>
+#include <log.h>
+#include <memory>
+#include <propertyfields.h>
 
 class CanSignalSender;
 
@@ -14,7 +16,8 @@ class CanSignalSenderPrivate : public QObject {
     Q_DECLARE_PUBLIC(CanSignalSender)
 
 public:
-    CanSignalSenderPrivate(CanSignalSender* q, CanSignalSenderCtx&& ctx = CanSignalSenderCtx(new CanSignalSenderGuiImpl));
+    CanSignalSenderPrivate(
+        CanSignalSender* q, CanSignalSenderCtx&& ctx = CanSignalSenderCtx(new CanSignalSenderGuiImpl));
     ComponentInterface::ComponentProperties getSupportedProperties() const;
     QJsonObject getSettings();
     void setSettings(const QJsonObject& json);
@@ -30,17 +33,29 @@ public:
     std::map<QString, QVariant> _props;
     std::map<QUuid, QString> _dbNames;
     std::map<QUuid, CANmessages_t> _candb;
+    QUuid _currentDb;
 
 private:
     CanSignalSender* q_ptr;
     const QString _nameProperty = "name";
+    const QString _dbProperty = "CAN database";
 
     // workaround for clang 3.5
     using cf = ComponentInterface::CustomEditFieldCbk;
 
     // clang-format off
     ComponentInterface::ComponentProperties _supportedProps = {
-            std::make_tuple(_nameProperty, QVariant::String, true, cf(nullptr))
+            std::make_tuple(_nameProperty, QVariant::String, true, cf(nullptr)),
+
+            std::make_tuple(_dbProperty, QVariant::String, true, cf([this] {
+                auto *p = new PropertyFieldCombo();
+
+                for (auto &item : _dbNames) {
+                    p->addItem(item.second, item.first);
+                }
+
+                return p;
+            }))
     };
     // clang-format on
 };
