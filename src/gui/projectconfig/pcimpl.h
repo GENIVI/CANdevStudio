@@ -30,7 +30,7 @@ public:
         QObject::connect(scene, &QtNodes::FlowScene::nodeContextMenu, cb);
     }
 
-    virtual void setConfigChangedCbk(const node_t cb)
+    virtual void setConfigChangedCbk(const node_t cb) override
     {
         _configUpdated = cb;
     }

@@ -33,7 +33,7 @@ public:
 signals:
     void mainWidgetDockToggled(QWidget* widget) override;
     void currentLoad(uint8_t load);
-    void simBcastSnd(const QJsonObject &msg, const QVariant &param = QVariant());
+    void simBcastSnd(const QJsonObject &msg, const QVariant &param = QVariant()) override;
 
 public slots:
     void stopSimulation() override;

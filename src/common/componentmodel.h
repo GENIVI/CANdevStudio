@@ -237,7 +237,7 @@ public:
         return false;
     }
 
-    void simBcastRcv(const QJsonObject &msg, const QVariant &param)
+    void simBcastRcv(const QJsonObject &msg, const QVariant &param) override
     {
         if (msg["id"].toString() != _id.toString()) {
             _component.simBcastRcv(msg, param);

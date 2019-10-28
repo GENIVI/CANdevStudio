@@ -152,11 +152,17 @@ TEST_CASE("callbacks test", "[projectconfig]")
     pc.simulationStopped();
 
     auto& node3 = fs->createNode(std::make_unique<CanSignalDataModel>());
+    node3.restore({});
+    nodeCreated(node3);
+    nodeClicked(node3);
+    nodeMenu(node3, QPointF());
 
     nodeClicked(node);
     nodeMenu(node, QPointF());
     nodeClicked(node2);
     nodeMenu(node2, QPointF());
+    nodeClicked(node3);
+    nodeMenu(node3, QPointF());
 
     configChanged(node2);
 

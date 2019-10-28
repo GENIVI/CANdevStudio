@@ -36,7 +36,7 @@ public:
 signals:
     void mainWidgetDockToggled(QWidget* widget) override;
     void canDbUpdated(const CANmessages_t& messages);
-    void simBcastSnd(const QJsonObject &msg, const QVariant &param = QVariant());
+    void simBcastSnd(const QJsonObject &msg, const QVariant &param = QVariant()) override;
 
 public slots:
     void stopSimulation() override;
