@@ -25,9 +25,6 @@ public:
     void setInData(std::shared_ptr<NodeData>, PortIndex) override{};
     QtNodes::NodePainterDelegate* painterDelegate() const override;
 
-public slots:
-    void canDbUpdated(const CANmessages_t& messages);
-
 signals:
     void requestRedraw();
 

@@ -4,6 +4,8 @@
 #include "gui/cansignalsenderguiimpl.h"
 #include "cansignalsender.h"
 #include <memory>
+#include <cantypes.hpp>
+#include <QUuid>
 
 class CanSignalSender;
 
@@ -26,6 +28,8 @@ public:
     CanSignalSenderGuiInt& _ui;
     bool _docked{ true };
     std::map<QString, QVariant> _props;
+    std::map<QUuid, QString> _dbNames;
+    std::map<QUuid, CANmessages_t> _candb;
 
 private:
     CanSignalSender* q_ptr;

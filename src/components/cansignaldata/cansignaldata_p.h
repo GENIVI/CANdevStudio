@@ -22,6 +22,7 @@ public:
     void setSettings(const QJsonObject& json);
     void loadDbc(const std::string& filename);
     std::pair<CANmessage, std::vector<CANsignal>>* findInDb(uint32_t id);
+    void sendCANdbUpdated();
 
 private:
     void initProps();

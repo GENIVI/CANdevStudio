@@ -1,5 +1,6 @@
 #include "cansignaldata_p.h"
 #include <QJsonArray>
+#include <bcastmsgs.h>
 #include <dbcparser.h>
 #include <fstream>
 #include <log.h>
@@ -40,7 +41,7 @@ CanSignalDataPrivate::CanSignalDataPrivate(CanSignalData* q, CanSignalDataCtx&& 
 
     _ui.setMsgSettingsUpdatedCbk([this] {
         setMsgSettings(getMsgSettings());
-        emit q_ptr->canDbUpdated(_messages);
+        sendCANdbUpdated();
     });
 }
 
@@ -207,7 +208,7 @@ void CanSignalDataPrivate::loadDbc(const std::string& filename)
     if (!success) {
         cds_error("Failed to load CAN DB from '{}' file", filename);
         // send empty messages to indicate problem
-        emit q_ptr->canDbUpdated(_messages);
+        sendCANdbUpdated();
         return;
     }
 
@@ -266,7 +267,7 @@ void CanSignalDataPrivate::loadDbc(const std::string& filename)
         }
     }
 
-    emit q_ptr->canDbUpdated(_messages);
+    sendCANdbUpdated();
 }
 
 std::pair<CANmessage, std::vector<CANsignal>>* CanSignalDataPrivate::findInDb(uint32_t id)
@@ -275,8 +276,18 @@ std::pair<CANmessage, std::vector<CANsignal>>* CanSignalDataPrivate::findInDb(ui
     auto msg = _messages.find(key);
 
     if (msg != std::end(_messages)) {
-        return (std::pair<CANmessage, std::vector<CANsignal>>*) &(*msg);
+        return (std::pair<CANmessage, std::vector<CANsignal>>*)&(*msg);
     }
 
     return nullptr;
+}
+
+void CanSignalDataPrivate::sendCANdbUpdated()
+{
+    QVariant param;
+    param.setValue(_messages);
+    QJsonObject msg;
+    msg["msg"] = BcastMsg::CanDbUpdated;
+
+    emit q_ptr->simBcastSnd(msg, param);
 }

@@ -2,6 +2,7 @@
 #include "cansignaldata_p.h"
 #include <confighelpers.h>
 #include <log.h>
+#include <bcastmsgs.h>
 
 CanSignalData::CanSignalData()
     : d_ptr(new CanSignalDataPrivate(this))
@@ -83,6 +84,12 @@ void CanSignalData::startSimulation()
 
 void CanSignalData::simBcastRcv(const QJsonObject &msg, const QVariant &param)
 {
-    Q_UNUSED(msg);
     Q_UNUSED(param);
+
+    Q_D(CanSignalData);
+
+    QVariant vMsg = msg["msg"];
+    if (vMsg.isValid() && vMsg.toString() == BcastMsg::RequestCanDb) {
+        d->sendCANdbUpdated();
+    }
 }
