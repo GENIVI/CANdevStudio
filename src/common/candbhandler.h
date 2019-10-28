@@ -1,14 +1,14 @@
 #ifndef __CANDBHANDLER_H
 #define __CANDBHANDLER_H
 
-#include <QJsonObject>
-#include <QUuid>
-#include <map>
 #include "bcastmsgs.h"
+#include <QJsonObject>
 #include <QObject>
-#include <cantypes.hpp>
+#include <QUuid>
 #include <QVariant>
+#include <cantypes.hpp>
 #include <log.h>
+#include <map>
 
 Q_DECLARE_METATYPE(CANmessages_t);
 
@@ -25,6 +25,7 @@ public:
         }
 
         QString name = msg["caption"].toString();
+        QString type = msg["name"].toString();
 
         QVariant vMsg = msg["msg"];
         if (vMsg.isValid() && vMsg.toString() == BcastMsg::CanDbUpdated) {
@@ -39,13 +40,9 @@ public:
             if (_currentDb.isNull()) {
                 _currentDb = id;
             }
-        } else if (vMsg.isValid() && vMsg.toString() == BcastMsg::ConfigChanged) {
+        } else if ((vMsg.isValid() && vMsg.toString() == BcastMsg::ConfigChanged) && (type == "CanSignalData")) {
             _dbNames[id] = name;
         } else if (vMsg.isValid() && vMsg.toString() == BcastMsg::NodeDeleted) {
-            if (_currentDb == id) {
-                _currentDb = QUuid();
-            }
-
             _dbNames.erase(id);
             _candb.erase(id);
 
@@ -62,12 +59,21 @@ public:
 
     QString getName()
     {
-        return _dbNames[_currentDb];
+        if (_currentDb.isNull()) {
+            return "";
+        } else {
+            return _dbNames[_currentDb];
+        }
     }
 
-    void updateCurrentDb(const QVariant &id)
+    void updateCurrentDb(const QVariant& id)
     {
-        _currentDb = QUuid::fromString(id.toString());
+        updateCurrentDb(id.toString());
+    }
+
+    void updateCurrentDb(const QString& id)
+    {
+        _currentDb = QUuid::fromString(id);
 
         cds_debug("Current DB {}", _currentDb.toString().toStdString());
     }
@@ -79,7 +85,7 @@ public:
 
 signals:
     void sendCanDbRequest();
-    void dbDeleted(const QUuid &id);
+    void dbDeleted(const QUuid& id);
 };
 
 #endif /* !__CANDBHANDLER_H */

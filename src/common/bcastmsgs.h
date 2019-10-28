@@ -1,6 +1,8 @@
 #ifndef __BCASTMSGS_H
 #define __BCASTMSGS_H
 
+#include <QString>
+
 namespace BcastMsg {
 
 static const QString NodeCreated = "node_created";

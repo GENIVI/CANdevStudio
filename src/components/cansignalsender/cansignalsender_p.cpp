@@ -14,6 +14,18 @@ CanSignalSenderPrivate::CanSignalSenderPrivate(CanSignalSender* q, CanSignalSend
 
         emit q_ptr->simBcastSnd(msg);
     });
+
+    connect(&_db, &CanDbHandler::dbDeleted, [this](const QUuid& id) {
+        if (id == _db._currentDb) {
+            _props[_dbProperty] = "";
+            for (auto& iter : _db._dbNames) {
+                if (!iter.first.isNull()) {
+                    _props[_dbProperty] = iter.first.toString();
+                    _db.updateCurrentDb(_props[_dbProperty]);
+                }
+            }
+        }
+    });
 }
 
 void CanSignalSenderPrivate::initProps()
