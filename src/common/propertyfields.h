@@ -86,13 +86,13 @@ class PropertyFieldCombo : public PropertyField {
     Q_OBJECT
 
 public:
-    PropertyFieldCombo()
+    PropertyFieldCombo(bool editable = true)
     {
         setLayout(new QHBoxLayout);
         layout()->setContentsMargins(0, 0, 0, 0);
         _cb = new QComboBox();
+        _cb->setEditable(editable);
         _cb->setFrame(false);
-        _cb->setEditable(true);
         layout()->addWidget(_cb);
         connect(_cb, static_cast<void (QComboBox::*)(const QString&)>(&QComboBox::currentIndexChanged), this,
             &PropertyFieldCombo::currentTextChanged);

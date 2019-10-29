@@ -4,7 +4,7 @@ include_directories(${CMAKE_SOURCE_DIR}/src/common ${CMAKE_SOURCE_DIR}/3rdParty/
 set(SRC
     componentmodel.h
     propertyfields.h
-    candbhandler.h
+    candbhandler.cpp
     )
 
 add_library(cds-common STATIC ${SRC})

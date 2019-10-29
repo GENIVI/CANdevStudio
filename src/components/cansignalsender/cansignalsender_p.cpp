@@ -8,24 +8,7 @@ CanSignalSenderPrivate::CanSignalSenderPrivate(CanSignalSender* q, CanSignalSend
 {
     initProps();
 
-    connect(&_db, &CanDbHandler::sendCanDbRequest, [this] {
-        QJsonObject msg;
-        msg["msg"] = BcastMsg::RequestCanDb;
-
-        emit q_ptr->simBcastSnd(msg);
-    });
-
-    connect(&_db, &CanDbHandler::dbDeleted, [this](const QUuid& id) {
-        if (id == _db._currentDb) {
-            _props[_dbProperty] = "";
-            for (auto& iter : _db._dbNames) {
-                if (!iter.first.isNull()) {
-                    _props[_dbProperty] = iter.first.toString();
-                    _db.updateCurrentDb(_props[_dbProperty]);
-                }
-            }
-        }
-    });
+    connect(&_db, &CanDbHandler::sendCanDbRequest, q_ptr, &CanSignalSender::simBcastSnd);
 }
 
 void CanSignalSenderPrivate::initProps()
@@ -59,5 +42,5 @@ void CanSignalSenderPrivate::setSettings(const QJsonObject& json)
             _props[propName] = json[propName].toVariant();
     }
 
-    _db.updateCurrentDb(_props[_dbProperty]);
+    _db.updateCurrentDbFromProps();
 }

@@ -31,8 +31,8 @@ public:
     CanSignalSenderCtx _ctx;
     CanSignalSenderGuiInt& _ui;
     bool _docked{ true };
-    std::map<QString, QVariant> _props;
-    CanDbHandler _db;
+    ComponentInterface::PropertyContainer _props;
+    CanDbHandler _db{ _props, _dbProperty };
 
 private:
     CanSignalSender* q_ptr;
@@ -45,18 +45,7 @@ private:
     // clang-format off
     ComponentInterface::ComponentProperties _supportedProps = {
             std::make_tuple(_nameProperty, QVariant::String, true, cf(nullptr)),
-
-            std::make_tuple(_dbProperty, QVariant::String, true, cf([this] {
-                auto *p = new PropertyFieldCombo();
-
-                for (auto &item : _db._dbNames) {
-                    p->addItem(item.second, item.first);
-                }
-
-                p->setPropText(_db.getName());
-
-                return p;
-            }))
+            std::make_tuple(_dbProperty, QVariant::String, true, std::bind(&CanDbHandler::createPropertyWidget, &_db))
     };
     // clang-format on
 };

@@ -64,6 +64,7 @@ struct ComponentInterface {
     using CustomEditFieldCbk = std::function<QWidget*(void)>;
     using ComponentProperty = std::tuple<QString, QVariant::Type, PropertyEditable, CustomEditFieldCbk>;
     using ComponentProperties = std::vector<ComponentProperty>;
+    using PropertyContainer = std::map<QString, QVariant>;
 
     static constexpr const QString& propertyName(const ComponentProperty& p)
     {
