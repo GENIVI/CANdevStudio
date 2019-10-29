@@ -23,7 +23,7 @@ const std::map<PortType, std::vector<NodeDataType>> portMappings = {
 
 CanSignalSenderModel::CanSignalSenderModel()
     : ComponentModel("CanSignalSender")
-    , _painter(std::make_unique<CanDbPainter>(CanSignalSenderPlugin::PluginType::sectionColor(), &_component, 16))
+    , _painter(std::make_unique<CanDbPainter>(CanSignalSenderPlugin::PluginType::sectionColor(), &_component, 14))
 {
     _label->setAlignment(Qt::AlignVCenter | Qt::AlignHCenter);
     _label->setFixedSize(75, 25);

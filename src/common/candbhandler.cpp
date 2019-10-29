@@ -55,8 +55,9 @@ void CanDbHandler::processBcast(const QJsonObject& msg, const QVariant& param)
     } else if (vMsg.isValid() && vMsg.toString() == BcastMsg::NodeDeleted) {
         _dbNames.erase(id);
         _candb.erase(id);
+        _dbColor.erase(id);
 
-        emit dbDeleted(id);
+        dbDeleted(id);
     } else if (vMsg.isValid() && vMsg.toString() == BcastMsg::InitDone) {
         QJsonObject msg;
         msg["msg"] = BcastMsg::RequestCanDb;
@@ -104,11 +105,13 @@ void CanDbHandler::dbDeleted(const QUuid& id)
 {
     if (id == _currentDb) {
         _props[_dbProperty] = "";
+        _props["color"] = "";
         for (auto& iter : _dbNames) {
             if (!iter.first.isNull()) {
                 _props[_dbProperty] = iter.first.toString();
-                _currentDb = iter.first;
             }
         }
+
+        updateCurrentDbFromProps();
     }
 }

@@ -20,17 +20,32 @@ struct CanDbPainter : public NodePainter {
     {
         NodePainter::paint(painter, geom, model, graphicsObject);
 
-        auto config = _component->getQConfig();
-        QColor color = QColor(config->property("color").toString());
+        QtNodes::NodeStyle const& nodeStyle = model->nodeStyle();
 
-        if (color != _color) {
-            _color = color;
+        auto config = _component->getQConfig();
+        QString colorStr = config->property("color").toString();
+        if (colorStr.length() == 0) {
+            // Do not draw DB icon if DB is not set
+            return;
+        }
+
+        QColor gradientColor = QColor(colorStr);
+
+        if(nodeStyle.GradientColor0 == QColor("white")) {
+            _nodeColor = _lightColor;
+        } else {
+            _nodeColor = _darkColor;
+        }
+
+        if (_nodeColor != _prevNodeColor) {
+            _prevNodeColor = _nodeColor;
 
             QFile f(":/images/files/images/db_icon.svg");
 
             if (f.open(QFile::ReadOnly | QFile::Text)) {
                 QString tmp = QString::fromLatin1(f.readAll());
-                tmp = tmp.replace("fill:#000000", QString("fill:%1").arg(color.name(QColor::HexRgb)));
+                tmp = tmp.replace(
+                    "fill:#000000", QString("fill:%1").arg(_nodeColor.name(QColor::HexRgb)));
 
                 _svg.load(tmp.toLatin1());
             } else {
@@ -38,15 +53,34 @@ struct CanDbPainter : public NodePainter {
             }
         }
 
-        QRectF rect((geom.width() - _s)/2, (geom.height() - _s)/2 +12, _s, _s);
-        _svg.render(painter, rect);
+        QRectF svgRect((geom.width() - _s) / 2, (geom.height() - _s) / 2 + 12, _s, _s);
+        qreal bgMod = _s * 0.6;
+        QRectF bgRect((geom.width() - _s - bgMod) / 2, (geom.height() - _s - bgMod) / 2 + 12, _s + bgMod, _s + bgMod);
+        qreal grMod = bgMod + (_s * 0.6);
+        QRectF grRect(
+            (geom.width() - _s - grMod) / 2, (geom.height() - _s - grMod) / 2 + 12, _s + grMod, _s + grMod);
+
+        QRadialGradient gr(grRect.x() + grRect.width() / 2, grRect.y() + grRect.width() / 2, grRect.width() / 2);
+        gr.setColorAt(0, gradientColor);
+        gr.setColorAt(0.7, gradientColor);
+        gr.setColorAt(1, nodeStyle.GradientColor0);
+        painter->fillRect(grRect, gr);
+
+        painter->setPen(QPen(_nodeColor, _s * 0.1));
+        painter->setBrush(nodeStyle.GradientColor0);
+        painter->drawEllipse(bgRect);
+
+        _svg.render(painter, svgRect);
     }
 
 private:
     const ComponentInterface* _component;
-    QColor _color;
+    QColor _nodeColor;
+    QColor _prevNodeColor;
     QSvgRenderer _svg;
     qreal _s;
+    const QColor _lightColor{"#a5a5a5"};
+    const QColor _darkColor{"#a0a0a0"};
 };
 
 #endif /* !__CANDBPAINTER_H */
