@@ -5,6 +5,7 @@
 #include "nodepainter.h"
 #include <QtCore/QObject>
 #include <cansignaldata.h>
+#include <candbpainter.h>
 
 using QtNodes::NodeData;
 using QtNodes::NodeDataType;
@@ -29,7 +30,7 @@ signals:
     void requestRedraw();
 
 private:
-    std::unique_ptr<NodePainter> _painter;
+    std::unique_ptr<CanDbPainter> _painter;
     CANmessages_t _messages;
 };
 

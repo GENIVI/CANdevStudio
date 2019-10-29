@@ -10,7 +10,7 @@ set(SRC
 )
 
 add_library(${COMPONENT_NAME} ${SRC})
-target_link_libraries(${COMPONENT_NAME} cds-common CANdb)
+target_link_libraries(${COMPONENT_NAME} cds-common CANdb Qt5::Svg)
 target_include_directories(${COMPONENT_NAME} INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
 
 if(WITH_TESTS)

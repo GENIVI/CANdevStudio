@@ -1,6 +1,7 @@
 #ifndef __PROPERTYFIELDS_H
 #define __PROPERTYFIELDS_H
 
+#include <QColorDialog>
 #include <QComboBox>
 #include <QFileDialog>
 #include <QHBoxLayout>
@@ -19,7 +20,7 @@ struct PropertyFieldText : public PropertyField {
     {
         setLayout(new QHBoxLayout);
         layout()->setContentsMargins(0, 0, 0, 0);
-        _le = new QLineEdit();
+        _le = new QLineEdit(this);
         _le->setFrame(false);
         layout()->addWidget(_le);
 
@@ -49,7 +50,7 @@ struct PropertyFieldPath : public PropertyFieldText {
     PropertyFieldPath(bool folderOnly = false)
         : _folderOnly(folderOnly)
     {
-        _pb = new QPushButton();
+        _pb = new QPushButton(this);
         _pb->setText("...");
         _pb->setFixedSize(24, 24);
         _pb->setFlat(true);
@@ -90,7 +91,7 @@ public:
     {
         setLayout(new QHBoxLayout);
         layout()->setContentsMargins(0, 0, 0, 0);
-        _cb = new QComboBox();
+        _cb = new QComboBox(this);
         _cb->setEditable(editable);
         _cb->setFrame(false);
         layout()->addWidget(_cb);
@@ -130,5 +131,29 @@ signals:
 
 private:
     QComboBox* _cb;
+};
+
+struct PropertyFieldColor : public PropertyFieldText {
+    PropertyFieldColor()
+    {
+        _pb = new QPushButton(this);
+        _pb->setText("...");
+        _pb->setFixedSize(24, 24);
+        _pb->setFlat(true);
+        _pb->setProperty("type", "PropertyFieldPath");
+        layout()->addWidget(_pb);
+
+        _cd = new QColorDialog(this);
+
+        connect(_pb, &QPushButton::pressed, [&] {
+            if (_cd->exec() == QDialog::Accepted) {
+                _le->setText(_cd->selectedColor().name(QColor::HexRgb).toUpper());
+            }
+        });
+    }
+
+private:
+    QPushButton* _pb;
+    QColorDialog* _cd;
 };
 #endif /* !__PROPERTYFIELDS_H */

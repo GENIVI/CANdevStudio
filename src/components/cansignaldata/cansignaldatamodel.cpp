@@ -18,7 +18,7 @@ const std::map<PortType, std::vector<NodeDataType>> portMappings = {
 
 CanSignalDataModel::CanSignalDataModel()
     : ComponentModel("CanSignalData")
-    , _painter(std::make_unique<NodePainter>(CanSignalDataPlugin::PluginType::sectionColor()))
+    , _painter(std::make_unique<CanDbPainter>(CanSignalDataPlugin::PluginType::sectionColor(), &_component, 45))
 {
     _label->setAlignment(Qt::AlignVCenter | Qt::AlignHCenter);
     _label->setFixedSize(75, 75);

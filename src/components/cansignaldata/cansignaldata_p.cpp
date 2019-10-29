@@ -1,9 +1,26 @@
 #include "cansignaldata_p.h"
 #include <QJsonArray>
+#include <atomic>
 #include <bcastmsgs.h>
 #include <dbcparser.h>
 #include <fstream>
 #include <log.h>
+
+namespace {
+std::atomic<uint32_t> g_cnt(0);
+
+const std::vector<QColor> g_colorTab
+    = { QColor("gray"), QColor("green"), QColor("blue"), QColor("cyan"), QColor("magenta")};
+
+QString getDefaultColor()
+{
+    uint32_t cnt = g_cnt.load();
+    QString ret = g_colorTab[cnt % g_colorTab.size()].name(QColor::HexRgb).toUpper();
+    g_cnt.fetch_add(1);
+
+    return ret;
+}
+} // namespace
 
 CanSignalDataPrivate::CanSignalDataPrivate(CanSignalData* q, CanSignalDataCtx&& ctx)
     : _ctx(std::move(ctx))
@@ -51,6 +68,8 @@ void CanSignalDataPrivate::initProps()
         QString propName = ComponentInterface::propertyName(p);
         _props[propName];
     }
+
+    _props[_colorProperty] = getDefaultColor();
 }
 
 ComponentInterface::ComponentProperties CanSignalDataPrivate::getSupportedProperties() const
