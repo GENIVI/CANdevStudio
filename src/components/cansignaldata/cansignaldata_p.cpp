@@ -307,6 +307,7 @@ void CanSignalDataPrivate::sendCANdbUpdated()
     param.setValue(_messages);
     QJsonObject msg;
     msg["msg"] = BcastMsg::CanDbUpdated;
+    msg["color"] = _props[_colorProperty].toString();
 
     emit q_ptr->simBcastSnd(msg, param);
 }

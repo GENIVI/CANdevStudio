@@ -24,6 +24,7 @@ public:
 
 signals:
     void sendCanDbRequest(const QJsonObject& msg, const QVariant = QVariant());
+    void requestRedraw();
 
 private:
     void dbDeleted(const QUuid& id);
@@ -33,6 +34,7 @@ private:
     const QString& _dbProperty;
     std::map<QUuid, QString> _dbNames;
     std::map<QUuid, CANmessages_t> _candb;
+    std::map<QUuid, QString> _dbColor;
     QUuid _currentDb;
 };
 

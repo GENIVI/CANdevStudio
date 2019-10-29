@@ -9,6 +9,7 @@ CanSignalSenderPrivate::CanSignalSenderPrivate(CanSignalSender* q, CanSignalSend
     initProps();
 
     connect(&_db, &CanDbHandler::sendCanDbRequest, q_ptr, &CanSignalSender::simBcastSnd);
+    connect(&_db, &CanDbHandler::requestRedraw, q_ptr, &CanSignalSender::requestRedraw);
 }
 
 void CanSignalSenderPrivate::initProps()

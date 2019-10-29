@@ -1,9 +1,9 @@
+#include "candbhandler.h"
 #include "bcastmsgs.h"
 #include <QJsonObject>
 #include <QVariant>
 #include <log.h>
 #include <propertyfields.h>
-#include "candbhandler.h"
 
 CanDbHandler::CanDbHandler(ComponentInterface::PropertyContainer& props, const QString& dbProperty)
     : _props(props)
@@ -31,12 +31,27 @@ void CanDbHandler::processBcast(const QJsonObject& msg, const QVariant& param)
 
         _candb[id] = paramMsg;
         _dbNames[id] = name;
+        _dbColor[id] = msg["color"].toString();
 
         if (_currentDb.isNull()) {
             _currentDb = id;
         }
+
+        if (_currentDb == id) {
+            _props["color"] = _dbColor[id];
+            emit requestRedraw();
+        }
     } else if ((vMsg.isValid() && vMsg.toString() == BcastMsg::ConfigChanged) && (type == "CanSignalData")) {
         _dbNames[id] = name;
+
+        if (msg["config"].isObject()) {
+            _dbColor[id] = msg["config"].toObject()["color"].toString();
+        }
+
+        if (_currentDb == id) {
+            _props["color"] = _dbColor[id];
+            emit requestRedraw();
+        }
     } else if (vMsg.isValid() && vMsg.toString() == BcastMsg::NodeDeleted) {
         _dbNames.erase(id);
         _candb.erase(id);
@@ -68,6 +83,8 @@ QString CanDbHandler::getName()
 void CanDbHandler::updateCurrentDbFromProps()
 {
     _currentDb = QUuid::fromString(_props[_dbProperty].toString());
+    _props["color"] = _dbColor[_currentDb];
+    emit requestRedraw();
 }
 
 QWidget* CanDbHandler::createPropertyWidget()

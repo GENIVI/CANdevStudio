@@ -1,6 +1,5 @@
 #include "cansignaldatamodel.h"
 #include "cansignaldataplugin.h"
-#include <datamodeltypes/candbdata.h>
 #include <log.h>
 
 namespace {

@@ -4,13 +4,9 @@
 #include <nodes/NodeDataModel>
 
 #include <QCanBusFrame>
+#include "datadirection.h"
 
 using QtNodes::NodeDataType;
-
-/**
-*   @brief The enum class describing frame direction
-*/
-enum class Direction { RX, TX, Uninitialized };
 
 /**
 *   @brief The class describing data model used as output for CanDevice node

@@ -50,7 +50,14 @@ std::shared_ptr<QWidget> CanSignalSender::getQConfig() const
 {
     const Q_D(CanSignalSender);
 
-    return configHelpers::getQConfig(getSupportedProperties(), d->_props);
+    auto config = configHelpers::getQConfig(getSupportedProperties(), d->_props);
+
+    auto iter = d->_props.find("color");
+    if (iter != d->_props.end()) {
+        config->setProperty("color", iter->second);
+    }
+
+    return config;
 }
 
 void CanSignalSender::configChanged() {}

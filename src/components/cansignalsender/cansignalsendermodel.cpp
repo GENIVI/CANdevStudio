@@ -1,5 +1,6 @@
 #include "cansignalsendermodel.h"
 #include "cansignalsenderplugin.h"
+#include <datamodeltypes/cansignalmodel.h>
 #include <log.h>
 
 namespace {
@@ -8,12 +9,11 @@ namespace {
 const std::map<PortType, std::vector<NodeDataType>> portMappings = {
     { PortType::In, 
         {
-            //{CanRawData{}.type() }
         }
     },
     { PortType::Out, 
         {
-            //{CanRawData{}.type() }
+            { CanSignalModel{}.type() }
         }
     }
 };
@@ -23,11 +23,13 @@ const std::map<PortType, std::vector<NodeDataType>> portMappings = {
 
 CanSignalSenderModel::CanSignalSenderModel()
     : ComponentModel("CanSignalSender")
-    , _painter(std::make_unique<NodePainter>(CanSignalSenderPlugin::PluginType::sectionColor()))
+    , _painter(std::make_unique<CanDbPainter>(CanSignalSenderPlugin::PluginType::sectionColor(), &_component, 16))
 {
     _label->setAlignment(Qt::AlignVCenter | Qt::AlignHCenter);
     _label->setFixedSize(75, 25);
     _label->setAttribute(Qt::WA_TranslucentBackground);
+
+    connect(&_component, &CanSignalSender::requestRedraw, this, &CanSignalSenderModel::requestRedraw);
 }
 
 QtNodes::NodePainterDelegate* CanSignalSenderModel::painterDelegate() const
