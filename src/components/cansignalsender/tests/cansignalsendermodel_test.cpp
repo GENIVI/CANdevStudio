@@ -34,7 +34,7 @@ TEST_CASE("nPorts", "[cansignalsenderModel]")
 {
     CanSignalSenderModel cm;
 
-    REQUIRE(cm.nPorts(QtNodes::PortType::Out) == 0);
+    REQUIRE(cm.nPorts(QtNodes::PortType::Out) == 1);
     REQUIRE(cm.nPorts(QtNodes::PortType::In) == 0);
 }
 

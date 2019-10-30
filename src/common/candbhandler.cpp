@@ -16,7 +16,7 @@ void CanDbHandler::processBcast(const QJsonObject& msg, const QVariant& param)
     QVariant vId = msg["id"];
     QUuid id;
     if (vId.isValid()) {
-        id = QUuid::fromString(vId.toString());
+        id = QUuid(vId.toString());
     }
 
     QString name = msg["caption"].toString();
@@ -83,7 +83,7 @@ QString CanDbHandler::getName()
 
 void CanDbHandler::updateCurrentDbFromProps()
 {
-    _currentDb = QUuid::fromString(_props[_dbProperty].toString());
+    _currentDb = QUuid(_props[_dbProperty].toString());
     _props["color"] = _dbColor[_currentDb];
     emit requestRedraw();
 }

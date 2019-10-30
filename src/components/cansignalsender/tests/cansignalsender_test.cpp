@@ -67,7 +67,7 @@ TEST_CASE("getSupportedProperties", "[cansignalsender]")
 
     auto props = c.getSupportedProperties();
 
-    REQUIRE(props.size() == 1);
+    REQUIRE(props.size() == 2);
 
     REQUIRE(ComponentInterface::propertyName(props[0]) == "name");
     REQUIRE(ComponentInterface::propertyType(props[0]) == QVariant::String);
