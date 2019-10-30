@@ -22,7 +22,7 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="../../../../CANdevResources.qrc">
+        <iconset>
          <normaloff>:/images/files/images/light/CANbus_icon_Add.svg</normaloff>:/images/files/images/light/CANbus_icon_Add.svg</iconset>
        </property>
        <property name="iconSize">
@@ -45,7 +45,7 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="../../../../CANdevResources.qrc">
+        <iconset>
          <normaloff>:/images/files/images/light/CANbus_icon_Remove.svg</normaloff>:/images/files/images/light/CANbus_icon_Remove.svg</iconset>
        </property>
        <property name="iconSize">
@@ -81,7 +81,7 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="../../../../CANdevResources.qrc">
+        <iconset>
          <normaloff>:/images/files/images/light/CANbus_icon_Undock.svg</normaloff>:/images/files/images/light/CANbus_icon_Undock.svg</iconset>
        </property>
        <property name="iconSize">
@@ -101,12 +101,20 @@
     </layout>
    </item>
    <item>
-    <widget class="QTableView" name="tv"/>
+    <widget class="QTableView" name="tv">
+     <property name="focusPolicy">
+      <enum>Qt::NoFocus</enum>
+     </property>
+     <property name="selectionMode">
+      <enum>QAbstractItemView::NoSelection</enum>
+     </property>
+     <property name="selectionBehavior">
+      <enum>QAbstractItemView::SelectRows</enum>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>
- <resources>
-  <include location="../../../../CANdevResources.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>
