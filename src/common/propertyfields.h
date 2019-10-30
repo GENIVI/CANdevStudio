@@ -126,6 +126,11 @@ public:
         _cb->addItem(text, v);
     }
 
+    void sort()
+    {
+        _cb->model()->sort(0);
+    }
+
 signals:
     void currentTextChanged(const QString& text);
 

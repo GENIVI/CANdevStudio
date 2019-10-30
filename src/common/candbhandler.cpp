@@ -97,6 +97,7 @@ QWidget* CanDbHandler::createPropertyWidget()
         p->addItem(item.second, item.first);
     }
 
+    p->sort();
     p->setPropText(getName());
 
     return p;
