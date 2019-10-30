@@ -111,7 +111,7 @@ TEST_CASE("loadDbc", "[cansignaldata]")
     QJsonObject obj;
     CANmessages_t msgs;
 
-    //QSignalSpy updateSpy(&c, &CanSignalData::canDbUpdated);
+    QSignalSpy updateSpy(&c, &CanSignalData::simBcastSnd);
 
     obj["name"] = "Test Name";
 
@@ -123,27 +123,27 @@ TEST_CASE("loadDbc", "[cansignaldata]")
     c.setConfig(obj);
     c.configChanged();
 
-    //REQUIRE(updateSpy.count() == 1);
-    //msgs = qvariant_cast<CANmessages_t>(updateSpy.takeFirst().at(0));
-    //REQUIRE(msgs.size() == 17);
+    REQUIRE(updateSpy.count() == 1);
+    msgs = qvariant_cast<CANmessages_t>(updateSpy.takeFirst().at(1));
+    REQUIRE(msgs.size() == 17);
 
     // File does not exist
     obj["file"] = QString(DBC_PATH) + "/tesla_can";
     c.setConfig(obj);
     c.configChanged();
 
-    //REQUIRE(updateSpy.count() == 1);
-    //msgs = qvariant_cast<CANmessages_t>(updateSpy.takeFirst().at(0));
-    //REQUIRE(msgs.size() == 0);
+    REQUIRE(updateSpy.count() == 1);
+    msgs = qvariant_cast<CANmessages_t>(updateSpy.takeFirst().at(1));
+    REQUIRE(msgs.size() == 0);
 
     // Wrong file
     obj["file"] = QString(DBC_PATH) + "/project.cds";
     c.setConfig(obj);
     c.configChanged();
 
-    //REQUIRE(updateSpy.count() == 1);
-    //msgs = qvariant_cast<CANmessages_t>(updateSpy.takeFirst().at(0));
-    //REQUIRE(msgs.size() == 0);
+    REQUIRE(updateSpy.count() == 1);
+    msgs = qvariant_cast<CANmessages_t>(updateSpy.takeFirst().at(1));
+    REQUIRE(msgs.size() == 0);
 }
 
 QString testJson = R"(
@@ -183,40 +183,40 @@ TEST_CASE("loadDbc with settings", "[cansignaldata]")
 {
     CanSignalData c;
     QJsonObject obj = QJsonDocument::fromJson(testJson.toUtf8()).object();
-    //QSignalSpy updateSpy(&c, &CanSignalData::canDbUpdated);
+    QSignalSpy updateSpy(&c, &CanSignalData::simBcastSnd);
 
     obj["file"] = QString(DBC_PATH) + "/tesla_can.dbc";
     c.setConfig(obj);
     c.configChanged();
 
-    //REQUIRE(updateSpy.count() == 1);
-    //auto msgs = qvariant_cast<CANmessages_t>(updateSpy.takeFirst().at(0));
-    //REQUIRE(msgs.size() == 17);
+    REQUIRE(updateSpy.count() == 1);
+    auto msgs = qvariant_cast<CANmessages_t>(updateSpy.takeFirst().at(1));
+    REQUIRE(msgs.size() == 17);
 
-    //auto msg = msgs.find({ 0x3 });
-    //REQUIRE(msg != std::end(msgs));
-    //REQUIRE(msg->first.updateCycle == 123);
-    //REQUIRE(msg->first.initValue == "");
+    auto msg = msgs.find({ 0x3 });
+    REQUIRE(msg != std::end(msgs));
+    REQUIRE(msg->first.updateCycle == 123);
+    REQUIRE(msg->first.initValue == "");
 
-    //msg = msgs.find({ 0xe });
-    //REQUIRE(msg != std::end(msgs));
-    //REQUIRE(msg->first.updateCycle == 0);
-    //REQUIRE(msg->first.initValue == "1122334455667788");
+    msg = msgs.find({ 0xe });
+    REQUIRE(msg != std::end(msgs));
+    REQUIRE(msg->first.updateCycle == 0);
+    REQUIRE(msg->first.initValue == "1122334455667788");
 
-    //msg = msgs.find({ 0x45 });
-    //REQUIRE(msg != std::end(msgs));
-    //REQUIRE(msg->first.updateCycle == 1234567890);
-    //REQUIRE(msg->first.initValue == "aabbccddeeff0099");
+    msg = msgs.find({ 0x45 });
+    REQUIRE(msg != std::end(msgs));
+    REQUIRE(msg->first.updateCycle == 1234567890);
+    REQUIRE(msg->first.initValue == "aabbccddeeff0099");
 
-    //msg = msgs.find({ 0x6d });
-    //REQUIRE(msg != std::end(msgs));
-    //REQUIRE(msg->first.updateCycle == 0);
-    //REQUIRE(msg->first.initValue == "AABBCCDD");
+    msg = msgs.find({ 0x6d });
+    REQUIRE(msg != std::end(msgs));
+    REQUIRE(msg->first.updateCycle == 0);
+    REQUIRE(msg->first.initValue == "AABBCCDD");
 
-    //msg = msgs.find({ 0x101 });
-    //REQUIRE(msg != std::end(msgs));
-    //REQUIRE(msg->first.updateCycle == 1);
-    //REQUIRE(msg->first.initValue == "EEFF00");
+    msg = msgs.find({ 0x101 });
+    REQUIRE(msg != std::end(msgs));
+    REQUIRE(msg->first.updateCycle == 1);
+    REQUIRE(msg->first.initValue == "EEFF00");
 }
 
 TEST_CASE("dock/undock", "[cansignaldata]")
@@ -300,35 +300,35 @@ TEST_CASE("settings callback", "[cansignaldata]")
 
     CanSignalDataCtx ctx(&guiInt.get());
     CanSignalData c(std::move(ctx));
-    //QSignalSpy settingsSpy(&c, &CanSignalData::canDbUpdated);
+    QSignalSpy settingsSpy(&c, &CanSignalData::simBcastSnd);
     QJsonObject obj;
 
     obj["file"] = QString(DBC_PATH) + "/tesla_can.dbc";
     c.setConfig(obj);
     c.configChanged();
 
-    //REQUIRE(settingsSpy.count() == 1);
-    //auto msgs = qvariant_cast<CANmessages_t>(settingsSpy.takeFirst().at(0));
-    //REQUIRE(msgs.size() == 17);
+    REQUIRE(settingsSpy.count() == 1);
+    auto msgs = qvariant_cast<CANmessages_t>(settingsSpy.takeFirst().at(1));
+    REQUIRE(msgs.size() == 17);
 
-    //auto msg = msgs.find({ 0x45 });
-    //REQUIRE(msg != std::end(msgs));
-    //REQUIRE(msg->first.updateCycle == 0);
-    //REQUIRE(msg->first.initValue == "");
+    auto msg = msgs.find({ 0x45 });
+    REQUIRE(msg != std::end(msgs));
+    REQUIRE(msg->first.updateCycle == 0);
+    REQUIRE(msg->first.initValue == "");
 
     msgModel->setItem(2, 4, new QStandardItem("123"));
     msgModel->setItem(2, 5, new QStandardItem("456"));
 
     settingsUpdated();
 
-    //REQUIRE(settingsSpy.count() == 1);
-    //msgs = qvariant_cast<CANmessages_t>(settingsSpy.takeFirst().at(0));
-    //REQUIRE(msgs.size() == 17);
+    REQUIRE(settingsSpy.count() == 1);
+    msgs = qvariant_cast<CANmessages_t>(settingsSpy.takeFirst().at(1));
+    REQUIRE(msgs.size() == 17);
 
-    //msg = msgs.find({ 0x45 });
-    //REQUIRE(msg != std::end(msgs));
-    //REQUIRE(msg->first.updateCycle == 123);
-    //REQUIRE(msg->first.initValue == "456");
+    msg = msgs.find({ 0x45 });
+    REQUIRE(msg != std::end(msgs));
+    REQUIRE(msg->first.updateCycle == 123);
+    REQUIRE(msg->first.initValue == "456");
 
     QJsonObject settings = c.getConfig();
     REQUIRE(settings["msgSettings"].toArray()[0].toObject()["id"].toString() == "45");
@@ -356,7 +356,6 @@ TEST_CASE("Filter test", "[cansignaldata]")
 
     CanSignalDataCtx ctx(&guiInt.get());
     CanSignalData c(std::move(ctx));
-    //QSignalSpy settingsSpy(&c, &CanSignalData::canDbUpdated);
     QJsonObject obj = QJsonDocument::fromJson(testJson.toUtf8()).object();
 
     obj["file"] = QString(DBC_PATH) + "/tesla_can.dbc";
