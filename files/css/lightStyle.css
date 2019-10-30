@@ -249,6 +249,10 @@ QPushButton[type="nlmItem"]:disabled {
     color: #cdcdcd;
 }
 
+QLineEdit[type="nlmItem"] {
+    border: 0;
+}
+
 QLineEdit[type="nlmItem"]:disabled {
     color: #cdcdcd;
 }
@@ -271,6 +275,10 @@ QCheckBox::indicator:unchecked:disabled {
 QCheckBox::indicator:checked:disabled {
     image: url(:/images/files/images/light/CANbus_icon_CheckBoxOn_disabled.svg);
     background-color: #ffffff;
+}
+
+QComboBox {
+    border: 0;
 }
 
 QComboBox::drop-down {
