@@ -1,13 +1,14 @@
 #ifndef CANSIGNALSENDER_P_H
 #define CANSIGNALSENDER_P_H
 
-#include "cansignalsender.h"
+#include <QtCore/QObject>
+#include <memory>
 #include "gui/cansignalsenderguiimpl.h"
+#include "cansignalsender.h"
+#include <QStandardItemModel>
+#include <cantypes.hpp>
 #include <QUuid>
 #include <candbhandler.h>
-#include <cantypes.hpp>
-#include <log.h>
-#include <memory>
 #include <propertyfields.h>
 
 class CanSignalSender;
@@ -17,8 +18,7 @@ class CanSignalSenderPrivate : public QObject {
     Q_DECLARE_PUBLIC(CanSignalSender)
 
 public:
-    CanSignalSenderPrivate(
-        CanSignalSender* q, CanSignalSenderCtx&& ctx = CanSignalSenderCtx(new CanSignalSenderGuiImpl));
+    CanSignalSenderPrivate(CanSignalSender* q, CanSignalSenderCtx&& ctx = CanSignalSenderCtx(new CanSignalSenderGuiImpl));
     ComponentInterface::ComponentProperties getSupportedProperties() const;
     QJsonObject getSettings();
     void setSettings(const QJsonObject& json);
@@ -31,10 +31,13 @@ public:
     CanSignalSenderCtx _ctx;
     CanSignalSenderGuiInt& _ui;
     bool _docked{ true };
-    ComponentInterface::PropertyContainer _props;
+    std::map<QString, QVariant> _props;
     CanDbHandler _db{ _props, _dbProperty };
 
 private:
+    QStandardItemModel _tvModel;
+    QStringList _tvColumns;
+    std::map<uint32_t, QStringList> _signalNames;
     CanSignalSender* q_ptr;
     const QString _nameProperty = "name";
     const QString _dbProperty = "CAN database";
@@ -47,7 +50,6 @@ private:
             std::make_tuple(_nameProperty, QVariant::String, true, cf(nullptr)),
             std::make_tuple(_dbProperty, QVariant::String, true, cf(std::bind(&CanDbHandler::createPropertyWidget, &_db)))
     };
-    // clang-format on
 };
 
 #endif // CANSIGNALSENDER_P_H

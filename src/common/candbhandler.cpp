@@ -40,6 +40,7 @@ void CanDbHandler::processBcast(const QJsonObject& msg, const QVariant& param)
         if (_currentDb == id) {
             _props["color"] = _dbColor[id];
             emit requestRedraw();
+            emit dbChanged();
         }
     } else if ((vMsg.isValid() && vMsg.toString() == BcastMsg::ConfigChanged) && (type == "CanSignalData")) {
         _dbNames[id] = name;
@@ -50,7 +51,6 @@ void CanDbHandler::processBcast(const QJsonObject& msg, const QVariant& param)
 
         if (_currentDb == id) {
             _props["color"] = _dbColor[id];
-            emit requestRedraw();
         }
     } else if (vMsg.isValid() && vMsg.toString() == BcastMsg::NodeDeleted) {
         _dbNames.erase(id);
@@ -86,6 +86,7 @@ void CanDbHandler::updateCurrentDbFromProps()
     _currentDb = QUuid(_props[_dbProperty].toString());
     _props["color"] = _dbColor[_currentDb];
     emit requestRedraw();
+    emit dbChanged();
 }
 
 QWidget* CanDbHandler::createPropertyWidget()

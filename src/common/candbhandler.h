@@ -25,6 +25,7 @@ public:
 signals:
     void sendCanDbRequest(const QJsonObject& msg, const QVariant = QVariant());
     void requestRedraw();
+    void dbChanged();
 
 private:
     void dbDeleted(const QUuid& id);
