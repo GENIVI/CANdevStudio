@@ -45,7 +45,7 @@ private:
     // clang-format off
     ComponentInterface::ComponentProperties _supportedProps = {
             std::make_tuple(_nameProperty, QVariant::String, true, cf(nullptr)),
-            std::make_tuple(_dbProperty, QVariant::String, true, std::bind(&CanDbHandler::createPropertyWidget, &_db))
+            std::make_tuple(_dbProperty, QVariant::String, true, cf(std::bind(&CanDbHandler::createPropertyWidget, &_db)))
     };
     // clang-format on
 };
