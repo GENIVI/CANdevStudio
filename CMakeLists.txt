@@ -76,6 +76,7 @@ endif()
 
 set(SPDLOG_BUILD_TESTING OFF CACHE BOOL "")
 set(BUILD_EXAMPLES OFF CACHE BOOL "")
+set(CANDB__WITH_TESTS OFF CACHE BOOL "")
 
 # Version handling
 if(EXISTS "${CMAKE_SOURCE_DIR}/.git" AND DEV_BUILD)
@@ -112,7 +113,7 @@ if(WITH_TESTS OR WITH_COVERAGE)
     enable_testing()
 endif()
 
-add_subdirectory(3rdParty)
+add_subdirectory(3rdParty EXCLUDE_FROM_ALL)
 add_subdirectory(src/common)
 add_subdirectory(src/components)
 add_subdirectory(src/gui)
