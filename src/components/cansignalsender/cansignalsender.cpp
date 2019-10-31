@@ -88,10 +88,6 @@ void CanSignalSender::startSimulation()
 
 void CanSignalSender::simBcastRcv(const QJsonObject& msg, const QVariant& param)
 {
-    QJsonDocument doc(msg);
-
-    cds_warn("{}", doc.toJson().toStdString());
-
     Q_D(CanSignalSender);
 
     d->_db.processBcast(msg, param);

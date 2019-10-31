@@ -35,16 +35,18 @@ public:
 
         cb->setCurrentText(_model->data(index).toString());
 
-        connect(cb, QOverload<const QString&>::of(&QComboBox::currentTextChanged), [index, this](const QString& text) {
-            uint32_t id = text.toUInt(nullptr, 16);
+        // QOverload is not supported by MSVC 2015
+        connect(cb, static_cast<void (QComboBox::*)(const QString&)>(&QComboBox::currentTextChanged),
+            [index, this](const QString& text) {
+                uint32_t id = text.toUInt(nullptr, 16);
 
-            if (_sigNames.count(id)) {
-                auto ndx = _model->index(index.row(), 1);
-                _model->setData(ndx, _sigNames[id].first(), Qt::EditRole);
-            } else {
-                cds_error("No signals for selected id 0x{:03x}", id);
-            }
-        });
+                if (_sigNames.count(id)) {
+                    auto ndx = _model->index(index.row(), 1);
+                    _model->setData(ndx, _sigNames[id].first(), Qt::EditRole);
+                } else {
+                    cds_error("No signals for selected id 0x{:03x}", id);
+                }
+            });
 
         return cb;
     }
@@ -75,11 +77,12 @@ public:
     virtual QWidget* createEditor(QWidget* parent, const QStyleOptionViewItem&, const QModelIndex& index) const override
     {
         QComboBox* cb = new QComboBox(parent);
-        uint32_t id = _model->data(_model->index(index.row(), 0)).toString().toUInt(nullptr, 16);
+        QString idStr = _model->data(_model->index(index.row(), 0)).toString();
+        uint32_t id = idStr.toUInt(nullptr, 16);
 
         if (_sigNames.count(id)) {
             cb->addItems(_sigNames.at(id));
-        } else {
+        } else if (idStr.length() > 0) {
             cds_error("No signals for selected id 0x{:03x}", id);
         }
 
@@ -161,14 +164,6 @@ struct CanSignalSenderGuiImpl : public CanSignalSenderGuiInt {
             return;
         }
 
-        // if (id.length() > 0 && sig.length() > 0) {
-        //    // Hack to allow set ComboBox before _sigNames gets populated
-        //    uint32_t numId = id.toUInt(nullptr, 16);
-        //    if (!(*_sigNames)[numId].contains(sig)) {
-        //        (*_sigNames)[numId].append(sig);
-        //    }
-        //}
-
         QStandardItem* idItem = nullptr;
         QStandardItem* sigItem = nullptr;
         QStandardItem* valItem = nullptr;
@@ -203,62 +198,25 @@ struct CanSignalSenderGuiImpl : public CanSignalSenderGuiInt {
 
         _model->appendRow(list);
 
-        // QPushButton* bt = new QPushButton("Send");
-        // bt->setProperty("type", "nlmItem");
-        // bt->setFlat(true);
+        QPushButton* bt = new QPushButton("Send");
+        bt->setProperty("type", "nlmItem");
+        bt->setFlat(true);
 
-        // QComboBox* sigCmb = new QComboBox();
-        // sigCmb->setProperty("type", "nlmItem");
+        uint32_t row = _model->rowCount() - 1;
+        QObject::connect(bt, &QPushButton::pressed, [this, row] {
+            if (_sendCbk) {
+                auto id = _model->data(_model->index(row, 0)).toString();
+                auto sig = _model->data(_model->index(row, 1)).toString();
+                auto val = _model->data(_model->index(row, 2)).toString();
 
-        // QComboBox* idCmb = new QComboBox();
-        // idCmb->setProperty("type", "nlmItem");
+                if (id.length() > 0 && sig.length() > 0 && val.length() > 0) {
+                    _sendCbk(id, sig, QVariant(val));
+                }
+            }
+        });
 
-        // QObject::connect(idCmb, &QComboBox::currentTextChanged, [this, sigCmb](const QString& text) {
-        //    uint32_t id = text.toUInt(nullptr, 16);
-        //    sigCmb->clear();
-
-        //    if (_sigNames->count(id)) {
-        //        sigCmb->addItems(_sigNames->at(id));
-        //    } else {
-        //        cds_error("No signals for selected id 0x{:03x}", id);
-        //    }
-        //});
-
-        // for (const auto& msg : *_sigNames) {
-        //    idCmb->addItem(fmt::format("0x{:03x}", msg.first).c_str());
-        //}
-
-        // QLineEdit* le = new QLineEdit();
-        // le->setProperty("type", "nlmItem");
-
-        // QObject::connect(bt, &QPushButton::pressed, [idCmb, sigCmb, le, this] {
-        //    if (_sendCbk) {
-        //        if (idCmb->currentText().length() > 0 && sigCmb->currentText().length() > 0
-        //            && le->text().length() > 0) {
-
-        //            _sendCbk(idCmb->currentText(), sigCmb->currentText(), QVariant(le->text()));
-        //        }
-        //    }
-        //});
-
-        // auto idNdx = _model->index(_model->rowCount() - 1, 0);
-        //_ui->tv->setIndexWidget(idNdx, idCmb);
-
-        // auto sigNdx = _model->index(_model->rowCount() - 1, 1);
-        //_ui->tv->setIndexWidget(sigNdx, sigCmb);
-
-        // auto leNdx = _model->index(_model->rowCount() - 1, 2);
-        //_ui->tv->setIndexWidget(leNdx, le);
-
-        // auto pbNdx = _model->index(_model->rowCount() - 1, _model->columnCount() - 1);
-        //_ui->tv->setIndexWidget(pbNdx, bt);
-
-        // if (id.length() > 0 && sig.length() > 0) {
-        //    idCmb->setCurrentText(id);
-        //    sigCmb->setCurrentText(sig);
-        //}
-
-        // le->setText(val);
+        auto pbNdx = _model->index(_model->rowCount() - 1, _model->columnCount() - 1);
+        _ui->tv->setIndexWidget(pbNdx, bt);
     }
 
     QJsonArray getRows() override
@@ -267,13 +225,13 @@ struct CanSignalSenderGuiImpl : public CanSignalSenderGuiInt {
         QJsonObject item;
 
         for (int i = 0; i < _model->rowCount(); ++i) {
-            auto id = reinterpret_cast<QComboBox*>(_ui->tv->indexWidget(_model->index(i, 0)));
-            auto sig = reinterpret_cast<QComboBox*>(_ui->tv->indexWidget(_model->index(i, 1)));
-            auto val = reinterpret_cast<QLineEdit*>(_ui->tv->indexWidget(_model->index(i, 2)));
+            auto id = _model->data(_model->index(i, 0));
+            auto sig = _model->data(_model->index(i, 1));
+            auto val = _model->data(_model->index(i, 2));
 
-            item["id"] = id->currentText();
-            item["sig"] = sig->currentText();
-            item["val"] = val->text();
+            item["id"] = id.toString();
+            item["sig"] = sig.toString();
+            item["val"] = val.toString();
 
             ret.append(item);
         }
