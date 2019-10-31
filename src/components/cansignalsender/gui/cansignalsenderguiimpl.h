@@ -26,12 +26,36 @@ public:
         QComboBox* cb = new QComboBox(parent);
 
         for (const auto& msg : _sigNames) {
-            cb->addItem(fmt::format("0x{:03x}", msg.first).c_str());
+            if (msg.first > 0x7ff) {
+                cb->addItem(fmt::format("0x{:08x}", msg.first).c_str());
+            } else {
+                cb->addItem(fmt::format("0x{:03x}", msg.first).c_str());
+            }
         }
 
-        cb->showPopup();
+        cb->setCurrentText(_model->data(index).toString());
+
+        connect(cb, QOverload<const QString&>::of(&QComboBox::currentTextChanged), [index, this](const QString& text) {
+            uint32_t id = text.toUInt(nullptr, 16);
+
+            if (_sigNames.count(id)) {
+                auto ndx = _model->index(index.row(), 1);
+                _model->setData(ndx, _sigNames[id].first(), Qt::EditRole);
+            } else {
+                cds_error("No signals for selected id 0x{:03x}", id);
+            }
+        });
 
         return cb;
+    }
+
+    void updateEditorGeometry(
+        QWidget* editor, const QStyleOptionViewItem& option, const QModelIndex& index) const override
+    {
+        QStyledItemDelegate::updateEditorGeometry(editor, option, index);
+
+        QComboBox* cb = static_cast<QComboBox*>(editor);
+        cb->showPopup();
     }
 
 private:
@@ -50,10 +74,27 @@ public:
 
     virtual QWidget* createEditor(QWidget* parent, const QStyleOptionViewItem&, const QModelIndex& index) const override
     {
-        // uint32_t dlc = _model->data(_model->index(index.row(), 2)).toUInt();
+        QComboBox* cb = new QComboBox(parent);
+        uint32_t id = _model->data(_model->index(index.row(), 0)).toString().toUInt(nullptr, 16);
 
-        // return new T(dlc, parent);
-        return {};
+        if (_sigNames.count(id)) {
+            cb->addItems(_sigNames.at(id));
+        } else {
+            cds_error("No signals for selected id 0x{:03x}", id);
+        }
+
+        cb->setCurrentText(_model->data(index).toString());
+
+        return cb;
+    }
+
+    void updateEditorGeometry(
+        QWidget* editor, const QStyleOptionViewItem& option, const QModelIndex& index) const override
+    {
+        QStyledItemDelegate::updateEditorGeometry(editor, option, index);
+
+        QComboBox* cb = static_cast<QComboBox*>(editor);
+        cb->showPopup();
     }
 
 private:
@@ -71,7 +112,7 @@ struct CanSignalSenderGuiImpl : public CanSignalSenderGuiInt {
         _ui->tv->setEditTriggers(QAbstractItemView::AllEditTriggers);
     }
 
-    virtual QWidget* mainWidget()
+    virtual QWidget* mainWidget() override
     {
         return _widget;
     }
@@ -88,6 +129,9 @@ struct CanSignalSenderGuiImpl : public CanSignalSenderGuiInt {
 
         _idDelegate = new SigIdDelegate(&tvModel, *_sigNames, _ui->tv);
         _ui->tv->setItemDelegateForColumn(0, _idDelegate);
+
+        _nameDelegate = new SigNameDelegate(&tvModel, *_sigNames, _ui->tv);
+        _ui->tv->setItemDelegateForColumn(1, _nameDelegate);
     }
 
     virtual void setDockUndockCbk(const dockUndock_t& cb) override
@@ -100,7 +144,7 @@ struct CanSignalSenderGuiImpl : public CanSignalSenderGuiInt {
         QObject::connect(_ui->pbAdd, &QPushButton::pressed, cb);
     }
 
-    virtual void setSendCbk(const send_t& cbk)
+    virtual void setSendCbk(const send_t& cbk) override
     {
         _sendCbk = cbk;
     }
@@ -117,15 +161,45 @@ struct CanSignalSenderGuiImpl : public CanSignalSenderGuiInt {
             return;
         }
 
-        // if(id.length() > 0 && sig.length() > 0) {
-        //// Hack to allow set ComboBox before _sigNames gets populated
-        // uint32_t numId = id.toUInt(nullptr, 16);
-        // if(!(*_sigNames)[numId].contains(sig)) {
-        //(*_sigNames)[numId].append(sig);
-        //}
+        // if (id.length() > 0 && sig.length() > 0) {
+        //    // Hack to allow set ComboBox before _sigNames gets populated
+        //    uint32_t numId = id.toUInt(nullptr, 16);
+        //    if (!(*_sigNames)[numId].contains(sig)) {
+        //        (*_sigNames)[numId].append(sig);
+        //    }
         //}
 
-        QList<QStandardItem*> list{ new QStandardItem(), new QStandardItem(), new QStandardItem() };
+        QStandardItem* idItem = nullptr;
+        QStandardItem* sigItem = nullptr;
+        QStandardItem* valItem = nullptr;
+
+        if (id.length() > 0 && sig.length() > 0) {
+            idItem = new QStandardItem(id);
+            sigItem = new QStandardItem(sig);
+            valItem = new QStandardItem(val);
+        } else if (_sigNames->size() > 0) {
+            uint32_t tmpId = _sigNames->begin()->first;
+
+            if (tmpId > 0x7ff) {
+                idItem = new QStandardItem(fmt::format("0x{:08x}", tmpId).c_str());
+            } else {
+                idItem = new QStandardItem(fmt::format("0x{:03x}", tmpId).c_str());
+            }
+
+            if ((*_sigNames)[tmpId].size() > 0) {
+                sigItem = new QStandardItem((*_sigNames)[tmpId].constFirst());
+            } else {
+                cds_warn("Signal list for 0x{:x} is empty", tmpId);
+
+                sigItem = new QStandardItem();
+            }
+        } else {
+            idItem = new QStandardItem();
+            sigItem = new QStandardItem();
+            valItem = new QStandardItem();
+        }
+
+        QList<QStandardItem*> list{ idItem, sigItem, valItem };
 
         _model->appendRow(list);
 
@@ -140,31 +214,31 @@ struct CanSignalSenderGuiImpl : public CanSignalSenderGuiInt {
         // idCmb->setProperty("type", "nlmItem");
 
         // QObject::connect(idCmb, &QComboBox::currentTextChanged, [this, sigCmb](const QString& text) {
-        // uint32_t id = text.toUInt(nullptr, 16);
-        // sigCmb->clear();
+        //    uint32_t id = text.toUInt(nullptr, 16);
+        //    sigCmb->clear();
 
-        // if (_sigNames->count(id)) {
-        // sigCmb->addItems(_sigNames->at(id));
-        //} else {
-        // cds_error("No signals for selected id 0x{:03x}", id);
-        //}
+        //    if (_sigNames->count(id)) {
+        //        sigCmb->addItems(_sigNames->at(id));
+        //    } else {
+        //        cds_error("No signals for selected id 0x{:03x}", id);
+        //    }
         //});
 
         // for (const auto& msg : *_sigNames) {
-        // idCmb->addItem(fmt::format("0x{:03x}", msg.first).c_str());
+        //    idCmb->addItem(fmt::format("0x{:03x}", msg.first).c_str());
         //}
 
         // QLineEdit* le = new QLineEdit();
         // le->setProperty("type", "nlmItem");
 
         // QObject::connect(bt, &QPushButton::pressed, [idCmb, sigCmb, le, this] {
-        // if (_sendCbk) {
-        // if (idCmb->currentText().length() > 0 && sigCmb->currentText().length() > 0
-        //&& le->text().length() > 0) {
+        //    if (_sendCbk) {
+        //        if (idCmb->currentText().length() > 0 && sigCmb->currentText().length() > 0
+        //            && le->text().length() > 0) {
 
-        //_sendCbk(idCmb->currentText(), sigCmb->currentText(), QVariant(le->text()));
-        //}
-        //}
+        //            _sendCbk(idCmb->currentText(), sigCmb->currentText(), QVariant(le->text()));
+        //        }
+        //    }
         //});
 
         // auto idNdx = _model->index(_model->rowCount() - 1, 0);
@@ -179,9 +253,9 @@ struct CanSignalSenderGuiImpl : public CanSignalSenderGuiInt {
         // auto pbNdx = _model->index(_model->rowCount() - 1, _model->columnCount() - 1);
         //_ui->tv->setIndexWidget(pbNdx, bt);
 
-        // if(id.length() > 0 && sig.length() > 0) {
-        // idCmb->setCurrentText(id);
-        // sigCmb->setCurrentText(sig);
+        // if (id.length() > 0 && sig.length() > 0) {
+        //    idCmb->setCurrentText(id);
+        //    sigCmb->setCurrentText(sig);
         //}
 
         // le->setText(val);
