@@ -118,6 +118,8 @@ struct CanSignalSenderGuiImpl : public CanSignalSenderGuiInt {
         , _widget(new QWidget)
     {
         _ui->setupUi(_widget);
+        _ui->tv->setSelectionMode(QAbstractItemView::ExtendedSelection);
+        _ui->tv->setSelectionBehavior(QAbstractItemView::SelectRows);
     }
 
     virtual QWidget* mainWidget() override
@@ -133,6 +135,7 @@ struct CanSignalSenderGuiImpl : public CanSignalSenderGuiInt {
         _ui->tv->horizontalHeader()->setSectionResizeMode(2, QHeaderView::Stretch);
         _ui->tv->horizontalHeader()->setSectionResizeMode(3, QHeaderView::Stretch);
         _ui->tv->horizontalHeader()->setSectionsMovable(true);
+        _ui->tv->horizontalHeader()->setHighlightSections(false);
 
         _sigNames = &sigNames;
 

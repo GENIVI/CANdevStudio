@@ -288,3 +288,6 @@ QComboBox[type="listItem"]::down-arrow:on {
     height: 0px;
 }
 
+CDSTableView::item:selected {
+    background: #1d1d1d;
+}
