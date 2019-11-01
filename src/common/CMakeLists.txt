@@ -5,7 +5,8 @@ set(SRC
     componentmodel.h
     propertyfields.h
     candbhandler.cpp
-    )
+    cdstableview.h
+)
 
 add_library(cds-common STATIC ${SRC})
 target_include_directories(cds-common INTERFACE ${CMAKE_SOURCE_DIR}/src/common ${CMAKE_SOURCE_DIR}/3rdParty/spdlog/include)

@@ -276,3 +276,15 @@ QComboBox::down-arrow:on {
     image: url(:/images/files/images/dark/Angle-up-01.svg);
 }
 
+QComboBox[type="listItem"]::down-arrow {
+    background: #1d1d1d;
+    width: 0px;
+    height: 0px;
+}
+
+QComboBox[type="listItem"]::down-arrow:on {
+    background: #1d1d1d;
+    width: 0px;
+    height: 0px;
+}
+

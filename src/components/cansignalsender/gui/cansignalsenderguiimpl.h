@@ -10,6 +10,7 @@
 #include <QStandardItemModel>
 #include <QStyledItemDelegate>
 #include <QWidget>
+#include <cdstableview.h>
 #include <log.h>
 
 class SigIdDelegate : public QStyledItemDelegate {
@@ -25,6 +26,8 @@ public:
     {
         QComboBox* cb = new QComboBox(parent);
 
+        cb->setProperty("type", "listItem");
+
         for (const auto& msg : _sigNames) {
             if (msg.first > 0x7ff) {
                 cb->addItem(fmt::format("0x{:08x}", msg.first).c_str());
@@ -35,13 +38,16 @@ public:
 
         cb->setCurrentText(_model->data(index).toString());
 
+        connect(cb, static_cast<void (QComboBox::*)(const QString&)>(&QComboBox::activated),
+            [cb](const QString&) { cb->clearFocus(); });
+
         // QOverload is not supported by MSVC 2015
         connect(cb, static_cast<void (QComboBox::*)(const QString&)>(&QComboBox::currentTextChanged),
             [index, this](const QString& text) {
                 uint32_t id = text.toUInt(nullptr, 16);
 
                 if (_sigNames.count(id)) {
-                    auto ndx = _model->index(index.row(), 1);
+                    auto ndx = _model->index(index.row(), 2);
                     _model->setData(ndx, _sigNames[id].first(), Qt::EditRole);
                 } else {
                     cds_error("No signals for selected id 0x{:03x}", id);
@@ -51,12 +57,10 @@ public:
         return cb;
     }
 
-    void updateEditorGeometry(
-        QWidget* editor, const QStyleOptionViewItem& option, const QModelIndex& index) const override
+    void setEditorData(QWidget* editor, const QModelIndex& index) const override
     {
-        QStyledItemDelegate::updateEditorGeometry(editor, option, index);
-
-        QComboBox* cb = static_cast<QComboBox*>(editor);
+        Q_UNUSED(index);
+        QComboBox* cb = qobject_cast<QComboBox*>(editor);
         cb->showPopup();
     }
 
@@ -77,8 +81,10 @@ public:
     virtual QWidget* createEditor(QWidget* parent, const QStyleOptionViewItem&, const QModelIndex& index) const override
     {
         QComboBox* cb = new QComboBox(parent);
-        QString idStr = _model->data(_model->index(index.row(), 0)).toString();
+        QString idStr = _model->data(_model->index(index.row(), 1)).toString();
         uint32_t id = idStr.toUInt(nullptr, 16);
+
+        cb->setProperty("type", "listItem");
 
         if (_sigNames.count(id)) {
             cb->addItems(_sigNames.at(id));
@@ -88,15 +94,16 @@ public:
 
         cb->setCurrentText(_model->data(index).toString());
 
+        connect(cb, static_cast<void (QComboBox::*)(const QString&)>(&QComboBox::activated),
+            [cb](const QString&) { cb->clearFocus(); });
+
         return cb;
     }
 
-    void updateEditorGeometry(
-        QWidget* editor, const QStyleOptionViewItem& option, const QModelIndex& index) const override
+    void setEditorData(QWidget* editor, const QModelIndex& index) const override
     {
-        QStyledItemDelegate::updateEditorGeometry(editor, option, index);
-
-        QComboBox* cb = static_cast<QComboBox*>(editor);
+        Q_UNUSED(index);
+        QComboBox* cb = qobject_cast<QComboBox*>(editor);
         cb->showPopup();
     }
 
@@ -111,8 +118,6 @@ struct CanSignalSenderGuiImpl : public CanSignalSenderGuiInt {
         , _widget(new QWidget)
     {
         _ui->setupUi(_widget);
-
-        _ui->tv->setEditTriggers(QAbstractItemView::AllEditTriggers);
     }
 
     virtual QWidget* mainWidget() override
@@ -124,17 +129,18 @@ struct CanSignalSenderGuiImpl : public CanSignalSenderGuiInt {
     {
         _model = &tvModel;
         _ui->tv->setModel((QAbstractItemModel*)&tvModel);
-        _ui->tv->horizontalHeader()->setSectionResizeMode(1, QHeaderView::Stretch);
+        _ui->tv->hideColumn(0);
         _ui->tv->horizontalHeader()->setSectionResizeMode(2, QHeaderView::Stretch);
+        _ui->tv->horizontalHeader()->setSectionResizeMode(3, QHeaderView::Stretch);
         _ui->tv->horizontalHeader()->setSectionsMovable(true);
 
         _sigNames = &sigNames;
 
         _idDelegate = new SigIdDelegate(&tvModel, *_sigNames, _ui->tv);
-        _ui->tv->setItemDelegateForColumn(0, _idDelegate);
+        _ui->tv->setItemDelegateForColumn(1, _idDelegate);
 
         _nameDelegate = new SigNameDelegate(&tvModel, *_sigNames, _ui->tv);
-        _ui->tv->setItemDelegateForColumn(1, _nameDelegate);
+        _ui->tv->setItemDelegateForColumn(2, _nameDelegate);
     }
 
     virtual void setDockUndockCbk(const dockUndock_t& cb) override
@@ -194,7 +200,7 @@ struct CanSignalSenderGuiImpl : public CanSignalSenderGuiInt {
             valItem = new QStandardItem();
         }
 
-        QList<QStandardItem*> list{ idItem, sigItem, valItem };
+        QList<QStandardItem*> list{ {}, idItem, sigItem, valItem };
 
         _model->appendRow(list);
 
@@ -205,9 +211,9 @@ struct CanSignalSenderGuiImpl : public CanSignalSenderGuiInt {
         uint32_t row = _model->rowCount() - 1;
         QObject::connect(bt, &QPushButton::pressed, [this, row] {
             if (_sendCbk) {
-                auto id = _model->data(_model->index(row, 0)).toString();
-                auto sig = _model->data(_model->index(row, 1)).toString();
-                auto val = _model->data(_model->index(row, 2)).toString();
+                auto id = _model->data(_model->index(row, 1)).toString();
+                auto sig = _model->data(_model->index(row, 2)).toString();
+                auto val = _model->data(_model->index(row, 3)).toString();
 
                 if (id.length() > 0 && sig.length() > 0 && val.length() > 0) {
                     _sendCbk(id, sig, QVariant(val));
@@ -225,9 +231,9 @@ struct CanSignalSenderGuiImpl : public CanSignalSenderGuiInt {
         QJsonObject item;
 
         for (int i = 0; i < _model->rowCount(); ++i) {
-            auto id = _model->data(_model->index(i, 0));
-            auto sig = _model->data(_model->index(i, 1));
-            auto val = _model->data(_model->index(i, 2));
+            auto id = _model->data(_model->index(i, 1));
+            auto sig = _model->data(_model->index(i, 2));
+            auto val = _model->data(_model->index(i, 3));
 
             item["id"] = id.toString();
             item["sig"] = sig.toString();
