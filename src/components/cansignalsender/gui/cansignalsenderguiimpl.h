@@ -7,12 +7,13 @@
 #include <QJsonObject>
 #include <QLineEdit>
 #include <QMouseEvent>
+#include <QRegExpValidator>
 #include <QStandardItemModel>
 #include <QStyledItemDelegate>
 #include <QWidget>
+#include <candbhandler.h>
 #include <cdstableview.h>
 #include <log.h>
-#include <candbhandler.h>
 
 class SigIdDelegate : public QStyledItemDelegate {
 public:
@@ -115,6 +116,49 @@ private:
     const CanDbHandler& _db;
 };
 
+class SigValDelegate : public QStyledItemDelegate {
+public:
+    SigValDelegate(QAbstractItemModel* model, const CanDbHandler& db, QObject* parent = nullptr)
+        : QStyledItemDelegate(parent)
+        , _model(model)
+        , _db(db)
+    {
+    }
+
+    virtual QWidget* createEditor(QWidget* parent, const QStyleOptionViewItem&, const QModelIndex& index) const override
+    {
+        QString idStr = _model->data(_model->index(index.row(), 0)).toString();
+        uint32_t id = idStr.toUInt(nullptr, 16);
+        QString sigName = _model->data(_model->index(index.row(), 1)).toString();
+
+        QLineEdit* le = new QLineEdit(parent);
+        le->setProperty("type", "nlmItem");
+        QRegExp qRegExp("[0-9]*");
+        auto v = new QRegExpValidator(qRegExp, le);
+        float min = 0, max = 0;
+        le->setValidator(v);
+
+        if (_db.getDb().count(id)) {
+            for (auto&& sig : _db.getDb().at(id)) {
+                if (QString(sig.signal_name.c_str()) == sigName) {
+                    min = sig.min;
+                    max = sig.max;
+                }
+            }
+        } else if (idStr.length() > 0) {
+            cds_error("No signals for selected id 0x{:03x}", id);
+        }
+
+        le->setPlaceholderText(QString("min: %1, max: %2").arg(min).arg(max));
+
+        return le;
+    }
+
+private:
+    QAbstractItemModel* _model;
+    const CanDbHandler& _db;
+};
+
 struct CanSignalSenderGuiImpl : public CanSignalSenderGuiInt {
     CanSignalSenderGuiImpl()
         : _ui(new Ui::CanSignalSenderPrivate)
@@ -146,6 +190,9 @@ struct CanSignalSenderGuiImpl : public CanSignalSenderGuiInt {
 
         _nameDelegate = new SigNameDelegate(&tvModel, *_db, _ui->tv);
         _ui->tv->setItemDelegateForColumn(1, _nameDelegate);
+
+        _valDelegate = new SigValDelegate(&tvModel, *_db, _ui->tv);
+        _ui->tv->setItemDelegateForColumn(2, _valDelegate);
     }
 
     virtual void setDockUndockCbk(const dockUndock_t& cb) override
@@ -263,6 +310,7 @@ private:
     QWidget* _widget;
     SigIdDelegate* _idDelegate;
     SigNameDelegate* _nameDelegate;
+    SigValDelegate* _valDelegate;
 };
 
 #endif // CANSIGNALSENDERGUIIMPL_H
