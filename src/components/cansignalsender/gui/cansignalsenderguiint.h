@@ -1,13 +1,14 @@
 #ifndef CANSIGNALSENDERGUIINT_H
 #define CANSIGNALSENDERGUIINT_H
 
-#include <Qt>
-#include <functional>
 #include <QJsonArray>
 #include <QModelIndexList>
+#include <Qt>
+#include <functional>
 
 class QWidget;
 class QStandardItemModel;
+class CanDbHandler;
 
 struct CanSignalSenderGuiInt {
     using dockUndock_t = std::function<void()>;
@@ -15,12 +16,10 @@ struct CanSignalSenderGuiInt {
     using add_t = std::function<void()>;
     using send_t = std::function<void(const QString&, const QString&, const QVariant&)>;
 
-    virtual ~CanSignalSenderGuiInt()
-    {
-    }
+    virtual ~CanSignalSenderGuiInt() {}
 
     virtual QWidget* mainWidget() = 0;
-    virtual void initTv(QStandardItemModel& tvModel, std::map<uint32_t, QStringList>& sigNames) = 0;
+    virtual void initTv(QStandardItemModel& tvModel, const CanDbHandler* db) = 0;
     virtual void setRemoveCbk(const remove_t& cb) = 0;
     virtual void setAddCbk(const add_t& cb) = 0;
     virtual void setDockUndockCbk(const dockUndock_t& cb) = 0;

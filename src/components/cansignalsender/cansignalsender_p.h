@@ -37,7 +37,6 @@ public:
 private:
     QStandardItemModel _tvModel;
     QStringList _tvColumns;
-    std::map<uint32_t, QStringList> _signalNames;
     CanSignalSender* q_ptr;
     const QString _nameProperty = "name";
     const QString _dbProperty = "CAN database";

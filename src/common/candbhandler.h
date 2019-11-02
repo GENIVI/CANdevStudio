@@ -17,8 +17,8 @@ class CanDbHandler : public QObject {
 public:
     CanDbHandler(ComponentInterface::PropertyContainer& props, const QString& dbProperty);
     void processBcast(const QJsonObject& msg, const QVariant& param);
-    CANmessages_t& getDb();
-    QString getName();
+    const CANmessages_t& getDb() const;
+    const QString getName() const;
     void updateCurrentDbFromProps();
     QWidget* createPropertyWidget();
 
@@ -37,6 +37,7 @@ private:
     std::map<QUuid, CANmessages_t> _candb;
     std::map<QUuid, QString> _dbColor;
     QUuid _currentDb;
+    const CANmessages_t _emptyDb;
 };
 
 #endif /* !__CANDBHANDLER_H */

@@ -12,13 +12,14 @@
 #include <QWidget>
 #include <cdstableview.h>
 #include <log.h>
+#include <candbhandler.h>
 
 class SigIdDelegate : public QStyledItemDelegate {
 public:
-    SigIdDelegate(QAbstractItemModel* model, std::map<uint32_t, QStringList>& sigNames, QObject* parent = nullptr)
+    SigIdDelegate(QAbstractItemModel* model, const CanDbHandler& db, QObject* parent = nullptr)
         : QStyledItemDelegate(parent)
         , _model(model)
-        , _sigNames(sigNames)
+        , _db(db)
     {
     }
 
@@ -28,11 +29,11 @@ public:
 
         cb->setProperty("type", "listItem");
 
-        for (const auto& msg : _sigNames) {
-            if (msg.first > 0x7ff) {
-                cb->addItem(fmt::format("0x{:08x}", msg.first).c_str());
+        for (const auto& msg : _db.getDb()) {
+            if (msg.first.id > 0x7ff) {
+                cb->addItem(fmt::format("0x{:08x}", msg.first.id).c_str());
             } else {
-                cb->addItem(fmt::format("0x{:03x}", msg.first).c_str());
+                cb->addItem(fmt::format("0x{:03x}", msg.first.id).c_str());
             }
         }
 
@@ -46,9 +47,9 @@ public:
             [index, this](const QString& text) {
                 uint32_t id = text.toUInt(nullptr, 16);
 
-                if (_sigNames.count(id)) {
+                if (_db.getDb().count(id)) {
                     auto ndx = _model->index(index.row(), 2);
-                    _model->setData(ndx, _sigNames[id].first(), Qt::EditRole);
+                    _model->setData(ndx, _db.getDb().at(id).front().signal_name.c_str(), Qt::EditRole);
                 } else {
                     cds_error("No signals for selected id 0x{:03x}", id);
                 }
@@ -66,15 +67,15 @@ public:
 
 private:
     QAbstractItemModel* _model;
-    std::map<uint32_t, QStringList>& _sigNames;
+    const CanDbHandler& _db;
 };
 
 class SigNameDelegate : public QStyledItemDelegate {
 public:
-    SigNameDelegate(QAbstractItemModel* model, std::map<uint32_t, QStringList>& sigNames, QObject* parent = nullptr)
+    SigNameDelegate(QAbstractItemModel* model, const CanDbHandler& db, QObject* parent = nullptr)
         : QStyledItemDelegate(parent)
         , _model(model)
-        , _sigNames(sigNames)
+        , _db(db)
     {
     }
 
@@ -86,8 +87,10 @@ public:
 
         cb->setProperty("type", "listItem");
 
-        if (_sigNames.count(id)) {
-            cb->addItems(_sigNames.at(id));
+        if (_db.getDb().count(id)) {
+            for (auto&& sig : _db.getDb().at(id)) {
+                cb->addItem(sig.signal_name.c_str());
+            }
         } else if (idStr.length() > 0) {
             cds_error("No signals for selected id 0x{:03x}", id);
         }
@@ -109,7 +112,7 @@ public:
 
 private:
     QAbstractItemModel* _model;
-    std::map<uint32_t, QStringList>& _sigNames;
+    const CanDbHandler& _db;
 };
 
 struct CanSignalSenderGuiImpl : public CanSignalSenderGuiInt {
@@ -127,7 +130,7 @@ struct CanSignalSenderGuiImpl : public CanSignalSenderGuiInt {
         return _widget;
     }
 
-    virtual void initTv(QStandardItemModel& tvModel, std::map<uint32_t, QStringList>& sigNames) override
+    virtual void initTv(QStandardItemModel& tvModel, const CanDbHandler* db) override
     {
         _model = &tvModel;
         _ui->tv->setModel((QAbstractItemModel*)&tvModel);
@@ -137,12 +140,12 @@ struct CanSignalSenderGuiImpl : public CanSignalSenderGuiInt {
         _ui->tv->horizontalHeader()->setSectionsMovable(true);
         _ui->tv->horizontalHeader()->setHighlightSections(false);
 
-        _sigNames = &sigNames;
+        _db = db;
 
-        _idDelegate = new SigIdDelegate(&tvModel, *_sigNames, _ui->tv);
+        _idDelegate = new SigIdDelegate(&tvModel, *_db, _ui->tv);
         _ui->tv->setItemDelegateForColumn(1, _idDelegate);
 
-        _nameDelegate = new SigNameDelegate(&tvModel, *_sigNames, _ui->tv);
+        _nameDelegate = new SigNameDelegate(&tvModel, *_db, _ui->tv);
         _ui->tv->setItemDelegateForColumn(2, _nameDelegate);
     }
 
@@ -181,8 +184,8 @@ struct CanSignalSenderGuiImpl : public CanSignalSenderGuiInt {
             idItem = new QStandardItem(id);
             sigItem = new QStandardItem(sig);
             valItem = new QStandardItem(val);
-        } else if (_sigNames->size() > 0) {
-            uint32_t tmpId = _sigNames->begin()->first;
+        } else if (_db->getDb().size() > 0) {
+            uint32_t tmpId = _db->getDb().begin()->first.id;
 
             if (tmpId > 0x7ff) {
                 idItem = new QStandardItem(fmt::format("0x{:08x}", tmpId).c_str());
@@ -190,8 +193,8 @@ struct CanSignalSenderGuiImpl : public CanSignalSenderGuiInt {
                 idItem = new QStandardItem(fmt::format("0x{:03x}", tmpId).c_str());
             }
 
-            if ((*_sigNames)[tmpId].size() > 0) {
-                sigItem = new QStandardItem((*_sigNames)[tmpId].constFirst());
+            if (_db->getDb().at(tmpId).size() > 0) {
+                sigItem = new QStandardItem(_db->getDb().at(tmpId).front().signal_name.c_str());
             } else {
                 cds_warn("Signal list for 0x{:x} is empty", tmpId);
 
@@ -256,7 +259,7 @@ struct CanSignalSenderGuiImpl : public CanSignalSenderGuiInt {
 private:
     send_t _sendCbk{ nullptr };
     QStandardItemModel* _model;
-    std::map<uint32_t, QStringList>* _sigNames;
+    const CanDbHandler* _db;
     Ui::CanSignalSenderPrivate* _ui;
     QWidget* _widget;
     SigIdDelegate* _idDelegate;

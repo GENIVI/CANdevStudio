@@ -66,19 +66,22 @@ void CanDbHandler::processBcast(const QJsonObject& msg, const QVariant& param)
     }
 }
 
-CANmessages_t& CanDbHandler::getDb()
+const CANmessages_t& CanDbHandler::getDb() const
 {
-    return _candb[_currentDb];
+    if (_candb.count(_currentDb) > 0) {
+        return _candb.at(_currentDb);
+    }
+
+    return _emptyDb;
 }
 
-QString CanDbHandler::getName()
+const QString CanDbHandler::getName() const
 {
-    if (_dbNames.size() == 0) {
-        // Avoid creation of empty item in _dbNames
-        return "";
-    } else {
-        return _dbNames[_currentDb];
+    if (_dbNames.count(_currentDb) > 0) {
+        return _dbNames.at(_currentDb);
     }
+
+    return "";
 }
 
 void CanDbHandler::updateCurrentDbFromProps()

@@ -10,18 +10,9 @@ CanSignalSenderPrivate::CanSignalSenderPrivate(CanSignalSender* q, CanSignalSend
 
     connect(&_db, &CanDbHandler::sendCanDbRequest, q_ptr, &CanSignalSender::simBcastSnd);
     connect(&_db, &CanDbHandler::requestRedraw, q_ptr, &CanSignalSender::requestRedraw);
-    connect(&_db, &CanDbHandler::dbChanged, [this] {
-        _signalNames.clear();
-
-        for (const auto& msg : _db.getDb()) {
-            for (const auto& sig : msg.second) {
-                _signalNames[msg.first.id].append(sig.signal_name.c_str());
-            }
-        }
-    });
 
     _tvModel.setHorizontalHeaderLabels(_tvColumns);
-    _ui.initTv(_tvModel, _signalNames);
+    _ui.initTv(_tvModel, &_db);
 
     _ui.setDockUndockCbk([this] {
         _docked = !_docked;
