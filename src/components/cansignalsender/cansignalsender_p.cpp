@@ -3,7 +3,7 @@
 CanSignalSenderPrivate::CanSignalSenderPrivate(CanSignalSender* q, CanSignalSenderCtx&& ctx)
     : _ctx(std::move(ctx))
     , _ui(_ctx.get<CanSignalSenderGuiInt>())
-    , _tvColumns({ "", "Id", "Signal name", "Value", "" })
+    , _tvColumns({ "Id", "Signal name", "Value", "" })
     , q_ptr(q)
 {
     initProps();

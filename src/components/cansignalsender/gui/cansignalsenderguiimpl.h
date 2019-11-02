@@ -48,7 +48,7 @@ public:
                 uint32_t id = text.toUInt(nullptr, 16);
 
                 if (_db.getDb().count(id)) {
-                    auto ndx = _model->index(index.row(), 2);
+                    auto ndx = _model->index(index.row(), 1);
                     _model->setData(ndx, _db.getDb().at(id).front().signal_name.c_str(), Qt::EditRole);
                 } else {
                     cds_error("No signals for selected id 0x{:03x}", id);
@@ -82,7 +82,7 @@ public:
     virtual QWidget* createEditor(QWidget* parent, const QStyleOptionViewItem&, const QModelIndex& index) const override
     {
         QComboBox* cb = new QComboBox(parent);
-        QString idStr = _model->data(_model->index(index.row(), 1)).toString();
+        QString idStr = _model->data(_model->index(index.row(), 0)).toString();
         uint32_t id = idStr.toUInt(nullptr, 16);
 
         cb->setProperty("type", "listItem");
@@ -134,19 +134,18 @@ struct CanSignalSenderGuiImpl : public CanSignalSenderGuiInt {
     {
         _model = &tvModel;
         _ui->tv->setModel((QAbstractItemModel*)&tvModel);
-        _ui->tv->hideColumn(0);
+        _ui->tv->horizontalHeader()->setSectionResizeMode(1, QHeaderView::Stretch);
         _ui->tv->horizontalHeader()->setSectionResizeMode(2, QHeaderView::Stretch);
-        _ui->tv->horizontalHeader()->setSectionResizeMode(3, QHeaderView::Stretch);
         _ui->tv->horizontalHeader()->setSectionsMovable(true);
         _ui->tv->horizontalHeader()->setHighlightSections(false);
 
         _db = db;
 
         _idDelegate = new SigIdDelegate(&tvModel, *_db, _ui->tv);
-        _ui->tv->setItemDelegateForColumn(1, _idDelegate);
+        _ui->tv->setItemDelegateForColumn(0, _idDelegate);
 
         _nameDelegate = new SigNameDelegate(&tvModel, *_db, _ui->tv);
-        _ui->tv->setItemDelegateForColumn(2, _nameDelegate);
+        _ui->tv->setItemDelegateForColumn(1, _nameDelegate);
     }
 
     virtual void setDockUndockCbk(const dockUndock_t& cb) override
@@ -206,7 +205,7 @@ struct CanSignalSenderGuiImpl : public CanSignalSenderGuiInt {
             valItem = new QStandardItem();
         }
 
-        QList<QStandardItem*> list{ {}, idItem, sigItem, valItem };
+        QList<QStandardItem*> list{ idItem, sigItem, valItem };
 
         _model->appendRow(list);
 
@@ -217,9 +216,9 @@ struct CanSignalSenderGuiImpl : public CanSignalSenderGuiInt {
         uint32_t row = _model->rowCount() - 1;
         QObject::connect(bt, &QPushButton::pressed, [this, row] {
             if (_sendCbk) {
-                auto id = _model->data(_model->index(row, 1)).toString();
-                auto sig = _model->data(_model->index(row, 2)).toString();
-                auto val = _model->data(_model->index(row, 3)).toString();
+                auto id = _model->data(_model->index(row, 0)).toString();
+                auto sig = _model->data(_model->index(row, 1)).toString();
+                auto val = _model->data(_model->index(row, 2)).toString();
 
                 if (id.length() > 0 && sig.length() > 0 && val.length() > 0) {
                     _sendCbk(id, sig, QVariant(val));
@@ -237,9 +236,9 @@ struct CanSignalSenderGuiImpl : public CanSignalSenderGuiInt {
         QJsonObject item;
 
         for (int i = 0; i < _model->rowCount(); ++i) {
-            auto id = _model->data(_model->index(i, 1));
-            auto sig = _model->data(_model->index(i, 2));
-            auto val = _model->data(_model->index(i, 3));
+            auto id = _model->data(_model->index(i, 0));
+            auto sig = _model->data(_model->index(i, 1));
+            auto val = _model->data(_model->index(i, 2));
 
             item["id"] = id.toString();
             item["sig"] = sig.toString();
