@@ -101,7 +101,7 @@
     </layout>
    </item>
    <item>
-    <widget class="CDSTableView" name="tv">
+    <widget class="QTableView" name="tv">
      <property name="focusPolicy">
       <enum>Qt::NoFocus</enum>
      </property>

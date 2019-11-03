@@ -12,7 +12,6 @@
 #include <QStyledItemDelegate>
 #include <QWidget>
 #include <candbhandler.h>
-#include <cdstableview.h>
 #include <log.h>
 
 class SigIdDelegate : public QStyledItemDelegate {
@@ -167,6 +166,10 @@ struct CanSignalSenderGuiImpl : public CanSignalSenderGuiInt {
         _ui->setupUi(_widget);
         _ui->tv->setSelectionMode(QAbstractItemView::ExtendedSelection);
         _ui->tv->setSelectionBehavior(QAbstractItemView::SelectRows);
+
+        // QOverload is not supported by MSVC 2015
+        QObject::connect(_ui->tv, &QAbstractItemView::clicked, _ui->tv,
+            static_cast<void (QAbstractItemView::*)(const QModelIndex&)>(&QAbstractItemView::edit));
     }
 
     virtual QWidget* mainWidget() override

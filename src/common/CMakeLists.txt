@@ -5,7 +5,6 @@ set(SRC
     componentmodel.h
     propertyfields.h
     candbhandler.cpp
-    cdstableview.h
 )
 
 add_library(cds-common STATIC ${SRC})
