@@ -30,7 +30,6 @@ CanSignalSenderPrivate::CanSignalSenderPrivate(CanSignalSender* q, CanSignalSend
 
         for (QModelIndex n : tmp) {
             _tvModel.removeRow(n.row()); // Delete line from table view
-            // TODO: check if works when the collums was sorted before
         }
     });
 
