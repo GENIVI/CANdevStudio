@@ -16,6 +16,7 @@
 #include <iterator> // iterator_traits, begin, end
 #include <limits> // numeric_limits
 #include <log.h>
+#include <propertyfields.h>
 #include <type_traits> // is_same
 #include <utility> // swap, next, advance
 #include <vector> // vector
@@ -544,6 +545,65 @@ TEST_CASE("CanDbHandler - ConfigChanged", "[common]")
 
     REQUIRE(db.getName() == "name2_new");
     REQUIRE(props["color"].toString() == "color2_new");
+}
+
+TEST_CASE("CanDbHandler - createPropertyWidget", "[common]")
+{
+    std::map<QString, QVariant> props;
+    const QString dbProp = "CAN database";
+    CanDbHandler db{ props, dbProp };
+
+    CANmessages_t msg1tmp{ { 1, {} } };
+    QVariant msg1;
+    msg1.setValue(msg1tmp);
+
+    CANmessages_t msg2tmp{ { 1, {} }, { 2, {} } };
+    QVariant msg2;
+    msg2.setValue(msg2tmp);
+
+    CANmessages_t msg3tmp{ { 1, {} }, { 2, {} }, { 3, {} } };
+    QVariant msg3;
+    msg3.setValue(msg3tmp);
+
+    const QString idStr1 = "{00000000-0000-0000-0000-000000000001}";
+    const QString idStr2 = "{00000000-0000-0000-0000-000000000002}";
+    const QString idStr3 = "{00000000-0000-0000-0000-000000000003}";
+
+    QJsonObject msg;
+    msg["id"] = idStr1;
+    msg["msg"] = BcastMsg::CanDbUpdated;
+    msg["caption"] = "name1";
+    msg["color"] = "color1";
+
+    db.processBcast(msg, msg1);
+
+    msg["id"] = idStr2;
+    msg["caption"] = "name2";
+    msg["color"] = "color2";
+    db.processBcast(msg, msg2);
+
+    msg["id"] = idStr3;
+    msg["caption"] = "name3";
+    msg["color"] = "color3";
+    db.processBcast(msg, msg3);
+
+    auto w = static_cast<PropertyFieldCombo*>(db.createPropertyWidget());
+    REQUIRE(w->propText() == idStr1);
+    delete w;
+
+    // change Db
+    props[dbProp] = idStr2;
+    db.updateCurrentDbFromProps();
+
+    auto w2 = static_cast<PropertyFieldCombo*>(db.createPropertyWidget());
+    REQUIRE(w2->propText() == idStr2);
+
+    // change Db
+    props[dbProp] = idStr3;
+    db.updateCurrentDbFromProps();
+
+    w = static_cast<PropertyFieldCombo*>(db.createPropertyWidget());
+    REQUIRE(w->propText() == idStr3);
 }
 
 int main(int argc, char* argv[])

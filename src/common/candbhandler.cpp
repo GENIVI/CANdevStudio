@@ -94,7 +94,7 @@ void CanDbHandler::updateCurrentDbFromProps()
 
 QWidget* CanDbHandler::createPropertyWidget()
 {
-    auto* p = new PropertyFieldCombo();
+    auto* p = new PropertyFieldCombo(false);
 
     for (auto& item : _dbNames) {
         p->addItem(item.second, item.first);
