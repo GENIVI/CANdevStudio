@@ -6,11 +6,15 @@ CanSignalEncoderPrivate::CanSignalEncoderPrivate(CanSignalEncoder *q, CanSignalE
     , q_ptr(q)
 {
     initProps();
+
+    connect(&_db, &CanDbHandler::sendCanDbRequest, q_ptr, &CanSignalEncoder::simBcastSnd);
+    connect(&_db, &CanDbHandler::requestRedraw, q_ptr, &CanSignalEncoder::requestRedraw);
 }
 
 void CanSignalEncoderPrivate::initProps()
 {
-    for (const auto& p: _supportedProps) {
+    for (const auto& p: _supportedProps)
+    {
         _props[ComponentInterface::propertyName(p)];
     }
 }
@@ -38,4 +42,6 @@ void CanSignalEncoderPrivate::setSettings(const QJsonObject& json)
         if (json.contains(propName))
             _props[propName] = json[propName].toVariant();
     }
+
+    _db.updateCurrentDbFromProps();
 }

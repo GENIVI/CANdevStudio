@@ -1,4 +1,4 @@
-#include "cansignalencoder.h"
+
 #include "cansignalencoder_p.h"
 #include <confighelpers.h>
 #include <log.h>
@@ -46,7 +46,14 @@ std::shared_ptr<QWidget> CanSignalEncoder::getQConfig() const
 {
     const Q_D(CanSignalEncoder);
 
-    return configHelpers::getQConfig(getSupportedProperties(), d->_props);
+    auto config = configHelpers::getQConfig(getSupportedProperties(), d->_props);
+
+    auto iter = d->_props.find("color");
+    if (iter != d->_props.end()) {
+        config->setProperty("color", iter->second);
+    }
+
+    return config;
 }
 
 void CanSignalEncoder::configChanged()
@@ -80,6 +87,7 @@ void CanSignalEncoder::startSimulation()
 
 void CanSignalEncoder::simBcastRcv(const QJsonObject &msg, const QVariant &param)
 {
-    Q_UNUSED(msg);
-    Q_UNUSED(param);
+    Q_D(CanSignalEncoder);
+
+    d->_db.processBcast(msg, param);
 }

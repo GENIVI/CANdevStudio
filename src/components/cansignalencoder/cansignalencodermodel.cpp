@@ -1,6 +1,8 @@
 #include "cansignalencodermodel.h"
 #include "cansignalencoderplugin.h"
 #include <log.h>
+#include <datamodeltypes/cansignalmodel.h>
+#include <datamodeltypes/canrawdata.h>
 
 namespace {
 
@@ -8,12 +10,12 @@ namespace {
 const std::map<PortType, std::vector<NodeDataType>> portMappings = {
     { PortType::In, 
         {
-            //{CanRawData{}.type() }
+            { CanSignalModel{}.type() }
         }
     },
     { PortType::Out, 
         {
-            //{CanRawData{}.type() }
+            { CanRawData{}.type() }
         }
     }
 };
@@ -23,7 +25,7 @@ const std::map<PortType, std::vector<NodeDataType>> portMappings = {
 
 CanSignalEncoderModel::CanSignalEncoderModel()
     : ComponentModel("CanSignalEncoder")
-    , _painter(std::make_unique<NodePainter>(CanSignalEncoderPlugin::PluginType::sectionColor()))
+    , _painter(std::make_unique<CanDbPainter>(CanSignalEncoderPlugin::PluginType::sectionColor(), &_component, 14))
 {
     _label->setAlignment(Qt::AlignVCenter | Qt::AlignHCenter);
     _label->setFixedSize(75, 25);

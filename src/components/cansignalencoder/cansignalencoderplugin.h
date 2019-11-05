@@ -5,12 +5,12 @@
 #include "cansignalencodermodel.h"
 
 // Note that max typestring length is limited to 128 chars. 64 causes VS2015 internal error.
-using MiscPlugin = PluginBase<typestring_is("Misc Layer"), 0x555fc3, 57>;
+using SignalPlugin = PluginBase<typestring_is("Signal Layer"), 0x1492ca, 47>;
 
 struct CanSignalEncoderPlugin {
     using Model = CanSignalEncoderModel;
     static constexpr const char* name = "CanSignalEncoder";
-    using PluginType = MiscPlugin;
+    using PluginType = SignalPlugin;
 };
 
 #endif // CANSIGNALENCODERPLUGIN_H

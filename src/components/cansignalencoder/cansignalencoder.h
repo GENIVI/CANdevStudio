@@ -9,6 +9,7 @@
 
 class CanSignalEncoderPrivate;
 class QWidget;
+struct CanSignalEncoderGuiInt;
 typedef Context<> CanSignalEncoderCtx;
 
 class CanSignalEncoder : public QObject, public ComponentInterface {
@@ -31,15 +32,16 @@ public:
 
 signals:
     void mainWidgetDockToggled(QWidget* widget) override;
-    void simBcastSnd(const QJsonObject &msg, const QVariant &param = QVariant()) override;
+    void simBcastSnd(const QJsonObject& msg, const QVariant& param = QVariant()) override;
+    void requestRedraw();
 
 public slots:
     void stopSimulation() override;
     void startSimulation() override;
-    void simBcastRcv(const QJsonObject &msg, const QVariant &param) override;
+    void simBcastRcv(const QJsonObject& msg, const QVariant& param) override;
 
 private:
     QScopedPointer<CanSignalEncoderPrivate> d_ptr;
 };
 
-#endif //CANSIGNALENCODER_H
+#endif // CANSIGNALENCODER_H

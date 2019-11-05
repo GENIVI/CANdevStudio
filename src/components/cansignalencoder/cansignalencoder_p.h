@@ -3,6 +3,9 @@
 
 #include "cansignalencoder.h"
 #include <memory>
+#include <QUuid>
+#include <candbhandler.h>
+#include <propertyfields.h>
 
 class CanSignalEncoder;
 
@@ -23,17 +26,20 @@ public:
     bool _simStarted{ false };
     CanSignalEncoderCtx _ctx;
     std::map<QString, QVariant> _props;
+    CanDbHandler _db{ _props, _dbProperty };
 
 private:
     CanSignalEncoder* q_ptr;
     const QString _nameProperty = "name";
+    const QString _dbProperty = "CAN database";
 
     // workaround for clang 3.5
     using cf = ComponentInterface::CustomEditFieldCbk;
 
     // clang-format off
     ComponentInterface::ComponentProperties _supportedProps = {
-            std::make_tuple(_nameProperty, QVariant::String, true, cf(nullptr))
+            std::make_tuple(_nameProperty, QVariant::String, true, cf(nullptr)),
+            std::make_tuple(_dbProperty, QVariant::String, true, cf(std::bind(&CanDbHandler::createPropertyWidget, &_db)))
     };
     // clang-format on
 };
