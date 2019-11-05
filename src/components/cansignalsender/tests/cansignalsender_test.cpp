@@ -6,6 +6,7 @@
 #include <QSignalSpy>
 #include <catch.hpp>
 #include <fakeit.hpp>
+#include <gui/cansignalsenderguiint.h>
 
 std::shared_ptr<spdlog::logger> kDefaultLogger;
 // needed for QSignalSpy cause according to qtbug 49623 comments
@@ -32,12 +33,47 @@ TEST_CASE("setConfig - qobj", "[cansignalsender]")
 
 TEST_CASE("setConfig - json", "[cansignalsender]")
 {
-    CanSignalSender c;
-    QJsonObject obj;
+    using namespace fakeit;
+    Mock<CanSignalSenderGuiInt> guiInt;
+    Fake(Method(guiInt, initTv));
+    Fake(Method(guiInt, setRemoveCbk));
+    Fake(Method(guiInt, setAddCbk));
+    Fake(Method(guiInt, setDockUndockCbk));
+    Fake(Method(guiInt, setSendCbk));
+    Fake(Method(guiInt, addRow));
+    Fake(Method(guiInt, getRows));
+    Fake(Method(guiInt, getSelectedRows));
 
+    CanSignalSenderCtx ctx(&guiInt.get());
+    CanSignalSender c(std::move(ctx));
+
+    QJsonObject obj;
+    QJsonArray arr;
+    QJsonObject el;
     obj["name"] = "Test Name";
 
+    // Not an array
+    obj["rows"] = "not an array";
     c.setConfig(obj);
+
+    // Empty Array
+    obj["rows"] = arr;
+    c.setConfig(obj);
+
+    // Array with not_an_object
+    arr.append("Should be object");
+    obj["rows"] = arr;
+    c.setConfig(obj);
+
+    // id only
+    arr = QJsonArray();
+    el = QJsonObject();
+    el["id"] = "0x33";
+    arr.append(el);
+    obj["rows"] = arr;
+    c.setConfig(obj);
+
+    Verify(Method(guiInt, addRow)).Exactly(1);
 }
 
 TEST_CASE("getConfig", "[cansignalsender]")

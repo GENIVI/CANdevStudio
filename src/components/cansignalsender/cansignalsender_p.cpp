@@ -34,9 +34,11 @@ CanSignalSenderPrivate::CanSignalSenderPrivate(CanSignalSender* q, CanSignalSend
     });
 
     _ui.setSendCbk([this](const QString& id, const QString& name, const QVariant& val) {
-        uint32_t idNum = id.toUInt(nullptr, 16);
-        std::string sigName = fmt::format("0x{:03x}{}_{}", idNum, idNum > 0x7ff ? "x" : "", name.toStdString());
-        emit q_ptr->sendSignal(sigName.c_str(), val);
+        if (_simStarted) {
+            uint32_t idNum = id.toUInt(nullptr, 16);
+            std::string sigName = fmt::format("0x{:03x}{}_{}", idNum, idNum > 0x7ff ? "x" : "", name.toStdString());
+            emit q_ptr->sendSignal(sigName.c_str(), val);
+        }
     });
 }
 
@@ -74,17 +76,17 @@ void CanSignalSenderPrivate::setSettings(const QJsonObject& json)
 
                     if (row.contains("id")) {
                         id = row["id"].toString();
-                    }
 
-                    if (row.contains("sig")) {
-                        sig = row["sig"].toString();
-                    }
+                        if (row.contains("sig")) {
+                            sig = row["sig"].toString();
+                        }
 
-                    if (row.contains("val")) {
-                        val = row["val"].toString();
-                    }
+                        if (row.contains("val")) {
+                            val = row["val"].toString();
+                        }
 
-                    _ui.addRow(id, sig, val);
+                        _ui.addRow(id, sig, val);
+                    }
                 } else {
                     cds_warn("rows array element expected to be object!");
                 }
