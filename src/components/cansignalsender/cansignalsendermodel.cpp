@@ -30,6 +30,8 @@ CanSignalSenderModel::CanSignalSenderModel()
     _label->setAttribute(Qt::WA_TranslucentBackground);
 
     connect(&_component, &CanSignalSender::requestRedraw, this, &CanSignalSenderModel::requestRedraw);
+    connect(&_component, &CanSignalSender::sendSignal, this, &CanSignalSenderModel::rcvSignal);
+
 }
 
 QtNodes::NodePainterDelegate* CanSignalSenderModel::painterDelegate() const
