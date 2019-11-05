@@ -36,7 +36,14 @@ CanSignalSenderPrivate::CanSignalSenderPrivate(CanSignalSender* q, CanSignalSend
     _ui.setSendCbk([this](const QString& id, const QString& name, const QVariant& val) {
         if (_simStarted) {
             uint32_t idNum = id.toUInt(nullptr, 16);
-            std::string sigName = fmt::format("0x{:03x}{}_{}", idNum, idNum > 0x7ff ? "x" : "", name.toStdString());
+            std::string sigName;
+
+            if (idNum > 0x7ff) {
+                sigName = fmt::format("0x{:08x}_{}", idNum, name.toStdString());
+            } else {
+                sigName = fmt::format("0x{:03x}_{}", idNum, name.toStdString());
+            }
+
             emit q_ptr->sendSignal(sigName.c_str(), val);
         }
     });
