@@ -1,8 +1,8 @@
 #include "cansignalencodermodel.h"
 #include "cansignalencoderplugin.h"
-#include <log.h>
-#include <datamodeltypes/cansignalmodel.h>
 #include <datamodeltypes/canrawdata.h>
+#include <datamodeltypes/cansignalmodel.h>
+#include <log.h>
 
 namespace {
 
@@ -30,6 +30,9 @@ CanSignalEncoderModel::CanSignalEncoderModel()
     _label->setAlignment(Qt::AlignVCenter | Qt::AlignHCenter);
     _label->setFixedSize(75, 25);
     _label->setAttribute(Qt::WA_TranslucentBackground);
+
+    connect(this, &CanSignalEncoderModel::sndSignal, &_component, &CanSignalEncoder::rcvSignal);
+    connect(&_component, &CanSignalEncoder::sndFrame, this, &CanSignalEncoderModel::rcvFrame);
 }
 
 QtNodes::NodePainterDelegate* CanSignalEncoderModel::painterDelegate() const
@@ -49,26 +52,40 @@ NodeDataType CanSignalEncoderModel::dataType(PortType portType, PortIndex ndx) c
     }
 
     cds_error("No port mapping for ndx: {}", ndx);
-    return { };
+    return {};
 }
 
 std::shared_ptr<NodeData> CanSignalEncoderModel::outData(PortIndex)
 {
-    // example
-    // return std::make_shared<CanRawData>(_frame, _direction, _status);
+    std::shared_ptr<NodeData> ret;
+    bool status = _rxQueue.try_dequeue(ret);
 
-    return { };
+    if (!status) {
+        cds_error("No data available on rx queue");
+        return {};
+    }
+
+    return ret;
 }
 
 void CanSignalEncoderModel::setInData(std::shared_ptr<NodeData> nodeData, PortIndex)
 {
-    // example
-    // if (nodeData) {
-    //     auto d = std::dynamic_pointer_cast<CanRawData>(nodeData);
-    //     assert(nullptr != d);
-    //     emit sendFrame(d->frame());
-    // } else {
-    //     cds_warn("Incorrect nodeData");
-    // }
-    (void) nodeData;
+    if (nodeData) {
+        auto d = std::dynamic_pointer_cast<CanSignalModel>(nodeData);
+        assert(nullptr != d);
+        emit sndSignal(d->name(), d->value());
+    } else {
+        cds_warn("Incorrect nodeData");
+    }
+}
+
+void CanSignalEncoderModel::rcvFrame(const QCanBusFrame& frame)
+{
+    bool ret = _rxQueue.try_enqueue(std::make_shared<CanRawData>(frame));
+
+    if (ret) {
+        emit dataUpdated(0); // Data ready on port 0
+    } else {
+        cds_warn("Queue full. Frame dropped");
+    }
 }

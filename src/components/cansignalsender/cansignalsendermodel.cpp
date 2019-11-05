@@ -49,26 +49,29 @@ NodeDataType CanSignalSenderModel::dataType(PortType portType, PortIndex ndx) co
     }
 
     cds_error("No port mapping for ndx: {}", ndx);
-    return { };
+    return {};
 }
 
 std::shared_ptr<NodeData> CanSignalSenderModel::outData(PortIndex)
 {
-    // example
-    // return std::make_shared<CanRawData>(_frame, _direction, _status);
+    std::shared_ptr<NodeData> ret;
+    bool status = _rxQueue.try_dequeue(ret);
 
-    return { };
+    if (!status) {
+        cds_error("No data available on rx queue");
+        return {};
+    }
+
+    return ret;
 }
 
-void CanSignalSenderModel::setInData(std::shared_ptr<NodeData> nodeData, PortIndex)
+void CanSignalSenderModel::rcvSignal(const QString& name, const QVariant& val)
 {
-    // example
-    // if (nodeData) {
-    //     auto d = std::dynamic_pointer_cast<CanRawData>(nodeData);
-    //     assert(nullptr != d);
-    //     emit sendFrame(d->frame());
-    // } else {
-    //     cds_warn("Incorrect nodeData");
-    // }
-    (void) nodeData;
+    bool ret = _rxQueue.try_enqueue(std::make_shared<CanSignalModel>(name, val));
+
+    if (ret) {
+        emit dataUpdated(0); // Data ready on port 0
+    } else {
+        cds_warn("Queue full. Frame dropped");
+    }
 }

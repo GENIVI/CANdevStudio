@@ -91,3 +91,10 @@ void CanSignalEncoder::simBcastRcv(const QJsonObject &msg, const QVariant &param
 
     d->_db.processBcast(msg, param);
 }
+
+void CanSignalEncoder::rcvSignal(const QString& name, const QVariant& val)
+{
+    Q_UNUSED(name);
+    Q_UNUSED(val);
+}
+

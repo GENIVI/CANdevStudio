@@ -4,6 +4,7 @@
 #include "nodepainter.h"
 #include <QFile>
 #include <QSvgRenderer>
+#include <componentinterface.h>
 #include <log.h>
 
 struct CanDbPainter : public NodePainter {

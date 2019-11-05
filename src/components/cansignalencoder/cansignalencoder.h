@@ -7,6 +7,7 @@
 #include <context.h>
 #include <memory>
 
+class QCanBusFrame;
 class CanSignalEncoderPrivate;
 class QWidget;
 struct CanSignalEncoderGuiInt;
@@ -34,11 +35,13 @@ signals:
     void mainWidgetDockToggled(QWidget* widget) override;
     void simBcastSnd(const QJsonObject& msg, const QVariant& param = QVariant()) override;
     void requestRedraw();
+    void sndFrame(const QCanBusFrame& frame);
 
 public slots:
     void stopSimulation() override;
     void startSimulation() override;
     void simBcastRcv(const QJsonObject& msg, const QVariant& param) override;
+    void rcvSignal(const QString& name, const QVariant& val);
 
 private:
     QScopedPointer<CanSignalEncoderPrivate> d_ptr;
