@@ -7,6 +7,7 @@
 #include <catch.hpp>
 #include <fakeit.hpp>
 #include <gui/cansignalsenderguiint.h>
+#include <QStandardItemModel>
 
 std::shared_ptr<spdlog::logger> kDefaultLogger;
 // needed for QSignalSpy cause according to qtbug 49623 comments
