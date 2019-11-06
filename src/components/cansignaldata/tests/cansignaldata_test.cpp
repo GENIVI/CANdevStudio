@@ -103,6 +103,11 @@ TEST_CASE("getSupportedProperties", "[cansignaldata]")
     REQUIRE(ComponentInterface::propertyType(props[1]) == QVariant::String);
     REQUIRE(ComponentInterface::propertyEditability(props[1]) == true);
     REQUIRE(ComponentInterface::propertyField(props[1]) != nullptr);
+
+    REQUIRE(ComponentInterface::propertyName(props[2]) == "color");
+    REQUIRE(ComponentInterface::propertyType(props[2]) == QVariant::String);
+    REQUIRE(ComponentInterface::propertyEditability(props[2]) == true);
+    REQUIRE(ComponentInterface::propertyField(props[2]) != nullptr);
 }
 
 TEST_CASE("loadDbc", "[cansignaldata]")

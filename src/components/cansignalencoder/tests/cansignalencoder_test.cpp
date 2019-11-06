@@ -67,12 +67,17 @@ TEST_CASE("getSupportedProperties", "[cansignalencoder]")
 
     auto props = c.getSupportedProperties();
 
-    REQUIRE(props.size() == 1);
+    REQUIRE(props.size() == 2);
 
     REQUIRE(ComponentInterface::propertyName(props[0]) == "name");
     REQUIRE(ComponentInterface::propertyType(props[0]) == QVariant::String);
     REQUIRE(ComponentInterface::propertyEditability(props[0]) == true);
     REQUIRE(ComponentInterface::propertyField(props[0]) == nullptr);
+
+    REQUIRE(ComponentInterface::propertyName(props[1]) == "CAN database");
+    REQUIRE(ComponentInterface::propertyType(props[1]) == QVariant::String);
+    REQUIRE(ComponentInterface::propertyEditability(props[1]) == true);
+    REQUIRE(ComponentInterface::propertyField(props[1]) != nullptr);
 }
 
 int main(int argc, char* argv[])

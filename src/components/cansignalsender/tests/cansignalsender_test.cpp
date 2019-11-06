@@ -124,6 +124,11 @@ TEST_CASE("getSupportedProperties", "[cansignalsender]")
     REQUIRE(ComponentInterface::propertyType(props[0]) == QVariant::String);
     REQUIRE(ComponentInterface::propertyEditability(props[0]) == true);
     REQUIRE(ComponentInterface::propertyField(props[0]) == nullptr);
+
+    REQUIRE(ComponentInterface::propertyName(props[1]) == "CAN database");
+    REQUIRE(ComponentInterface::propertyType(props[1]) == QVariant::String);
+    REQUIRE(ComponentInterface::propertyEditability(props[1]) == true);
+    REQUIRE(ComponentInterface::propertyField(props[1]) != nullptr);
 }
 
 TEST_CASE("row removing", "[cansignalsender]")

@@ -34,8 +34,8 @@ TEST_CASE("nPorts", "[cansignalencoderModel]")
 {
     CanSignalEncoderModel cm;
 
-    REQUIRE(cm.nPorts(QtNodes::PortType::Out) == 0);
-    REQUIRE(cm.nPorts(QtNodes::PortType::In) == 0);
+    REQUIRE(cm.nPorts(QtNodes::PortType::Out) == 1);
+    REQUIRE(cm.nPorts(QtNodes::PortType::In) == 1);
 }
 
 TEST_CASE("dataType", "[cansignalencoderModel]")
