@@ -2,10 +2,11 @@
 #define CANSIGNALENCODER_P_H
 
 #include "cansignalencoder.h"
-#include <memory>
 #include <QUuid>
 #include <candbhandler.h>
+#include <memory>
 #include <propertyfields.h>
+#include <QTimer>
 
 class CanSignalEncoder;
 
@@ -18,20 +19,27 @@ public:
     ComponentInterface::ComponentProperties getSupportedProperties() const;
     QJsonObject getSettings();
     void setSettings(const QJsonObject& json);
+    void encodeSignal(const QString& name, const QVariant& val);
 
 private:
     void initProps();
+    void signalToRaw(const uint32_t id, const CANsignal& sigDesc, const QVariant& sigVal, const uint32_t updateCycle);
 
 public:
     bool _simStarted{ false };
     CanSignalEncoderCtx _ctx;
     std::map<QString, QVariant> _props;
     CanDbHandler _db{ _props, _dbProperty };
+    std::vector<std::unique_ptr<QTimer>> _cycleTimers;
+
+public slots:
+    void dbChanged();
 
 private:
     CanSignalEncoder* q_ptr;
     const QString _nameProperty = "name";
     const QString _dbProperty = "CAN database";
+    std::map<uint32_t, QByteArray> _rawCache;
 
     // workaround for clang 3.5
     using cf = ComponentInterface::CustomEditFieldCbk;

@@ -1,4 +1,3 @@
-
 #include "cansignalencoder_p.h"
 #include <confighelpers.h>
 #include <log.h>
@@ -13,9 +12,7 @@ CanSignalEncoder::CanSignalEncoder(CanSignalEncoderCtx&& ctx)
 {
 }
 
-CanSignalEncoder::~CanSignalEncoder()
-{
-}
+CanSignalEncoder::~CanSignalEncoder() {}
 
 QWidget* CanSignalEncoder::mainWidget()
 {
@@ -56,9 +53,7 @@ std::shared_ptr<QWidget> CanSignalEncoder::getQConfig() const
     return config;
 }
 
-void CanSignalEncoder::configChanged()
-{
-}
+void CanSignalEncoder::configChanged() {}
 
 bool CanSignalEncoder::mainWidgetDocked() const
 {
@@ -76,6 +71,10 @@ void CanSignalEncoder::stopSimulation()
     Q_D(CanSignalEncoder);
 
     d->_simStarted = false;
+
+    for (auto& timer : d_ptr->_cycleTimers) {
+        timer->stop();
+    }
 }
 
 void CanSignalEncoder::startSimulation()
@@ -83,9 +82,13 @@ void CanSignalEncoder::startSimulation()
     Q_D(CanSignalEncoder);
 
     d->_simStarted = true;
+
+    for (auto& timer : d_ptr->_cycleTimers) {
+        timer->start();
+    }
 }
 
-void CanSignalEncoder::simBcastRcv(const QJsonObject &msg, const QVariant &param)
+void CanSignalEncoder::simBcastRcv(const QJsonObject& msg, const QVariant& param)
 {
     Q_D(CanSignalEncoder);
 
@@ -94,7 +97,9 @@ void CanSignalEncoder::simBcastRcv(const QJsonObject &msg, const QVariant &param
 
 void CanSignalEncoder::rcvSignal(const QString& name, const QVariant& val)
 {
-    Q_UNUSED(name);
-    Q_UNUSED(val);
-}
+    if (d_ptr->_simStarted) {
+        cds_debug("Signal received: {}, {}", name.toStdString(), val.toString().toStdString());
 
+        d_ptr->encodeSignal(name, val);
+    }
+}
