@@ -6,6 +6,9 @@
 #include <QSignalSpy>
 #include <catch.hpp>
 #include <fakeit.hpp>
+#include <cansignaldata.h>
+#include <bcastmsgs.h>
+#include <QJsonDocument>
 
 std::shared_ptr<spdlog::logger> kDefaultLogger;
 // needed for QSignalSpy cause according to qtbug 49623 comments
@@ -78,6 +81,68 @@ TEST_CASE("getSupportedProperties", "[cansignalencoder]")
     REQUIRE(ComponentInterface::propertyType(props[1]) == QVariant::String);
     REQUIRE(ComponentInterface::propertyEditability(props[1]) == true);
     REQUIRE(ComponentInterface::propertyField(props[1]) != nullptr);
+}
+
+QString testJson = R"(
+{
+    "msgSettings": [
+        {
+            "cycle": "100",
+            "id": "3",
+            "initVal": ""
+        },
+        {
+            "cycle": "200",
+            "id": "e",
+            "initVal": "1122334455667788"
+        },
+        {
+            "cycle": "500",
+            "id": "45",
+            "initVal": "aabbccddeeff0099"
+        },
+        {
+            "cycle": "2000",
+            "id": "6d",
+            "initVal": "AABBCCDD"
+        }
+    ],
+    "name": "CanSignalData"
+}
+)";
+
+TEST_CASE("send preconfigured", "[cansignalencoder]")
+{
+    CanSignalData data;
+    CanSignalEncoder c;
+    QJsonObject obj = QJsonDocument::fromJson(testJson.toUtf8()).object();
+    QThread th;
+
+    QObject::connect(&data, &CanSignalData::simBcastSnd, &c, &CanSignalEncoder::simBcastRcv);
+    QObject::connect(&c, &CanSignalEncoder::simBcastSnd, &data, &CanSignalData::simBcastRcv);
+
+    obj["file"] = QString(DBC_PATH) + "/tesla_can.dbc";
+    data.setConfig(obj);
+    data.configChanged();
+
+    QSignalSpy sigSndSpy(&c, &CanSignalEncoder::sndFrame);
+
+    data.moveToThread(&th);
+    c.moveToThread(&th);
+
+    QObject::connect(&th, &QThread::started, &c, &CanSignalEncoder::startSimulation);
+    QObject::connect(&th, &QThread::finished, &c, &CanSignalEncoder::stopSimulation);
+    QObject::connect(&th, &QThread::started, &data, &CanSignalData::startSimulation);
+    QObject::connect(&th, &QThread::finished, &data, &CanSignalData::stopSimulation);
+
+    th.start();
+
+    QThread::sleep(1);
+
+    th.quit();
+    th.wait();
+
+    REQUIRE(sigSndSpy.count() > 0);
 }
 
 int main(int argc, char* argv[])
