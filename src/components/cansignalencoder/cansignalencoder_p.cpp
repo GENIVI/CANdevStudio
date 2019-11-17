@@ -10,7 +10,6 @@ CanSignalEncoderPrivate::CanSignalEncoderPrivate(CanSignalEncoder* q, CanSignalE
 
     connect(&_db, &CanDbHandler::sendCanDbRequest, q_ptr, &CanSignalEncoder::simBcastSnd);
     connect(&_db, &CanDbHandler::requestRedraw, q_ptr, &CanSignalEncoder::requestRedraw);
-    connect(&_db, &CanDbHandler::dbChanged, this, &CanSignalEncoderPrivate::dbChanged);
 }
 
 void CanSignalEncoderPrivate::initProps()
@@ -70,12 +69,7 @@ void CanSignalEncoderPrivate::encodeSignal(const QString& name, const QVariant& 
     QString sigName = name.mid(name.indexOf("_") + 1);
 
     if (!msgDesc) {
-        if (id > 0xf77) {
-            cds_warn("Msg '{:08x}' not found in DB", id);
-        } else {
-            cds_warn("Msg '{:03x}' not found in DB", id);
-        }
-
+        cds_warn("Msg '{:03x}' not found in DB", id);
         return;
     }
 
@@ -155,9 +149,10 @@ void CanSignalEncoderPrivate::signalToRaw(
     }
 }
 
-void CanSignalEncoderPrivate::dbChanged()
+void CanSignalEncoderPrivate::initCacheAndTimers()
 {
     _cycleTimers.clear();
+    _rawCache.clear();
 
     for (const auto& msg : _db.getDb()) {
         if (msg.first.initValue.length()) {
@@ -189,4 +184,5 @@ void CanSignalEncoderPrivate::dbChanged()
                 msg.first.initValue);
         }
     }
+
 }

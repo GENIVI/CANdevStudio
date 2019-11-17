@@ -33,7 +33,7 @@ public:
     std::vector<std::unique_ptr<QTimer>> _cycleTimers;
 
 public slots:
-    void dbChanged();
+    void initCacheAndTimers();
 
 private:
     CanSignalEncoder* q_ptr;

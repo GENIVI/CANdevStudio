@@ -81,6 +81,8 @@ void CanSignalEncoder::startSimulation()
 {
     Q_D(CanSignalEncoder);
 
+    d->initCacheAndTimers();
+
     d->_simStarted = true;
 
     for (auto& timer : d_ptr->_cycleTimers) {
