@@ -65,6 +65,10 @@ QJsonObject CanSignalSenderPrivate::getSettings()
 {
     QJsonObject ret;
 
+    for (const auto& p : _props) {
+        ret[p.first] = QJsonValue::fromVariant(p.second);
+    }
+
     ret["rows"] = _ui.getRows();
 
     return ret;

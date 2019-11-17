@@ -32,6 +32,8 @@ void CanSignalEncoder::setConfig(const QWidget& qobject)
     Q_D(CanSignalEncoder);
 
     configHelpers::setQConfig(qobject, getSupportedProperties(), d->_props);
+
+    d->_db.updateCurrentDbFromProps();
 }
 
 QJsonObject CanSignalEncoder::getConfig() const
