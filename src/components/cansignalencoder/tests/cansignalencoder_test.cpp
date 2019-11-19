@@ -3,12 +3,12 @@
 #define CATCH_CONFIG_RUNNER
 #include "log.h"
 #include <QCanBusFrame>
+#include <QJsonDocument>
 #include <QSignalSpy>
+#include <bcastmsgs.h>
+#include <cansignaldata.h>
 #include <catch.hpp>
 #include <fakeit.hpp>
-#include <cansignaldata.h>
-#include <bcastmsgs.h>
-#include <QJsonDocument>
 
 std::shared_ptr<spdlog::logger> kDefaultLogger;
 // needed for QSignalSpy cause according to qtbug 49623 comments
@@ -137,12 +137,155 @@ TEST_CASE("send preconfigured", "[cansignalencoder]")
 
     th.start();
 
+    // Mesages with defined cycle should not cause message being sent instantly
+    c.rcvSignal("0x06d_MC_SBW_RQ_SCCM", 15);
+    c.rcvSignal("0x06d_MC_SBW_RQ_SCCM", 15);
+    c.rcvSignal("0x06d_MC_SBW_RQ_SCCM", 15);
+    c.rcvSignal("0x06d_MC_SBW_RQ_SCCM", 15);
+
     QThread::sleep(1);
 
     th.quit();
     th.wait();
 
     REQUIRE(sigSndSpy.count() > 0);
+
+    std::map<uint32_t, int> sigCnt;
+    for (auto&& item : sigSndSpy) {
+        QCanBusFrame frame = qvariant_cast<QCanBusFrame>(item.at(0));
+
+        sigCnt[frame.frameId()] += 1;
+    }
+
+    REQUIRE(sigCnt[0x03] > 0);
+    REQUIRE(sigCnt[0x03] <= 10);
+    REQUIRE(sigCnt[0x0e] > 0);
+    REQUIRE(sigCnt[0x0e] <= 5);
+    REQUIRE(sigCnt[0x45] > 0);
+    REQUIRE(sigCnt[0x45] <= 2);
+    REQUIRE(sigCnt[0x6d] == 0);
+}
+
+TEST_CASE("recive signals", "[cansignalencoder]")
+{
+    CanSignalData data;
+    QJsonObject obj;
+    CanSignalEncoder c;
+
+    QObject::connect(&data, &CanSignalData::simBcastSnd, &c, &CanSignalEncoder::simBcastRcv);
+    QObject::connect(&c, &CanSignalEncoder::simBcastSnd, &data, &CanSignalData::simBcastRcv);
+
+    obj["file"] = QString(DBC_PATH) + "/tesla_can.dbc";
+    data.setConfig(obj);
+    data.configChanged();
+
+    QSignalSpy sigSndSpy(&c, &CanSignalEncoder::sndFrame);
+
+    // Send before starting
+    c.rcvSignal("0x348_GTW_statusChecksum", 100);
+
+    data.startSimulation();
+    c.startSimulation();
+
+    // Correct Signal
+    c.rcvSignal("0x348_GTW_statusChecksum", 100);
+
+    // No such msg ID
+    c.rcvSignal("0x666_GTW_statusChecksum", 100);
+    // msg ID exists but no such signal
+    c.rcvSignal("0x348_No_Such_Message", 100);
+
+    c.rcvSignal("0x666", 100);
+    c.rcvSignal("0x348", 100);
+
+    c.rcvSignal("0x666_", 100);
+    c.rcvSignal("0x348_", 100);
+
+    c.rcvSignal("ZZZ_ZZZ", 100);
+    c.rcvSignal("ZZZ_", 100);
+    c.rcvSignal("ZZZ", 100);
+    c.rcvSignal("", 100);
+
+    REQUIRE(sigSndSpy.count() == 1);
+}
+
+QString testJson2 = R"(
+{
+    "msgSettings": [
+        {
+            "cycle": "500",
+            "id": "6d",
+            "initVal": "AABBCCDD"
+        }
+    ],
+    "name": "CanSignalData"
+}
+)";
+
+TEST_CASE("reset init value", "[cansignalencoder]")
+{
+    CanSignalData data;
+    CanSignalEncoder c;
+    QJsonObject obj = QJsonDocument::fromJson(testJson2.toUtf8()).object();
+    QThread th;
+
+    QObject::connect(&data, &CanSignalData::simBcastSnd, &c, &CanSignalEncoder::simBcastRcv);
+    QObject::connect(&c, &CanSignalEncoder::simBcastSnd, &data, &CanSignalData::simBcastRcv);
+
+    obj["file"] = QString(DBC_PATH) + "/tesla_can.dbc";
+    data.setConfig(obj);
+    data.configChanged();
+
+    QSignalSpy sigSndSpy(&c, &CanSignalEncoder::sndFrame);
+
+    data.moveToThread(&th);
+    c.moveToThread(&th);
+
+    QObject::connect(&th, &QThread::started, &c, &CanSignalEncoder::startSimulation);
+    QObject::connect(&th, &QThread::finished, &c, &CanSignalEncoder::stopSimulation);
+    QObject::connect(&th, &QThread::started, &data, &CanSignalData::startSimulation);
+    QObject::connect(&th, &QThread::finished, &data, &CanSignalData::stopSimulation);
+
+    th.start();
+
+    auto rcvSignal = [&](const QString& sig, const QVariant& val) {
+        QMetaObject::invokeMethod(&c, "rcvSignal", Qt::AutoConnection, Q_ARG(QString, sig), Q_ARG(QVariant, val));
+    };
+
+    rcvSignal("0x06d_MC_SBW_RQ_SCCM", 0);
+    rcvSignal("0x06d_MC_SBW_RQ_SCCM", 0);
+    rcvSignal("0x06d_MC_SBW_RQ_SCCM", 0);
+    rcvSignal("0x06d_MC_SBW_RQ_SCCM", 0);
+
+    QThread::sleep(1);
+
+    th.quit();
+    th.wait();
+
+    REQUIRE(sigSndSpy.count() > 0);
+    REQUIRE(sigSndSpy.count() <= 2);
+
+    QCanBusFrame frame = qvariant_cast<QCanBusFrame>(sigSndSpy.takeLast().at(0));
+    sigSndSpy.clear();
+
+    REQUIRE(frame.frameId() == 0x6d);
+    REQUIRE(frame.payload() == QByteArray::fromHex(QByteArray::number(0xaabb0cdd, 16)));
+
+    th.start();
+
+    QThread::sleep(1);
+
+    th.quit();
+    th.wait();
+
+    REQUIRE(sigSndSpy.count() > 0);
+    REQUIRE(sigSndSpy.count() <= 2);
+
+    frame = qvariant_cast<QCanBusFrame>(sigSndSpy.takeLast().at(0));
+    sigSndSpy.clear();
+
+    REQUIRE(frame.frameId() == 0x6d);
+    REQUIRE(frame.payload() == QByteArray::fromHex(QByteArray::number(0xaabbccdd, 16)));
 }
 
 int main(int argc, char* argv[])
