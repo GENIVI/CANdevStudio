@@ -189,6 +189,7 @@ TEST_CASE("recive signals", "[cansignalencoder]")
 
     // Correct Signal
     c.rcvSignal("0x348_GTW_statusChecksum", 100);
+    c.rcvSignal("0x00e_StW_AnglHP_Sens_Stat", 1);
 
     // No such msg ID
     c.rcvSignal("0x666_GTW_statusChecksum", 100);
@@ -206,7 +207,32 @@ TEST_CASE("recive signals", "[cansignalencoder]")
     c.rcvSignal("ZZZ", 100);
     c.rcvSignal("", 100);
 
-    REQUIRE(sigSndSpy.count() == 1);
+    REQUIRE(sigSndSpy.count() == 2);
+}
+
+TEST_CASE("factor 0", "[cansignalencoder]")
+{
+    CanSignalData data;
+    QJsonObject obj;
+    CanSignalEncoder c;
+
+    QObject::connect(&data, &CanSignalData::simBcastSnd, &c, &CanSignalEncoder::simBcastRcv);
+    QObject::connect(&c, &CanSignalEncoder::simBcastSnd, &data, &CanSignalData::simBcastRcv);
+
+    obj["file"] = QString(DBC_PATH) + "/tesla_can.dbc";
+    data.setConfig(obj);
+    data.configChanged();
+
+    QSignalSpy sigSndSpy(&c, &CanSignalEncoder::sndFrame);
+
+    data.startSimulation();
+    c.startSimulation();
+
+    c.rcvSignal("0x488_DAS_steeringControlType", 100);
+    c.rcvSignal("0x488_DAS_steeringControlType", 100);
+    c.rcvSignal("0x488_DAS_steeringControlType", 100);
+
+    REQUIRE(sigSndSpy.count() == 0);
 }
 
 QString testJson2 = R"(

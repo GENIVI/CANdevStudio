@@ -139,6 +139,15 @@ void CanSignalEncoderPrivate::signalToRaw(
 
             bit++;
         }
+
+        if (rawVal < 0) {
+            if (sigDesc.valueSigned) {
+                // make sure that MSB is set for signed value
+                data[sigDesc.startBit / 8] |= 1U << (sigDesc.startBit % 8);
+            } else {
+                cds_warn("Processing negative value '{}' for unsinged signal!", rawVal);
+            }
+        }
     }
 
     if (updateCycle == 0) {

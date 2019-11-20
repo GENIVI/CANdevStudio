@@ -62,7 +62,7 @@ VAL_TABLE_ DI_velocityEstimatorState 4 "VE_STATE_BACKUP_MOTOR" 3 "VE_STATE_BACKU
 
 
 BO_ 1160 DAS_steeringControl: 4 NEO
- SG_ DAS_steeringControlType : 23|2@0+ (1,0) [0|0] "" EPAS
+ SG_ DAS_steeringControlType : 23|2@0+ (0,0) [0|0] "" EPAS
  SG_ DAS_steeringControlChecksum : 31|8@0+ (1,0) [0|0] "" EPAS
  SG_ DAS_steeringControlCounter : 19|4@0+ (1,0) [0|0] "" EPAS
  SG_ DAS_steeringAngleRequest : 6|15@0+ (0.1,-1638.35) [-1638.35|1638.35] "deg" EPAS
