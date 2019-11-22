@@ -6,6 +6,7 @@
 #include <QSignalSpy>
 #include <catch.hpp>
 #include <fakeit.hpp>
+#include <datamodeltypes/cansignalmodel.h>
 
 std::shared_ptr<spdlog::logger> kDefaultLogger;
 // needed for QSignalSpy cause according to qtbug 49623 comments
@@ -44,17 +45,17 @@ TEST_CASE("dataType", "[cansignalsenderModel]")
 
     NodeDataType ndt;
 
-    // ndt = cm.dataType(QtNodes::PortType::Out, 0);
-    // REQUIRE(ndt.id == "rawframe");
-    // REQUIRE(ndt.name == "RAW");
+     ndt = cm.dataType(QtNodes::PortType::Out, 0);
+     REQUIRE(ndt.id == "signal");
+     REQUIRE(ndt.name == "SIG");
 
-    // ndt = cm.dataType(QtNodes::PortType::Out, 1);
-    // REQUIRE(ndt.id == "");
-    // REQUIRE(ndt.name == "");
+     ndt = cm.dataType(QtNodes::PortType::Out, 1);
+     REQUIRE(ndt.id == "");
+     REQUIRE(ndt.name == "");
 
-    // ndt = cm.dataType(QtNodes::PortType::In, 0);
-    // REQUIRE(ndt.id == "");
-    // REQUIRE(ndt.name == "");
+     ndt = cm.dataType(QtNodes::PortType::In, 0);
+     REQUIRE(ndt.id == "");
+     REQUIRE(ndt.name == "");
 }
 
 TEST_CASE("outData", "[cansignalsenderModel]")
@@ -70,6 +71,23 @@ TEST_CASE("setInData", "[cansignalsenderModel]")
     CanSignalSenderModel cm;
 
     cm.setInData({}, 1);
+}
+
+TEST_CASE("rcvFrame", "[cansignalsenderModel]")
+{
+    CanSignalSenderModel cm;
+    QSignalSpy spy(&cm, &CanSignalSenderModel::dataUpdated);
+
+    for (int i = 0; i < 130; ++i) {
+        cm.rcvSignal("test", 123);
+    }
+
+    REQUIRE(spy.count() == 127);
+
+    auto f = std::dynamic_pointer_cast<CanSignalModel>(cm.outData(0));
+
+    REQUIRE(f->name() == "test");
+    REQUIRE(f->value().toUInt() == 123);
 }
 
 int main(int argc, char* argv[])
