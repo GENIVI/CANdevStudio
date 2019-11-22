@@ -86,7 +86,7 @@ void CanSignalEncoderPrivate::encodeSignal(const QString& name, const QVariant& 
                 signalToRaw(id, sig, val, msgDesc->first.updateCycle);
                 return;
             } else {
-                cds_error("Payload size ('{}') for signal '{}' is to small. StartBit {}, signalSize {}",
+                cds_error("Payload size ('{}') for signal '{}' is too small. StartBit {}, signalSize {}",
                     _rawCache[id].size() * 8, sig.signal_name, sig.startBit, sig.signalSize);
             }
         }
@@ -118,16 +118,6 @@ void CanSignalEncoderPrivate::signalToRaw(
             data[bit / 8] |= ((rawVal >> bitpos) & 1U) << (bit % 8);
             bit++;
         }
-
-        if (rawVal < 0) {
-            if (sigDesc.valueSigned) {
-                // make sure that MSB is set for signed value
-                bit--;
-                data[bit / 8] |= 1U << (bit % 8);
-            } else {
-                cds_warn("Processing negative value '{}' for unsinged signal!", rawVal);
-            }
-        }
     } else {
         // motorola / big endian mode
         auto bit = sigDesc.startBit;
@@ -138,15 +128,6 @@ void CanSignalEncoderPrivate::signalToRaw(
             data[bit / 8] |= ((rawVal >> (sigDesc.signalSize - bitpos - 1)) & 1U) << (bit % 8);
 
             bit++;
-        }
-
-        if (rawVal < 0) {
-            if (sigDesc.valueSigned) {
-                // make sure that MSB is set for signed value
-                data[sigDesc.startBit / 8] |= 1U << (sigDesc.startBit % 8);
-            } else {
-                cds_warn("Processing negative value '{}' for unsinged signal!", rawVal);
-            }
         }
     }
 
