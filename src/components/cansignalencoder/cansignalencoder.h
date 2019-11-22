@@ -19,7 +19,6 @@ class CanSignalEncoder : public QObject, public ComponentInterface {
 
 public:
     CanSignalEncoder();
-    explicit CanSignalEncoder(CanSignalEncoderCtx&& ctx);
     ~CanSignalEncoder();
 
     QWidget* mainWidget() override;

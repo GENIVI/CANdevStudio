@@ -7,11 +7,6 @@ CanSignalEncoder::CanSignalEncoder()
 {
 }
 
-CanSignalEncoder::CanSignalEncoder(CanSignalEncoderCtx&& ctx)
-    : d_ptr(new CanSignalEncoderPrivate(this, std::move(ctx)))
-{
-}
-
 CanSignalEncoder::~CanSignalEncoder() {}
 
 QWidget* CanSignalEncoder::mainWidget()

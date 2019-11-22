@@ -108,7 +108,7 @@ BO_ 4099 SignedSignals_BE: 8 TEST
  SG_ Test08 : 27|8@1- (1,0) [0|0] "" TEST
  SG_ Test09 : 35|9@1- (1,0) [0|0] "" TEST
  SG_ Test10 : 44|10@1- (1,0) [0|0] "" TEST
- SG_ Test11 : 54|10@0- (1,0) [0|0] "" TEST
+ SG_ Test11 : 54|10@1- (1,0) [0|0] "" TEST
 
 BO_ 1160 DAS_steeringControl: 4 NEO
  SG_ DAS_steeringControlType : 23|2@0+ (0,0) [0|0] "" EPAS

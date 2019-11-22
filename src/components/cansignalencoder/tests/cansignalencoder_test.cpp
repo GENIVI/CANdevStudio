@@ -31,6 +31,9 @@ TEST_CASE("setConfig - qobj", "[cansignalencoder]")
     obj.setProperty("name", "Test Name");
 
     c.setConfig(obj);
+
+    auto w = c.getQConfig();
+    REQUIRE(w->property("color").isValid());
 }
 
 TEST_CASE("setConfig - json", "[cansignalencoder]")
@@ -41,6 +44,9 @@ TEST_CASE("setConfig - json", "[cansignalencoder]")
     obj["name"] = "Test Name";
 
     c.setConfig(obj);
+
+    auto w = c.getQConfig();
+    REQUIRE(w->property("color").isValid());
 }
 
 TEST_CASE("getConfig", "[cansignalencoder]")
@@ -565,6 +571,234 @@ TEST_CASE("SignedSignals_LE", "[cansignalencoder]")
     REQUIRE(frame.payload()[5] == (char)0x08);
     REQUIRE(frame.payload()[6] == (char)0x20);
     REQUIRE(frame.payload()[7] == (char)0x80);
+}
+
+TEST_CASE("UnsignedSignals_BE", "[cansignalencoder]")
+{
+    CanSignalData data;
+    QJsonObject obj;
+    CanSignalEncoder c;
+
+    QObject::connect(&data, &CanSignalData::simBcastSnd, &c, &CanSignalEncoder::simBcastRcv);
+    QObject::connect(&c, &CanSignalEncoder::simBcastSnd, &data, &CanSignalData::simBcastRcv);
+
+    obj["file"] = QString(DBC_PATH) + "/tesla_can.dbc";
+    data.setConfig(obj);
+    data.configChanged();
+
+    QSignalSpy sigSndSpy(&c, &CanSignalEncoder::sndFrame);
+
+    data.startSimulation();
+    c.startSimulation();
+
+    c.rcvSignal("0x1002_Test01", 1);
+    c.rcvSignal("0x1002_Test02", 1);
+    c.rcvSignal("0x1002_Test03", 1);
+    c.rcvSignal("0x1002_Test04", 1);
+    c.rcvSignal("0x1002_Test05", 1);
+    c.rcvSignal("0x1002_Test06", 1);
+    c.rcvSignal("0x1002_Test07", 1);
+    c.rcvSignal("0x1002_Test08", 1);
+    c.rcvSignal("0x1002_Test09", 1);
+    c.rcvSignal("0x1002_Test10", 1);
+    c.rcvSignal("0x1002_Test11", 1);
+
+    REQUIRE(sigSndSpy.count() == 11);
+
+    QCanBusFrame frame = qvariant_cast<QCanBusFrame>(sigSndSpy.takeLast().at(0));
+
+    REQUIRE(frame.frameId() == 0x1002);
+    REQUIRE(frame.hasExtendedFrameFormat() == true);
+
+    //  1000 0000 0100 0000 0001 0000 0000 1000
+    //  0000 1000 0001 0000 0100 0010 0010 0101
+
+    REQUIRE(frame.payload()[0] == (char)0x25);
+    REQUIRE(frame.payload()[1] == (char)0x42);
+    REQUIRE(frame.payload()[2] == (char)0x10);
+    REQUIRE(frame.payload()[3] == (char)0x08);
+    REQUIRE(frame.payload()[4] == (char)0x08);
+    REQUIRE(frame.payload()[5] == (char)0x10);
+    REQUIRE(frame.payload()[6] == (char)0x40);
+    REQUIRE(frame.payload()[7] == (char)0x80);
+
+    sigSndSpy.clear();
+
+    c.rcvSignal("0x1002_Test01", 1);
+    c.rcvSignal("0x1002_Test02", 2);
+    c.rcvSignal("0x1002_Test03", 4);
+    c.rcvSignal("0x1002_Test04", 8);
+    c.rcvSignal("0x1002_Test05", 16);
+    c.rcvSignal("0x1002_Test06", 32);
+    c.rcvSignal("0x1002_Test07", 64);
+    c.rcvSignal("0x1002_Test08", 128);
+    c.rcvSignal("0x1002_Test09", 256);
+    c.rcvSignal("0x1002_Test10", 512);
+    c.rcvSignal("0x1002_Test11", 256);
+
+    REQUIRE(sigSndSpy.count() == 11);
+
+    frame = qvariant_cast<QCanBusFrame>(sigSndSpy.takeLast().at(0));
+
+    REQUIRE(frame.frameId() == 0x1002);
+    REQUIRE(frame.hasExtendedFrameFormat() == true);
+
+    //  0000 0000 1000 0000 0010 0000 0001 0000
+    //  0001 0000 0010 0000 1000 0100 0100 1011
+
+    REQUIRE(frame.payload()[0] == (char)0x4b);
+    REQUIRE(frame.payload()[1] == (char)0x84);
+    REQUIRE(frame.payload()[2] == (char)0x20);
+    REQUIRE(frame.payload()[3] == (char)0x10);
+    REQUIRE(frame.payload()[4] == (char)0x10);
+    REQUIRE(frame.payload()[5] == (char)0x20);
+    REQUIRE(frame.payload()[6] == (char)0x80);
+    REQUIRE(frame.payload()[7] == (char)0x00);
+}
+
+TEST_CASE("SignedSignals_BE", "[cansignalencoder]")
+{
+    CanSignalData data;
+    QJsonObject obj;
+    CanSignalEncoder c;
+
+    QObject::connect(&data, &CanSignalData::simBcastSnd, &c, &CanSignalEncoder::simBcastRcv);
+    QObject::connect(&c, &CanSignalEncoder::simBcastSnd, &data, &CanSignalData::simBcastRcv);
+
+    obj["file"] = QString(DBC_PATH) + "/tesla_can.dbc";
+    data.setConfig(obj);
+    data.configChanged();
+
+    QSignalSpy sigSndSpy(&c, &CanSignalEncoder::sndFrame);
+
+    data.startSimulation();
+    c.startSimulation();
+
+    c.rcvSignal("0x1003_Test02", 1);
+    c.rcvSignal("0x1003_Test03", 3);
+    c.rcvSignal("0x1003_Test04", 7);
+    c.rcvSignal("0x1003_Test05", 15);
+    c.rcvSignal("0x1003_Test06", 31);
+    c.rcvSignal("0x1003_Test07", 63);
+    c.rcvSignal("0x1003_Test08", 127);
+    c.rcvSignal("0x1003_Test09", 255);
+    c.rcvSignal("0x1003_Test10", 511);
+    c.rcvSignal("0x1003_Test11", 511);
+
+    REQUIRE(sigSndSpy.count() == 10);
+
+    QCanBusFrame frame = qvariant_cast<QCanBusFrame>(sigSndSpy.takeLast().at(0));
+
+    REQUIRE(frame.frameId() == 0x1003);
+    REQUIRE(frame.hasExtendedFrameFormat() == true);
+
+    //  1111 1111 1011 1111 1110 1111 1111 0111
+    //  1111 0111 1110 1111 1011 1101 1101 1010
+
+    REQUIRE(frame.payload()[0] == (char)0xda);
+    REQUIRE(frame.payload()[1] == (char)0xbd);
+    REQUIRE(frame.payload()[2] == (char)0xef);
+    REQUIRE(frame.payload()[3] == (char)0xf7);
+    REQUIRE(frame.payload()[4] == (char)0xf7);
+    REQUIRE(frame.payload()[5] == (char)0xef);
+    REQUIRE(frame.payload()[6] == (char)0xbf);
+    REQUIRE(frame.payload()[7] == (char)0xff);
+
+    sigSndSpy.clear();
+
+    c.rcvSignal("0x1003_Test02", -1);
+    c.rcvSignal("0x1003_Test03", -1);
+    c.rcvSignal("0x1003_Test04", -1);
+    c.rcvSignal("0x1003_Test05", -1);
+    c.rcvSignal("0x1003_Test06", -1);
+    c.rcvSignal("0x1003_Test07", -1);
+    c.rcvSignal("0x1003_Test08", -1);
+    c.rcvSignal("0x1003_Test09", -1);
+    c.rcvSignal("0x1003_Test10", -1);
+    c.rcvSignal("0x1003_Test11", -1);
+
+    REQUIRE(sigSndSpy.count() == 10);
+
+    frame = qvariant_cast<QCanBusFrame>(sigSndSpy.takeLast().at(0));
+
+    REQUIRE(frame.frameId() == 0x1003);
+    REQUIRE(frame.hasExtendedFrameFormat() == true);
+
+    //  1111 1111 1111 1111 1111 1111 1111 1111
+    //  1111 1111 1111 1111 1111 1111 1111 1111
+
+    REQUIRE(frame.payload()[0] == (char)0xff);
+    REQUIRE(frame.payload()[1] == (char)0xff);
+    REQUIRE(frame.payload()[2] == (char)0xff);
+    REQUIRE(frame.payload()[3] == (char)0xff);
+    REQUIRE(frame.payload()[4] == (char)0xff);
+    REQUIRE(frame.payload()[5] == (char)0xff);
+    REQUIRE(frame.payload()[6] == (char)0xff);
+    REQUIRE(frame.payload()[7] == (char)0xff);
+
+    sigSndSpy.clear();
+
+    c.rcvSignal("0x1003_Test02", -1);
+    c.rcvSignal("0x1003_Test03", -3);
+    c.rcvSignal("0x1003_Test04", -7);
+    c.rcvSignal("0x1003_Test05", -15);
+    c.rcvSignal("0x1003_Test06", -31);
+    c.rcvSignal("0x1003_Test07", -63);
+    c.rcvSignal("0x1003_Test08", -127);
+    c.rcvSignal("0x1003_Test09", -255);
+    c.rcvSignal("0x1003_Test10", -511);
+    c.rcvSignal("0x1003_Test11", -511);
+
+    REQUIRE(sigSndSpy.count() == 10);
+
+    frame = qvariant_cast<QCanBusFrame>(sigSndSpy.takeLast().at(0));
+
+    REQUIRE(frame.frameId() == 0x1003);
+    REQUIRE(frame.hasExtendedFrameFormat() == true);
+
+    //  1000 0000 0110 0000 0001 1000 0000 1100
+    //  0000 1100 0001 1000 0110 0011 0011 0111
+
+    REQUIRE(frame.payload()[0] == (char)0x37);
+    REQUIRE(frame.payload()[1] == (char)0x63);
+    REQUIRE(frame.payload()[2] == (char)0x18);
+    REQUIRE(frame.payload()[3] == (char)0x0c);
+    REQUIRE(frame.payload()[4] == (char)0x0c);
+    REQUIRE(frame.payload()[5] == (char)0x18);
+    REQUIRE(frame.payload()[6] == (char)0x60);
+    REQUIRE(frame.payload()[7] == (char)0x80);
+
+    sigSndSpy.clear();
+
+    c.rcvSignal("0x1003_Test02", -2);
+    c.rcvSignal("0x1003_Test03", -4);
+    c.rcvSignal("0x1003_Test04", -8);
+    c.rcvSignal("0x1003_Test05", -16);
+    c.rcvSignal("0x1003_Test06", -32);
+    c.rcvSignal("0x1003_Test07", -64);
+    c.rcvSignal("0x1003_Test08", -128);
+    c.rcvSignal("0x1003_Test09", -256);
+    c.rcvSignal("0x1003_Test10", -512);
+    c.rcvSignal("0x1003_Test11", -512);
+
+    REQUIRE(sigSndSpy.count() == 10);
+
+    frame = qvariant_cast<QCanBusFrame>(sigSndSpy.takeLast().at(0));
+
+    REQUIRE(frame.frameId() == 0x1003);
+    REQUIRE(frame.hasExtendedFrameFormat() == true);
+
+    //  0000 0000 0100 0000 0001 0000 0000 1000
+    //  0000 1000 0001 0000 0100 0010 0010 0101
+
+    REQUIRE(frame.payload()[0] == (char)0x25);
+    REQUIRE(frame.payload()[1] == (char)0x42);
+    REQUIRE(frame.payload()[2] == (char)0x10);
+    REQUIRE(frame.payload()[3] == (char)0x08);
+    REQUIRE(frame.payload()[4] == (char)0x08);
+    REQUIRE(frame.payload()[5] == (char)0x10);
+    REQUIRE(frame.payload()[6] == (char)0x40);
+    REQUIRE(frame.payload()[7] == (char)0x00);
 }
 
 int main(int argc, char* argv[])
