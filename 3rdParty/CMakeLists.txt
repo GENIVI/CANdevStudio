@@ -15,7 +15,7 @@ add_subdirectory(nodeeditor)
 
 add_subdirectory(CANdb EXCLUDE_FROM_ALL)
 
-if(UNIX)
+if(UNIX AND NOT APPLE)
     add_subdirectory(qtCannelloniCanBus)
 
     install(PROGRAMS ${CMAKE_BINARY_DIR}/3rdParty/qtCannelloniCanBus/libqtCannelloniCanBusPlugin.so 
