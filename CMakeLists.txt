@@ -113,7 +113,7 @@ if(WITH_TESTS OR WITH_COVERAGE)
     enable_testing()
 endif()
 
-add_subdirectory(3rdParty EXCLUDE_FROM_ALL)
+add_subdirectory(3rdParty)
 add_subdirectory(src/common)
 add_subdirectory(src/components)
 add_subdirectory(src/gui)
