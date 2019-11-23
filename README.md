@@ -232,13 +232,14 @@ sudo ip link set can0 up
 ```
 CanDevice backend: socketcan
 #### Cannelloni
-A SocketCAN over Ethernet tunnel.
+A SocketCAN over Ethernet tunnel. Available for Linux only.
 
-Examplary configuration:
+Let's consider setup as before:
 <p align="left">
 <img src="https://at.projects.genivi.org/wiki/download/attachments/14976114/CANdevStudio-cannelloni.png" width="50%" />
 </p>
 
+##### Configuration with qtCannelloniCanBusPlugin
 Target configuration:
 ```
 sudo modprobe vcan
@@ -248,11 +249,33 @@ cannelloni -I can0 -R 192.168.0.1 -r 30000 -l 20000
 ```
 PC configuration:
 
-1. Install libqtCannelloniCanBusPlugin.so that is built along with CANdevStudio. You can either copy it manually to Qt plugins directory or use "make install" to do it automatically.
+1. Install libqtCannelloniCanBusPlugin.so that is built along with CANdevStudio. You can either copy it manually to Qt plugins directory (e.g. /usr/lib/qt/plugins/canbus) or use "make install" to do it automatically.
 2. Create new project in CANdevStudio and add CanDevice node
 3. Configure CanDevice:
    1. backend: cannelloni
    2. interface: 30000,192.168.0.2,20000 (local_port,remote_ip,remote_port)
+4. Start simulation
+
+##### Configuration without qtCannelloniCanBusPlugin
+Target configuration:
+```
+sudo modprobe vcan
+sudo ip link add dev can0 type vcan
+sudo ip link set can0 up
+cannelloni -I can0 -R 192.168.0.1 -r 30000 -l 20000
+```
+PC configuration:
+1. Execute following lines in a shell
+```
+sudo modprobe vcan
+sudo ip link add dev can0 type vcan
+sudo ip link set can0 up
+cannelloni -I can0 -R 192.168.0.2 -r 20000 -l 30000
+```
+2. Create new project in CANdevStudio and add CanDevice node
+3. Configure CanDevice:
+   1. backend: socketcan
+   2. interface: can0
 4. Start simulation
 
 ## Help
