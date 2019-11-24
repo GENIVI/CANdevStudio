@@ -33,6 +33,7 @@ CanSignalEncoderModel::CanSignalEncoderModel()
 
     connect(this, &CanSignalEncoderModel::sndSignal, &_component, &CanSignalEncoder::rcvSignal);
     connect(&_component, &CanSignalEncoder::sndFrame, this, &CanSignalEncoderModel::rcvFrame);
+    connect(&_component, &CanSignalEncoder::requestRedraw, this, &CanSignalEncoderModel::requestRedraw);
 }
 
 QtNodes::NodePainterDelegate* CanSignalEncoderModel::painterDelegate() const

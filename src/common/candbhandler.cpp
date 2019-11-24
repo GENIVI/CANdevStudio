@@ -51,6 +51,7 @@ void CanDbHandler::processBcast(const QJsonObject& msg, const QVariant& param)
 
         if (_currentDb == id) {
             _props["color"] = _dbColor[id];
+            emit requestRedraw();
         }
     } else if (vMsg.isValid() && vMsg.toString() == BcastMsg::NodeDeleted) {
         _dbNames.erase(id);

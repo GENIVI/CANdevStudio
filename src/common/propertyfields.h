@@ -151,6 +151,7 @@ struct PropertyFieldColor : public PropertyFieldText {
         _cd = new QColorDialog(this);
 
         connect(_pb, &QPushButton::pressed, [&] {
+            _cd->setCurrentColor(QColor(_le->text()));
             if (_cd->exec() == QDialog::Accepted) {
                 _le->setText(_cd->selectedColor().name(QColor::HexRgb).toUpper());
             }

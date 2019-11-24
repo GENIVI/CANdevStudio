@@ -20,7 +20,7 @@ CanSignalDataModel::CanSignalDataModel()
     , _painter(std::make_unique<CanDbPainter>(CanSignalDataPlugin::PluginType::sectionColor(), &_component, 30))
 {
     _label->setAlignment(Qt::AlignVCenter | Qt::AlignHCenter);
-    _label->setFixedSize(75, 75);
+    _label->setFixedSize(75, 70);
     _label->setAttribute(Qt::WA_TranslucentBackground);
 }
 

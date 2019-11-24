@@ -10,7 +10,7 @@ namespace {
 std::atomic<uint32_t> g_cnt(0);
 
 const std::vector<QColor> g_colorTab
-    = { QColor("gray"), QColor("green"), QColor("blue"), QColor("cyan"), QColor("magenta")};
+    = { QColor("#DCDAA4"), QColor("#9CD59B"), QColor("#4ED1DF"), QColor("#FFCCBB"), QColor("#DAB7EB")};
 
 QString getDefaultColor()
 {
