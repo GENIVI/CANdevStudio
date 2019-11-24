@@ -1,6 +1,7 @@
 #ifndef __PROPERTYFIELDS_H
 #define __PROPERTYFIELDS_H
 
+#include <QColorDialog>
 #include <QComboBox>
 #include <QFileDialog>
 #include <QHBoxLayout>
@@ -19,7 +20,7 @@ struct PropertyFieldText : public PropertyField {
     {
         setLayout(new QHBoxLayout);
         layout()->setContentsMargins(0, 0, 0, 0);
-        _le = new QLineEdit();
+        _le = new QLineEdit(this);
         _le->setFrame(false);
         layout()->addWidget(_le);
 
@@ -49,7 +50,7 @@ struct PropertyFieldPath : public PropertyFieldText {
     PropertyFieldPath(bool folderOnly = false)
         : _folderOnly(folderOnly)
     {
-        _pb = new QPushButton();
+        _pb = new QPushButton(this);
         _pb->setText("...");
         _pb->setFixedSize(24, 24);
         _pb->setFlat(true);
@@ -86,13 +87,13 @@ class PropertyFieldCombo : public PropertyField {
     Q_OBJECT
 
 public:
-    PropertyFieldCombo()
+    PropertyFieldCombo(bool editable = true)
     {
         setLayout(new QHBoxLayout);
         layout()->setContentsMargins(0, 0, 0, 0);
-        _cb = new QComboBox();
+        _cb = new QComboBox(this);
+        _cb->setEditable(editable);
         _cb->setFrame(false);
-        _cb->setEditable(true);
         layout()->addWidget(_cb);
         connect(_cb, static_cast<void (QComboBox::*)(const QString&)>(&QComboBox::currentIndexChanged), this,
             &PropertyFieldCombo::currentTextChanged);
@@ -105,7 +106,13 @@ public:
 
     QString propText() override
     {
-        return _cb->currentText();
+        QVariant data = _cb->currentData();
+
+        if (data.isValid()) {
+            return data.toString();
+        } else {
+            return _cb->currentText();
+        }
     }
 
     void addItems(const QStringList& list)
@@ -114,10 +121,45 @@ public:
         _cb->addItems(list);
     }
 
+    void addItem(const QString& text, const QVariant v = QVariant())
+    {
+        _cb->addItem(text, v);
+    }
+
+    void sort()
+    {
+        _cb->model()->sort(0);
+    }
+
 signals:
     void currentTextChanged(const QString& text);
 
 private:
     QComboBox* _cb;
+};
+
+struct PropertyFieldColor : public PropertyFieldText {
+    PropertyFieldColor()
+    {
+        _pb = new QPushButton(this);
+        _pb->setText("...");
+        _pb->setFixedSize(24, 24);
+        _pb->setFlat(true);
+        _pb->setProperty("type", "PropertyFieldPath");
+        layout()->addWidget(_pb);
+
+        _cd = new QColorDialog(this);
+
+        connect(_pb, &QPushButton::pressed, [&] {
+            _cd->setCurrentColor(QColor(_le->text()));
+            if (_cd->exec() == QDialog::Accepted) {
+                _le->setText(_cd->selectedColor().name(QColor::HexRgb).toUpper());
+            }
+        });
+    }
+
+private:
+    QPushButton* _pb;
+    QColorDialog* _cd;
 };
 #endif /* !__PROPERTYFIELDS_H */

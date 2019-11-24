@@ -1,5 +1,6 @@
 #include "cansignaldata.h"
 #include "cansignaldata_p.h"
+#include <bcastmsgs.h>
 #include <confighelpers.h>
 #include <log.h>
 
@@ -13,9 +14,7 @@ CanSignalData::CanSignalData(CanSignalDataCtx&& ctx)
 {
 }
 
-CanSignalData::~CanSignalData()
-{
-}
+CanSignalData::~CanSignalData() {}
 
 QWidget* CanSignalData::mainWidget()
 {
@@ -81,8 +80,15 @@ void CanSignalData::startSimulation()
     d->_simStarted = true;
 }
 
-void CanSignalData::simBcastRcv(const QJsonObject &msg, const QVariant &param)
+void CanSignalData::simBcastRcv(const QJsonObject& msg, const QVariant& param)
 {
-    Q_UNUSED(msg);
     Q_UNUSED(param);
+
+    Q_D(CanSignalData);
+
+    QVariant vMsg = msg["msg"];
+    if ((vMsg.isValid() && vMsg.toString() == BcastMsg::RequestCanDb)
+        || (vMsg.isValid() && vMsg.toString() == BcastMsg::InitDone)) {
+        d->sendCANdbUpdated();
+    }
 }

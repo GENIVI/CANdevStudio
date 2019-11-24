@@ -34,9 +34,9 @@ public:
     }
 };
 
-template <typename T> class MyDelegate : public QStyledItemDelegate {
+template <typename T> class DbFieldDelegate : public QStyledItemDelegate {
 public:
-    MyDelegate(QAbstractItemModel* model, QObject* parent = nullptr)
+    DbFieldDelegate(QAbstractItemModel* model, QObject* parent = nullptr)
         : QStyledItemDelegate(parent)
         , _model(model)
     {
@@ -64,6 +64,8 @@ struct CanSignalDataGuiImpl : public CanSignalDataGuiInt {
         QButtonGroup* bg = new QButtonGroup(_widget);
         bg->addButton(_ui->pbMsg);
         bg->addButton(_ui->pbSig);
+
+        _ui->tv->setEditTriggers(QAbstractItemView::AllEditTriggers);
     }
 
     virtual void setDockUndockCbk(const dockUndock_t& cb) override
@@ -102,12 +104,12 @@ struct CanSignalDataGuiImpl : public CanSignalDataGuiInt {
 
         _settingsState = _ui->tv->horizontalHeader()->saveState();
 
-        _cycleDelegate = new MyDelegate<IntervalLE>(&tvModel, _ui->tv);
+        _cycleDelegate = new DbFieldDelegate<IntervalLE>(&tvModel, _ui->tv);
         _ui->tv->setItemDelegateForColumn(4, _cycleDelegate);
         QObject::connect(_cycleDelegate, &QAbstractItemDelegate::closeEditor,
             std::bind(&CanSignalDataGuiImpl::msgSettingUpdated, this));
 
-        _initValDelegate = new MyDelegate<ValueLE>(&tvModel, _ui->tv);
+        _initValDelegate = new DbFieldDelegate<ValueLE>(&tvModel, _ui->tv);
         _ui->tv->setItemDelegateForColumn(5, _initValDelegate);
         QObject::connect(_initValDelegate, &QAbstractItemDelegate::closeEditor,
             std::bind(&CanSignalDataGuiImpl::msgSettingUpdated, this));
@@ -149,8 +151,8 @@ private:
     QWidget* _widget;
     QByteArray _settingsState;
     QByteArray _tableState;
-    MyDelegate<IntervalLE>* _cycleDelegate;
-    MyDelegate<ValueLE>* _initValDelegate;
+    DbFieldDelegate<IntervalLE>* _cycleDelegate;
+    DbFieldDelegate<ValueLE>* _initValDelegate;
     msgSettingsUpdated_t _msgSettingsUpdatedCbk{ nullptr };
 };
 

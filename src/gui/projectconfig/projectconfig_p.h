@@ -12,6 +12,7 @@
 #include <modelvisitor.h> // apply_model_visitor
 #include <nodes/Node>
 #include <propertyeditordialog.h>
+#include <bcastmsgs.h>
 
 #include "componentinterface.h"
 #include "plugins.hpp"
@@ -53,7 +54,7 @@ public:
 
         _pcInt.setConfigChangedCbk([this](QtNodes::Node& node) {
             QJsonObject msg = initBcast(node);
-            msg["msg"] = "config_changed";
+            msg["msg"] = BcastMsg::ConfigChanged;
 
             auto& component = getComponent(node);
             auto propObj = component.getQConfig();
@@ -123,7 +124,7 @@ public:
         cds_debug("Node '{}' created", node.nodeDataModel()->caption().toStdString());
 
         QJsonObject msg = initBcast(node);
-        msg["msg"] = "node_created";
+        msg["msg"] = BcastMsg::NodeCreated;
 
         emit simBcast(msg);
     }
@@ -138,7 +139,7 @@ public:
         emit q->handleWidgetDeletion(component.mainWidget());
 
         QJsonObject msg = initBcast(node);
-        msg["msg"] = "node_deleted";
+        msg["msg"] = BcastMsg::NodeDeleted;
 
         emit simBcast(msg);
     }

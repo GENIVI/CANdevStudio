@@ -65,7 +65,10 @@ void PropertyEditorDialog::fillModel(const QWidget& propsObj)
 
             auto w = propsObj.findChild<PropertyField*>(p + "Widget");
             if (w) {
-                w->setPropText(propsObj.property(p.toStdString().c_str()).toString());
+                // set value only if it was not set in lambda already
+                if (w->propText().length() == 0) {
+                    w->setPropText(propsObj.property(p.toStdString().c_str()).toString());
+                }
                 auto ndx = _model.index(_model.rowCount() - 1, 1);
                 _ui->tableView->setIndexWidget(ndx, w);
             }

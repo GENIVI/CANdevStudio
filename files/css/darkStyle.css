@@ -131,7 +131,7 @@ QPushButton#pbStartNew, #pbStartOpen, #close {
     border: 0px;
 }
 
-QWidget#CanRawSenderPrivate, #CanRawViewPrivate, #CanRawFilterPrivate, #CanSignalDataPrivate {
+QWidget#CanRawSenderPrivate, #CanRawViewPrivate, #CanRawFilterPrivate, #CanSignalDataPrivate, #CanSignalSenderPrivate {
     background-color: #616161;
 }
 
@@ -254,6 +254,10 @@ QLabel[type="policyLabel"] {
     background: #616161;
 }
 
+QComboBox {
+    background: #1d1d1d;
+    border: 0;
+}
 
 QComboBox::drop-down {
     background: #1d1d1d;
@@ -272,3 +276,18 @@ QComboBox::down-arrow:on {
     image: url(:/images/files/images/dark/Angle-up-01.svg);
 }
 
+QComboBox[type="listItem"]::down-arrow {
+    background: #1d1d1d;
+    width: 0px;
+    height: 0px;
+}
+
+QComboBox[type="listItem"]::down-arrow:on {
+    background: #1d1d1d;
+    width: 0px;
+    height: 0px;
+}
+
+QTableView::item:selected {
+    background: #1d1d1d;
+}

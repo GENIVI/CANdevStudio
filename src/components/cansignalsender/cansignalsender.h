@@ -1,28 +1,25 @@
-#ifndef CANSIGNALDATA_H
-#define CANSIGNALDATA_H
+#ifndef CANSIGNALSENDER_H
+#define CANSIGNALSENDER_H
 
-#include <QtCore/QObject>
+#include <QWidget>
 #include <QtCore/QScopedPointer>
-#include <cantypes.hpp>
 #include <componentinterface.h>
 #include <context.h>
 #include <memory>
 
-class CanSignalDataPrivate;
+class CanSignalSenderPrivate;
 class QWidget;
-struct CanSignalDataGuiInt;
-typedef Context<CanSignalDataGuiInt> CanSignalDataCtx;
+struct CanSignalSenderGuiInt;
+typedef Context<CanSignalSenderGuiInt> CanSignalSenderCtx;
 
-Q_DECLARE_METATYPE(CANmessages_t);
-
-class CanSignalData : public QObject, public ComponentInterface {
+class CanSignalSender : public QObject, public ComponentInterface {
     Q_OBJECT
-    Q_DECLARE_PRIVATE(CanSignalData)
+    Q_DECLARE_PRIVATE(CanSignalSender)
 
 public:
-    CanSignalData();
-    explicit CanSignalData(CanSignalDataCtx&& ctx);
-    ~CanSignalData();
+    CanSignalSender();
+    explicit CanSignalSender(CanSignalSenderCtx&& ctx);
+    ~CanSignalSender();
 
     QWidget* mainWidget() override;
     void setConfig(const QJsonObject& json) override;
@@ -36,6 +33,8 @@ public:
 signals:
     void mainWidgetDockToggled(QWidget* widget) override;
     void simBcastSnd(const QJsonObject &msg, const QVariant &param = QVariant()) override;
+    void requestRedraw();
+    void sendSignal(const QString& name, const QVariant& val);
 
 public slots:
     void stopSimulation() override;
@@ -43,7 +42,7 @@ public slots:
     void simBcastRcv(const QJsonObject &msg, const QVariant &param) override;
 
 private:
-    QScopedPointer<CanSignalDataPrivate> d_ptr;
+    QScopedPointer<CanSignalSenderPrivate> d_ptr;
 };
 
-#endif // CANSIGNALDATA_H
+#endif //CANSIGNALSENDER_H

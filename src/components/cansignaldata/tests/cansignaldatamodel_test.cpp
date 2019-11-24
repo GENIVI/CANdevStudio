@@ -34,7 +34,7 @@ TEST_CASE("nPorts", "[cansignaldataModel]")
 {
     CanSignalDataModel cm;
 
-    REQUIRE(cm.nPorts(QtNodes::PortType::Out) == 1);
+    REQUIRE(cm.nPorts(QtNodes::PortType::Out) == 0);
     REQUIRE(cm.nPorts(QtNodes::PortType::In) == 0);
 }
 
@@ -45,24 +45,12 @@ TEST_CASE("dataType", "[cansignaldataModel]")
     NodeDataType ndt;
         
     ndt = cm.dataType(QtNodes::PortType::Out, 0);
-    REQUIRE(ndt.id == "DbData");
-    REQUIRE(ndt.name == "DB");
-
-    ndt = cm.dataType(QtNodes::PortType::Out, 1);
     REQUIRE(ndt.id == "");
     REQUIRE(ndt.name == "");
-    
+
     ndt = cm.dataType(QtNodes::PortType::In, 0);
     REQUIRE(ndt.id == "");
     REQUIRE(ndt.name == "");
-}
-
-TEST_CASE("outData", "[cansignaldataModel]")
-{
-    CanSignalDataModel cm;
-
-    auto nd = cm.outData(0);
-    REQUIRE(nd);
 }
 
 TEST_CASE("setInData", "[cansignaldataModel]")
@@ -72,15 +60,11 @@ TEST_CASE("setInData", "[cansignaldataModel]")
     cm.setInData({}, 1);
 }
 
-TEST_CASE("canDbUpdated", "[cansignaldataModel]")
+TEST_CASE("outData", "[cansignaldataModel]")
 {
     CanSignalDataModel cm;
-    CANmessages_t msgs;
-    QSignalSpy dbSpy(&cm, &CanSignalDataModel::dataUpdated);
 
-    cm.canDbUpdated(msgs);
-    REQUIRE(dbSpy.count() == 1);
-    REQUIRE(dbSpy.takeFirst().at(0).toUInt() == 0);
+    REQUIRE(!cm.outData(1));
 }
 
 int main(int argc, char* argv[])

@@ -22,6 +22,7 @@ public:
     void setSettings(const QJsonObject& json);
     void loadDbc(const std::string& filename);
     std::pair<CANmessage, std::vector<CANsignal>>* findInDb(uint32_t id);
+    void sendCANdbUpdated();
 
 private:
     void initProps();
@@ -49,13 +50,15 @@ private:
     CanSignalData* q_ptr;
     const QString _fileProperty = "file";
     const QString _nameProperty = "name";
+    const QString _colorProperty = "color";
     // workaround for clang 3.5
     using cf = ComponentInterface::CustomEditFieldCbk;
 
     // clang-format off
     ComponentInterface::ComponentProperties _supportedProps = {
             std::make_tuple(_nameProperty,  QVariant::String, true, cf(nullptr)),
-            std::make_tuple(_fileProperty, QVariant::String, true, cf([] { return new PropertyFieldPath; } ))
+            std::make_tuple(_fileProperty, QVariant::String, true, cf([] { return new PropertyFieldPath; } )),
+            std::make_tuple(_colorProperty, QVariant::String, true, cf([] { return new PropertyFieldColor; } ))
     };
     // clang-format on
 

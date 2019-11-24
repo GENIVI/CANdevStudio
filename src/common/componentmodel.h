@@ -4,6 +4,7 @@
 #include <QThread>
 #include <QtCore/QObject>
 #include <QtWidgets/QLabel>
+#include <bcastmsgs.h>
 #include <functional>
 #include <log.h>
 #include <nodes/Node>
@@ -23,13 +24,14 @@ public:
     virtual void setColorMode(bool darkMode) = 0;
     virtual bool hasSeparateThread() const = 0;
     virtual void initModel(QtNodes::Node& node, int nodeCnt, bool darkMode) = 0;
-    virtual void simBcastRcv(const QJsonObject &msg, const QVariant &param) = 0;
+    virtual void simBcastRcv(const QJsonObject& msg, const QVariant& param) = 0;
+    virtual void simBcastSndSlot(const QJsonObject& msg, const QVariant& param) = 0;
 
 signals:
     void startSimulation();
     void stopSimulation();
     void handleDock(QWidget* widget);
-    void simBcastSnd(const QJsonObject &msg, const QVariant &param);
+    void simBcastSnd(const QJsonObject& msg, const QVariant& param);
 };
 
 template <typename C, typename Derived> class ComponentModel : public ComponentModelInterface {
@@ -45,7 +47,7 @@ public:
 
     virtual ~ComponentModel()
     {
-        if(_thread) {
+        if (_thread) {
             _thread->exit();
             _thread->wait();
         }
@@ -62,11 +64,11 @@ public:
         setCaption(node.nodeDataModel()->caption());
         setColorMode(darkMode);
 
-        connect((Derived*)this, &Derived::requestRedraw,[&node] { node.nodeGraphicsObject().update(); });
+        connect((Derived*)this, &Derived::requestRedraw, [&node] { node.nodeGraphicsObject().update(); });
         connect(this, &ComponentModelInterface::startSimulation, &_component, &C::startSimulation);
         connect(this, &ComponentModelInterface::stopSimulation, &_component, &C::stopSimulation);
         connect(&_component, &C::mainWidgetDockToggled, this, &ComponentModelInterface::handleDock);
-        connect(&_component, &C::simBcastSnd, this, &ComponentModelInterface::simBcastSnd);
+        connect(&_component, &C::simBcastSnd, this, &ComponentModelInterface::simBcastSndSlot);
 
         _id = node.id();
 
@@ -237,11 +239,32 @@ public:
         return false;
     }
 
-    void simBcastRcv(const QJsonObject &msg, const QVariant &param) override
+    void simBcastRcv(const QJsonObject& msg, const QVariant& param) override
     {
         if (msg["id"].toString() != _id.toString()) {
             _component.simBcastRcv(msg, param);
+        } else if (msg["msg"].toString() == BcastMsg::NodeCreated) {
+            QJsonObject msg2 = msg;
+            msg2["msg"] = BcastMsg::InitDone;
+            _component.simBcastRcv(msg2, param);
         }
+    }
+
+    void simBcastSndSlot(const QJsonObject& msg, const QVariant& param) override
+    {
+        emit simBcastSnd(fillBcastMsg(msg), param);
+    }
+
+private:
+    QJsonObject fillBcastMsg(const QJsonObject& msg)
+    {
+        QJsonObject ret(msg);
+
+        ret["id"] = _id.toString();
+        ret["name"] = name();
+        ret["caption"] = caption();
+
+        return ret;
     }
 
 protected:

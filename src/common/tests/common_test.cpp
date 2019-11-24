@@ -5,15 +5,23 @@
 #include <catch.hpp>
 #include <fakeit.hpp>
 
+#include <QSignalSpy>
+#include <QUuid>
 #include <QtWidgets/QApplication>
+#include <bcastmsgs.h>
+#include <candbhandler.h>
 #include <cstddef> // size_t, ptrdiff_t
 #include <cstdint> // uint16_t
 #include <iconlabel.h>
 #include <iterator> // iterator_traits, begin, end
 #include <limits> // numeric_limits
+#include <log.h>
+#include <propertyfields.h>
 #include <type_traits> // is_same
 #include <utility> // swap, next, advance
 #include <vector> // vector
+
+std::shared_ptr<spdlog::logger> kDefaultLogger;
 
 enum class Trivial { A, B, C };
 
@@ -239,48 +247,373 @@ TEST_CASE("IconLable sizeHint", "[common]")
     REQUIRE(l.minimumSizeHint() == QSize(140, 48));
 }
 
-// -- compile-time errors:
-/*
-TEST_CASE("EnumIterator invalid-value", "[common]")
+TEST_CASE("CanDbHandler - CanDbUpdated", "[common]")
 {
-    using I = EnumIterator<double, 0.0, 1.0>;
+    std::map<QString, QVariant> props;
+    const QString dbProp = "CAN database";
+    CanDbHandler db{ props, dbProp };
+    QSignalSpy redrawSpy(&db, &CanDbHandler::requestRedraw);
+    QSignalSpy dbSpy(&db, &CanDbHandler::dbChanged);
 
-    I it;
+    CANmessages_t msg1{ { 1, {} } };
+    CANmessages_t msg2{ { 1, {} }, { 2, {} } };
+
+    const QString idStr1 = "{00000000-0000-0000-0000-000000000001}";
+    const QString idStr2 = "{00000000-0000-0000-0000-000000000002}";
+
+    QJsonObject msg;
+    msg["id"] = idStr1;
+    msg["msg"] = BcastMsg::CanDbUpdated;
+    msg["caption"] = "name1";
+    msg["color"] = "color1";
+
+    REQUIRE(db.getDb().size() == 0);
+    REQUIRE(db.getName() == "");
+
+    // first call empty _currentDb
+    db.processBcast(msg, {});
+
+    REQUIRE(redrawSpy.count() == 1);
+    REQUIRE(dbSpy.count() == 1);
+    REQUIRE(db.getDb().size() == 0);
+    REQUIRE(db.getName() == "name1");
+    REQUIRE(props["color"].toString() == "color1");
+
+    QVariant param;
+    param.setValue(msg1);
+    msg["caption"] = "name2";
+    msg["color"] = "color2";
+
+    // second call the same _currentDb
+    db.processBcast(msg, param);
+
+    REQUIRE(redrawSpy.count() == 2);
+    REQUIRE(dbSpy.count() == 2);
+    REQUIRE(db.getDb().size() == 1);
+    REQUIRE(db.getName() == "name2");
+    REQUIRE(props["color"].toString() == "color2");
+
+    param.setValue(msg2);
+    msg["id"] = idStr2;
+    msg["caption"] = "name3";
+    msg["color"] = "color3";
+
+    // third call different than _currentDb
+    db.processBcast(msg, param);
+
+    REQUIRE(redrawSpy.count() == 2);
+    REQUIRE(dbSpy.count() == 2);
+    REQUIRE(db.getDb().size() == 1);
+    REQUIRE(db.getName() == "name2");
+    REQUIRE(props["color"].toString() == "color2");
 }
 
-TEST_CASE("EnumIterator invalid-param", "[common]")
+TEST_CASE("CanDbHandler - updateCurrentDbFromProps", "[common]")
 {
-    using I = EnumIterator<int, 0, 1>;
+    std::map<QString, QVariant> props;
+    const QString dbProp = "CAN database";
+    CanDbHandler db{ props, dbProp };
 
-    I it;
+    CANmessages_t msg1tmp{ { 1, {} } };
+    QVariant msg1;
+    msg1.setValue(msg1tmp);
+
+    CANmessages_t msg2tmp{ { 1, {} }, { 2, {} } };
+    QVariant msg2;
+    msg2.setValue(msg2tmp);
+
+    CANmessages_t msg3tmp{ { 1, {} }, { 2, {} }, { 3, {} } };
+    QVariant msg3;
+    msg3.setValue(msg3tmp);
+
+    const QString idStr1 = "{00000000-0000-0000-0000-000000000001}";
+    const QString idStr2 = "{00000000-0000-0000-0000-000000000002}";
+    const QString idStr3 = "{00000000-0000-0000-0000-000000000003}";
+
+    QJsonObject msg;
+    msg["id"] = idStr1;
+    msg["msg"] = BcastMsg::CanDbUpdated;
+    msg["caption"] = "name1";
+    msg["color"] = "color1";
+
+    db.processBcast(msg, msg1);
+
+    msg["id"] = idStr2;
+    msg["caption"] = "name2";
+    msg["color"] = "color2";
+    db.processBcast(msg, msg2);
+
+    msg["id"] = idStr3;
+    msg["caption"] = "name3";
+    msg["color"] = "color3";
+    db.processBcast(msg, msg3);
+
+    REQUIRE(db.getDb().size() == 1);
+    REQUIRE(db.getName() == "name1");
+    REQUIRE(props["color"].toString() == "color1");
+
+    // change Db
+    props[dbProp] = idStr2;
+    db.updateCurrentDbFromProps();
+
+    REQUIRE(db.getDb().size() == 2);
+    REQUIRE(db.getName() == "name2");
+    REQUIRE(props["color"].toString() == "color2");
+
+    // change Db
+    props[dbProp] = idStr3;
+    db.updateCurrentDbFromProps();
+
+    REQUIRE(db.getDb().size() == 3);
+    REQUIRE(db.getName() == "name3");
+    REQUIRE(props["color"].toString() == "color3");
 }
 
-TEST_CASE("EnumIterator invalid-range", "[common]")
+TEST_CASE("CanDbHandler - InitDone", "[common]")
 {
-    using I = EnumIterator<Trivial, Trivial::C, Trivial::A>;
+    std::map<QString, QVariant> props;
+    const QString dbProp = "CAN database";
+    CanDbHandler db{ props, dbProp };
+    QSignalSpy dbSpy(&db, &CanDbHandler::sendCanDbRequest);
 
-    I it;
+    const QString idStr1 = "{00000000-0000-0000-0000-000000000001}";
+
+    QJsonObject msg;
+    msg["id"] = idStr1;
+    msg["msg"] = BcastMsg::InitDone;
+
+    db.processBcast(msg, {});
+
+    REQUIRE(dbSpy.count() == 1);
 }
 
-TEST_CASE("EnumIterator no-past-the-end", "[common]")
+TEST_CASE("CanDbHandler - NodeDeleted", "[common]")
 {
-    using namespace fakeit;
+    std::map<QString, QVariant> props;
+    const QString dbProp = "CAN database";
+    CanDbHandler db{ props, dbProp };
 
-    using I1 = EnumIterator<NoPastTheEndUnsigned
-                          , NoPastTheEndUnsigned::A
-                          , NoPastTheEndUnsigned::B>;
+    CANmessages_t msg1tmp{ { 1, {} } };
+    QVariant msg1;
+    msg1.setValue(msg1tmp);
 
-    I1 it1;
+    CANmessages_t msg2tmp{ { 1, {} }, { 2, {} } };
+    QVariant msg2;
+    msg2.setValue(msg2tmp);
 
-    using I2 = EnumIterator<NoPastTheEndSigned
-                          , NoPastTheEndSigned::A
-                          , NoPastTheEndSigned::B>;
+    CANmessages_t msg3tmp{ { 1, {} }, { 2, {} }, { 3, {} } };
+    QVariant msg3;
+    msg3.setValue(msg3tmp);
 
-    I2 it2;
+    const QString idStr1 = "{00000000-0000-0000-0000-000000000001}";
+    const QString idStr2 = "{00000000-0000-0000-0000-000000000002}";
+    const QString idStr3 = "{00000000-0000-0000-0000-000000000003}";
+
+    QJsonObject msg;
+    msg["id"] = idStr1;
+    msg["msg"] = BcastMsg::CanDbUpdated;
+    msg["caption"] = "name1";
+    msg["color"] = "color1";
+
+    db.processBcast(msg, msg1);
+
+    msg["id"] = idStr2;
+    msg["caption"] = "name2";
+    msg["color"] = "color2";
+    db.processBcast(msg, msg2);
+
+    msg["id"] = idStr3;
+    msg["caption"] = "name3";
+    msg["color"] = "color3";
+    db.processBcast(msg, msg3);
+
+    QSignalSpy redrawSpy(&db, &CanDbHandler::requestRedraw);
+    QSignalSpy dbSpy(&db, &CanDbHandler::dbChanged);
+
+    msg["id"] = idStr3;
+    msg["msg"] = BcastMsg::NodeDeleted;
+    db.processBcast(msg, {});
+
+    REQUIRE(redrawSpy.count() == 0);
+    REQUIRE(dbSpy.count() == 0);
+    REQUIRE(db.getDb().size() == 1);
+    REQUIRE(db.getName() == "name1");
+    REQUIRE(props["color"].toString() == "color1");
+
+    msg["id"] = idStr1;
+    msg["msg"] = BcastMsg::NodeDeleted;
+    db.processBcast(msg, {});
+
+    REQUIRE(redrawSpy.count() == 1);
+    REQUIRE(dbSpy.count() == 1);
+    REQUIRE(db.getDb().size() == 2);
+    REQUIRE(db.getName() == "name2");
+    REQUIRE(props["color"].toString() == "color2");
+
+    msg["id"] = idStr2;
+    msg["msg"] = BcastMsg::NodeDeleted;
+    db.processBcast(msg, {});
+
+    REQUIRE(redrawSpy.count() == 2);
+    REQUIRE(dbSpy.count() == 2);
+    REQUIRE(db.getDb().size() == 0);
+    REQUIRE(db.getName() == "");
+    REQUIRE(props["color"].toString() == "");
 }
-*/
+
+TEST_CASE("CanDbHandler - ConfigChanged", "[common]")
+{
+    std::map<QString, QVariant> props;
+    const QString dbProp = "CAN database";
+    CanDbHandler db{ props, dbProp };
+
+    CANmessages_t msg1tmp{ { 1, {} } };
+    QVariant msg1;
+    msg1.setValue(msg1tmp);
+
+    CANmessages_t msg2tmp{ { 1, {} }, { 2, {} } };
+    QVariant msg2;
+    msg2.setValue(msg2tmp);
+
+    CANmessages_t msg3tmp{ { 1, {} }, { 2, {} }, { 3, {} } };
+    QVariant msg3;
+    msg3.setValue(msg3tmp);
+
+    const QString idStr1 = "{00000000-0000-0000-0000-000000000001}";
+    const QString idStr2 = "{00000000-0000-0000-0000-000000000002}";
+    const QString idStr3 = "{00000000-0000-0000-0000-000000000003}";
+
+    QJsonObject msg;
+    msg["id"] = idStr1;
+    msg["msg"] = BcastMsg::CanDbUpdated;
+    msg["caption"] = "name1";
+    msg["color"] = "color1";
+
+    db.processBcast(msg, msg1);
+
+    msg["id"] = idStr2;
+    msg["caption"] = "name2";
+    msg["color"] = "color2";
+    db.processBcast(msg, msg2);
+
+    msg["id"] = idStr3;
+    msg["caption"] = "name3";
+    msg["color"] = "color3";
+    db.processBcast(msg, msg3);
+
+    REQUIRE(db.getName() == "name1");
+    REQUIRE(props["color"].toString() == "color1");
+
+    QJsonObject config;
+
+    msg["id"] = idStr1;
+    msg["msg"] = BcastMsg::ConfigChanged;
+    msg["caption"] = "name1_new";
+    config["color"] = "color1_new";
+    msg["config"] = config;
+    msg["name"] = "WrongType";
+    db.processBcast(msg, {});
+
+    REQUIRE(db.getName() == "name1");
+    REQUIRE(props["color"].toString() == "color1");
+
+    msg["id"] = idStr1;
+    msg["msg"] = BcastMsg::ConfigChanged;
+    msg["caption"] = "name1_new";
+    config["color"] = "color1_new";
+    msg["config"] = config;
+    msg["name"] = "CanSignalData";
+    db.processBcast(msg, {});
+
+    REQUIRE(db.getName() == "name1_new");
+    REQUIRE(props["color"].toString() == "color1_new");
+
+    msg["id"] = idStr2;
+    msg["msg"] = BcastMsg::ConfigChanged;
+    msg["caption"] = "name2_new";
+    config["color"] = "color2_new";
+    msg["config"] = config;
+    msg["name"] = "CanSignalData";
+    db.processBcast(msg, {});
+
+    REQUIRE(db.getName() == "name1_new");
+    REQUIRE(props["color"].toString() == "color1_new");
+
+    // change Db
+    props[dbProp] = idStr2;
+    db.updateCurrentDbFromProps();
+
+    REQUIRE(db.getName() == "name2_new");
+    REQUIRE(props["color"].toString() == "color2_new");
+}
+
+TEST_CASE("CanDbHandler - createPropertyWidget", "[common]")
+{
+    std::map<QString, QVariant> props;
+    const QString dbProp = "CAN database";
+    CanDbHandler db{ props, dbProp };
+
+    CANmessages_t msg1tmp{ { 1, {} } };
+    QVariant msg1;
+    msg1.setValue(msg1tmp);
+
+    CANmessages_t msg2tmp{ { 1, {} }, { 2, {} } };
+    QVariant msg2;
+    msg2.setValue(msg2tmp);
+
+    CANmessages_t msg3tmp{ { 1, {} }, { 2, {} }, { 3, {} } };
+    QVariant msg3;
+    msg3.setValue(msg3tmp);
+
+    const QString idStr1 = "{00000000-0000-0000-0000-000000000001}";
+    const QString idStr2 = "{00000000-0000-0000-0000-000000000002}";
+    const QString idStr3 = "{00000000-0000-0000-0000-000000000003}";
+
+    QJsonObject msg;
+    msg["id"] = idStr1;
+    msg["msg"] = BcastMsg::CanDbUpdated;
+    msg["caption"] = "name1";
+    msg["color"] = "color1";
+
+    db.processBcast(msg, msg1);
+
+    msg["id"] = idStr2;
+    msg["caption"] = "name2";
+    msg["color"] = "color2";
+    db.processBcast(msg, msg2);
+
+    msg["id"] = idStr3;
+    msg["caption"] = "name3";
+    msg["color"] = "color3";
+    db.processBcast(msg, msg3);
+
+    auto w = static_cast<PropertyFieldCombo*>(db.createPropertyWidget());
+    REQUIRE(w->propText() == idStr1);
+    delete w;
+
+    // change Db
+    props[dbProp] = idStr2;
+    db.updateCurrentDbFromProps();
+
+    auto w2 = static_cast<PropertyFieldCombo*>(db.createPropertyWidget());
+    REQUIRE(w2->propText() == idStr2);
+
+    // change Db
+    props[dbProp] = idStr3;
+    db.updateCurrentDbFromProps();
+
+    w = static_cast<PropertyFieldCombo*>(db.createPropertyWidget());
+    REQUIRE(w->propText() == idStr3);
+}
+
 int main(int argc, char* argv[])
 {
+    bool haveDebug = std::getenv("CDS_DEBUG") != nullptr;
+    kDefaultLogger = spdlog::stdout_color_mt("cds");
+    if (haveDebug) {
+        kDefaultLogger->set_level(spdlog::level::debug);
+    }
+    cds_debug("Starting unit tests");
     QApplication a(argc, argv); // QApplication must exist when constructing QWidgets TODO check QTest
     return Catch::Session().run(argc, argv);
 }

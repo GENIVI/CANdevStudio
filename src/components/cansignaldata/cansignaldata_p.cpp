@@ -1,8 +1,26 @@
 #include "cansignaldata_p.h"
 #include <QJsonArray>
+#include <atomic>
+#include <bcastmsgs.h>
 #include <dbcparser.h>
 #include <fstream>
 #include <log.h>
+
+namespace {
+std::atomic<uint32_t> g_cnt(0);
+
+const std::vector<QColor> g_colorTab
+    = { QColor("#DCDAA4"), QColor("#9CD59B"), QColor("#4ED1DF"), QColor("#FFCCBB"), QColor("#DAB7EB")};
+
+QString getDefaultColor()
+{
+    uint32_t cnt = g_cnt.load();
+    QString ret = g_colorTab[cnt % g_colorTab.size()].name(QColor::HexRgb).toUpper();
+    g_cnt.fetch_add(1);
+
+    return ret;
+}
+} // namespace
 
 CanSignalDataPrivate::CanSignalDataPrivate(CanSignalData* q, CanSignalDataCtx&& ctx)
     : _ctx(std::move(ctx))
@@ -40,7 +58,7 @@ CanSignalDataPrivate::CanSignalDataPrivate(CanSignalData* q, CanSignalDataCtx&& 
 
     _ui.setMsgSettingsUpdatedCbk([this] {
         setMsgSettings(getMsgSettings());
-        emit q_ptr->canDbUpdated(_messages);
+        sendCANdbUpdated();
     });
 }
 
@@ -50,6 +68,8 @@ void CanSignalDataPrivate::initProps()
         QString propName = ComponentInterface::propertyName(p);
         _props[propName];
     }
+
+    _props[_colorProperty] = getDefaultColor();
 }
 
 ComponentInterface::ComponentProperties CanSignalDataPrivate::getSupportedProperties() const
@@ -207,7 +227,7 @@ void CanSignalDataPrivate::loadDbc(const std::string& filename)
     if (!success) {
         cds_error("Failed to load CAN DB from '{}' file", filename);
         // send empty messages to indicate problem
-        emit q_ptr->canDbUpdated(_messages);
+        sendCANdbUpdated();
         return;
     }
 
@@ -266,7 +286,7 @@ void CanSignalDataPrivate::loadDbc(const std::string& filename)
         }
     }
 
-    emit q_ptr->canDbUpdated(_messages);
+    sendCANdbUpdated();
 }
 
 std::pair<CANmessage, std::vector<CANsignal>>* CanSignalDataPrivate::findInDb(uint32_t id)
@@ -275,8 +295,19 @@ std::pair<CANmessage, std::vector<CANsignal>>* CanSignalDataPrivate::findInDb(ui
     auto msg = _messages.find(key);
 
     if (msg != std::end(_messages)) {
-        return (std::pair<CANmessage, std::vector<CANsignal>>*) &(*msg);
+        return (std::pair<CANmessage, std::vector<CANsignal>>*)&(*msg);
     }
 
     return nullptr;
+}
+
+void CanSignalDataPrivate::sendCANdbUpdated()
+{
+    QVariant param;
+    param.setValue(_messages);
+    QJsonObject msg;
+    msg["msg"] = BcastMsg::CanDbUpdated;
+    msg["color"] = _props[_colorProperty].toString();
+
+    emit q_ptr->simBcastSnd(msg, param);
 }
