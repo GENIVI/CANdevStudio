@@ -280,9 +280,27 @@ cannelloni -I can0 -R 192.168.0.2 -r 20000 -l 30000
 
 ## Help
 ### CAN Signals
-CANdevStudio provides experimental support for CAN Signals (see [signals](https://github.com/GENIVI/CANdevStudio/tree/signals) branch). Currently only [DBC](http://socialledge.com/sjsu/index.php/DBC_Format) format is supported as a description of database, but it shouldn't be hard to add new formats.
+CANdevStudio provides support for CAN signals handling. [DBC](http://socialledge.com/sjsu/index.php/DBC_Format) database description format is supported. New formats can be added via extension of [CANdb](www.github.com/GENIVI/CANdb).
 
-The work on moving components from signal to master branch is ongoing.
+#### Sending signals
+1. Start new project and setup CanDevice as described in quick start section
+2. **Add CanSignalData** component that serves as CAN signals database for other components. You may have multiple CanSignalData components per project
+3. Open CanSignalData properties and configure path to DBC file
+4. List of messages and signals shall be now loaded and visible in CanSignalData window
+5. You may configure cycle and initial value per each message
+6. **Add CanSignalEncoder** component and connect it with CanDevice. CanSignalEncoder act as a translator between signals and CAN frames. It is also  responsible for sending cyclical messages.
+7. CanSignalSender has been automatically configured to use previously added CAN database. CAN database can be manually selected in component properties (this applies to all components from "Signals" group)
+8. **Add CanSignalSender** component and connect it with CanSignalEncoder
+9. Add signals in CanSignalSender window
+10. Start simulation
+11. CanSignalEncoder will start sending cyclical messages
+12. You can send previously configured signals from CanSignalSender:
+    * if signal is a part of periodic message its value will be updated in a next cycle
+    * if signal is not a part of periodic message it will be sent out immiediatelly
+
+#### Receiving and decoding signals
+Work on signals reception and decoding is ongoing. Experimental support is available on [signals](https://github.com/GENIVI/CANdevStudio/tree/signals) branch
+
 ### CanDevice configuration
 CanDevice component can be confiugred using "configuration" property:
 * Format - "key1=value1;key2=value2;keyX=valueX"
