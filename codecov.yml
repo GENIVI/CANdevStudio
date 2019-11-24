@@ -7,6 +7,7 @@ coverage:
         - "src/components/cansignalsender/gui"
         - "src/components/canload/canloadpainter.h"
         - "src/common/guiinterface"
+        - "src/common/candbpainter.cpp"
         - "src/common/candbpainter.h"
         - "src/common/nodepainter.h"
         - "src/common/propertyfields.h"
