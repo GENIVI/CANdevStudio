@@ -98,12 +98,7 @@ void CanSignalDecoderPrivate::decodeFrame(const QCanBusFrame& frame, Direction c
                 sigVal.setValue(fValue);
             }
 
-            QString sigName;
-            if (frame.hasExtendedFrameFormat()) {
-                sigName = fmt::format("0x{:08x}_{}", frame.frameId(), sig.signal_name).c_str();
-            } else {
-                sigName = fmt::format("0x{:03x}_{}", frame.frameId(), sig.signal_name).c_str();
-            }
+            QString sigName = fmt::format("0x{:03x}_{}", frame.frameId(), sig.signal_name).c_str();
 
             if ((_signalCache.find(sigName) == _signalCache.end())
                 || ((_signalCache.find(sigName) != _signalCache.end()) && (_signalCache[sigName] != sigVal))) {
