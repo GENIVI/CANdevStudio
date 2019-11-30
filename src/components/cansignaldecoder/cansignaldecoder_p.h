@@ -17,12 +17,13 @@ public:
     ComponentInterface::ComponentProperties getSupportedProperties() const;
     QJsonObject getSettings();
     void setSettings(const QJsonObject& json);
+    void decodeFrame(const QCanBusFrame& frame, Direction const direction, bool status);
 
 private:
     void initProps();
+    int64_t rawToSignal(const uint8_t* data, int startBit, int sigSize, bool littleEndian, bool isSigned);
 
-public:
-    bool _simStarted{ false };
+        public : bool _simStarted{ false };
     CanSignalDecoderCtx _ctx;
     std::map<QString, QVariant> _props;
     CanDbHandler _db{ _props, _dbProperty };

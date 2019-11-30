@@ -80,6 +80,8 @@ void CanSignalDecoder::startSimulation()
 {
     Q_D(CanSignalDecoder);
 
+    d->_signalCache.clear();
+
     d->_simStarted = true;
 }
 
@@ -90,4 +92,9 @@ void CanSignalDecoder::simBcastRcv(const QJsonObject& msg, const QVariant& param
     d->_db.processBcast(msg, param);
 }
 
-void CanSignalDecoder::rcvFrame(const QCanBusFrame& frame, Direction const direction, bool status) {}
+void CanSignalDecoder::rcvFrame(const QCanBusFrame& frame, Direction const direction, bool status) 
+{
+    Q_D(CanSignalDecoder);
+
+    d->decodeFrame(frame, direction, status);;
+}
