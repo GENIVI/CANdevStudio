@@ -6,6 +6,9 @@ CanSignalDecoderPrivate::CanSignalDecoderPrivate(CanSignalDecoder *q, CanSignalD
     , q_ptr(q)
 {
     initProps();
+
+    connect(&_db, &CanDbHandler::sendCanDbRequest, q_ptr, &CanSignalDecoder::simBcastSnd);
+    connect(&_db, &CanDbHandler::requestRedraw, q_ptr, &CanSignalDecoder::requestRedraw);
 }
 
 void CanSignalDecoderPrivate::initProps()
@@ -38,4 +41,6 @@ void CanSignalDecoderPrivate::setSettings(const QJsonObject& json)
         if (json.contains(propName))
             _props[propName] = json[propName].toVariant();
     }
+
+    _db.updateCurrentDbFromProps();
 }

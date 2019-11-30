@@ -10,6 +10,8 @@
 class CanSignalDecoderPrivate;
 class QWidget;
 typedef Context<> CanSignalDecoderCtx;
+class QCanBusFrame;
+enum class Direction;
 
 class CanSignalDecoder : public QObject, public ComponentInterface {
     Q_OBJECT
@@ -32,11 +34,14 @@ public:
 signals:
     void mainWidgetDockToggled(QWidget* widget) override;
     void simBcastSnd(const QJsonObject &msg, const QVariant &param = QVariant()) override;
+    void requestRedraw();
+    void sndSignal(const QString& name, const QVariant& val, const Direction& dir);
 
 public slots:
     void stopSimulation() override;
     void startSimulation() override;
     void simBcastRcv(const QJsonObject &msg, const QVariant &param) override;
+    void rcvFrame(const QCanBusFrame& frame, Direction const direction, bool status);
 
 private:
     QScopedPointer<CanSignalDecoderPrivate> d_ptr;

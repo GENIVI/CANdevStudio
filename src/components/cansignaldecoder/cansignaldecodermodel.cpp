@@ -1,5 +1,7 @@
 #include "cansignaldecodermodel.h"
 #include "cansignaldecoderplugin.h"
+#include <datamodeltypes/canrawdata.h>
+#include <datamodeltypes/cansignalmodel.h>
 #include <log.h>
 
 namespace {
@@ -8,12 +10,12 @@ namespace {
 const std::map<PortType, std::vector<NodeDataType>> portMappings = {
     { PortType::In, 
         {
-            //{CanRawData{}.type() }
+            { CanRawData{}.type() }
         }
     },
     { PortType::Out, 
         {
-            //{CanRawData{}.type() }
+            { CanSignalModel{}.type() }
         }
     }
 };
@@ -23,11 +25,15 @@ const std::map<PortType, std::vector<NodeDataType>> portMappings = {
 
 CanSignalDecoderModel::CanSignalDecoderModel()
     : ComponentModel("CanSignalDecoder")
-    , _painter(std::make_unique<NodePainter>(CanSignalDecoderPlugin::PluginType::sectionColor()))
+    , _painter(std::make_unique<CanDbPainter>(CanSignalDecoderPlugin::PluginType::sectionColor(), &_component, 14))
 {
     _label->setAlignment(Qt::AlignVCenter | Qt::AlignHCenter);
     _label->setFixedSize(75, 25);
     _label->setAttribute(Qt::WA_TranslucentBackground);
+
+    connect(this, &CanSignalDecoderModel::sndFrame, &_component, &CanSignalDecoder::rcvFrame);
+    connect(&_component, &CanSignalDecoder::sndSignal, this, &CanSignalDecoderModel::rcvSignal);
+    connect(&_component, &CanSignalDecoder::requestRedraw, this, &CanSignalDecoderModel::requestRedraw);
 }
 
 QtNodes::NodePainterDelegate* CanSignalDecoderModel::painterDelegate() const
@@ -47,26 +53,41 @@ NodeDataType CanSignalDecoderModel::dataType(PortType portType, PortIndex ndx) c
     }
 
     cds_error("No port mapping for ndx: {}", ndx);
-    return { };
+    return {};
 }
 
 std::shared_ptr<NodeData> CanSignalDecoderModel::outData(PortIndex)
 {
-    // example
-    // return std::make_shared<CanRawData>(_frame, _direction, _status);
+    std::shared_ptr<NodeData> ret;
+    bool status = _rxQueue.try_dequeue(ret);
 
-    return { };
+    if (!status) {
+        cds_error("No data available on rx queue");
+        return {};
+    }
+
+    return ret;
 }
 
 void CanSignalDecoderModel::setInData(std::shared_ptr<NodeData> nodeData, PortIndex)
 {
-    // example
-    // if (nodeData) {
-    //     auto d = std::dynamic_pointer_cast<CanRawData>(nodeData);
-    //     assert(nullptr != d);
-    //     emit sendFrame(d->frame());
-    // } else {
-    //     cds_warn("Incorrect nodeData");
-    // }
-    (void) nodeData;
+    if (nodeData) {
+        auto d = std::dynamic_pointer_cast<CanRawData>(nodeData);
+        assert(nullptr != d);
+        emit sndFrame(d->frame(), d->direction(), d->status());
+    } else {
+        cds_warn("Incorrect nodeData");
+    }
 }
+
+void CanSignalDecoderModel::rcvSignal(const QString& name, const QVariant& val, const Direction& dir)
+{
+    bool ret = _rxQueue.try_enqueue(std::make_shared<CanSignalModel>(name, val, dir));
+
+    if (ret) {
+        emit dataUpdated(0); // Data ready on port 0
+    } else {
+        cds_warn("Queue full. Frame dropped");
+    }
+}
+
