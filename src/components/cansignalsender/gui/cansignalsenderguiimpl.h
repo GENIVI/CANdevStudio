@@ -132,7 +132,7 @@ public:
 
         QLineEdit* le = new QLineEdit(parent);
         le->setProperty("type", "nlmItem");
-        QRegExp qRegExp("[0-9]*");
+        QRegExp qRegExp("-?([0-9]+[.])?[0-9]+");
         auto v = new QRegExpValidator(qRegExp, le);
         float min = 0, max = 0;
         le->setValidator(v);

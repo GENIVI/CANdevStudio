@@ -109,11 +109,11 @@ void CanSignalDecoderPrivate::decodeFrame(const QCanBusFrame& frame, Direction c
                 || ((_signalCache.find(sigName) != _signalCache.end()) && (_signalCache[sigName] != sigVal))) {
 
                 emit q_ptr->sndSignal(sigName, sigVal, direction);
+
+                cds_debug("Signal: {}, val: {}", sigName.toStdString(), sigVal.toDouble());
             }
 
             _signalCache[sigName] = sigVal;
-
-            cds_debug("Signal: {}, val: {}", sigName.toStdString(), sigVal.toDouble());
         }
     } else {
         cds_debug("No signal description for frame {:x}", frame.frameId());
@@ -124,10 +124,6 @@ int64_t CanSignalDecoderPrivate::rawToSignal(
     const uint8_t* data, int startBit, int sigSize, bool littleEndian, bool isSigned)
 {
     int64_t result = 0;
-
-    if (isSigned) {
-        result |= ~((1ULL << sigSize) - 1);
-    }
 
     int bit = startBit;
     for (int bitpos = 0; bitpos < sigSize; bitpos++) {
@@ -140,6 +136,12 @@ int64_t CanSignalDecoderPrivate::rawToSignal(
         }
 
         bit++;
+    }
+
+    // if signal is signed and sign bit (MSB) is set make sure
+    // that this is reflected in int64_t
+    if (isSigned && (result & (1ULL << (sigSize - 1)))) {
+        result |= ~((1ULL << sigSize) - 1);
     }
 
     return result;
