@@ -111,11 +111,11 @@ BO_ 4099 SignedSignals_BE: 8 TEST
  SG_ Test11 : 54|10@1- (1,0) [0|0] "" TEST
 
 BO_ 1160 DAS_steeringControl: 4 NEO
- SG_ DAS_steeringControlType : 23|2@0+ (0,0) [0|0] "" EPAS
+ SG_ DAS_steeringControlType : 23|80@0+ (0,0) [0|0] "" EPAS
  SG_ DAS_steeringControlChecksum : 31|80@0+ (1,0) [0|0] "" EPAS
- SG_ DAS_steeringControlCounter : 19|4@0+ (1,0) [0|0] "" EPAS
- SG_ DAS_steeringAngleRequest : 6|15@0+ (0.1,-1638.35) [-1638.35|1638.35] "deg" EPAS
- SG_ DAS_steeringHapticRequest : 7|1@0+ (1,0) [0|0] "" EPAS
+ SG_ DAS_steeringControlCounter : 19|80@0+ (1,0) [0|0] "" EPAS
+ SG_ DAS_steeringAngleRequest : 6|80@0+ (0.1,-1638.35) [-1638.35|1638.35] "deg" EPAS
+ SG_ DAS_steeringHapticRequest : 7|1@2+ (1,0) [0|0] "" EPAS
  
 BO_ 257 GTW_epasControl: 3 NEO
  SG_ GTW_epasControlChecksum : 16|8@1+ (1,0) [0|255] "" NEO
@@ -140,12 +140,10 @@ BO_ 880 EPAS_sysStatus: 8 EPAS
  SG_ EPAS_torsionBarTorque : 19|12@0+ (0.010,-20.50) [0|0] "Nm" NEO
 
 BO_ 3 STW_ANGL_STAT: 8 STW
- SG_ CRC_STW_ANGL_STAT : 56|8@1+ (1,0) [0|255] "" NEO
- SG_ MC_STW_ANGL_STAT : 52|4@1+ (1,0) [0|15] "" NEO
- SG_ StW_Angl : 5|14@0+ (0.50,-2048) [0|0] "deg" NEO
+ SG_ CRC_STW_ANGL_STAT : 56|8@1+ (0.1,0) [0|255] "" NEO
+ SG_ MC_STW_ANGL_STAT : 52|4@1+ (1,0.1) [0|15] "" NEO
+ SG_ StW_Angl : 5|14@0+ (0.50,-2048.11) [0|0] "deg" NEO
  SG_ StW_AnglSens_Id : 36|2@1+ (1,0) [3|3] "" NEO
- SG_ StW_AnglSens_Stat : 38|2@1+ (1,0) [4|-1] "" NEO
- SG_ StW_AnglSpd : 21|14@0+ (0.50,-2048) [0|0] "/s" NEO
 
 BO_ 14 STW_ANGLHP_STAT: 8 GTW
  SG_ StW_AnglHP : 5|14@0+ (0.1,-819.2) [-819.2|819] "deg" NEO

@@ -19,7 +19,6 @@ class CanSignalDecoder : public QObject, public ComponentInterface {
 
 public:
     CanSignalDecoder();
-    explicit CanSignalDecoder(CanSignalDecoderCtx&& ctx);
     ~CanSignalDecoder();
 
     QWidget* mainWidget() override;

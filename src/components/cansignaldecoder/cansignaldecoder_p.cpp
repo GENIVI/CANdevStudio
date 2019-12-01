@@ -66,6 +66,8 @@ void CanSignalDecoderPrivate::decodeFrame(const QCanBusFrame& frame, Direction c
 
                 cds_error("Invalid message size - startBit {}, sigSize {}, payload size {}", sig.startBit,
                     sig.signalSize, frame.payload().size());
+
+                continue;
             }
 
             switch (sig.byteOrder) {
@@ -80,8 +82,8 @@ void CanSignalDecoderPrivate::decodeFrame(const QCanBusFrame& frame, Direction c
                 break;
 
             default:
-                cds_error("payload type {} not suppoerted", sig.byteOrder);
-                return;
+                cds_error("byte order {} not suppoerted", sig.byteOrder);
+                continue;
             }
 
             int64_t value = rawToSignal((const uint8_t*)frame.payload().constData(), sig.startBit, sig.signalSize,
@@ -89,12 +91,13 @@ void CanSignalDecoderPrivate::decodeFrame(const QCanBusFrame& frame, Direction c
 
             QVariant sigVal;
 
+
             if ((std::fmod(sig.factor, 1) == 0.0) && (std::fmod(sig.offset, 1) == 0.0)) {
                 // resulting number will be integer
                 value = value * sig.factor + sig.offset;
                 sigVal.setValue(value);
             } else {
-                double fValue = value * sig.factor + sig.offset;
+                double fValue = static_cast<double>(value) * sig.factor + sig.offset;
                 sigVal.setValue(fValue);
             }
 

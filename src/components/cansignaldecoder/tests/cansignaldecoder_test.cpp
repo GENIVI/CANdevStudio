@@ -584,6 +584,85 @@ TEST_CASE("SignedSignals_BE", "[cansignaldecoder]")
     REQUIRE(sigSndSpy.at(9).at(1).toInt() == -512);
 }
 
+TEST_CASE("Signal too big", "[cansignaldecoder]")
+{
+    CanSignalData data;
+    QJsonObject obj;
+    CanSignalDecoder c;
+
+    QObject::connect(&data, &CanSignalData::simBcastSnd, &c, &CanSignalDecoder::simBcastRcv);
+    QObject::connect(&c, &CanSignalDecoder::simBcastSnd, &data, &CanSignalData::simBcastRcv);
+
+    obj["file"] = QString(DBC_PATH) + "/tesla_can.dbc";
+    data.setConfig(obj);
+    data.configChanged();
+
+    QSignalSpy sigSndSpy(&c, &CanSignalDecoder::sndSignal);
+
+    data.startSimulation();
+    c.startSimulation();
+
+    QByteArray p = QByteArray::fromHex("00000000");
+    QCanBusFrame f;
+    f.setPayload(p);
+    f.setFrameId(0x488);
+
+    c.rcvFrame(f, Direction::TX, true);
+    c.rcvFrame(f, Direction::TX, true);
+    c.rcvFrame(f, Direction::TX, true);
+
+    REQUIRE(sigSndSpy.count() == 0);
+}
+
+TEST_CASE("Signal caching", "[cansignaldecoder]")
+{
+    CanSignalData data;
+    QJsonObject obj;
+    CanSignalDecoder c;
+
+    QObject::connect(&data, &CanSignalData::simBcastSnd, &c, &CanSignalDecoder::simBcastRcv);
+    QObject::connect(&c, &CanSignalDecoder::simBcastSnd, &data, &CanSignalData::simBcastRcv);
+
+    obj["file"] = QString(DBC_PATH) + "/tesla_can.dbc";
+    data.setConfig(obj);
+    data.configChanged();
+
+    QSignalSpy sigSndSpy(&c, &CanSignalDecoder::sndSignal);
+
+    data.startSimulation();
+    c.startSimulation();
+
+    QByteArray p = QByteArray::fromHex("1122334455667788");
+    QCanBusFrame f;
+    f.setPayload(p);
+    f.setFrameId(0x3);
+
+    c.rcvFrame(f, Direction::TX, true);
+    c.rcvFrame(f, Direction::TX, true);
+    c.rcvFrame(f, Direction::TX, true);
+
+    // change one signal only
+    p = QByteArray::fromHex("2122334455667788");
+    f.setPayload(p);
+
+    c.rcvFrame(f, Direction::TX, true);
+    c.rcvFrame(f, Direction::TX, true);
+    c.rcvFrame(f, Direction::TX, true);
+
+    REQUIRE(sigSndSpy.count() == 5);
+
+    REQUIRE(sigSndSpy.at(0).at(0).toString() == "0x003_CRC_STW_ANGL_STAT");
+    REQUIRE(sigSndSpy.at(0).at(1).type() == QVariant::Double);
+    REQUIRE(sigSndSpy.at(1).at(0).toString() == "0x003_MC_STW_ANGL_STAT");
+    REQUIRE(sigSndSpy.at(1).at(1).type() == QVariant::Double);
+    REQUIRE(sigSndSpy.at(2).at(0).toString() == "0x003_StW_Angl");
+    REQUIRE(sigSndSpy.at(2).at(1).type() == QVariant::Double);
+    REQUIRE(sigSndSpy.at(3).at(0).toString() == "0x003_StW_AnglSens_Id");
+    REQUIRE((QMetaType::Type)sigSndSpy.at(3).at(1).type() == QMetaType::Long);
+    REQUIRE(sigSndSpy.at(4).at(0).toString() == "0x003_StW_Angl");
+    REQUIRE(sigSndSpy.at(4).at(1).type() == QVariant::Double);
+}
+
 int main(int argc, char* argv[])
 {
     bool haveDebug = std::getenv("CDS_DEBUG") != nullptr;

@@ -8,11 +8,6 @@ CanSignalDecoder::CanSignalDecoder()
 {
 }
 
-CanSignalDecoder::CanSignalDecoder(CanSignalDecoderCtx&& ctx)
-    : d_ptr(new CanSignalDecoderPrivate(this, std::move(ctx)))
-{
-}
-
 CanSignalDecoder::~CanSignalDecoder() {}
 
 QWidget* CanSignalDecoder::mainWidget()
