@@ -1,5 +1,6 @@
 #include "cansignalviewermodel.h"
 #include "cansignalviewerplugin.h"
+#include <datamodeltypes/cansignalmodel.h>
 #include <log.h>
 
 namespace {
@@ -8,12 +9,11 @@ namespace {
 const std::map<PortType, std::vector<NodeDataType>> portMappings = {
     { PortType::In, 
         {
-            //{CanRawData{}.type() }
+            { CanSignalModel{}.type() }
         }
     },
     { PortType::Out, 
         {
-            //{CanRawData{}.type() }
         }
     }
 };
@@ -28,6 +28,8 @@ CanSignalViewerModel::CanSignalViewerModel()
     _label->setAlignment(Qt::AlignVCenter | Qt::AlignHCenter);
     _label->setFixedSize(75, 25);
     _label->setAttribute(Qt::WA_TranslucentBackground);
+
+    connect(this, &CanSignalViewerModel::sndSignal, &_component, &CanSignalViewer::rcvSignal);
 }
 
 QtNodes::NodePainterDelegate* CanSignalViewerModel::painterDelegate() const
@@ -47,26 +49,21 @@ NodeDataType CanSignalViewerModel::dataType(PortType portType, PortIndex ndx) co
     }
 
     cds_error("No port mapping for ndx: {}", ndx);
-    return { };
+    return {};
 }
 
 std::shared_ptr<NodeData> CanSignalViewerModel::outData(PortIndex)
 {
-    // example
-    // return std::make_shared<CanRawData>(_frame, _direction, _status);
-
-    return { };
+    return {};
 }
 
 void CanSignalViewerModel::setInData(std::shared_ptr<NodeData> nodeData, PortIndex)
 {
-    // example
-    // if (nodeData) {
-    //     auto d = std::dynamic_pointer_cast<CanRawData>(nodeData);
-    //     assert(nullptr != d);
-    //     emit sendFrame(d->frame());
-    // } else {
-    //     cds_warn("Incorrect nodeData");
-    // }
-    (void) nodeData;
+    if (nodeData) {
+        auto d = std::dynamic_pointer_cast<CanSignalModel>(nodeData);
+        assert(nullptr != d);
+        emit sndSignal(d->name(), d->value(), d->direction());
+    } else {
+        cds_warn("Incorrect nodeData");
+    }
 }

@@ -13,9 +13,7 @@ CanSignalViewer::CanSignalViewer(CanSignalViewerCtx&& ctx)
 {
 }
 
-CanSignalViewer::~CanSignalViewer()
-{
-}
+CanSignalViewer::~CanSignalViewer() {}
 
 QWidget* CanSignalViewer::mainWidget()
 {
@@ -50,9 +48,7 @@ std::shared_ptr<QWidget> CanSignalViewer::getQConfig() const
     return configHelpers::getQConfig(getSupportedProperties(), d->_props);
 }
 
-void CanSignalViewer::configChanged()
-{
-}
+void CanSignalViewer::configChanged() {}
 
 bool CanSignalViewer::mainWidgetDocked() const
 {
@@ -78,8 +74,15 @@ void CanSignalViewer::startSimulation()
     d->_simStarted = true;
 }
 
-void CanSignalViewer::simBcastRcv(const QJsonObject &msg, const QVariant &param)
+void CanSignalViewer::simBcastRcv(const QJsonObject& msg, const QVariant& param)
 {
     Q_UNUSED(msg);
     Q_UNUSED(param);
+}
+
+void CanSignalViewer::rcvSignal(const QString& name, const QVariant& val, const Direction& dir)
+{
+
+    cds_error("{}", name.toStdString());
+
 }

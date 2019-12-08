@@ -29,6 +29,7 @@ public slots:
 
 signals:
     void requestRedraw();
+    void sndSignal(const QString& name, const QVariant& val, const Direction& dir);
 
 private:
     std::unique_ptr<NodePainter> _painter;

@@ -11,6 +11,7 @@ class CanSignalViewerPrivate;
 class QWidget;
 struct CanSignalViewerGuiInt;
 typedef Context<CanSignalViewerGuiInt> CanSignalViewerCtx;
+enum class Direction;
 
 class CanSignalViewer : public QObject, public ComponentInterface {
     Q_OBJECT
@@ -38,6 +39,7 @@ public slots:
     void stopSimulation() override;
     void startSimulation() override;
     void simBcastRcv(const QJsonObject &msg, const QVariant &param) override;
+    void rcvSignal(const QString& name, const QVariant& val, const Direction& dir);
 
 private:
     QScopedPointer<CanSignalViewerPrivate> d_ptr;
