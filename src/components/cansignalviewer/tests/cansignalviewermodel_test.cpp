@@ -6,6 +6,7 @@
 #include <QSignalSpy>
 #include <catch.hpp>
 #include <fakeit.hpp>
+#include <datamodeltypes/cansignalmodel.h>
 
 std::shared_ptr<spdlog::logger> kDefaultLogger;
 // needed for QSignalSpy cause according to qtbug 49623 comments
@@ -35,7 +36,7 @@ TEST_CASE("nPorts", "[cansignalviewerModel]")
     CanSignalViewerModel cm;
 
     REQUIRE(cm.nPorts(QtNodes::PortType::Out) == 0);
-    REQUIRE(cm.nPorts(QtNodes::PortType::In) == 0);
+    REQUIRE(cm.nPorts(QtNodes::PortType::In) == 1);
 }
 
 TEST_CASE("dataType", "[cansignalviewerModel]")
@@ -44,17 +45,17 @@ TEST_CASE("dataType", "[cansignalviewerModel]")
 
     NodeDataType ndt;
 
-    // ndt = cm.dataType(QtNodes::PortType::Out, 0);
-    // REQUIRE(ndt.id == "rawframe");
-    // REQUIRE(ndt.name == "RAW");
+    ndt = cm.dataType(QtNodes::PortType::In, 0);
+    REQUIRE(ndt.id == "signal");
+    REQUIRE(ndt.name == "SIG");
 
-    // ndt = cm.dataType(QtNodes::PortType::Out, 1);
-    // REQUIRE(ndt.id == "");
-    // REQUIRE(ndt.name == "");
+    ndt = cm.dataType(QtNodes::PortType::In, 1);
+    REQUIRE(ndt.id == "");
+    REQUIRE(ndt.name == "");
 
-    // ndt = cm.dataType(QtNodes::PortType::In, 0);
-    // REQUIRE(ndt.id == "");
-    // REQUIRE(ndt.name == "");
+    ndt = cm.dataType(QtNodes::PortType::Out, 0);
+    REQUIRE(ndt.id == "");
+    REQUIRE(ndt.name == "");
 }
 
 TEST_CASE("outData", "[cansignalviewerModel]")
@@ -68,8 +69,17 @@ TEST_CASE("outData", "[cansignalviewerModel]")
 TEST_CASE("setInData", "[cansignalviewerModel]")
 {
     CanSignalViewerModel cm;
+    QSignalSpy spy(&cm, &CanSignalViewerModel::sndSignal);
 
     cm.setInData({}, 1);
+
+    QVariant val(123);
+    auto data = std::make_shared<CanSignalModel>("AAA", val);
+    cm.setInData(data, 0);
+
+    REQUIRE(spy.count() == 1);
+    REQUIRE(spy.at(0).at(0).toString() == "AAA");
+    REQUIRE(spy.at(0).at(1).toUInt() == 123);
 }
 
 int main(int argc, char* argv[])
