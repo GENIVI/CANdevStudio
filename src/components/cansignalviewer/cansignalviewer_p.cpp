@@ -130,7 +130,12 @@ void CanSignalViewerPrivate::addSignal(const QString& name, const QVariant& val,
         return;
     }
 
-    uint32_t id = nameSplit[0].toUInt(nullptr, 16);
+    bool idConv = false;
+    uint32_t id = nameSplit[0].toUInt(&idConv, 16);
+    if (!idConv) {
+        cds_error("Failed to convert singal id ({})", nameSplit[0].toStdString());
+        return;
+    }
 
     int idPadding = 3;
     if (id > 0x7ff) {
@@ -184,15 +189,15 @@ void CanSignalViewerPrivate::addSignal(const QString& name, const QVariant& val,
             auto& row = _uniqueRxMap[name];
 
             std::get<0>(row)->setText(QString::number(_rowID));
-            std::get<1>(row)->setText(direction);
-            std::get<2>(row)->setText(time);
+            std::get<1>(row)->setText(time);
+            std::get<2>(row)->setText(direction);
             std::get<3>(row)->setText(frameID);
             std::get<4>(row)->setText(sigName);
             std::get<5>(row)->setText(value);
         } else {
             auto rowEl = new QStandardItem(QString::number(_rowID));
-            auto dirEl = new QStandardItem(direction);
             auto timeEl = new QStandardItem(time);
+            auto dirEl = new QStandardItem(direction);
             auto frameEl = new QStandardItem(frameID);
             auto sigNameEl = new QStandardItem(sigName);
             auto valueEl = new QStandardItem(value);
@@ -205,21 +210,21 @@ void CanSignalViewerPrivate::addSignal(const QString& name, const QVariant& val,
             auto& row = _uniqueTxMap[name];
 
             std::get<0>(row)->setText(QString::number(_rowID));
-            std::get<1>(row)->setText(direction);
-            std::get<2>(row)->setText(time);
+            std::get<1>(row)->setText(time);
+            std::get<2>(row)->setText(direction);
             std::get<3>(row)->setText(frameID);
             std::get<4>(row)->setText(sigName);
             std::get<5>(row)->setText(value);
         } else {
             auto rowEl = new QStandardItem(QString::number(_rowID));
-            auto dirEl = new QStandardItem(direction);
             auto timeEl = new QStandardItem(time);
+            auto dirEl = new QStandardItem(direction);
             auto frameEl = new QStandardItem(frameID);
             auto sigNameEl = new QStandardItem(sigName);
             auto valueEl = new QStandardItem(value);
 
             _tvModelUnique.appendRow({ rowEl, timeEl, dirEl, frameEl, sigNameEl, valueEl });
-            _uniqueTxMap[name] = std::make_tuple(rowEl, dirEl, timeEl, frameEl, sigNameEl, valueEl);
+            _uniqueTxMap[name] = std::make_tuple(rowEl, timeEl, dirEl, frameEl, sigNameEl, valueEl);
         }
     } else {
         cds_warn("Invalid direction string: {}", direction.toStdString());
