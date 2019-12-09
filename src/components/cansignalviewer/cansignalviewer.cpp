@@ -71,7 +71,9 @@ void CanSignalViewer::startSimulation()
 {
     Q_D(CanSignalViewer);
 
+    d->_timer.restart();
     d->_simStarted = true;
+    d->clear();
 }
 
 void CanSignalViewer::simBcastRcv(const QJsonObject& msg, const QVariant& param)
@@ -82,7 +84,11 @@ void CanSignalViewer::simBcastRcv(const QJsonObject& msg, const QVariant& param)
 
 void CanSignalViewer::rcvSignal(const QString& name, const QVariant& val, const Direction& dir)
 {
+    Q_D(CanSignalViewer);
 
-    cds_error("{}", name.toStdString());
-
+    if (d->_simStarted) {
+        d->addSignal(name, val, dir);
+    } else {
+        cds_debug("send/received frame while simulation stopped");
+    }
 }
