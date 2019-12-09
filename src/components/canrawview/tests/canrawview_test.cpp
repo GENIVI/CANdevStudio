@@ -11,7 +11,6 @@
 #include <fakeit.hpp>
 
 #include <canrawview.h>
-#include <crvsortmodel.h>
 #include <gui/crvguiinterface.h>
 #include <log.h>
 #include <memory>
@@ -23,20 +22,6 @@ using namespace fakeit;
 #include <QStandardItemModel>
 
 class CanRawViewPrivate;
-
-void addNewFrame(uint& rowID, double time, uint frameID, uint data, QStandardItemModel& tvModel)
-{
-    QList<QStandardItem*> list;
-
-    list.append(new QStandardItem(QString::number(rowID++)));
-    list.append(new QStandardItem(QString::number(time)));
-    list.append(new QStandardItem(std::move(frameID)));
-    list.append(new QStandardItem("TX"));
-    list.append(new QStandardItem(QString::number(4)));
-    list.append(new QStandardItem(QString::number(data)));
-
-    tvModel.appendRow(list);
-}
 
 TEST_CASE("Initialize table", "[canrawview]")
 {
@@ -80,32 +65,6 @@ TEST_CASE("Initialize table", "[canrawview]")
 
     REQUIRE_NOTHROW(canRawView.stopSimulation());
     REQUIRE_NOTHROW(canRawView.frameReceived(frame));
-}
-
-TEST_CASE("Sort test", "[canrawview]")
-{
-    QStandardItemModel _tvModel;
-    CRVSortModel _sortModel;
-    QTableView _tableView;
-    uint rowID = 0;
-
-    _sortModel.setSourceModel(&_tvModel);
-    _tableView.setModel(&_sortModel);
-
-    // rowID, time, frameID, data//
-    addNewFrame(rowID, 0.20, 10, 1, _tvModel);
-    addNewFrame(rowID, 1.00, 1, 110, _tvModel);
-    addNewFrame(rowID, 10.00, 101, 1000, _tvModel);
-    addNewFrame(rowID, 11.00, 11, 11, _tvModel);
-
-    for (int i = 0; i < 4; ++i) {
-        _sortModel.sort(i, Qt::AscendingOrder);
-        _sortModel.sort(i, Qt::DescendingOrder);
-    }
-
-    REQUIRE(_tvModel.rowCount() == 4);
-    REQUIRE(_sortModel.isFilterActive() == false);
-    // TODO spy sectionClicked signal...
 }
 
 TEST_CASE("setConfig using QObject", "[canrawview]")

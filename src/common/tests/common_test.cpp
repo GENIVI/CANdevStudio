@@ -5,6 +5,7 @@
 #include <catch.hpp>
 #include <fakeit.hpp>
 
+#include "sortmodel.h"
 #include <QSignalSpy>
 #include <QUuid>
 #include <QtWidgets/QApplication>
@@ -20,6 +21,8 @@
 #include <type_traits> // is_same
 #include <utility> // swap, next, advance
 #include <vector> // vector
+#include <QStandardItemModel>
+#include <QTableView>
 
 std::shared_ptr<spdlog::logger> kDefaultLogger;
 
@@ -604,6 +607,46 @@ TEST_CASE("CanDbHandler - createPropertyWidget", "[common]")
 
     w = static_cast<PropertyFieldCombo*>(db.createPropertyWidget());
     REQUIRE(w->propText() == idStr3);
+}
+
+void addNewFrame(uint& rowID, double time, uint frameID, uint data, QStandardItemModel& tvModel)
+{
+    QList<QStandardItem*> list;
+
+    list.append(new QStandardItem(QString::number(rowID++)));
+    list.append(new QStandardItem(QString::number(time)));
+    list.append(new QStandardItem(std::move(frameID)));
+    list.append(new QStandardItem("TX"));
+    list.append(new QStandardItem(QString::number(4)));
+    list.append(new QStandardItem(QString::number(data)));
+
+    tvModel.appendRow(list);
+}
+
+TEST_CASE("Sort test", "[canrawview]")
+{
+    QStandardItemModel _tvModel;
+    SortModel _sortModel;
+    QTableView _tableView;
+    uint rowID = 0;
+
+    _sortModel.setSourceModel(&_tvModel);
+    _tableView.setModel(&_sortModel);
+
+    // rowID, time, frameID, data//
+    addNewFrame(rowID, 0.20, 10, 1, _tvModel);
+    addNewFrame(rowID, 1.00, 1, 110, _tvModel);
+    addNewFrame(rowID, 10.00, 101, 1000, _tvModel);
+    addNewFrame(rowID, 11.00, 11, 11, _tvModel);
+
+    for (int i = 0; i < 4; ++i) {
+        _sortModel.sort(i, Qt::AscendingOrder);
+        _sortModel.sort(i, Qt::DescendingOrder);
+    }
+
+    REQUIRE(_tvModel.rowCount() == 4);
+    REQUIRE(_sortModel.isFilterActive() == false);
+    // TODO spy sectionClicked signal...
 }
 
 int main(int argc, char* argv[])

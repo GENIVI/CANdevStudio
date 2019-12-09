@@ -65,6 +65,89 @@ TEST_CASE("misc", "[cansignalviewer]")
     c.simBcastRcv({}, {});
 }
 
+TEST_CASE("sort", "[cansignalviewer]")
+{
+    using namespace fakeit;
+
+    Mock<CanSignalViewerGuiInt> guiInt;
+    CanSignalViewerGuiInt::sectionClicked_t sectionClicked;
+
+    Fake(Method(guiInt, setClearCbk));
+    Fake(Method(guiInt, setDockUndockCbk));
+    When(Method(guiInt, setSectionClikedCbk)).Do([&](auto&& fn) { sectionClicked = fn; });
+    Fake(Method(guiInt, setFilterCbk));
+    Fake(Method(guiInt, setModel));
+    Fake(Method(guiInt, setSorting));
+    Fake(Method(guiInt, initTableView));
+    Fake(Method(guiInt, scrollToBottom));
+    Fake(Method(guiInt, mainWidget));
+    Fake(Method(guiInt, isViewFrozen));
+    When(Method(guiInt, getSortOrder))
+        .Return(Qt::AscendingOrder, Qt::DescendingOrder, Qt::AscendingOrder, Qt::AscendingOrder, Qt::AscendingOrder,
+            Qt::AscendingOrder, Qt::AscendingOrder, Qt::AscendingOrder);
+    Fake(Method(guiInt, getClickedColumn));
+    Fake(Method(guiInt, isColumnHidden));
+
+    CanSignalViewerCtx ctx(&guiInt.get());
+    CanSignalViewer c(std::move(ctx));
+
+    sectionClicked(1);
+    sectionClicked(1);
+    sectionClicked(1);
+
+    Verify(Method(guiInt, setSorting).Using(1, Qt::AscendingOrder),
+        Method(guiInt, setSorting).Using(1, Qt::DescendingOrder),
+        Method(guiInt, setSorting).Using(0, Qt::AscendingOrder))
+        .Exactly(Once);
+
+    sectionClicked(1);
+    sectionClicked(2);
+    sectionClicked(3);
+    sectionClicked(4);
+    sectionClicked(5);
+
+    Verify(Method(guiInt, setSorting).Using(1, Qt::AscendingOrder),
+        Method(guiInt, setSorting).Using(2, Qt::AscendingOrder),
+        Method(guiInt, setSorting).Using(3, Qt::AscendingOrder),
+        Method(guiInt, setSorting).Using(4, Qt::AscendingOrder),
+        Method(guiInt, setSorting).Using(5, Qt::AscendingOrder))
+        .Exactly(Once);
+}
+
+TEST_CASE("dock/undock", "[cansignalviewer]")
+{
+    using namespace fakeit;
+
+    Mock<CanSignalViewerGuiInt> guiInt;
+    CanSignalViewerGuiInt::dockUndock_t dockUndock;
+
+    Fake(Method(guiInt, setClearCbk));
+    When(Method(guiInt, setDockUndockCbk)).Do([&](auto&& fn) { dockUndock = fn; });
+    Fake(Method(guiInt, setSectionClikedCbk));
+    Fake(Method(guiInt, setFilterCbk));
+    Fake(Method(guiInt, setModel));
+    Fake(Method(guiInt, setSorting));
+    Fake(Method(guiInt, initTableView));
+    Fake(Method(guiInt, scrollToBottom));
+    Fake(Method(guiInt, mainWidget));
+    Fake(Method(guiInt, isViewFrozen));
+    Fake(Method(guiInt, getSortOrder));
+    Fake(Method(guiInt, getClickedColumn));
+    Fake(Method(guiInt, isColumnHidden));
+
+    CanSignalViewerCtx ctx(&guiInt.get());
+    CanSignalViewer c(std::move(ctx));
+    QSignalSpy dockSpy(&c, &CanSignalViewer::mainWidgetDockToggled);
+
+    dockUndock();
+    dockUndock();
+    dockUndock();
+
+    REQUIRE(dockSpy.count() == 3);
+
+    Verify(Method(guiInt, mainWidget)).Exactly(3);
+}
+
 TEST_CASE("getSupportedProperties", "[cansignalviewer]")
 {
     CanSignalViewer c;
@@ -93,8 +176,12 @@ TEST_CASE("Start/Stop", "[cansignalviewer]")
     When(Method(guiMock, setClearCbk)).Do([&](auto&& fn) { clearCbk = fn; });
     Fake(Method(guiMock, setDockUndockCbk));
     Fake(Method(guiMock, setSectionClikedCbk));
-    When(Method(guiMock, setFilterCbk)).Do([&](auto&& fn) { filterCbk = fn; });
-    When(Method(guiMock, setModel)).Do([&](auto&& model) { sModel = model; }).Do([&](auto&& model) { uModel = model; });
+    When(Method(guiMock, setFilterCbk)).AlwaysDo([&](auto&& fn) { filterCbk = fn; });
+    When(Method(guiMock, setModel))
+        .Do([&](auto&& model) { sModel = model; })
+        .Do([&](auto&& model) { uModel = model; })
+        .Do([&](auto&& model) { sModel = model; })
+        .Do([&](auto&& model) { uModel = model; });
     Fake(Method(guiMock, setSorting));
     Fake(Method(guiMock, initTableView));
     Fake(Method(guiMock, scrollToBottom));
@@ -110,6 +197,8 @@ TEST_CASE("Start/Stop", "[cansignalviewer]")
     REQUIRE(sModel != nullptr);
     REQUIRE(filterCbk != nullptr);
 
+    filterCbk(true);
+    filterCbk(false);
     filterCbk(true);
 
     REQUIRE(uModel != nullptr);
@@ -306,11 +395,11 @@ TEST_CASE("Overrun", "[cansignalviewer]")
     REQUIRE(uModel->rowCount() == 3000);
 
     for (int i = 0; i < 2000; ++i) {
-        REQUIRE(sModel->data(sModel->index(i, 3)).toString().toUInt(nullptr, 16) == i + 4000);;
+        REQUIRE(sModel->data(sModel->index(i, 3)).toString().toUInt(nullptr, 16) == i + 4000);
     }
 
     for (int i = 0; i < 3000; ++i) {
-        REQUIRE(uModel->data(uModel->index(i, 3)).toString().toUInt(nullptr, 16) == i + 3000);;
+        REQUIRE(uModel->data(uModel->index(i, 3)).toString().toUInt(nullptr, 16) == i + 3000);
     }
 }
 

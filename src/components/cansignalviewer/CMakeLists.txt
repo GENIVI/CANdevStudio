@@ -6,7 +6,6 @@ set(SRC
     cansignalviewer.cpp
     cansignalviewer_p.cpp
     cansignalviewermodel.cpp
-    sortmodel.cpp
 )
 
 add_library(${COMPONENT_NAME} ${SRC})

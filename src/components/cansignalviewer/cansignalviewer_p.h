@@ -3,9 +3,9 @@
 
 #include "cansignalviewer.h"
 #include "gui/cansignalviewerguiimpl.h"
-#include "sortmodel.h"
-#include <memory>
 #include <QElapsedTimer>
+#include <memory>
+#include <sortmodel.h>
 
 class CanSignalViewer;
 

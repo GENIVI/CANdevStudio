@@ -1,9 +1,9 @@
-#include "crvsortmodel.h"
-#include "crv_enums.h"
+#include "sortmodel.h"
+#include "sortenums.h"
 #include <log.h>
 
 
-CRVSortModel::CRVSortModel(QObject* parent)
+SortModel::SortModel(QObject* parent)
     : QSortFilterProxyModel(parent)
     , _currSortNdx(0)
     , _currSortOrder(Qt::AscendingOrder)
@@ -11,25 +11,25 @@ CRVSortModel::CRVSortModel(QObject* parent)
 {
 }
 
-bool CRVSortModel::lessThan(const QModelIndex& left, const QModelIndex& right) const
+bool SortModel::lessThan(const QModelIndex& left, const QModelIndex& right) const
 {
     QVariant leftData = sourceModel()->data(sourceModel()->index(left.row(), updatedSortNdx()));
     QVariant rightData = sourceModel()->data(sourceModel()->index(right.row(), updatedSortNdx()));
     QVariant userRole = sourceModel()->headerData(updatedSortNdx(), Qt::Horizontal, Qt::UserRole);
 
-    switch (userRole.value<CRV_ColType>()) {
-    case CRV_ColType::uint_type:
+    switch (userRole.value<ColType>()) {
+    case ColType::uint_type:
         return (leftData.toUInt() < rightData.toUInt());
-    case CRV_ColType::double_type:
+    case ColType::double_type:
         return (leftData.toDouble() < rightData.toDouble());
-    case CRV_ColType::hex_type:
+    case ColType::hex_type:
         return ((leftData.toString().toUInt(nullptr, 16)) < (rightData.toString().toUInt(nullptr, 16)));
     default:
         return QSortFilterProxyModel::lessThan(left, right);
     }
 }
 
-int CRVSortModel::updatedSortNdx() const
+int SortModel::updatedSortNdx() const
 {
     int updatedSortNdx = _currSortNdx;
 
@@ -42,17 +42,17 @@ int CRVSortModel::updatedSortNdx() const
     return updatedSortNdx;
 }
 
-bool CRVSortModel::isFilterActive() const
+bool SortModel::isFilterActive() const
 {
     return _filterActive;
 }
 
-void CRVSortModel::setFilterActive(bool enabled)
+void SortModel::setFilterActive(bool enabled)
 {
     _filterActive = enabled;
 }
 
-void CRVSortModel::sort(int column, Qt::SortOrder order)
+void SortModel::sort(int column, Qt::SortOrder order)
 {
     _currSortNdx = column;
     _currSortOrder = order;

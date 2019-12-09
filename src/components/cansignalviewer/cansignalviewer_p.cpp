@@ -1,7 +1,7 @@
 #include "cansignalviewer_p.h"
-#include "sortenums.h"
-#include <log.h>
 #include <datamodeltypes/datadirection.h>
+#include <log.h>
+#include <sortenums.h>
 
 namespace {
 const int32_t rowCountMax = 2000;
@@ -226,8 +226,6 @@ void CanSignalViewerPrivate::addSignal(const QString& name, const QVariant& val,
             _tvModelUnique.appendRow({ rowEl, timeEl, dirEl, frameEl, sigNameEl, valueEl });
             _uniqueTxMap[name] = std::make_tuple(rowEl, timeEl, dirEl, frameEl, sigNameEl, valueEl);
         }
-    } else {
-        cds_warn("Invalid direction string: {}", direction.toStdString());
     }
 
     if (!_ui.isViewFrozen()) {

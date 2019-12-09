@@ -1,7 +1,6 @@
 #ifndef CRVGUI_H
 #define CRVGUI_H
 
-#include "crv_enums.h"
 #include "crvguiinterface.h"
 #include "ui_canrawview.h"
 #include <QStandardItemModel>
