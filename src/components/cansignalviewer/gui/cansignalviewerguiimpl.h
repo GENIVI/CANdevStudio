@@ -55,8 +55,6 @@ struct CanSignalViewerGuiImpl : public CanSignalViewerGuiInt {
         _ui->tv->horizontalHeader()->setSectionsMovable(true);
         _ui->tv->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
         _ui->tv->setColumnHidden(0, true);
-        //_ui->tv->setColumnWidth(1, 85);
-        //_ui->tv->setColumnWidth(2, 20);
         _ui->tv->setColumnWidth(3, 85);
         _ui->tv->horizontalHeader()->setSectionResizeMode(4, QHeaderView::Stretch);
         _ui->tv->setColumnWidth(5, 200);

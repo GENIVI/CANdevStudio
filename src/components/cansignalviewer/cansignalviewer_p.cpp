@@ -33,17 +33,17 @@ CanSignalViewerPrivate::CanSignalViewerPrivate(CanSignalViewer* q, CanSignalView
 
     _tvModel.setHeaderData(0, Qt::Horizontal, QVariant::fromValue(ColType::uint_type), Qt::UserRole); // rowID
     _tvModel.setHeaderData(1, Qt::Horizontal, QVariant::fromValue(ColType::double_type), Qt::UserRole); // time
-    _tvModel.setHeaderData(2, Qt::Horizontal, QVariant::fromValue(ColType::hex_type), Qt::UserRole); // frame ID
-    _tvModel.setHeaderData(3, Qt::Horizontal, QVariant::fromValue(ColType::str_type), Qt::UserRole); // signal
-    _tvModel.setHeaderData(4, Qt::Horizontal, QVariant::fromValue(ColType::str_type), Qt::UserRole); // dir
-    _tvModel.setHeaderData(5, Qt::Horizontal, QVariant::fromValue(ColType::int_type), Qt::UserRole); // value
+    _tvModel.setHeaderData(2, Qt::Horizontal, QVariant::fromValue(ColType::str_type), Qt::UserRole); // dir
+    _tvModel.setHeaderData(3, Qt::Horizontal, QVariant::fromValue(ColType::hex_type), Qt::UserRole); // frame ID
+    _tvModel.setHeaderData(4, Qt::Horizontal, QVariant::fromValue(ColType::str_type), Qt::UserRole); // signal
+    _tvModel.setHeaderData(5, Qt::Horizontal, QVariant::fromValue(ColType::double_type), Qt::UserRole); // value
 
     _tvModelUnique.setHeaderData(0, Qt::Horizontal, QVariant::fromValue(ColType::uint_type), Qt::UserRole); // rowID
     _tvModelUnique.setHeaderData(1, Qt::Horizontal, QVariant::fromValue(ColType::double_type), Qt::UserRole); // time
-    _tvModelUnique.setHeaderData(2, Qt::Horizontal, QVariant::fromValue(ColType::hex_type), Qt::UserRole); // frame ID
-    _tvModelUnique.setHeaderData(3, Qt::Horizontal, QVariant::fromValue(ColType::str_type), Qt::UserRole); // signal
-    _tvModelUnique.setHeaderData(4, Qt::Horizontal, QVariant::fromValue(ColType::str_type), Qt::UserRole); // dir
-    _tvModelUnique.setHeaderData(5, Qt::Horizontal, QVariant::fromValue(ColType::int_type), Qt::UserRole); // value
+    _tvModelUnique.setHeaderData(2, Qt::Horizontal, QVariant::fromValue(ColType::str_type), Qt::UserRole); // dir
+    _tvModelUnique.setHeaderData(3, Qt::Horizontal, QVariant::fromValue(ColType::hex_type), Qt::UserRole); // frame ID
+    _tvModelUnique.setHeaderData(4, Qt::Horizontal, QVariant::fromValue(ColType::str_type), Qt::UserRole); // signal
+    _tvModelUnique.setHeaderData(5, Qt::Horizontal, QVariant::fromValue(ColType::double_type), Qt::UserRole); // value
 }
 
 void CanSignalViewerPrivate::initProps()
