@@ -146,6 +146,12 @@ if(STANDALONE)
             libQt5OpenGL.so.${Qt5Core_VERSION}
             libQt5XcbQpa.so.${Qt5Core_VERSION}
             libQt5DBus.so.${Qt5Core_VERSION}
+            libicudata.so.56
+            libicudata.so.56.1
+            libicui18n.so.56
+            libicui18n.so.56.1
+            libicuuc.so.56
+            libicuuc.so.56.1
         )
 
         install(PROGRAMS files/CANdevStudio.sh DESTINATION ${INSTALL_DEST_BIN})
