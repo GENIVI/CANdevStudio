@@ -43,7 +43,7 @@ Most of automotive projects need to have an access to the Controller Area Networ
 Checkout CANdevStudio on [YouTube](https://www.youtube.com/watch?v=1TfAyg6DG04)
 
 <p align="center">
-<img src="https://at.projects.genivi.org/wiki/download/attachments/14976114/06-light.png" width="50%" />
+<img src="https://at.projects.genivi.org/wiki/download/attachments/14976114/CDS_V1.png" width="65%" />
 </p>
 
 ### Compatible CAN interfaces
