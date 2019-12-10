@@ -40,6 +40,7 @@
 ## Overview
 Most of automotive projects need to have an access to the Controller Area Network (CAN) bus. There are plenty of commercial frameworks that provides CAN stacks and hardware/software tools necessary to develop proper CAN networks. They are very comprehensive and thus expensive. CANdevStudio aims to be cost-effective replacement for CAN simulation software. It can work with variety of CAN hardware interfaces (e.g. Microchip, Vector, PEAK-Systems) or even without it (vcan and [cannelloni](https://github.com/mguentner/cannelloni)) . CANdevStudio enables to simulate CAN signals such as ignition status, doors status or reverse gear by every automotive developer. Thanks to modularity it is easy to implement new, custom features.
 
+Checkout CANdevStudio on [YouTube](https://www.youtube.com/watch?v=1TfAyg6DG04)
 
 <p align="center">
 <img src="https://at.projects.genivi.org/wiki/download/attachments/14976114/06-light.png" width="50%" />
@@ -298,8 +299,16 @@ CANdevStudio provides support for CAN signals handling. [DBC](http://socialledge
     * if signal is a part of periodic message its value will be updated in a next cycle
     * if signal is not a part of periodic message it will be sent out immiediatelly
 
-#### Receiving and decoding signals
-Work on signals reception and decoding is ongoing. Experimental support is available on [signals](https://github.com/GENIVI/CANdevStudio/tree/signals) branch
+#### Receiving signals
+1. Start new project and setup CanDevice as described in quick start section
+2. **Add CanSignalData** component that serves as CAN signals database for other components. You may have multiple CanSignalData components per project
+3. Open CanSignalData properties and configure path to DBC file
+4. List of messages and signals shall be now loaded and visible in CanSignalData window
+5. **Add CanSignalDecoder** component and connect it with CanDevice. CanSignalDecoder act as a translator between signals and CAN frames.
+6. CanSignalDecoder has been automatically configured to use previously added CAN database. CAN database can be manually selected in component properties (this applies to all components from "Signals" group)
+7. **Add CanSignalViewer** component and connect it with CanSignalDecoder
+8. Start simulation
+9. Signals shall now appear in CanSignalViewer. Note that CanSignalDecoder is sending over only signals which values has changed.
 
 ### CanDevice configuration
 CanDevice component can be confiugred using "configuration" property:
