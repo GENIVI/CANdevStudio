@@ -1,7 +1,6 @@
 #ifndef CANRAWVIEW_P_H
 #define CANRAWVIEW_P_H
 
-#include "crvsortmodel.h"
 #include "gui/crvgui.h"
 #include <QtCore/QElapsedTimer>
 #include <QtCore/QJsonArray>
@@ -10,6 +9,8 @@
 #include <QtSerialBus/QCanBusFrame>
 #include <log.h>
 #include <memory>
+#include <sortenums.h>
+#include <sortmodel.h>
 
 namespace {
 const int32_t rowCountMax = 2000;
@@ -45,26 +46,23 @@ public:
             emit q_ptr->mainWidgetDockToggled(_ui.mainWidget());
         });
 
-        _tvModel.setHeaderData(0, Qt::Horizontal, QVariant::fromValue(CRV_ColType::uint_type), Qt::UserRole); // rowID
-        _tvModel.setHeaderData(1, Qt::Horizontal, QVariant::fromValue(CRV_ColType::double_type), Qt::UserRole); // time
-        _tvModel.setHeaderData(2, Qt::Horizontal, QVariant::fromValue(CRV_ColType::hex_type), Qt::UserRole); // frame ID
-        _tvModel.setHeaderData(
-            3, Qt::Horizontal, QVariant::fromValue(CRV_ColType::str_type), Qt::UserRole); // direction
-        _tvModel.setHeaderData(4, Qt::Horizontal, QVariant::fromValue(CRV_ColType::uint_type), Qt::UserRole); // length
-        _tvModel.setHeaderData(5, Qt::Horizontal, QVariant::fromValue(CRV_ColType::str_type), Qt::UserRole); // data
+        _tvModel.setHeaderData(0, Qt::Horizontal, QVariant::fromValue(ColType::uint_type), Qt::UserRole); // rowID
+        _tvModel.setHeaderData(1, Qt::Horizontal, QVariant::fromValue(ColType::double_type), Qt::UserRole); // time
+        _tvModel.setHeaderData(2, Qt::Horizontal, QVariant::fromValue(ColType::hex_type), Qt::UserRole); // frame ID
+        _tvModel.setHeaderData(3, Qt::Horizontal, QVariant::fromValue(ColType::str_type), Qt::UserRole); // direction
+        _tvModel.setHeaderData(4, Qt::Horizontal, QVariant::fromValue(ColType::uint_type), Qt::UserRole); // length
+        _tvModel.setHeaderData(5, Qt::Horizontal, QVariant::fromValue(ColType::str_type), Qt::UserRole); // data
 
+        _tvModelUnique.setHeaderData(0, Qt::Horizontal, QVariant::fromValue(ColType::uint_type), Qt::UserRole); // rowID
         _tvModelUnique.setHeaderData(
-            0, Qt::Horizontal, QVariant::fromValue(CRV_ColType::uint_type), Qt::UserRole); // rowID
+            1, Qt::Horizontal, QVariant::fromValue(ColType::double_type), Qt::UserRole); // time
         _tvModelUnique.setHeaderData(
-            1, Qt::Horizontal, QVariant::fromValue(CRV_ColType::double_type), Qt::UserRole); // time
+            2, Qt::Horizontal, QVariant::fromValue(ColType::hex_type), Qt::UserRole); // frame ID
         _tvModelUnique.setHeaderData(
-            2, Qt::Horizontal, QVariant::fromValue(CRV_ColType::hex_type), Qt::UserRole); // frame ID
+            3, Qt::Horizontal, QVariant::fromValue(ColType::str_type), Qt::UserRole); // direction
         _tvModelUnique.setHeaderData(
-            3, Qt::Horizontal, QVariant::fromValue(CRV_ColType::str_type), Qt::UserRole); // direction
-        _tvModelUnique.setHeaderData(
-            4, Qt::Horizontal, QVariant::fromValue(CRV_ColType::uint_type), Qt::UserRole); // length
-        _tvModelUnique.setHeaderData(
-            5, Qt::Horizontal, QVariant::fromValue(CRV_ColType::str_type), Qt::UserRole); // data
+            4, Qt::Horizontal, QVariant::fromValue(ColType::uint_type), Qt::UserRole); // length
+        _tvModelUnique.setHeaderData(5, Qt::Horizontal, QVariant::fromValue(ColType::str_type), Qt::UserRole); // data
     }
 
     ~CanRawViewPrivate() {}
@@ -421,8 +419,8 @@ public:
     CRVGuiInterface& _ui;
     bool docked{ true };
     std::map<QString, QVariant> _props;
-    CRVSortModel _tvModelSort;
-    CRVSortModel _tvModelUniqueSort;
+    SortModel _tvModelSort;
+    SortModel _tvModelUniqueSort;
 
 private:
     int _rowID{ 0 };

@@ -58,7 +58,7 @@ TEST_CASE("dataType", "[cansignaldecoderModel]")
     REQUIRE(ndt.id == "rawframe");
     REQUIRE(ndt.name == "RAW");
 
-    ndt = cm.dataType(QtNodes::PortType::Out, 1);
+    ndt = cm.dataType(QtNodes::PortType::In, 1);
     REQUIRE(ndt.id == "");
     REQUIRE(ndt.name == "");
 }

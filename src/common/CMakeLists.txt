@@ -6,6 +6,7 @@ set(SRC
     propertyfields.h
     candbhandler.cpp
     candbpainter.cpp
+    sortmodel.cpp
 )
 
 add_library(cds-common STATIC ${SRC})

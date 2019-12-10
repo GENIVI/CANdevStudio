@@ -1,12 +1,12 @@
-#ifndef CRVSORTMODEL_H
-#define CRVSORTMODEL_H
+#ifndef SORTMODEL_H
+#define SORTMODEL_H
 
 #include <QSortFilterProxyModel>
 
-class CRVSortModel : public QSortFilterProxyModel {
+class SortModel : public QSortFilterProxyModel {
     Q_OBJECT
 public:
-    explicit CRVSortModel(QObject* parent = 0);
+    explicit SortModel(QObject* parent = 0);
 
     void setFilterActive(bool enabled);
     bool isFilterActive() const;
