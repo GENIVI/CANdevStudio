@@ -18,6 +18,7 @@ matrix:
          - PACKAGE=OFF
          - DOXYGEN=OFF
          - TEMPLATEGEN=OFF
+         - DOCKER_IMAGE=rkollataj/candevstudio
     - os: linux
       dist: trusty
       sudo: required
@@ -28,9 +29,10 @@ matrix:
          - CXX=g++-53
          - CMAKE_BUILD_TYPE=Release
          - WITH_COVERAGE=OFF
-         - PACKAGE=ON
+         - PACKAGE=OFF
          - DOXYGEN=OFF
          - TEMPLATEGEN=OFF
+         - DOCKER_IMAGE=rkollataj/candevstudio
     - os: linux
       dist: trusty
       sudo: required
@@ -44,6 +46,21 @@ matrix:
          - PACKAGE=OFF
          - DOXYGEN=ON
          - TEMPLATEGEN=ON
+         - DOCKER_IMAGE=rkollataj/candevstudio
+    - os: linux
+      dist: trusty
+      sudo: required
+      services: docker
+      group: edge
+      env:
+         - CC=gcc
+         - CXX=g++
+         - CMAKE_BUILD_TYPE=Release
+         - WITH_COVERAGE=OFF
+         - PACKAGE=ON
+         - DOXYGEN=OFF
+         - TEMPLATEGEN=ON
+         - DOCKER_IMAGE=rkollataj/candevstudio-18.04
     - os: osx
       osx_image: xcode9.4
 
