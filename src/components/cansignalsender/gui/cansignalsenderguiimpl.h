@@ -49,7 +49,14 @@ public:
 
                 if (_db.getDb().count(id)) {
                     auto ndx = _model->index(index.row(), 1);
-                    _model->setData(ndx, _db.getDb().at(id).front().signal_name.c_str(), Qt::EditRole);
+                    auto& sigVec = _db.getDb().at(id);
+
+                    if (sigVec.size()) {
+                        _model->setData(ndx, sigVec.front().signal_name.c_str(), Qt::EditRole);
+                    } else {
+                        _model->setData(ndx, "", Qt::EditRole);
+                        cds_error("No signals found for message {}", text.toStdString());
+                    }
                 } else {
                     cds_error("No signals for selected id 0x{:03x}", id);
                 }
