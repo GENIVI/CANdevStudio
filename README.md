@@ -142,7 +142,7 @@ Use Bintray badges above to dowload stable or develop version (each commit on ma
 **SYS** - either **win32**, **Linux** or **Darwin**<br/>
 **standalone** - bundle version that contains Qt libraries and all relevant plugins.<br/>
 ### Linux
-All packages are being built on Ubuntu 16.04 LTS. You may experience problems with missing or incompatible libraries when trying to run the package on other distros. 
+All packages are being built on Ubuntu 18.04 LTS. You may experience problems with missing or incompatible libraries when trying to run the package on other distros. 
 
 To run standalone version use CANdevStudio.sh script.
 ### Windows
