@@ -283,7 +283,7 @@ cannelloni -I can0 -R 192.168.0.2 -r 20000 -l 30000
 ### CAN Signals
 CANdevStudio provides support for CAN signals handling. [DBC](http://socialledge.com/sjsu/index.php/DBC_Format) database description format is supported. Reverse engineered DBC files can be found in [opendbc](https://github.com/commaai/opendbc) project.
 
-New formats can be added via extension of [CANdb](www.github.com/GENIVI/CANdb).
+Support for others CAN database formats can be added via extension of [CANdb](www.github.com/GENIVI/CANdb).
 
 #### Sending signals
 1. Start new project and setup CanDevice as described in quick start section
