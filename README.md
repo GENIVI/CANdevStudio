@@ -281,11 +281,13 @@ cannelloni -I can0 -R 192.168.0.2 -r 20000 -l 30000
 
 ## Help
 ### CAN Signals
-CANdevStudio provides support for CAN signals handling. [DBC](http://socialledge.com/sjsu/index.php/DBC_Format) database description format is supported. New formats can be added via extension of [CANdb](www.github.com/GENIVI/CANdb).
+CANdevStudio provides support for CAN signals handling. [DBC](http://socialledge.com/sjsu/index.php/DBC_Format) database description format is supported. Reverse engineered DBC files can be found in [opendbc](https://github.com/commaai/opendbc) project.
+
+New formats can be added via extension of [CANdb](www.github.com/GENIVI/CANdb).
 
 #### Sending signals
 1. Start new project and setup CanDevice as described in quick start section
-2. **Add CanSignalData** component that serves as CAN signals database for other components. You may have multiple CanSignalData components per project
+2. **Add CanSignalData** component that serves as CAN signals database for other components. You may have multiple CanSignalData components per projecthttps://github.com/commaai/opendbc
 3. Open CanSignalData properties and configure path to DBC file
 4. List of messages and signals shall be now loaded and visible in CanSignalData window
 5. You may configure cycle and initial value per each message
