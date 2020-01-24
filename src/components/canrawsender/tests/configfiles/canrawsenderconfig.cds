@@ -2,6 +2,7 @@
    "senderColumns": [
        "Id",
        "Data",
+       "Remote",
        "Loop",
        "Interval",
        ""
@@ -11,7 +12,9 @@
            "data": "6565",
            "id": "1321",
            "interval": "2548",
-           "loop": false
+           "loop": false,
+           "remote": false,
+           "send": false
        }
    ],
    "name": "CanRawSender",

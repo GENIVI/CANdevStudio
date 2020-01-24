@@ -268,7 +268,7 @@ QCheckBox::indicator:checked {
 }
 
 QCheckBox::indicator:unchecked:disabled {
-    image: url(:/images/files/images/light/CANbus_icon_CheckBoxOff_disabled.svg);
+    image: url(:/images/files/images/light/CANbus_icon_CheckBoxOff_disable.svg);
     background-color: #ffffff;
 }
 

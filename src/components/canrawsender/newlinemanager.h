@@ -30,12 +30,13 @@ public:
     enum class ColName {
         IdLine = 0,
         DataLine,
-        LoopCheckBox,
+        RemoteCheckBox,
+        LoopCheckBox,        
         IntervalLine,
         SendButton
     };
     /// \typedef ColNameIterator
-    /// \brief Iteratot through ColName content
+    /// \brief Iterator through ColName content
     using ColNameIterator = EnumIterator<ColName, ColName::IdLine, ColName::SendButton>;
 
     /// \brief The function return information about an appropriate column
@@ -58,9 +59,12 @@ public:
     /// \param[in] interval Interval string
     /// \param[in] loop Loop enable state
     /// \return true if new line is adopted all input data successfully, false otherwise
-    bool RestoreLine(QString& id, QString data, QString interval, bool loop, bool send);
+    bool RestoreLine(QString& id, QString data, bool remote, QString interval, bool loop, bool send);
 
 private:
+    /// \brief The function stores CAN frame data
+    void UpdateFrameData();
+
     /// \brief This function performs the necessary things when the meter stops
     void StopTimer();
     void StartTimer();
@@ -77,6 +81,7 @@ private:
 
     NLMFactoryInterface& mFactory;
     std::unique_ptr<CheckBoxInterface> _loop;
+    std::unique_ptr<CheckBoxInterface> _remote;
     std::unique_ptr<LineEditInterface> _id;
     std::unique_ptr<LineEditInterface> _data;
     std::unique_ptr<LineEditInterface> _interval;
@@ -86,6 +91,7 @@ signals:
 
 private slots:
     void LoopToggled(bool checked);
+    void RemoteToggled(bool checked);
     void SetSendButtonState();
     void SendButtonPressed();
     void TimerExpired();

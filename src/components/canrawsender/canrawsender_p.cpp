@@ -50,7 +50,7 @@ void CanRawSenderPrivate::writeSortingRules(QJsonObject& json) const
 void CanRawSenderPrivate::removeRowsSelectedByMouse()
 {
     QModelIndexList IndexList = _ui.getSelectedRows();
-    std::list<QModelIndex> tmp = IndexList.toStdList();
+    std::list<QModelIndex> tmp{IndexList.begin(), IndexList.end()};
 
     tmp.sort(); // List must to be sorted and reversed because erasing started from last row
     tmp.reverse();
@@ -96,8 +96,8 @@ bool CanRawSenderPrivate::columnAdopt(QJsonObject const& json)
     }
 
     auto colArray = json["senderColumns"].toArray();
-    if (colArray.size() != 5) {
-        cds_error("Columns array size is {} - must be 5!", std::to_string(colArray.size()));
+    if (colArray.size() < 5) {
+        cds_error("Columns array size is {} - must be at least 5!", std::to_string(colArray.size()));
         return false;
     }
     if (colArray.contains("Id") == false) {
@@ -107,6 +107,10 @@ bool CanRawSenderPrivate::columnAdopt(QJsonObject const& json)
     if (colArray.contains("Data") == false) {
         cds_error("Columns array does not contain Data field.");
         return false;
+    }
+    if (colArray.contains("Remote") == false) {
+        // Backward compability.
+        cds_warn("Columns array does not contain Remote field.");
     }
     if (colArray.contains("Loop") == false) {
         cds_error("Columns array does not contain Loop field.");
@@ -164,6 +168,7 @@ bool CanRawSenderPrivate::sortingAdopt(QJsonObject const& json)
 bool CanRawSenderPrivate::contentAdopt(QJsonObject const& json)
 {
     QString data, id, interval;
+    bool remote = false;
     bool loop = false;
     bool send = false;
 
@@ -177,74 +182,62 @@ bool CanRawSenderPrivate::contentAdopt(QJsonObject const& json)
         return false;
     }
 
+    // Lambda expression to restore string field
+    auto restoreStringField = [] (const QJsonObject& obj, const QString& fieldName, QString& fieldValue) -> bool {
+        if (obj.contains(fieldName)) {
+            if (obj[fieldName].isString() == true) {
+                fieldValue = obj[fieldName].toString();
+            } else {
+                cds_error("{} field does not contain a string format.", fieldName.toStdString());
+                return false;
+            }
+        } else {
+            cds_info("{} is not available.", fieldName.toStdString());
+        }
+        return true;
+    };
+
+    // Lambda expression to restore bool field
+    auto restoreBoolField = [] (const QJsonObject& obj, const QString& fieldName, bool& fieldValue) -> bool {
+        if (obj.contains(fieldName)) {
+            if (obj[fieldName].isBool() == true) {
+                fieldValue = obj[fieldName].toBool();
+            } else {
+                cds_error("{} field does not contain a bool format.", fieldName.toStdString());
+                return false;
+            }
+        } else {
+            cds_info("{} is not available.", fieldName.toStdString());
+        }
+        return true;
+    };
+
     auto contentArray = json["content"].toArray();
     for (auto ii = 0; ii < contentArray.count(); ++ii) {
         auto line = contentArray[ii].toObject();
 
-        data.clear();
-        id.clear();
+        data.clear();        
+        id.clear();        
         interval.clear();
+        remote = false;
         loop = false;
 
-        // Data
-        if (line.contains("data")) {
-            if (line["data"].isString() == true) {
-                data = line["data"].toString();
-            } else {
-                cds_error("Data does not contain a string format.");
-                return false;
-            }
-        } else {
-            cds_info("Data is not available.");
-        }
-        // Id
-        if (line.contains("id")) {
-            if (line["id"].isString() == true) {
-                id = line["id"].toString();
-            } else {
-                cds_error("Id does not contain a string format.");
-                return false;
-            }
-        } else {
-            cds_info("Id is not available.");
-        }
-        // Interval
-        if (line.contains("interval")) {
-            if (line["interval"].isString() == true) {
-                interval = line["interval"].toString();
-            } else {
-                cds_error("Interval does not contain a string format.");
-                return false;
-            }
-        } else {
-            cds_info("Interval is not available.");
-        }
-        // Loop
-        if (line.contains("loop")) {
-            if (line["loop"].isBool() == true) {
-                loop = line["loop"].toBool();
-            } else {
-                cds_error("Loop does not contain a bool format.");
-                return false;
-            }
-        } else {
-            cds_info("Loop is not available.");
-        }
-
-        // Send checked
-        if (line.contains("send")) {
-            if (line["send"].isBool() == true) {
-                send = line["send"].toBool();
-            } else {
-                cds_error("Send checked status does not contain a bool format.");
-            }
-        } else {
-            cds_info("Send checked status is not available.");
-        }
+        if (!restoreStringField(line, "data", data))
+            return false;
+        if (!restoreStringField(line, "id", id))
+            return false;
+        if (!restoreStringField(line, "interval", interval))
+            return false;
+        if (!restoreBoolField(line, "remote", remote))
+            return false;
+        if (!restoreBoolField(line, "loop", loop))
+            return false;
+        if (!restoreBoolField(line, "send", send))
+            return false;
 
         // Add new lines with dependencies
         addNewItem();
-        if (_lines.back()->RestoreLine(id, data, interval, loop, send) == false) {
+        if (_lines.back()->RestoreLine(id, data, remote, interval, loop, send) == false) {
             _tvModel.removeRow(_lines.size() - 1); // Delete line from table view
             _lines.erase(_lines.end() - 1); // Delete lines also from collection
             cds_warn("Problem with a validation of line occurred.");

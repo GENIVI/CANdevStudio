@@ -136,9 +136,10 @@ TEST_CASE("Can raw sender save configuration test", "[canrawsender]")
     REQUIRE(colIter.value().type() == QJsonValue::Array);
     const auto colArray = json["senderColumns"].toArray();
     REQUIRE(colArray.empty() == false);
-    REQUIRE(colArray.size() == 5);
+    REQUIRE(colArray.size()==6);
     REQUIRE(colArray.contains("Id") == true);
     REQUIRE(colArray.contains("Data") == true);
+    REQUIRE(colArray.contains("Remote") == true);
     REQUIRE(colArray.contains("Loop") == true);
     REQUIRE(colArray.contains("Interval") == true);
 
@@ -154,7 +155,7 @@ TEST_CASE("Can raw sender save configuration test", "[canrawsender]")
 class commonTestClass {
 public:
     commonTestClass() = delete;
-    commonTestClass(const QString& id, const QString& data, const QString& interval, bool loop)
+    commonTestClass(const QString& id, const QString& data, bool remote, const QString& interval, bool loop)
     {
         Fake(Method(crsMock, setAddCbk));
         Fake(Method(crsMock, setRemoveCbk));
@@ -177,10 +178,10 @@ public:
         When(Method(nlmFactoryMock, createLineEdit)).AlwaysDo([&]() { return &nlmLineEditMock.get(); });
 
         Fake(Method(nlmCheckBoxMock, toggledCbk));
-        When(Method(nlmCheckBoxMock, getState)).Return(true, loop);
+        When(Method(nlmCheckBoxMock, getState)).Return(true, true, loop, remote);
         Fake(Method(nlmCheckBoxMock, setState));
-        When(Method(nlmCheckBoxMock, mainWidget)).Return(reinterpret_cast<QWidget*>(&nlmCheckBoxMock.get()));
-        When(Method(nlmFactoryMock, createCheckBox)).Return(&nlmCheckBoxMock.get());
+        When(Method(nlmCheckBoxMock, mainWidget)).AlwaysReturn(reinterpret_cast<QWidget*>(&nlmCheckBoxMock.get()));
+        When(Method(nlmFactoryMock, createCheckBox)).AlwaysReturn(&nlmCheckBoxMock.get());
 
         Fake(Method(nlmPushButtonMock, init));
         Fake(Method(nlmPushButtonMock, pressedCbk));
@@ -214,11 +215,12 @@ TEST_CASE("Can raw sender restore configuration test - pass", "[canrawsender]")
     QJsonDocument jsonFile(QJsonDocument::fromJson(wholeFile));
     QJsonObject jsonObject = jsonFile.object();
     auto idConfStr = jsonObject["content"].toArray()[0].toObject()["id"].toString();
-    auto dataConfStr = jsonObject["content"].toArray()[0].toObject()["data"].toString();
+    auto dataConfStr = jsonObject["content"].toArray()[0].toObject()["data"].toString();    
+    auto remoteConfBool = jsonObject["content"].toArray()[0].toObject()["remote"].toBool();
     auto intervalConfStr = jsonObject["content"].toArray()[0].toObject()["interval"].toString();
     auto loopConfBool = jsonObject["content"].toArray()[0].toObject()["loop"].toBool();
 
-    commonTestClass commontest(idConfStr, dataConfStr, intervalConfStr, loopConfBool);
+    commonTestClass commontest(idConfStr, dataConfStr, remoteConfBool, intervalConfStr, loopConfBool);
     CanRawSender canRawSender{ CanRawSenderCtx(&commontest.crsMock.get(), &commontest.nlmFactoryMock.get()) };
 
     REQUIRE(canRawSender.getLineCount() == 0);
@@ -239,10 +241,11 @@ TEST_CASE("Can raw sender restore configuration test - column name incorrect", "
     QJsonObject jsonObject = jsonFile.object();
     auto idConfStr = jsonObject["content"].toArray()[0].toObject()["id"].toString();
     auto dataConfStr = jsonObject["content"].toArray()[0].toObject()["data"].toString();
+    auto remoteConfBool = jsonObject["content"].toArray()[0].toObject()["remote"].toBool();
     auto intervalConfStr = jsonObject["content"].toArray()[0].toObject()["interval"].toString();
     auto loopConfBool = jsonObject["content"].toArray()[0].toObject()["loop"].toBool();
 
-    commonTestClass commontest(idConfStr, dataConfStr, intervalConfStr, loopConfBool);
+    commonTestClass commontest(idConfStr, dataConfStr, remoteConfBool, intervalConfStr, loopConfBool);
     CanRawSender canRawSender{ CanRawSenderCtx(&commontest.crsMock.get(), &commontest.nlmFactoryMock.get()) };
 
     REQUIRE(canRawSender.getLineCount() == 0);
@@ -263,10 +266,11 @@ TEST_CASE("Can raw sender restore configuration test - Id incorrect", "[canrawse
     QJsonObject jsonObject = jsonFile.object();
     QString idConfStr("");
     auto dataConfStr = jsonObject["content"].toArray()[0].toObject()["data"].toString();
+    auto remoteConfBool = jsonObject["content"].toArray()[0].toObject()["remote"].toBool();
     auto intervalConfStr = jsonObject["content"].toArray()[0].toObject()["interval"].toString();
     auto loopConfBool = jsonObject["content"].toArray()[0].toObject()["loop"].toBool();
 
-    commonTestClass commontest(idConfStr, dataConfStr, intervalConfStr, loopConfBool);
+    commonTestClass commontest(idConfStr, dataConfStr, remoteConfBool, intervalConfStr, loopConfBool);
     CanRawSender canRawSender{ CanRawSenderCtx(&commontest.crsMock.get(), &commontest.nlmFactoryMock.get()) };
 
     REQUIRE(canRawSender.getLineCount() == 0);
@@ -287,10 +291,11 @@ TEST_CASE("Can raw sender restore configuration test - Data incorrect", "[canraw
     QJsonObject jsonObject = jsonFile.object();
     auto idConfStr = jsonObject["content"].toArray()[0].toObject()["id"].toString();
     QString dataConfStr("");
+    auto remoteConfBool = jsonObject["content"].toArray()[0].toObject()["remote"].toBool();
     auto intervalConfStr = jsonObject["content"].toArray()[0].toObject()["interval"].toString();
     auto loopConfBool = jsonObject["content"].toArray()[0].toObject()["loop"].toBool();
 
-    commonTestClass commontest(idConfStr, dataConfStr, intervalConfStr, loopConfBool);
+    commonTestClass commontest(idConfStr, dataConfStr, remoteConfBool, intervalConfStr, loopConfBool);
     CanRawSender canRawSender{ CanRawSenderCtx(&commontest.crsMock.get(), &commontest.nlmFactoryMock.get()) };
 
     REQUIRE(canRawSender.getLineCount() == 0);
@@ -311,10 +316,11 @@ TEST_CASE("Can raw sender restore configuration test - Interval incorrect", "[ca
     QJsonObject jsonObject = jsonFile.object();
     auto idConfStr = jsonObject["content"].toArray()[0].toObject()["id"].toString();
     auto dataConfStr = jsonObject["content"].toArray()[0].toObject()["data"].toString();
+    auto remoteConfBool = jsonObject["content"].toArray()[0].toObject()["remote"].toBool();
     QString intervalConfStr("");
     auto loopConfBool = jsonObject["content"].toArray()[0].toObject()["loop"].toBool();
 
-    commonTestClass commontest(idConfStr, dataConfStr, intervalConfStr, loopConfBool);
+    commonTestClass commontest(idConfStr, dataConfStr, remoteConfBool, intervalConfStr, loopConfBool);
     CanRawSender canRawSender{ CanRawSenderCtx(&commontest.crsMock.get(), &commontest.nlmFactoryMock.get()) };
 
     REQUIRE(canRawSender.getLineCount() == 0);
@@ -375,12 +381,25 @@ TEST_CASE("Restore config paths - columnAdopt", "[canrawsender]")
     columnArray.append({ "Idd" });
     columnArray.append({ "Idd" });
     columnArray.append({ "Idd" });
+    columnArray.append({ "Idd" });
     json["senderColumns"] = columnArray;
     canRawSender.setConfig(json);
 
     // No Data column
     columnArray = QJsonArray();
     columnArray.append({ "Id" });
+    columnArray.append({ "Idd" });
+    columnArray.append({ "Idd" });
+    columnArray.append({ "Idd" });
+    columnArray.append({ "Idd" });
+    columnArray.append({ "Idd" });
+    json["senderColumns"] = columnArray;
+    canRawSender.setConfig(json);
+
+    // No Remote column
+    columnArray = QJsonArray();
+    columnArray.append({ "Id" });
+    columnArray.append({ "Data" });
     columnArray.append({ "Idd" });
     columnArray.append({ "Idd" });
     columnArray.append({ "Idd" });
@@ -392,6 +411,7 @@ TEST_CASE("Restore config paths - columnAdopt", "[canrawsender]")
     columnArray = QJsonArray();
     columnArray.append({ "Id" });
     columnArray.append({ "Data" });
+    columnArray.append({ "Remote" });
     columnArray.append({ "Idd" });
     columnArray.append({ "Idd" });
     columnArray.append({ "Idd" });
@@ -402,6 +422,7 @@ TEST_CASE("Restore config paths - columnAdopt", "[canrawsender]")
     columnArray = QJsonArray();
     columnArray.append({ "Id" });
     columnArray.append({ "Data" });
+    columnArray.append({ "Remote" });
     columnArray.append({ "Loop" });
     columnArray.append({ "Idd" });
     columnArray.append({ "Idd" });
@@ -412,6 +433,7 @@ TEST_CASE("Restore config paths - columnAdopt", "[canrawsender]")
     columnArray = QJsonArray();
     columnArray.append({ "Id" });
     columnArray.append({ "Data" });
+    columnArray.append({ "Remote" });
     columnArray.append({ "Loop" });
     columnArray.append({ "Interval" });
     columnArray.append({ "Idd" });
@@ -431,6 +453,7 @@ TEST_CASE("Restore config paths - contentAdopt", "[canrawsender]")
     columnArray = QJsonArray();
     columnArray.append({ "Id" });
     columnArray.append({ "Data" });
+    columnArray.append({ "Remote" });
     columnArray.append({ "Loop" });
     columnArray.append({ "Interval" });
     columnArray.append({ "Idd" });
@@ -440,7 +463,7 @@ TEST_CASE("Restore config paths - contentAdopt", "[canrawsender]")
     json["content"] = "";
     canRawSender.setConfig(json);
 
-    // no Data Id Interval Loop and Send fields
+    // no Data Id Interval Remote Loop and Send fields
     contentArray = QJsonArray();
     contentArray.append({ "dummy" });
     json["content"] = contentArray;
@@ -464,13 +487,19 @@ TEST_CASE("Restore config paths - contentAdopt", "[canrawsender]")
     json["content"] = contentArray;
     canRawSender.setConfig(json);
 
+    // remote has wrong type
+    contentArray = QJsonArray();
+    contentArray.append(QJsonObject({ { "remote", "aa" } }));
+    json["content"] = contentArray;
+    canRawSender.setConfig(json);
+
     // loop has wrong type
     contentArray = QJsonArray();
     contentArray.append(QJsonObject({ { "loop", "aa" } }));
     json["content"] = contentArray;
     canRawSender.setConfig(json);
 
-    // loop has wrong type
+    // send has wrong type
     contentArray = QJsonArray();
     contentArray.append(QJsonObject({ { "send", "aa" } }));
     json["content"] = contentArray;
@@ -489,6 +518,7 @@ TEST_CASE("Restore config paths - sortingAdopt", "[canrawsender]")
     columnArray = QJsonArray();
     columnArray.append({ "Id" });
     columnArray.append({ "Data" });
+    columnArray.append({ "Remote" });
     columnArray.append({ "Loop" });
     columnArray.append({ "Interval" });
     columnArray.append({ "Idd" });
