@@ -50,12 +50,17 @@ NewLineManager::NewLineManager(CanRawSender* q, bool _simulationState, NLMFactor
     _interval->init("ms", _vDec);
     _interval->textChangedCbk(std::bind(&NewLineManager::SetSendButtonState, this));
 
+
+    // Remote checkbox
+    _remote.reset(mFactory.createCheckBox());
+    _remote->toggledCbk(std::bind(&NewLineManager::RemoteToggled, this, std::placeholders::_1));
+
     // Send button
     _send.reset(mFactory.createPushButton());
     _send->init("Send", false);
     _send->pressedCbk(std::bind(&NewLineManager::SendButtonPressed, this));
 
-    // Checkbox
+    // Loop checkbox
     _loop.reset(mFactory.createCheckBox());
     _loop->toggledCbk(std::bind(&NewLineManager::LoopToggled, this, std::placeholders::_1));
 
@@ -66,8 +71,9 @@ void NewLineManager::StopTimer()
 {
     _timer.stop();
     _id->setDisabled(false);
-    _data->setDisabled(false);
+    _data->setDisabled(_remote->getState());
     _loop->setDisabled(false);
+    _remote->setDisabled(false);
     _interval->setDisabled(false);
 }
 
@@ -81,6 +87,7 @@ void NewLineManager::StartTimer()
         _data->setDisabled(true);
         _interval->setDisabled(true);
         _loop->setDisabled(true);
+        _remote->setDisabled(true);
     } else {
         cds_info("Timer not started. Delay set to 0");
     }
@@ -90,6 +97,12 @@ void NewLineManager::LoopToggled(bool checked)
 {
     _send->setCheckable(checked);
     SetSendButtonState();
+}
+
+void NewLineManager::RemoteToggled(bool checked)
+{
+    // Disable data field
+    _data->setDisabled(checked);
 }
 
 void NewLineManager::SetSendButtonState()
@@ -110,16 +123,8 @@ void NewLineManager::SendButtonPressed()
     if (_send->checked()) {
         StopTimer();
     } else {
-        quint32 id = _id->getText().toUInt(nullptr, 16);
-
-        _frame.setFrameId(id);
-        _frame.setPayload(QByteArray::fromHex(_data->getText().toUtf8()));
-
-        if((id > 0x7ff) || (_id->getText().length() == 8)) {
-            _frame.setExtendedFrameFormat(true);
-        } else {
-            _frame.setExtendedFrameFormat(false);
-        }
+        // Update frame data
+        UpdateFrameData();
 
         if (_simState) {
             emit _canRawSender->sendFrame(_frame);
@@ -148,6 +153,8 @@ QWidget* NewLineManager::GetColsWidget(ColNameIterator name)
             return _interval->mainWidget();
         case ColName::LoopCheckBox:
             return _loop->mainWidget();
+        case ColName::RemoteCheckBox:
+            return _remote->mainWidget();
         case ColName::SendButton:
             return _send->mainWidget();
         default:
@@ -176,16 +183,22 @@ void NewLineManager::Line2Json(QJsonObject& json) const
 {
     json["id"] = _id->getText();
     json["data"] = _data->getText();
+    json["remote"] = _remote->getState();
     json["interval"] = _interval->getText();
     json["loop"] = (_loop->getState() == true) ? true : false;
     json["send"] = _send->checked();
 }
 
-bool NewLineManager::RestoreLine(QString& id, QString data, QString interval, bool loop, bool send)
+bool NewLineManager::RestoreLine(QString& id, QString data, bool remote, QString interval, bool loop, bool send)
 {
     // Adopt new line requirement
-    _id->setText(id);
+    _id->setText(id);    
     _data->setText(data);
+
+    if (_remote->getState() != remote) {
+        _remote->setState(remote);
+    }
+
     if (interval.length() > 0) {
         _loop->setState(true); // get possibility to write interval data
         _interval->setText(interval);
@@ -201,19 +214,37 @@ bool NewLineManager::RestoreLine(QString& id, QString data, QString interval, bo
 
     // Chcek if adopted correctly
     if ((_id->getText() != id) || (_data->getText() != data)
-        || ((_interval->getText() != interval) && (interval.length() > 0)) || (_loop->getState() != loop)) {
+        || ((_interval->getText() != interval) && (interval.length() > 0)) || (_loop->getState() != loop) || (_remote->getState() != remote)) {
         return false;
     }
 
     return true;
 }
 
+void NewLineManager::UpdateFrameData()
+{
+    quint32 id = _id->getText().toUInt(nullptr, 16);
+    _frame.setFrameId(id);
+
+    if (true == _remote->getState()) {
+        _frame.setFrameType(QCanBusFrame::RemoteRequestFrame);
+        _frame.setPayload(QByteArray());
+    } else {
+        _frame.setFrameType(QCanBusFrame::DataFrame);
+        _frame.setPayload(QByteArray::fromHex(_data->getText().toUtf8()));
+    }
+
+    if((id > 0x7ff) || (_id->getText().length() == 8)) {
+        _frame.setExtendedFrameFormat(true);
+    } else {
+        _frame.setExtendedFrameFormat(false);
+    }
+}
+
 void NewLineManager::FrameDataChanged()
 {
     // Update frame data
-    quint32 id = _id->getText().toUInt(nullptr, 16);
-    _frame.setFrameId(id);
-    _frame.setPayload(QByteArray::fromHex(_data->getText().toUtf8()));
+    UpdateFrameData();
 
     // Update Send button state
     SetSendButtonState();

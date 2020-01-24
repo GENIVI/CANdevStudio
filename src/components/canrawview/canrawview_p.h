@@ -14,6 +14,7 @@
 
 namespace {
 const int32_t rowCountMax = 2000;
+const QString remoteFrameData = "R";
 }
 
 class CanRawViewPrivate : public QObject {
@@ -95,8 +96,14 @@ public:
 
         QString frameID = QString("0x" + QString::number(frame.frameId(), 16).rightJustified(idPadding, '0'));
         QString time = QString::number((_timer.elapsed() / 1000.0), 'f', 2);
-        QString size = QString::number(frame.payload().size());
-        QString data = QString::fromUtf8(payHex.data(), payHex.size());
+        QString size, data;
+        if (QCanBusFrame::RemoteRequestFrame == frame.frameType()) {
+            size.clear();
+            data = remoteFrameData;
+        } else {
+            size = QString::number(frame.payload().size());
+            data = QString::fromUtf8(payHex.data(), payHex.size());
+        }
 
         QList<QStandardItem*> list;
 
