@@ -97,6 +97,8 @@ public:
                     p->addItems(QCanBus::instance()->plugins());
                     connect(p, &PropertyFieldCombo::currentTextChanged, this, &CanDevicePrivate::backendChanged);
 
+                    p->setPropText(_props[_backendProperty].toString());
+
                     return p;
                 })),
 
