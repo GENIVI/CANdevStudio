@@ -290,6 +290,10 @@ TEST_CASE("Section clicked", "[canrawview]")
     frame.setPayload({ "12345" });
     REQUIRE_NOTHROW(canRawView.frameReceived(frame));
 
+    frame.setFrameId(1234);
+    frame.setPayload({ "" });
+    frame.setFrameType(QCanBusFrame::RemoteRequestFrame);
+
     sectionClicked(1);
     sectionClicked(1);
     sectionClicked(1);
@@ -352,6 +356,12 @@ TEST_CASE("Filter callback", "[canrawview]")
 
     frame.setFrameId(123);
     frame.setPayload({ "12345" });
+    REQUIRE_NOTHROW(canRawView.frameReceived(frame));
+    REQUIRE_NOTHROW(canRawView.frameSent(true, frame));
+
+    frame.setFrameId(1234);
+    frame.setPayload({ "" });
+    frame.setFrameType(QCanBusFrame::RemoteRequestFrame);
     REQUIRE_NOTHROW(canRawView.frameReceived(frame));
     REQUIRE_NOTHROW(canRawView.frameSent(true, frame));
 
