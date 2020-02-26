@@ -115,7 +115,7 @@ BO_ 1160 DAS_steeringControl: 4 NEO
  SG_ DAS_steeringControlChecksum : 31|80@0+ (1,0) [0|0] "" EPAS
  SG_ DAS_steeringControlCounter : 19|80@0+ (1,0) [0|0] "" EPAS
  SG_ DAS_steeringAngleRequest : 6|80@0+ (0.1,-1638.35) [-1638.35|1638.35] "deg" EPAS
- SG_ DAS_steeringHapticRequest : 7|1@2+ (1,0) [0|0] "" EPAS
+ SG_ DAS_steeringHapticRequest : 7|80@2+ (1,0) [0|0] "" EPAS
  
 BO_ 257 GTW_epasControl: 3 NEO
  SG_ GTW_epasControlChecksum : 16|8@1+ (1,0) [0|255] "" NEO

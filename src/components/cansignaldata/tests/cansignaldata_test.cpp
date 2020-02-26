@@ -442,7 +442,7 @@ TEST_CASE("Filter test", "[cansignaldata]")
 
     // filter sig by type
     sigModel->updateFilter("unsigned");
-    REQUIRE(sigModel->rowCount() == 136);
+    REQUIRE(sigModel->rowCount() == 193);
     REQUIRE(sigModel->isFilterActive() == true);
 
     // filter sig by offset and min
