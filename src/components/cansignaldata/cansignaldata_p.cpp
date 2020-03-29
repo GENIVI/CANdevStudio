@@ -231,7 +231,15 @@ void CanSignalDataPrivate::loadDbc(const std::string& filename)
         return;
     }
 
-    _messages = parser.getDb().messages;
+    // Make sure that ID passed to components is 29 bit long
+    // DBC for SAE J1939 seems to have 32nd bit of ID always set
+    _messages.clear();
+    for (auto msg : parser.getDb().messages) {
+        auto canMsg = msg.first;
+        canMsg.id = canMsg.id & 0x1fffffff;
+
+        _messages[canMsg] = msg.second;
+    }
 
     cds_info("CAN DB load successful. {} records found", _messages.size());
 
