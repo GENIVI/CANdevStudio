@@ -105,7 +105,7 @@ void CanSignalEncoderPrivate::signalToRaw(
         return;
     }
 
-    int64_t rawVal = static_cast<int64_t>((sigVal.toDouble() - sigDesc.offset) / sigDesc.factor);
+    int64_t rawVal = static_cast<int64_t>(std::llround((sigVal.toDouble() - sigDesc.offset) / sigDesc.factor));
     uint8_t* data = (uint8_t*)_rawCache[id].data();
 
     if (sigDesc.byteOrder == 0) {
