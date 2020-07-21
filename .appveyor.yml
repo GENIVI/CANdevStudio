@@ -8,8 +8,8 @@ environment:
 
 for:
   -
-    image:
-      only:
+    only:
+      image:
         - Visual Studio 2019
     environment:
       matrix:
@@ -18,8 +18,8 @@ for:
           QT_PATH: C:\Qt\5.15.0\mingw81_32
           PACKAGE: 1
   -
-    image:
-      only:
+    only:
+      image:
         - Visual Studio 2015
     environment:
       matrix:
