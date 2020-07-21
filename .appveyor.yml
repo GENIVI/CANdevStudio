@@ -28,9 +28,12 @@ install:
 build_script:
 - cmd: >-
     dir C:\Qt\5.15.0\mingw81_32
+
     dir C:\Qt\5.15\mingw81_32
-    dir C:\Qt\5.15\
-    mkdir build
+
+    dir C:\Qt\5.15
+
+    dir C:\Qt\5.15.0
 
     cd build
 
