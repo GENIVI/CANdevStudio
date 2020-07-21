@@ -9,7 +9,7 @@ environment:
     QT_PATH: C:\Qt\5.6\msvc2015
   - GENERATOR: '"MinGW Makefiles"'
     BUILD_TYPE: Release
-    QT_PATH: C:\Qt\5.15\mingw53_32
+    QT_PATH: C:\Qt\5.15.0\mingw81_32
     PACKAGE: 1
   - GENERATOR: '"MinGW Makefiles"'
     BUILD_TYPE: Debug
