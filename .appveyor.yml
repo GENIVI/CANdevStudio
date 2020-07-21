@@ -26,6 +26,39 @@ environment:
       BUILD_TYPE: Release
       QT_PATH: C:\Qt\5.11\msvc2015_64
 
+for:
+  -
+    image:
+      only:
+        - Visual Studio 2019
+    environment:
+      matrix:
+        - GENERATOR: '"MinGW Makefiles"'
+          BUILD_TYPE: Release
+          QT_PATH: C:\Qt\5.15.0\mingw81_32
+          PACKAGE: 1
+  -
+    image:
+      only:
+        - Visual Studio 2015
+    environment:
+      matrix:
+        - GENERATOR: '"Visual Studio 14 2015"'
+          BUILD_TYPE: Release
+          QT_PATH: C:\Qt\5.6\msvc2015
+        - GENERATOR: '"MinGW Makefiles"'
+          BUILD_TYPE: Debug
+          QT_PATH: C:\Qt\5.11\mingw53_32
+        - GENERATOR: '"Visual Studio 14 2015"'
+          BUILD_TYPE: Debug
+          QT_PATH: C:\Qt\5.6\msvc2015
+        - GENERATOR: '"Visual Studio 14 2015 Win64"'
+          BUILD_TYPE: Debug
+          QT_PATH: C:\Qt\5.11\msvc2015_64    
+        - GENERATOR: '"Visual Studio 14 2015 Win64"'
+          BUILD_TYPE: Release
+          QT_PATH: C:\Qt\5.11\msvc2015_64
+
 install:
 - cmd: git submodule update --init --recursive
 build_script:
