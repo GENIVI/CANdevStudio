@@ -9,8 +9,7 @@ environment:
 for:
   -
     only:
-      image:
-        - Visual Studio 2019
+      - image: Visual Studio 2019
     environment:
       matrix:
         - GENERATOR: '"MinGW Makefiles"'
@@ -19,8 +18,7 @@ for:
           PACKAGE: 1
   -
     only:
-      image:
-        - Visual Studio 2015
+      - image: Visual Studio 2015
     environment:
       matrix:
         - GENERATOR: '"Visual Studio 14 2015"'
