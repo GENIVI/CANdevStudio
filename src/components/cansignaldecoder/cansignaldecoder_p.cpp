@@ -61,29 +61,35 @@ void CanSignalDecoderPrivate::decodeFrame(const QCanBusFrame& frame, Direction c
 
     if (msgDesc) {
         for (auto& sig : msgDesc->second) {
-            if ((sig.startBit >= (frame.payload().size() * 8))
-                || ((sig.startBit + sig.signalSize - 1) >= (frame.payload().size() * 8))) {
-
-                cds_error("Invalid message size - startBit {}, sigSize {}, payload size {}", sig.startBit,
-                    sig.signalSize, frame.payload().size());
-
-                continue;
-            }
 
             switch (sig.byteOrder) {
             case 0:
-                // Little endian
-                littleEndian = true;
-                break;
-
-            case 1:
                 // Big endian
                 littleEndian = false;
+                break;
+            case 1:
+                // Little endian
+                littleEndian = true;
                 break;
 
             default:
                 cds_error("byte order {} not suppoerted", sig.byteOrder);
                 continue;
+            }
+
+            if (sig.startBit >= (frame.payload().size() * 8)) {
+                bool error = false;
+                if (littleEndian && ((sig.startBit + sig.signalSize - 1) >= (frame.payload().size() * 8))) {
+                    error = true;
+                } else if (!littleEndian && ((sig.startBit - sig.signalSize + 1) < 0)) {
+                    error = true;
+                }
+
+                if (error) {
+                    cds_error("Invalid message size - startBit {}, sigSize {}, payload size {}, calc: {}", sig.startBit,
+                                sig.signalSize, frame.payload().size(), frame.payload().size() * 8);
+                    continue;
+                }
             }
 
             int64_t value = rawToSignal((const uint8_t*)frame.payload().constData(), sig.startBit, sig.signalSize,

@@ -81,14 +81,19 @@ void CanSignalEncoderPrivate::encodeSignal(const QString& name, const QVariant& 
                 _rawCache[id].fill(0, msgDesc->first.dlc);
             }
 
-            if (_rawCache[id].size() * 8 >= sig.startBit + sig.signalSize) {
-
-                signalToRaw(id, sig, val, msgDesc->first.updateCycle);
-                return;
-            } else {
-                cds_error("Payload size ('{}') for signal '{}' is too small. StartBit {}, signalSize {}",
-                    _rawCache[id].size() * 8, sig.signal_name, sig.startBit, sig.signalSize);
+            bool error = false;
+            bool littleEndian = sig.byteOrder == 1;
+            if (littleEndian && ((sig.startBit + sig.signalSize - 1) >= (_rawCache[id].size() * 8))) {
+                error = true;
+            } else if (!littleEndian && ((sig.startBit - sig.signalSize + 1) < 0)) {
+                error = true;
             }
+            if (error) {
+                cds_error("Payload size LE: {} ('{}') for signal '{}' is too small. StartBit {}, signalSize {}", littleEndian, _rawCache[id].size() * 8, sig.signal_name, sig.startBit, sig.signalSize);
+                continue;
+            }
+            signalToRaw(id, sig, val, msgDesc->first.updateCycle);
+            return;
         }
     }
 
@@ -109,16 +114,6 @@ void CanSignalEncoderPrivate::signalToRaw(
     uint8_t* data = (uint8_t*)_rawCache[id].data();
 
     if (sigDesc.byteOrder == 0) {
-        // little endian
-        auto bit = sigDesc.startBit;
-        for (int bitpos = 0; bitpos < sigDesc.signalSize; bitpos++) {
-            // clear bit first
-            data[bit / 8] &= ~(1U << (bit % 8));
-            // set bit
-            data[bit / 8] |= ((rawVal >> bitpos) & 1U) << (bit % 8);
-            bit++;
-        }
-    } else {
         // motorola / big endian mode
         auto bit = sigDesc.startBit;
         for (int bitpos = 0; bitpos < sigDesc.signalSize; bitpos++) {
@@ -127,6 +122,16 @@ void CanSignalEncoderPrivate::signalToRaw(
             // set bit
             data[bit / 8] |= ((rawVal >> (sigDesc.signalSize - bitpos - 1)) & 1U) << (bit % 8);
 
+            bit++;
+        }
+    } else {
+        // little endian
+        auto bit = sigDesc.startBit;
+        for (int bitpos = 0; bitpos < sigDesc.signalSize; bitpos++) {
+            // clear bit first
+            data[bit / 8] &= ~(1U << (bit % 8));
+            // set bit
+            data[bit / 8] |= ((rawVal >> bitpos) & 1U) << (bit % 8);
             bit++;
         }
     }
