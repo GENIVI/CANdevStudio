@@ -198,7 +198,7 @@ std::string CanSignalDataPrivate::loadFile(const std::string& filename)
 {
     const std::string path = filename;
 
-    std::fstream file{ path.c_str() };
+    std::fstream file{ path.c_str(), std::ios::in };
 
     if (!file.good()) {
         cds_error("File {} does not exists", filename);
