@@ -222,9 +222,9 @@ void CanSignalDataPrivate::loadDbc(const std::string& filename)
     _messages.clear();
 
     CANdb::DBCParser parser;
-    bool success = parser.parse(loadFile(filename));
+    const auto db = parser.parse(loadFile(filename));
 
-    if (!success) {
+    if (!db) {
         cds_error("Failed to load CAN DB from '{}' file", filename);
         // send empty messages to indicate problem
         sendCANdbUpdated();
@@ -234,7 +234,7 @@ void CanSignalDataPrivate::loadDbc(const std::string& filename)
     // Make sure that ID passed to components is 29 bit long
     // DBC for SAE J1939 seems to have 32nd bit of ID always set
     _messages.clear();
-    for (auto msg : parser.getDb().messages) {
+    for (auto msg : db->messages) {
         auto canMsg = msg.first;
         canMsg.id = canMsg.id & 0x1fffffff;
 
