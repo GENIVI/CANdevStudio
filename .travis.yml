@@ -62,7 +62,7 @@ matrix:
          - TEMPLATEGEN=ON
          - DOCKER_IMAGE=rkollataj/candevstudio-18.04
     - os: osx
-      osx_image: xcode9.4
+      osx_image: xcode11.5
 
 #Blacklist
 branches:
