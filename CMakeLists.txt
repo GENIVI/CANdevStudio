@@ -195,14 +195,13 @@ if(STANDALONE)
     else()
         message(WARNING "Qt5 plugin directory cannot be detected.")
         if(WIN32)
-            set(QT_PLUGINS_DIR C:/Qt/${Qt5Core_VERSION}/mingw53_32/plugins)
+            set(QT_PLUGINS_DIR C:/Qt/${Qt5Core_VERSION}/mingw81_32/plugins)
             message(WARNING "Setting to default Appveyor path: ${QT_PLUGINS_DIR}")
         endif()
     endif()
 
     install(DIRECTORY
                 ${QT_PLUGINS_DIR}/platforms
-                ${QT_PLUGINS_DIR}/platforminputcontexts
                 ${QT_PLUGINS_DIR}/imageformats
                 ${QT_PLUGINS_DIR}/canbus
                 ${QT_PLUGINS_DIR}/generic
