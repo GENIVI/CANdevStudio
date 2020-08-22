@@ -7,27 +7,33 @@ environment:
     GENERATOR: '"MinGW Makefiles"'
     BUILD_TYPE: Release
     QT_PATH: C:\Qt\5.15.0\mingw81_32
+    BOOST_PATH: C:\Libraries\boost_1_73_0
     PACKAGE: 1
   - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
     GENERATOR: '"Visual Studio 14 2015"'
     BUILD_TYPE: Release
     QT_PATH: C:\Qt\5.6\msvc2015
+    BOOST_PATH: C:\Libraries\boost_1_67_0
   - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
     GENERATOR: '"MinGW Makefiles"'
     BUILD_TYPE: Debug
     QT_PATH: C:\Qt\5.11\mingw53_32
+    BOOST_PATH: C:\Libraries\boost_1_67_0
   - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
     GENERATOR: '"Visual Studio 14 2015"'
     BUILD_TYPE: Debug
     QT_PATH: C:\Qt\5.6\msvc2015
+    BOOST_PATH: C:\Libraries\boost_1_67_0
   - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
     GENERATOR: '"Visual Studio 14 2015 Win64"'
     BUILD_TYPE: Debug
     QT_PATH: C:\Qt\5.11\msvc2015_64
+    BOOST_PATH: C:\Libraries\boost_1_67_0
   - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
     GENERATOR: '"Visual Studio 14 2015 Win64"'
     BUILD_TYPE: Release
     QT_PATH: C:\Qt\5.11\msvc2015_64
+    BOOST_PATH: C:\Libraries\boost_1_67_0
 install:
 - cmd: git submodule update --init --recursive
 build_script:
@@ -40,7 +46,7 @@ build_script:
 
     set PATH=C:\mingw-w64\i686-8.1.0-posix-dwarf-rt_v6-rev0\mingw32\bin;C:\mingw-w64\i686-5.3.0-posix-dwarf-rt_v4-rev0\mingw32\bin;%PATH%
 
-    cmake .. -G %GENERATOR% -DCMAKE_PREFIX_PATH=%QT_PATH% -DCMAKE_BUILD_TYPE=%BUILD_TYPE% -DBOOST_INCLUDEDIR=C:\Libraries\boost_1_67_0
+    cmake .. -G %GENERATOR% -DCMAKE_PREFIX_PATH=%QT_PATH% -DCMAKE_BUILD_TYPE=%BUILD_TYPE% -DBOOST_INCLUDEDIR=%BOOST_PATH%
 
     cmake --build . --config %BUILD_TYPE%
 
