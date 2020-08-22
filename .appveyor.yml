@@ -3,15 +3,15 @@ environment:
   BINTRAY_API_KEY:
     secure: 5VhWtDtya2N1yL9pbFGQbFdH2+zbg7FZ0O3rONMv0GJ8uQIEyJHBPYuJjdWhcaLO
   matrix:
+  - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
+    GENERATOR: '"MinGW Makefiles"'
+    BUILD_TYPE: Release
+    QT_PATH: C:\Qt\5.15.0\mingw81_32
+    PACKAGE: 1
   - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
     GENERATOR: '"Visual Studio 14 2015"'
     BUILD_TYPE: Release
     QT_PATH: C:\Qt\5.6\msvc2015
-  - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
-    GENERATOR: '"MinGW Makefiles"'
-    BUILD_TYPE: Release
-    QT_PATH: C:\Qt\5.15.0\mingw81_3
-    PACKAGE: 1
   - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
     GENERATOR: '"MinGW Makefiles"'
     BUILD_TYPE: Debug
@@ -38,7 +38,7 @@ build_script:
 
     set PATH=%PATH:C:\Program Files\Git\usr\bin;=%
 
-    set PATH=C:\mingw-w64\i686-5.3.0-posix-dwarf-rt_v4-rev0\mingw32\bin;%PATH%
+    set PATH=C:\mingw-w64\i686-8.1.0-posix-dwarf-rt_v6-rev0\mingw32\bin;C:\mingw-w64\i686-5.3.0-posix-dwarf-rt_v4-rev0\mingw32\bin;%PATH%
 
     cmake .. -G %GENERATOR% -DCMAKE_PREFIX_PATH=%QT_PATH% -DCMAKE_BUILD_TYPE=%BUILD_TYPE% -DBOOST_INCLUDEDIR=C:\Libraries\boost_1_67_0
 
