@@ -1,10 +1,13 @@
 #ifndef CANSIGNALMODEL_H
 #define CANSIGNALMODEL_H
 
+#include <QVariant>
+#include <nodes/NodeData>
 #include <nodes/NodeDataModel>
+
 #include "datadirection.h"
 
-class CanSignalModel : public NodeData {
+class CanSignalModel : public QtNodes::NodeData {
 public:
     CanSignalModel(){};
     CanSignalModel(const QString& sigName, const QVariant& value, const Direction& dir = Direction::TX)
@@ -14,9 +17,9 @@ public:
     {
     }
 
-    NodeDataType type() const override
+    QtNodes::NodeDataType type() const override
     {
-        return NodeDataType{ "signal", "SIG" };
+        return QtNodes::NodeDataType{ "signal", "SIG" };
     }
     
     QVariant value() const
