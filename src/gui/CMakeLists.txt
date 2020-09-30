@@ -9,7 +9,7 @@ set(srcs
 )
 
 add_executable(CANdevStudio MACOSX_BUNDLE ${GUI_TYPE} ${srcs})
-target_link_libraries(CANdevStudio projectconfig Qt5::Quick  Qt5::Widgets Qt5::Qml Qt5::QuickWidgets)
+target_link_libraries(CANdevStudio projectconfig)
 target_compile_definitions(CANdevStudio PRIVATE $<$<CONFIG:Debug>:CDS_DEBUG=true> $<$<NOT:$<CONFIG:Debug>>:CDS_DEBUG=false>)
 target_include_directories(CANdevStudio 
     PRIVATE

@@ -20,7 +20,7 @@ signals:
      * @param frameId frame identifier
      * @param frameData frame payload
      */
-    void sendFrame(const qint32& frameId, const QByteArray& frameData);
+    void sendFrame(const quint32& frameId, const QByteArray& frameData);
 
     /**
      * @brief Send a CAN named signal
@@ -34,7 +34,7 @@ signals:
      * @param frameId frame identifier
      * @param frameData frame payload
      */
-    void frameReceived(const qint32& frameId, const QByteArray& frameData);
+    void frameReceived(const quint32& frameId, const QByteArray& frameData);
 
     /**
      * @brief A CAN signal was received
@@ -42,6 +42,16 @@ signals:
      * @param signal value
      */
     void signalReceived(const QString& name, const QVariant& value);
+
+    /**
+    * @brief The simulation was started
+    */
+    void simulationStarted();
+
+    /**
+     * @brief The simulation was stopped
+     */
+    void simulationStopped();
 };
 
 #endif // CANBUSMODEL_HPP

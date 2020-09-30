@@ -39,7 +39,7 @@ public:
     /**
      * @brief virtual dtor
      */
-    ~QMLExecutor();
+    virtual ~QMLExecutor();
 
     /**
      * @see ComponentInterface::mainWidget

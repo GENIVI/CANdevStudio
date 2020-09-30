@@ -1,6 +1,9 @@
 #ifndef QMLEXECUTORGUIIMPL_H
 #define QMLEXECUTORGUIIMPL_H
 
+#include <chrono>
+#include <cassert>
+
 #include <QList>
 #include <QWidget>
 #include <QDesktopServices>
@@ -36,6 +39,7 @@ public:
         , _ui(new Ui::QMLExecutorPrivate)
         , _widget(new QWidget)
         , _qmlUpdateCheckTimer(this)
+        , _CANBusModel(nullptr)
     {
         _ui->setupUi(_widget);
 
@@ -87,6 +91,7 @@ public slots:
             _ui->quickWidget->engine()->clearComponentCache();
 
             assert(_CANBusModel != nullptr);
+            
             _ui->quickWidget->rootContext()->setContextProperty("CANBusModel", _CANBusModel);
 
             _ui->quickWidget->setSource(url);
@@ -116,7 +121,7 @@ public slots:
     void startQMLFileModificationChecks()
     {
         _qmlLoadTime = QDateTime::currentDateTime();
-        _qmlUpdateCheckTimer.start(std::chrono::seconds(1));
+        _qmlUpdateCheckTimer.start(std::chrono::milliseconds(1000).count());
     }
 
     /**

@@ -22,12 +22,15 @@ public:
      * @brief constructor
      * @param parent qt stuff
      */
-    QMLExecutorGuiInt(QObject* parent) : QObject(nullptr) {};
+    QMLExecutorGuiInt(QObject* parent)
+        : QObject(parent){};
 
     /**
      * @brief virt dtor to get things working
      */
-    virtual ~QMLExecutorGuiInt() {}
+    virtual ~QMLExecutorGuiInt()
+    {
+    }
 
 public:
     /**

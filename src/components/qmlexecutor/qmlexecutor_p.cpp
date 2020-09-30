@@ -1,4 +1,6 @@
 #include "qmlexecutor_p.h"
+#include "canbusmodel.hpp"
+
 #include <log.h>
 
 
@@ -9,8 +11,14 @@ QMLExecutorPrivate::QMLExecutorPrivate(QMLExecutor *q, QMLExecutorCtx&& ctx)
 {
     initProps();
 
+
     QObject::connect(&_ui, &QMLExecutorGuiInt::QMLLoaded, this, &QMLExecutorPrivate::QMLLoaded);
 }
+
+QMLExecutorPrivate::~QMLExecutorPrivate()
+{
+}
+
 
 void QMLExecutorPrivate::initProps()
 {
@@ -45,25 +53,17 @@ void QMLExecutorPrivate::setSettings(const QJsonObject& json)
     }
 }
 
+
 void QMLExecutorPrivate::configChanged()
 {
     QString fileName = _props[_fileProperty].toString();
 
-    QUrl url = QUrl::fromLocalFile(fileName);
-
-    _ui.loadQML(url);
-}
-
-void QMLExecutorPrivate::startSimulation()
-{
-}
-
-void QMLExecutorPrivate::stopSimulation()
-{
+    _ui.loadQML(QUrl::fromLocalFile(fileName));
 }
 
 void QMLExecutorPrivate::setCANBusModel(CANBusModel* model)
 {
+    _model = model;
     _ui.setModel(model);
 }
 
@@ -71,3 +71,20 @@ void QMLExecutorPrivate::QMLLoaded(const QUrl& url)
 {
     _props[_fileProperty] = url.toLocalFile();
 }
+
+void QMLExecutorPrivate::startSimulation()
+{
+    if (_model)
+    {
+        emit _model->simulationStarted();
+    }
+}
+
+void QMLExecutorPrivate::stopSimulation()
+{
+    if (_model)
+    {
+        emit _model->simulationStopped();
+    }
+}
+

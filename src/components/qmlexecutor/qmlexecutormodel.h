@@ -37,7 +37,7 @@ public:
      */
     QMLExecutorModel();
 
-private:
+public: // ComponentModelInterface
     /// @see NodeDataModel::nPorts
     unsigned int nPorts(PortType portType) const override;
 
@@ -53,11 +53,18 @@ private:
     /// @see NodeDataModel::painterDelegate
     QtNodes::NodePainterDelegate* painterDelegate() const override;
 
+public:
+    /**
+    * @brief testing facility
+    * @return can but model used to interface with QML
+    */
+    CANBusModel* getCANBusModel();
+
 public slots:
     /**
      * @see CANBusModel
      */
-    void sendFrame(const qint32& frameId, const QByteArray& frameData);
+    void sendFrame(const quint32& frameId, const QByteArray& frameData);
 
     /**
      * @see CANBusModel
@@ -68,7 +75,7 @@ signals:
     /**
      * @see CANBusModel
      */
-    void frameReceived(const qint32& frameId, const QByteArray& frameData);
+    void frameReceived(const quint32& frameId, const QByteArray& frameData);
 
     /**
      * @brief A CAN signal was received

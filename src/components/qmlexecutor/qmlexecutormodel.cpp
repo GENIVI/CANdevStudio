@@ -48,7 +48,8 @@ QMLExecutorModel::QMLExecutorModel()
     connect(_CANBusModel.get(), &CANBusModel::sendSignal, this, &QMLExecutorModel::sendSignal);
     connect(this, &QMLExecutorModel::frameReceived, _CANBusModel.get(), &CANBusModel::frameReceived);
     connect(this, &QMLExecutorModel::signalReceived, _CANBusModel.get(), &CANBusModel::signalReceived);
-
+    connect(this, &QMLExecutorModel::simulationStarted, _CANBusModel.get(), &CANBusModel::simulationStarted);
+    connect(this, &QMLExecutorModel::simulationStopped, _CANBusModel.get(), &CANBusModel::simulationStopped);
 }
 
 QtNodes::NodePainterDelegate* QMLExecutorModel::painterDelegate() const
@@ -63,11 +64,12 @@ unsigned int QMLExecutorModel::nPorts(PortType portType) const
 
 NodeDataType QMLExecutorModel::dataType(PortType portType, PortIndex ndx) const
 {
-    if (portMappings.at(portType).size() > static_cast<uint32_t>(ndx)) {
+    if (portMappings.find(portType) != std::end(portMappings) && portMappings.at(portType).size() > static_cast<uint32_t>(ndx)) {
         return portMappings.at(portType)[ndx];
     }
 
     cds_error("No port mapping for ndx: {}", ndx);
+
     return { };
 }
 
@@ -84,7 +86,7 @@ std::shared_ptr<NodeData> QMLExecutorModel::outData(PortIndex index)
     }
 
     // this should not happen
-    assert(false);
+    return {};
 }
 
 std::shared_ptr<NodeData> QMLExecutorModel::getNextQueuedFrame()
@@ -154,10 +156,10 @@ void QMLExecutorModel::setInData(std::shared_ptr<NodeData> nodeData, PortIndex i
     }
 
     // this should not happen
-    assert(false);
+    cds_error("Corrupt in data!");
 }
 
-void QMLExecutorModel::sendFrame(const qint32& frameId, const QByteArray& frameData)
+void QMLExecutorModel::sendFrame(const quint32& frameId, const QByteArray& frameData)
 {
     QCanBusFrame frame;
 
@@ -176,4 +178,9 @@ void QMLExecutorModel::sendSignal(const QString& name, const QVariant& value )
     _signalSendQueue.push_back(data);
 
     emit dataUpdated(1);
+}
+
+CANBusModel* QMLExecutorModel::getCANBusModel()
+{
+    return _CANBusModel.get();
 }

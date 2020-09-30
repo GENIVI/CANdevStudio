@@ -73,14 +73,14 @@ void QMLExecutor::stopSimulation()
 {
     Q_D(QMLExecutor);
 
-    d->_simStarted = false;
+    d->stopSimulation();
 }
 
 void QMLExecutor::startSimulation()
 {
     Q_D(QMLExecutor);
 
-    d->_simStarted = true;
+    d->startSimulation();
 }
 
 void QMLExecutor::simBcastRcv(const QJsonObject &msg, const QVariant &param)

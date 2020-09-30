@@ -26,6 +26,7 @@ public:
      * @param ioc/iod container with gui, created when not supplied
      */
     QMLExecutorPrivate(QMLExecutor* q, QMLExecutorCtx&& ctx = QMLExecutorCtx(new QMLExecutorGuiImpl(nullptr)));
+    ~QMLExecutorPrivate();
 
 public: // ComponentInterface inheritance
     /**
@@ -49,12 +50,12 @@ public: // ComponentInterface inheritance
     void configChanged();
 
     /**
-     * @see ComponentInterface::configChanged
+     * @brief start simulation handler
      */
     void startSimulation();
 
     /**
-     * @see ComponentInterface::stopSimulation
+     * @brief stop simulation handler
      */
     void stopSimulation();
 
@@ -96,6 +97,8 @@ private:
     QMLExecutor* q_ptr;
     const QString _nameProperty = "name";
     const QString _fileProperty = "QML file";
+    CANBusModel* _model;
+
 
     // workaround for clang 3.5
     using cf = ComponentInterface::CustomEditFieldCbk;
