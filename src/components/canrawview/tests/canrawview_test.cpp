@@ -39,7 +39,7 @@ TEST_CASE("Initialize table", "[canrawview]")
     When(Method(crvMock, mainWidget)).Return(NULL);
     When(Method(crvMock, isViewFrozen)).Return(false).Return(true).Return(true).Return(false).Return(true).Return(true);
     When(Method(crvMock, getSortOrder)).Return(Qt::AscendingOrder);
-    When(Method(crvMock, getClickedColumn)).Return("rowID", "time", "id", "dir", "dlc", "data");
+    When(Method(crvMock, getClickedColumn)).Return("rowID", "time", "id", "dir", "len", "data");
     When(Method(crvMock, isColumnHidden)).Return(true, false, false, false, false, false);
 
     CRVGuiInterface& i = crvMock.get();
@@ -191,7 +191,7 @@ TEST_CASE("Restore config paths", "[canrawview]")
     columnItem["name"] = "dir";
     columnItem["vIdx"] = 4;
     columnArray.append(columnItem);
-    columnItem["name"] = "dlc";
+    columnItem["name"] = "len";
     columnItem["vIdx"] = 5;
     columnArray.append(columnItem);
     columnItem["name"] = "data";
