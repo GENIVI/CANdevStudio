@@ -22,6 +22,11 @@
     <height>300</height>
    </size>
   </property>
+  <property name="font">
+   <font>
+    <family>DejaVu Sans Mono</family>
+   </font>
+  </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>

@@ -134,6 +134,11 @@
    </item>
    <item>
     <widget class="QTableView" name="tv">
+     <property name="font">
+      <font>
+       <family>DejaVu Sans Mono</family>
+      </font>
+     </property>
      <property name="focusPolicy">
       <enum>Qt::NoFocus</enum>
      </property>
