@@ -26,7 +26,7 @@ public:
         : _ctx(std::move(ctx))
         , _simStarted(false)
         , _ui(_ctx.get<CRVGuiInterface>())
-        , _columnsOrder({ "rowID", "time", "id", "dir", "dlc", "data" })
+        , _columnsOrder({ "rowID", "time", "id", "dir", "len", "data" })
         , q_ptr(q)
     {
         initProps();
