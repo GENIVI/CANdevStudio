@@ -16,7 +16,7 @@
 	"width": 60
     },
     {
-	"name": "dlc",
+	"name": "len",
 	"vIdx": 5,
 	"width": 60
     },
