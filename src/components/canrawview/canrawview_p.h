@@ -108,11 +108,20 @@ public:
         QList<QStandardItem*> list;
 
         if (_tvModel.rowCount() < rowCountMax) {
+            auto timeEl = new QStandardItem(time);
+            timeEl->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
+            auto frameEl = new QStandardItem(frameID);
+            frameEl->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
+            auto dirEl = new QStandardItem(direction);
+            dirEl->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
+            auto sizeEl = new QStandardItem(size);
+            sizeEl->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
+
             list.append(new QStandardItem(QString::number(_rowID)));
-            list.append(new QStandardItem(time));
-            list.append(new QStandardItem(frameID));
-            list.append(new QStandardItem(direction));
-            list.append(new QStandardItem(size));
+            list.append(timeEl);
+            list.append(frameEl);
+            list.append(dirEl);
+            list.append(sizeEl);
             list.append(new QStandardItem(data));
         } else {
             list = _tvModel.takeRow(0);
@@ -153,6 +162,11 @@ public:
                 auto sizeEl = new QStandardItem(size);
                 auto dataEl = new QStandardItem(data);
 
+                timeEl->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
+                frameEl->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
+                dirEl->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
+                sizeEl->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
+
                 _tvModelUnique.appendRow({ rowEl, timeEl, frameEl, dirEl, sizeEl, dataEl });
                 _uniqueRxMap[fId] = std::make_tuple(rowEl, timeEl, frameEl, dirEl, sizeEl, dataEl);
             }
@@ -173,6 +187,11 @@ public:
                 auto dirEl = new QStandardItem(direction);
                 auto sizeEl = new QStandardItem(size);
                 auto dataEl = new QStandardItem(data);
+
+                timeEl->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
+                frameEl->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
+                dirEl->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
+                sizeEl->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
 
                 _tvModelUnique.appendRow({ rowEl, timeEl, frameEl, dirEl, sizeEl, dataEl });
                 _uniqueTxMap[fId] = std::make_tuple(rowEl, timeEl, frameEl, dirEl, sizeEl, dataEl);
