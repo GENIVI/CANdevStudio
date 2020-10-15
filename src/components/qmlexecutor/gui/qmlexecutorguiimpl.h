@@ -42,6 +42,7 @@ public:
         , _CANBusModel(nullptr)
     {
         _ui->setupUi(_widget);
+        _ui->logWindow->setVisible(false);
 
         _ui->splitter->setCollapsible(1, true);
 
@@ -52,11 +53,25 @@ public:
         QObject::connect(_ui->editQMLButton, SIGNAL(clicked()), this, SLOT(editQML()));
         QObject::connect(_ui->loadQMLButton, SIGNAL(clicked()), this, SLOT(browseAndOpenQML()));
         QObject::connect(&_qmlUpdateCheckTimer, SIGNAL(timeout()), this, SLOT(checkQMLModification()));
+        QObject::connect(_ui->pbDockUndock, &QPushButton::clicked, this, &QMLExecutorGuiImpl::dockUndock);
+        QObject::connect(_ui->showLog, &QPushButton::clicked, [this] {
+                    _ui->logWindow->setVisible(!_ui->logWindow->isVisible());
+                });
     }
 
     virtual QWidget* mainWidget() override
     {
+        // Using this in constructor is too early (no CSS colors set yet)
+        // Background color of QQuickWidget cannot be set via CSS
+        updateUIColor();
+
         return _widget;
+    }
+
+    void updateUIColor() override
+    {
+        auto color = _widget->palette().color(_widget->backgroundRole());
+        _ui->quickWidget->setClearColor(color);
     }
 
 public slots:

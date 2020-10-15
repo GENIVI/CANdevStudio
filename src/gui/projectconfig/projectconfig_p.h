@@ -203,6 +203,12 @@ public:
             node->nodeGraphicsObject().update();
             addShadow(*node);
         });
+
+        QJsonObject msg;
+        msg["msg"] = BcastMsg::GuiStyleSwitched;
+        msg["dark_mode_style"] = darkMode;
+
+        emit simBcast(msg);
     }
 
 signals:

@@ -11,8 +11,12 @@ QMLExecutorPrivate::QMLExecutorPrivate(QMLExecutor *q, QMLExecutorCtx&& ctx)
 {
     initProps();
 
-
     QObject::connect(&_ui, &QMLExecutorGuiInt::QMLLoaded, this, &QMLExecutorPrivate::QMLLoaded);
+
+    QObject::connect(&_ui, &QMLExecutorGuiInt::dockUndock, [this] {
+        _docked = !_docked;
+        emit q_ptr->mainWidgetDockToggled(_ui.mainWidget());
+    });
 }
 
 QMLExecutorPrivate::~QMLExecutorPrivate()
@@ -88,3 +92,7 @@ void QMLExecutorPrivate::stopSimulation()
     }
 }
 
+void QMLExecutorPrivate::updateUIColor()
+{
+    _ui.updateUIColor();
+}

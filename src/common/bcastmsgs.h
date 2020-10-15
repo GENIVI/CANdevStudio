@@ -11,6 +11,7 @@ static const QString ConfigChanged = "config_changed";
 static const QString NodeDeleted = "node_deleted";
 static const QString InitDone = "init_done";
 static const QString CanDbUpdated = "can_db_updated";
+static const QString GuiStyleSwitched = "gui_style_switched";
 
 }
 

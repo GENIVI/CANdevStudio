@@ -52,12 +52,19 @@ public slots:
      */
     virtual void setModel(CANBusModel* model) = 0;
 
+    /**
+     * @brief used to align empty QQuickWidget color with current color scheme
+     */
+    virtual void updateUIColor() = 0;
+
 signals:
     /**
      * @brief this signal is emited when qml was loaded
      * @param url url of qml file
      */
     void QMLLoaded(const QUrl& url);
+
+    void dockUndock();
 };
 
 

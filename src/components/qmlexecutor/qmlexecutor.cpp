@@ -1,6 +1,7 @@
 #include "qmlexecutor.h"
 #include "qmlexecutor_p.h"
 #include <confighelpers.h>
+#include <bcastmsgs.h>
 
 #include <functional>
 #include <log.h>
@@ -85,8 +86,13 @@ void QMLExecutor::startSimulation()
 
 void QMLExecutor::simBcastRcv(const QJsonObject &msg, const QVariant &param)
 {
-    Q_UNUSED(msg);
     Q_UNUSED(param);
+
+    if(msg["msg"] == BcastMsg::GuiStyleSwitched) {
+        Q_D(QMLExecutor);
+
+        d->updateUIColor();
+    }
 }
 
 void QMLExecutor::setCANBusModel(CANBusModel* model)

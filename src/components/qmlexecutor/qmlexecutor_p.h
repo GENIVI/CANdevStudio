@@ -59,6 +59,11 @@ public: // ComponentInterface inheritance
      */
     void stopSimulation();
 
+    /**
+     * @brief used to align empty QQuickWidget color with current color scheme
+     */
+    void updateUIColor();
+
 public slots:
     /**
      * @brief Sets a can bus model used in QML

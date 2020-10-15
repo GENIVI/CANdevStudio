@@ -34,6 +34,11 @@ public:
         return mock.get().mainWidget();
     }
 
+    void updateUIColor() override
+    {
+        return mock.get().updateUIColor();
+    }
+
 public:
     fakeit::Mock<QMLExecutorGuiInt> mock;
 };

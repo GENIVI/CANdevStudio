@@ -131,7 +131,7 @@ QPushButton#pbStartNew, #pbStartOpen, #close {
     border: 0px;
 }
 
-QWidget#CanRawSenderPrivate, #CanRawViewPrivate, #CanRawFilterPrivate, #CanSignalDataPrivate, #CanSignalSenderPrivate {
+QWidget#CanRawSenderPrivate, #CanRawViewPrivate, #CanRawFilterPrivate, #CanSignalDataPrivate, #CanSignalSenderPrivate, #QMLExecutorPrivate {
     background-color: #616161;
 }
 
@@ -139,7 +139,7 @@ QToolButton#toolSwitch {
     image: url(:/images/files/images/light/CANbus_icon_Switch_dark.svg);
 }
 
-QLineEdit#searchLine {
+QLineEdit#searchLine, #fileName {
     background-color: #3a3a3a;
     border : 1px solid #adadad;
     padding: 2px;
