@@ -8,6 +8,7 @@
 #include <catch.hpp>
 #include <context.h>
 #include <fakeit.hpp>
+#include <QSignalSpy>
 
 #include "gui/qmlexecutorguiint.h"
 #include "qmlexecutor.h"
@@ -123,7 +124,10 @@ TEST_CASE("simBcastRcv", "[qmlexecutor]")
 {
    QMLExecutor c;
 
-   REQUIRE_NOTHROW(c.simBcastRcv(QJsonObject(), QVariant()));
+   QJsonObject msg;
+   msg["msg"] = BcastMsg::GuiStyleSwitched;
+
+   REQUIRE_NOTHROW(c.simBcastRcv(msg, QVariant()));
 }
 
 TEST_CASE("getSupportedProperties", "[qmlexecutor]")
@@ -183,6 +187,27 @@ TEST_CASE("getQConfig", "[qmlexecutor]")
 
    REQUIRE(config->property(propertyNameName).toString() == objectName);
    REQUIRE(config->property(propertyQMLFileName).toString() == fileName);
+}
+
+TEST_CASE("dock/undock", "[qmlexecutor]")
+{
+    auto goodMock = new GuiMock();
+
+    Fake(Method(goodMock->mock, setModel));
+    Fake(Method(goodMock->mock, loadQML));
+    Fake(Method(goodMock->mock, mainWidget));
+
+    QMLExecutorCtx context(goodMock);
+    QMLExecutor c(std::move(context));
+    QSignalSpy dockSpy(&c, &QMLExecutor::mainWidgetDockToggled);
+
+    emit goodMock->dockUndock();
+    emit goodMock->dockUndock();
+    emit goodMock->dockUndock();
+
+    REQUIRE(dockSpy.count() == 3);
+
+    Verify(Method(goodMock->mock, mainWidget)).Exactly(3);
 }
 
 int main(int argc, char* argv[])
