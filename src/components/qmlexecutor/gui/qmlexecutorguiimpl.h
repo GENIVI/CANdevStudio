@@ -58,6 +58,9 @@ public:
         QObject::connect(_ui->showLog, &QPushButton::clicked, [this] {
                     _ui->logWindow->setVisible(!_ui->logWindow->isVisible());
                 });
+        QObject::connect(_ui->pbClean, &QPushButton::clicked, [this] {
+                    _ui->logWindow->clear();
+                });
     }
 
     virtual QWidget* mainWidget() override
