@@ -49,7 +49,8 @@ public:
         constexpr int size = 1234;
         _ui->splitter->setSizes(QList<int>({size,size}));
 
-        QObject::connect(_ui->quickWidget, &QQuickWidget::statusChanged, this, &QMLExecutorGuiImpl::handleStatusChange);
+        _ui->fileName->setReadOnly(true);
+
         QObject::connect(_ui->editQMLButton, SIGNAL(clicked()), this, SLOT(editQML()));
         QObject::connect(_ui->loadQMLButton, SIGNAL(clicked()), this, SLOT(browseAndOpenQML()));
         QObject::connect(&_qmlUpdateCheckTimer, SIGNAL(timeout()), this, SLOT(checkQMLModification()));
@@ -96,27 +97,36 @@ public slots:
     {
         if(url.isValid() && !url.isEmpty())
         {
+            // The easiest way to reload QML seems to be creating new QQuickWidget
+            auto splitter = static_cast<QSplitter*>(_ui->quickWidget->parentWidget());
+            auto splitState = splitter->saveState();
+
+            delete _ui->quickWidget;
+            _ui->quickWidget = new QQuickWidget();
+            updateUIColor();
+            splitter->insertWidget(0, _ui->quickWidget);
+            splitter->restoreState(splitState);
+
+            QObject::connect(_ui->quickWidget, &QQuickWidget::statusChanged, this, &QMLExecutorGuiImpl::handleStatusChange);
+
             _qmlUrl = url;
 
-            _ui->editQMLButton->setEnabled(true);
-
             log("Loading qml file: " + url.toLocalFile());
-
-            _ui->quickWidget->setSource(QUrl());
-            _ui->quickWidget->engine()->clearComponentCache();
 
             assert(_CANBusModel != nullptr);
             
             _ui->quickWidget->rootContext()->setContextProperty("CANBusModel", _CANBusModel);
+            _ui->quickWidget->rootContext()->setContextProperty("LogWindow", _ui->logWindow);
 
             _ui->quickWidget->setSource(url);
 
-            _ui->fileName->setText(url.url());
-
+            _ui->fileName->setText(url.toLocalFile());
 
             emit QMLLoaded(_qmlUrl);
 
             startQMLFileModificationChecks();
+
+            _ui->editQMLButton->setEnabled(true);
         }
 
     }
@@ -161,7 +171,6 @@ public slots:
             if(askForQMLReload())
             {
                 loadQML(_qmlUrl);
-
             }
 
             startQMLFileModificationChecks();
