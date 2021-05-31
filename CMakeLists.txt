@@ -14,6 +14,12 @@ set(CMAKE_CXX_STANDARD 14)
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/Modules)
 
+#windows build may need to point to boost, moidify with your boost install dir and uncomment
+#set(BOOST_ROOT C:/local/boost_1_73_0/)
+#set(BOOST_INCLUDE_DIR C:/local/boost_1_73_0/)
+#set(BOOST_LIBRARY_DIR C:/local/boost_1_73_0/libs)
+
+
 option(WITH_COVERAGE "Build with coverage" OFF)
 option(WITH_TOOLS "Build tools directory" OFF)
 option(DEV_BUILD "Development build will include GIT hash and branch to versioning" ON)
@@ -49,6 +55,9 @@ find_package(Qt5SerialBus ${QT_REQUIRED_VERSION} REQUIRED)
 find_package(Qt5Widgets ${QT_REQUIRED_VERSION} REQUIRED)
 find_package(Qt5Test ${QT_REQUIRED_VERSION} REQUIRED)
 find_package(Qt5Svg ${QT_REQUIRED_VERSION} REQUIRED)
+find_package(Qt5Qml ${QT_REQUIRED_VERSION} REQUIRED)
+find_package(Qt5Quick ${QT_REQUIRED_VERSION} REQUIRED)
+find_package(Qt5QuickWidgets ${QT_REQUIRED_VERSION} REQUIRED)
 message(STATUS "Qt Version found: ${Qt5Core_VERSION}")
 
 set_property(TARGET Qt5::SerialBus PROPERTY INTERFACE_COMPILE_FEATURES "")

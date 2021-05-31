@@ -86,6 +86,9 @@
         <file>files/images/light/CANbus_icon_arrow_down.svg</file>
         <file>files/images/light/CANbus_icon_arrow_up.svg</file>
         <file>files/images/db_icon.svg</file>
+        <file>files/images/light/CANbus_icon_Log.svg</file>
+        <file>files/images/light/CANbus_icon_OpenProject_Grey.svg</file>
+        <file>files/images/light/CANbus_icon_edit.svg</file>
     </qresource>
     <qresource prefix="/">
         <file>files/json/projectConfigSchema.json</file>

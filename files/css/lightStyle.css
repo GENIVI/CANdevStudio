@@ -147,7 +147,7 @@ QToolButton#toolSwitch {
     image: url(:/images/files/images/light/CANbus_icon_Switch.svg);
 }
 
-QLineEdit#searchLine {
+QLineEdit#searchLine, #fileName {
     border : 1px solid #adadad;
     padding: 2px;
 }
