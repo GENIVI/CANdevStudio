@@ -6,7 +6,7 @@ environment:
   - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
     GENERATOR: '"MinGW Makefiles"'
     BUILD_TYPE: Release
-    QT_PATH: C:\Qt\5.15.0\mingw81_32
+    QT_PATH: C:\Qt\5.15\mingw81_32
     BOOST_PATH: C:\Libraries\boost_1_73_0
     PACKAGE: 1
   - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
