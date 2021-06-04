@@ -39,6 +39,11 @@ jobs:
       shell: bash
       run: cmake --build . --config $BUILD_TYPE
 
+    - name: Setup Test Environment
+      run: service xvfb start
+      run: ip link add name can0 type vcan
+      run: ip link set can0 up
+
     - name: Test
       working-directory: ${{github.workspace}}/build
       shell: bash
