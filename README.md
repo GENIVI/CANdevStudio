@@ -32,6 +32,7 @@
     * [VCAN](#vcan)
     * [Cannelloni](#cannelloni)
 * [Help](#help)
+  * [Scripting](#scripting)
   * [CAN Signals](#can-signals)
   * [CanDevice configuration](#candevice-configuration)
   * [CanRawFilter](#canrawfilter)
@@ -280,6 +281,16 @@ cannelloni -I can0 -R 192.168.0.2 -r 20000 -l 30000
 4. Start simulation
 
 ## Help
+### Scripting
+As of v1.1 CANdevStudio supports creation of [QML](https://doc.qt.io/qt-5/qmlapplications.html) based scripts. Scripts can be developed and loaded dynamically without a need to restart the main applications. Scripting adds a lot of different possibilities to CANdevStudio that includes:
+* Creation of custom GUIs
+* Raw frames and signals handling
+* Time triggered actions
+* Message triggered actions
+* ... and many more, as all QML functionalities are supported.
+
+Try it yourself by loading one of the [examples](https://github.com/GENIVI/CANdevStudio/tree/master/src/components/qmlexecutor/examples) into QMLExecutor component. You are welcome to share your scripts via Pull Requests!
+
 ### CAN Signals
 CANdevStudio provides support for CAN signals handling. [DBC](http://socialledge.com/sjsu/index.php/DBC_Format) database description format is supported. Reverse engineered DBC files can be found in [opendbc](https://github.com/commaai/opendbc) project.
 
