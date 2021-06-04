@@ -48,6 +48,9 @@ jobs:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v2
+      with:
+        submodules: recursive
+
     - name: install conan
       run: brew install conan cmake
 
@@ -84,14 +87,13 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2
+      with:
+        submodules: recursive
 
     - name: Install conan
       shell: pwsh
       run: |
         pip3 install conan
-
-    - name: Create Build Environment
-      run: cmake -E make_directory ${{github.workspace}}/build
 
     - name: Install Qt
       uses: jurplel/install-qt-action@v2
@@ -101,6 +103,9 @@ jobs:
       id: install-boost
       with:
         boost_version: 1.73.0
+
+    - name: Create Build Environment
+      run: cmake -E make_directory ${{github.workspace}}/build
 
     - name: Configure CMake
       shell: bash
@@ -123,14 +128,13 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2
+      with:
+        submodules: recursive
 
     - name: Install conan
       shell: pwsh
       run: |
         pip3 install conan
-
-    - name: Create Build Environment
-      run: cmake -E make_directory ${{github.workspace}}/build
 
     - name: Install Qt
       uses: jurplel/install-qt-action@v2
@@ -140,6 +144,9 @@ jobs:
       id: install-boost
       with:
         boost_version: 1.73.0
+
+    - name: Create Build Environment
+      run: cmake -E make_directory ${{github.workspace}}/build
 
     - name: Configure CMake
       shell: bash
