@@ -15,6 +15,18 @@ jobs:
       with:
         submodules: recursive
 
+    - name: Cache Qt
+      id: cache-qt
+      uses: actions/cache@v1
+      with:
+        path: ../Qt
+        key: ${{ runner.os }}-QtCache
+
+    - name: Install Qt
+      uses: jurplel/install-qt-action@v2
+      with:
+        cached: ${{ steps.cache-qt.outputs.cache-hit }}
+
     - name: Create Build Environment
       run: cmake -E make_directory ${{github.workspace}}/build
 
