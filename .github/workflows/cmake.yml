@@ -11,15 +11,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-      with:
-        submodules: recursive
+    - name: Instal Virtual X Buffer
+      run: sudo apt-get install -y xvfb    
 
-    - name: Setup Virtual Buffer
+    - name: Start Virtual X Buffer
       run: sudo service xvfb start
 
     - name: Setup Virtual CAN
       run: sudo ip link add name can0 type vcan && sudo ip link set can0 up
+
+    - uses: actions/checkout@v2
+      with:
+        submodules: recursive
 
     - name: Install Qt
       uses: jurplel/install-qt-action@v2
