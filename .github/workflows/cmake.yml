@@ -11,12 +11,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Instal Virtual X Buffer
-      run: sudo apt-get install -y xvfb    
-
-    - name: Start Virtual X Buffer
-      run: sudo service xvfb start
-
     - name: Setup Virtual CAN
       run: sudo ip link add name can0 type vcan && sudo ip link set can0 up
 
@@ -52,6 +46,8 @@ jobs:
       working-directory: ${{github.workspace}}/build
       shell: bash
       run: ctest -C $BUILD_TYPE
+      env:
+        QT_QPA_PLATFORM=offscreen
 
   osx-conan:
     runs-on: macos-latest
