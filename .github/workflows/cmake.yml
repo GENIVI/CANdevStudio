@@ -15,6 +15,12 @@ jobs:
       with:
         submodules: recursive
 
+    - name: Setup Virtual Buffer
+      run: service xvfb start
+
+    - name: Setup Virtual CAN
+      run: ip link add name can0 type vcan && ip link set can0 up
+
     - name: Install Qt
       uses: jurplel/install-qt-action@v2
 
@@ -37,13 +43,7 @@ jobs:
     - name: Build
       working-directory: ${{github.workspace}}/build
       shell: bash
-      run: cmake --build . --config $BUILD_TYPE
-
-    - name: Setup Virtual Buffer
-      run: service xvfb start
-
-    - name: Setup Virtual CAN
-      run: ip link add name can0 type vcan && ip link set can0 up
+      run: make -j3
 
     - name: Test
       working-directory: ${{github.workspace}}/build
@@ -76,7 +76,7 @@ jobs:
     - name: Build
       working-directory: ${{github.workspace}}/build
       shell: bash
-      run: cmake --build . --config $BUILD_TYPE
+      run: make -j4
 
     - name: Test
       working-directory: ${{github.workspace}}/build
