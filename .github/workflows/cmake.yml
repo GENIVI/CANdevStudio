@@ -16,10 +16,10 @@ jobs:
         submodules: recursive
 
     - name: Setup Virtual Buffer
-      run: service xvfb start
+      run: sudo service xvfb start
 
     - name: Setup Virtual CAN
-      run: ip link add name can0 type vcan && ip link set can0 up
+      run: sudo ip link add name can0 type vcan && sudo ip link set can0 up
 
     - name: Install Qt
       uses: jurplel/install-qt-action@v2
