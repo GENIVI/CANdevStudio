@@ -30,7 +30,7 @@ jobs:
     - name: Configure CMake
       shell: bash
       working-directory: ${{github.workspace}}/build
-      run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE CI_TESTS=ON
+      run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DCI_TESTS=ON
       env:
         BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
 
@@ -74,56 +74,6 @@ jobs:
       shell: bash
       run: make -j4
 
-    - name: Test
-      working-directory: ${{github.workspace}}/build
-      shell: bash
-      run: ctest -C $BUILD_TYPE
-      env:
-        QT_QPA_PLATFORM: offscreen
-
-  windows-x86:
-    runs-on: windows-latest
-    steps:
-    - uses: actions/checkout@v2
-      with:
-        submodules: recursive
-
-    #- name: Install conan
-    #  shell: pwsh
-    #  run: |
-    #    pip3 install conan
-
-    - name: Install Qt
-      uses: jurplel/install-qt-action@v2
-
-    - name: Install boost
-      uses: MarkusJx/install-boost@v1.0.1
-      id: install-boost
-      with:
-        boost_version: 1.73.0
-
-    - name: Create Build Environment
-      run: cmake -E make_directory ${{github.workspace}}/build
-
-    - name: Configure CMake
-      shell: bash
-      working-directory: ${{github.workspace}}/build
-      run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE
-      env:
-        BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
-
-    - name: Build
-      working-directory: ${{github.workspace}}/build
-      shell: bash
-      run: cmake --build . --config $BUILD_TYPE
-
-    - name: Test
-      working-directory: ${{github.workspace}}/build
-      shell: bash
-      run: ctest -C $BUILD_TYPE
-      env:
-        QT_QPA_PLATFORM: offscreen
-
   windows-x86_64:
     runs-on: windows-latest
     steps:
@@ -131,11 +81,6 @@ jobs:
       with:
         submodules: recursive
 
-    #- name: Install conan
-    #  shell: pwsh
-    #  run: |
-    #    pip3 install conan
-
     - name: Install Qt
       uses: jurplel/install-qt-action@v2
 
@@ -151,7 +96,7 @@ jobs:
     - name: Configure CMake
       shell: bash
       working-directory: ${{github.workspace}}/build
-      run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE -G "Visual Studio 16 2019" -A x64 -DWITH_TESTS=ON
+      run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE -G "Visual Studio 16 2019" -A x64
       env:
         BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
 
@@ -159,11 +104,3 @@ jobs:
       working-directory: ${{github.workspace}}/build
       shell: bash
       run: cmake --build . --config $BUILD_TYPE
-
-    - name: Test
-      working-directory: ${{github.workspace}}/build
-      shell: bash
-      run: ctest -C $BUILD_TYPE
-      env:
-        QT_QPA_PLATFORM: offscreen
-
