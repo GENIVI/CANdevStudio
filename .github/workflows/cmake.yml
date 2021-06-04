@@ -12,7 +12,7 @@ jobs:
 
     steps:
     - name: Setup Virtual CAN
-      run: sudo ip link add name can0 type vcan && sudo ip link set can0 up
+      run: sudo modprobe vcan && sudo ip link add name can0 type vcan && sudo ip link set can0 up
 
     - uses: actions/checkout@v2
       with:
