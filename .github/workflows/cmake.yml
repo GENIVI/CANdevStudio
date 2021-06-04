@@ -47,7 +47,7 @@ jobs:
       shell: bash
       run: ctest -C $BUILD_TYPE
       env:
-        QT_QPA_PLATFORM=offscreen
+        QT_QPA_PLATFORM: offscreen
 
   osx-conan:
     runs-on: macos-latest
