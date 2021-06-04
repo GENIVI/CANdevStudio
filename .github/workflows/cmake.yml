@@ -58,16 +58,10 @@ jobs:
         submodules: recursive
 
     - name: install conan
-      run: brew install conan cmake
+      run: brew install conan cmake boost
 
     - name: Install Qt
       uses: jurplel/install-qt-action@v2
-
-    - name: Install boost
-      uses: MarkusJx/install-boost@v1.0.1
-      id: install-boost
-      with:
-        boost_version: 1.73.0
 
     - name: Create Build Environment
       run: cmake -E make_directory ${{github.workspace}}/build
