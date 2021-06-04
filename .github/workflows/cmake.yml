@@ -27,6 +27,9 @@ jobs:
       with:
         cached: ${{ steps.cache-qt.outputs.cache-hit }}
 
+    - name: Install boost
+      uses: MarkusJx/install-boost@v1.0.1
+
     - name: Create Build Environment
       run: cmake -E make_directory ${{github.workspace}}/build
 
