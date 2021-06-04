@@ -74,7 +74,7 @@ jobs:
       shell: bash
       run: make -j4
 
-  windows-x86_64:
+  windows:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2
