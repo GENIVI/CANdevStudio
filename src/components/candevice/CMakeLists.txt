@@ -9,7 +9,7 @@ add_library(${COMPONENT_NAME} STATIC ${SRC})
 target_link_libraries(${COMPONENT_NAME} cds-common rwqueue)
 target_include_directories(${COMPONENT_NAME} INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
 
-if(WITH_TESTS)
+if(WITH_TESTS AND NOT CI_TESTS)
     set(SRC tests/${COMPONENT_NAME}_test.cpp)
 
     if(UNIX AND NOT APPLE)
