@@ -46,7 +46,7 @@ jobs:
       env:
         QT_QPA_PLATFORM: offscreen
 
-  osx:
+  macos:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v2
