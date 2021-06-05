@@ -26,7 +26,7 @@ public:
         : QObject(parent){};
 
     /**
-     * @brief virt dtor to get things working
+     * @brief virtual dtor to get things working
      */
     virtual ~QMLExecutorGuiInt()
     {
@@ -59,7 +59,7 @@ public slots:
 
 signals:
     /**
-     * @brief this signal is emited when qml was loaded
+     * @brief this signal is emitted when qml was loaded
      * @param url url of qml file
      */
     void QMLLoaded(const QUrl& url);
