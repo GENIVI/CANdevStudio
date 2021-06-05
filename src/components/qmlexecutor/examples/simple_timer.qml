@@ -27,7 +27,7 @@ Item {
         let view = new DataView(b)
 
         // x86 architecture is little endian.
-        // Indicate that we want to store vale using big endian (3rd argument)
+        // Indicate that we want to store value using big endian (3rd argument)
         view.setUint32(0, payload1++, false)
 
         CANBusModel.sendFrame(frameId1, b)
@@ -38,7 +38,7 @@ Item {
         let b = new ArrayBuffer(8);
         let view = new Uint8Array(b)
 
-        // Due to differences in endianess
+        // Due to differences in endianness
         // 0 in the array is number 7 in can frame
         // Let's ignore it for now and reverse array at the end
         view[0] = payload2 & 0xff
