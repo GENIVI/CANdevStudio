@@ -154,7 +154,7 @@ jobs:
   Windows-Release:
     runs-on: windows-latest
     steps:
-    run: |
+    - run: |
       mkdir dupa
       echo "aaa" > dupa/dupa.txt
 
