@@ -10,9 +10,8 @@ jobs:
     - name: Create packages
       working-directory: ${{github.workspace}}/build
       shell: bash
-      if: ${{ github.ref == 'refs/heads/gha' }}
+      if: ${{ github.ref == 'refs/heads/gha' && !github.base_ref }}
       # Do not run for PR
-      if: ${{ !github.base_ref }}
       run: echo "AAAAAAAAAAAAAAAAAAAAAAA"
 
     - uses: actions/checkout@v2
