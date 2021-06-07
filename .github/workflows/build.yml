@@ -154,6 +154,15 @@ jobs:
   Windows-Release:
     runs-on: windows-latest
     steps:
+    run: |
+      mkdir dupa
+      echo "aaa" > dupa/dupa.txt
+
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        path: dupa/*
+
     - uses: actions/checkout@v2
       with:
         submodules: recursive
@@ -199,7 +208,12 @@ jobs:
         mkdir ..\rc
         mv *.7z ..\rc
 
-    - name: Upload Artifacts
-      uses: actions/upload-artifact@v2
-      with:
-        path: ${{ github.workspace }}/master/*
+    #- name: Upload Artifacts
+    #  uses: actions/upload-artifact@v2
+    #  with:
+    #    path: /d/a/CANdevStudio/CANdevStudio/master/*
+
+    #- name: Upload Artifacts 2
+    #  uses: actions/upload-artifact@v2
+    #  with:
+    #    path: master\*
