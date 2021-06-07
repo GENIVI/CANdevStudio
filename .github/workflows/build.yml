@@ -203,4 +203,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: master
-        path: ${{ github.workspace }}/
+        path: ${{ github.workspace }}/master/
