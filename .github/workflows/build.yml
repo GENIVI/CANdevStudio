@@ -11,7 +11,7 @@ jobs:
       with:
         submodules: recursive
 
-    - name: Install Deps
+    #- name: Install Deps
     - uses: jurplel/install-qt-action@v2
     - uses: MarkusJx/install-boost@v1.0.1
       id: install-boost
