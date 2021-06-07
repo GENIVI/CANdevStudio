@@ -14,7 +14,7 @@ if(STANDALONE)
     #    # For some reason this name is set to Windows rather than win32. To keep naming compiant change win32.
     #    set(SYSTEM_NAME win32)
     #endif()
-    set(CPACK_PACKAGE_FILE_NAME "${CMAKE_PROJECT_NAME}-${VERSION_MAJOR}.${VERSION_MINOR}.${CPACK_PACKAGE_VERSION_PATCH}-${SYSTEM_NAME}-standalone")
+    set(CPACK_PACKAGE_FILE_NAME "${CMAKE_PROJECT_NAME}-${VERSION_MAJOR}.${VERSION_MINOR}.${CPACK_PACKAGE_VERSION_PATCH}-${CMAKE_SYSTEM_NAME}-standalone")
 endif()
 set(CPACK_PACKAGE_VENDOR "Mobica")
 set(CPACK_PACKAGE_CONTACT "remigiusz.kollataj@mobica.com")
