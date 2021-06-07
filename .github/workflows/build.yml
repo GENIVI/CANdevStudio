@@ -40,6 +40,23 @@ jobs:
       env:
         QT_QPA_PLATFORM: offscreen
 
+    - name: Create packages
+      working-directory: ${{github.workspace}}/build
+      shell: bash
+      if: github.ref == 'refs/heads/master'
+      run: |
+        cpack -G DEB
+        cmake . -DSTANDALONE=ON
+        cpack -G TXZ
+        mkdir ../master
+        mv *.deb *.tar.xz ../master
+        cmake . -DDEV_BUILD=OFF
+        cpack -G TXZ
+        cmake . -DSTANDALONE=OFF
+        cpack -G DEB
+        mkdir ../rc
+        mv *.deb *.tar.xz ../rc
+
   Linux-Debug:
     runs-on: ubuntu-latest
 
