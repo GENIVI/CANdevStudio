@@ -29,6 +29,8 @@ jobs:
       working-directory: ${{github.workspace}}/build
       run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=Release -DCI_TESTS=ON
       env:
+        CXX: clang++
+        CC: clang
         BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
 
     - name: Build
