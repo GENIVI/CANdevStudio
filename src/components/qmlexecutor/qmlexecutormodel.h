@@ -56,7 +56,7 @@ public: // ComponentModelInterface
 public:
     /**
     * @brief testing facility
-    * @return can but model used to interface with QML
+    * @return can bus model used to interface with QML
     */
     CANBusModel* getCANBusModel();
 
@@ -113,7 +113,7 @@ private:
     std::shared_ptr<NodeData> getNextQueuedSignal();
 
 private:
-    //! Componant stuff
+    //! Component stuff
     std::unique_ptr<NodePainter> _painter;
 
     //! ST queue to buffer frames to send
@@ -122,7 +122,7 @@ private:
     //! ST queue to buffer signals to send
     std::deque<CanSignalModel> _signalSendQueue;
 
-    //! can buf model to create interface with QML
+    //! can bus model to create interface with QML
     std::unique_ptr<CANBusModel> _CANBusModel;
 };
 
