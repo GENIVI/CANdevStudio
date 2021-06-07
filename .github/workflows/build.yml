@@ -189,13 +189,13 @@ jobs:
         cmake . -DSTANDALONE=ON
         cpack -G 7Z
         mkdir ..\master
-        move *.7z ..\master
+        mv *.7z ..\master
         cmake . -DDEV_BUILD=OFF
         cpack -G 7Z
         cmake . -DSTANDALONE=OFF
         cpack -G 7Z
         mkdir ..\rc
-        move *.7z ..\rc
+        mv *.7z ..\rc
 
     - name: Upload Artifacts
       uses: actions/upload-artifact@v2

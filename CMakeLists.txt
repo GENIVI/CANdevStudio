@@ -14,11 +14,6 @@ set(CMAKE_CXX_STANDARD 14)
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/Modules)
 
-#windows build may need to point to boost, moidify with your boost install dir and uncomment
-#set(BOOST_ROOT C:/local/boost_1_73_0/)
-#set(BOOST_INCLUDE_DIR C:/local/boost_1_73_0/)
-#set(BOOST_LIBRARY_DIR C:/local/boost_1_73_0/libs)
-
 
 option(WITH_COVERAGE "Build with coverage" OFF)
 option(WITH_TOOLS "Build tools directory" OFF)
