@@ -41,6 +41,7 @@ jobs:
       run: ctest
       env:
         QT_QPA_PLATFORM: offscreen
+
   Linux-Debug:
     runs-on: ubuntu-latest
 
@@ -57,6 +58,9 @@ jobs:
       id: install-boost
       with:
         boost_version: 1.73.0
+
+    - name: Install lcov
+      run: sudo apt install -y lcov
 
     - name: Create Build Environment
       run: cmake -E make_directory ${{github.workspace}}/build
@@ -79,6 +83,16 @@ jobs:
       run: ctest
       env:
         QT_QPA_PLATFORM: offscreen
+
+    - name: Code Coverage
+      uses: codecov/codecov-action@v1
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
+        #files: ./coverage1.xml,./coverage2.xml # optional
+        #flags: unittests # optional
+        #name: codecov-umbrella # optional
+        #fail_ci_if_error: true # optional (default = false)
+        #verbose: true # optional (default = false)
 
   macOS-Release:
     runs-on: macos-latest
