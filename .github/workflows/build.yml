@@ -190,6 +190,8 @@ jobs:
         cpack -G 7Z
         mkdir ..\master
         mv *.7z ..\master
+        pwd
+        ls ..\master
         cmake . -DDEV_BUILD=OFF
         cpack -G 7Z
         cmake . -DSTANDALONE=OFF
@@ -201,4 +203,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: ${{ env.name }}
-        path: ${{ github.workspace }}/master/*
+        path: ${{ github.workspace }}\master\*
