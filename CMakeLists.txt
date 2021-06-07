@@ -167,9 +167,6 @@ if(STANDALONE)
         install(PROGRAMS files/CANdevStudio.sh DESTINATION ${INSTALL_DEST_BIN})
     else()
         set(SYS_LIBS
-            libgcc_s_dw2-1.dll
-            libstdc++-6.dll
-            libwinpthread-1.dll
             Qt5Core.dll
             Qt5Gui.dll
             Qt5Network.dll
