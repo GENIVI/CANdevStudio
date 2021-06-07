@@ -12,9 +12,8 @@ jobs:
       shell: bash
       if: ${{ github.ref == 'refs/heads/gha' }}
       # Do not run for PR
-      #if: ${{ !github.base_ref }}
-      run: |
-        echo "AAAAAAAAAAAAAAAAAAAAAAA"
+      if: ${{ !github.base_ref }}
+      run: echo "AAAAAAAAAAAAAAAAAAAAAAA"
 
     - uses: actions/checkout@v2
       with:
