@@ -200,7 +200,11 @@ jobs:
         mkdir ..\rc
         mv *.7z ..\rc
 
+    - run: echo "dupa" > master\dupa.txt
+    - run: ls master
+
+
     - name: Upload Artifacts
       uses: actions/upload-artifact@v2
       with:
-        path: master/*
+        path: master\*
