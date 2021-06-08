@@ -25,7 +25,6 @@ jobs:
       run: cmake -E make_directory ${{github.workspace}}/build
 
     - name: Configure CMake
-      shell: bash
       working-directory: ${{github.workspace}}/build
       run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=Release -DCI_TESTS=ON
       env:
@@ -35,19 +34,16 @@ jobs:
 
     - name: Build
       working-directory: ${{github.workspace}}/build
-      shell: bash
       run: make -j3
 
     - name: Test
       working-directory: ${{github.workspace}}/build
-      shell: bash
       run: ctest
       env:
         QT_QPA_PLATFORM: offscreen
 
     - name: Create packages
       working-directory: ${{github.workspace}}/build
-      shell: bash
       if: ${{ github.ref == env.MAIN_BRANCH && github.event_name != 'pull_request' }}
       run: |
         cpack -G DEB
@@ -83,7 +79,6 @@ jobs:
       run: cmake -E make_directory ${{github.workspace}}/build
 
     - name: Configure CMake
-      shell: bash
       working-directory: ${{github.workspace}}/build
       run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=Debug -DCI_TESTS=ON -DWITH_COVERAGE=ON
       env:
@@ -91,12 +86,10 @@ jobs:
 
     - name: Build
       working-directory: ${{github.workspace}}/build
-      shell: bash
       run: make -j3
 
     - name: Test
       working-directory: ${{github.workspace}}/build
-      shell: bash
       run: ctest
       env:
         QT_QPA_PLATFORM: offscreen
@@ -126,7 +119,6 @@ jobs:
       run: cmake -E make_directory ${{github.workspace}}/build
 
     - name: Configure CMake
-      shell: bash
       working-directory: ${{github.workspace}}/build
       run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=Release -DWITH_TESTS=OFF
       env:
@@ -134,12 +126,10 @@ jobs:
 
     - name: Build
       working-directory: ${{github.workspace}}/build
-      shell: bash
       run: make -j4
 
     - name: Create packages
       working-directory: ${{github.workspace}}/build
-      shell: bash
       if: ${{ github.ref == env.MAIN_BRANCH && github.event_name != 'pull_request' }}
       run: |
         # DEV_BUILD=ON (master)
