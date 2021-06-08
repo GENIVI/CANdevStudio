@@ -170,7 +170,6 @@ jobs:
       run: cmake -E make_directory ${{github.workspace}}/build
 
     - name: Configure CMake
-      shell: bash
       working-directory: ${{github.workspace}}/build
       run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=Release -G "Visual Studio 16 2019" -A x64
       env:
@@ -178,27 +177,23 @@ jobs:
 
     - name: Build
       working-directory: ${{github.workspace}}/build
-      shell: bash
       run: cmake --build . --config Release
 
     - name: Create Packages
       working-directory: ${{github.workspace}}/build
-      shell: bash
       if: ${{ github.ref == env.MAIN_BRANCH && github.event_name != 'pull_request' }}
       run: |
         cpack -G 7Z
         cmake . -DSTANDALONE=ON
         cpack -G 7Z
         mkdir ..\master
-        mv *.7z ..\master
-        pwd
-        ls ..\master
+        move *.7z ..\master
         cmake . -DDEV_BUILD=OFF
         cpack -G 7Z
         cmake . -DSTANDALONE=OFF
         cpack -G 7Z
         mkdir ..\rc
-        mv *.7z ..\rc
+        move *.7z ..\rc
 
     - run: echo "dupa" > master\dupa.txt
     - run: ls master
