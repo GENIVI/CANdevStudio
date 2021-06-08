@@ -139,11 +139,11 @@ jobs:
       run: |
         # DEV_BUILD=ON (master)
         cpack -G DragNDrop
-        mkdir master
+        mkdir ../master
         mv *.dmg ../master
         cmake . -DDEV_BUILD=OFF
         cpack -G DragNDrop
-        mkdir rc
+        mkdir ../rc
         mv *.dmg ../rc
 
     - name: Upload Artifacts
