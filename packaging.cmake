@@ -12,7 +12,7 @@ if(STANDALONE)
     set(SYSTEM_NAME ${CMAKE_SYSTEM_NAME})
     # WIN32 variable is for both x64 and x86
     if(WIN32)
-        if(${CMAKE_GENERATOR_PLATFORM} EQUAL "x64")
+        if(${CMAKE_GENERATOR_PLATFORM} MATCHES "x64")
             # For some reason this name is set to Windows rather than win32. To keep naming compiant change win32.
             set(SYSTEM_NAME win64)
         else()
