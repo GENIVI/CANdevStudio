@@ -186,6 +186,8 @@ jobs:
         move *.7z ..\rc
 
     - run: copy NUL master\dupa.txt
+      shell: cmd
+
     - run: dir master
 
 
