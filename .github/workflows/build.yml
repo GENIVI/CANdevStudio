@@ -195,8 +195,8 @@ jobs:
         mkdir ..\rc
         move *.7z ..\rc
 
-    - run: echo "dupa" > master\dupa.txt
-    - run: ls master
+    - run: copy NUL master\dupa.txt
+    - run: dir master
 
 
     - name: Upload Artifacts
