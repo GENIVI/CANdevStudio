@@ -26,7 +26,7 @@ jobs:
 
     - name: Configure CMake
       working-directory: ${{github.workspace}}/build
-      run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=Release -DCI_TESTS=ON
+      run: cmake .. -DCMAKE_BUILD_TYPE=Release -DCI_TESTS=ON
       env:
         CXX: clang++
         CC: clang
@@ -57,6 +57,11 @@ jobs:
         cpack -G DEB
         mkdir ../rc
         mv *.deb *.tar.xz ../rc
+
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        path: master/*
 
   Linux-Debug:
     runs-on: ubuntu-latest
@@ -120,7 +125,7 @@ jobs:
 
     - name: Configure CMake
       working-directory: ${{github.workspace}}/build
-      run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=Release -DWITH_TESTS=OFF
+      run: cmake .. -DCMAKE_BUILD_TYPE=Release -DWITH_TESTS=OFF
       env:
         BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
 
@@ -140,6 +145,11 @@ jobs:
         cpack -G DragNDrop
         mkdir rc
         mv *.dmg rc
+
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        path: master/*
 
   Windows-Release:
     runs-on: windows-latest
@@ -184,12 +194,6 @@ jobs:
         cpack -G 7Z
         mkdir ..\rc
         move *.7z ..\rc
-
-    - run: copy NUL master\dupa.txt
-      shell: cmd
-
-    - run: dir master
-
 
     - name: Upload Artifacts
       uses: actions/upload-artifact@v2
