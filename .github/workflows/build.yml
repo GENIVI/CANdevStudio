@@ -15,10 +15,10 @@ jobs:
     - run: echo ${{ github.ref }}
 
     - run: echo "tags!"
-      if: startsWith('refs/tags', ${{ github.ref }})
+      if: startsWith(github.ref, 'refs/tags/')
 
     - run: echo "heads!"
-      if: startsWith('refs/heads', ${{ github.ref }})
+      if: startsWith(github.ref, 'refs/heads/')
 
     - uses: actions/checkout@v2
       with:
