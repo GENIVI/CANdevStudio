@@ -10,16 +10,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-
-    #test
-    - run: echo ${{ github.ref }}
-
-    - run: echo "tags!"
-      if: startsWith(github.ref, 'refs/tags/')
-
-    - run: echo "heads!"
-      if: startsWith(github.ref, 'refs/heads/')
-
     - uses: actions/checkout@v2
       with:
         submodules: recursive
@@ -89,6 +79,14 @@ jobs:
       with:
         name: ${{steps.package_names.outputs.STANDALONE}}
         path: master\${{steps.package_names.outputs.STANDALONE}}
+        retention-days: 90
+
+    - name: Upload RC packages
+      if: startsWith(github.ref, 'refs/tags/')
+      uses: actions/upload-artifact@v2
+      with:
+        name: rc.zip
+        path: rc\*
         retention-days: 90
 
   Linux-Debug:
@@ -165,7 +163,6 @@ jobs:
       working-directory: ${{github.workspace}}/build
       if: ${{ github.ref == env.MAIN_BRANCH && github.event_name != 'pull_request' }}
       run: |
-        # DEV_BUILD=ON (master)
         cpack -G DragNDrop
         mkdir ../master
         mv *.dmg ../master
@@ -186,6 +183,14 @@ jobs:
       with:
         name: ${{steps.package_names.outputs.NORMAL}}
         path: master\${{steps.package_names.outputs.NORMAL}}
+        retention-days: 90
+
+    - name: Upload RC packages
+      if: startsWith(github.ref, 'refs/tags/')
+      uses: actions/upload-artifact@v2
+      with:
+        name: rc.zip
+        path: rc\*
         retention-days: 90
 
   Windows-Release:
@@ -254,4 +259,12 @@ jobs:
       with:
         name: ${{steps.package_names.outputs.STANDALONE}}
         path: master\${{steps.package_names.outputs.STANDALONE}}
+        retention-days: 90
+
+    - name: Upload RC packages
+      if: startsWith(github.ref, 'refs/tags/')
+      uses: actions/upload-artifact@v2
+      with:
+        name: rc.zip
+        path: rc\*
         retention-days: 90
