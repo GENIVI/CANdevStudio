@@ -58,10 +58,28 @@ jobs:
         mkdir ../rc
         mv *.deb *.tar.xz ../rc
 
-    - name: Upload Artifacts
+    - name: Get Pacakge Names
+      id: package_names
+      working-directory: ${{github.workspace}}/master
+      run: |
+        NORMAL=`ls *.deb`
+        echo "::set-output name=NORMAL::$NORMAL"
+        STANDALONE=`ls *.tar.xz`
+        echo "::set-output name=STANDALONE::$STANDALONE"
+
+    - name: Upload Normal Package
       uses: actions/upload-artifact@v2
       with:
-        path: master/*
+        name: ${{steps.package_names.outputs.NORMAL}}
+        path: master\${{steps.package_names.outputs.NORMAL}}
+        retention-days: 90
+
+    - name: Upload Standalone Package
+      uses: actions/upload-artifact@v2
+      with:
+        name: ${{steps.package_names.outputs.STANDALONE}}
+        path: master\${{steps.package_names.outputs.STANDALONE}}
+        retention-days: 90
 
   Linux-Debug:
     runs-on: ubuntu-latest
@@ -146,10 +164,19 @@ jobs:
         mkdir ../rc
         mv *.dmg ../rc
 
-    - name: Upload Artifacts
+    - name: Get Pacakge Names
+      id: package_names
+      working-directory: ${{github.workspace}}/master
+      run: |
+        NORMAL=`ls *.dmg`
+        echo "::set-output name=NORMAL::$NORMAL"
+
+    - name: Upload Normal Package
       uses: actions/upload-artifact@v2
       with:
-        path: master/*
+        name: ${{steps.package_names.outputs.NORMAL}}
+        path: master\${{steps.package_names.outputs.NORMAL}}
+        retention-days: 90
 
   Windows-Release:
     runs-on: windows-latest
@@ -218,9 +245,3 @@ jobs:
         name: ${{steps.package_names.outputs.STANDALONE}}
         path: master\${{steps.package_names.outputs.STANDALONE}}
         retention-days: 90
-
-
-    #- name: Upload Artifacts
-    #  uses: actions/upload-artifact@v2
-    #  with:
-    #    path: master\*
