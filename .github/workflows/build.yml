@@ -43,22 +43,17 @@ jobs:
         QT_QPA_PLATFORM: offscreen
 
     - name: Create packages
-      working-directory: ${{github.workspace}}/build
       if: ${{ github.ref == env.MAIN_BRANCH && github.event_name != 'pull_request' }}
+      working-directory: ${{github.workspace}}/build
       run: |
         cpack -G DEB
         cmake . -DSTANDALONE=ON
         cpack -G TXZ
         mkdir ../master
         mv *.deb *.tar.xz ../master
-        cmake . -DDEV_BUILD=OFF
-        cpack -G TXZ
-        cmake . -DSTANDALONE=OFF
-        cpack -G DEB
-        mkdir ../rc
-        mv *.deb *.tar.xz ../rc
 
     - name: Get Pacakge Names
+      if: ${{ github.ref == env.MAIN_BRANCH && github.event_name != 'pull_request' }}
       id: package_names
       working-directory: ${{github.workspace}}/master
       run: |
@@ -68,6 +63,7 @@ jobs:
         echo "::set-output name=STANDALONE::$STANDALONE"
 
     - name: Upload Normal Package
+      if: ${{ github.ref == env.MAIN_BRANCH && github.event_name != 'pull_request' }}
       uses: actions/upload-artifact@v2
       with:
         name: ${{steps.package_names.outputs.NORMAL}}
@@ -75,11 +71,23 @@ jobs:
         retention-days: 90
 
     - name: Upload Standalone Package
+      if: ${{ github.ref == env.MAIN_BRANCH && github.event_name != 'pull_request' }}
       uses: actions/upload-artifact@v2
       with:
         name: ${{steps.package_names.outputs.STANDALONE}}
         path: master\${{steps.package_names.outputs.STANDALONE}}
         retention-days: 90
+
+    - name: Create RC packages
+      if: startsWith(github.ref, 'refs/tags/')
+      working-directory: ${{github.workspace}}/build
+      run: |
+        cmake . -DDEV_BUILD=OFF
+        cpack -G TXZ
+        cmake . -DSTANDALONE=ON
+        cpack -G DEB
+        mkdir ../rc
+        mv *.deb *.tar.xz ../rc
 
     - name: Upload RC packages
       if: startsWith(github.ref, 'refs/tags/')
@@ -160,18 +168,15 @@ jobs:
       run: make -j4
 
     - name: Create packages
-      working-directory: ${{github.workspace}}/build
       if: ${{ github.ref == env.MAIN_BRANCH && github.event_name != 'pull_request' }}
+      working-directory: ${{github.workspace}}/build
       run: |
         cpack -G DragNDrop
         mkdir ../master
         mv *.dmg ../master
-        cmake . -DDEV_BUILD=OFF
-        cpack -G DragNDrop
-        mkdir ../rc
-        mv *.dmg ../rc
 
     - name: Get Pacakge Names
+      if: ${{ github.ref == env.MAIN_BRANCH && github.event_name != 'pull_request' }}
       id: package_names
       working-directory: ${{github.workspace}}/master
       run: |
@@ -179,18 +184,28 @@ jobs:
         echo "::set-output name=NORMAL::$NORMAL"
 
     - name: Upload Normal Package
+      if: ${{ github.ref == env.MAIN_BRANCH && github.event_name != 'pull_request' }}
       uses: actions/upload-artifact@v2
       with:
         name: ${{steps.package_names.outputs.NORMAL}}
         path: master\${{steps.package_names.outputs.NORMAL}}
         retention-days: 90
 
+    - name: Create RC packages
+      if: startsWith(github.ref, 'refs/tags/')
+      working-directory: ${{github.workspace}}/build
+      run: |
+        cmake . -DDEV_BUILD=OFF
+        cpack -G DragNDrop
+        mkdir ../rc
+        mv *.dmg ../rc
+
     - name: Upload RC packages
       if: startsWith(github.ref, 'refs/tags/')
       uses: actions/upload-artifact@v2
       with:
         name: rc.zip
-        path: rc\*
+        path: rc/*
         retention-days: 90
 
   Windows-Release:
@@ -222,22 +237,17 @@ jobs:
       run: cmake --build . --config Release
 
     - name: Create Packages
-      working-directory: ${{github.workspace}}/build
       if: ${{ github.ref == env.MAIN_BRANCH && github.event_name != 'pull_request' }}
+      working-directory: ${{github.workspace}}/build
       run: |
         cpack -G 7Z
         cmake . -DSTANDALONE=ON
         cpack -G 7Z
         mkdir ..\master
         move *.7z ..\master
-        cmake . -DDEV_BUILD=OFF
-        cpack -G 7Z
-        cmake . -DSTANDALONE=OFF
-        cpack -G 7Z
-        mkdir ..\rc
-        move *.7z ..\rc
 
     - name: Get Pacakge Names
+      if: ${{ github.ref == env.MAIN_BRANCH && github.event_name != 'pull_request' }}
       id: package_names
       shell: bash
       working-directory: ${{github.workspace}}/master
@@ -248,6 +258,7 @@ jobs:
         echo "::set-output name=STANDALONE::$STANDALONE"
 
     - name: Upload Normal Package
+      if: ${{ github.ref == env.MAIN_BRANCH && github.event_name != 'pull_request' }}
       uses: actions/upload-artifact@v2
       with:
         name: ${{steps.package_names.outputs.NORMAL}}
@@ -255,11 +266,24 @@ jobs:
         retention-days: 90
 
     - name: Upload Standalone Package
+      if: ${{ github.ref == env.MAIN_BRANCH && github.event_name != 'pull_request' }}
       uses: actions/upload-artifact@v2
       with:
         name: ${{steps.package_names.outputs.STANDALONE}}
         path: master\${{steps.package_names.outputs.STANDALONE}}
         retention-days: 90
+
+    - name: Create RC Packages
+      if: startsWith(github.ref, 'refs/tags/')
+      working-directory: ${{github.workspace}}/build
+      if: ${{ github.ref == env.MAIN_BRANCH && github.event_name != 'pull_request' }}
+      run: |
+        cmake . -DDEV_BUILD=OFF
+        cpack -G 7Z
+        cmake . -DSTANDALONE=ON
+        cpack -G 7Z
+        mkdir ..\rc
+        move *.7z ..\rc
 
     - name: Upload RC packages
       if: startsWith(github.ref, 'refs/tags/')
