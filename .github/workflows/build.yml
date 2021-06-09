@@ -14,8 +14,12 @@ jobs:
       with:
         submodules: recursive
 
-    - run: DUPA=`ls CMakeLists.txt`
-    - run: echo ${{env.DUPA}}
+    - run: |
+        DUPA=abcabc
+        echo "::set-output name=NAZWA::$DUPA"
+      id: dupa_name
+
+    - run: echo ${{steps.dupa_name.outputs.NAZWA}}
 
 
     - uses: jurplel/install-qt-action@v2
