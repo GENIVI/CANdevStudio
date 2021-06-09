@@ -58,24 +58,28 @@ jobs:
       working-directory: ${{github.workspace}}/master
       run: |
         NORMAL=`ls *.deb`
+        NORMAL_ZIP=${NORMAL%.deb}.zip
         echo "::set-output name=NORMAL::$NORMAL"
+        echo "::set-output name=NORMAL_ZIP::$NORMAL_ZIP"
         STANDALONE=`ls *.tar.xz`
+        STANDALONE_ZIP=${NORMAL%.tar.xz}.zip
         echo "::set-output name=STANDALONE::$STANDALONE"
+        echo "::set-output name=STANDALONE_ZIP::$STANDALONE_ZIP"
 
     - name: Upload Normal Package
       if: ${{ github.ref == env.MAIN_BRANCH && github.event_name != 'pull_request' }}
       uses: actions/upload-artifact@v2
       with:
-        name: ${{steps.package_names.outputs.NORMAL}}
-        path: master\${{steps.package_names.outputs.NORMAL}}
+        name: ${{steps.package_names.outputs.NORMAL_ZIP}}
+        path: master/${{steps.package_names.outputs.NORMAL}}
         retention-days: 90
 
     - name: Upload Standalone Package
       if: ${{ github.ref == env.MAIN_BRANCH && github.event_name != 'pull_request' }}
       uses: actions/upload-artifact@v2
       with:
-        name: ${{steps.package_names.outputs.STANDALONE}}
-        path: master\${{steps.package_names.outputs.STANDALONE}}
+        name: ${{steps.package_names.outputs.STANDALONE_ZIP}}
+        path: master/${{steps.package_names.outputs.STANDALONE}}
         retention-days: 90
 
     - name: Create RC packages
@@ -94,7 +98,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: rc.zip
-        path: rc\*
+        path: rc/*
         retention-days: 90
 
   Linux-Debug:
@@ -181,14 +185,16 @@ jobs:
       working-directory: ${{github.workspace}}/master
       run: |
         NORMAL=`ls *.dmg`
+        NORMAL_ZIP=${NORMAL%.dmg}.zip
         echo "::set-output name=NORMAL::$NORMAL"
+        echo "::set-output name=NORMAL_ZIP::$NORMAL_ZIP"
 
     - name: Upload Normal Package
       if: ${{ github.ref == env.MAIN_BRANCH && github.event_name != 'pull_request' }}
       uses: actions/upload-artifact@v2
       with:
-        name: ${{steps.package_names.outputs.NORMAL}}
-        path: master\${{steps.package_names.outputs.NORMAL}}
+        name: ${{steps.package_names.outputs.NORMAL_ZIP}}
+        path: master/${{steps.package_names.outputs.NORMAL}}
         retention-days: 90
 
     - name: Create RC packages
@@ -253,15 +259,19 @@ jobs:
       working-directory: ${{github.workspace}}/master
       run: |
         NORMAL=`ls *win64.7z`
+        NORMAL_ZIP=${NORMAL%.7z}.zip
         echo "::set-output name=NORMAL::$NORMAL"
+        echo "::set-output name=NORMAL_ZIP::$NORMAL_ZIP"
         STANDALONE=`ls *win64-standalone.7z`
+        STANDALONE_ZIP=${NORMAL%.7z}.zip
         echo "::set-output name=STANDALONE::$STANDALONE"
+        echo "::set-output name=STANDALONE_ZIP::$STANDALONE_ZIP"
 
     - name: Upload Normal Package
       if: ${{ github.ref == env.MAIN_BRANCH && github.event_name != 'pull_request' }}
       uses: actions/upload-artifact@v2
       with:
-        name: ${{steps.package_names.outputs.NORMAL}}
+        name: ${{steps.package_names.outputs.NORMAL_ZIP}}
         path: master\${{steps.package_names.outputs.NORMAL}}
         retention-days: 90
 
@@ -269,7 +279,7 @@ jobs:
       if: ${{ github.ref == env.MAIN_BRANCH && github.event_name != 'pull_request' }}
       uses: actions/upload-artifact@v2
       with:
-        name: ${{steps.package_names.outputs.STANDALONE}}
+        name: ${{steps.package_names.outputs.STANDALONE_ZIP}}
         path: master\${{steps.package_names.outputs.STANDALONE}}
         retention-days: 90
 
