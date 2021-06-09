@@ -276,7 +276,6 @@ jobs:
     - name: Create RC Packages
       if: startsWith(github.ref, 'refs/tags/')
       working-directory: ${{github.workspace}}/build
-      if: ${{ github.ref == env.MAIN_BRANCH && github.event_name != 'pull_request' }}
       run: |
         cmake . -DDEV_BUILD=OFF
         cpack -G 7Z
