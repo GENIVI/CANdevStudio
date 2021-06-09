@@ -15,7 +15,7 @@ jobs:
         submodules: recursive
 
     - run: |
-        DUPA=abcabc
+        DUPA=`ls CMakeLists.txt`
         echo "::set-output name=NAZWA::$DUPA"
       id: dupa_name
 
