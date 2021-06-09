@@ -10,6 +10,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - run: DUPA=`ls CMakeLists.txt'
+    - run: echo ${{env.DUPA}}
+
     - uses: actions/checkout@v2
       with:
         submodules: recursive
