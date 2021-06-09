@@ -14,6 +14,12 @@ jobs:
     #test
     - run: echo ${{ github.ref }}
 
+    - run: echo "tags!"
+      if: startsWith('refs/tags', ${{ github.ref }})
+
+    - run: echo "heads!"
+      if: startsWith('refs/heads', ${{ github.ref }})
+
     - uses: actions/checkout@v2
       with:
         submodules: recursive
