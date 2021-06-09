@@ -58,11 +58,11 @@ jobs:
       working-directory: ${{github.workspace}}/master
       run: |
         NORMAL=`ls *.deb`
-        NORMAL_ZIP=${NORMAL%.deb}.zip
+        NORMAL_ZIP=${NORMAL%.deb}
         echo "::set-output name=NORMAL::$NORMAL"
         echo "::set-output name=NORMAL_ZIP::$NORMAL_ZIP"
         STANDALONE=`ls *.tar.xz`
-        STANDALONE_ZIP=${STANDALONE%.tar.xz}.zip
+        STANDALONE_ZIP=${STANDALONE%.tar.xz}
         echo "::set-output name=STANDALONE::$STANDALONE"
         echo "::set-output name=STANDALONE_ZIP::$STANDALONE_ZIP"
 
@@ -185,7 +185,7 @@ jobs:
       working-directory: ${{github.workspace}}/master
       run: |
         NORMAL=`ls *.dmg`
-        NORMAL_ZIP=${NORMAL%.dmg}.zip
+        NORMAL_ZIP=${NORMAL%.dmg}
         echo "::set-output name=NORMAL::$NORMAL"
         echo "::set-output name=NORMAL_ZIP::$NORMAL_ZIP"
 
@@ -259,11 +259,11 @@ jobs:
       working-directory: ${{github.workspace}}/master
       run: |
         NORMAL=`ls *win64.7z`
-        NORMAL_ZIP=${NORMAL%.7z}.zip
+        NORMAL_ZIP=${NORMAL%.7z}
         echo "::set-output name=NORMAL::$NORMAL"
         echo "::set-output name=NORMAL_ZIP::$NORMAL_ZIP"
         STANDALONE=`ls *win64-standalone.7z`
-        STANDALONE_ZIP=${STANDALONE%.7z}.zip
+        STANDALONE_ZIP=${STANDALONE%.7z}
         echo "::set-output name=STANDALONE::$STANDALONE"
         echo "::set-output name=STANDALONE_ZIP::$STANDALONE_ZIP"
 
