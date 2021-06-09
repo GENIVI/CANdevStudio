@@ -196,25 +196,28 @@ jobs:
         move *.7z ..\rc
 
     - name: Get Pacakge Names
-      shell: bash
       id: package_names
+      shell: bash
+      working-directory: ${{github.workspace}}/master
       run: |
-        NORMAL=`ls master/*win64.7z`
+        NORMAL=`ls *win64.7z`
         echo "::set-output name=NORMAL::$NORMAL"
-        STANDALONE=`ls master/*win64-standalone.7z`
+        STANDALONE=`ls *win64-standalone.7z`
         echo "::set-output name=STANDALONE::$STANDALONE"
 
-    - name: Upload Normal Artifact
+    - name: Upload Normal Package
       uses: actions/upload-artifact@v2
       with:
         name: ${{steps.package_names.outputs.NORMAL}}
         path: master\${{steps.package_names.outputs.NORMAL}}
+        retention-days: 90
 
-    - name: Upload Standalone Artifact
+    - name: Upload Standalone Package
       uses: actions/upload-artifact@v2
       with:
         name: ${{steps.package_names.outputs.STANDALONE}}
         path: master\${{steps.package_names.outputs.STANDALONE}}
+        retention-days: 90
 
 
     #- name: Upload Artifacts
