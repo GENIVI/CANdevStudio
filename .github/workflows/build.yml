@@ -14,14 +14,6 @@ jobs:
       with:
         submodules: recursive
 
-    - run: |
-        DUPA=`ls CMakeLists.txt`
-        echo "::set-output name=NAZWA::$DUPA"
-      id: dupa_name
-
-    - run: echo ${{steps.dupa_name.outputs.NAZWA}}
-
-
     - uses: jurplel/install-qt-action@v2
 
     - uses: MarkusJx/install-boost@v1.0.1
@@ -203,7 +195,29 @@ jobs:
         mkdir ..\rc
         move *.7z ..\rc
 
-    - name: Upload Artifacts
+    - name: Get Pacakge Names
+      shell: bash
+      id: package_names
+      run: |
+        NORMAL=`ls master/*win64.7z`
+        echo "::set-output name=NORMAL::$NORMAL"
+        STANDALONE=`ls master/*win64-standalone.7z`
+        echo "::set-output name=STANDALONE::$STANDALONE"
+
+    - name: Upload Normal Artifact
       uses: actions/upload-artifact@v2
       with:
-        path: master\*
+        name: ${{steps.package_names.outputs.NORMAL}}
+        path: master\${{steps.package_names.outputs.NORMAL}}
+
+    - name: Upload Standalone Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: ${{steps.package_names.outputs.STANDALONE}}
+        path: master\${{steps.package_names.outputs.STANDALONE}}
+
+
+    #- name: Upload Artifacts
+    #  uses: actions/upload-artifact@v2
+    #  with:
+    #    path: master\*
