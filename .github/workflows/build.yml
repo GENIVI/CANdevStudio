@@ -14,7 +14,7 @@ jobs:
       with:
         submodules: recursive
 
-    - run: DUPA=`ls CMakeLists.txt'`
+    - run: DUPA=`ls CMakeLists.txt`
     - run: echo ${{env.DUPA}}
 
 
