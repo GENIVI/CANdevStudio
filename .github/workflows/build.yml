@@ -62,7 +62,7 @@ jobs:
         echo "::set-output name=NORMAL::$NORMAL"
         echo "::set-output name=NORMAL_ZIP::$NORMAL_ZIP"
         STANDALONE=`ls *.tar.xz`
-        STANDALONE_ZIP=${NORMAL%.tar.xz}.zip
+        STANDALONE_ZIP=${STANDALONE%.tar.xz}.zip
         echo "::set-output name=STANDALONE::$STANDALONE"
         echo "::set-output name=STANDALONE_ZIP::$STANDALONE_ZIP"
 
@@ -263,7 +263,7 @@ jobs:
         echo "::set-output name=NORMAL::$NORMAL"
         echo "::set-output name=NORMAL_ZIP::$NORMAL_ZIP"
         STANDALONE=`ls *win64-standalone.7z`
-        STANDALONE_ZIP=${NORMAL%.7z}.zip
+        STANDALONE_ZIP=${STANDALONE%.7z}.zip
         echo "::set-output name=STANDALONE::$STANDALONE"
         echo "::set-output name=STANDALONE_ZIP::$STANDALONE_ZIP"
 
