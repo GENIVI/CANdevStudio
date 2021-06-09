@@ -1,6 +1,6 @@
 name: CANdevStudio
 
-on: [push]
+on: [push, pull_request]
 
 env:
   MAIN_BRANCH: 'refs/heads/gha'
@@ -10,6 +10,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
+    #test
+    - run: echo ${{ github.ref }}
+
     - uses: actions/checkout@v2
       with:
         submodules: recursive
