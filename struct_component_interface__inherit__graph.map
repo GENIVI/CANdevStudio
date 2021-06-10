@@ -1,0 +1,16 @@
+<map id="ComponentInterface" name="ComponentInterface">
+<area shape="rect" id="node1" title="Interface to be implemented by every component." alt="" coords="5,309,144,336"/>
+<area shape="rect" id="node2" href="$class_can_device.html" title="The class provides abstraction layer for CAN BUS hardware." alt="" coords="214,5,299,32"/>
+<area shape="rect" id="node3" href="$class_can_load.html" title=" " alt="" coords="219,56,294,83"/>
+<area shape="rect" id="node4" href="$class_can_raw_filter.html" title=" " alt="" coords="207,107,307,133"/>
+<area shape="rect" id="node5" href="$class_can_raw_logger.html" title=" " alt="" coords="201,157,312,184"/>
+<area shape="rect" id="node6" href="$class_can_raw_player.html" title=" " alt="" coords="203,208,310,235"/>
+<area shape="rect" id="node7" href="$class_can_raw_sender.html" title=" " alt="" coords="201,259,313,285"/>
+<area shape="rect" id="node8" href="$class_can_raw_view.html" title=" " alt="" coords="207,309,307,336"/>
+<area shape="rect" id="node9" href="$class_can_signal_data.html" title=" " alt="" coords="203,360,311,387"/>
+<area shape="rect" id="node10" href="$class_can_signal_decoder.html" title=" " alt="" coords="192,411,321,437"/>
+<area shape="rect" id="node11" href="$class_can_signal_encoder.html" title=" " alt="" coords="193,461,321,488"/>
+<area shape="rect" id="node12" href="$class_can_signal_sender.html" title=" " alt="" coords="195,512,318,539"/>
+<area shape="rect" id="node13" href="$class_can_signal_viewer.html" title=" " alt="" coords="196,563,317,589"/>
+<area shape="rect" id="node14" href="$class_q_m_l_executor.html" title=" " alt="" coords="206,613,307,640"/>
+</map>

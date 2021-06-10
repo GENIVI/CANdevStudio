@@ -1,0 +1,25 @@
+var struct_can_signal_viewer_gui_int =
+[
+    [ "clear_t", "struct_can_signal_viewer_gui_int.html#abf7a1bceb27392c8687a933838a2f64f", null ],
+    [ "dockUndock_t", "struct_can_signal_viewer_gui_int.html#a952e69682167e006d6711f3fa72b95d7", null ],
+    [ "filter_t", "struct_can_signal_viewer_gui_int.html#a5f3f7e74a495b9471d80fc9154bdde9c", null ],
+    [ "sectionClicked_t", "struct_can_signal_viewer_gui_int.html#abb73e712ccd695c1a2a4ff2d16fe7c53", null ],
+    [ "~CanSignalViewerGuiInt", "struct_can_signal_viewer_gui_int.html#a15bbd99b1b88323b7bbe887927c22dc4", null ],
+    [ "getClickedColumn", "struct_can_signal_viewer_gui_int.html#a68a2b66416d1976e80555cd686e46939", null ],
+    [ "getColumnProper", "struct_can_signal_viewer_gui_int.html#a414fe2113b8801114e9784b90cd9db80", null ],
+    [ "getSortOrder", "struct_can_signal_viewer_gui_int.html#a89961701524370ed8ec38d72794ac1f0", null ],
+    [ "getWindowTitle", "struct_can_signal_viewer_gui_int.html#ad698f641dde1f17273e06aae8b6c15b7", null ],
+    [ "initTableView", "struct_can_signal_viewer_gui_int.html#a452c8ce7520606c2a8a153eee24807d5", null ],
+    [ "isColumnHidden", "struct_can_signal_viewer_gui_int.html#af26847b21ffdd76b3cd03c2038fce1c2", null ],
+    [ "isViewFrozen", "struct_can_signal_viewer_gui_int.html#a6dd072cf567faa7b07c261c972f46cd4", null ],
+    [ "mainWidget", "struct_can_signal_viewer_gui_int.html#aa1d41a935f2b407b0497a0238456e9b0", null ],
+    [ "scrollToBottom", "struct_can_signal_viewer_gui_int.html#a5ee2355875cc336b0f2c92130b41c953", null ],
+    [ "setClearCbk", "struct_can_signal_viewer_gui_int.html#ac9de253f575fcd7542256fa161a4c411", null ],
+    [ "setColumnProper", "struct_can_signal_viewer_gui_int.html#ad8e2ec66469d4b9c98019bbdc155f362", null ],
+    [ "setDockUndockCbk", "struct_can_signal_viewer_gui_int.html#a01597ddd01789767b9384d4d28e1dac1", null ],
+    [ "setFilterCbk", "struct_can_signal_viewer_gui_int.html#af17e3a01845579b9c815a4dd63650576", null ],
+    [ "setModel", "struct_can_signal_viewer_gui_int.html#a2cb8877b653a868e87a9b6085690c06e", null ],
+    [ "setSectionClikedCbk", "struct_can_signal_viewer_gui_int.html#a62093debeb13edfca7910e59b48dc947", null ],
+    [ "setSorting", "struct_can_signal_viewer_gui_int.html#a7d8adb99457142ed1a1fc868dd0deb55", null ],
+    [ "setViewFrozen", "struct_can_signal_viewer_gui_int.html#aa7b48b78c9ff56b1081f1741ce7bd868", null ]
+];
