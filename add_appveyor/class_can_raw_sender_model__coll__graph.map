@@ -1,6 +1,0 @@
-<map id="CanRawSenderModel" name="CanRawSenderModel">
-<area shape="rect" id="node2" href="$class_component_model.html" title="ComponentModel\&lt; CanRawSender,\l CanRawSenderModel \&gt;" alt="" coords="81,171,331,212"/>
-<area shape="rect" id="node3" href="$struct_component_model_interface.html" title="ComponentModelInterface" alt="" coords="5,81,196,108"/>
-<area shape="rect" id="node5" href="$class_can_raw_sender.html" title="CanRawSender" alt="" coords="220,81,339,108"/>
-<area shape="rect" id="node7" href="$struct_component_interface.html" title="Interface to be implemented by every component. " alt="" coords="328,5,481,32"/>
-</map>

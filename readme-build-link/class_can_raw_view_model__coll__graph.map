@@ -1,6 +1,0 @@
-<map id="CanRawViewModel" name="CanRawViewModel">
-<area shape="rect" id="node2" href="$class_component_model.html" title="ComponentModel\&lt; CanRawView,\l CanRawViewModel \&gt;" alt="" coords="134,171,367,212"/>
-<area shape="rect" id="node4" href="$struct_component_model_interface.html" title="ComponentModelInterface" alt="" coords="155,81,346,108"/>
-<area shape="rect" id="node5" href="$class_can_raw_view.html" title="CanRawView" alt="" coords="371,81,472,108"/>
-<area shape="rect" id="node7" href="$struct_component_interface.html" title="Interface to be implemented by every component. " alt="" coords="413,5,566,32"/>
-</map>

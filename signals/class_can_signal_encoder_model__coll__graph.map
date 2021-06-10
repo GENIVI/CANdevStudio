@@ -1,6 +1,0 @@
-<map id="CanSignalEncoderModel" name="CanSignalEncoderModel">
-<area shape="rect" id="node2" href="$class_component_model.html" title="ComponentModel\&lt; CanSignal\lEncoder, CanSignalEncoderModel \&gt;" alt="" coords="125,171,376,212"/>
-<area shape="rect" id="node4" href="$struct_component_model_interface.html" title="ComponentModelInterface" alt="" coords="155,81,346,108"/>
-<area shape="rect" id="node5" href="$class_can_signal_encoder.html" title="CanSignalEncoder" alt="" coords="371,81,509,108"/>
-<area shape="rect" id="node7" href="$struct_component_interface.html" title="Interface to be implemented by every component. " alt="" coords="431,5,585,32"/>
-</map>

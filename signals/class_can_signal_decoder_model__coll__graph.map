@@ -1,6 +1,0 @@
-<map id="CanSignalDecoderModel" name="CanSignalDecoderModel">
-<area shape="rect" id="node2" href="$class_component_model.html" title="ComponentModel\&lt; CanSignal\lDecoder, CanSignalDecoderModel \&gt;" alt="" coords="123,171,378,212"/>
-<area shape="rect" id="node4" href="$struct_component_model_interface.html" title="ComponentModelInterface" alt="" coords="155,81,346,108"/>
-<area shape="rect" id="node5" href="$class_can_signal_decoder.html" title="CanSignalDecoder" alt="" coords="370,81,510,108"/>
-<area shape="rect" id="node7" href="$struct_component_interface.html" title="Interface to be implemented by every component. " alt="" coords="431,5,585,32"/>
-</map>

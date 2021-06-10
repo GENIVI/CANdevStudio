@@ -1,6 +1,0 @@
-<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node2" href="$class_can_device_data_out.html" title="The class describing data model used as output for CanDevice node. " alt="" coords="162,5,306,32"/>
-<area shape="rect" id="node3" href="$class_can_signal_coder_signal_out.html" title="CanSignalCoderSignalOut" alt="" coords="141,56,327,83"/>
-<area shape="rect" id="node4" href="$class_can_signal_data_data_out.html" title="CanSignalDataDataOut" alt="" coords="149,107,319,133"/>
-<area shape="rect" id="node5" href="$class_can_signal_encoder_signal_in.html" title="CanSignalEncoderSignalIn" alt="" coords="140,157,328,184"/>
-</map>

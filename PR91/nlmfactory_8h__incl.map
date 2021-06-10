@@ -1,9 +1,0 @@
-<map id="src/components/canrawsender/nlmfactory.h" name="src/components/canrawsender/nlmfactory.h">
-<area shape="rect" id="node2" href="$nlmcheckbox_8h.html" title="gui/nlmcheckbox.h" alt="" coords="302,95,443,121"/>
-<area shape="rect" id="node8" href="$nlmlineedit_8h.html" title="gui/nlmlineedit.h" alt="" coords="663,95,789,121"/>
-<area shape="rect" id="node11" href="$nlmpushbutton_8h.html" title="gui/nlmpushbutton.h" alt="" coords="858,95,1013,121"/>
-<area shape="rect" id="node14" href="$nlmfactoryinterface_8h.html" title="nlmfactoryinterface.h" alt="" coords="1037,95,1196,121"/>
-<area shape="rect" id="node6" href="$checkboxinterface_8h.html" title="guiinterface/checkboxinterface.h" alt="" coords="258,169,487,196"/>
-<area shape="rect" id="node9" href="$lineeditinterface_8h.html" title="guiinterface/lineeditinterface.h" alt="" coords="619,169,833,196"/>
-<area shape="rect" id="node13" href="$pushbuttoninterface_8h.html" title="guiinterface/pushbuttoninterface.h" alt="" coords="858,169,1101,196"/>
-</map>

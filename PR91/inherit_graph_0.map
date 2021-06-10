@@ -1,9 +1,0 @@
-<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$struct_component_interface.html" title="Interface to be implemented by every component. " alt="" coords="5,56,159,83"/>
-<area shape="rect" id="node2" href="$class_can_device.html" title="The class provides abstraction layer for CAN BUS hardware. " alt="" coords="243,5,333,32"/>
-<area shape="rect" id="node3" href="$class_can_raw_sender.html" title="CanRawSender" alt="" coords="229,56,347,83"/>
-<area shape="rect" id="node4" href="$class_can_raw_view.html" title="CanRawView" alt="" coords="237,107,339,133"/>
-<area shape="rect" id="node6" href="$class_can_raw_sender_private.html" title="This class is responsible for manage can raw sender window. " alt="" coords="207,157,369,184"/>
-<area shape="rect" id="node7" href="$class_can_raw_view_private.html" title="CanRawViewPrivate" alt="" coords="215,208,361,235"/>
-<area shape="rect" id="node8" href="$class_new_line_manager.html" title="This class holds informations about all the columns in line and relationships beteewn them..." alt="" coords="223,259,353,285"/>
-</map>

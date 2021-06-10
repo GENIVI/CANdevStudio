@@ -1,6 +1,0 @@
-<map id="CanDeviceModel" name="CanDeviceModel">
-<area shape="rect" id="node2" href="$class_component_model.html" title="ComponentModel\&lt; CanDevice,\l CanDeviceModel \&gt;" alt="" coords="87,171,309,212"/>
-<area shape="rect" id="node3" href="$struct_component_model_interface.html" title="ComponentModelInterface" alt="" coords="5,81,196,108"/>
-<area shape="rect" id="node5" href="$class_can_device.html" title="The class provides abstraction layer for CAN BUS hardware. " alt="" coords="221,81,311,108"/>
-<area shape="rect" id="node7" href="$struct_component_interface.html" title="Interface to be implemented by every component. " alt="" coords="321,5,475,32"/>
-</map>
