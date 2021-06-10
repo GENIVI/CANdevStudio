@@ -109,9 +109,16 @@ jobs:
       with:
         submodules: recursive
 
-    - uses: mattnotmitt/doxygen-action@v1
+    - name: Generate Doxygen
+      uses: mattnotmitt/doxygen-action@v1
       with:
         doxyfile-path: 'Doxyfile'
+
+    - name: Deploy Doxygen
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./public
 
     - uses: jurplel/install-qt-action@v2
 
