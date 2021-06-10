@@ -109,17 +109,6 @@ jobs:
       with:
         submodules: recursive
 
-    - name: Generate Doxygen
-      uses: mattnotmitt/doxygen-action@v1
-      with:
-        doxyfile-path: 'Doxyfile'
-
-    - name: Deploy Doxygen
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./html
-
     - uses: jurplel/install-qt-action@v2
 
     - uses: MarkusJx/install-boost@v1.0.1
@@ -134,7 +123,7 @@ jobs:
 
     - name: Configure CMake
       working-directory: ${{github.workspace}}/build
-      run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=Debug -DCI_TESTS=ON -DWITH_COVERAGE=ON
+      run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=Debug -DCI_TESTS=ON -DWITH_COVERAGE=ON -DWITH_TOOLS=ON
       env:
         BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
 
@@ -147,6 +136,29 @@ jobs:
       run: ctest
       env:
         QT_QPA_PLATFORM: offscreen
+
+    - name: Generate Doxygen
+      if: ${{ github.ref == env.MAIN_BRANCH && github.event_name != 'pull_request' }}
+      uses: mattnotmitt/doxygen-action@v1
+      with:
+        doxyfile-path: 'Doxyfile'
+
+    - name: Deploy Doxygen
+      if: ${{ github.ref == env.MAIN_BRANCH && github.event_name != 'pull_request' }}
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./html
+
+    - name: Generate and Test Templates
+      working-directory: ${{github.workspace}}/build
+      run: |
+        ./tools/templategen/templategen -n WithGUI -o ../src/components
+        ./tools/templategen/templategen -n NoGUI -o ../src/components -g
+        cmake .
+        make -j3
+        make test
+        rm -rf ../src/components/NoGUI ../src/components/WithGUI
 
     - name: Code Coverage
       uses: codecov/codecov-action@v1
