@@ -26,7 +26,7 @@ jobs:
 
     - name: Configure CMake
       working-directory: ${{github.workspace}}/build
-      run: cmake .. -DCMAKE_BUILD_TYPE=Release -DCI_TESTS=ON
+      run: cmake .. -DCMAKE_BUILD_TYPE=Release
       env:
         CXX: clang++
         CC: clang
@@ -123,7 +123,7 @@ jobs:
 
     - name: Configure CMake
       working-directory: ${{github.workspace}}/build
-      run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=Debug -DCI_TESTS=OFF -DWITH_COVERAGE=ON -DWITH_TOOLS=ON
+      run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=Debug -DWITH_COVERAGE=ON -DWITH_TOOLS=ON
       env:
         BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
 

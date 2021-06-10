@@ -19,7 +19,6 @@ option(WITH_COVERAGE "Build with coverage" OFF)
 option(WITH_TOOLS "Build tools directory" OFF)
 option(DEV_BUILD "Development build will include GIT hash and branch to versioning" ON)
 option(STANDALONE "Builds self containing package including Qt libs" OFF)
-option(CI_TESTS "Disable tests unable to run on CI (e.g. CanDevice)" OFF)
 
 if(NOT CMAKE_INSTALL_LIBDIR)
     set(CMAKE_INSTALL_LIBDIR lib)
