@@ -152,6 +152,8 @@ jobs:
 
     - name: Generate and Test Templates
       working-directory: ${{github.workspace}}/build
+      env:
+        QT_QPA_PLATFORM: offscreen
       run: |
         ./tools/templategen/templategen -n WithGUI -o ../src/components
         ./tools/templategen/templategen -n NoGUI -o ../src/components -g
