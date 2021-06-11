@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.0.0)
 project(CANdevStudio CXX)
 
 set(VERSION_MAJOR 1)
-set(VERSION_MINOR 1)
+set(VERSION_MINOR 2)
 set(VERSION_PATCH 0)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -13,12 +13,6 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 14)
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/Modules)
-
-#windows build may need to point to boost, modify with your boost install dir and uncomment
-#set(BOOST_ROOT C:/local/boost_1_73_0/)
-#set(BOOST_INCLUDE_DIR C:/local/boost_1_73_0/)
-#set(BOOST_LIBRARY_DIR C:/local/boost_1_73_0/libs)
-
 
 option(WITH_COVERAGE "Build with coverage" OFF)
 option(WITH_TOOLS "Build tools directory" OFF)
@@ -166,9 +160,6 @@ if(STANDALONE)
         install(PROGRAMS files/CANdevStudio.sh DESTINATION ${INSTALL_DEST_BIN})
     else()
         set(SYS_LIBS
-            libgcc_s_dw2-1.dll
-            libstdc++-6.dll
-            libwinpthread-1.dll
             Qt5Core.dll
             Qt5Gui.dll
             Qt5Network.dll
