@@ -1,5 +1,5 @@
 # CANdevStudio 
-[![CANdevStudio](https://github.com/GENIVI/CANdevStudio/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/GENIVI/CANdevStudio/actions/workflows/build.yml) [![codecov](https://codecov.io/gh/GENIVI/CANdevStudio/branch/master/graph/badge.svg)](https://codecov.io/gh/GENIVI/CANdevStudio) [![Doxygen](https://img.shields.io/badge/Doxygen-master-blue.svg)](https://genivi.github.io/CANdevStudio/)
+[![CANdevStudio](https://github.com/GENIVI/CANdevStudio/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/GENIVI/CANdevStudio/actions/workflows/build.yml?query=branch%3Amaster++) [![codecov](https://codecov.io/gh/GENIVI/CANdevStudio/branch/master/graph/badge.svg)](https://codecov.io/gh/GENIVI/CANdevStudio) [![Doxygen](https://img.shields.io/badge/Doxygen-master-blue.svg)](https://genivi.github.io/CANdevStudio/)
 
 
 
