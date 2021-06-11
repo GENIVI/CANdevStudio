@@ -86,7 +86,7 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <div class="title">CANdevStudio </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="md_README"></a><a href="https://travis-ci.com/GENIVI/CANdevStudio"><img src="https://travis-ci.com/GENIVI/CANdevStudio.svg?branch=master" alt="Build Status" style="pointer-events: none;" class="inline"/></a> <a href="https://ci.appveyor.com/project/rkollataj/candevstudio-j9v77/branch/master"><img src="https://ci.appveyor.com/api/projects/status/wak1kdfueyn68h0t/branch/master?svg=true" alt="Build status" class="inline"/></a> <a href="https://codecov.io/gh/GENIVI/CANdevStudio"><img src="https://codecov.io/gh/GENIVI/CANdevStudio/branch/master/graph/badge.svg" alt="codecov" style="pointer-events: none;" class="inline"/></a> <a href="https://bintray.com/rkollataj/CANdevStudio/releases/_latestVersion"><img src="https://api.bintray.com/packages/rkollataj/CANdevStudio/releases/images/download.svg" alt="Download" style="pointer-events: none;" class="inline"/></a> <a href="https://bintray.com/rkollataj/CANdevStudio/master/_latestVersion"><img src="https://api.bintray.com/packages/rkollataj/CANdevStudio/master/images/download.svg" alt="Download" style="pointer-events: none;" class="inline"/></a> <a href="https://genivi.github.io/CANdevStudio/master/"><img src="https://img.shields.io/badge/Doxygen-master-blue.svg" alt="Doxygen" style="pointer-events: none;" class="inline"/></a></p>
+<div class="textblock"><p><a class="anchor" id="md_README"></a><a href="https://github.com/GENIVI/CANdevStudio/actions/workflows/build.yml"><img src="https://github.com/GENIVI/CANdevStudio/actions/workflows/build.yml/badge.svg?branch=master" alt="CANdevStudio" style="pointer-events: none;" class="inline"/></a> <a href="https://codecov.io/gh/GENIVI/CANdevStudio"><img src="https://codecov.io/gh/GENIVI/CANdevStudio/branch/master/graph/badge.svg" alt="codecov" style="pointer-events: none;" class="inline"/></a> <a href="https://genivi.github.io/CANdevStudio/"><img src="https://img.shields.io/badge/Doxygen-master-blue.svg" alt="Doxygen" style="pointer-events: none;" class="inline"/></a></p>
 <ul>
 <li><a href="#overview">Overview</a><ul>
 <li><a href="#compatible-can-interfaces">Compatible CAN interfaces</a></li>
@@ -100,9 +100,7 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 </ul>
 </li>
 <li><a href="#windows">Windows</a><ul>
-<li><a href="#visual-studio-2015">Visual Studio 2015</a></li>
-<li><a href="#visual-studio-2015-win64">Visual Studio 2015 Win64</a></li>
-<li><a href="#mingw">MinGW</a></li>
+<li><a href="#visual-studio-2019-win64">Visual Studio 2019 Win64</a></li>
 </ul>
 </li>
 <li><a href="#macos--os-x">macOS / OS X</a></li>
@@ -155,7 +153,12 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <li>macOS</li>
 </ul>
 <h1>Build instructions</h1>
-<p>CANdevStudio project uses Travis CI (Linux) and AppVeyor (Windows) continuous integration tools. You can always check .travis.yml and .appveyor.yml files for building details.</p>
+<p>CANdevStudio project uses GitHub Actions as continuous integration environment. You can check <a href="https://github.com/GENIVI/CANdevStudio/blob/master/.github/workflows/build.yml">build.yml</a> for details.</p>
+<p>To lower maitenance effort and allow for usage of modern C++ features since v1.2.0 CANdevStudio dropped "official" support for legacy compilers like gcc5.3, vs2015 or MinGW. Current CI configuration uses the latest compilers available for each GitHub Actions environment:</p><ul>
+<li>ubuntu-latest (clang and gcc)</li>
+<li>macos-latest (clang)</li>
+<li>windows-latest (vs2019 x64)</li>
+</ul>
 <h2>Linux</h2>
 <div class="fragment"><div class="line">git clone https://github.com/GENIVI/CANdevStudio.git</div>
 <div class="line">cd CANdevStudio</div>
@@ -176,32 +179,14 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <div class="line">rm -rf *</div>
 <div class="line">cmake .. -DCMAKE_PREFIX_PATH=/home/genivi/Qt5.8.0/5.8/gcc_64</div>
 <div class="line">make</div>
-</div><!-- fragment --> <h2>ARCH Linux</h2>
-<p>Install AUR package: <a href="https://aur.archlinux.org/packages/candevstudio-git/">candevstudio-git</a></p>
-<h2>Windows</h2>
-<h3>Visual Studio 2015</h3>
+</div><!-- fragment --> <h2>Windows</h2>
+<h3>Visual Studio 2019 Win64</h3>
 <div class="fragment"><div class="line">git clone https://github.com/GENIVI/CANdevStudio.git</div>
 <div class="line">cd CANdevStudio</div>
 <div class="line">git submodule update --init --recursive</div>
 <div class="line">mkdir build</div>
 <div class="line">cd build</div>
-<div class="line">cmake .. -G &quot;Visual Studio 14 2015&quot; -DCMAKE_PREFIX_PATH=C:\Qt\5.9\msvc2015</div>
-<div class="line">cmake --build .</div>
-</div><!-- fragment --> <h3>Visual Studio 2015 Win64</h3>
-<div class="fragment"><div class="line">git clone https://github.com/GENIVI/CANdevStudio.git</div>
-<div class="line">cd CANdevStudio</div>
-<div class="line">git submodule update --init --recursive</div>
-<div class="line">mkdir build</div>
-<div class="line">cd build</div>
-<div class="line">cmake .. -G &quot;Visual Studio 14 2015 Win64&quot; -DCMAKE_PREFIX_PATH=C:\Qt\5.9\msvc2015_64</div>
-<div class="line">cmake --build .</div>
-</div><!-- fragment --> <h3>MinGW</h3>
-<div class="fragment"><div class="line">git clone https://github.com/GENIVI/CANdevStudio.git</div>
-<div class="line">cd CANdevStudio</div>
-<div class="line">git submodule update --init --recursive</div>
-<div class="line">mkdir build</div>
-<div class="line">cd build</div>
-<div class="line">cmake .. -G &quot;MinGW Makefiles&quot; -DCMAKE_PREFIX_PATH=C:\Qt\5.9\mingw53_32</div>
+<div class="line">cmake .. -DCMAKE_BUILD_TYPE=Release -G &quot;Visual Studio 16 2019&quot; -A x64</div>
 <div class="line">cmake --build .</div>
 </div><!-- fragment --> <h2>macOS / OS X</h2>
 <div class="fragment"><div class="line">git clone https://github.com/GENIVI/CANdevStudio.git</div>
@@ -212,19 +197,20 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <div class="line">cmake .. -GNinja -DCMAKE_PREFIX_PATH=/path/to/Qt/lib/cmake</div>
 <div class="line">ninja</div>
 </div><!-- fragment --> <h1>Prebuilt packages</h1>
-<p>Binary packages are automatically uploaded by CI tools (i.e. Travis and Appveyor) to <a href="https://bintray.com/rkollataj/CANdevStudio">Bintray</a> artifactory for every commit on master branch. </p><h2>Download</h2>
-<p>Use Bintray badges above to dowload stable or develop version (each commit on master creates corresponding binary packege in Bintray) </p><h2>Package naming</h2>
+<p>Each GitHub Actions job stores prebuilt packages for 90 days. Additionally official relases are stored on GitHub Releases page. </p><h2>Package naming</h2>
 <p><em><b>CANdevStudio-X.Y.ZZZZZZZ-SYS[-standalone]</b></em></p>
 <p><b>X</b> - major version number of previous stable version<br  />
  <b>Y</b> - minor version of previous stable version<br  />
  <b>Z</b> - SHA commit ID<br  />
- <b>SYS</b> - either <b>win32</b>, <b>Linux</b> or <b>Darwin</b><br  />
+ <b>SYS</b> - either <b>win64</b>, <b>Linux</b> or <b>Darwin</b><br  />
  <b>standalone</b> - bundle version that contains Qt libraries and all relevant plugins.<br  />
  </p><h2>Linux</h2>
-<p>All packages are being built on Ubuntu 18.04 LTS. You may experience problems with missing or incompatible libraries when trying to run the package on other distros.</p>
-<p>To run standalone version use CANdevStudio.sh script. </p><h2>Windows</h2>
-<p>Packages built with MinGW 5.3.</p>
-<p>Standalone version contains Qt and MinGW runtime libs. </p><h2>macOS / OS X</h2>
+<p>All packages are being built on ubuntu-latest environment. Refer to <a href="https://github.com/actions/virtual-environments">this</a> page to determine the exact Ubuntu version. You may experience problems with missing or incompatible libraries when trying to run the package on other distros.</p>
+<p>To run standalone version use CANdevStudio.sh script. </p><h2>ARCH Linux</h2>
+<p>Install AUR package: <a href="https://aur.archlinux.org/packages/candevstudio-git/">candevstudio-git</a></p>
+<h2>Windows</h2>
+<p>Packages built with Visual Studio 2019.</p>
+<p>Standalone version contains Qt. Installation of VS2019 redist packages may be still required. </p><h2>macOS / OS X</h2>
 <p>Package is a DMG installer. </p><h1>Quick Start</h1>
 <p>General instructions to start your first simulation:</p><ol type="1">
 <li>Build the latest master or release.</li>
