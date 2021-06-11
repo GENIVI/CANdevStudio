@@ -57,7 +57,12 @@ Current list of devices compatible with SocketCAN (Linux only) can be found [her
 * macOS
 
 ## Build instructions
-CANdevStudio project uses Travis CI (Linux) and AppVeyor (Windows) continuous integration tools. You can always check .travis.yml and .appveyor.yml files for building details.
+CANdevStudio project uses GitHub Actions as continuous integration environment. You can check [build.yml](https://github.com/GENIVI/CANdevStudio/blob/master/.github/workflows/build.yml) for details. 
+
+To lower maitenance effort and allow for usage of modern C++ features since v1.2.0 CANdevStudion dropped support for legacy compilers like gcc5.3, vs2015 or MinGW. Current CI configuration uses the latest compilers available for each GitHub Actions environment:
+* ubuntu-latest (clang and gcc)
+* macos-latest (clang)
+* windows-latest (vs2019 x64)
 
 ### Linux
 ```
@@ -90,34 +95,14 @@ make
 Install AUR package: [candevstudio-git](https://aur.archlinux.org/packages/candevstudio-git/)
 
 ### Windows
-#### Visual Studio 2015
+#### Visual Studio 2019 Win64
 ```
 git clone https://github.com/GENIVI/CANdevStudio.git
 cd CANdevStudio
 git submodule update --init --recursive
 mkdir build
 cd build
-cmake .. -G "Visual Studio 14 2015" -DCMAKE_PREFIX_PATH=C:\Qt\5.9\msvc2015
-cmake --build .
-```
-#### Visual Studio 2015 Win64
-```
-git clone https://github.com/GENIVI/CANdevStudio.git
-cd CANdevStudio
-git submodule update --init --recursive
-mkdir build
-cd build
-cmake .. -G "Visual Studio 14 2015 Win64" -DCMAKE_PREFIX_PATH=C:\Qt\5.9\msvc2015_64
-cmake --build .
-```
-#### MinGW
-```
-git clone https://github.com/GENIVI/CANdevStudio.git
-cd CANdevStudio
-git submodule update --init --recursive
-mkdir build
-cd build
-cmake .. -G "MinGW Makefiles" -DCMAKE_PREFIX_PATH=C:\Qt\5.9\mingw53_32
+cmake .. -DCMAKE_BUILD_TYPE=Release -G "Visual Studio 16 2019" -A x64
 cmake --build .
 ```
 ### macOS / OS X
@@ -131,25 +116,23 @@ cmake .. -GNinja -DCMAKE_PREFIX_PATH=/path/to/Qt/lib/cmake
 ninja
 ```
 ## Prebuilt packages
-Binary packages are automatically uploaded by CI tools (i.e. Travis and Appveyor) to [Bintray](https://bintray.com/rkollataj/CANdevStudio) artifactory for every commit on master branch.
-### Download
-Use Bintray badges above to dowload stable or develop version (each commit on master creates corresponding binary packege in Bintray)
+Each GitHub Actions job stores prebuilt packages for 90 days since. Additionally official relases are stored on GitHub Releases page.
 ### Package naming
 ***CANdevStudio-X.Y.ZZZZZZZ-SYS[-standalone]***
 
 **X** - major version number of previous stable version<br/>
 **Y** - minor version of previous stable version<br/>
 **Z** - SHA commit ID<br/>
-**SYS** - either **win32**, **Linux** or **Darwin**<br/>
+**SYS** - either **win64**, **Linux** or **Darwin**<br/>
 **standalone** - bundle version that contains Qt libraries and all relevant plugins.<br/>
 ### Linux
-All packages are being built on Ubuntu 18.04 LTS. You may experience problems with missing or incompatible libraries when trying to run the package on other distros. 
+All packages are being built on ubuntu-latest environment. Refer to [this](https://github.com/actions/virtual-environments) page to determine the exact Ubuntu version. You may experience problems with missing or incompatible libraries when trying to run the package on other distros. 
 
 To run standalone version use CANdevStudio.sh script.
 ### Windows
-Packages built with MinGW 5.3.
+Packages built with Visual Studio 2019.
 
-Standalone version contains Qt and MinGW runtime libs.
+Standalone version contains Qt. Installation of VS2019 redist packages may be still required. 
 ### macOS / OS X
 Package is a DMG installer.
 ## Quick Start
