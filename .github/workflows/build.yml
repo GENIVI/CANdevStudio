@@ -3,7 +3,7 @@ name: CANdevStudio
 on: [push, pull_request]
 
 env:
-  MAIN_BRANCH: 'refs/heads/gha'
+  MAIN_BRANCH: 'refs/heads/master'
 
 jobs:
   Linux-Release:
