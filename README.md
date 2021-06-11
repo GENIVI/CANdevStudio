@@ -1,5 +1,5 @@
 # CANdevStudio 
-[![Build Status](https://travis-ci.com/GENIVI/CANdevStudio.svg?branch=master)](https://travis-ci.com/GENIVI/CANdevStudio) [![Build status](https://ci.appveyor.com/api/projects/status/wak1kdfueyn68h0t/branch/master?svg=true)](https://ci.appveyor.com/project/rkollataj/candevstudio-j9v77/branch/master) [![codecov](https://codecov.io/gh/GENIVI/CANdevStudio/branch/master/graph/badge.svg)](https://codecov.io/gh/GENIVI/CANdevStudio) [![Download](https://api.bintray.com/packages/rkollataj/CANdevStudio/releases/images/download.svg) ](https://bintray.com/rkollataj/CANdevStudio/releases/_latestVersion) [![Download](https://api.bintray.com/packages/rkollataj/CANdevStudio/master/images/download.svg) ](https://bintray.com/rkollataj/CANdevStudio/master/_latestVersion) [![Doxygen](https://img.shields.io/badge/Doxygen-master-blue.svg)](https://genivi.github.io/CANdevStudio/master/)
+[![CANdevStudio](https://github.com/GENIVI/CANdevStudio/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/GENIVI/CANdevStudio/actions/workflows/build.yml) [![codecov](https://codecov.io/gh/GENIVI/CANdevStudio/branch/master/graph/badge.svg)](https://codecov.io/gh/GENIVI/CANdevStudio) [![Doxygen](https://img.shields.io/badge/Doxygen-master-blue.svg)](https://genivi.github.io/CANdevStudio/)
 
 
 
@@ -11,9 +11,7 @@
     * [To choose compiler](#to-choose-compiler)
     * [Qt in CMake](#qt-in-cmake)
   * [Windows](#windows)
-    * [Visual Studio 2015](#visual-studio-2015)
-    * [Visual Studio 2015 Win64](#visual-studio-2015-win64)
-    * [MinGW](#mingw)
+    * [Visual Studio 2019 Win64](#visual-studio-2019-win64)
   * [macOS / OS X](#macos--os-x)
 * [Prebuilt packages](#prebuilt-packages)
   * [Download](#download)
@@ -59,7 +57,7 @@ Current list of devices compatible with SocketCAN (Linux only) can be found [her
 ## Build instructions
 CANdevStudio project uses GitHub Actions as continuous integration environment. You can check [build.yml](https://github.com/GENIVI/CANdevStudio/blob/master/.github/workflows/build.yml) for details. 
 
-To lower maitenance effort and allow for usage of modern C++ features since v1.2.0 CANdevStudion dropped support for legacy compilers like gcc5.3, vs2015 or MinGW. Current CI configuration uses the latest compilers available for each GitHub Actions environment:
+To lower maitenance effort and allow for usage of modern C++ features since v1.2.0 CANdevStudio dropped "official" support for legacy compilers like gcc5.3, vs2015 or MinGW. Current CI configuration uses the latest compilers available for each GitHub Actions environment:
 * ubuntu-latest (clang and gcc)
 * macos-latest (clang)
 * windows-latest (vs2019 x64)
@@ -91,9 +89,6 @@ rm -rf *
 cmake .. -DCMAKE_PREFIX_PATH=/home/genivi/Qt5.8.0/5.8/gcc_64
 make
 ```
-### ARCH Linux
-Install AUR package: [candevstudio-git](https://aur.archlinux.org/packages/candevstudio-git/)
-
 ### Windows
 #### Visual Studio 2019 Win64
 ```
@@ -116,7 +111,7 @@ cmake .. -GNinja -DCMAKE_PREFIX_PATH=/path/to/Qt/lib/cmake
 ninja
 ```
 ## Prebuilt packages
-Each GitHub Actions job stores prebuilt packages for 90 days since. Additionally official relases are stored on GitHub Releases page.
+Each GitHub Actions job stores prebuilt packages for 90 days. Additionally official relases are stored on GitHub Releases page.
 ### Package naming
 ***CANdevStudio-X.Y.ZZZZZZZ-SYS[-standalone]***
 
@@ -129,6 +124,9 @@ Each GitHub Actions job stores prebuilt packages for 90 days since. Additionally
 All packages are being built on ubuntu-latest environment. Refer to [this](https://github.com/actions/virtual-environments) page to determine the exact Ubuntu version. You may experience problems with missing or incompatible libraries when trying to run the package on other distros. 
 
 To run standalone version use CANdevStudio.sh script.
+### ARCH Linux
+Install AUR package: [candevstudio-git](https://aur.archlinux.org/packages/candevstudio-git/)
+
 ### Windows
 Packages built with Visual Studio 2019.
 
