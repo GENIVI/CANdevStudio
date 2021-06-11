@@ -86,7 +86,7 @@ public:
 
     /**
      * @brief sets can bus model used from QML
-     * @param model can bus model useb from qml
+     * @param model can bus model used from qml
      */
     void setCANBusModel(CANBusModel* model);
 

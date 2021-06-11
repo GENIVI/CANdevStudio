@@ -1,7 +1,7 @@
 import QtQuick 2.0
 
 /*
- * This example receives a frame or signal modifies and transmitt it
+ * This example receives a frame or signal modifies and transmit it
  */
 
 Item {
@@ -9,7 +9,7 @@ Item {
         // Increment frame ID of received CAN
         frameId += 1
 
-        // LogWindow is QPlainTextEdit widget exsposed to QML
+        // LogWindow is QPlainTextEdit widget exposed to QML
         // You can use it to append text or control its visibility
         LogWindow.appendPlainText("Frame: " + frameId + " Forwarded")
 

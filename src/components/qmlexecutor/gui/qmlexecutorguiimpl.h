@@ -153,7 +153,7 @@ public slots:
     }
 
     /**
-     * @brief stops cheking for qml file modification
+     * @brief stops checking for qml file modification
      */
     void stopFileModificationChecks()
     {

@@ -14,7 +14,6 @@ set(CMAKE_CXX_STANDARD 14)
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/Modules)
 
-
 option(WITH_COVERAGE "Build with coverage" OFF)
 option(WITH_TOOLS "Build tools directory" OFF)
 option(DEV_BUILD "Development build will include GIT hash and branch to versioning" ON)
