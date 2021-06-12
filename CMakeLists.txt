@@ -163,6 +163,10 @@ if(STANDALONE)
             Qt5Core.dll
             Qt5Gui.dll
             Qt5Network.dll
+            Qt5Qml.dll
+            Qt5QmlModels.dll
+            Qt5Quick.dll
+            Qt5QuickWidgets.dll
             Qt5SerialBus.dll
             Qt5SerialPort.dll
             Qt5Svg.dll
