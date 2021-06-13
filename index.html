@@ -154,7 +154,7 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 </ul>
 <h1>Build instructions</h1>
 <p>CANdevStudio project uses GitHub Actions as continuous integration environment. You can check <a href="https://github.com/GENIVI/CANdevStudio/blob/master/.github/workflows/build.yml">build.yml</a> for details.</p>
-<p>To lower maintenance effort and allow for usage of modern C++ features, since v1.2.0 CANdevStudio dropped "official" support for legacy compilers like gcc5.3, vs2015 or MinGW. Current CI configuration uses the latest compilers available for each GitHub Actions environment:</p><ul>
+<p>To lower maitenance effort and allow for usage of modern C++ features since v1.2.0 CANdevStudio dropped "official" support for legacy compilers like gcc5.3, vs2015 or MinGW. Current CI configuration uses the latest compilers available for each GitHub Actions environment:</p><ul>
 <li>ubuntu-latest (clang and gcc)</li>
 <li>macos-latest (clang)</li>
 <li>windows-latest (vs2019 x64)</li>
@@ -197,7 +197,7 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <div class="line">cmake .. -GNinja -DCMAKE_PREFIX_PATH=/path/to/Qt/lib/cmake</div>
 <div class="line">ninja</div>
 </div><!-- fragment --> <h1>Prebuilt packages</h1>
-<p>Each GitHub Actions job stores prebuilt packages for 90 days. Additionally official releases are stored on GitHub Releases page. </p><h2>Package naming</h2>
+<p>Each GitHub Actions job stores prebuilt packages for 90 days. Additionally official relases are stored on GitHub Releases page. </p><h2>Package naming</h2>
 <p><em><b>CANdevStudio-X.Y.ZZZZZZZ-SYS[-standalone]</b></em></p>
 <p><b>X</b> - major version number of previous stable version<br  />
  <b>Y</b> - minor version of previous stable version<br  />
@@ -226,7 +226,7 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <li>Double click on <a class="el" href="class_can_raw_view.html">CanRawView</a> component to see CAN traffic</li>
 </ol>
 <p>Steps required to use specific CAN hardware or virtual interfaces require some additional steps listed in following sections. </p><h2>CAN Hardware</h2>
-<p>The list below shows hardware that has been successfully used with CANdevStudio. </p><h3>Microchip CAN BUS Analyzer</h3>
+<p>The list below shows hardware that has been successfuly used with CANdevStudio. </p><h3>Microchip CAN BUS Analyzer</h3>
 <ul>
 <li>Tested on Linux</li>
 <li>Requires socketcan <a href="https://github.com/rkollataj/mcba_usb">driver</a>.</li>
@@ -335,7 +335,7 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <div class="line">11. CanSignalEncoder will start sending cyclical messages</div>
 <div class="line">12. You can send previously configured signals from CanSignalSender:</div>
 <div class="line">    * if signal is a part of periodic message its value will be updated in a next cycle</div>
-<div class="line">    * if signal is not a part of periodic message it will be sent out immediately</div>
+<div class="line">    * if signal is not a part of periodic message it will be sent out immiediatelly</div>
 <div class="line"> </div>
 <div class="line">#### Receiving signals</div>
 <div class="line">1. Start new project and setup CanDevice as described in quick start section</div>
@@ -349,7 +349,7 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <div class="line">9. Signals shall now appear in CanSignalViewer. Note that CanSignalDecoder is sending over only signals which values has changed.</div>
 <div class="line"> </div>
 <div class="line">### CanDevice configuration</div>
-<div class="line">CanDevice component can be configured using &quot;configuration&quot; property:</div>
+<div class="line">CanDevice component can be confiugred using &quot;configuration&quot; property:</div>
 <div class="line">* Format - &quot;key1=value1;key2=value2;keyX=valueX&quot;</div>
 <div class="line">* Keys names are case sensitive, values are case insensitive</div>
 <div class="line">* Configuration keys are taken from [ConfigurationKey enum](https://doc.qt.io/qt-5/qcanbusdevice.html#ConfigurationKey-enum). </div>
