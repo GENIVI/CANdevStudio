@@ -57,7 +57,7 @@ Current list of devices compatible with SocketCAN (Linux only) can be found [her
 ## Build instructions
 CANdevStudio project uses GitHub Actions as continuous integration environment. You can check [build.yml](https://github.com/GENIVI/CANdevStudio/blob/master/.github/workflows/build.yml) for details. 
 
-To lower maitenance effort and allow for usage of modern C++ features since v1.2.0 CANdevStudio dropped "official" support for legacy compilers like gcc5.3, vs2015 or MinGW. Current CI configuration uses the latest compilers available for each GitHub Actions environment:
+To lower maintenance effort and allow for usage of modern C++ features, since v1.2.0 CANdevStudio dropped "official" support for legacy compilers like gcc5.3, vs2015 or MinGW. Current CI configuration uses the latest compilers available for each GitHub Actions environment:
 * ubuntu-latest (clang and gcc)
 * macos-latest (clang)
 * windows-latest (vs2019 x64)
@@ -111,7 +111,7 @@ cmake .. -GNinja -DCMAKE_PREFIX_PATH=/path/to/Qt/lib/cmake
 ninja
 ```
 ## Prebuilt packages
-Each GitHub Actions job stores prebuilt packages for 90 days. Additionally official relases are stored on GitHub Releases page.
+Each GitHub Actions job stores prebuilt packages for 90 days. Additionally official releases are stored on GitHub Releases page.
 ### Package naming
 ***CANdevStudio-X.Y.ZZZZZZZ-SYS[-standalone]***
 
@@ -146,7 +146,7 @@ General instructions to start your first simulation:
 
 Steps required to use specific CAN hardware or virtual interfaces require some additional steps listed in following sections.
 ### CAN Hardware
-The list below shows hardware that has been successfuly used with CANdevStudio.
+The list below shows hardware that has been successfully used with CANdevStudio.
 #### Microchip CAN BUS Analyzer
 * Tested on Linux
 * Requires socketcan [driver](https://github.com/rkollataj/mcba_usb).
@@ -291,7 +291,7 @@ Support for others CAN database formats can be added via extension of [CANdb](ww
 11. CanSignalEncoder will start sending cyclical messages
 12. You can send previously configured signals from CanSignalSender:
     * if signal is a part of periodic message its value will be updated in a next cycle
-    * if signal is not a part of periodic message it will be sent out immiediatelly
+    * if signal is not a part of periodic message it will be sent out immediately
 
 #### Receiving signals
 1. Start new project and setup CanDevice as described in quick start section
@@ -305,7 +305,7 @@ Support for others CAN database formats can be added via extension of [CANdb](ww
 9. Signals shall now appear in CanSignalViewer. Note that CanSignalDecoder is sending over only signals which values has changed.
 
 ### CanDevice configuration
-CanDevice component can be confiugred using "configuration" property:
+CanDevice component can be configured using "configuration" property:
 * Format - "key1=value1;key2=value2;keyX=valueX"
 * Keys names are case sensitive, values are case insensitive
 * Configuration keys are taken from [ConfigurationKey enum](https://doc.qt.io/qt-5/qcanbusdevice.html#ConfigurationKey-enum). 
