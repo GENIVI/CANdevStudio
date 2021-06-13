@@ -52,13 +52,13 @@ void CanRawSenderPrivate::removeRowsSelectedByMouse()
     QModelIndexList IndexList = _ui.getSelectedRows();
     std::list<QModelIndex> tmp{IndexList.begin(), IndexList.end()};
 
-    tmp.sort(); // List must to be sorted and reversed because erasing started from last row
+    tmp.sort(); // List must be sorted and reversed because erasing started from last row
     tmp.reverse();
 
     for (QModelIndex n : tmp) {
         _tvModel.removeRow(n.row()); // Delete line from table view
         _lines.erase(_lines.begin() + n.row()); // Delete lines also from collection
-        // TODO: check if works when the collums was sorted before
+        // TODO: check if it works when columns were sorted before
     }
 }
 
@@ -109,7 +109,7 @@ bool CanRawSenderPrivate::columnAdopt(QJsonObject const& json)
         return false;
     }
     if (colArray.contains("Remote") == false) {
-        // Backward compability.
+        // Backward compatibility.
         cds_warn("Columns array does not contain Remote field.");
     }
     if (colArray.contains("Loop") == false) {
@@ -121,7 +121,7 @@ bool CanRawSenderPrivate::columnAdopt(QJsonObject const& json)
         return false;
     }
 
-    cds_info("Columns validation is finished successfully.");
+    cds_info("Columns validation finished successfully.");
     return true;
 }
 
@@ -160,7 +160,7 @@ bool CanRawSenderPrivate::sortingAdopt(QJsonObject const& json)
     }
 
     _currentIndex = newIdx;
-    cds_debug("currentIndex data is adopted new value = {}.", std::to_string(_currentIndex));
+    cds_debug("currentIndex data adopted new value = {}.", std::to_string(_currentIndex));
 
     return true;
 }
@@ -216,8 +216,8 @@ bool CanRawSenderPrivate::contentAdopt(QJsonObject const& json)
     for (auto ii = 0; ii < contentArray.count(); ++ii) {
         auto line = contentArray[ii].toObject();
 
-        data.clear();        
-        id.clear();        
+        data.clear();
+        id.clear();
         interval.clear();
         remote = false;
         loop = false;
