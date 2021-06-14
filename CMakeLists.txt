@@ -166,8 +166,8 @@ if(STANDALONE)
         )
 
         install(PROGRAMS files/CANdevStudio.sh DESTINATION ${INSTALL_DEST_BIN})
-        install(PROGRAMS /usr/lib/aarch64-linux-gnu/libxcb-xinerama.so.0.0.0 DESTINATION ${INSTALL_DEST_BIN})
-        install(PROGRAMS /usr/lib/aarch64-linux-gnu/libxcb-xinerama.so.0 DESTINATION ${INSTALL_DEST_BIN})
+        install(PROGRAMS /usr/lib/x86_64-linux-gnu/libxcb-xinerama.so.0.0.0 DESTINATION ${INSTALL_DEST_BIN})
+        install(PROGRAMS /usr/lib/x86_64-linux-gnu/libxcb-xinerama.so.0 DESTINATION ${INSTALL_DEST_BIN})
     else()
         set(SYS_LIBS
             Qt5Core.dll
