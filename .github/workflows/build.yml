@@ -53,7 +53,7 @@ jobs:
         mkdir ../master
         mv *.deb *.tar.xz ../master
 
-    - name: Get Pacakge Names
+    - name: Get Package Names
       id: package_names
       working-directory: ${{github.workspace}}/master
       run: |
@@ -196,7 +196,7 @@ jobs:
         mkdir ../master
         mv *.dmg ../master
 
-    - name: Get Pacakge Names
+    - name: Get Package Names
       id: package_names
       working-directory: ${{github.workspace}}/master
       run: |
@@ -266,7 +266,7 @@ jobs:
         mkdir ..\master
         move *.7z ..\master
 
-    - name: Get Pacakge Names
+    - name: Get Package Names
       id: package_names
       shell: bash
       working-directory: ${{github.workspace}}/master
