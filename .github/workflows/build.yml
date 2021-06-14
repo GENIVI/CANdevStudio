@@ -21,6 +21,8 @@ jobs:
       with:
         boost_version: 1.73.0
 
+    - run: sudo apt install libxcb-xinerama0
+
     - name: Create Build Environment
       run: cmake -E make_directory ${{github.workspace}}/build
 

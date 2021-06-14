@@ -139,6 +139,10 @@ if(STANDALONE)
             libQt5OpenGL.so.5
             libQt5XcbQpa.so.5
             libQt5DBus.so.5
+            libQt5Qml.so.5
+            libQt5QmlModels.so.5
+            libQt5Quick.so.5
+            libQt5QuickWidgets.so.5
             libQt5Core.so.${Qt5Core_VERSION}
             libQt5Gui.so.${Qt5Core_VERSION}
             libQt5Network.so.${Qt5Core_VERSION}
@@ -149,6 +153,10 @@ if(STANDALONE)
             libQt5OpenGL.so.${Qt5Core_VERSION}
             libQt5XcbQpa.so.${Qt5Core_VERSION}
             libQt5DBus.so.${Qt5Core_VERSION}
+            libQt5Qml.so.${Qt5Core_VERSION}
+            libQt5QmlModels.so.${Qt5Core_VERSION}
+            libQt5Quick.so.${Qt5Core_VERSION}
+            libQt5QuickWidgets.so.${Qt5Core_VERSION}
             libicudata.so.56
             libicudata.so.56.1
             libicui18n.so.56
@@ -158,11 +166,17 @@ if(STANDALONE)
         )
 
         install(PROGRAMS files/CANdevStudio.sh DESTINATION ${INSTALL_DEST_BIN})
+        install(PROGRAMS /usr/lib/x86_64-linux-gnu/libxcb-xinerama.so.0.0.0 DESTINATION ${INSTALL_DEST_BIN})
+        install(PROGRAMS /usr/lib/x86_64-linux-gnu/libxcb-xinerama.so.0 DESTINATION ${INSTALL_DEST_BIN})
     else()
         set(SYS_LIBS
             Qt5Core.dll
             Qt5Gui.dll
             Qt5Network.dll
+            Qt5Qml.dll
+            Qt5QmlModels.dll
+            Qt5Quick.dll
+            Qt5QuickWidgets.dll
             Qt5SerialBus.dll
             Qt5SerialPort.dll
             Qt5Svg.dll
