@@ -10,7 +10,9 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
-set(CMAKE_CXX_STANDARD 14)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/Modules)
 
@@ -61,7 +63,7 @@ set_property(TARGET Qt5::Core PROPERTY INTERFACE_COMPILE_FEATURES "")
 if(NOT MSVC)
     add_definitions(-Wall -Wextra -DUSE_TYPESTRING=7)
 else()
-    add_definitions( /bigobj /D USE_TYPESTRING=7)
+    add_definitions( /bigobj /D USE_TYPESTRING=7 /Zc:__cplusplus /utf-8)
 endif()
 
 include(CompilerVersion)
