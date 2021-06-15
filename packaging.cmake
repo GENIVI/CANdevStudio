@@ -3,26 +3,22 @@
 set(CPACK_PACKAGE_DESCRIPTION "CANDevStudio - CAN simulation software")
 set(CPACK_PACKAGE_VERSION_MAJOR "${VERSION_MAJOR}")
 set(CPACK_PACKAGE_VERSION_MINOR "${VERSION_MINOR}")
+set(CPACK_PACKAGE_VERSION_PATCH "${VERSION_PATCH}")
+
+set(VERSION_STRING "${VERSION_PATCH}")
+
 if(GIT_COMMIT_HASH)
-    set(CPACK_PACKAGE_VERSION_PATCH "${GIT_COMMIT_HASH}")
-else()
-    set(CPACK_PACKAGE_VERSION_PATCH "${VERSION_PATCH}")
+    set(VERSION_STRING "${VERSION_PATCH}.${GIT_COMMIT_HASH}")
 endif()
+
+set(CPACK_PACKAGE_FILE_NAME "${CMAKE_PROJECT_NAME}-${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_STRING}-${CMAKE_SYSTEM_NAME}")
+
 if(STANDALONE)
-    set(SYSTEM_NAME ${CMAKE_SYSTEM_NAME})
-    # WIN32 variable is for both x64 and x86
-    if(WIN32)
-        if(${CMAKE_GENERATOR_PLATFORM} MATCHES "x64")
-            # For some reason this name is set to Windows rather than win32. To keep naming compiant change win32.
-            set(SYSTEM_NAME win64)
-        else()
-            set(SYSTEM_NAME win32)
-        endif()
-    endif()
-    set(CPACK_PACKAGE_FILE_NAME "${CMAKE_PROJECT_NAME}-${VERSION_MAJOR}.${VERSION_MINOR}.${CPACK_PACKAGE_VERSION_PATCH}-${SYSTEM_NAME}-standalone")
+    set(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_FILE_NAME}-standalone")
 endif()
-set(CPACK_PACKAGE_VENDOR "Mobica")
-set(CPACK_PACKAGE_CONTACT "remigiusz.kollataj@mobica.com")
+
+set(CPACK_PACKAGE_VENDOR "Remigiusz Kołłątaj")
+set(CPACK_PACKAGE_CONTACT "remigiusz.kollataj@gmail.com")
 set(CPACK_RESOURCE_FILE_LICENSE ${CMAKE_SOURCE_DIR}/LICENSE)
 
 if(APPLE)

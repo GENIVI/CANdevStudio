@@ -271,11 +271,11 @@ jobs:
       shell: bash
       working-directory: ${{github.workspace}}/master
       run: |
-        NORMAL=`ls *win64.7z`
+        NORMAL=`ls *Windows.7z`
         NORMAL_ZIP=${NORMAL%.7z}
         echo "::set-output name=NORMAL::$NORMAL"
         echo "::set-output name=NORMAL_ZIP::$NORMAL_ZIP"
-        STANDALONE=`ls *win64-standalone.7z`
+        STANDALONE=`ls *Windows-standalone.7z`
         STANDALONE_ZIP=${STANDALONE%.7z}
         echo "::set-output name=STANDALONE::$STANDALONE"
         echo "::set-output name=STANDALONE_ZIP::$STANDALONE_ZIP"
