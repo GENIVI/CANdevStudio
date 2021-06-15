@@ -1,51 +1,52 @@
 <map id="src/components/canrawsender/canrawsender_p.cpp" name="src/components/canrawsender/canrawsender_p.cpp">
-<area shape="rect" id="node1" title=" " alt="" coords="1121,5,1321,47"/>
-<area shape="rect" id="node2" href="$canrawsender__p_8h.html" title=" " alt="" coords="854,95,981,121"/>
-<area shape="rect" id="node3" href="$canrawsender_8h.html" title=" " alt="" coords="370,169,483,196"/>
-<area shape="rect" id="node44" href="$log_8h.html" title=" " alt="" coords="1502,95,1551,121"/>
-<area shape="rect" id="node49" title=" " alt="" coords="1576,95,1667,121"/>
-<area shape="rect" id="node11" title=" " alt="" coords="858,319,926,345"/>
-<area shape="rect" id="node12" href="$context_8h.html" title=" " alt="" coords="459,244,533,271"/>
-<area shape="rect" id="node14" href="$crsgui_8h.html" title=" " alt="" coords="792,169,880,196"/>
-<area shape="rect" id="node18" href="$newlinemanager_8h.html" title=" " alt="" coords="1085,169,1211,196"/>
-<area shape="rect" id="node26" href="$nlmfactory_8h.html" title=" " alt="" coords="1749,244,1841,271"/>
-<area shape="rect" id="node39" title=" " alt="" coords="1595,244,1693,271"/>
-<area shape="rect" id="node43" title=" " alt="" coords="534,169,717,196"/>
-<area shape="rect" id="node4" title=" " alt="" coords="363,244,435,271"/>
-<area shape="rect" id="node5" title=" " alt="" coords="5,244,168,271"/>
-<area shape="rect" id="node6" href="$componentinterface_8h.html" title=" " alt="" coords="192,244,339,271"/>
-<area shape="rect" id="node7" title=" " alt="" coords="229,319,302,345"/>
-<area shape="rect" id="node8" title=" " alt="" coords="326,319,469,345"/>
-<area shape="rect" id="node9" title=" " alt="" coords="1463,468,1542,495"/>
-<area shape="rect" id="node10" title=" " alt="" coords="158,319,205,345"/>
-<area shape="rect" id="node13" title=" " alt="" coords="493,319,544,345"/>
-<area shape="rect" id="node15" href="$crsguiinterface_8h.html" title=" " alt="" coords="557,244,675,271"/>
-<area shape="rect" id="node17" title=" " alt="" coords="699,244,829,271"/>
-<area shape="rect" id="node16" title=" " alt="" coords="568,319,667,345"/>
-<area shape="rect" id="node19" href="$enumiterator_8h.html" title=" " alt="" coords="1467,244,1571,271"/>
-<area shape="rect" id="node40" title=" " alt="" coords="1006,244,1071,271"/>
-<area shape="rect" id="node41" title=" " alt="" coords="1096,244,1179,271"/>
-<area shape="rect" id="node42" title=" " alt="" coords="1203,244,1392,271"/>
-<area shape="rect" id="node20" title=" " alt="" coords="1087,319,1153,345"/>
-<area shape="rect" id="node21" title=" " alt="" coords="1177,319,1242,345"/>
-<area shape="rect" id="node22" title=" " alt="" coords="1266,319,1329,345"/>
-<area shape="rect" id="node23" title=" " alt="" coords="1353,319,1407,345"/>
-<area shape="rect" id="node24" title=" " alt="" coords="1431,319,1513,345"/>
-<area shape="rect" id="node25" title=" " alt="" coords="1538,319,1590,345"/>
-<area shape="rect" id="node27" href="$nlmcheckbox_8h.html" title=" " alt="" coords="1614,319,1743,345"/>
-<area shape="rect" id="node32" href="$nlmlineedit_8h.html" title=" " alt="" coords="1768,319,1883,345"/>
-<area shape="rect" id="node35" href="$nlmpushbutton_8h.html" title=" " alt="" coords="1951,319,2089,345"/>
-<area shape="rect" id="node38" href="$nlmfactoryinterface_8h.html" title=" " alt="" coords="2114,319,2257,345"/>
-<area shape="rect" id="node28" title=" " alt="" coords="1156,393,1247,420"/>
-<area shape="rect" id="node29" title=" " alt="" coords="1271,393,1374,420"/>
-<area shape="rect" id="node30" title=" " alt="" coords="1631,393,1710,420"/>
-<area shape="rect" id="node31" href="$checkboxinterface_8h.html" title=" " alt="" coords="1399,393,1607,420"/>
-<area shape="rect" id="node33" href="$lineeditinterface_8h.html" title=" " alt="" coords="1735,393,1929,420"/>
-<area shape="rect" id="node34" title=" " alt="" coords="1913,468,1980,495"/>
-<area shape="rect" id="node36" title=" " alt="" coords="2195,393,2295,420"/>
-<area shape="rect" id="node37" href="$pushbuttoninterface_8h.html" title=" " alt="" coords="1954,393,2171,420"/>
-<area shape="rect" id="node45" title=" " alt="" coords="1745,169,1807,196"/>
-<area shape="rect" id="node46" title=" " alt="" coords="1831,169,1903,196"/>
-<area shape="rect" id="node47" title=" " alt="" coords="1467,169,1586,196"/>
-<area shape="rect" id="node48" title=" " alt="" coords="1609,169,1721,196"/>
+<area shape="rect" id="node1" title=" " alt="" coords="1202,5,1402,47"/>
+<area shape="rect" id="node2" href="$canrawsender__p_8h.html" title=" " alt="" coords="888,95,1015,121"/>
+<area shape="rect" id="node3" href="$canrawsender_8h.html" title=" " alt="" coords="356,177,469,203"/>
+<area shape="rect" id="node44" href="$log_8h.html" title=" " alt="" coords="1675,95,1724,121"/>
+<area shape="rect" id="node50" title=" " alt="" coords="1749,95,1839,121"/>
+<area shape="rect" id="node11" title=" " alt="" coords="864,333,932,360"/>
+<area shape="rect" id="node12" href="$context_8h.html" title=" " alt="" coords="493,259,567,285"/>
+<area shape="rect" id="node14" href="$crsgui_8h.html" title=" " alt="" coords="618,177,706,203"/>
+<area shape="rect" id="node18" href="$newlinemanager_8h.html" title=" " alt="" coords="1280,177,1407,203"/>
+<area shape="rect" id="node26" href="$nlmfactory_8h.html" title=" " alt="" coords="1868,259,1960,285"/>
+<area shape="rect" id="node39" title=" " alt="" coords="989,259,1087,285"/>
+<area shape="rect" id="node43" title=" " alt="" coords="731,177,913,203"/>
+<area shape="rect" id="node4" title=" " alt="" coords="210,259,282,285"/>
+<area shape="rect" id="node5" title=" " alt="" coords="306,259,469,285"/>
+<area shape="rect" id="node6" href="$componentinterface_8h.html" title=" " alt="" coords="39,259,186,285"/>
+<area shape="rect" id="node7" title=" " alt="" coords="76,333,149,360"/>
+<area shape="rect" id="node8" title=" " alt="" coords="173,333,316,360"/>
+<area shape="rect" id="node9" title=" " alt="" coords="1383,483,1461,509"/>
+<area shape="rect" id="node10" title=" " alt="" coords="5,333,52,360"/>
+<area shape="rect" id="node13" title=" " alt="" coords="505,333,555,360"/>
+<area shape="rect" id="node15" href="$crsguiinterface_8h.html" title=" " alt="" coords="591,259,709,285"/>
+<area shape="rect" id="node17" title=" " alt="" coords="783,259,914,285"/>
+<area shape="rect" id="node16" title=" " alt="" coords="687,333,786,360"/>
+<area shape="rect" id="node19" href="$enumiterator_8h.html" title=" " alt="" coords="1623,259,1727,285"/>
+<area shape="rect" id="node40" title=" " alt="" coords="1483,259,1548,285"/>
+<area shape="rect" id="node41" title=" " alt="" coords="1111,259,1194,285"/>
+<area shape="rect" id="node42" title=" " alt="" coords="1218,259,1407,285"/>
+<area shape="rect" id="node20" title=" " alt="" coords="1597,333,1663,360"/>
+<area shape="rect" id="node21" title=" " alt="" coords="1687,333,1752,360"/>
+<area shape="rect" id="node22" title=" " alt="" coords="1249,333,1312,360"/>
+<area shape="rect" id="node23" title=" " alt="" coords="1337,333,1390,360"/>
+<area shape="rect" id="node24" title=" " alt="" coords="1414,333,1497,360"/>
+<area shape="rect" id="node25" title=" " alt="" coords="1521,333,1573,360"/>
+<area shape="rect" id="node27" href="$nlmcheckbox_8h.html" title=" " alt="" coords="1776,333,1905,360"/>
+<area shape="rect" id="node32" href="$nlmlineedit_8h.html" title=" " alt="" coords="1930,333,2045,360"/>
+<area shape="rect" id="node35" href="$nlmpushbutton_8h.html" title=" " alt="" coords="2083,333,2222,360"/>
+<area shape="rect" id="node38" href="$nlmfactoryinterface_8h.html" title=" " alt="" coords="2247,333,2389,360"/>
+<area shape="rect" id="node28" title=" " alt="" coords="1678,408,1769,435"/>
+<area shape="rect" id="node29" title=" " alt="" coords="1551,408,1653,435"/>
+<area shape="rect" id="node30" title=" " alt="" coords="1793,408,1872,435"/>
+<area shape="rect" id="node31" href="$checkboxinterface_8h.html" title=" " alt="" coords="1318,408,1526,435"/>
+<area shape="rect" id="node33" href="$lineeditinterface_8h.html" title=" " alt="" coords="1897,408,2091,435"/>
+<area shape="rect" id="node34" title=" " alt="" coords="2138,483,2205,509"/>
+<area shape="rect" id="node36" title=" " alt="" coords="2116,408,2216,435"/>
+<area shape="rect" id="node37" href="$pushbuttoninterface_8h.html" title=" " alt="" coords="2240,408,2457,435"/>
+<area shape="rect" id="node45" title=" " alt="" coords="1623,177,1685,203"/>
+<area shape="rect" id="node46" title=" " alt="" coords="1709,177,1781,203"/>
+<area shape="rect" id="node47" title=" " alt="" coords="1805,177,1921,203"/>
+<area shape="rect" id="node48" title=" " alt="" coords="1945,169,2080,211"/>
+<area shape="rect" id="node49" title=" " alt="" coords="2105,177,2217,203"/>
 </map>

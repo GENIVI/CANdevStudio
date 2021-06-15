@@ -92,19 +92,21 @@ $(document).ready(function(){initNavTree('log_8h.html',''); initResizable(); });
 <div class="textblock"><code>#include &lt;cstring&gt;</code><br />
 <code>#include &lt;iostream&gt;</code><br />
 <code>#include &lt;memory&gt;</code><br />
-<code>#include &lt;spdlog/fmt/ostr.h&gt;</code><br />
+<code>#include &lt;spdlog/fmt/fmt.h&gt;</code><br />
+<code>#include &lt;spdlog/sinks/stdout_color_sinks.h&gt;</code><br />
 <code>#include &lt;spdlog/spdlog.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for log.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="log_8h__incl.png" border="0" usemap="#asrc_2common_2log_8h" alt=""/></div>
 <map name="asrc_2common_2log_8h" id="asrc_2common_2log_8h">
-<area shape="rect" title=" " alt="" coords="159,5,284,32"/>
-<area shape="rect" title=" " alt="" coords="5,80,67,107"/>
-<area shape="rect" title=" " alt="" coords="91,80,163,107"/>
-<area shape="rect" title=" " alt="" coords="187,80,255,107"/>
-<area shape="rect" title=" " alt="" coords="279,80,398,107"/>
-<area shape="rect" title=" " alt="" coords="421,80,533,107"/>
+<area shape="rect" title=" " alt="" coords="216,5,341,32"/>
+<area shape="rect" title=" " alt="" coords="5,87,67,114"/>
+<area shape="rect" title=" " alt="" coords="91,87,163,114"/>
+<area shape="rect" title=" " alt="" coords="187,87,255,114"/>
+<area shape="rect" title=" " alt="" coords="279,87,395,114"/>
+<area shape="rect" title=" " alt="" coords="419,80,554,121"/>
+<area shape="rect" title=" " alt="" coords="579,87,691,114"/>
 </map>
 </div>
 </div>
@@ -171,7 +173,7 @@ Variables</h2></td></tr>
 <b>Value:</b><div class="fragment"><div class="line">    <span class="keywordflow">do</span> {                                                                                                               \</div>
 <div class="line">        kDefaultLogger-&gt;debug(<span class="stringliteral">&quot;[{}():{}@{}] &quot;</span> fmt, __FUNCTION__, <a class="code" href="log_8h.html#a5fccb4fc71e44089a1b1a77fc76c0b68">__FILENAME__</a>, __LINE__, ##__VA_ARGS__);               \</div>
 <div class="line">    } <span class="keywordflow">while</span> (0)</div>
-<div class="ttc" id="alog_8h_html_a5fccb4fc71e44089a1b1a77fc76c0b68"><div class="ttname"><a href="log_8h.html#a5fccb4fc71e44089a1b1a77fc76c0b68">__FILENAME__</a></div><div class="ttdeci">#define __FILENAME__</div><div class="ttdef"><b>Definition:</b> log.h:9</div></div>
+<div class="ttc" id="alog_8h_html_a5fccb4fc71e44089a1b1a77fc76c0b68"><div class="ttname"><a href="log_8h.html#a5fccb4fc71e44089a1b1a77fc76c0b68">__FILENAME__</a></div><div class="ttdeci">#define __FILENAME__</div><div class="ttdef"><b>Definition:</b> log.h:11</div></div>
 </div><!-- fragment -->
 </div>
 </div>
