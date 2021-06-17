@@ -103,14 +103,13 @@ void CanSignalDecoderPrivate::decodeFrame(const QCanBusFrame& frame, Direction c
             if (littleEndian) {
                 bitsBefore = sig.startBit;
             } else {
-                // bitsBefore = 7 - (sig.startBit % 8) + (sig.startBit / 8) * 8;
                 bitsBefore = beTransTable[sig.startBit];
             }
 
             if (bitsBefore + sig.signalSize > (frame.payload().size() * 8)) {
                 cds_error(
                     "Invalid message size - startBit {}, sigSize {}, bitsBefore {}, payload size {}, littleEndian: {}",
-                    sig.startBit, sig.signalSize, frame.payload().size(), littleEndian);
+                    sig.startBit, sig.signalSize, bitsBefore, frame.payload().size(), littleEndian);
                 continue;
             }
 
