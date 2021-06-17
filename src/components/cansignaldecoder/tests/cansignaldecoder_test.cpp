@@ -354,7 +354,7 @@ TEST_CASE("UnsignedSignals_BE", "[cansignaldecoder]")
     data.startSimulation();
     c.startSimulation();
 
-    QByteArray p = QByteArray::fromHex("2542100808104080");
+    QByteArray p = QByteArray::fromHex("a442081010080201");
 
     QCanBusFrame frame;
     frame.setFrameId(0x1002);
@@ -393,7 +393,7 @@ TEST_CASE("UnsignedSignals_BE", "[cansignaldecoder]")
     c.startSimulation();
     sigSndSpy.clear();
 
-    p = QByteArray::fromHex("4b84201010208000");
+    p = QByteArray::fromHex("d221040808040100");
 
     frame.setFrameId(0x1002);
     frame.setPayload(p);
@@ -444,7 +444,7 @@ TEST_CASE("SignedSignals_BE", "[cansignaldecoder]")
     data.startSimulation();
     c.startSimulation();
 
-    QByteArray p = QByteArray::fromHex("dabdeff7f7efbfff");
+    QByteArray p = QByteArray::fromHex("5bbdf7efeff7fdff");
 
     QCanBusFrame frame;
     frame.setFrameId(0x1003);
@@ -517,7 +517,7 @@ TEST_CASE("SignedSignals_BE", "[cansignaldecoder]")
     c.startSimulation();
     sigSndSpy.clear();
 
-    p = QByteArray::fromHex("3763180c0c186080");
+    p = QByteArray::fromHex("ecc6183030180601");
 
     frame.setFrameId(0x1003);
     frame.setPayload(p);
@@ -553,7 +553,7 @@ TEST_CASE("SignedSignals_BE", "[cansignaldecoder]")
     c.startSimulation();
     sigSndSpy.clear();
 
-    p = QByteArray::fromHex("2542100808104000");
+    p = QByteArray::fromHex("a442081010080200");
 
     frame.setFrameId(0x1003);
     frame.setPayload(p);

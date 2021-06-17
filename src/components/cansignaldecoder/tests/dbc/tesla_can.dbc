@@ -61,31 +61,6 @@ VAL_TABLE_ DI_state 4 "DI_STATE_ENABLE" 3 "DI_STATE_FAULT" 2 "DI_STATE_CLEAR_FAU
 VAL_TABLE_ DI_velocityEstimatorState 4 "VE_STATE_BACKUP_MOTOR" 3 "VE_STATE_BACKUP_WHEELS_B" 2 "VE_STATE_BACKUP_WHEELS_A" 1 "VE_STATE_WHEELS_NORMAL" 0 "VE_STATE_NOT_INITIALIZED" ;
 
 BO_ 4096 UnsignedSignals_LE: 8 TEST
- SG_ Test01 : 0|1@0+ (1,0) [0|0] "" TEST
- SG_ Test02 : 1|2@0+ (1,0) [0|0] "" TEST
- SG_ Test03 : 3|3@0+ (1,0) [0|0] "" TEST
- SG_ Test04 : 6|4@0+ (1,0) [0|0] "" TEST
- SG_ Test05 : 10|5@0+ (1,0) [0|0] "" TEST
- SG_ Test06 : 15|6@0+ (1,0) [0|0] "" TEST
- SG_ Test07 : 21|7@0+ (1,0) [0|0] "" TEST
- SG_ Test08 : 28|8@0+ (1,0) [0|0] "" TEST
- SG_ Test09 : 36|9@0+ (1,0) [0|0] "" TEST
- SG_ Test10 : 45|10@0+ (1,0) [0|0] "" TEST
- SG_ Test11 : 55|9@0+ (1,0) [0|0] "" TEST
-
-BO_ 4097 SignedSignals_LE: 8 TEST
- SG_ Test02 : 0|2@0- (1,0) [0|0] "" TEST
- SG_ Test03 : 2|3@0- (1,0) [0|0] "" TEST
- SG_ Test04 : 5|4@0- (1,0) [0|0] "" TEST
- SG_ Test05 : 9|5@0- (1,0) [0|0] "" TEST
- SG_ Test06 : 14|6@0- (1,0) [0|0] "" TEST
- SG_ Test07 : 20|7@0- (1,0) [0|0] "" TEST
- SG_ Test08 : 27|8@0- (1,0) [0|0] "" TEST
- SG_ Test09 : 35|9@0- (1,0) [0|0] "" TEST
- SG_ Test10 : 44|10@0- (1,0) [0|0] "" TEST
- SG_ Test11 : 54|10@0- (1,0) [0|0] "" TEST
-
-BO_ 4098 UnsignedSignals_BE: 8 TEST
  SG_ Test01 : 0|1@1+ (1,0) [0|0] "" TEST
  SG_ Test02 : 1|2@1+ (1,0) [0|0] "" TEST
  SG_ Test03 : 3|3@1+ (1,0) [0|0] "" TEST
@@ -98,7 +73,7 @@ BO_ 4098 UnsignedSignals_BE: 8 TEST
  SG_ Test10 : 45|10@1+ (1,0) [0|0] "" TEST
  SG_ Test11 : 55|9@1+ (1,0) [0|0] "" TEST
 
-BO_ 4099 SignedSignals_BE: 8 TEST
+BO_ 4097 SignedSignals_LE: 8 TEST
  SG_ Test02 : 0|2@1- (1,0) [0|0] "" TEST
  SG_ Test03 : 2|3@1- (1,0) [0|0] "" TEST
  SG_ Test04 : 5|4@1- (1,0) [0|0] "" TEST
@@ -110,11 +85,36 @@ BO_ 4099 SignedSignals_BE: 8 TEST
  SG_ Test10 : 44|10@1- (1,0) [0|0] "" TEST
  SG_ Test11 : 54|10@1- (1,0) [0|0] "" TEST
 
+BO_ 4098 UnsignedSignals_BE: 8 TEST
+ SG_ Test01 : 7|1@0+ (1,0) [0|0] "" TEST
+ SG_ Test02 : 6|2@0+ (1,0) [0|0] "" TEST
+ SG_ Test03 : 4|3@0+ (1,0) [0|0] "" TEST
+ SG_ Test04 : 1|4@0+ (1,0) [0|0] "" TEST
+ SG_ Test05 : 13|5@0+ (1,0) [0|0] "" TEST
+ SG_ Test06 : 8|6@0+ (1,0) [0|0] "" TEST
+ SG_ Test07 : 18|7@0+ (1,0) [0|0] "" TEST
+ SG_ Test08 : 27|8@0+ (1,0) [0|0] "" TEST
+ SG_ Test09 : 35|9@0+ (1,0) [0|0] "" TEST
+ SG_ Test10 : 42|10@0+ (1,0) [0|0] "" TEST
+ SG_ Test11 : 48|9@0+ (1,0) [0|0] "" TEST
+
+BO_ 4099 SignedSignals_BE: 8 TEST
+ SG_ Test02 : 7|2@0- (1,0) [0|0] "" TEST
+ SG_ Test03 : 5|3@0- (1,0) [0|0] "" TEST
+ SG_ Test04 : 2|4@0- (1,0) [0|0] "" TEST
+ SG_ Test05 : 14|5@0- (1,0) [0|0] "" TEST
+ SG_ Test06 : 9|6@0- (1,0) [0|0] "" TEST
+ SG_ Test07 : 19|7@0- (1,0) [0|0] "" TEST
+ SG_ Test08 : 28|8@0- (1,0) [0|0] "" TEST
+ SG_ Test09 : 36|9@0- (1,0) [0|0] "" TEST
+ SG_ Test10 : 43|10@0- (1,0) [0|0] "" TEST
+ SG_ Test11 : 49|10@0- (1,0) [0|0] "" TEST
+
 BO_ 1160 DAS_steeringControl: 4 NEO
- SG_ DAS_steeringControlType : 23|80@0+ (0,0) [0|0] "" EPAS
- SG_ DAS_steeringControlChecksum : 31|80@0+ (1,0) [0|0] "" EPAS
- SG_ DAS_steeringControlCounter : 19|80@0+ (1,0) [0|0] "" EPAS
- SG_ DAS_steeringAngleRequest : 6|80@0+ (0.1,-1638.35) [-1638.35|1638.35] "deg" EPAS
+ SG_ DAS_steeringControlType : 23|80@1+ (0,0) [0|0] "" EPAS
+ SG_ DAS_steeringControlChecksum : 31|80@1+ (1,0) [0|0] "" EPAS
+ SG_ DAS_steeringControlCounter : 19|80@1+ (1,0) [0|0] "" EPAS
+ SG_ DAS_steeringAngleRequest : 6|80@1+ (0.1,-1638.35) [-1638.35|1638.35] "deg" EPAS
  SG_ DAS_steeringHapticRequest : 7|80@2+ (1,0) [0|0] "" EPAS
  
 BO_ 257 GTW_epasControl: 3 NEO
