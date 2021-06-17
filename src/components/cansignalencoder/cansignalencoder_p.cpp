@@ -77,7 +77,7 @@ void CanSignalEncoderPrivate::encodeSignal(const QString& name, const QVariant& 
         if (sig.signal_name == sigName.toStdString()) {
             if (_rawCache[id].size() < (int)msgDesc->first.dlc) {
                 cds_info("Setting up new cache for {:03x} msg", id);
-                // Set chache for the first time
+                // Set cache for the first time
                 _rawCache[id].fill(0, msgDesc->first.dlc);
             }
 
@@ -101,7 +101,7 @@ void CanSignalEncoderPrivate::signalToRaw(
     const uint32_t id, const CANsignal& sigDesc, const QVariant& sigVal, const uint32_t updateCycle)
 {
     if (sigDesc.factor == 0) {
-        cds_error("Factor for {} signal is 0! Singal encoding failed.", sigDesc.signal_name);
+        cds_error("Factor for {} signal is 0! Signal encoding failed.", sigDesc.signal_name);
         return;
     }
 
@@ -157,7 +157,7 @@ void CanSignalEncoderPrivate::initCacheAndTimers()
                 frame.setFrameId(msg.first.id);
                 if (_rawCache[msg.first.id].size() < (int)msg.first.dlc) {
                     cds_info("Setting up new cache for {:03x} msg", msg.first.id);
-                    // Set chache for the first time
+                    // Set cache for the first time
                     _rawCache[msg.first.id].fill(0, msg.first.dlc);
                 }
 
