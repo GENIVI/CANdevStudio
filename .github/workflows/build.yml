@@ -45,6 +45,7 @@ jobs:
         QT_QPA_PLATFORM: offscreen
 
     - name: Create packages
+      if: startsWith(github.ref, 'refs/heads/')
       working-directory: ${{github.workspace}}/build
       run: |
         cpack -G DEB
@@ -54,6 +55,7 @@ jobs:
         mv *.deb *.tar.xz ../master
 
     - name: Get Package Names
+      if: startsWith(github.ref, 'refs/heads/')
       id: package_names
       working-directory: ${{github.workspace}}/master
       run: |
@@ -67,6 +69,7 @@ jobs:
         echo "::set-output name=STANDALONE_ZIP::$STANDALONE_ZIP"
 
     - name: Upload Normal Package
+      if: startsWith(github.ref, 'refs/heads/')
       uses: actions/upload-artifact@v2
       with:
         name: ${{steps.package_names.outputs.NORMAL_ZIP}}
@@ -74,6 +77,7 @@ jobs:
         retention-days: 90
 
     - name: Upload Standalone Package
+      if: startsWith(github.ref, 'refs/heads/')
       uses: actions/upload-artifact@v2
       with:
         name: ${{steps.package_names.outputs.STANDALONE_ZIP}}
@@ -190,6 +194,7 @@ jobs:
       run: make -j4
 
     - name: Create packages
+      if: startsWith(github.ref, 'refs/heads/')
       working-directory: ${{github.workspace}}/build
       run: |
         cpack -G DragNDrop
@@ -197,6 +202,7 @@ jobs:
         mv *.dmg ../master
 
     - name: Get Package Names
+      if: startsWith(github.ref, 'refs/heads/')
       id: package_names
       working-directory: ${{github.workspace}}/master
       run: |
@@ -206,6 +212,7 @@ jobs:
         echo "::set-output name=NORMAL_ZIP::$NORMAL_ZIP"
 
     - name: Upload Normal Package
+      if: startsWith(github.ref, 'refs/heads/')
       uses: actions/upload-artifact@v2
       with:
         name: ${{steps.package_names.outputs.NORMAL_ZIP}}
@@ -258,6 +265,7 @@ jobs:
       run: cmake --build . --config Release
 
     - name: Create Packages
+      if: startsWith(github.ref, 'refs/heads/')
       working-directory: ${{github.workspace}}/build
       run: |
         cpack -G 7Z
@@ -267,6 +275,7 @@ jobs:
         move *.7z ..\master
 
     - name: Get Package Names
+      if: startsWith(github.ref, 'refs/heads/')
       id: package_names
       shell: bash
       working-directory: ${{github.workspace}}/master
@@ -281,6 +290,7 @@ jobs:
         echo "::set-output name=STANDALONE_ZIP::$STANDALONE_ZIP"
 
     - name: Upload Normal Package
+      if: startsWith(github.ref, 'refs/heads/')
       uses: actions/upload-artifact@v2
       with:
         name: ${{steps.package_names.outputs.NORMAL_ZIP}}
@@ -288,6 +298,7 @@ jobs:
         retention-days: 90
 
     - name: Upload Standalone Package
+      if: startsWith(github.ref, 'refs/heads/')
       uses: actions/upload-artifact@v2
       with:
         name: ${{steps.package_names.outputs.STANDALONE_ZIP}}
