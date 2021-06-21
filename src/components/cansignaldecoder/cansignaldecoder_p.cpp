@@ -3,11 +3,18 @@
 #include <array>
 #include <log.h>
 
-// for len in range(1,65):
-//    print('%3d, ' %  ((int((len - 1)/ 8) * 2 + 1)*8 - len), end='')
-//    if len % 8 == 0:
-//        print('')
+// Python script used to generate below:
+//
+// for rows in range (1,9):
+//    bit = rows*8 - 1
+//    for cols in range(0,8):
+//        val = int(bit - cols)
+//        print('%3d,' % val, end='')
+//        if val % 8 == 0:
+//            print('')
+//
 // clang-format off
+namespace {
 const std::array beTransTable = {
       7,  6,  5,  4,  3,  2,  1,  0,
      15, 14, 13, 12, 11, 10,  9,  8,
@@ -18,6 +25,7 @@ const std::array beTransTable = {
      55, 54, 53, 52, 51, 50, 49, 48,
      63, 62, 61, 60, 59, 58, 57, 56 
 };
+}
 // clang-format on
 
 CanSignalDecoderPrivate::CanSignalDecoderPrivate(CanSignalDecoder* q, CanSignalDecoderCtx&& ctx)
@@ -95,8 +103,8 @@ void CanSignalDecoderPrivate::decodeFrame(const QCanBusFrame& frame, Direction c
                 continue;
             }
 
-            // Calculate how many bits is used already before this signal. Calculations are different for
-            // little and big endian. Good overview on how big endian signals are alinged can be found
+            // Calculate how many bits are used already before this signal. Calculations are different for
+            // little and big endian. Good overview on how big endian signals are aligned can be found
             // here: https://github.com/eerimoq/cantools#the-dump-subcommand
             uint8_t bitsBefore = 0;
 
@@ -181,7 +189,7 @@ int64_t CanSignalDecoderPrivate::rawToSignal(
 
         uint8_t bitpos = 0;
         for (int i = sigSize - 1; i >= 0; --i) {
-            // Fist beTransTable returns number of bytes used before startBit
+            // First beTransTable returns number of bytes used before startBit
             // Then we are adding length of the signal and getting 'offset' where the LSB is
             // Second 'translation' of 'offset' with beTransTable gives us actual bit position
             int bit = beTransTable[beTransTable[startBit] + i];
