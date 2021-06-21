@@ -610,17 +610,14 @@ TEST_CASE("UnsignedSignals_BE", "[cansignalencoder]")
     REQUIRE(frame.frameId() == 0x1002);
     REQUIRE(frame.hasExtendedFrameFormat() == true);
 
-    //  1000 0000 0100 0000 0001 0000 0000 1000
-    //  0000 1000 0001 0000 0100 0010 0010 0101
-
-    REQUIRE(frame.payload()[0] == (char)0x25);
+    REQUIRE(frame.payload()[0] == (char)0xa4);
     REQUIRE(frame.payload()[1] == (char)0x42);
-    REQUIRE(frame.payload()[2] == (char)0x10);
-    REQUIRE(frame.payload()[3] == (char)0x08);
-    REQUIRE(frame.payload()[4] == (char)0x08);
-    REQUIRE(frame.payload()[5] == (char)0x10);
-    REQUIRE(frame.payload()[6] == (char)0x40);
-    REQUIRE(frame.payload()[7] == (char)0x80);
+    REQUIRE(frame.payload()[2] == (char)0x08);
+    REQUIRE(frame.payload()[3] == (char)0x10);
+    REQUIRE(frame.payload()[4] == (char)0x10);
+    REQUIRE(frame.payload()[5] == (char)0x08);
+    REQUIRE(frame.payload()[6] == (char)0x02);
+    REQUIRE(frame.payload()[7] == (char)0x01);
 
     sigSndSpy.clear();
 
@@ -643,16 +640,13 @@ TEST_CASE("UnsignedSignals_BE", "[cansignalencoder]")
     REQUIRE(frame.frameId() == 0x1002);
     REQUIRE(frame.hasExtendedFrameFormat() == true);
 
-    //  0000 0000 1000 0000 0010 0000 0001 0000
-    //  0001 0000 0010 0000 1000 0100 0100 1011
-
-    REQUIRE(frame.payload()[0] == (char)0x4b);
-    REQUIRE(frame.payload()[1] == (char)0x84);
-    REQUIRE(frame.payload()[2] == (char)0x20);
-    REQUIRE(frame.payload()[3] == (char)0x10);
-    REQUIRE(frame.payload()[4] == (char)0x10);
-    REQUIRE(frame.payload()[5] == (char)0x20);
-    REQUIRE(frame.payload()[6] == (char)0x80);
+    REQUIRE(frame.payload()[0] == (char)0xd2);
+    REQUIRE(frame.payload()[1] == (char)0x21);
+    REQUIRE(frame.payload()[2] == (char)0x04);
+    REQUIRE(frame.payload()[3] == (char)0x08);
+    REQUIRE(frame.payload()[4] == (char)0x08);
+    REQUIRE(frame.payload()[5] == (char)0x04);
+    REQUIRE(frame.payload()[6] == (char)0x01);
     REQUIRE(frame.payload()[7] == (char)0x00);
 }
 
@@ -692,16 +686,13 @@ TEST_CASE("SignedSignals_BE", "[cansignalencoder]")
     REQUIRE(frame.frameId() == 0x1003);
     REQUIRE(frame.hasExtendedFrameFormat() == true);
 
-    //  1111 1111 1011 1111 1110 1111 1111 0111
-    //  1111 0111 1110 1111 1011 1101 1101 1010
-
-    REQUIRE(frame.payload()[0] == (char)0xda);
+    REQUIRE(frame.payload()[0] == (char)0x5b);
     REQUIRE(frame.payload()[1] == (char)0xbd);
-    REQUIRE(frame.payload()[2] == (char)0xef);
-    REQUIRE(frame.payload()[3] == (char)0xf7);
-    REQUIRE(frame.payload()[4] == (char)0xf7);
-    REQUIRE(frame.payload()[5] == (char)0xef);
-    REQUIRE(frame.payload()[6] == (char)0xbf);
+    REQUIRE(frame.payload()[2] == (char)0xf7);
+    REQUIRE(frame.payload()[3] == (char)0xef);
+    REQUIRE(frame.payload()[4] == (char)0xef);
+    REQUIRE(frame.payload()[5] == (char)0xf7);
+    REQUIRE(frame.payload()[6] == (char)0xfd);
     REQUIRE(frame.payload()[7] == (char)0xff);
 
     sigSndSpy.clear();
@@ -723,9 +714,6 @@ TEST_CASE("SignedSignals_BE", "[cansignalencoder]")
 
     REQUIRE(frame.frameId() == 0x1003);
     REQUIRE(frame.hasExtendedFrameFormat() == true);
-
-    //  1111 1111 1111 1111 1111 1111 1111 1111
-    //  1111 1111 1111 1111 1111 1111 1111 1111
 
     REQUIRE(frame.payload()[0] == (char)0xff);
     REQUIRE(frame.payload()[1] == (char)0xff);
@@ -756,18 +744,15 @@ TEST_CASE("SignedSignals_BE", "[cansignalencoder]")
     REQUIRE(frame.frameId() == 0x1003);
     REQUIRE(frame.hasExtendedFrameFormat() == true);
 
-    //  1000 0000 0110 0000 0001 1000 0000 1100
-    //  0000 1100 0001 1000 0110 0011 0011 0111
-
-    REQUIRE(frame.payload()[0] == (char)0x37);
-    REQUIRE(frame.payload()[1] == (char)0x63);
+    REQUIRE(frame.payload()[0] == (char)0xec);
+    REQUIRE(frame.payload()[1] == (char)0xc6);
     REQUIRE(frame.payload()[2] == (char)0x18);
-    REQUIRE(frame.payload()[3] == (char)0x0c);
-    REQUIRE(frame.payload()[4] == (char)0x0c);
+    REQUIRE(frame.payload()[3] == (char)0x30);
+    REQUIRE(frame.payload()[4] == (char)0x30);
     REQUIRE(frame.payload()[5] == (char)0x18);
-    REQUIRE(frame.payload()[6] == (char)0x60);
-    REQUIRE(frame.payload()[7] == (char)0x80);
-
+    REQUIRE(frame.payload()[6] == (char)0x06);
+    REQUIRE(frame.payload()[7] == (char)0x01);
+    
     sigSndSpy.clear();
 
     c.rcvSignal("0x1003_Test02", -2);
@@ -788,16 +773,13 @@ TEST_CASE("SignedSignals_BE", "[cansignalencoder]")
     REQUIRE(frame.frameId() == 0x1003);
     REQUIRE(frame.hasExtendedFrameFormat() == true);
 
-    //  0000 0000 0100 0000 0001 0000 0000 1000
-    //  0000 1000 0001 0000 0100 0010 0010 0101
-
-    REQUIRE(frame.payload()[0] == (char)0x25);
+    REQUIRE(frame.payload()[0] == (char)0xa4);
     REQUIRE(frame.payload()[1] == (char)0x42);
-    REQUIRE(frame.payload()[2] == (char)0x10);
-    REQUIRE(frame.payload()[3] == (char)0x08);
-    REQUIRE(frame.payload()[4] == (char)0x08);
-    REQUIRE(frame.payload()[5] == (char)0x10);
-    REQUIRE(frame.payload()[6] == (char)0x40);
+    REQUIRE(frame.payload()[2] == (char)0x08);
+    REQUIRE(frame.payload()[3] == (char)0x10);
+    REQUIRE(frame.payload()[4] == (char)0x10);
+    REQUIRE(frame.payload()[5] == (char)0x08);
+    REQUIRE(frame.payload()[6] == (char)0x02);
     REQUIRE(frame.payload()[7] == (char)0x00);
 }
 

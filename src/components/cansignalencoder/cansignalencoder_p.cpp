@@ -2,6 +2,31 @@
 #include <QCanBusFrame>
 #include <log.h>
 
+// Python script used to generate below:
+//
+// for rows in range (1,9):
+//    bit = rows*8 - 1
+//    for cols in range(0,8):
+//        val = int(bit - cols)
+//        print('%3d,' % val, end='')
+//        if val % 8 == 0:
+//            print('')
+//
+// clang-format off
+namespace {
+const std::array beTransTable = {
+      7,  6,  5,  4,  3,  2,  1,  0,
+     15, 14, 13, 12, 11, 10,  9,  8,
+     23, 22, 21, 20, 19, 18, 17, 16,
+     31, 30, 29, 28, 27, 26, 25, 24,
+     39, 38, 37, 36, 35, 34, 33, 32,
+     47, 46, 45, 44, 43, 42, 41, 40,
+     55, 54, 53, 52, 51, 50, 49, 48,
+     63, 62, 61, 60, 59, 58, 57, 56
+};
+}
+// clang-format on
+
 CanSignalEncoderPrivate::CanSignalEncoderPrivate(CanSignalEncoder* q, CanSignalEncoderCtx&& ctx)
     : _ctx(std::move(ctx))
     , q_ptr(q)
@@ -81,14 +106,28 @@ void CanSignalEncoderPrivate::encodeSignal(const QString& name, const QVariant& 
                 _rawCache[id].fill(0, msgDesc->first.dlc);
             }
 
-            if (_rawCache[id].size() * 8 >= sig.startBit + sig.signalSize) {
+            // Calculate how many bits are used already before this signal. Calculations are different for
+            // little and big endian. Good overview on how big endian signals are aligned can be found
+            // here: https://github.com/eerimoq/cantools#the-dump-subcommand
+            uint8_t bitsBefore = 0;
+            bool littleEndian = sig.byteOrder == 1;
+            uint8_t msgSize = _rawCache[id].size();
 
-                signalToRaw(id, sig, val, msgDesc->first.updateCycle);
-                return;
+            if (littleEndian) {
+                bitsBefore = sig.startBit;
             } else {
-                cds_error("Payload size ('{}') for signal '{}' is too small. StartBit {}, signalSize {}",
-                    _rawCache[id].size() * 8, sig.signal_name, sig.startBit, sig.signalSize);
+                bitsBefore = beTransTable[sig.startBit];
             }
+
+            if (bitsBefore + sig.signalSize > (msgSize * 8)) {
+                cds_error("Invalid signal or message size - startBit {}, sigSize {}, bitsBefore {}, payload size {}, "
+                          "littleEndian: {}",
+                    sig.startBit, sig.signalSize, bitsBefore, msgSize, littleEndian);
+                continue;
+            }
+
+            signalToRaw(id, sig, val, msgDesc->first.updateCycle);
+            return;
         }
     }
 
@@ -109,24 +148,47 @@ void CanSignalEncoderPrivate::signalToRaw(
     uint8_t* data = (uint8_t*)_rawCache[id].data();
 
     if (sigDesc.byteOrder == 0) {
-        // little endian
+
+        // Motorola / Big endian signal example with start bit 2 and length 5 (0=LSB, 4=MSB):
+        // Byte:       0        1        2        3
+        //        +--------+--------+--------+--- - -
+        //        |    |432|10|     |        |
+        //        +--------+--------+--------+--- - -
+        // Bit:    7      0 15     8 23    16 31
+        //
+        // Source: https://github.com/eerimoq/cantools/blob/master/cantools/database/can/signal.py
+
+        uint8_t bitpos = 0;
+        for (int i = sigDesc.signalSize - 1; i >= 0; --i) {
+            // First beTransTable returns number of bytes used before startBit
+            // Then we are adding length of the signal and getting 'offset' where the LSB is
+            // Second 'translation' of 'offset' with beTransTable gives us actual bit position
+            int bit = beTransTable[beTransTable[sigDesc.startBit] + i];
+
+            // clear bit first
+            data[bit / 8] &= ~(1U << (bit % 8));
+            // set bit
+            data[bit / 8] |= ((rawVal >> bitpos) & 1U) << (bit % 8);
+
+            ++bitpos;
+        }
+    } else {
+
+        // Little endian signal example with start bit 2 and length 9 (0=LSB, 8=MSB):
+        // Byte:       0        1        2        3
+        //       +--------+--------+--------+--- - -
+        //       |543210| |    |876|        |
+        //       +--------+--------+--------+--- - -
+        // Bit:   7      0 15     8 23    16 31
+        //
+        // Source: https://github.com/eerimoq/cantools/blob/master/cantools/database/can/signal.py
+
         auto bit = sigDesc.startBit;
         for (int bitpos = 0; bitpos < sigDesc.signalSize; bitpos++) {
             // clear bit first
             data[bit / 8] &= ~(1U << (bit % 8));
             // set bit
             data[bit / 8] |= ((rawVal >> bitpos) & 1U) << (bit % 8);
-            bit++;
-        }
-    } else {
-        // motorola / big endian mode
-        auto bit = sigDesc.startBit;
-        for (int bitpos = 0; bitpos < sigDesc.signalSize; bitpos++) {
-            // clear bit first
-            data[bit / 8] &= ~(1U << (bit % 8));
-            // set bit
-            data[bit / 8] |= ((rawVal >> (sigDesc.signalSize - bitpos - 1)) & 1U) << (bit % 8);
-
             bit++;
         }
     }
@@ -174,5 +236,4 @@ void CanSignalEncoderPrivate::initCacheAndTimers()
                 msg.first.initValue);
         }
     }
-
 }
