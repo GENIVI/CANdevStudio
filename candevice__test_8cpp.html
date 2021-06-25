@@ -180,8 +180,8 @@ Functions</h2></td></tr>
 <tr class="separator:a7d71fb96a3a0807aa5b1d822b852a807"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adcb45592dc77bfd023c710de995fd3e6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="candevice__test_8cpp.html#adcb45592dc77bfd023c710de995fd3e6">TEST_CASE</a> (&quot;Stubbed methods&quot;, &quot;[candevice]&quot;)</td></tr>
 <tr class="separator:adcb45592dc77bfd023c710de995fd3e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a790c346b2b058dc5e3fd6d46fc0f3588"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="candevice__test_8cpp.html#a790c346b2b058dc5e3fd6d46fc0f3588">prepareConfigTestMock</a> (std::vector&lt; std::pair&lt; int, QVariant &gt;&gt; &amp;ver)</td></tr>
-<tr class="separator:a790c346b2b058dc5e3fd6d46fc0f3588"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae81efcb9433fa37ce5cf7d48cfbe04e2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="candevice__test_8cpp.html#ae81efcb9433fa37ce5cf7d48cfbe04e2">prepareConfigTestMock</a> (fakeit::Mock&lt; <a class="el" href="struct_can_device_interface.html">CanDeviceInterface</a> &gt; &amp;deviceMock, std::vector&lt; std::pair&lt; int, QVariant &gt;&gt; &amp;ver)</td></tr>
+<tr class="separator:ae81efcb9433fa37ce5cf7d48cfbe04e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac2ef98f9435352c2e01a3bb653c234cc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="candevice__test_8cpp.html#ac2ef98f9435352c2e01a3bb653c234cc">testConfig</a> (fakeit::Mock&lt; <a class="el" href="struct_can_device_interface.html">CanDeviceInterface</a> &gt; &amp;deviceMock, <a class="el" href="class_can_device.html">CanDevice</a> &amp;canDevice, const QString &amp;configStr)</td></tr>
 <tr class="separator:ac2ef98f9435352c2e01a3bb653c234cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a883a0668293067e93b533570a513874e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="candevice__test_8cpp.html#a883a0668293067e93b533570a513874e">TEST_CASE</a> (&quot;Config parameter - invalid format and unsupported&quot;, &quot;[candevice]&quot;)</td></tr>
@@ -254,7 +254,7 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line">    <a class="code" href="candevice__test_8cpp.html#ac2ef98f9435352c2e01a3bb653c234cc">testConfig</a>(mock, dev, str);                                                                                        \</div>
 <div class="line">    fakeit::Verify(Method(mock, setConfigurationParameter)).Exactly(0);</div>
-<div class="ttc" id="acandevice__test_8cpp_html_ac2ef98f9435352c2e01a3bb653c234cc"><div class="ttname"><a href="candevice__test_8cpp.html#ac2ef98f9435352c2e01a3bb653c234cc">testConfig</a></div><div class="ttdeci">void testConfig(fakeit::Mock&lt; CanDeviceInterface &gt; &amp;deviceMock, CanDevice &amp;canDevice, const QString &amp;configStr)</div><div class="ttdef"><b>Definition:</b> candevice_test.cpp:414</div></div>
+<div class="ttc" id="acandevice__test_8cpp_html_ac2ef98f9435352c2e01a3bb653c234cc"><div class="ttname"><a href="candevice__test_8cpp.html#ac2ef98f9435352c2e01a3bb653c234cc">testConfig</a></div><div class="ttdeci">void testConfig(fakeit::Mock&lt; CanDeviceInterface &gt; &amp;deviceMock, CanDevice &amp;canDevice, const QString &amp;configStr)</div><div class="ttdef"><b>Definition:</b> candevice_test.cpp:428</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -337,18 +337,28 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a790c346b2b058dc5e3fd6d46fc0f3588"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a790c346b2b058dc5e3fd6d46fc0f3588">&#9670;&nbsp;</a></span>prepareConfigTestMock()</h2>
+<a id="ae81efcb9433fa37ce5cf7d48cfbe04e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae81efcb9433fa37ce5cf7d48cfbe04e2">&#9670;&nbsp;</a></span>prepareConfigTestMock()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">auto prepareConfigTestMock </td>
+          <td class="memname">void prepareConfigTestMock </td>
           <td>(</td>
-          <td class="paramtype">std::vector&lt; std::pair&lt; int, QVariant &gt;&gt; &amp;&#160;</td>
-          <td class="paramname"><em>ver</em></td><td>)</td>
+          <td class="paramtype">fakeit::Mock&lt; <a class="el" href="struct_can_device_interface.html">CanDeviceInterface</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>deviceMock</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">std::vector&lt; std::pair&lt; int, QVariant &gt;&gt; &amp;&#160;</td>
+          <td class="paramname"><em>ver</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">

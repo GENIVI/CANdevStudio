@@ -127,8 +127,8 @@ $(document).ready(function(){initNavTree('cansignalsenderguiimpl_8h_source.html'
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        cb-&gt;setCurrentText(_model-&gt;data(index).toString());</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        connect(cb, <span class="keyword">static_cast&lt;</span><span class="keywordtype">void</span> (QComboBox::*)(<span class="keyword">const </span>QString&amp;)<span class="keyword">&gt;</span>(&amp;QComboBox::activated),</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            [cb](<span class="keyword">const</span> QString&amp;) { cb-&gt;clearFocus(); });</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        connect(cb, <span class="keyword">static_cast&lt;</span><span class="keywordtype">void</span> (QComboBox::*)(<span class="keywordtype">int</span>)<span class="keyword">&gt;</span>(&amp;QComboBox::activated),</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            [cb](<span class="keywordtype">int</span>) { cb-&gt;clearFocus(); });</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="comment">// QOverload is not supported by MSVC 2015</span></div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        connect(cb, <span class="keyword">static_cast&lt;</span><span class="keywordtype">void</span> (QComboBox::*)(<span class="keyword">const </span>QString&amp;)<span class="keyword">&gt;</span>(&amp;QComboBox::currentTextChanged),</div>
@@ -192,8 +192,8 @@ $(document).ready(function(){initNavTree('cansignalsenderguiimpl_8h_source.html'
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        cb-&gt;setCurrentText(_model-&gt;data(index).toString());</div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        connect(cb, <span class="keyword">static_cast&lt;</span><span class="keywordtype">void</span> (QComboBox::*)(<span class="keyword">const </span>QString&amp;)<span class="keyword">&gt;</span>(&amp;QComboBox::activated),</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;            [cb](<span class="keyword">const</span> QString&amp;) { cb-&gt;clearFocus(); });</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        connect(cb, <span class="keyword">static_cast&lt;</span><span class="keywordtype">void</span> (QComboBox::*)(<span class="keywordtype">int</span>)<span class="keyword">&gt;</span>(&amp;QComboBox::activated),</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;            [cb](<span class="keywordtype">int</span>) { cb-&gt;clearFocus(); });</div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        <span class="keywordflow">return</span> cb;</div>
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    }</div>

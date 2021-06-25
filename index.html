@@ -177,7 +177,7 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 </div><!-- fragment --> <h3>Qt in CMake</h3>
 <p>If CMake failed to find Qt in your system: </p><div class="fragment"><div class="line">cd CANdevStudio/build</div>
 <div class="line">rm -rf *</div>
-<div class="line">cmake .. -DCMAKE_PREFIX_PATH=/home/genivi/Qt5.8.0/5.8/gcc_64</div>
+<div class="line">cmake .. -DCMAKE_PREFIX_PATH=/home/genivi/Qt5.12.0/5.12.0/gcc_64</div>
 <div class="line">make</div>
 </div><!-- fragment --> <h2>Windows</h2>
 <h3>Visual Studio 2019 Win64</h3>
@@ -354,7 +354,6 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <div class="line">* Keys names are case sensitive, values are case insensitive</div>
 <div class="line">* Configuration keys are taken from [ConfigurationKey enum](https://doc.qt.io/qt-5/qcanbusdevice.html#ConfigurationKey-enum). </div>
 <div class="line">* RawFilterKey and ErrorFilterKey are currently not supported</div>
-<div class="line">* DataBitRateKey is available since Qt 5.9</div>
 <div class="line">* Whitespaces are ignored</div>
 <div class="line"> </div>
 <div class="line">E.g.</div>

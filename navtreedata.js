@@ -70,8 +70,8 @@ var NAVTREEINDEX =
 "class_can_signal_encoder.html#a768a98e72a23f5718a7318538f5f0c0e",
 "class_project_config.html#af229bb450c2e6e3971b34cfe91387659",
 "dir_fdedb0aba14d44ce9d99bc100e026e6a.html",
-"qmlexecutormodel__test_8cpp.html#a95d1f47a5f3b906f91209f984b08edcc",
-"struct_can_signal_viewer_gui_int.html#a62093debeb13edfca7910e59b48dc947"
+"qmlexecutormodel__test_8cpp.html#a783c274846aa1a4e600dc683fead10f9",
+"struct_can_signal_viewer_gui_int.html#a414fe2113b8801114e9784b90cd9db80"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

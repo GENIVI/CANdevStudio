@@ -1,7 +1,7 @@
 var dir_7e916f19b7b0501fa5599eed2086abbb =
 [
     [ "tests", "dir_ed23a21a7f9ae87ed439a8cc74d35382.html", "dir_ed23a21a7f9ae87ed439a8cc74d35382" ],
-    [ "dragwidget.cpp", "dragwidget_8cpp.html", null ],
+    [ "dragwidget.cpp", "dragwidget_8cpp.html", "dragwidget_8cpp" ],
     [ "dragwidget.h", "dragwidget_8h.html", [
       [ "DragWidget", "class_drag_widget.html", "class_drag_widget" ]
     ] ],

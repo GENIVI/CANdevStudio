@@ -1,5 +1,5 @@
 <map id="src/components/canrawlogger/tests/canrawlogger_test.cpp" name="src/components/canrawlogger/tests/canrawlogger_test.cpp">
-<area shape="rect" id="node1" title=" " alt="" coords="965,5,1161,47"/>
+<area shape="rect" id="node1" title=" " alt="" coords="1023,5,1219,47"/>
 <area shape="rect" id="node2" title=" " alt="" coords="159,95,321,121"/>
 <area shape="rect" id="node3" href="$canrawlogger_8h.html" title=" " alt="" coords="345,95,455,121"/>
 <area shape="rect" id="node14" href="$log_8h.html" title=" " alt="" coords="767,95,817,121"/>
@@ -10,6 +10,7 @@
 <area shape="rect" id="node24" title=" " alt="" coords="1329,95,1428,121"/>
 <area shape="rect" id="node25" title=" " alt="" coords="1453,95,1531,121"/>
 <area shape="rect" id="node26" title=" " alt="" coords="1555,95,1634,121"/>
+<area shape="rect" id="node27" title=" " alt="" coords="1659,95,1789,121"/>
 <area shape="rect" id="node4" title=" " alt="" coords="104,177,176,203"/>
 <area shape="rect" id="node5" title=" " alt="" coords="200,177,363,203"/>
 <area shape="rect" id="node6" href="$componentinterface_8h.html" title=" " alt="" coords="488,177,635,203"/>
