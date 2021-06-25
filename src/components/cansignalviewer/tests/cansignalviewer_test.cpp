@@ -72,6 +72,7 @@ TEST_CASE("sort", "[cansignalviewer]")
     Mock<CanSignalViewerGuiInt> guiInt;
     CanSignalViewerGuiInt::sectionClicked_t sectionClicked;
 
+    Fake(Dtor(guiInt));
     Fake(Method(guiInt, setClearCbk));
     Fake(Method(guiInt, setDockUndockCbk));
     When(Method(guiInt, setSectionClikedCbk)).Do([&](auto&& fn) { sectionClicked = fn; });
@@ -121,6 +122,7 @@ TEST_CASE("dock/undock", "[cansignalviewer]")
     Mock<CanSignalViewerGuiInt> guiInt;
     CanSignalViewerGuiInt::dockUndock_t dockUndock;
 
+    Fake(Dtor(guiInt));
     Fake(Method(guiInt, setClearCbk));
     When(Method(guiInt, setDockUndockCbk)).Do([&](auto&& fn) { dockUndock = fn; });
     Fake(Method(guiInt, setSectionClikedCbk));
@@ -172,7 +174,7 @@ TEST_CASE("Start/Stop", "[cansignalviewer]")
     CanSignalViewerGuiInt::clear_t clearCbk = nullptr;
 
     Mock<CanSignalViewerGuiInt> guiMock;
-
+    Fake(Dtor(guiMock));
     When(Method(guiMock, setClearCbk)).Do([&](auto&& fn) { clearCbk = fn; });
     Fake(Method(guiMock, setDockUndockCbk));
     Fake(Method(guiMock, setSectionClikedCbk));
@@ -236,7 +238,7 @@ TEST_CASE("Standard/Unique test", "[cansignalviewer]")
     CanSignalViewerGuiInt::clear_t clearCbk = nullptr;
 
     Mock<CanSignalViewerGuiInt> guiMock;
-
+    Fake(Dtor(guiMock));
     When(Method(guiMock, setClearCbk)).Do([&](auto&& fn) { clearCbk = fn; });
     Fake(Method(guiMock, setDockUndockCbk));
     Fake(Method(guiMock, setSectionClikedCbk));
@@ -358,7 +360,7 @@ TEST_CASE("Overrun", "[cansignalviewer]")
     CanSignalViewerGuiInt::clear_t clearCbk = nullptr;
 
     Mock<CanSignalViewerGuiInt> guiMock;
-
+    Fake(Dtor(guiMock));
     When(Method(guiMock, setClearCbk)).Do([&](auto&& fn) { clearCbk = fn; });
     Fake(Method(guiMock, setDockUndockCbk));
     Fake(Method(guiMock, setSectionClikedCbk));
@@ -394,11 +396,11 @@ TEST_CASE("Overrun", "[cansignalviewer]")
     REQUIRE(sModel->rowCount() == 2000);
     REQUIRE(uModel->rowCount() == 3000);
 
-    for (int i = 0; i < 2000; ++i) {
+    for (uint32_t i = 0; i < 2000; ++i) {
         REQUIRE(sModel->data(sModel->index(i, 3)).toString().toUInt(nullptr, 16) == i + 4000);
     }
 
-    for (int i = 0; i < 3000; ++i) {
+    for (uint32_t i = 0; i < 3000; ++i) {
         REQUIRE(uModel->data(uModel->index(i, 3)).toString().toUInt(nullptr, 16) == i + 3000);
     }
 }

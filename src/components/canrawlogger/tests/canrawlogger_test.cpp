@@ -9,6 +9,7 @@
 #include <QTextStream>
 #include <catch.hpp>
 #include <fakeit.hpp>
+#include <QtCore/qprocess.h>
 
 std::shared_ptr<spdlog::logger> kDefaultLogger;
 // needed for QSignalSpy cause according to qtbug 49623 comments
@@ -104,18 +105,23 @@ TEST_CASE("logging - directories", "[canrawlogger]")
 
     c.stopSimulation();
 
-    dirName = "/dummy";
-    dir.setPath(dirName);
+    // On Windows it is hard to determine a path were user will not have an access to.
+    // Using WINDIR seems fail on GitHub Actions so skip this for Windows...
+    if (QSysInfo::kernelType() != "winnt") {
+        dirName = "/dummy";
 
-    REQUIRE(dir.exists() == false);
+        dir.setPath(dirName);
 
-    obj.setProperty("directory", dirName);
-    c.setConfig(obj);
-    c.startSimulation();
+        REQUIRE(dir.exists() == false);
 
-    REQUIRE(dir.exists() == false);
+        obj.setProperty("directory", dirName);
+        c.setConfig(obj);
+        c.startSimulation();
 
-    c.stopSimulation();
+        REQUIRE(dir.exists() == false);
+
+        c.stopSimulation();
+    }
 }
 
 TEST_CASE("logging - filenames", "[canrawlogger]")
@@ -257,14 +263,14 @@ TEST_CASE("logging - send/receive, removed file", "[canrawlogger]")
     auto fileList = dir.entryList({ "*" });
     REQUIRE(fileList.size() == 3);
 
+    c.stopSimulation();
+
     QFile rmFile(dirName + "/" + fileList[2]);
     REQUIRE(rmFile.remove());
 
     c.frameReceived(frame);
     c.frameReceived(frame);
     c.frameReceived(frame);
-
-    c.stopSimulation();
 }
 
 TEST_CASE("logging - send/receive while stopped", "[canrawlogger]")

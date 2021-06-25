@@ -22,8 +22,5 @@ if(WITH_TESTS)
     target_link_libraries(${COMPONENT_NAME}model_test ${COMPONENT_NAME} Qt5::Test fakeit)
     add_test(NAME ${COMPONENT_NAME}model_test COMMAND ${COMPONENT_NAME}model_test)
 
-    set(CONFIG_SOURCE ${CMAKE_CURRENT_SOURCE_DIR}/tests/configfiles)
-    set(CONFIG_DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/configfiles)
-    add_custom_command(TARGET ${COMPONENT_NAME} POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy_directory ${CONFIG_SOURCE} ${CONFIG_DESTINATION})
+    add_definitions(-DCRS_TEST_CONFIG_FILES="${CMAKE_CURRENT_SOURCE_DIR}/tests/configfiles")
 endif()

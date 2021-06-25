@@ -1,7 +1,10 @@
+#define QT_DISABLE_DEPRECATED_BEFORE 0x051500
+
 #include <QtWidgets>
 
 #include "dragwidget.h"
 #include <log.h>
+#include <type_traits>
 
 DragWidget::DragWidget(QWidget* parent)
     : QFrame(parent)
@@ -23,6 +26,14 @@ void DragWidget::dragEnterEvent(QDragEnterEvent* event)
     }
 }
 
+template <typename T>
+auto get_value(T t) {
+    if constexpr (std::is_pointer_v<T>)
+        return *t;
+    else
+        return t;
+}
+
 void DragWidget::mousePressEvent(QMouseEvent* event)
 {
     QWidget* el = childAt(event->pos());
@@ -42,7 +53,8 @@ void DragWidget::mousePressEvent(QMouseEvent* event)
         return;
     }
 
-    const QPixmap* pixmap = child->pixmap();
+    // pixmap() returns QPixmap since Qt5.15 rather than QPixmap* as it was before
+    auto pixmap = child->pixmap();
     if (!pixmap)
         return;
 
@@ -55,13 +67,13 @@ void DragWidget::mousePressEvent(QMouseEvent* event)
 
     QDrag* drag = new QDrag(this);
     drag->setMimeData(mimeData);
-    drag->setPixmap(*pixmap);
+    drag->setPixmap(get_value(pixmap));
     drag->setHotSpot({ 0, 0 });
 
     if (drag->exec(Qt::CopyAction | Qt::MoveAction, Qt::CopyAction) == Qt::MoveAction) {
         child->close();
     } else {
         child->show();
-        child->setPixmap(*pixmap);
+        child->setPixmap(get_value(pixmap));
     }
 }

@@ -107,10 +107,10 @@ CanSignalDataPrivate::msgSettings_t CanSignalDataPrivate::getMsgSettings()
 void CanSignalDataPrivate::setMsgSettings(const msgSettings_t& msgSettings)
 {
     // Clear current settings
-    for (std::pair<CANmessage, std::vector<CANsignal>>&& msg : _messages) {
+    std::for_each(std::begin(_messages), std::end(_messages), [](std::pair<CANmessage, std::vector<CANsignal>> && msg) {
         msg.first.updateCycle = 0;
         msg.first.initValue = "";
-    }
+    });
 
     for (const auto& msg : msgSettings) {
         auto msgDb = findInDb(msg.first);

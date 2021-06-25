@@ -39,6 +39,7 @@ TEST_CASE("Constructor with correct arguments", "[newlinemanager]")
     using namespace fakeit;
     Mock<CRSGuiInterface> crsMock;
 
+    Fake(Dtor(crsMock));
     Fake(Method(crsMock, setAddCbk));
     Fake(Method(crsMock, setRemoveCbk));
     Fake(Method(crsMock, setDockUndockCbk));
@@ -48,8 +49,10 @@ TEST_CASE("Constructor with correct arguments", "[newlinemanager]")
     Fake(Method(crsMock, setIndexWidget));
 
     Mock<NLMFactoryInterface> nlmFactoryMock;
+    Fake(Dtor(nlmFactoryMock));
 
     Mock<LineEditInterface> nlmLineEditMock;
+    Fake(Dtor(nlmLineEditMock));
     Fake(Method(nlmLineEditMock, textChangedCbk));
     Fake(Method(nlmLineEditMock, init));
     Fake(Method(nlmLineEditMock, setPlaceholderText));
@@ -58,10 +61,12 @@ TEST_CASE("Constructor with correct arguments", "[newlinemanager]")
     When(Method(nlmFactoryMock, createLineEdit)).AlwaysDo([&]() { return &nlmLineEditMock.get(); });
 
     Mock<CheckBoxInterface> nlmCheckBoxMock;
+    Fake(Dtor(nlmCheckBoxMock));
     Fake(Method(nlmCheckBoxMock, toggledCbk));
     When(Method(nlmFactoryMock, createCheckBox)).AlwaysReturn(&nlmCheckBoxMock.get());
 
     Mock<PushButtonInterface> nlmPushButtonMock;
+    Fake(Dtor(nlmPushButtonMock));
     Fake(Method(nlmPushButtonMock, init));
     Fake(Method(nlmPushButtonMock, pressedCbk));
     When(Method(nlmFactoryMock, createPushButton)).Return(&nlmPushButtonMock.get());
@@ -77,8 +82,10 @@ TEST_CASE("Send button clicked - send one frame test", "[newlinemanager]")
     PushButtonInterface::pressed_t pressedCbk;
 
     Mock<NLMFactoryInterface> nlmFactoryMock;
+    Fake(Dtor(nlmFactoryMock));
 
     Mock<CRSGuiInterface> crsMock;
+    Fake(Dtor(crsMock));
     Fake(Method(crsMock, setAddCbk));
     Fake(Method(crsMock, setRemoveCbk));
     Fake(Method(crsMock, setDockUndockCbk));
@@ -88,6 +95,7 @@ TEST_CASE("Send button clicked - send one frame test", "[newlinemanager]")
     Fake(Method(crsMock, setIndexWidget));
 
     Mock<LineEditInterface> nlmLineEditMock;
+    Fake(Dtor(nlmLineEditMock));
     Fake(Method(nlmLineEditMock, textChangedCbk));
     Fake(Method(nlmLineEditMock, editingFinishedCbk));
     Fake(Method(nlmLineEditMock, mainWidget));
@@ -98,12 +106,14 @@ TEST_CASE("Send button clicked - send one frame test", "[newlinemanager]")
     When(Method(nlmFactoryMock, createLineEdit)).AlwaysDo([&]() { return &nlmLineEditMock.get(); });
 
     Mock<CheckBoxInterface> nlmCheckBoxMock;
+    Fake(Dtor(nlmCheckBoxMock));
     Fake(Method(nlmCheckBoxMock, toggledCbk));
     Fake(Method(nlmCheckBoxMock, mainWidget));
     When(Method(nlmCheckBoxMock, getState)).AlwaysReturn(false);
     When(Method(nlmFactoryMock, createCheckBox)).AlwaysReturn(&nlmCheckBoxMock.get());
 
     Mock<PushButtonInterface> nlmPushButtonMock;
+    Fake(Dtor(nlmPushButtonMock));
     Fake(Method(nlmPushButtonMock, init));
     When(Method(nlmPushButtonMock, pressedCbk)).Do([&](auto&& fn) { pressedCbk = fn; });
     Fake(Method(nlmPushButtonMock, mainWidget));
@@ -131,8 +141,10 @@ TEST_CASE("Send button clicked - send several frame test", "[newlinemanager]")
     PushButtonInterface::pressed_t pressedCbk;
 
     Mock<NLMFactoryInterface> nlmFactoryMock;
+    Fake(Dtor(nlmFactoryMock));
 
     Mock<CRSGuiInterface> crsMock;
+    Fake(Dtor(crsMock));
     Fake(Method(crsMock, setAddCbk));
     Fake(Method(crsMock, setRemoveCbk));
     Fake(Method(crsMock, setDockUndockCbk));
@@ -142,6 +154,7 @@ TEST_CASE("Send button clicked - send several frame test", "[newlinemanager]")
     Fake(Method(crsMock, setIndexWidget));
 
     Mock<LineEditInterface> nlmLineEditMock;
+    Fake(Dtor(nlmLineEditMock));
     Fake(Method(nlmLineEditMock, textChangedCbk));
     Fake(Method(nlmLineEditMock, editingFinishedCbk));
     Fake(Method(nlmLineEditMock, mainWidget));
@@ -154,6 +167,7 @@ TEST_CASE("Send button clicked - send several frame test", "[newlinemanager]")
     When(Method(nlmFactoryMock, createLineEdit)).AlwaysDo([&]() { return &nlmLineEditMock.get(); });
 
     Mock<CheckBoxInterface> nlmCheckBoxMock;
+    Fake(Dtor(nlmCheckBoxMock));
     Fake(Method(nlmCheckBoxMock, toggledCbk));
     Fake(Method(nlmCheckBoxMock, mainWidget));
     When(Method(nlmCheckBoxMock, getState)).Return(true);
@@ -161,6 +175,7 @@ TEST_CASE("Send button clicked - send several frame test", "[newlinemanager]")
     When(Method(nlmFactoryMock, createCheckBox)).AlwaysReturn(&nlmCheckBoxMock.get());
 
     Mock<PushButtonInterface> nlmPushButtonMock;
+    Fake(Dtor(nlmPushButtonMock));
     Fake(Method(nlmPushButtonMock, init));
     When(Method(nlmPushButtonMock, pressedCbk)).Do([&](auto&& fn) { pressedCbk = fn; });
     Fake(Method(nlmPushButtonMock, mainWidget));
@@ -186,6 +201,7 @@ TEST_CASE("Get columns wigdet test", "[newlinemanager]")
     using namespace fakeit;
 
     Mock<CRSGuiInterface> crsMock;
+    Fake(Dtor(crsMock));
     Fake(Method(crsMock, setAddCbk));
     Fake(Method(crsMock, setRemoveCbk));
     Fake(Method(crsMock, setDockUndockCbk));
@@ -195,8 +211,10 @@ TEST_CASE("Get columns wigdet test", "[newlinemanager]")
     Fake(Method(crsMock, setIndexWidget));
 
     Mock<NLMFactoryInterface> nlmFactoryMock;
+    Fake(Dtor(nlmFactoryMock));
 
     Mock<LineEditInterface> nlmLineEditMock;
+    Fake(Dtor(nlmLineEditMock));
     Fake(Method(nlmLineEditMock, textChangedCbk));
     Fake(Method(nlmLineEditMock, editingFinishedCbk));
     Fake(Method(nlmLineEditMock, init));
@@ -208,11 +226,13 @@ TEST_CASE("Get columns wigdet test", "[newlinemanager]")
     When(Method(nlmFactoryMock, createLineEdit)).AlwaysDo([&]() { return &nlmLineEditMock.get(); });
 
     Mock<CheckBoxInterface> nlmCheckBoxMock;
+    Fake(Dtor(nlmCheckBoxMock));
     Fake(Method(nlmCheckBoxMock, toggledCbk));
     When(Method(nlmCheckBoxMock, mainWidget)).AlwaysReturn(reinterpret_cast<QWidget*>(&nlmCheckBoxMock.get()));
     When(Method(nlmFactoryMock, createCheckBox)).AlwaysReturn(&nlmCheckBoxMock.get());
 
     Mock<PushButtonInterface> nlmPushButtonMock;
+    Fake(Dtor(nlmPushButtonMock));
     Fake(Method(nlmPushButtonMock, init));
     Fake(Method(nlmPushButtonMock, pressedCbk));
     When(Method(nlmPushButtonMock, mainWidget)).Return(reinterpret_cast<QWidget*>(&nlmPushButtonMock.get()));
@@ -236,8 +256,10 @@ TEST_CASE("EditionFinished", "[newlinemanager]")
     std::vector<QString> validOut;
 
     Mock<NLMFactoryInterface> nlmFactoryMock;
+    Fake(Dtor(nlmFactoryMock));
 
     Mock<CRSGuiInterface> crsMock;
+    Fake(Dtor(crsMock));
     Fake(Method(crsMock, setAddCbk));
     Fake(Method(crsMock, setRemoveCbk));
     Fake(Method(crsMock, setDockUndockCbk));
@@ -247,6 +269,7 @@ TEST_CASE("EditionFinished", "[newlinemanager]")
     Fake(Method(crsMock, setIndexWidget));
 
     Mock<LineEditInterface> nlmLineEditMock;
+    Fake(Dtor(nlmLineEditMock));
     Fake(Method(nlmLineEditMock, textChangedCbk));
     When(Method(nlmLineEditMock, editingFinishedCbk)).Do([&](auto&& fn) { editFinCbk = fn; });
     Fake(Method(nlmLineEditMock, mainWidget));
@@ -263,12 +286,14 @@ TEST_CASE("EditionFinished", "[newlinemanager]")
     When(Method(nlmFactoryMock, createLineEdit)).AlwaysDo([&]() { return &nlmLineEditMock.get(); });
 
     Mock<CheckBoxInterface> nlmCheckBoxMock;
+    Fake(Dtor(nlmCheckBoxMock));
     Fake(Method(nlmCheckBoxMock, toggledCbk));
     Fake(Method(nlmCheckBoxMock, mainWidget));
     When(Method(nlmCheckBoxMock, getState)).Return(false);
     When(Method(nlmFactoryMock, createCheckBox)).AlwaysReturn(&nlmCheckBoxMock.get());
 
     Mock<PushButtonInterface> nlmPushButtonMock;
+    Fake(Dtor(nlmPushButtonMock));
     Fake(Method(nlmPushButtonMock, init));
     Fake(Method(nlmPushButtonMock, pressedCbk));
     Fake(Method(nlmPushButtonMock, mainWidget));

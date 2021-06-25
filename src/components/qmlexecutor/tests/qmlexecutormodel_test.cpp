@@ -271,7 +271,7 @@ TEST_CASE("outData_frame", "[qmlexecutorModel]")
 {
     QMLExecutorModel cm;
 
-    int frameId = 21;
+    uint32_t frameId = 21;
     QByteArray frameData = QByteArray("ab\0cd", 5);
 
     int count{ 0 };

@@ -23,7 +23,7 @@ CanSignalSenderPrivate::CanSignalSenderPrivate(CanSignalSender* q, CanSignalSend
 
     _ui.setRemoveCbk([this] {
         QModelIndexList IndexList = _ui.getSelectedRows();
-        std::list<QModelIndex> tmp = IndexList.toStdList();
+        std::list<QModelIndex> tmp(IndexList.begin(), IndexList.end());
 
         tmp.sort(); // List must to be sorted and reversed because erasing started from last row
         tmp.reverse();

@@ -658,7 +658,8 @@ TEST_CASE("Signal caching", "[cansignaldecoder]")
     REQUIRE(sigSndSpy.at(2).at(0).toString() == "0x003_StW_Angl");
     REQUIRE(sigSndSpy.at(2).at(1).type() == QVariant::Double);
     REQUIRE(sigSndSpy.at(3).at(0).toString() == "0x003_StW_AnglSens_Id");
-    REQUIRE((QMetaType::Type)sigSndSpy.at(3).at(1).type() == QMetaType::Long);
+    REQUIRE((((QMetaType::Type)sigSndSpy.at(3).at(1).type() == QMetaType::Long) || 
+        ((QMetaType::Type)sigSndSpy.at(3).at(1).type() == QMetaType::LongLong)));
     REQUIRE(sigSndSpy.at(4).at(0).toString() == "0x003_StW_Angl");
     REQUIRE(sigSndSpy.at(4).at(1).type() == QVariant::Double);
 }

@@ -54,6 +54,7 @@ TEST_CASE("Initialization succeeded", "[candevice]")
     Mock<CanDeviceInterface> deviceMock;
     std::function<void()> rcvCbk;
 
+    Fake(Dtor(deviceMock));
     Fake(Method(deviceMock, setFramesWrittenCbk));
     When(Method(deviceMock, setFramesReceivedCbk)).AlwaysDo([&](auto&& fn) { rcvCbk = fn; });
     Fake(Method(deviceMock, setErrorOccurredCbk));
@@ -79,6 +80,7 @@ TEST_CASE("Start failed", "[candevice]")
     using namespace fakeit;
     Mock<CanDeviceInterface> deviceMock;
 
+    Fake(Dtor(deviceMock));
     When(Method(deviceMock, setFramesWrittenCbk)).Do([](const auto& cb) { cb(100); });
     Fake(Method(deviceMock, setFramesReceivedCbk));
     Fake(Method(deviceMock, setErrorOccurredCbk));
@@ -96,6 +98,7 @@ TEST_CASE("Start failed - could not connect to device", "[candevice]")
     using namespace fakeit;
     Mock<CanDeviceInterface> deviceMock;
 
+    Fake(Dtor(deviceMock));
     Fake(Method(deviceMock, setFramesWrittenCbk));
     Fake(Method(deviceMock, setFramesReceivedCbk));
     Fake(Method(deviceMock, setErrorOccurredCbk));
@@ -128,6 +131,7 @@ TEST_CASE("Start succeeded", "[candevice]")
     using namespace fakeit;
     Mock<CanDeviceInterface> deviceMock;
 
+    Fake(Dtor(deviceMock));
     When(Method(deviceMock, setFramesWrittenCbk)).Do([](const auto& cb) { cb(100); });
     Fake(Method(deviceMock, setFramesReceivedCbk));
     Fake(Method(deviceMock, setErrorOccurredCbk));
@@ -146,6 +150,7 @@ TEST_CASE("Stop uninitialized", "[candevice]")
     using namespace fakeit;
     Mock<CanDeviceInterface> deviceMock;
 
+    Fake(Dtor(deviceMock));
     Fake(Method(deviceMock, setParent));
 
     CanDevice canDevice{ CanDeviceCtx(&deviceMock.get()) };
@@ -158,6 +163,7 @@ TEST_CASE("Stop initialized", "[candevice]")
     using namespace fakeit;
     Mock<CanDeviceInterface> deviceMock;
 
+    Fake(Dtor(deviceMock));
     When(Method(deviceMock, setFramesWrittenCbk)).Do([](const auto& cb) { cb(100); });
     Fake(Method(deviceMock, setFramesReceivedCbk));
     Fake(Method(deviceMock, setErrorOccurredCbk));
@@ -178,6 +184,7 @@ TEST_CASE("Config changed", "[candevice]")
     using namespace fakeit;
     Mock<CanDeviceInterface> deviceMock;
 
+    Fake(Dtor(deviceMock));
     When(Method(deviceMock, setFramesWrittenCbk)).Do([](const auto& cb) { cb(100); });
     Fake(Method(deviceMock, setFramesReceivedCbk));
     Fake(Method(deviceMock, setErrorOccurredCbk));
@@ -199,6 +206,7 @@ TEST_CASE("writeFrame results in error", "[candevice]")
     using namespace fakeit;
     Mock<CanDeviceInterface> deviceMock;
 
+    Fake(Dtor(deviceMock));
     Fake(Method(deviceMock, setFramesWrittenCbk));
     Fake(Method(deviceMock, setFramesReceivedCbk));
     Fake(Method(deviceMock, setErrorOccurredCbk));
@@ -221,6 +229,7 @@ TEST_CASE("sendFrame, writeframe returns true, no signal emitted", "[candevice]"
     using namespace fakeit;
     Mock<CanDeviceInterface> deviceMock;
 
+    Fake(Dtor(deviceMock));
     Fake(Method(deviceMock, setFramesWrittenCbk));
     Fake(Method(deviceMock, setFramesReceivedCbk));
     Fake(Method(deviceMock, setErrorOccurredCbk));
@@ -260,6 +269,7 @@ TEST_CASE("sendFrame defers FrameSent until backend emits frameWritten", "[cande
     const auto frame = QCanBusFrame{ 0x12345678, QByteArray{ "\x50\x30\10" } };
     CanDeviceInterface::framesWritten_t writtenCbk;
 
+    Fake(Dtor(deviceMock));
     When(Method(deviceMock, setFramesWrittenCbk)).Do([&](auto&& fn) { writtenCbk = fn; });
     Fake(Method(deviceMock, setFramesReceivedCbk));
     Fake(Method(deviceMock, setErrorOccurredCbk));
@@ -291,6 +301,7 @@ TEST_CASE("Emits all available frames when notified by backend", "[candevice]")
     auto currentFrame = frames.begin();
     CanDeviceInterface::framesReceived_t receivedCbk;
 
+    Fake(Dtor(deviceMock));
     Fake(Method(deviceMock, setFramesWrittenCbk));
     When(Method(deviceMock, setFramesReceivedCbk)).Do([&](auto&& fn) { receivedCbk = fn; });
     Fake(Method(deviceMock, setErrorOccurredCbk));
@@ -326,6 +337,7 @@ TEST_CASE("WriteError causes emitting frameSent with frameSent=false", "[candevi
     const auto frame = QCanBusFrame{ 0x12345678, QByteArray{ "\x50\x30\10" } };
     CanDeviceInterface::errorOccurred_t errorCbk;
 
+    Fake(Dtor(deviceMock));
     Fake(Method(deviceMock, setFramesWrittenCbk));
     Fake(Method(deviceMock, setFramesReceivedCbk));
     When(Method(deviceMock, setErrorOccurredCbk)).Do([&](auto&& fn) { errorCbk = fn; });
@@ -351,10 +363,11 @@ TEST_CASE("read configuration to json format", "[candevice]")
 {
     using namespace fakeit;
     Mock<CanDeviceInterface> deviceMock;
+    Fake(Dtor(deviceMock));
     Fake(Method(deviceMock, setParent));
     CanDevice canDevice{ CanDeviceCtx(&deviceMock.get()) };
     QJsonObject config = canDevice.getConfig();
-    REQUIRE(config.count() == canDevice.getSupportedProperties().size());
+    REQUIRE(config.count() == static_cast<int>(canDevice.getSupportedProperties().size()));
 }
 
 TEST_CASE("setConfig using JSON read with QObject", "[candevice]")
@@ -362,6 +375,7 @@ TEST_CASE("setConfig using JSON read with QObject", "[candevice]")
     using namespace fakeit;
 
     Mock<CanDeviceInterface> deviceMock;
+    Fake(Dtor(deviceMock));
     Fake(Method(deviceMock, setParent));
     CanDevice canDevice{ CanDeviceCtx(&deviceMock.get()) };
 
@@ -386,6 +400,7 @@ TEST_CASE("Stubbed methods", "[candevice]")
 {
     using namespace fakeit;
     Mock<CanDeviceInterface> deviceMock;
+    Fake(Dtor(deviceMock));
     Fake(Method(deviceMock, setParent));
     CanDevice canDevice{ CanDeviceCtx(&deviceMock.get()) };
 
@@ -393,11 +408,11 @@ TEST_CASE("Stubbed methods", "[candevice]")
     REQUIRE(canDevice.mainWidgetDocked() == true);
 }
 
-auto prepareConfigTestMock(std::vector<std::pair<int, QVariant>>& ver)
+void prepareConfigTestMock(fakeit::Mock<CanDeviceInterface>& deviceMock, std::vector<std::pair<int, QVariant>>& ver)
 {
     using namespace fakeit;
-    Mock<CanDeviceInterface> deviceMock;
 
+    Fake(Dtor(deviceMock));
     Fake(Method(deviceMock, setFramesWrittenCbk));
     Fake(Method(deviceMock, setFramesReceivedCbk));
     Fake(Method(deviceMock, setErrorOccurredCbk));
@@ -408,7 +423,6 @@ auto prepareConfigTestMock(std::vector<std::pair<int, QVariant>>& ver)
     When(Method(deviceMock, setConfigurationParameter)).AlwaysDo([&](int key, const QVariant& v) {
         ver.push_back(std::make_pair(key, v));
     });
-    return deviceMock;
 }
 
 void testConfig(fakeit::Mock<CanDeviceInterface>& deviceMock, CanDevice& canDevice, const QString& configStr)
@@ -440,7 +454,8 @@ TEST_CASE("Config parameter - invalid format and unsupported", "[candevice]")
 {
     using namespace fakeit;
     std::vector<std::pair<int, QVariant>> v;
-    auto&& deviceMock = prepareConfigTestMock(v);
+    Mock<CanDeviceInterface> deviceMock;
+    prepareConfigTestMock(deviceMock, v);
 
     CanDevice canDevice{ CanDeviceCtx(&deviceMock.get()) };
 
@@ -458,7 +473,8 @@ TEST_CASE("Config parameter - LoopbackKey", "[candevice]")
 {
     using namespace fakeit;
     std::vector<std::pair<int, QVariant>> v;
-    auto&& deviceMock = prepareConfigTestMock(v);
+    Mock<CanDeviceInterface> deviceMock;
+    prepareConfigTestMock(deviceMock, v);
 
     CanDevice canDevice{ CanDeviceCtx(&deviceMock.get()) };
 
@@ -482,7 +498,8 @@ TEST_CASE("Config parameter - ReceiveOwnKey", "[candevice]")
 {
     using namespace fakeit;
     std::vector<std::pair<int, QVariant>> v;
-    auto&& deviceMock = prepareConfigTestMock(v);
+    Mock<CanDeviceInterface> deviceMock;
+    prepareConfigTestMock(deviceMock, v);
 
     CanDevice canDevice{ CanDeviceCtx(&deviceMock.get()) };
 
@@ -506,7 +523,8 @@ TEST_CASE("Config parameter - CanFdKey", "[candevice]")
 {
     using namespace fakeit;
     std::vector<std::pair<int, QVariant>> v;
-    auto&& deviceMock = prepareConfigTestMock(v);
+    Mock<CanDeviceInterface> deviceMock;
+    prepareConfigTestMock(deviceMock, v);
 
     CanDevice canDevice{ CanDeviceCtx(&deviceMock.get()) };
 
@@ -530,7 +548,8 @@ TEST_CASE("Config parameter - BitRateKey", "[candevice]")
 {
     using namespace fakeit;
     std::vector<std::pair<int, QVariant>> v;
-    auto&& deviceMock = prepareConfigTestMock(v);
+    Mock<CanDeviceInterface> deviceMock;
+    prepareConfigTestMock(deviceMock, v);
 
     CanDevice canDevice{ CanDeviceCtx(&deviceMock.get()) };
 
@@ -551,7 +570,8 @@ TEST_CASE("Config parameter - UserKey", "[candevice]")
 {
     using namespace fakeit;
     std::vector<std::pair<int, QVariant>> v;
-    auto&& deviceMock = prepareConfigTestMock(v);
+    Mock<CanDeviceInterface> deviceMock;
+    prepareConfigTestMock(deviceMock, v);
 
     CanDevice canDevice{ CanDeviceCtx(&deviceMock.get()) };
 
@@ -575,7 +595,8 @@ TEST_CASE("Config parameter - DataBitRateKey", "[candevice]")
 {
     using namespace fakeit;
     std::vector<std::pair<int, QVariant>> v;
-    auto&& deviceMock = prepareConfigTestMock(v);
+    Mock<CanDeviceInterface> deviceMock;
+    prepareConfigTestMock(deviceMock, v);
 
     CanDevice canDevice{ CanDeviceCtx(&deviceMock.get()) };
 
@@ -598,7 +619,8 @@ TEST_CASE("Config parameter - multiple keys", "[candevice]")
 {
     using namespace fakeit;
     std::vector<std::pair<int, QVariant>> v;
-    auto&& deviceMock = prepareConfigTestMock(v);
+    Mock<CanDeviceInterface> deviceMock;
+    prepareConfigTestMock(deviceMock, v);
 
     CanDevice canDevice{ CanDeviceCtx(&deviceMock.get()) };
 

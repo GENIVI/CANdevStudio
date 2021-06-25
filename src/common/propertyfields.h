@@ -95,8 +95,8 @@ public:
         _cb->setEditable(editable);
         _cb->setFrame(false);
         layout()->addWidget(_cb);
-        connect(_cb, static_cast<void (QComboBox::*)(const QString&)>(&QComboBox::currentIndexChanged), this,
-            &PropertyFieldCombo::currentTextChanged);
+        connect(_cb, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
+            [this](int) { emit currentTextChanged(_cb->currentText()); });
     }
 
     void setPropText(const QString& text) override

@@ -160,7 +160,7 @@ TEST_CASE("Send test", "[canrawplayer]")
 
     th.start();
 
-    std::this_thread::sleep_for(200ms);
+    std::this_thread::sleep_for(1000ms);
 
     th.quit();
     th.wait();

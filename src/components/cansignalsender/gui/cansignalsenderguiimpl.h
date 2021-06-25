@@ -39,8 +39,8 @@ public:
 
         cb->setCurrentText(_model->data(index).toString());
 
-        connect(cb, static_cast<void (QComboBox::*)(const QString&)>(&QComboBox::activated),
-            [cb](const QString&) { cb->clearFocus(); });
+        connect(cb, static_cast<void (QComboBox::*)(int)>(&QComboBox::activated),
+            [cb](int) { cb->clearFocus(); });
 
         // QOverload is not supported by MSVC 2015
         connect(cb, static_cast<void (QComboBox::*)(const QString&)>(&QComboBox::currentTextChanged),
@@ -104,8 +104,8 @@ public:
 
         cb->setCurrentText(_model->data(index).toString());
 
-        connect(cb, static_cast<void (QComboBox::*)(const QString&)>(&QComboBox::activated),
-            [cb](const QString&) { cb->clearFocus(); });
+        connect(cb, static_cast<void (QComboBox::*)(int)>(&QComboBox::activated),
+            [cb](int) { cb->clearFocus(); });
 
         return cb;
     }

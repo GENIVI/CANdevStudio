@@ -27,6 +27,7 @@ TEST_CASE("Stubbed methods", "[cansignaldata]")
 
     using namespace fakeit;
     Mock<CanSignalDataGuiInt> guiInt;
+    Fake(Dtor(guiInt));
     Fake(Method(guiInt, initSearch));
     Fake(Method(guiInt, setMsgView));
     Fake(Method(guiInt, setMsgViewCbk));
@@ -230,6 +231,7 @@ TEST_CASE("dock/undock", "[cansignaldata]")
 
     using namespace fakeit;
     Mock<CanSignalDataGuiInt> guiInt;
+    Fake(Dtor(guiInt));
     Fake(Method(guiInt, initSearch));
     Fake(Method(guiInt, setMsgView));
     Fake(Method(guiInt, setMsgViewCbk));
@@ -261,6 +263,7 @@ TEST_CASE("View switch test", "[cansignaldata]")
 
     using namespace fakeit;
     Mock<CanSignalDataGuiInt> guiInt;
+    Fake(Dtor(guiInt));
     Fake(Method(guiInt, initSearch));
     When(Method(guiInt, setMsgView)).AlwaysDo([&](auto&& model) { msgModel = &model; });
     When(Method(guiInt, setSigView)).AlwaysDo([&](auto&& model) { sigModel = &model; });
@@ -294,6 +297,7 @@ TEST_CASE("settings callback", "[cansignaldata]")
 
     using namespace fakeit;
     Mock<CanSignalDataGuiInt> guiInt;
+    Fake(Dtor(guiInt));
     Fake(Method(guiInt, initSearch));
     When(Method(guiInt, setMsgView)).AlwaysDo([&](auto&& model) {
         auto proxy = dynamic_cast<QAbstractProxyModel*>(&model);
@@ -352,6 +356,7 @@ TEST_CASE("Filter test", "[cansignaldata]")
 
     using namespace fakeit;
     Mock<CanSignalDataGuiInt> guiInt;
+    Fake(Dtor(guiInt));
     Fake(Method(guiInt, initSearch));
     When(Method(guiInt, setMsgView)).AlwaysDo([&](auto&& model) { msgModel = dynamic_cast<SearchModel*>(&model); });
     When(Method(guiInt, setSigView)).AlwaysDo([&](auto&& model) { sigModel = dynamic_cast<SearchModel*>(&model); });

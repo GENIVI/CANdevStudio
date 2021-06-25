@@ -37,6 +37,7 @@ TEST_CASE("setConfig - json", "[canrawfilter]")
 {
     using namespace fakeit;
     Mock<CanRawFilterGuiInt> mock;
+    Fake(Dtor(mock));
     Fake(Method(mock, mainWidget));
     Fake(Method(mock, setTxListCbk));
     Fake(Method(mock, setRxListCbk));
@@ -128,6 +129,7 @@ TEST_CASE("default accept list RX", "[canrawfilter]")
 template <typename M, typename TX, typename RX> void setupMock(M& mock, TX& txCbk, RX& rxCbk)
 {
     using namespace fakeit;
+    Fake(Dtor(mock));
     Fake(Method(mock, mainWidget));
     When(Method(mock, setTxListCbk)).AlwaysDo([&](auto&& fn) { txCbk = fn; });
     When(Method(mock, setRxListCbk)).AlwaysDo([&](auto&& fn) { rxCbk = fn; });
@@ -166,7 +168,7 @@ TEST_CASE("custom list RX", "[canrawfilter]")
 
     c.startSimulation();
 
-    auto idTest = [&](uint32_t start, uint32_t end, uint32_t cnt, CanRawFilterGuiInt::AcceptList_t&& list) {
+    auto idTest = [&](uint32_t start, uint32_t end, int32_t cnt, CanRawFilterGuiInt::AcceptList_t&& list) {
         spy.clear();
         rxCbk(list);
 
@@ -250,7 +252,7 @@ TEST_CASE("custom list TX", "[canrawfilter]")
 
     c.startSimulation();
 
-    auto idTest = [&](uint32_t start, uint32_t end, uint32_t cnt, CanRawFilterGuiInt::AcceptList_t&& list) {
+    auto idTest = [&](uint32_t start, uint32_t end, int32_t cnt, CanRawFilterGuiInt::AcceptList_t&& list) {
         spy.clear();
         txCbk(list);
 
@@ -351,7 +353,7 @@ TEST_CASE("Payload filtering", "[canrawfilter]")
     addFrame("AAbbCCddEE");
     addFrame("AAbbCCddEEff");
 
-    auto payloadTest = [&](uint32_t cnt, CanRawFilterGuiInt::AcceptList_t&& list) {
+    auto payloadTest = [&](int32_t cnt, CanRawFilterGuiInt::AcceptList_t&& list) {
         spyRx.clear();
         spyTx.clear();
 

@@ -37,6 +37,7 @@ TEST_CASE("setConfig - json", "[cansignalsender]")
 {
     using namespace fakeit;
     Mock<CanSignalSenderGuiInt> guiInt;
+    Fake(Dtor(guiInt));
     Fake(Method(guiInt, initTv));
     Fake(Method(guiInt, setRemoveCbk));
     Fake(Method(guiInt, setAddCbk));
@@ -138,6 +139,7 @@ TEST_CASE("row removing", "[cansignalsender]")
 
     using namespace fakeit;
     Mock<CanSignalSenderGuiInt> guiInt;
+    Fake(Dtor(guiInt));
     When(Method(guiInt, initTv)).AlwaysDo([&](auto&& m, auto&&) { model = &m; });
     When(Method(guiInt, setRemoveCbk)).AlwaysDo([&](auto&& cbk) { removeCbk = cbk; });
     Fake(Method(guiInt, setAddCbk));
@@ -194,6 +196,7 @@ TEST_CASE("dock/undock", "[cansignaldata]")
 
     using namespace fakeit;
     Mock<CanSignalSenderGuiInt> guiInt;
+    Fake(Dtor(guiInt));
     Fake(Method(guiInt, initTv));
     Fake(Method(guiInt, setRemoveCbk));
     Fake(Method(guiInt, setAddCbk));
@@ -223,6 +226,7 @@ TEST_CASE("signal sending", "[cansignaldata]")
 
     using namespace fakeit;
     Mock<CanSignalSenderGuiInt> guiInt;
+    Fake(Dtor(guiInt));
     Fake(Method(guiInt, initTv));
     Fake(Method(guiInt, setRemoveCbk));
     Fake(Method(guiInt, setAddCbk));

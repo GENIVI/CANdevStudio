@@ -25,7 +25,7 @@ std::shared_ptr<spdlog::logger> kDefaultLogger;
 
 TEST_CASE("Loading and saving", "[projectconfig]")
 {
-    QDir dir("configfiles");
+    QDir dir(PC_TEST_CONFIG_FILES);
     QFile file(dir.absoluteFilePath("projectconfig.cds"));
     ProjectConfig pc(new QWidget);
     QByteArray outConfig;
@@ -41,7 +41,7 @@ TEST_CASE("Loading and saving", "[projectconfig]")
 
 TEST_CASE("Color mode", "[projectconfig]")
 {
-    QDir dir("configfiles");
+    QDir dir(PC_TEST_CONFIG_FILES);
     QFile file(dir.absoluteFilePath("projectconfig.cds"));
     ProjectConfig pc(new QWidget);
 
@@ -71,7 +71,7 @@ TEST_CASE("Validation schema parse error", "[projectconfig]")
 
 TEST_CASE("Validation JSON format error", "[projectconfig]")
 {
-    QDir dir("configfiles");
+    QDir dir(PC_TEST_CONFIG_FILES);
     QFile file(dir.absoluteFilePath("projectconfig_wrong.cds"));
     REQUIRE(file.open(QIODevice::ReadOnly) == true);
     auto inConfig = file.read(40);
@@ -81,7 +81,7 @@ TEST_CASE("Validation JSON format error", "[projectconfig]")
 
 TEST_CASE("Validation schema validation failed", "[projectconfig]")
 {
-    QDir dir("configfiles");
+    QDir dir(PC_TEST_CONFIG_FILES);
     QFile file(dir.absoluteFilePath("projectconfig_wrong.cds"));
     REQUIRE(file.open(QIODevice::ReadOnly) == true);
     auto inConfig = file.readAll();
@@ -91,7 +91,7 @@ TEST_CASE("Validation schema validation failed", "[projectconfig]")
 
 TEST_CASE("Validation succeeded", "[projectconfig]")
 {
-    QDir dir("configfiles");
+    QDir dir(PC_TEST_CONFIG_FILES);
     QFile file(dir.absoluteFilePath("projectconfig.cds"));
     REQUIRE(file.open(QIODevice::ReadOnly) == true);
     auto inConfig = file.readAll();
@@ -101,7 +101,7 @@ TEST_CASE("Validation succeeded", "[projectconfig]")
 
 TEST_CASE("Validator validate", "[projectconfig]")
 {
-    QDir dir("configfiles");
+    QDir dir(PC_TEST_CONFIG_FILES);
     QFile file(dir.absoluteFilePath("projectconfig.cds"));
     REQUIRE(file.open(QIODevice::ReadOnly) == true);
     auto inConfig = file.readAll();
@@ -122,7 +122,7 @@ TEST_CASE("callbacks test", "[projectconfig]")
     QtNodes::FlowScene* fs;
 
     Mock<PCInterface> pcMock;
-
+    Fake(Dtor(pcMock));
     When(Method(pcMock, setNodeCreatedCallback)).Do([&](auto flow, auto&& fn) {
         fs = flow;
         nodeCreated = fn;

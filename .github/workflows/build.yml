@@ -40,7 +40,7 @@ jobs:
 
     - name: Test
       working-directory: ${{github.workspace}}/build
-      run: ctest
+      run: ctest --output-on-failure
       env:
         QT_QPA_PLATFORM: offscreen
 
@@ -135,7 +135,7 @@ jobs:
 
     - name: Test
       working-directory: ${{github.workspace}}/build
-      run: ctest
+      run: ctest --output-on-failure
       env:
         QT_QPA_PLATFORM: offscreen
 
@@ -183,13 +183,19 @@ jobs:
 
     - name: Configure CMake
       working-directory: ${{github.workspace}}/build
-      run: cmake .. -DCMAKE_BUILD_TYPE=Release -DWITH_TESTS=OFF -DCMAKE_PREFIX_PATH="$(brew --prefix qt5)/lib/cmake"
+      run: cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH="$(brew --prefix qt5)/lib/cmake"
       env:
         BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
 
     - name: Build
       working-directory: ${{github.workspace}}/build
       run: make -j4
+
+    - name: Test
+      working-directory: ${{github.workspace}}/build
+      run: ctest --output-on-failure
+      env:
+        QT_QPA_PLATFORM: offscreen
 
     - name: Create packages
       if: startsWith(github.ref, 'refs/heads/')
@@ -260,7 +266,13 @@ jobs:
 
     - name: Build
       working-directory: ${{github.workspace}}/build
-      run: cmake --build . --config Release
+      run: cmake --build . --config Release -- /m
+
+    - name: Test
+      working-directory: ${{github.workspace}}/build
+      run: ctest -C Release --output-on-failure
+      env:
+        QT_QPA_PLATFORM: offscreen
 
     - name: Create Packages
       if: startsWith(github.ref, 'refs/heads/')

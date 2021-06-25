@@ -86,7 +86,7 @@ If CMake failed to find Qt in your system:
 ```
 cd CANdevStudio/build
 rm -rf *
-cmake .. -DCMAKE_PREFIX_PATH=/home/genivi/Qt5.8.0/5.8/gcc_64
+cmake .. -DCMAKE_PREFIX_PATH=/home/genivi/Qt5.12.0/5.12.0/gcc_64
 make
 ```
 ### Windows
@@ -310,7 +310,6 @@ CanDevice component can be configured using "configuration" property:
 * Keys names are case sensitive, values are case insensitive
 * Configuration keys are taken from [ConfigurationKey enum](https://doc.qt.io/qt-5/qcanbusdevice.html#ConfigurationKey-enum). 
 * RawFilterKey and ErrorFilterKey are currently not supported
-* DataBitRateKey is available since Qt 5.9
 * Whitespaces are ignored
 
 E.g.
