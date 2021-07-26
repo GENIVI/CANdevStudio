@@ -6,6 +6,7 @@ set(SRC
     cansignalsender.cpp
     cansignalsender_p.cpp
     cansignalsendermodel.cpp
+    cansignalsendertablemodel.cpp
 )
 
 add_library(${COMPONENT_NAME} ${SRC})
