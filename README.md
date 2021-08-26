@@ -275,7 +275,7 @@ Try it yourself by loading one of the [examples](https://github.com/GENIVI/CANde
 ### CAN Signals
 CANdevStudio provides support for CAN signals handling. [DBC](http://socialledge.com/sjsu/index.php/DBC_Format) database description format is supported. Reverse engineered DBC files can be found in [opendbc](https://github.com/commaai/opendbc) project.
 
-Support for others CAN database formats can be added via extension of [CANdb](www.github.com/GENIVI/CANdb).
+Support for others CAN database formats can be added via extension of [CANdb](https://www.github.com/GENIVI/CANdb).
 
 #### Sending signals
 1. Start new project and setup CanDevice as described in quick start section
