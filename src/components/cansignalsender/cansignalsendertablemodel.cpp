@@ -33,7 +33,7 @@ bool CanSignalSenderTableModel::dropMimeData(
         dropItems.push_back(QList<QString>{ id, sig });
     }
 
-    emit dropedItems(dropItems);
+    emit droppedItems(dropItems);
 
     return true;
 }

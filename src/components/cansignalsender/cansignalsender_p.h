@@ -27,7 +27,7 @@ private:
     void initProps();
 
 private slots:
-    void setDropedItems(const QList<QList<QString>>& dropedItems);
+    void setDroppedItems(const QList<QList<QString>>& droppedItems);
 
 public:
     bool _simStarted{ false };

@@ -16,7 +16,7 @@ public:
     Qt::ItemFlags flags(const QModelIndex& index) const override;
 
 signals:
-    void dropedItems(const QList<QList<QString>>& dropItems);
+    void droppedItems(const QList<QList<QString>>& dropItems);
 };
 
 #endif // CANSIGNALSENDERTABLEMODEL_H

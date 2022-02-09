@@ -14,7 +14,7 @@ CanSignalSenderPrivate::CanSignalSenderPrivate(CanSignalSender* q, CanSignalSend
     _tvModel.setHorizontalHeaderLabels(_tvColumns);
     _ui.initTv(_tvModel, &_db);
 
-    connect(&_tvModel, &CanSignalSenderTableModel::dropedItems, this, &CanSignalSenderPrivate::setDropedItems);
+    connect(&_tvModel, &CanSignalSenderTableModel::droppedItems, this, &CanSignalSenderPrivate::setDroppedItems);
 
     _ui.setDockUndockCbk([this] {
         _docked = !_docked;
@@ -58,9 +58,9 @@ void CanSignalSenderPrivate::initProps()
     }
 }
 
-void CanSignalSenderPrivate::setDropedItems(const QList<QList<QString>>& dropedItems)
+void CanSignalSenderPrivate::setDroppedItems(const QList<QList<QString>>& droppedItems)
 {
-    for (const auto& rowItem : dropedItems) {
+    for (const auto& rowItem : droppedItems) {
         if (2 > rowItem.size()) {
             cds_warn("{} wrong row item.", Q_FUNC_INFO);
             continue;
