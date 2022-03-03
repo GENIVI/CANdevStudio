@@ -1,7 +1,7 @@
 var struct_component_model_interface =
 [
     [ "~ComponentModelInterface", "struct_component_model_interface.html#a798879d3774311685412083267f5e0f8", null ],
-    [ "getComponent", "struct_component_model_interface.html#a6c9faa87490d885682cb80327cde6b38", null ],
+    [ "getComponent", "struct_component_model_interface.html#a77718b8441f067d5a0db867efc65bde8", null ],
     [ "handleDock", "struct_component_model_interface.html#a94e5e137a47603616ae641fbb320c820", null ],
     [ "hasSeparateThread", "struct_component_model_interface.html#aff449ecb2777f0d44ab869e75e5a1e5a", null ],
     [ "initModel", "struct_component_model_interface.html#a10417fdb8759caddee7bcbeadc8491ca", null ],

@@ -5,7 +5,7 @@ var struct_can_signal_data_gui_int =
     [ "msgView_t", "struct_can_signal_data_gui_int.html#abcfc836d0328527954dfbf0db819779d", null ],
     [ "~CanSignalDataGuiInt", "struct_can_signal_data_gui_int.html#a2378abf4441356e335cec90b49f6a643", null ],
     [ "initSearch", "struct_can_signal_data_gui_int.html#ab1f3f0901227f49aaee43b18ea8bed16", null ],
-    [ "mainWidget", "struct_can_signal_data_gui_int.html#a5499d3c14e021bc6f7da834f40a58cf5", null ],
+    [ "mainWidget", "struct_can_signal_data_gui_int.html#ad66c8dea359a7d2f9919174944036b7d", null ],
     [ "setDockUndockCbk", "struct_can_signal_data_gui_int.html#a87b9e39fde319a175a14b8cf0517f163", null ],
     [ "setMsgSettingsUpdatedCbk", "struct_can_signal_data_gui_int.html#a1fc752ce3eb4c9b219721fe130241744", null ],
     [ "setMsgView", "struct_can_signal_data_gui_int.html#a17335179be45fed138db5ee9828f6a86", null ],

@@ -21,6 +21,9 @@ var NAVTREEINDEX2 =
 "cansignalsenderplugin_8h.html":[3,0,0,1,10,8],
 "cansignalsenderplugin_8h.html#a3a9fd1c6c3fa228c546847f2280f3d4d":[3,0,0,1,10,8,1],
 "cansignalsenderplugin_8h_source.html":[3,0,0,1,10,8],
+"cansignalsendertablemodel_8cpp.html":[3,0,0,1,10,9],
+"cansignalsendertablemodel_8h.html":[3,0,0,1,10,10],
+"cansignalsendertablemodel_8h_source.html":[3,0,0,1,10,10],
 "cansignalviewer_8cpp.html":[3,0,0,1,11,2],
 "cansignalviewer_8h.html":[3,0,0,1,11,3],
 "cansignalviewer_8h.html#a5437cc0145273c4db689d55349a3ab2f":[3,0,0,1,11,3,1],
@@ -123,6 +126,7 @@ var NAVTREEINDEX2 =
 "class_can_device_private.html#a01062d474bca898c296bbbb94212a6a1":[2,0,8,10],
 "class_can_device_private.html#a04306c05613c697c728e90eb8e0c7be6":[2,0,8,3],
 "class_can_device_private.html#a05705c7a74e977d73806e6bd2edd99e5":[2,0,8,1],
+"class_can_device_private.html#a1211ab86dd6722bdad56e5aa0019d0da":[2,0,8,4],
 "class_can_device_private.html#a16652750e33c8c101369a742c1be27b6":[2,0,8,7],
 "class_can_device_private.html#a177efe7dfca88905f362d88f9ea0d088":[2,0,8,11],
 "class_can_device_private.html#a1fc2536a2e60839e694ba6923bfbe158":[2,0,8,9],
@@ -136,7 +140,6 @@ var NAVTREEINDEX2 =
 "class_can_device_private.html#ab92f3ad3d1047b17c9adbcd9a13b86d9":[2,0,8,14],
 "class_can_device_private.html#acbdf7b1858a95704a57d3e1c9940079d":[2,0,8,0],
 "class_can_device_private.html#ad1c3ee8d24db6dee4003d597c533c3b0":[2,0,8,13],
-"class_can_device_private.html#ad85ea2b25cc10549b455c5cbd25c6bde":[2,0,8,4],
 "class_can_device_private.html#aea6db88af1007a48a9e7bbd869a25aeb":[2,0,8,17],
 "class_can_load.html":[2,0,10],
 "class_can_load.html#a0634bba90789b30d9ebc59ed1b248d06":[2,0,10,9],
@@ -246,8 +249,5 @@ var NAVTREEINDEX2 =
 "class_can_raw_logger.html#a90baa77242ce53b0cf657992f40c5221":[2,0,23,13],
 "class_can_raw_logger.html#aa93d28801d5ba0b7a28cdc2aea18c690":[2,0,23,17],
 "class_can_raw_logger.html#abcbfafc2ece0934ac4e4baf989c1a576":[2,0,23,0],
-"class_can_raw_logger.html#ad4f4414cdf9e52017b4dc6e1c2548469":[2,0,23,4],
-"class_can_raw_logger.html#ad8647971c1f36ddd02495621091715d3":[2,0,23,6],
-"class_can_raw_logger.html#ad957dcd34a2021f5d1447039f6deaf87":[2,0,23,3],
-"class_can_raw_logger.html#ae1744c255d7a7a51154cbdd236e6abbb":[2,0,23,1]
+"class_can_raw_logger.html#ad4f4414cdf9e52017b4dc6e1c2548469":[2,0,23,4]
 };

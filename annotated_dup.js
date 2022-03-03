@@ -62,6 +62,7 @@ var annotated_dup =
     [ "CanSignalSenderModel", "class_can_signal_sender_model.html", "class_can_signal_sender_model" ],
     [ "CanSignalSenderPlugin", "struct_can_signal_sender_plugin.html", "struct_can_signal_sender_plugin" ],
     [ "CanSignalSenderPrivate", "class_can_signal_sender_private.html", "class_can_signal_sender_private" ],
+    [ "CanSignalSenderTableModel", "class_can_signal_sender_table_model.html", "class_can_signal_sender_table_model" ],
     [ "CanSignalViewer", "class_can_signal_viewer.html", "class_can_signal_viewer" ],
     [ "CanSignalViewerGuiImpl", "struct_can_signal_viewer_gui_impl.html", "struct_can_signal_viewer_gui_impl" ],
     [ "CanSignalViewerGuiInt", "struct_can_signal_viewer_gui_int.html", "struct_can_signal_viewer_gui_int" ],

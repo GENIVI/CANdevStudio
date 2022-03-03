@@ -1,8 +1,8 @@
 <map id="CanSignalViewerPrivate" name="CanSignalViewerPrivate">
-<area shape="rect" id="node1" title=" " alt="" coords="145,200,307,227"/>
+<area shape="rect" id="node1" title=" " alt="" coords="202,200,365,227"/>
 <area shape="rect" id="node2" title=" " alt="" coords="5,89,76,115"/>
-<area shape="rect" id="node3" href="$struct_can_signal_viewer_gui_int.html" title=" " alt="" coords="100,89,256,115"/>
-<area shape="rect" id="node4" href="$class_sort_model.html" title=" " alt="" coords="280,89,361,115"/>
-<area shape="rect" id="node5" title=" " alt="" coords="245,5,397,32"/>
-<area shape="rect" id="node6" href="$struct_context.html" title=" " alt="" coords="386,81,562,123"/>
+<area shape="rect" id="node3" href="$struct_context.html" title=" " alt="" coords="101,81,277,123"/>
+<area shape="rect" id="node4" href="$struct_can_signal_viewer_gui_int.html" title=" " alt="" coords="301,89,457,115"/>
+<area shape="rect" id="node5" href="$class_sort_model.html" title=" " alt="" coords="481,89,563,115"/>
+<area shape="rect" id="node6" title=" " alt="" coords="446,5,598,32"/>
 </map>

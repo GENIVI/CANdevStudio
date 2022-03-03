@@ -12,7 +12,7 @@ var struct_can_signal_viewer_gui_int =
     [ "initTableView", "struct_can_signal_viewer_gui_int.html#a452c8ce7520606c2a8a153eee24807d5", null ],
     [ "isColumnHidden", "struct_can_signal_viewer_gui_int.html#af26847b21ffdd76b3cd03c2038fce1c2", null ],
     [ "isViewFrozen", "struct_can_signal_viewer_gui_int.html#a6dd072cf567faa7b07c261c972f46cd4", null ],
-    [ "mainWidget", "struct_can_signal_viewer_gui_int.html#aa1d41a935f2b407b0497a0238456e9b0", null ],
+    [ "mainWidget", "struct_can_signal_viewer_gui_int.html#a4be2042c6e058ac2dc855cd8af1ab7c0", null ],
     [ "scrollToBottom", "struct_can_signal_viewer_gui_int.html#a5ee2355875cc336b0f2c92130b41c953", null ],
     [ "setClearCbk", "struct_can_signal_viewer_gui_int.html#ac9de253f575fcd7542256fa161a4c411", null ],
     [ "setColumnProper", "struct_can_signal_viewer_gui_int.html#ad8e2ec66469d4b9c98019bbdc155f362", null ],

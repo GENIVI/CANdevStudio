@@ -1,3 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$struct_can_signal_encoder_plugin.html" title=" " alt="" coords="5,5,169,32"/>
+<area shape="rect" id="node1" href="$struct_can_signal_sender_gui_int.html" title=" " alt="" coords="5,5,163,32"/>
+<area shape="rect" id="node2" href="$struct_can_signal_sender_gui_impl.html" title=" " alt="" coords="211,5,377,32"/>
 </map>

@@ -79,44 +79,44 @@ var hierarchy =
     ] ],
     [ "QtNodes::NodeDataModel", null, [
       [ "ComponentModelInterface", "struct_component_model_interface.html", [
-        [ "ComponentModel< QMLExecutor, QMLExecutorModel >", "class_component_model.html", [
-          [ "QMLExecutorModel", "class_q_m_l_executor_model.html", null ]
-        ] ],
         [ "ComponentModel< CanDevice, CanDeviceModel >", "class_component_model.html", [
           [ "CanDeviceModel", "class_can_device_model.html", null ]
-        ] ],
-        [ "ComponentModel< CanRawFilter, CanRawFilterModel >", "class_component_model.html", [
-          [ "CanRawFilterModel", "class_can_raw_filter_model.html", null ]
         ] ],
         [ "ComponentModel< CanLoad, CanLoadModel >", "class_component_model.html", [
           [ "CanLoadModel", "class_can_load_model.html", null ]
         ] ],
-        [ "ComponentModel< CanSignalData, CanSignalDataModel >", "class_component_model.html", [
-          [ "CanSignalDataModel", "class_can_signal_data_model.html", null ]
-        ] ],
-        [ "ComponentModel< CanRawSender, CanRawSenderModel >", "class_component_model.html", [
-          [ "CanRawSenderModel", "class_can_raw_sender_model.html", null ]
-        ] ],
-        [ "ComponentModel< CanRawPlayer, CanRawPlayerModel >", "class_component_model.html", [
-          [ "CanRawPlayerModel", "class_can_raw_player_model.html", null ]
+        [ "ComponentModel< CanRawFilter, CanRawFilterModel >", "class_component_model.html", [
+          [ "CanRawFilterModel", "class_can_raw_filter_model.html", null ]
         ] ],
         [ "ComponentModel< CanRawLogger, CanRawLoggerModel >", "class_component_model.html", [
           [ "CanRawLoggerModel", "class_can_raw_logger_model.html", null ]
         ] ],
-        [ "ComponentModel< CanSignalEncoder, CanSignalEncoderModel >", "class_component_model.html", [
-          [ "CanSignalEncoderModel", "class_can_signal_encoder_model.html", null ]
+        [ "ComponentModel< CanRawPlayer, CanRawPlayerModel >", "class_component_model.html", [
+          [ "CanRawPlayerModel", "class_can_raw_player_model.html", null ]
         ] ],
-        [ "ComponentModel< CanSignalViewer, CanSignalViewerModel >", "class_component_model.html", [
-          [ "CanSignalViewerModel", "class_can_signal_viewer_model.html", null ]
-        ] ],
-        [ "ComponentModel< CanSignalSender, CanSignalSenderModel >", "class_component_model.html", [
-          [ "CanSignalSenderModel", "class_can_signal_sender_model.html", null ]
+        [ "ComponentModel< CanRawSender, CanRawSenderModel >", "class_component_model.html", [
+          [ "CanRawSenderModel", "class_can_raw_sender_model.html", null ]
         ] ],
         [ "ComponentModel< CanRawView, CanRawViewModel >", "class_component_model.html", [
           [ "CanRawViewModel", "class_can_raw_view_model.html", null ]
         ] ],
+        [ "ComponentModel< CanSignalData, CanSignalDataModel >", "class_component_model.html", [
+          [ "CanSignalDataModel", "class_can_signal_data_model.html", null ]
+        ] ],
         [ "ComponentModel< CanSignalDecoder, CanSignalDecoderModel >", "class_component_model.html", [
           [ "CanSignalDecoderModel", "class_can_signal_decoder_model.html", null ]
+        ] ],
+        [ "ComponentModel< CanSignalEncoder, CanSignalEncoderModel >", "class_component_model.html", [
+          [ "CanSignalEncoderModel", "class_can_signal_encoder_model.html", null ]
+        ] ],
+        [ "ComponentModel< CanSignalSender, CanSignalSenderModel >", "class_component_model.html", [
+          [ "CanSignalSenderModel", "class_can_signal_sender_model.html", null ]
+        ] ],
+        [ "ComponentModel< CanSignalViewer, CanSignalViewerModel >", "class_component_model.html", [
+          [ "CanSignalViewerModel", "class_can_signal_viewer_model.html", null ]
+        ] ],
+        [ "ComponentModel< QMLExecutor, QMLExecutorModel >", "class_component_model.html", [
+          [ "QMLExecutorModel", "class_q_m_l_executor_model.html", null ]
         ] ],
         [ "ComponentModel< C, Derived >", "class_component_model.html", null ]
       ] ]
@@ -198,9 +198,12 @@ var hierarchy =
       [ "SearchModel", "class_search_model.html", null ],
       [ "SortModel", "class_sort_model.html", null ]
     ] ],
+    [ "QStandardItemModel", null, [
+      [ "CanSignalSenderTableModel", "class_can_signal_sender_table_model.html", null ]
+    ] ],
     [ "QStyledItemDelegate", null, [
-      [ "DbFieldDelegate< ValueLE >", "class_db_field_delegate.html", null ],
       [ "DbFieldDelegate< IntervalLE >", "class_db_field_delegate.html", null ],
+      [ "DbFieldDelegate< ValueLE >", "class_db_field_delegate.html", null ],
       [ "DbFieldDelegate< T >", "class_db_field_delegate.html", null ],
       [ "SigIdDelegate", "class_sig_id_delegate.html", null ],
       [ "SigNameDelegate", "class_sig_name_delegate.html", null ],

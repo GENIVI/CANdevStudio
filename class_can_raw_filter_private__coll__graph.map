@@ -1,6 +1,6 @@
 <map id="CanRawFilterPrivate" name="CanRawFilterPrivate">
-<area shape="rect" id="node1" title=" " alt="" coords="97,109,238,136"/>
+<area shape="rect" id="node1" title=" " alt="" coords="117,109,258,136"/>
 <area shape="rect" id="node2" title=" " alt="" coords="5,13,76,39"/>
-<area shape="rect" id="node3" href="$struct_can_raw_filter_gui_int.html" title=" " alt="" coords="100,13,235,39"/>
-<area shape="rect" id="node4" href="$struct_context.html" title=" " alt="" coords="259,5,433,47"/>
+<area shape="rect" id="node3" href="$struct_context.html" title=" " alt="" coords="100,5,275,47"/>
+<area shape="rect" id="node4" href="$struct_can_raw_filter_gui_int.html" title=" " alt="" coords="299,13,433,39"/>
 </map>

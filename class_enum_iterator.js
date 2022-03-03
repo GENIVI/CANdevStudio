@@ -17,12 +17,12 @@ var class_enum_iterator =
     [ "operator!=", "class_enum_iterator.html#ac2c05c89979f37df0457719da44c3d5f", null ],
     [ "operator*", "class_enum_iterator.html#a8c655fc0ff3e91b784e24427f32bfea9", null ],
     [ "operator*", "class_enum_iterator.html#a9ad3a290d11fd76a248ca53718595758", null ],
-    [ "operator++", "class_enum_iterator.html#a9870579396616874e2b905a39f343628", null ],
+    [ "operator++", "class_enum_iterator.html#a3a5abb76b4a9023cd287f6172b053d8a", null ],
     [ "operator++", "class_enum_iterator.html#a6f99bff18c081ff9d99e721e276f29cb", null ],
     [ "operator->", "class_enum_iterator.html#a7a0ca2b461e088891fa225a2f5b6bffb", null ],
     [ "operator->", "class_enum_iterator.html#a1aea535b3f3948acb4dba568b9cefd4e", null ],
-    [ "operator=", "class_enum_iterator.html#a1aaec203cbaafb2e4773dfeaf131d86b", null ],
-    [ "operator=", "class_enum_iterator.html#a9f631236e210d7984f3d559d4917062a", null ],
+    [ "operator=", "class_enum_iterator.html#a6023103b1a7d56d73ec193fe93cf6d83", null ],
+    [ "operator=", "class_enum_iterator.html#a48849c7a7138760e8b43e3570e8e8b1e", null ],
     [ "operator==", "class_enum_iterator.html#a3dfce6c10e1966268451eb2c0dc4c8ae", null ],
     [ "swap", "class_enum_iterator.html#a48c1f507be738412e5a54628f69c403d", null ]
 ];

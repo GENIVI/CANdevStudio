@@ -8,7 +8,7 @@ var struct_c_r_v_gui =
     [ "initTableView", "struct_c_r_v_gui.html#a94b62ff7fc78e5d9ecbc971a95b5cc6d", null ],
     [ "isColumnHidden", "struct_c_r_v_gui.html#a7d50613c100064c64d1dc343c3e00cd5", null ],
     [ "isViewFrozen", "struct_c_r_v_gui.html#a2c99ac6ad5307ebdf232f1847a9aa843", null ],
-    [ "mainWidget", "struct_c_r_v_gui.html#a98cf655026d2e3d5e8180fc0f2e92fdb", null ],
+    [ "mainWidget", "struct_c_r_v_gui.html#a38578762f794ed74a91e5634f7b394b1", null ],
     [ "scrollToBottom", "struct_c_r_v_gui.html#a56b80c2f8822d81914f67a4d18abdad0", null ],
     [ "setClearCbk", "struct_c_r_v_gui.html#a9a688a77fc119b4394e43c6d4de00825", null ],
     [ "setColumnProper", "struct_c_r_v_gui.html#a6d9d89b7974325dcd6f2625fd7a44317", null ],

@@ -1,6 +1,9 @@
 <map id="CanSignalSenderModel" name="CanSignalSenderModel">
-<area shape="rect" id="node1" title=" " alt="" coords="35,244,192,271"/>
-<area shape="rect" id="node2" href="$class_component_model.html" title=" " alt="" coords="5,155,221,196"/>
-<area shape="rect" id="node3" href="$struct_component_model_interface.html" title=" " alt="" coords="26,80,201,107"/>
-<area shape="rect" id="node4" title=" " alt="" coords="27,5,200,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="99,261,257,288"/>
+<area shape="rect" id="node2" href="$class_component_model.html" title=" " alt="" coords="70,171,286,212"/>
+<area shape="rect" id="node3" href="$struct_component_model_interface.html" title=" " alt="" coords="5,81,180,108"/>
+<area shape="rect" id="node4" title=" " alt="" coords="6,5,179,32"/>
+<area shape="rect" id="node5" href="$class_can_signal_sender.html" title=" " alt="" coords="205,81,327,108"/>
+<area shape="rect" id="node6" title=" " alt="" coords="217,5,288,32"/>
+<area shape="rect" id="node7" href="$struct_component_interface.html" title="Interface to be implemented by every component." alt="" coords="313,5,451,32"/>
 </map>

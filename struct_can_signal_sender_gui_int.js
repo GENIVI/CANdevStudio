@@ -9,7 +9,7 @@ var struct_can_signal_sender_gui_int =
     [ "getRows", "struct_can_signal_sender_gui_int.html#acc48d48f512d26831a502626d0ce5a37", null ],
     [ "getSelectedRows", "struct_can_signal_sender_gui_int.html#a69738da8addb7c5ed71f671b61601a3f", null ],
     [ "initTv", "struct_can_signal_sender_gui_int.html#a8f9674e595cfcd7bc8a551613d9c74a1", null ],
-    [ "mainWidget", "struct_can_signal_sender_gui_int.html#a54874a6c5e7d359b16c82127ad186100", null ],
+    [ "mainWidget", "struct_can_signal_sender_gui_int.html#a75b0a59ab9de4d6acc2987880035a306", null ],
     [ "setAddCbk", "struct_can_signal_sender_gui_int.html#a52929bac7b0e232e5b8011ce7616c737", null ],
     [ "setDockUndockCbk", "struct_can_signal_sender_gui_int.html#a9ffe9bd97da388e9f87126e4975eba7a", null ],
     [ "setRemoveCbk", "struct_can_signal_sender_gui_int.html#a8323fbf8a1cf93a58d2cbd7ecb41991e", null ],

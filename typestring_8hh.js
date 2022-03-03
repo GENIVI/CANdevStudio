@@ -1,6 +1,6 @@
 var typestring_8hh =
 [
-    [ "typestring", "structirqus_1_1typestring.html", null ],
+    [ "irqus::typestring< C >", "structirqus_1_1typestring.html", null ],
     [ "TYPESTRING1", "typestring_8hh.html#ad44f4e795310660f6244f92324f7e862", null ],
     [ "TYPESTRING1024", "typestring_8hh.html#a65c000db6d46142a202109d50d7fe4da", null ],
     [ "TYPESTRING128", "typestring_8hh.html#aa76a5cb18e19967e0f7156f7b693b6f7", null ],

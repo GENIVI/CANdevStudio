@@ -5,7 +5,7 @@ var struct_n_l_m_push_button =
     [ "checked", "struct_n_l_m_push_button.html#a5722989f994a3f96200dcc0d1378369d", null ],
     [ "init", "struct_n_l_m_push_button.html#a0beb86df623ae29bc247436f47a5471e", null ],
     [ "isEnabled", "struct_n_l_m_push_button.html#a235c1e1060d132bdc759ebb5bb7774cd", null ],
-    [ "mainWidget", "struct_n_l_m_push_button.html#af5be412234f7509a7b46f08962fb3277", null ],
+    [ "mainWidget", "struct_n_l_m_push_button.html#a97ff146cb5dad09b9f1a4a26c2b9effc", null ],
     [ "pressedCbk", "struct_n_l_m_push_button.html#ae31dbf696c746ae49927d2aef9918293", null ],
     [ "setCheckable", "struct_n_l_m_push_button.html#ad23cbaa0949d89e42ba31864cf4887f9", null ],
     [ "setChecked", "struct_n_l_m_push_button.html#a5b463ba23e5d3c8621fcfdfe7024b660", null ],

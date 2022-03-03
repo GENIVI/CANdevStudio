@@ -8,7 +8,7 @@ var class_q_m_l_executor_gui_impl =
     [ "handleStatusChange", "class_q_m_l_executor_gui_impl.html#a6c584a0daccb120477eb3c1338cb7f50", null ],
     [ "loadQML", "class_q_m_l_executor_gui_impl.html#a5c98ab705e8d93452195a23a64584afa", null ],
     [ "log", "class_q_m_l_executor_gui_impl.html#a6b2d1b10af8f1ebea388516ec4bf69f0", null ],
-    [ "mainWidget", "class_q_m_l_executor_gui_impl.html#a5c4d83c0e16ed7a5aa5054718453a24d", null ],
+    [ "mainWidget", "class_q_m_l_executor_gui_impl.html#aa5eecf07f40c776f536bf594ae4f071a", null ],
     [ "setModel", "class_q_m_l_executor_gui_impl.html#a48dc72cd93bd8d0125a4489aaadf19d3", null ],
     [ "startQMLFileModificationChecks", "class_q_m_l_executor_gui_impl.html#aa4ac94db92c6938e9ce702d4774c1357", null ],
     [ "stopFileModificationChecks", "class_q_m_l_executor_gui_impl.html#a3782994eca96c6ea38602226814bf95e", null ],

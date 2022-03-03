@@ -66,12 +66,12 @@ var NAVTREEINDEX =
 "annotated.html",
 "canrawplayerplugin_8h.html",
 "cansignalsenderguiimpl_8h_source.html",
-"class_can_raw_logger.html#ae4620624c7551e1b528027cf3d7ad270",
-"class_can_signal_encoder.html#a768a98e72a23f5718a7318538f5f0c0e",
-"class_project_config.html#af229bb450c2e6e3971b34cfe91387659",
-"dir_fdedb0aba14d44ce9d99bc100e026e6a.html",
-"qmlexecutormodel__test_8cpp.html#a783c274846aa1a4e600dc683fead10f9",
-"struct_can_signal_viewer_gui_int.html#a414fe2113b8801114e9784b90cd9db80"
+"class_can_raw_logger.html#ad8647971c1f36ddd02495621091715d3",
+"class_can_signal_encoder.html#a34fe79fb9dea7229f65342ba0752b117",
+"class_project_config.html#a41e85517b8614890238079cb8dd17d6c",
+"dir_b43d5987eb82622d1434c1e43fbd2ee7.html",
+"qmlexecutormodel_8h_source.html",
+"struct_can_signal_viewer_gui_impl.html#a9c350d586a748855c8af263c40099001"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
