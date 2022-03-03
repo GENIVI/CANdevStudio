@@ -32,10 +32,12 @@ CanSignalDataPrivate::CanSignalDataPrivate(CanSignalData* q, CanSignalDataCtx&& 
     initProps();
 
     _tvModelSig.setHorizontalHeaderLabels(_columnsSig);
+    _tvModelSigFilter.setObjectName("SignalModel");
     _tvModelSigFilter.setSourceModel(&_tvModelSig);
     _ui.initSearch(_tvModelSigFilter);
 
     _tvModelMsg.setHorizontalHeaderLabels(_columnsMsg);
+    _tvModelMsgFilter.setObjectName("MessageModel");
     _tvModelMsgFilter.setSourceModel(&_tvModelMsg);
     _ui.initSearch(_tvModelMsgFilter);
 

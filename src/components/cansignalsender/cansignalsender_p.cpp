@@ -14,6 +14,8 @@ CanSignalSenderPrivate::CanSignalSenderPrivate(CanSignalSender* q, CanSignalSend
     _tvModel.setHorizontalHeaderLabels(_tvColumns);
     _ui.initTv(_tvModel, &_db);
 
+    connect(&_tvModel, &CanSignalSenderTableModel::droppedItems, this, &CanSignalSenderPrivate::setDroppedItems);
+
     _ui.setDockUndockCbk([this] {
         _docked = !_docked;
         emit q_ptr->mainWidgetDockToggled(_ui.mainWidget());
@@ -53,6 +55,33 @@ void CanSignalSenderPrivate::initProps()
 {
     for (const auto& p : _supportedProps) {
         _props[ComponentInterface::propertyName(p)];
+    }
+}
+
+void CanSignalSenderPrivate::setDroppedItems(const QList<QList<QString>>& droppedItems)
+{
+    for (const auto& rowItem : droppedItems) {
+        if (2 > rowItem.size()) {
+            cds_warn("{} wrong row item.", Q_FUNC_INFO);
+            continue;
+        }
+
+        QString strMsgId = rowItem[0];
+        uint32_t msgId = strMsgId.toUInt(nullptr, 16);
+        if (_db.getDb().end() == _db.getDb().find(msgId)) {
+            cds_warn("{} cannot find message id({})", Q_FUNC_INFO, strMsgId.toStdString().c_str());
+            continue;
+        }
+
+        QString sigName = rowItem[1];
+        if ("" == sigName) {
+            std::vector<CANsignal> canSignals = _db.getDb().at(msgId);
+            for (const auto& signal : canSignals) {
+                _ui.addRow(strMsgId, QString::fromStdString(signal.signal_name));
+            }
+        } else {
+            _ui.addRow(strMsgId, sigName);
+        }
     }
 }
 

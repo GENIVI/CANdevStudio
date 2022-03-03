@@ -5,7 +5,7 @@
 #include <memory>
 #include "gui/cansignalsenderguiimpl.h"
 #include "cansignalsender.h"
-#include <QStandardItemModel>
+#include "cansignalsendertablemodel.h"
 #include <cantypes.hpp>
 #include <QUuid>
 #include <candbhandler.h>
@@ -26,6 +26,9 @@ public:
 private:
     void initProps();
 
+private slots:
+    void setDroppedItems(const QList<QList<QString>>& droppedItems);
+
 public:
     bool _simStarted{ false };
     CanSignalSenderCtx _ctx;
@@ -35,7 +38,7 @@ public:
     CanDbHandler _db{ _props, _dbProperty };
 
 private:
-    QStandardItemModel _tvModel;
+    CanSignalSenderTableModel _tvModel;
     QStringList _tvColumns;
     CanSignalSender* q_ptr;
     const QString _nameProperty = "name";
