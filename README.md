@@ -204,6 +204,12 @@ backend: passthrucan
 configuration: BitRateKey = 250000
 interface: CANUSB
 ```
+CanDevice settings example for Kvaser USBcan:
+```
+backend: passthrucan
+configuration: BitRateKey = 250000
+interface: J2534 (kline) for Kvaser Hardware
+```
 ### CANdevStudio without CAN hardware
 CANdevStudio can be used without actual CAN hardware thanks to Linux's built-in emulation.
 #### VCAN
