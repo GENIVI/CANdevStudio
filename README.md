@@ -101,13 +101,16 @@ cmake .. -DCMAKE_BUILD_TYPE=Release -G "Visual Studio 16 2019" -A x64
 cmake --build .
 ```
 ### macOS / OS X
+#### Dependencies
+```
+brew install qt5 cmake ninja
+```
+#### Build steps
 ```
 git clone https://github.com/GENIVI/CANdevStudio.git
 cd CANdevStudio
-git submodule update --init --recursive
-mkdir build
+cmake -S. -Bbuild -GNinja -DCMAKE_PREFIX_PATH=$(brew --prefix qt5)/lib/cmake
 cd build
-cmake .. -GNinja -DCMAKE_PREFIX_PATH=/path/to/Qt/lib/cmake
 ninja
 ```
 ## Prebuilt packages
