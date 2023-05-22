@@ -1,6 +1,6 @@
 <map id="CanSignalEncoderPrivate" name="CanSignalEncoderPrivate">
-<area shape="rect" id="node1" title=" " alt="" coords="31,171,200,197"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,5,76,32"/>
-<area shape="rect" id="node4" href="$class_can_db_handler.html" title=" " alt="" coords="62,81,169,108"/>
-<area shape="rect" id="node3" href="$struct_context.html" title=" " alt="" coords="193,81,307,108"/>
+<area shape="rect" id="node1" title=" " alt="" coords="31,168,200,193"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,5,76,31"/>
+<area shape="rect" id="node4" href="$class_can_db_handler.html" title=" " alt="" coords="62,80,169,105"/>
+<area shape="rect" id="node3" href="$struct_context.html" title=" " alt="" coords="193,80,307,105"/>
 </map>

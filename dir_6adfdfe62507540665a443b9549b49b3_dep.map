@@ -1,8 +1,8 @@
 <map id="src/components/canrawplayer" name="src/components/canrawplayer">
-<area shape="rect" id="node3" href="dir_fdedb0aba14d44ce9d99bc100e026e6a.html" title="common" alt="" coords="92,159,164,207"/>
-<area shape="rect" id="edge1-headlabel" href="dir_000004_000012.html" title="14" alt="" coords="150,140,165,154"/>
-<area shape="rect" id="node2" href="dir_240b4b91b5f7ee6b69c2a7168dabb291.html" title="tests" alt="" coords="37,63,109,111"/>
-<area shape="rect" id="edge2-headlabel" href="dir_000032_000012.html" title="3" alt="" coords="109,131,117,146"/>
-<area shape="rect" id="clust2" href="dir_6adfdfe62507540665a443b9549b49b3.html" alt="" coords="27,52,243,121"/>
-<area shape="rect" id="clust1" href="dir_3c4c7c1a85608ccd561c026bec818e51.html" title="components" alt="" coords="16,16,253,132"/>
+<area shape="rect" id="node3" href="dir_fdedb0aba14d44ce9d99bc100e026e6a.html" title="common" alt="" coords="76,136,148,161"/>
+<area shape="rect" id="edge1-headlabel" href="dir_000004_000012.html" title="14" alt="" coords="130,118,145,133"/>
+<area shape="rect" id="node2" href="dir_240b4b91b5f7ee6b69c2a7168dabb291.html" title="tests" alt="" coords="37,63,88,88"/>
+<area shape="rect" id="edge2-headlabel" href="dir_000032_000012.html" title="3" alt="" coords="96,108,104,123"/>
+<area shape="rect" id="clust2" href="dir_6adfdfe62507540665a443b9549b49b3.html" alt="" coords="27,52,221,99"/>
+<area shape="rect" id="clust1" href="dir_3c4c7c1a85608ccd561c026bec818e51.html" title="components" alt="" coords="16,16,232,109"/>
 </map>

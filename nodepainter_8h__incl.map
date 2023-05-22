@@ -1,8 +1,8 @@
 <map id="src/common/nodepainter.h" name="src/common/nodepainter.h">
-<area shape="rect" id="node1" title=" " alt="" coords="268,5,443,32"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,80,79,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="103,80,285,107"/>
-<area shape="rect" id="node4" title=" " alt="" coords="309,80,401,107"/>
-<area shape="rect" id="node5" title=" " alt="" coords="426,80,581,107"/>
-<area shape="rect" id="node6" title=" " alt="" coords="605,80,789,107"/>
+<area shape="rect" id="node1" title=" " alt="" coords="268,5,443,31"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,79,79,104"/>
+<area shape="rect" id="node3" title=" " alt="" coords="103,79,285,104"/>
+<area shape="rect" id="node4" title=" " alt="" coords="309,79,401,104"/>
+<area shape="rect" id="node5" title=" " alt="" coords="426,79,581,104"/>
+<area shape="rect" id="node6" title=" " alt="" coords="605,79,789,104"/>
 </map>

@@ -1,7 +1,7 @@
 <map id="src/gui/projectconfig/iconlabel.h" name="src/gui/projectconfig/iconlabel.h">
-<area shape="rect" id="node1" title=" " alt="" coords="128,5,267,47"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,95,69,121"/>
-<area shape="rect" id="node3" title=" " alt="" coords="94,95,191,121"/>
-<area shape="rect" id="node4" title=" " alt="" coords="215,95,289,121"/>
-<area shape="rect" id="node5" title=" " alt="" coords="313,95,386,121"/>
+<area shape="rect" id="node1" title=" " alt="" coords="128,5,267,45"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,93,69,119"/>
+<area shape="rect" id="node3" title=" " alt="" coords="94,93,191,119"/>
+<area shape="rect" id="node4" title=" " alt="" coords="215,93,289,119"/>
+<area shape="rect" id="node5" title=" " alt="" coords="313,93,386,119"/>
 </map>

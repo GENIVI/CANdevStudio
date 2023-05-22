@@ -1,6 +1,6 @@
 <map id="CanRawSenderModel" name="CanRawSenderModel">
-<area shape="rect" id="node1" title="The class provides node graphical representation of CanRawSender." alt="" coords="46,244,193,271"/>
-<area shape="rect" id="node2" href="$class_component_model.html" title=" " alt="" coords="5,155,233,196"/>
-<area shape="rect" id="node3" href="$struct_component_model_interface.html" title=" " alt="" coords="32,80,207,107"/>
-<area shape="rect" id="node4" title=" " alt="" coords="33,5,206,32"/>
+<area shape="rect" id="node1" title="The class provides node graphical representation of CanRawSender." alt="" coords="46,240,193,265"/>
+<area shape="rect" id="node2" href="$class_component_model.html" title=" " alt="" coords="5,152,233,192"/>
+<area shape="rect" id="node3" href="$struct_component_model_interface.html" title=" " alt="" coords="32,79,207,104"/>
+<area shape="rect" id="node4" title=" " alt="" coords="33,5,206,31"/>
 </map>

@@ -1,10 +1,10 @@
 <map id="src/components/cansignalencoder" name="src/components/cansignalencoder">
-<area shape="rect" id="node1" href="dir_d6f29be36dbe950e4391fb531a92f592.html" title="cansignaldata" alt="" coords="27,159,130,207"/>
-<area shape="rect" id="node4" href="dir_fdedb0aba14d44ce9d99bc100e026e6a.html" title="common" alt="" coords="288,159,360,207"/>
-<area shape="rect" id="edge1-headlabel" href="dir_000009_000012.html" title="19" alt="" coords="275,134,290,148"/>
-<area shape="rect" id="node3" href="dir_2a85606fcbcc05af82bfa513573c2166.html" title="tests" alt="" coords="37,63,109,111"/>
-<area shape="rect" id="edge2-headlabel" href="dir_000037_000007.html" title="1" alt="" coords="81,133,89,147"/>
-<area shape="rect" id="edge3-headlabel" href="dir_000037_000012.html" title="5" alt="" coords="270,139,278,154"/>
-<area shape="rect" id="clust2" href="dir_facd0fc1cdefa4e3870579759689c83e.html" alt="" coords="27,52,267,121"/>
-<area shape="rect" id="clust1" href="dir_3c4c7c1a85608ccd561c026bec818e51.html" title="components" alt="" coords="16,16,277,217"/>
+<area shape="rect" id="node1" href="dir_d6f29be36dbe950e4391fb531a92f592.html" title="cansignaldata" alt="" coords="27,136,130,161"/>
+<area shape="rect" id="node4" href="dir_fdedb0aba14d44ce9d99bc100e026e6a.html" title="common" alt="" coords="267,136,339,161"/>
+<area shape="rect" id="edge1-headlabel" href="dir_000009_000012.html" title="19" alt="" coords="262,112,276,127"/>
+<area shape="rect" id="node3" href="dir_2a85606fcbcc05af82bfa513573c2166.html" title="tests" alt="" coords="37,63,88,88"/>
+<area shape="rect" id="edge2-headlabel" href="dir_000037_000007.html" title="1" alt="" coords="76,109,84,123"/>
+<area shape="rect" id="edge3-headlabel" href="dir_000037_000012.html" title="5" alt="" coords="247,117,255,132"/>
+<area shape="rect" id="clust2" href="dir_facd0fc1cdefa4e3870579759689c83e.html" alt="" coords="27,52,245,99"/>
+<area shape="rect" id="clust1" href="dir_3c4c7c1a85608ccd561c026bec818e51.html" title="components" alt="" coords="16,16,256,172"/>
 </map>

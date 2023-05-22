@@ -1,9 +1,9 @@
 <map id="CanSignalEncoderModel" name="CanSignalEncoderModel">
-<area shape="rect" id="node1" title=" " alt="" coords="98,261,261,288"/>
-<area shape="rect" id="node2" href="$class_component_model.html" title=" " alt="" coords="65,171,293,212"/>
-<area shape="rect" id="node3" href="$struct_component_model_interface.html" title=" " alt="" coords="5,81,180,108"/>
-<area shape="rect" id="node4" title=" " alt="" coords="6,5,179,32"/>
-<area shape="rect" id="node5" href="$class_can_signal_encoder.html" title=" " alt="" coords="205,81,333,108"/>
-<area shape="rect" id="node6" title=" " alt="" coords="219,5,289,32"/>
-<area shape="rect" id="node7" href="$struct_component_interface.html" title="Interface to be implemented by every component." alt="" coords="314,5,453,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="98,257,261,283"/>
+<area shape="rect" id="node2" href="$class_component_model.html" title=" " alt="" coords="65,168,293,208"/>
+<area shape="rect" id="node3" href="$struct_component_model_interface.html" title=" " alt="" coords="5,80,180,105"/>
+<area shape="rect" id="node4" title=" " alt="" coords="6,5,179,31"/>
+<area shape="rect" id="node5" href="$class_can_signal_encoder.html" title=" " alt="" coords="205,80,333,105"/>
+<area shape="rect" id="node6" title=" " alt="" coords="219,5,289,31"/>
+<area shape="rect" id="node7" href="$struct_component_interface.html" title="Interface to be implemented by every component." alt="" coords="314,5,453,31"/>
 </map>

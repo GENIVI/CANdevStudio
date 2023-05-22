@@ -1,9 +1,9 @@
 <map id="CanRawFilterModel" name="CanRawFilterModel">
-<area shape="rect" id="node1" title=" " alt="" coords="105,261,240,288"/>
-<area shape="rect" id="node2" href="$class_component_model.html" title=" " alt="" coords="65,171,281,212"/>
-<area shape="rect" id="node3" href="$struct_component_model_interface.html" title=" " alt="" coords="5,81,180,108"/>
-<area shape="rect" id="node4" title=" " alt="" coords="6,5,179,32"/>
-<area shape="rect" id="node5" href="$class_can_raw_filter.html" title=" " alt="" coords="204,81,304,108"/>
-<area shape="rect" id="node6" title=" " alt="" coords="211,5,281,32"/>
-<area shape="rect" id="node7" href="$struct_component_interface.html" title="Interface to be implemented by every component." alt="" coords="306,5,445,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="105,257,240,283"/>
+<area shape="rect" id="node2" href="$class_component_model.html" title=" " alt="" coords="65,168,281,208"/>
+<area shape="rect" id="node3" href="$struct_component_model_interface.html" title=" " alt="" coords="5,80,180,105"/>
+<area shape="rect" id="node4" title=" " alt="" coords="6,5,179,31"/>
+<area shape="rect" id="node5" href="$class_can_raw_filter.html" title=" " alt="" coords="204,80,304,105"/>
+<area shape="rect" id="node6" title=" " alt="" coords="211,5,281,31"/>
+<area shape="rect" id="node7" href="$struct_component_interface.html" title="Interface to be implemented by every component." alt="" coords="306,5,445,31"/>
 </map>

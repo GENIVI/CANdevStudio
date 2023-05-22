@@ -1,13 +1,13 @@
 <map id="src/components/canrawsender/canrawsender.h" name="src/components/canrawsender/canrawsender.h">
-<area shape="rect" id="node1" title=" " alt="" coords="172,5,372,47"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,95,77,121"/>
-<area shape="rect" id="node3" title=" " alt="" coords="101,95,264,121"/>
-<area shape="rect" id="node4" href="$componentinterface_8h.html" title=" " alt="" coords="288,95,435,121"/>
-<area shape="rect" id="node10" href="$context_8h.html" title=" " alt="" coords="475,95,549,121"/>
-<area shape="rect" id="node5" title=" " alt="" coords="41,169,114,196"/>
-<area shape="rect" id="node6" title=" " alt="" coords="138,169,281,196"/>
-<area shape="rect" id="node7" title=" " alt="" coords="305,169,383,196"/>
-<area shape="rect" id="node8" title=" " alt="" coords="407,169,454,196"/>
-<area shape="rect" id="node9" title=" " alt="" coords="478,169,546,196"/>
-<area shape="rect" id="node11" title=" " alt="" coords="571,169,621,196"/>
+<area shape="rect" id="node1" title=" " alt="" coords="172,5,372,45"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,93,77,119"/>
+<area shape="rect" id="node3" title=" " alt="" coords="101,93,264,119"/>
+<area shape="rect" id="node4" href="$componentinterface_8h.html" title=" " alt="" coords="288,93,435,119"/>
+<area shape="rect" id="node10" href="$context_8h.html" title=" " alt="" coords="475,93,549,119"/>
+<area shape="rect" id="node5" title=" " alt="" coords="41,167,114,192"/>
+<area shape="rect" id="node6" title=" " alt="" coords="138,167,281,192"/>
+<area shape="rect" id="node7" title=" " alt="" coords="305,167,383,192"/>
+<area shape="rect" id="node8" title=" " alt="" coords="407,167,454,192"/>
+<area shape="rect" id="node9" title=" " alt="" coords="478,167,546,192"/>
+<area shape="rect" id="node11" title=" " alt="" coords="571,167,621,192"/>
 </map>

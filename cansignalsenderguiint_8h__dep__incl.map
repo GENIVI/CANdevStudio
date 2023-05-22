@@ -1,8 +1,8 @@
 <map id="src/components/cansignalsender/gui/cansignalsenderguiint.h" name="src/components/cansignalsender/gui/cansignalsenderguiint.h">
-<area shape="rect" id="node1" title=" " alt="" coords="243,5,456,47"/>
-<area shape="rect" id="node2" href="$cansignalsenderguiimpl_8h.html" title=" " alt="" coords="124,95,337,136"/>
-<area shape="rect" id="node6" href="$cansignalsender__test_8cpp.html" title=" " alt="" coords="361,95,575,136"/>
-<area shape="rect" id="node3" href="$cansignalsender__p_8h.html" title=" " alt="" coords="124,184,337,225"/>
-<area shape="rect" id="node4" href="$cansignalsender_8cpp.html" title=" " alt="" coords="5,273,219,315"/>
-<area shape="rect" id="node5" href="$cansignalsender__p_8cpp.html" title=" " alt="" coords="243,273,456,315"/>
+<area shape="rect" id="node1" title=" " alt="" coords="243,5,456,45"/>
+<area shape="rect" id="node2" href="$cansignalsenderguiimpl_8h.html" title=" " alt="" coords="124,93,337,133"/>
+<area shape="rect" id="node6" href="$cansignalsender__test_8cpp.html" title=" " alt="" coords="361,93,575,133"/>
+<area shape="rect" id="node3" href="$cansignalsender__p_8h.html" title=" " alt="" coords="124,181,337,221"/>
+<area shape="rect" id="node4" href="$cansignalsender_8cpp.html" title=" " alt="" coords="5,269,219,309"/>
+<area shape="rect" id="node5" href="$cansignalsender__p_8cpp.html" title=" " alt="" coords="243,269,456,309"/>
 </map>

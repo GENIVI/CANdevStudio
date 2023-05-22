@@ -1,8 +1,8 @@
 <map id="PropertyField" name="PropertyField">
-<area shape="rect" id="node1" title=" " alt="" coords="103,80,201,107"/>
-<area shape="rect" id="node3" href="$class_property_field_combo.html" title=" " alt="" coords="5,155,144,181"/>
-<area shape="rect" id="node4" href="$struct_property_field_text.html" title=" " alt="" coords="168,155,291,181"/>
-<area shape="rect" id="node2" title=" " alt="" coords="116,5,188,32"/>
-<area shape="rect" id="node5" href="$struct_property_field_color.html" title=" " alt="" coords="89,229,217,256"/>
-<area shape="rect" id="node6" href="$struct_property_field_path.html" title=" " alt="" coords="241,229,367,256"/>
+<area shape="rect" id="node1" title=" " alt="" coords="103,79,201,104"/>
+<area shape="rect" id="node3" href="$class_property_field_combo.html" title=" " alt="" coords="5,152,144,177"/>
+<area shape="rect" id="node4" href="$struct_property_field_text.html" title=" " alt="" coords="168,152,291,177"/>
+<area shape="rect" id="node2" title=" " alt="" coords="116,5,188,31"/>
+<area shape="rect" id="node5" href="$struct_property_field_color.html" title=" " alt="" coords="89,225,217,251"/>
+<area shape="rect" id="node6" href="$struct_property_field_path.html" title=" " alt="" coords="241,225,367,251"/>
 </map>

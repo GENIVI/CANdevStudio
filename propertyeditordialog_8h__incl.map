@@ -1,9 +1,9 @@
 <map id="src/gui/projectconfig/propertyeditordialog.h" name="src/gui/projectconfig/propertyeditordialog.h">
-<area shape="rect" id="node1" title=" " alt="" coords="265,5,413,47"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,95,99,121"/>
-<area shape="rect" id="node3" title=" " alt="" coords="123,95,191,121"/>
-<area shape="rect" id="node4" title=" " alt="" coords="215,95,315,121"/>
-<area shape="rect" id="node5" title=" " alt="" coords="339,95,485,121"/>
-<area shape="rect" id="node6" title=" " alt="" coords="509,95,603,121"/>
-<area shape="rect" id="node7" title=" " alt="" coords="627,95,695,121"/>
+<area shape="rect" id="node1" title=" " alt="" coords="265,5,413,45"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,93,99,119"/>
+<area shape="rect" id="node3" title=" " alt="" coords="123,93,191,119"/>
+<area shape="rect" id="node4" title=" " alt="" coords="215,93,315,119"/>
+<area shape="rect" id="node5" title=" " alt="" coords="339,93,485,119"/>
+<area shape="rect" id="node6" title=" " alt="" coords="509,93,603,119"/>
+<area shape="rect" id="node7" title=" " alt="" coords="627,93,695,119"/>
 </map>

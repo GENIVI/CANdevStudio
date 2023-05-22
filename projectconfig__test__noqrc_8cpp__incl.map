@@ -1,32 +1,32 @@
 <map id="src/gui/projectconfig/tests/projectconfig_test_noqrc.cpp" name="src/gui/projectconfig/tests/projectconfig_test_noqrc.cpp">
-<area shape="rect" id="node1" title=" " alt="" coords="1371,5,1510,61"/>
-<area shape="rect" id="node2" title=" " alt="" coords="394,109,490,136"/>
-<area shape="rect" id="node3" href="$candevice_8h.html" title=" " alt="" coords="514,109,605,136"/>
-<area shape="rect" id="node14" title=" " alt="" coords="1863,109,1941,136"/>
-<area shape="rect" id="node15" title=" " alt="" coords="1965,109,2044,136"/>
-<area shape="rect" id="node16" href="$log_8h.html" title=" " alt="" coords="1105,109,1155,136"/>
-<area shape="rect" id="node22" href="$projectconfigvalidator_8h.html" title=" " alt="" coords="1363,109,1518,136"/>
-<area shape="rect" id="node25" href="$propertyeditordialog_8h.html" title=" " alt="" coords="1694,109,1838,136"/>
-<area shape="rect" id="node4" title=" " alt="" coords="441,191,558,218"/>
-<area shape="rect" id="node5" title=" " alt="" coords="582,191,654,218"/>
-<area shape="rect" id="node6" href="$componentinterface_8h.html" title=" " alt="" coords="171,191,318,218"/>
-<area shape="rect" id="node12" href="$context_8h.html" title=" " alt="" coords="342,191,417,218"/>
-<area shape="rect" id="node7" title=" " alt="" coords="76,273,149,300"/>
-<area shape="rect" id="node8" title=" " alt="" coords="173,273,316,300"/>
-<area shape="rect" id="node9" title=" " alt="" coords="340,273,419,300"/>
-<area shape="rect" id="node10" title=" " alt="" coords="5,273,52,300"/>
-<area shape="rect" id="node11" title=" " alt="" coords="1275,273,1343,300"/>
-<area shape="rect" id="node13" title=" " alt="" coords="443,273,494,300"/>
-<area shape="rect" id="node17" title=" " alt="" coords="1210,191,1271,218"/>
-<area shape="rect" id="node18" title=" " alt="" coords="678,191,750,218"/>
-<area shape="rect" id="node19" title=" " alt="" coords="775,191,891,218"/>
-<area shape="rect" id="node20" title=" " alt="" coords="915,184,1049,225"/>
-<area shape="rect" id="node21" title=" " alt="" coords="1074,191,1186,218"/>
-<area shape="rect" id="node23" title=" " alt="" coords="1397,191,1485,218"/>
-<area shape="rect" id="node24" title=" " alt="" coords="1509,191,1644,218"/>
-<area shape="rect" id="node26" title=" " alt="" coords="1719,191,1813,218"/>
-<area shape="rect" id="node27" title=" " alt="" coords="1837,191,1905,218"/>
-<area shape="rect" id="node28" title=" " alt="" coords="1929,191,2029,218"/>
-<area shape="rect" id="node29" title=" " alt="" coords="2053,191,2199,218"/>
-<area shape="rect" id="node30" title=" " alt="" coords="2223,191,2317,218"/>
+<area shape="rect" id="node1" title=" " alt="" coords="1371,5,1510,60"/>
+<area shape="rect" id="node2" title=" " alt="" coords="394,108,490,133"/>
+<area shape="rect" id="node3" href="$candevice_8h.html" title=" " alt="" coords="514,108,605,133"/>
+<area shape="rect" id="node14" title=" " alt="" coords="1863,108,1941,133"/>
+<area shape="rect" id="node15" title=" " alt="" coords="1965,108,2044,133"/>
+<area shape="rect" id="node16" href="$log_8h.html" title=" " alt="" coords="1105,108,1155,133"/>
+<area shape="rect" id="node22" href="$projectconfigvalidator_8h.html" title=" " alt="" coords="1363,108,1518,133"/>
+<area shape="rect" id="node25" href="$propertyeditordialog_8h.html" title=" " alt="" coords="1694,108,1838,133"/>
+<area shape="rect" id="node4" title=" " alt="" coords="441,189,558,214"/>
+<area shape="rect" id="node5" title=" " alt="" coords="582,189,654,214"/>
+<area shape="rect" id="node6" href="$componentinterface_8h.html" title=" " alt="" coords="171,189,318,214"/>
+<area shape="rect" id="node12" href="$context_8h.html" title=" " alt="" coords="342,189,417,214"/>
+<area shape="rect" id="node7" title=" " alt="" coords="76,269,149,295"/>
+<area shape="rect" id="node8" title=" " alt="" coords="173,269,316,295"/>
+<area shape="rect" id="node9" title=" " alt="" coords="340,269,419,295"/>
+<area shape="rect" id="node10" title=" " alt="" coords="5,269,52,295"/>
+<area shape="rect" id="node11" title=" " alt="" coords="1275,269,1343,295"/>
+<area shape="rect" id="node13" title=" " alt="" coords="443,269,494,295"/>
+<area shape="rect" id="node17" title=" " alt="" coords="1210,189,1271,214"/>
+<area shape="rect" id="node18" title=" " alt="" coords="678,189,750,214"/>
+<area shape="rect" id="node19" title=" " alt="" coords="775,189,891,214"/>
+<area shape="rect" id="node20" title=" " alt="" coords="915,181,1049,221"/>
+<area shape="rect" id="node21" title=" " alt="" coords="1074,189,1186,214"/>
+<area shape="rect" id="node23" title=" " alt="" coords="1397,189,1485,214"/>
+<area shape="rect" id="node24" title=" " alt="" coords="1509,189,1644,214"/>
+<area shape="rect" id="node26" title=" " alt="" coords="1719,189,1813,214"/>
+<area shape="rect" id="node27" title=" " alt="" coords="1837,189,1905,214"/>
+<area shape="rect" id="node28" title=" " alt="" coords="1929,189,2029,214"/>
+<area shape="rect" id="node29" title=" " alt="" coords="2053,189,2199,214"/>
+<area shape="rect" id="node30" title=" " alt="" coords="2223,189,2317,214"/>
 </map>

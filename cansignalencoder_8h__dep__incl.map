@@ -1,11 +1,11 @@
 <map id="src/components/cansignalencoder/cansignalencoder.h" name="src/components/cansignalencoder/cansignalencoder.h">
-<area shape="rect" id="node1" title=" " alt="" coords="519,5,739,47"/>
-<area shape="rect" id="node2" href="$cansignalencoder__p_8h.html" title=" " alt="" coords="249,95,469,136"/>
-<area shape="rect" id="node5" href="$cansignalencodermodel_8h.html" title=" " alt="" coords="519,95,739,136"/>
-<area shape="rect" id="node9" href="$cansignalencoder__test_8cpp.html" title=" " alt="" coords="763,95,983,136"/>
-<area shape="rect" id="node3" href="$cansignalencoder_8cpp.html" title=" " alt="" coords="5,191,225,233"/>
-<area shape="rect" id="node4" href="$cansignalencoder__p_8cpp.html" title=" " alt="" coords="249,191,469,233"/>
-<area shape="rect" id="node6" href="$cansignalencodermodel_8cpp.html" title=" " alt="" coords="471,288,691,329"/>
-<area shape="rect" id="node7" href="$cansignalencoderplugin_8h.html" title=" " alt="" coords="545,191,765,233"/>
-<area shape="rect" id="node8" href="$cansignalencodermodel__test_8cpp.html" title=" " alt="" coords="789,184,1009,240"/>
+<area shape="rect" id="node1" title=" " alt="" coords="519,5,739,45"/>
+<area shape="rect" id="node2" href="$cansignalencoder__p_8h.html" title=" " alt="" coords="249,93,469,133"/>
+<area shape="rect" id="node5" href="$cansignalencodermodel_8h.html" title=" " alt="" coords="519,93,739,133"/>
+<area shape="rect" id="node9" href="$cansignalencoder__test_8cpp.html" title=" " alt="" coords="763,93,983,133"/>
+<area shape="rect" id="node3" href="$cansignalencoder_8cpp.html" title=" " alt="" coords="5,189,225,229"/>
+<area shape="rect" id="node4" href="$cansignalencoder__p_8cpp.html" title=" " alt="" coords="249,189,469,229"/>
+<area shape="rect" id="node6" href="$cansignalencodermodel_8cpp.html" title=" " alt="" coords="471,284,691,324"/>
+<area shape="rect" id="node7" href="$cansignalencoderplugin_8h.html" title=" " alt="" coords="545,189,765,229"/>
+<area shape="rect" id="node8" href="$cansignalencodermodel__test_8cpp.html" title=" " alt="" coords="789,181,1009,236"/>
 </map>

@@ -1,13 +1,13 @@
 <map id="src/common/sortmodel.cpp" name="src/common/sortmodel.cpp">
-<area shape="rect" id="node1" title=" " alt="" coords="187,5,365,32"/>
-<area shape="rect" id="node2" href="$sortmodel_8h.html" title=" " alt="" coords="63,80,153,107"/>
-<area shape="rect" id="node4" href="$sortenums_8h.html" title=" " alt="" coords="229,80,323,107"/>
-<area shape="rect" id="node5" href="$log_8h.html" title=" " alt="" coords="373,80,422,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="5,162,157,189"/>
-<area shape="rect" id="node6" title=" " alt="" coords="181,162,243,189"/>
-<area shape="rect" id="node7" title=" " alt="" coords="267,162,339,189"/>
-<area shape="rect" id="node8" title=" " alt="" coords="363,162,431,189"/>
-<area shape="rect" id="node9" title=" " alt="" coords="455,162,571,189"/>
-<area shape="rect" id="node10" title=" " alt="" coords="595,155,730,196"/>
-<area shape="rect" id="node11" title=" " alt="" coords="755,162,867,189"/>
+<area shape="rect" id="node1" title=" " alt="" coords="187,5,365,31"/>
+<area shape="rect" id="node2" href="$sortmodel_8h.html" title=" " alt="" coords="63,79,153,104"/>
+<area shape="rect" id="node4" href="$sortenums_8h.html" title=" " alt="" coords="229,79,323,104"/>
+<area shape="rect" id="node5" href="$log_8h.html" title=" " alt="" coords="373,79,422,104"/>
+<area shape="rect" id="node3" title=" " alt="" coords="5,159,157,185"/>
+<area shape="rect" id="node6" title=" " alt="" coords="181,159,243,185"/>
+<area shape="rect" id="node7" title=" " alt="" coords="267,159,339,185"/>
+<area shape="rect" id="node8" title=" " alt="" coords="363,159,431,185"/>
+<area shape="rect" id="node9" title=" " alt="" coords="455,159,571,185"/>
+<area shape="rect" id="node10" title=" " alt="" coords="595,152,730,192"/>
+<area shape="rect" id="node11" title=" " alt="" coords="755,159,867,185"/>
 </map>

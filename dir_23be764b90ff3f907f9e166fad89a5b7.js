@@ -5,16 +5,10 @@ var dir_23be764b90ff3f907f9e166fad89a5b7 =
     [ "cansignalsender.cpp", "cansignalsender_8cpp.html", null ],
     [ "cansignalsender.h", "cansignalsender_8h.html", "cansignalsender_8h" ],
     [ "cansignalsender_p.cpp", "cansignalsender__p_8cpp.html", null ],
-    [ "cansignalsender_p.h", "cansignalsender__p_8h.html", [
-      [ "CanSignalSenderPrivate", "class_can_signal_sender_private.html", "class_can_signal_sender_private" ]
-    ] ],
+    [ "cansignalsender_p.h", "cansignalsender__p_8h.html", "cansignalsender__p_8h" ],
     [ "cansignalsendermodel.cpp", "cansignalsendermodel_8cpp.html", null ],
-    [ "cansignalsendermodel.h", "cansignalsendermodel_8h.html", [
-      [ "CanSignalSenderModel", "class_can_signal_sender_model.html", "class_can_signal_sender_model" ]
-    ] ],
+    [ "cansignalsendermodel.h", "cansignalsendermodel_8h.html", "cansignalsendermodel_8h" ],
     [ "cansignalsenderplugin.h", "cansignalsenderplugin_8h.html", "cansignalsenderplugin_8h" ],
     [ "cansignalsendertablemodel.cpp", "cansignalsendertablemodel_8cpp.html", null ],
-    [ "cansignalsendertablemodel.h", "cansignalsendertablemodel_8h.html", [
-      [ "CanSignalSenderTableModel", "class_can_signal_sender_table_model.html", "class_can_signal_sender_table_model" ]
-    ] ]
+    [ "cansignalsendertablemodel.h", "cansignalsendertablemodel_8h.html", "cansignalsendertablemodel_8h" ]
 ];

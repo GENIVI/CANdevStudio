@@ -1,8 +1,8 @@
 <map id="src/components/canrawsender/gui/crsgui.h" name="src/components/canrawsender/gui/crsgui.h">
-<area shape="rect" id="node1" title=" " alt="" coords="164,5,364,47"/>
-<area shape="rect" id="node2" href="$crsguiinterface_8h.html" title=" " alt="" coords="109,95,227,121"/>
-<area shape="rect" id="node5" title=" " alt="" coords="231,169,299,196"/>
-<area shape="rect" id="node6" title=" " alt="" coords="301,95,432,121"/>
-<area shape="rect" id="node3" title=" " alt="" coords="5,169,104,196"/>
-<area shape="rect" id="node4" title=" " alt="" coords="129,169,207,196"/>
+<area shape="rect" id="node1" title=" " alt="" coords="164,5,364,45"/>
+<area shape="rect" id="node2" href="$crsguiinterface_8h.html" title=" " alt="" coords="109,93,227,119"/>
+<area shape="rect" id="node5" title=" " alt="" coords="231,167,299,192"/>
+<area shape="rect" id="node6" title=" " alt="" coords="301,93,432,119"/>
+<area shape="rect" id="node3" title=" " alt="" coords="5,167,104,192"/>
+<area shape="rect" id="node4" title=" " alt="" coords="129,167,207,192"/>
 </map>

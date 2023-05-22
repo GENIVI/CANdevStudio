@@ -1,10 +1,6 @@
 var dir_767936046b9dab7154e767edcb7a249e =
 [
-    [ "canrawdata.h", "canrawdata_8h.html", [
-      [ "CanRawData", "class_can_raw_data.html", "class_can_raw_data" ]
-    ] ],
-    [ "cansignalmodel.h", "cansignalmodel_8h.html", [
-      [ "CanSignalModel", "class_can_signal_model.html", "class_can_signal_model" ]
-    ] ],
+    [ "canrawdata.h", "canrawdata_8h.html", "canrawdata_8h" ],
+    [ "cansignalmodel.h", "cansignalmodel_8h.html", "cansignalmodel_8h" ],
     [ "datadirection.h", "datadirection_8h.html", "datadirection_8h" ]
 ];

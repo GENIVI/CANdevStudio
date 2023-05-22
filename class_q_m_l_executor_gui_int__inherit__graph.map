@@ -1,6 +1,6 @@
 <map id="QMLExecutorGuiInt" name="QMLExecutorGuiInt">
-<area shape="rect" id="node1" title="Interface of gui for QMLExecutor plugin." alt="" coords="41,80,177,107"/>
-<area shape="rect" id="node3" href="$class_gui_mock.html" title="fakeit is broken so wrap broken solution to get it working with qt signals" alt="" coords="5,155,80,181"/>
-<area shape="rect" id="node4" href="$class_q_m_l_executor_gui_impl.html" title="QMLExecutor plugin gui implementation." alt="" coords="104,155,251,181"/>
-<area shape="rect" id="node2" title=" " alt="" coords="74,5,145,32"/>
+<area shape="rect" id="node1" title="Interface of gui for QMLExecutor plugin." alt="" coords="41,79,177,104"/>
+<area shape="rect" id="node3" href="$class_gui_mock.html" title="fakeit is broken so wrap broken solution to get it working with qt signals" alt="" coords="5,152,80,177"/>
+<area shape="rect" id="node4" href="$class_q_m_l_executor_gui_impl.html" title="QMLExecutor plugin gui implementation." alt="" coords="104,152,251,177"/>
+<area shape="rect" id="node2" title=" " alt="" coords="74,5,145,31"/>
 </map>

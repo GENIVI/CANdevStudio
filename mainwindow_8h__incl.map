@@ -1,10 +1,10 @@
 <map id="src/gui/mainwindow.h" name="src/gui/mainwindow.h">
-<area shape="rect" id="node1" title=" " alt="" coords="183,5,329,32"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,80,85,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="109,80,280,107"/>
-<area shape="rect" id="node4" title=" " alt="" coords="361,229,429,256"/>
-<area shape="rect" id="node5" href="$projectconfig_8h.html" title=" " alt="" coords="355,80,538,107"/>
-<area shape="rect" id="node6" title=" " alt="" coords="355,155,493,181"/>
-<area shape="rect" id="node7" href="$context_8h.html" title=" " alt="" coords="517,155,592,181"/>
-<area shape="rect" id="node8" title=" " alt="" coords="529,229,580,256"/>
+<area shape="rect" id="node1" title=" " alt="" coords="183,5,329,31"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,79,85,104"/>
+<area shape="rect" id="node3" title=" " alt="" coords="109,79,280,104"/>
+<area shape="rect" id="node4" title=" " alt="" coords="361,225,429,251"/>
+<area shape="rect" id="node5" href="$projectconfig_8h.html" title=" " alt="" coords="355,79,538,104"/>
+<area shape="rect" id="node6" title=" " alt="" coords="355,152,493,177"/>
+<area shape="rect" id="node7" href="$context_8h.html" title=" " alt="" coords="517,152,592,177"/>
+<area shape="rect" id="node8" title=" " alt="" coords="529,225,580,251"/>
 </map>

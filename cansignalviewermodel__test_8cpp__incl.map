@@ -1,41 +1,41 @@
 <map id="src/components/cansignalviewer/tests/cansignalviewermodel_test.cpp" name="src/components/cansignalviewer/tests/cansignalviewermodel_test.cpp">
-<area shape="rect" id="node1" title=" " alt="" coords="2077,5,2289,61"/>
-<area shape="rect" id="node2" title=" " alt="" coords="1186,109,1347,136"/>
-<area shape="rect" id="node3" href="$cansignalviewermodel_8h.html" title=" " alt="" coords="1372,109,1532,136"/>
-<area shape="rect" id="node11" href="$log_8h.html" title=" " alt="" coords="2302,259,2351,285"/>
-<area shape="rect" id="node33" title=" " alt="" coords="2173,109,2288,136"/>
-<area shape="rect" id="node34" title=" " alt="" coords="2312,109,2403,136"/>
-<area shape="rect" id="node35" title=" " alt="" coords="2427,109,2506,136"/>
-<area shape="rect" id="node36" title=" " alt="" coords="2530,109,2609,136"/>
-<area shape="rect" id="node37" href="$cansignalmodel_8h.html" title=" " alt="" coords="1881,184,2098,211"/>
-<area shape="rect" id="node4" href="$componentmodel_8h.html" title=" " alt="" coords="1473,184,1604,211"/>
-<area shape="rect" id="node6" title=" " alt="" coords="1239,259,1353,285"/>
-<area shape="rect" id="node20" href="$nodepainter_8h.html" title=" " alt="" coords="1037,184,1136,211"/>
-<area shape="rect" id="node24" href="$cansignalviewer_8h.html" title=" " alt="" coords="300,184,425,211"/>
-<area shape="rect" id="node5" title=" " alt="" coords="1377,259,1449,285"/>
-<area shape="rect" id="node7" title=" " alt="" coords="1474,259,1603,285"/>
-<area shape="rect" id="node8" href="$bcastmsgs_8h.html" title=" " alt="" coords="1856,259,1952,285"/>
-<area shape="rect" id="node10" title=" " alt="" coords="954,341,1033,367"/>
-<area shape="rect" id="node18" title=" " alt="" coords="1122,259,1214,285"/>
-<area shape="rect" id="node19" title=" " alt="" coords="1627,259,1781,285"/>
-<area shape="rect" id="node9" title=" " alt="" coords="1871,341,1937,367"/>
-<area shape="rect" id="node12" title=" " alt="" coords="2407,341,2468,367"/>
-<area shape="rect" id="node13" title=" " alt="" coords="2492,341,2564,367"/>
-<area shape="rect" id="node14" title=" " alt="" coords="381,341,449,367"/>
-<area shape="rect" id="node15" title=" " alt="" coords="1971,341,2087,367"/>
-<area shape="rect" id="node16" title=" " alt="" coords="2111,333,2246,375"/>
-<area shape="rect" id="node17" title=" " alt="" coords="2271,341,2383,367"/>
-<area shape="rect" id="node21" title=" " alt="" coords="609,259,682,285"/>
-<area shape="rect" id="node22" title=" " alt="" coords="706,259,889,285"/>
-<area shape="rect" id="node23" title=" " alt="" coords="913,259,1097,285"/>
-<area shape="rect" id="node25" title=" " alt="" coords="5,259,77,285"/>
-<area shape="rect" id="node26" title=" " alt="" coords="101,259,264,285"/>
-<area shape="rect" id="node27" href="$componentinterface_8h.html" title=" " alt="" coords="437,259,584,285"/>
-<area shape="rect" id="node31" href="$context_8h.html" title=" " alt="" coords="288,259,363,285"/>
-<area shape="rect" id="node28" title=" " alt="" coords="1534,341,1607,367"/>
-<area shape="rect" id="node29" title=" " alt="" coords="549,341,691,367"/>
-<area shape="rect" id="node30" title=" " alt="" coords="478,341,525,367"/>
-<area shape="rect" id="node32" title=" " alt="" coords="300,341,351,367"/>
-<area shape="rect" id="node38" title=" " alt="" coords="2027,259,2146,285"/>
-<area shape="rect" id="node39" href="$datadirection_8h.html" title=" " alt="" coords="2171,259,2277,285"/>
+<area shape="rect" id="node1" title=" " alt="" coords="2078,5,2290,60"/>
+<area shape="rect" id="node2" title=" " alt="" coords="1186,108,1347,133"/>
+<area shape="rect" id="node3" href="$cansignalviewermodel_8h.html" title=" " alt="" coords="1372,108,1532,133"/>
+<area shape="rect" id="node11" href="$log_8h.html" title=" " alt="" coords="2303,255,2353,280"/>
+<area shape="rect" id="node33" title=" " alt="" coords="2175,108,2289,133"/>
+<area shape="rect" id="node34" title=" " alt="" coords="2313,108,2404,133"/>
+<area shape="rect" id="node35" title=" " alt="" coords="2429,108,2507,133"/>
+<area shape="rect" id="node36" title=" " alt="" coords="2531,108,2610,133"/>
+<area shape="rect" id="node37" href="$cansignalmodel_8h.html" title=" " alt="" coords="1882,181,2099,207"/>
+<area shape="rect" id="node4" href="$componentmodel_8h.html" title=" " alt="" coords="1473,181,1604,207"/>
+<area shape="rect" id="node6" title=" " alt="" coords="1239,255,1353,280"/>
+<area shape="rect" id="node20" href="$nodepainter_8h.html" title=" " alt="" coords="1037,181,1136,207"/>
+<area shape="rect" id="node24" href="$cansignalviewer_8h.html" title=" " alt="" coords="300,181,425,207"/>
+<area shape="rect" id="node5" title=" " alt="" coords="1377,255,1449,280"/>
+<area shape="rect" id="node7" title=" " alt="" coords="1474,255,1603,280"/>
+<area shape="rect" id="node8" href="$bcastmsgs_8h.html" title=" " alt="" coords="1857,255,1953,280"/>
+<area shape="rect" id="node10" title=" " alt="" coords="955,335,1034,361"/>
+<area shape="rect" id="node18" title=" " alt="" coords="1122,255,1214,280"/>
+<area shape="rect" id="node19" title=" " alt="" coords="1628,255,1783,280"/>
+<area shape="rect" id="node9" title=" " alt="" coords="1872,335,1939,361"/>
+<area shape="rect" id="node12" title=" " alt="" coords="2408,335,2469,361"/>
+<area shape="rect" id="node13" title=" " alt="" coords="2493,335,2565,361"/>
+<area shape="rect" id="node14" title=" " alt="" coords="381,335,449,361"/>
+<area shape="rect" id="node15" title=" " alt="" coords="1973,335,2089,361"/>
+<area shape="rect" id="node16" title=" " alt="" coords="2113,328,2247,368"/>
+<area shape="rect" id="node17" title=" " alt="" coords="2272,335,2384,361"/>
+<area shape="rect" id="node21" title=" " alt="" coords="609,255,682,280"/>
+<area shape="rect" id="node22" title=" " alt="" coords="706,255,889,280"/>
+<area shape="rect" id="node23" title=" " alt="" coords="913,255,1097,280"/>
+<area shape="rect" id="node25" title=" " alt="" coords="5,255,77,280"/>
+<area shape="rect" id="node26" title=" " alt="" coords="101,255,264,280"/>
+<area shape="rect" id="node27" href="$componentinterface_8h.html" title=" " alt="" coords="437,255,584,280"/>
+<area shape="rect" id="node31" href="$context_8h.html" title=" " alt="" coords="288,255,363,280"/>
+<area shape="rect" id="node28" title=" " alt="" coords="1535,335,1609,361"/>
+<area shape="rect" id="node29" title=" " alt="" coords="549,335,691,361"/>
+<area shape="rect" id="node30" title=" " alt="" coords="478,335,525,361"/>
+<area shape="rect" id="node32" title=" " alt="" coords="300,335,351,361"/>
+<area shape="rect" id="node38" title=" " alt="" coords="2029,255,2147,280"/>
+<area shape="rect" id="node39" href="$datadirection_8h.html" title=" " alt="" coords="2172,255,2279,280"/>
 </map>

@@ -1,13 +1,13 @@
 <map id="src/gui/subwindow.h" name="src/gui/subwindow.h">
-<area shape="rect" id="node1" title=" " alt="" coords="183,5,323,32"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,80,128,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="153,80,253,107"/>
-<area shape="rect" id="node4" title=" " alt="" coords="277,80,334,107"/>
-<area shape="rect" id="node5" href="$log_8h.html" title=" " alt="" coords="358,80,407,107"/>
-<area shape="rect" id="node6" title=" " alt="" coords="108,162,169,189"/>
-<area shape="rect" id="node7" title=" " alt="" coords="193,162,265,189"/>
-<area shape="rect" id="node8" title=" " alt="" coords="290,162,358,189"/>
-<area shape="rect" id="node9" title=" " alt="" coords="382,162,498,189"/>
-<area shape="rect" id="node10" title=" " alt="" coords="522,155,657,196"/>
-<area shape="rect" id="node11" title=" " alt="" coords="681,162,793,189"/>
+<area shape="rect" id="node1" title=" " alt="" coords="183,5,323,31"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,79,128,104"/>
+<area shape="rect" id="node3" title=" " alt="" coords="153,79,253,104"/>
+<area shape="rect" id="node4" title=" " alt="" coords="277,79,334,104"/>
+<area shape="rect" id="node5" href="$log_8h.html" title=" " alt="" coords="358,79,407,104"/>
+<area shape="rect" id="node6" title=" " alt="" coords="108,159,169,185"/>
+<area shape="rect" id="node7" title=" " alt="" coords="193,159,265,185"/>
+<area shape="rect" id="node8" title=" " alt="" coords="290,159,358,185"/>
+<area shape="rect" id="node9" title=" " alt="" coords="382,159,498,185"/>
+<area shape="rect" id="node10" title=" " alt="" coords="522,152,657,192"/>
+<area shape="rect" id="node11" title=" " alt="" coords="681,159,793,185"/>
 </map>

@@ -1,10 +1,10 @@
 <map id="src/common/propertyfields.h" name="src/common/propertyfields.h">
-<area shape="rect" id="node1" title=" " alt="" coords="320,5,504,32"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,80,104,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="129,80,223,107"/>
-<area shape="rect" id="node4" title=" " alt="" coords="247,80,337,107"/>
-<area shape="rect" id="node5" title=" " alt="" coords="361,80,463,107"/>
-<area shape="rect" id="node6" title=" " alt="" coords="488,80,587,107"/>
-<area shape="rect" id="node7" title=" " alt="" coords="611,80,690,107"/>
-<area shape="rect" id="node8" title=" " alt="" coords="714,80,814,107"/>
+<area shape="rect" id="node1" title=" " alt="" coords="320,5,504,31"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,79,104,104"/>
+<area shape="rect" id="node3" title=" " alt="" coords="129,79,223,104"/>
+<area shape="rect" id="node4" title=" " alt="" coords="247,79,337,104"/>
+<area shape="rect" id="node5" title=" " alt="" coords="361,79,463,104"/>
+<area shape="rect" id="node6" title=" " alt="" coords="488,79,587,104"/>
+<area shape="rect" id="node7" title=" " alt="" coords="611,79,690,104"/>
+<area shape="rect" id="node8" title=" " alt="" coords="714,79,814,104"/>
 </map>
