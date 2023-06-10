@@ -109,6 +109,7 @@ brew install qt5 cmake ninja
 ```
 git clone https://github.com/GENIVI/CANdevStudio.git
 cd CANdevStudio
+git submodule update --init --recursive
 cmake -S. -Bbuild -GNinja -DCMAKE_PREFIX_PATH=$(brew --prefix qt5)/lib/cmake
 cd build
 ninja
