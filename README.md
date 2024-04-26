@@ -63,6 +63,11 @@ To lower maintenance effort and allow for usage of modern C++ features, since v1
 * windows-latest (vs2019 x64)
 
 ### Linux
+#### Dependencies
+```
+sudo apt install qtbase5-dev libqt5serialbus5-dev libqt5svg5-dev qtdeclarative5-dev
+```
+#### Build steps
 ```
 git clone https://github.com/GENIVI/CANdevStudio.git
 cd CANdevStudio
