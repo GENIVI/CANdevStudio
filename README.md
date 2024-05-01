@@ -63,7 +63,7 @@ To lower maintenance effort and allow for usage of modern C++ features, since v1
 * windows-latest (vs2019 x64)
 
 ### Linux
-#### Dependencies
+#### Dependencies (Ubuntu / Debian)
 ```
 sudo apt install qtbase5-dev libqt5serialbus5-dev libqt5svg5-dev qtdeclarative5-dev
 ```
