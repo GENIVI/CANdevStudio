@@ -1,36 +1,81 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$struct_component_interface.html" title="Interface to be implemented by every component." alt="" coords="5,301,144,327"/>
-<area shape="rect" id="node2" href="$class_can_device.html" title="The class provides abstraction layer for CAN BUS hardware." alt="" coords="235,252,320,277"/>
-<area shape="rect" id="node3" href="$class_can_load.html" title=" " alt="" coords="240,301,315,327"/>
-<area shape="rect" id="node4" href="$class_can_raw_filter.html" title=" " alt="" coords="227,351,327,376"/>
-<area shape="rect" id="node5" href="$class_can_raw_logger.html" title=" " alt="" coords="222,400,333,425"/>
-<area shape="rect" id="node6" href="$class_can_raw_player.html" title=" " alt="" coords="224,449,331,475"/>
-<area shape="rect" id="node7" href="$class_can_raw_sender.html" title=" " alt="" coords="221,499,333,524"/>
-<area shape="rect" id="node8" href="$class_can_raw_view.html" title=" " alt="" coords="227,548,327,573"/>
-<area shape="rect" id="node9" href="$class_can_signal_data.html" title=" " alt="" coords="223,597,331,623"/>
-<area shape="rect" id="node10" href="$class_can_signal_decoder.html" title=" " alt="" coords="213,5,342,31"/>
-<area shape="rect" id="node11" href="$class_can_signal_encoder.html" title=" " alt="" coords="213,55,341,80"/>
-<area shape="rect" id="node12" href="$class_can_signal_sender.html" title=" " alt="" coords="216,104,339,129"/>
-<area shape="rect" id="node13" href="$class_can_signal_viewer.html" title=" " alt="" coords="217,153,338,179"/>
-<area shape="rect" id="node14" href="$class_q_m_l_executor.html" title=" " alt="" coords="227,203,328,228"/>
-<area shape="rect" id="node15" title=" " alt="" coords="39,720,110,745"/>
-<area shape="rect" id="node16" href="$class_c_a_n_bus_model.html" title="The CANBusModel class is used to interface CAN operations with QML stack." alt="" coords="223,893,331,919"/>
-<area shape="rect" id="node17" href="$class_can_db_handler.html" title=" " alt="" coords="224,943,331,968"/>
-<area shape="rect" id="node18" href="$class_can_device_private.html" title=" " alt="" coords="214,992,341,1017"/>
-<area shape="rect" id="node19" href="$class_can_load_private.html" title=" " alt="" coords="220,1041,335,1067"/>
-<area shape="rect" id="node20" href="$class_can_raw_filter_private.html" title=" " alt="" coords="207,1091,348,1116"/>
-<area shape="rect" id="node21" href="$class_can_raw_logger_private.html" title=" " alt="" coords="201,1140,353,1165"/>
-<area shape="rect" id="node22" href="$class_can_raw_player_private.html" title=" " alt="" coords="203,1189,351,1215"/>
-<area shape="rect" id="node23" href="$class_can_raw_sender_private.html" title="This class is responsible for manage can raw sender window." alt="" coords="201,1239,354,1264"/>
-<area shape="rect" id="node24" href="$class_can_raw_view_private.html" title=" " alt="" coords="207,1288,348,1313"/>
-<area shape="rect" id="node25" href="$class_can_signal_data_private.html" title=" " alt="" coords="203,1337,352,1363"/>
-<area shape="rect" id="node26" href="$class_can_signal_decoder_private.html" title=" " alt="" coords="192,1387,363,1412"/>
-<area shape="rect" id="node27" href="$class_can_signal_encoder_private.html" title=" " alt="" coords="193,1436,362,1461"/>
-<area shape="rect" id="node28" href="$class_can_signal_sender_private.html" title=" " alt="" coords="196,647,359,672"/>
-<area shape="rect" id="node29" href="$class_can_signal_viewer_private.html" title=" " alt="" coords="196,696,359,721"/>
-<area shape="rect" id="node30" href="$class_new_line_manager.html" title="This class holds informations about all the columns in line and relationships beteewn them." alt="" coords="215,745,339,771"/>
-<area shape="rect" id="node31" href="$class_q_m_l_executor_gui_int.html" title="Interface of gui for QMLExecutor plugin." alt="" coords="209,795,345,820"/>
-<area shape="rect" id="node34" href="$class_q_m_l_executor_private.html" title="QMLExecutor plugin private implementation." alt="" coords="206,844,349,869"/>
-<area shape="rect" id="node32" href="$class_gui_mock.html" title="fakeit is broken so wrap broken solution to get it working with qt signals" alt="" coords="447,771,521,796"/>
-<area shape="rect" id="node33" href="$class_q_m_l_executor_gui_impl.html" title="QMLExecutor plugin gui implementation." alt="" coords="411,820,557,845"/>
+<area shape="rect" id="Node000000" href="$struct_component_interface.html" title="Interface to be implemented by every component." alt="" coords="5,301,144,327"/>
+<area shape="rect" id="Node000001" href="$class_can_device.html" title="The class provides abstraction layer for CAN BUS hardware." alt="" coords="234,252,319,278"/>
+<area shape="poly" id="edge7_Node000000_Node000001" title=" " alt="" coords="144,294,233,272,235,278,146,300"/>
+<area shape="rect" id="Node000006" href="$class_can_load.html" title=" " alt="" coords="240,301,313,327"/>
+<area shape="poly" id="edge8_Node000000_Node000006" title=" " alt="" coords="159,312,239,312,239,317,159,317"/>
+<area shape="rect" id="Node000008" href="$class_can_raw_filter.html" title=" " alt="" coords="227,351,326,376"/>
+<area shape="poly" id="edge9_Node000000_Node000008" title=" " alt="" coords="146,329,227,349,225,354,144,334"/>
+<area shape="rect" id="Node000010" href="$class_can_raw_logger.html" title=" " alt="" coords="221,400,332,426"/>
+<area shape="poly" id="edge10_Node000000_Node000010" title=" " alt="" coords="107,334,146,361,193,386,222,397,220,402,191,391,144,366,104,339"/>
+<area shape="rect" id="Node000012" href="$class_can_raw_player.html" title=" " alt="" coords="223,449,330,475"/>
+<area shape="poly" id="edge11_Node000000_Node000012" title=" " alt="" coords="95,338,136,388,163,414,193,436,224,449,222,454,190,440,160,418,133,392,91,342"/>
+<area shape="rect" id="Node000014" href="$class_can_raw_sender.html" title=" " alt="" coords="221,499,332,524"/>
+<area shape="poly" id="edge12_Node000000_Node000014" title=" " alt="" coords="89,340,105,374,128,413,157,452,193,485,222,499,219,504,190,490,154,456,124,416,100,376,84,342"/>
+<area shape="rect" id="Node000016" href="$class_can_raw_view.html" title=" " alt="" coords="227,548,326,574"/>
+<area shape="poly" id="edge13_Node000000_Node000016" title=" " alt="" coords="85,341,99,384,121,437,152,490,171,514,193,535,209,545,227,551,225,556,207,549,190,539,167,517,148,493,116,439,94,386,80,343"/>
+<area shape="rect" id="Node000018" href="$class_can_signal_data.html" title=" " alt="" coords="223,597,330,623"/>
+<area shape="poly" id="edge14_Node000000_Node000018" title=" " alt="" coords="82,342,93,394,114,459,146,527,168,557,193,584,223,600,221,605,190,588,164,561,142,529,109,461,88,395,77,343"/>
+<area shape="rect" id="Node000020" href="$class_can_signal_decoder.html" title=" " alt="" coords="212,5,341,31"/>
+<area shape="poly" id="edge15_Node000000_Node000020" title=" " alt="" coords="77,285,88,233,109,167,142,99,164,68,190,40,210,27,213,32,193,44,168,71,146,102,114,169,93,235,82,287"/>
+<area shape="rect" id="Node000022" href="$class_can_signal_encoder.html" title=" " alt="" coords="213,55,340,80"/>
+<area shape="poly" id="edge16_Node000000_Node000022" title=" " alt="" coords="80,285,94,242,116,189,148,136,167,111,190,89,211,77,213,82,193,94,171,115,152,139,121,192,99,244,85,287"/>
+<area shape="rect" id="Node000024" href="$class_can_signal_sender.html" title=" " alt="" coords="216,104,337,130"/>
+<area shape="poly" id="edge17_Node000000_Node000024" title=" " alt="" coords="84,286,100,252,124,212,154,173,190,139,214,126,216,131,193,143,157,176,128,215,105,255,89,288"/>
+<area shape="rect" id="Node000026" href="$class_can_signal_viewer.html" title=" " alt="" coords="216,153,337,179"/>
+<area shape="poly" id="edge18_Node000000_Node000026" title=" " alt="" coords="91,287,133,236,160,210,190,188,215,176,217,181,193,192,163,214,136,240,95,290"/>
+<area shape="rect" id="Node000029" href="$class_q_m_l_executor.html" title=" " alt="" coords="226,203,327,228"/>
+<area shape="poly" id="edge19_Node000000_Node000029" title=" " alt="" coords="104,290,144,263,191,237,225,225,227,230,193,242,146,267,107,294"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="40,720,109,746"/>
+<area shape="poly" id="edge22_Node000002_Node000001" title=" " alt="" coords="77,704,91,610,115,486,148,366,168,319,190,287,210,273,233,266,235,271,212,278,194,291,173,322,153,368,121,487,96,611,82,705"/>
+<area shape="poly" id="edge24_Node000002_Node000006" title=" " alt="" coords="73,704,77,631,92,532,107,480,127,428,155,379,190,336,213,321,238,314,240,319,215,326,193,340,159,382,132,430,112,481,97,534,82,632,78,705"/>
+<area shape="poly" id="edge26_Node000002_Node000008" title=" " alt="" coords="74,704,81,639,99,554,113,508,133,464,158,422,190,386,207,374,225,367,227,372,209,379,193,389,163,425,138,466,118,510,104,555,86,640,79,705"/>
+<area shape="poly" id="edge28_Node000002_Node000010" title=" " alt="" coords="76,705,85,648,105,576,120,537,139,500,162,465,190,435,219,418,222,423,193,439,166,469,143,503,125,540,110,577,91,649,81,705"/>
+<area shape="poly" id="edge30_Node000002_Node000012" title=" " alt="" coords="78,704,91,657,112,597,145,536,166,509,190,484,221,468,224,472,193,488,170,512,149,539,117,599,96,658,84,706"/>
+<area shape="poly" id="edge32_Node000002_Node000014" title=" " alt="" coords="82,704,97,666,120,620,151,573,190,533,219,518,221,523,193,538,155,577,124,622,102,668,87,706"/>
+<area shape="poly" id="edge34_Node000002_Node000016" title=" " alt="" coords="87,705,128,643,157,611,190,583,225,567,227,572,193,587,160,614,132,647,92,708"/>
+<area shape="poly" id="edge36_Node000002_Node000018" title=" " alt="" coords="96,707,137,669,190,632,221,619,223,624,193,637,141,673,100,711"/>
+<area shape="poly" id="edge38_Node000002_Node000020" title=" " alt="" coords="78,704,141,339,147,272,152,185,164,100,175,66,190,40,210,26,213,30,194,44,180,68,170,101,158,185,152,272,146,340,83,705"/>
+<area shape="poly" id="edge40_Node000002_Node000022" title=" " alt="" coords="78,704,140,354,189,90,211,75,214,79,194,93,145,355,83,705"/>
+<area shape="poly" id="edge42_Node000002_Node000024" title=" " alt="" coords="78,704,133,387,166,221,180,166,190,139,214,123,217,127,194,142,185,167,171,222,139,388,83,705"/>
+<area shape="poly" id="edge44_Node000002_Node000026" title=" " alt="" coords="77,704,126,422,159,271,175,218,190,188,214,172,217,177,194,192,180,220,164,273,131,423,83,705"/>
+<area shape="poly" id="edge47_Node000002_Node000029" title=" " alt="" coords="76,704,89,601,112,462,127,391,145,327,166,274,190,238,206,226,225,218,227,223,209,230,194,241,171,276,150,329,133,392,117,463,94,602,81,705"/>
+<area shape="rect" id="Node000003" href="$class_c_a_n_bus_model.html" title="The CANBusModel class is used to interface CAN operations with QML stack." alt="" coords="223,893,330,919"/>
+<area shape="poly" id="edge20_Node000002_Node000003" title=" " alt="" coords="92,758,132,820,160,852,193,880,223,894,221,899,190,884,157,856,128,823,87,761"/>
+<area shape="rect" id="Node000004" href="$class_can_db_handler.html" title=" " alt="" coords="224,943,329,968"/>
+<area shape="poly" id="edge21_Node000002_Node000004" title=" " alt="" coords="87,760,102,798,124,844,155,890,193,929,224,945,222,950,190,934,151,894,120,847,97,800,82,762"/>
+<area shape="rect" id="Node000005" href="$class_can_device_private.html" title=" " alt="" coords="214,992,339,1018"/>
+<area shape="poly" id="edge23_Node000002_Node000005" title=" " alt="" coords="84,760,96,808,117,867,149,927,169,955,193,979,215,991,212,996,190,983,165,958,144,930,112,869,91,809,78,761"/>
+<area shape="rect" id="Node000007" href="$class_can_load_private.html" title=" " alt="" coords="219,1041,334,1067"/>
+<area shape="poly" id="edge25_Node000002_Node000007" title=" " alt="" coords="81,760,91,817,110,889,125,927,143,964,166,998,193,1028,220,1043,218,1048,190,1032,162,1001,139,967,120,929,105,891,85,818,76,761"/>
+<area shape="rect" id="Node000009" href="$class_can_raw_filter_private.html" title=" " alt="" coords="206,1091,347,1116"/>
+<area shape="poly" id="edge27_Node000002_Node000009" title=" " alt="" coords="79,761,86,826,104,911,118,956,138,1000,163,1042,193,1078,208,1088,205,1092,190,1081,158,1045,133,1003,113,958,98,913,81,827,74,762"/>
+<area shape="rect" id="Node000011" href="$class_can_raw_logger_private.html" title=" " alt="" coords="201,1140,352,1166"/>
+<area shape="poly" id="edge29_Node000002_Node000011" title=" " alt="" coords="78,761,82,834,97,933,112,985,132,1037,159,1085,193,1127,208,1137,205,1142,190,1131,155,1088,127,1039,107,987,92,934,76,835,73,761"/>
+<area shape="rect" id="Node000013" href="$class_can_raw_player_private.html" title=" " alt="" coords="203,1189,350,1215"/>
+<area shape="poly" id="edge31_Node000002_Node000013" title=" " alt="" coords="82,761,96,855,120,980,153,1099,173,1145,194,1176,207,1187,204,1191,190,1180,168,1148,148,1101,115,981,91,856,77,762"/>
+<area shape="rect" id="Node000015" href="$class_can_raw_sender_private.html" title="This class is responsible for manage can raw sender window." alt="" coords="200,1239,353,1264"/>
+<area shape="poly" id="edge33_Node000002_Node000015" title=" " alt="" coords="81,761,94,864,117,1004,133,1074,150,1138,171,1190,194,1226,207,1236,204,1240,190,1229,166,1193,145,1140,127,1075,112,1005,89,865,76,762"/>
+<area shape="rect" id="Node000017" href="$class_can_raw_view_private.html" title=" " alt="" coords="206,1288,347,1314"/>
+<area shape="poly" id="edge35_Node000002_Node000017" title=" " alt="" coords="81,761,92,873,114,1027,129,1106,147,1177,169,1236,194,1275,207,1285,204,1290,190,1279,164,1238,142,1179,124,1107,109,1028,87,873,75,761"/>
+<area shape="rect" id="Node000019" href="$class_can_signal_data_private.html" title=" " alt="" coords="202,1337,351,1363"/>
+<area shape="poly" id="edge37_Node000002_Node000019" title=" " alt="" coords="80,761,90,882,111,1052,126,1138,145,1216,167,1281,180,1306,194,1324,207,1335,203,1339,190,1328,175,1308,162,1283,140,1218,121,1139,105,1052,85,883,75,762"/>
+<area shape="rect" id="Node000021" href="$class_can_signal_decoder_private.html" title=" " alt="" coords="192,1387,361,1412"/>
+<area shape="poly" id="edge39_Node000002_Node000021" title=" " alt="" coords="80,761,88,891,108,1075,123,1169,142,1255,165,1326,179,1353,194,1374,207,1384,203,1388,190,1377,174,1356,160,1328,137,1257,117,1170,102,1076,83,892,74,761"/>
+<area shape="rect" id="Node000023" href="$class_can_signal_encoder_private.html" title=" " alt="" coords="192,1436,361,1462"/>
+<area shape="poly" id="edge41_Node000002_Node000023" title=" " alt="" coords="79,761,86,900,105,1099,119,1201,139,1294,164,1371,178,1401,194,1423,207,1433,203,1438,190,1427,173,1403,159,1373,134,1296,114,1202,99,1099,81,900,74,761"/>
+<area shape="rect" id="Node000025" href="$class_can_signal_sender_private.html" title=" " alt="" coords="195,647,358,672"/>
+<area shape="poly" id="edge43_Node000002_Node000025" title=" " alt="" coords="117,711,191,681,224,670,225,676,193,686,119,716"/>
+<area shape="rect" id="Node000027" href="$class_can_signal_viewer_private.html" title=" " alt="" coords="196,696,357,722"/>
+<area shape="poly" id="edge45_Node000002_Node000027" title=" " alt="" coords="124,724,195,716,195,721,125,730"/>
+<area shape="rect" id="Node000028" href="$class_new_line_manager.html" title="This class holds informations about all the columns in line and relationships beteewn them." alt="" coords="215,745,338,771"/>
+<area shape="poly" id="edge46_Node000002_Node000028" title=" " alt="" coords="125,736,214,748,214,753,124,742"/>
+<area shape="rect" id="Node000030" href="$class_q_m_l_executor_gui_int.html" title="Interface of gui for QMLExecutor plugin." alt="" coords="209,795,344,820"/>
+<area shape="poly" id="edge48_Node000002_Node000030" title=" " alt="" coords="118,750,193,781,225,792,224,797,191,786,116,755"/>
+<area shape="rect" id="Node000033" href="$class_q_m_l_executor_private.html" title="QMLExecutor plugin private implementation." alt="" coords="206,844,347,870"/>
+<area shape="poly" id="edge51_Node000002_Node000033" title=" " alt="" coords="100,755,141,794,193,831,217,841,215,846,190,835,137,798,96,759"/>
+<area shape="rect" id="Node000031" href="$class_gui_mock.html" title="fakeit is broken so wrap broken solution to get it working with qt signals" alt="" coords="445,771,518,796"/>
+<area shape="poly" id="edge49_Node000030_Node000031" title=" " alt="" coords="359,795,444,785,445,790,360,800"/>
+<area shape="rect" id="Node000032" href="$class_q_m_l_executor_gui_impl.html" title="QMLExecutor plugin gui implementation." alt="" coords="409,820,554,846"/>
+<area shape="poly" id="edge50_Node000030_Node000032" title=" " alt="" coords="360,815,409,821,408,827,359,820"/>
 </map>

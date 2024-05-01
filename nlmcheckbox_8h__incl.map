@@ -1,8 +1,13 @@
 <map id="src/components/canrawsender/gui/nlmcheckbox.h" name="src/components/canrawsender/gui/nlmcheckbox.h">
-<area shape="rect" id="node1" title=" " alt="" coords="129,5,329,45"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,93,96,119"/>
-<area shape="rect" id="node3" title=" " alt="" coords="121,93,223,119"/>
-<area shape="rect" id="node4" title=" " alt="" coords="247,93,326,119"/>
-<area shape="rect" id="node5" href="$checkboxinterface_8h.html" title=" " alt="" coords="351,93,559,119"/>
-<area shape="rect" id="node6" title=" " alt="" coords="415,167,494,192"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="128,5,328,46"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,94,96,120"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="185,49,93,90,91,85,182,44"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="119,94,222,120"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="216,48,191,83,186,79,212,45"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="246,94,324,120"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="244,45,269,79,265,83,240,48"/>
+<area shape="rect" id="Node000005" href="$checkboxinterface_8h.html" title=" " alt="" coords="348,94,556,120"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="285,44,404,86,402,91,283,49"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="413,168,491,193"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="455,120,455,152,449,152,449,120"/>
 </map>

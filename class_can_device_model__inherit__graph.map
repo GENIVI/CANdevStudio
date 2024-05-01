@@ -1,6 +1,9 @@
 <map id="CanDeviceModel" name="CanDeviceModel">
-<area shape="rect" id="node1" title="The class provides node graphical representation of CanDevice." alt="" coords="46,240,166,265"/>
-<area shape="rect" id="node2" href="$class_component_model.html" title=" " alt="" coords="5,152,207,192"/>
-<area shape="rect" id="node3" href="$struct_component_model_interface.html" title=" " alt="" coords="19,79,193,104"/>
-<area shape="rect" id="node4" title=" " alt="" coords="19,5,193,31"/>
+<area shape="rect" id="Node000001" title="The class provides node graphical representation of CanDevice." alt="" coords="46,241,165,267"/>
+<area shape="rect" id="Node000002" href="$class_component_model.html" title=" " alt="" coords="5,153,206,193"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="108,209,108,241,103,241,103,209"/>
+<area shape="rect" id="Node000003" href="$struct_component_model_interface.html" title=" " alt="" coords="19,79,192,105"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="108,120,108,152,103,152,103,120"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="19,5,192,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="108,46,108,79,103,79,103,46"/>
 </map>

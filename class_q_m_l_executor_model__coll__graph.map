@@ -1,9 +1,15 @@
 <map id="QMLExecutorModel" name="QMLExecutorModel">
-<area shape="rect" id="node1" title="The QMLExecutorModel A model for QML executor component." alt="" coords="105,257,241,283"/>
-<area shape="rect" id="node2" href="$class_component_model.html" title=" " alt="" coords="64,168,281,208"/>
-<area shape="rect" id="node3" href="$struct_component_model_interface.html" title=" " alt="" coords="5,80,180,105"/>
-<area shape="rect" id="node4" title=" " alt="" coords="6,5,179,31"/>
-<area shape="rect" id="node5" href="$class_q_m_l_executor.html" title=" " alt="" coords="205,80,306,105"/>
-<area shape="rect" id="node6" title=" " alt="" coords="212,5,283,31"/>
-<area shape="rect" id="node7" href="$struct_component_interface.html" title="Interface to be implemented by every component." alt="" coords="307,5,446,31"/>
+<area shape="rect" id="Node000001" title="The QMLExecutorModel A model for QML executor component." alt="" coords="104,259,240,285"/>
+<area shape="rect" id="Node000002" href="$class_component_model.html" title=" " alt="" coords="64,169,280,210"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="175,225,175,259,169,259,169,225"/>
+<area shape="rect" id="Node000003" href="$struct_component_model_interface.html" title=" " alt="" coords="5,80,179,106"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="114,116,157,167,153,170,110,119"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="6,5,178,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="95,46,95,80,89,80,89,46"/>
+<area shape="rect" id="Node000005" href="$class_q_m_l_executor.html" title=" " alt="" coords="203,80,304,106"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="235,119,191,170,187,167,231,116"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="211,5,280,31"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="251,46,255,80,249,80,246,47"/>
+<area shape="rect" id="Node000007" href="$struct_component_interface.html" title="Interface to be implemented by every component." alt="" coords="304,5,443,31"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="342,42,275,82,272,78,339,37"/>
 </map>

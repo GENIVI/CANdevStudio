@@ -1,12 +1,23 @@
 <map id="src/components/qmlexecutor/canbusmodel.hpp" name="src/components/qmlexecutor/canbusmodel.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="233,5,423,45"/>
-<area shape="rect" id="node2" href="$qmlexecutorguiimpl_8h.html" title=" " alt="" coords="101,93,291,133"/>
-<area shape="rect" id="node5" href="$qmlexecutor__p_8cpp.html" title=" " alt="" coords="219,284,408,324"/>
-<area shape="rect" id="node6" href="$qmlexecutormodel_8h.html" title=" " alt="" coords="432,93,621,133"/>
-<area shape="rect" id="node3" href="$qmlexecutor__p_8h.html" title=" " alt="" coords="101,189,291,229"/>
-<area shape="rect" id="node4" href="$qmlexecutor_8cpp.html" title=" " alt="" coords="5,284,195,324"/>
-<area shape="rect" id="node7" href="$qmlexecutormodel_8cpp.html" title=" " alt="" coords="432,284,621,324"/>
-<area shape="rect" id="node8" href="$qmlexecutorplugin_8h.html" title=" " alt="" coords="432,189,621,229"/>
-<area shape="rect" id="node9" href="$qmlexecutor__test_8cpp.html" title=" " alt="" coords="645,189,835,229"/>
-<area shape="rect" id="node10" href="$qmlexecutormodel__test_8cpp.html" title=" " alt="" coords="859,181,1048,236"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="232,5,420,46"/>
+<area shape="rect" id="Node000002" href="$qmlexecutorguiimpl_8h.html" title=" " alt="" coords="100,94,288,135"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="285,57,225,96,223,91,282,53"/>
+<area shape="rect" id="Node000005" href="$qmlexecutor__p_8cpp.html" title=" " alt="" coords="217,286,406,327"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="327,62,315,286,310,286,322,61"/>
+<area shape="rect" id="Node000006" href="$qmlexecutormodel_8h.html" title=" " alt="" coords="429,94,618,135"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="386,50,480,91,477,96,384,55"/>
+<area shape="rect" id="Node000003" href="$qmlexecutor__p_8h.html" title=" " alt="" coords="100,190,288,231"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="197,150,197,190,192,190,192,150"/>
+<area shape="rect" id="Node000004" href="$qmlexecutor_8cpp.html" title=" " alt="" coords="5,286,194,327"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="166,244,121,288,117,284,162,240"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="232,238,289,284,286,288,228,243"/>
+<area shape="rect" id="Node000007" href="$qmlexecutormodel_8cpp.html" title=" " alt="" coords="429,286,618,327"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="460,145,437,162,419,184,411,211,419,237,443,264,473,284,470,288,439,268,415,240,405,211,414,181,433,158,457,140"/>
+<area shape="rect" id="Node000008" href="$qmlexecutorplugin_8h.html" title=" " alt="" coords="429,190,618,231"/>
+<area shape="poly" id="edge8_Node000006_Node000008" title=" " alt="" coords="526,150,526,190,521,190,521,150"/>
+<area shape="rect" id="Node000009" href="$qmlexecutor__test_8cpp.html" title=" " alt="" coords="641,190,830,231"/>
+<area shape="poly" id="edge10_Node000006_Node000009" title=" " alt="" coords="583,139,692,187,690,192,581,144"/>
+<area shape="rect" id="Node000010" href="$qmlexecutormodel__test_8cpp.html" title=" " alt="" coords="853,183,1042,238"/>
+<area shape="poly" id="edge11_Node000006_Node000010" title=" " alt="" coords="634,135,843,180,853,183,852,188,842,185,632,140"/>
+<area shape="poly" id="edge9_Node000008_Node000007" title=" " alt="" coords="526,246,526,286,521,286,521,246"/>
 </map>

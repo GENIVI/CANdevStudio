@@ -1,8 +1,14 @@
 <map id="src/gui/projectconfig/propertyeditordialog.h" name="src/gui/projectconfig/propertyeditordialog.h">
-<area shape="rect" id="node1" title=" " alt="" coords="166,5,314,45"/>
-<area shape="rect" id="node2" href="$pcimpl_8h.html" title=" " alt="" coords="5,101,144,141"/>
-<area shape="rect" id="node3" href="$projectconfig__p_8h.html" title=" " alt="" coords="59,196,197,236"/>
-<area shape="rect" id="node5" href="$propertyeditordialog_8cpp.html" title=" " alt="" coords="219,101,381,141"/>
-<area shape="rect" id="node6" href="$projectconfig__test__noqrc_8cpp.html" title=" " alt="" coords="405,93,544,148"/>
-<area shape="rect" id="node4" href="$projectconfig_8cpp.html" title=" " alt="" coords="59,284,197,324"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="166,5,313,46"/>
+<area shape="rect" id="Node000002" href="$pcimpl_8h.html" title=" " alt="" coords="5,102,143,142"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="193,56,110,103,107,99,190,52"/>
+<area shape="rect" id="Node000003" href="$projectconfig__p_8h.html" title=" " alt="" coords="59,198,196,238"/>
+<area shape="poly" id="edge4_Node000001_Node000003" title=" " alt="" coords="222,61,141,199,136,196,218,58"/>
+<area shape="rect" id="Node000005" href="$propertyeditordialog_8cpp.html" title=" " alt="" coords="219,102,380,142"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="262,58,289,100,285,103,258,60"/>
+<area shape="rect" id="Node000006" href="$projectconfig__test__noqrc_8cpp.html" title=" " alt="" coords="404,94,541,150"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="303,50,406,91,404,96,301,55"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="95,154,119,196,114,199,90,157"/>
+<area shape="rect" id="Node000004" href="$projectconfig_8cpp.html" title=" " alt="" coords="59,286,196,327"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="130,254,130,286,125,286,125,254"/>
 </map>

@@ -1,12 +1,21 @@
 <map id="src/components/qmlexecutor/tests/guimock.h" name="src/components/qmlexecutor/tests/guimock.h">
-<area shape="rect" id="node1" title=" " alt="" coords="102,5,291,45"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,93,84,119"/>
-<area shape="rect" id="node3" href="$context_8h.html" title=" " alt="" coords="109,93,183,119"/>
-<area shape="rect" id="node6" title=" " alt="" coords="208,93,287,119"/>
-<area shape="rect" id="node7" href="$qmlexecutorguiint_8h.html" title=" " alt="" coords="311,93,466,119"/>
-<area shape="rect" id="node4" title=" " alt="" coords="71,167,139,192"/>
-<area shape="rect" id="node5" title=" " alt="" coords="163,167,214,192"/>
-<area shape="rect" id="node8" title=" " alt="" coords="291,167,329,192"/>
-<area shape="rect" id="node9" title=" " alt="" coords="353,167,424,192"/>
-<area shape="rect" id="node10" title=" " alt="" coords="448,167,497,192"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="99,5,288,46"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,94,83,120"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="157,49,81,89,79,84,155,44"/>
+<area shape="rect" id="Node000003" href="$context_8h.html" title=" " alt="" coords="107,94,181,120"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="183,48,162,82,157,79,179,45"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="205,94,283,120"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="208,45,230,79,226,82,204,48"/>
+<area shape="rect" id="Node000007" href="$qmlexecutorguiint_8h.html" title=" " alt="" coords="307,94,461,120"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="242,44,342,85,340,90,240,49"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="69,168,136,193"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="139,121,120,156,115,153,135,119"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="161,168,210,193"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="153,119,173,153,168,156,149,121"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="287,168,326,193"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="373,122,333,159,329,155,369,118"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="349,168,419,193"/>
+<area shape="poly" id="edge8_Node000007_Node000009" title=" " alt="" coords="387,120,387,152,381,152,381,120"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="443,168,491,193"/>
+<area shape="poly" id="edge9_Node000007_Node000010" title=" " alt="" coords="400,118,443,155,440,159,396,122"/>
 </map>

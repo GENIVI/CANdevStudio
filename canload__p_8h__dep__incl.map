@@ -1,5 +1,7 @@
 <map id="src/components/canload/canload_p.h" name="src/components/canload/canload_p.h">
-<area shape="rect" id="node1" title=" " alt="" coords="99,5,263,45"/>
-<area shape="rect" id="node2" href="$canload_8cpp.html" title=" " alt="" coords="5,93,169,133"/>
-<area shape="rect" id="node3" href="$canload__p_8cpp.html" title=" " alt="" coords="193,93,357,133"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="99,5,262,46"/>
+<area shape="rect" id="Node000002" href="$canload_8cpp.html" title=" " alt="" coords="5,94,169,135"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="150,59,110,96,106,92,146,55"/>
+<area shape="rect" id="Node000003" href="$canload__p_8cpp.html" title=" " alt="" coords="193,94,357,135"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="215,55,255,92,252,96,211,59"/>
 </map>

@@ -1,6 +1,9 @@
 <map id="src/components/candevice/candeviceqt.h" name="src/components/candevice/candeviceqt.h">
-<area shape="rect" id="node1" title=" " alt="" coords="108,5,287,45"/>
-<area shape="rect" id="node2" href="$candevice__p_8h.html" title=" " alt="" coords="5,93,184,133"/>
-<area shape="rect" id="node4" href="$candeviceqt__test_8cpp.html" title=" " alt="" coords="209,93,391,133"/>
-<area shape="rect" id="node3" href="$candevice_8cpp.html" title=" " alt="" coords="5,181,184,221"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="107,5,284,46"/>
+<area shape="rect" id="Node000002" href="$candevice__p_8h.html" title=" " alt="" coords="5,94,183,135"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="162,58,119,96,115,92,159,54"/>
+<area shape="rect" id="Node000004" href="$candeviceqt__test_8cpp.html" title=" " alt="" coords="207,94,389,135"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="232,54,277,92,273,96,229,58"/>
+<area shape="rect" id="Node000003" href="$candevice_8cpp.html" title=" " alt="" coords="5,183,183,223"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="97,150,97,182,91,182,91,150"/>
 </map>

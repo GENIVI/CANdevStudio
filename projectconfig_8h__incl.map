@@ -1,7 +1,11 @@
 <map id="src/gui/projectconfig/projectconfig.h" name="src/gui/projectconfig/projectconfig.h">
-<area shape="rect" id="node1" title=" " alt="" coords="70,5,209,45"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,93,143,119"/>
-<area shape="rect" id="node3" href="$context_8h.html" title=" " alt="" coords="167,93,242,119"/>
-<area shape="rect" id="node4" title=" " alt="" coords="128,167,196,192"/>
-<area shape="rect" id="node5" title=" " alt="" coords="221,167,271,192"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="69,5,206,46"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,94,142,120"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="124,48,95,83,91,80,120,45"/>
+<area shape="rect" id="Node000003" href="$context_8h.html" title=" " alt="" coords="166,94,240,120"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="156,45,185,80,181,83,152,48"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="128,168,195,193"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="198,121,178,156,174,153,194,119"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="220,168,269,193"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="212,119,232,153,227,156,207,121"/>
 </map>

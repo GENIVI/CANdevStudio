@@ -1,9 +1,15 @@
 <map id="CanSignalDataModel" name="CanSignalDataModel">
-<area shape="rect" id="node1" title=" " alt="" coords="103,257,245,283"/>
-<area shape="rect" id="node2" href="$class_component_model.html" title=" " alt="" coords="77,168,271,208"/>
-<area shape="rect" id="node3" href="$struct_component_model_interface.html" title=" " alt="" coords="5,80,180,105"/>
-<area shape="rect" id="node4" title=" " alt="" coords="6,5,179,31"/>
-<area shape="rect" id="node5" href="$class_can_signal_data.html" title=" " alt="" coords="204,80,312,105"/>
-<area shape="rect" id="node6" title=" " alt="" coords="213,5,284,31"/>
-<area shape="rect" id="node7" href="$struct_component_interface.html" title="Interface to be implemented by every component." alt="" coords="309,5,447,31"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="102,259,245,285"/>
+<area shape="rect" id="Node000002" href="$class_component_model.html" title=" " alt="" coords="77,169,270,210"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="176,225,176,259,171,259,171,225"/>
+<area shape="rect" id="Node000003" href="$struct_component_model_interface.html" title=" " alt="" coords="5,80,179,106"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="114,116,158,167,154,170,110,119"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="6,5,178,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="95,46,95,80,89,80,89,46"/>
+<area shape="rect" id="Node000005" href="$class_can_signal_data.html" title=" " alt="" coords="202,80,310,106"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="238,119,193,170,189,167,234,116"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="212,5,281,31"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="253,46,257,80,252,80,247,47"/>
+<area shape="rect" id="Node000007" href="$struct_component_interface.html" title="Interface to be implemented by every component." alt="" coords="306,5,444,31"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="343,42,277,82,274,78,341,37"/>
 </map>

@@ -1,11 +1,21 @@
 <map id="src/components/canrawplayer/canrawplayer.h" name="src/components/canrawplayer/canrawplayer.h">
-<area shape="rect" id="node1" title=" " alt="" coords="312,5,507,45"/>
-<area shape="rect" id="node2" href="$canrawplayer_8cpp.html" title=" " alt="" coords="5,189,200,229"/>
-<area shape="rect" id="node3" href="$canrawplayer__p_8h.html" title=" " alt="" coords="203,93,397,133"/>
-<area shape="rect" id="node5" href="$canrawplayermodel_8h.html" title=" " alt="" coords="421,93,616,133"/>
-<area shape="rect" id="node9" href="$canrawplayer__test_8cpp.html" title=" " alt="" coords="640,93,835,133"/>
-<area shape="rect" id="node4" href="$canrawplayer__p_8cpp.html" title=" " alt="" coords="224,189,419,229"/>
-<area shape="rect" id="node6" href="$canrawplayermodel_8cpp.html" title=" " alt="" coords="425,284,620,324"/>
-<area shape="rect" id="node7" href="$canrawplayerplugin_8h.html" title=" " alt="" coords="493,189,688,229"/>
-<area shape="rect" id="node8" href="$canrawplayermodel__test_8cpp.html" title=" " alt="" coords="712,181,907,236"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="291,5,485,46"/>
+<area shape="rect" id="Node000002" href="$canrawplayer_8cpp.html" title=" " alt="" coords="5,190,200,231"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="276,47,221,66,171,96,150,118,133,143,111,191,106,189,128,141,145,114,168,92,219,61,275,42"/>
+<area shape="rect" id="Node000003" href="$canrawplayer__p_8h.html" title=" " alt="" coords="181,94,376,135"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="353,58,305,96,302,91,349,54"/>
+<area shape="rect" id="Node000005" href="$canrawplayermodel_8h.html" title=" " alt="" coords="400,94,594,135"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="426,54,474,91,471,96,423,58"/>
+<area shape="rect" id="Node000009" href="$canrawplayer__test_8cpp.html" title=" " alt="" coords="619,94,813,135"/>
+<area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="478,48,642,91,641,96,477,53"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="230,145,141,192,138,187,227,140"/>
+<area shape="rect" id="Node000004" href="$canrawplayer__p_8cpp.html" title=" " alt="" coords="224,190,418,231"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="296,148,315,189,310,191,291,150"/>
+<area shape="rect" id="Node000006" href="$canrawplayermodel_8cpp.html" title=" " alt="" coords="425,286,620,327"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="488,150,480,193,480,215,484,238,495,263,509,285,504,288,490,265,479,239,475,216,475,192,483,149"/>
+<area shape="rect" id="Node000007" href="$canrawplayerplugin_8h.html" title=" " alt="" coords="493,190,688,231"/>
+<area shape="poly" id="edge7_Node000005_Node000007" title=" " alt="" coords="529,144,573,188,569,192,525,147"/>
+<area shape="rect" id="Node000008" href="$canrawplayermodel__test_8cpp.html" title=" " alt="" coords="712,183,906,238"/>
+<area shape="poly" id="edge9_Node000005_Node000008" title=" " alt="" coords="578,137,720,180,718,185,576,142"/>
+<area shape="poly" id="edge8_Node000007_Node000006" title=" " alt="" coords="570,245,539,288,534,284,565,242"/>
 </map>

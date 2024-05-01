@@ -1,9 +1,15 @@
 <map id="src/components/canload/canloadpainter.h" name="src/components/canload/canloadpainter.h">
-<area shape="rect" id="node1" title=" " alt="" coords="273,5,437,45"/>
-<area shape="rect" id="node2" href="$nodepainter_8h.html" title=" " alt="" coords="306,93,405,119"/>
-<area shape="rect" id="node3" title=" " alt="" coords="5,167,79,192"/>
-<area shape="rect" id="node4" title=" " alt="" coords="103,167,285,192"/>
-<area shape="rect" id="node5" title=" " alt="" coords="309,167,401,192"/>
-<area shape="rect" id="node6" title=" " alt="" coords="426,167,581,192"/>
-<area shape="rect" id="node7" title=" " alt="" coords="605,167,789,192"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="271,5,434,46"/>
+<area shape="rect" id="Node000002" href="$nodepainter_8h.html" title=" " alt="" coords="303,94,401,120"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="355,46,355,78,350,78,350,46"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,168,78,193"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="303,122,93,170,92,164,302,117"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="102,168,283,193"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="326,123,234,163,232,159,324,118"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="307,168,398,193"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="355,120,355,152,350,152,350,120"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="422,168,576,193"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="378,118,461,158,459,163,376,123"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="599,168,783,193"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="402,116,619,161,618,167,401,121"/>
 </map>

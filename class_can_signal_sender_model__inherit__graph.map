@@ -1,6 +1,9 @@
 <map id="CanSignalSenderModel" name="CanSignalSenderModel">
-<area shape="rect" id="node1" title=" " alt="" coords="35,240,192,265"/>
-<area shape="rect" id="node2" href="$class_component_model.html" title=" " alt="" coords="5,152,221,192"/>
-<area shape="rect" id="node3" href="$struct_component_model_interface.html" title=" " alt="" coords="26,79,201,104"/>
-<area shape="rect" id="node4" title=" " alt="" coords="27,5,200,31"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="35,241,191,267"/>
+<area shape="rect" id="Node000002" href="$class_component_model.html" title=" " alt="" coords="5,153,221,193"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="116,209,116,241,110,241,110,209"/>
+<area shape="rect" id="Node000003" href="$struct_component_model_interface.html" title=" " alt="" coords="26,79,200,105"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="116,120,116,152,110,152,110,120"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="27,5,199,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="116,46,116,79,110,79,110,46"/>
 </map>

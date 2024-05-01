@@ -1,8 +1,13 @@
 <map id="CanSignalViewerPrivate" name="CanSignalViewerPrivate">
-<area shape="rect" id="node1" title=" " alt="" coords="202,197,365,223"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,87,76,113"/>
-<area shape="rect" id="node3" href="$struct_context.html" title=" " alt="" coords="101,80,277,120"/>
-<area shape="rect" id="node4" href="$struct_can_signal_viewer_gui_int.html" title=" " alt="" coords="301,87,457,113"/>
-<area shape="rect" id="node5" href="$class_sort_model.html" title=" " alt="" coords="481,87,563,113"/>
-<area shape="rect" id="node6" title=" " alt="" coords="446,5,598,31"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="201,199,362,225"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,88,75,114"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="81,118,256,196,253,201,79,123"/>
+<area shape="rect" id="Node000003" href="$struct_context.html" title=" " alt="" coords="99,80,274,121"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="216,131,273,197,269,200,212,135"/>
+<area shape="rect" id="Node000004" href="$struct_can_signal_viewer_gui_int.html" title=" " alt="" coords="298,88,454,114"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="358,127,294,201,290,197,354,124"/>
+<area shape="rect" id="Node000005" href="$class_sort_model.html" title=" " alt="" coords="477,88,558,114"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="479,123,362,177,310,201,308,196,360,173,477,118"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="442,5,593,31"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="520,47,520,88,515,88,515,47"/>
 </map>

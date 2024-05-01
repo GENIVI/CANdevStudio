@@ -1,5 +1,7 @@
 <map id="CanLoadPrivate" name="CanLoadPrivate">
-<area shape="rect" id="node1" title=" " alt="" coords="42,93,157,119"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,5,76,31"/>
-<area shape="rect" id="node3" href="$struct_context.html" title=" " alt="" coords="101,5,215,31"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="40,94,155,120"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,75,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="58,42,92,92,87,95,54,45"/>
+<area shape="rect" id="Node000003" href="$struct_context.html" title=" " alt="" coords="99,5,213,31"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="142,45,108,95,103,92,137,42"/>
 </map>

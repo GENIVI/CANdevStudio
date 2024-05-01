@@ -1,4 +1,5 @@
 <map id="src/gui/projectconfig/dragwidget.h" name="src/gui/projectconfig/dragwidget.h">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,144,45"/>
-<area shape="rect" id="node2" title=" " alt="" coords="40,93,109,119"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,143,46"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="40,94,108,120"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="77,46,77,78,71,78,71,46"/>
 </map>

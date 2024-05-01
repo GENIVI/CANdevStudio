@@ -1,8 +1,10 @@
 <map id="src/gui/projectconfig/tests" name="src/gui/projectconfig/tests">
-<area shape="rect" id="node1" href="dir_ed23a21a7f9ae87ed439a8cc74d35382.html" title="tests" alt="" coords="80,52,131,77"/>
-<area shape="rect" id="node2" href="dir_3c4c7c1a85608ccd561c026bec818e51.html" title="components" alt="" coords="5,125,99,151"/>
-<area shape="rect" id="edge1-headlabel" href="dir_000041_000013.html" title="4" alt="" coords="75,108,83,123"/>
-<area shape="rect" id="node3" href="dir_fdedb0aba14d44ce9d99bc100e026e6a.html" title="common" alt="" coords="123,125,195,151"/>
-<area shape="rect" id="edge2-headlabel" href="dir_000041_000012.html" title="2" alt="" coords="141,98,149,113"/>
-<area shape="rect" id="clust1" href="dir_7e916f19b7b0501fa5599eed2086abbb.html" title="projectconfig" alt="" coords="59,16,153,88"/>
+<area shape="rect" id="node1" href="dir_ed23a21a7f9ae87ed439a8cc74d35382.html" title="tests" alt="" coords="78,52,129,78"/>
+<area shape="rect" id="node2" href="dir_3c4c7c1a85608ccd561c026bec818e51.html" title="components" alt="" coords="5,126,98,152"/>
+<area shape="poly" id="edge1" href="dir_000041_000013.html" alt="" coords="97,80,71,115,67,112,93,77"/>
+<area shape="rect" id="edge1-headlabel" href="dir_000041_000013.html" title="4" alt="" coords="74,108,81,123"/>
+<area shape="rect" id="node3" href="dir_fdedb0aba14d44ce9d99bc100e026e6a.html" title="common" alt="" coords="121,126,193,152"/>
+<area shape="poly" id="edge2" href="dir_000041_000012.html" alt="" coords="114,77,141,112,137,115,110,80"/>
+<area shape="rect" id="edge2-headlabel" href="dir_000041_000012.html" title="2" alt="" coords="140,98,147,113"/>
+<area shape="rect" id="clust1" href="dir_7e916f19b7b0501fa5599eed2086abbb.html" title="projectconfig" alt="" coords="57,16,150,89"/>
 </map>

@@ -1,4 +1,5 @@
 <map id="src/components/cansignaldata/searchmodel.h" name="src/components/cansignaldata/searchmodel.h">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,204,45"/>
-<area shape="rect" id="node2" title=" " alt="" coords="29,93,181,119"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,204,46"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="29,94,180,120"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="107,46,107,78,102,78,102,46"/>
 </map>

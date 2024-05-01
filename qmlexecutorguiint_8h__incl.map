@@ -1,6 +1,9 @@
 <map id="src/components/qmlexecutor/gui/qmlexecutorguiint.h" name="src/components/qmlexecutor/gui/qmlexecutorguiint.h">
-<area shape="rect" id="node1" title=" " alt="" coords="9,5,198,45"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,93,44,119"/>
-<area shape="rect" id="node3" title=" " alt="" coords="68,93,139,119"/>
-<area shape="rect" id="node4" title=" " alt="" coords="163,93,212,119"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="8,5,196,46"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,94,44,120"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="85,48,49,84,45,81,81,45"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="67,94,137,120"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="105,46,105,78,99,78,99,46"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="160,94,209,120"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="124,44,163,81,159,85,120,48"/>
 </map>

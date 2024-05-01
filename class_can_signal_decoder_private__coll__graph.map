@@ -1,6 +1,10 @@
 <map id="CanSignalDecoderPrivate" name="CanSignalDecoderPrivate">
-<area shape="rect" id="node1" title=" " alt="" coords="30,168,201,193"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,5,76,31"/>
-<area shape="rect" id="node4" href="$class_can_db_handler.html" title=" " alt="" coords="62,80,169,105"/>
-<area shape="rect" id="node3" href="$struct_context.html" title=" " alt="" coords="193,80,307,105"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="30,169,199,195"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,75,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="41,46,44,75,52,105,75,140,102,167,98,170,71,144,47,107,38,76,36,46"/>
+<area shape="rect" id="Node000004" href="$class_can_db_handler.html" title=" " alt="" coords="62,80,167,106"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="65,40,104,78,101,82,61,44"/>
+<area shape="rect" id="Node000003" href="$struct_context.html" title=" " alt="" coords="191,80,305,106"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="218,117,135,171,132,166,215,112"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="117,122,117,169,112,169,112,122"/>
 </map>

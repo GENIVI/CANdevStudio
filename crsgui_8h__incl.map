@@ -1,8 +1,14 @@
 <map id="src/components/canrawsender/gui/crsgui.h" name="src/components/canrawsender/gui/crsgui.h">
-<area shape="rect" id="node1" title=" " alt="" coords="164,5,364,45"/>
-<area shape="rect" id="node2" href="$crsguiinterface_8h.html" title=" " alt="" coords="109,93,227,119"/>
-<area shape="rect" id="node5" title=" " alt="" coords="231,167,299,192"/>
-<area shape="rect" id="node6" title=" " alt="" coords="301,93,432,119"/>
-<area shape="rect" id="node3" title=" " alt="" coords="5,167,104,192"/>
-<area shape="rect" id="node4" title=" " alt="" coords="129,167,207,192"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="162,5,362,46"/>
+<area shape="rect" id="Node000002" href="$crsguiinterface_8h.html" title=" " alt="" coords="108,94,224,120"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="240,48,194,86,191,82,237,44"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="228,168,296,193"/>
+<area shape="poly" id="edge6_Node000001_Node000005" title=" " alt="" coords="265,46,265,152,259,152,259,46"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="300,94,429,120"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="289,44,339,82,335,86,286,49"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,168,103,193"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="148,122,87,161,84,157,146,118"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="127,168,205,193"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="169,120,169,152,163,152,163,120"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="184,118,236,156,232,161,181,122"/>
 </map>

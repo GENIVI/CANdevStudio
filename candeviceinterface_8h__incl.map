@@ -1,6 +1,9 @@
 <map id="src/components/candevice/candeviceinterface.h" name="src/components/candevice/candeviceinterface.h">
-<area shape="rect" id="node1" title=" " alt="" coords="154,5,333,45"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,93,124,119"/>
-<area shape="rect" id="node3" title=" " alt="" coords="149,93,338,119"/>
-<area shape="rect" id="node4" title=" " alt="" coords="363,93,441,119"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="153,5,330,46"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,94,123,120"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="198,49,106,90,104,85,196,44"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="147,94,336,120"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="244,46,244,78,239,78,239,46"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="360,94,437,120"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="282,44,362,84,360,89,279,49"/>
 </map>

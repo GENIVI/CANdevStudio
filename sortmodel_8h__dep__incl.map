@@ -1,10 +1,17 @@
 <map id="src/common/sortmodel.h" name="src/common/sortmodel.h">
-<area shape="rect" id="node1" title=" " alt="" coords="320,5,485,31"/>
-<area shape="rect" id="node2" href="$sortmodel_8cpp.html" title=" " alt="" coords="5,86,184,111"/>
-<area shape="rect" id="node3" href="$common__test_8cpp.html" title=" " alt="" coords="208,79,389,119"/>
-<area shape="rect" id="node4" href="$canrawview__p_8h.html" title=" " alt="" coords="414,79,602,119"/>
-<area shape="rect" id="node6" href="$cansignalviewer__p_8h.html" title=" " alt="" coords="626,79,838,119"/>
-<area shape="rect" id="node5" href="$canrawview_8cpp.html" title=" " alt="" coords="414,167,602,207"/>
-<area shape="rect" id="node7" href="$cansignalviewer_8cpp.html" title=" " alt="" coords="626,167,838,207"/>
-<area shape="rect" id="node8" href="$cansignalviewer__p_8cpp.html" title=" " alt="" coords="862,167,1074,207"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="320,5,485,31"/>
+<area shape="rect" id="Node000002" href="$sortmodel_8cpp.html" title=" " alt="" coords="5,87,184,112"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="341,38,143,88,141,83,340,33"/>
+<area shape="rect" id="Node000003" href="$common__test_8cpp.html" title=" " alt="" coords="208,79,389,120"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="376,43,326,81,323,76,373,38"/>
+<area shape="rect" id="Node000004" href="$canrawview__p_8h.html" title=" " alt="" coords="413,79,600,120"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="432,38,482,76,479,81,429,43"/>
+<area shape="rect" id="Node000006" href="$cansignalviewer__p_8h.html" title=" " alt="" coords="625,79,836,120"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="468,33,649,76,648,81,467,38"/>
+<area shape="rect" id="Node000005" href="$canrawview_8cpp.html" title=" " alt="" coords="413,168,600,208"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="509,135,509,167,504,167,504,135"/>
+<area shape="rect" id="Node000007" href="$cansignalviewer_8cpp.html" title=" " alt="" coords="625,168,836,208"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="733,135,733,167,728,167,728,135"/>
+<area shape="rect" id="Node000008" href="$cansignalviewer__p_8cpp.html" title=" " alt="" coords="861,168,1072,208"/>
+<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="799,123,914,165,912,170,797,128"/>
 </map>

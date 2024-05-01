@@ -1,11 +1,21 @@
 <map id="src/components/cansignaldecoder/cansignaldecoder.h" name="src/components/cansignaldecoder/cansignaldecoder.h">
-<area shape="rect" id="node1" title=" " alt="" coords="323,5,543,45"/>
-<area shape="rect" id="node2" href="$cansignaldecoder_8cpp.html" title=" " alt="" coords="5,189,225,229"/>
-<area shape="rect" id="node3" href="$cansignaldecoder__p_8h.html" title=" " alt="" coords="201,93,421,133"/>
-<area shape="rect" id="node5" href="$cansignaldecodermodel_8h.html" title=" " alt="" coords="445,93,665,133"/>
-<area shape="rect" id="node9" href="$cansignaldecoder__test_8cpp.html" title=" " alt="" coords="689,93,909,133"/>
-<area shape="rect" id="node4" href="$cansignaldecoder__p_8cpp.html" title=" " alt="" coords="249,189,469,229"/>
-<area shape="rect" id="node6" href="$cansignaldecodermodel_8cpp.html" title=" " alt="" coords="471,284,691,324"/>
-<area shape="rect" id="node7" href="$cansignaldecoderplugin_8h.html" title=" " alt="" coords="545,189,765,229"/>
-<area shape="rect" id="node8" href="$cansignaldecodermodel__test_8cpp.html" title=" " alt="" coords="789,181,1009,236"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="321,5,541,46"/>
+<area shape="rect" id="Node000002" href="$cansignaldecoder_8cpp.html" title=" " alt="" coords="5,190,225,231"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="307,46,246,65,217,79,190,96,167,118,149,143,125,191,120,189,144,140,163,114,187,92,214,74,244,60,305,41"/>
+<area shape="rect" id="Node000003" href="$cansignaldecoder__p_8h.html" title=" " alt="" coords="200,94,419,135"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="393,57,339,96,336,91,390,53"/>
+<area shape="rect" id="Node000005" href="$cansignaldecodermodel_8h.html" title=" " alt="" coords="444,94,663,135"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="473,53,527,91,524,96,470,57"/>
+<area shape="rect" id="Node000009" href="$cansignaldecoder__test_8cpp.html" title=" " alt="" coords="688,94,907,135"/>
+<area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="530,47,715,91,714,96,529,53"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="257,144,157,192,155,187,254,139"/>
+<area shape="rect" id="Node000004" href="$cansignaldecoder__p_8cpp.html" title=" " alt="" coords="249,190,469,231"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="329,147,351,189,346,191,325,150"/>
+<area shape="rect" id="Node000006" href="$cansignaldecodermodel_8cpp.html" title=" " alt="" coords="469,286,689,327"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="541,150,531,193,530,215,534,238,546,263,562,284,558,288,541,266,528,239,524,216,525,192,536,149"/>
+<area shape="rect" id="Node000007" href="$cansignaldecoderplugin_8h.html" title=" " alt="" coords="543,190,762,231"/>
+<area shape="poly" id="edge7_Node000005_Node000007" title=" " alt="" coords="587,144,634,188,630,192,583,147"/>
+<area shape="rect" id="Node000008" href="$cansignaldecodermodel__test_8cpp.html" title=" " alt="" coords="787,183,1006,238"/>
+<area shape="poly" id="edge9_Node000005_Node000008" title=" " alt="" coords="641,137,798,180,797,185,639,142"/>
+<area shape="poly" id="edge8_Node000007_Node000006" title=" " alt="" coords="630,245,596,288,592,284,626,241"/>
 </map>

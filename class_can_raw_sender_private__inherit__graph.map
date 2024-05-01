@@ -1,4 +1,5 @@
 <map id="CanRawSenderPrivate" name="CanRawSenderPrivate">
-<area shape="rect" id="node1" title="This class is responsible for manage can raw sender window." alt="" coords="5,79,159,104"/>
-<area shape="rect" id="node2" title=" " alt="" coords="47,5,117,31"/>
+<area shape="rect" id="Node000001" title="This class is responsible for manage can raw sender window." alt="" coords="5,79,158,105"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="47,5,116,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="84,46,84,79,79,79,79,46"/>
 </map>

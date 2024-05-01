@@ -1,6 +1,10 @@
 <map id="QMLExecutorPrivate" name="QMLExecutorPrivate">
-<area shape="rect" id="node1" title="QMLExecutor plugin private implementation." alt="" coords="59,168,201,193"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,5,76,31"/>
-<area shape="rect" id="node4" href="$class_q_m_l_executor_gui_int.html" title="Interface of gui for QMLExecutor plugin." alt="" coords="62,80,198,105"/>
-<area shape="rect" id="node3" href="$struct_context.html" title=" " alt="" coords="222,80,425,105"/>
+<area shape="rect" id="Node000001" title="QMLExecutor plugin private implementation." alt="" coords="59,169,200,195"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,75,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="41,46,43,75,52,105,64,124,79,141,111,166,108,170,76,144,60,127,47,107,38,76,36,47"/>
+<area shape="rect" id="Node000004" href="$class_q_m_l_executor_gui_int.html" title="Interface of gui for QMLExecutor plugin." alt="" coords="62,80,197,106"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="68,39,117,78,113,82,65,43"/>
+<area shape="rect" id="Node000003" href="$struct_context.html" title=" " alt="" coords="221,80,422,106"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="281,115,157,171,155,166,279,110"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="132,122,132,169,127,169,127,122"/>
 </map>

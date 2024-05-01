@@ -1,7 +1,11 @@
 <map id="src/common/datamodeltypes/cansignalmodel.h" name="src/common/datamodeltypes/cansignalmodel.h">
-<area shape="rect" id="node1" title=" " alt="" coords="147,5,337,45"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,93,79,119"/>
-<area shape="rect" id="node3" title=" " alt="" coords="103,93,221,119"/>
-<area shape="rect" id="node4" title=" " alt="" coords="246,93,401,119"/>
-<area shape="rect" id="node5" href="$datadirection_8h.html" title=" " alt="" coords="425,93,531,119"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="147,5,336,46"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,94,78,120"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="193,49,87,90,85,85,191,44"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="102,94,221,120"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="224,48,186,85,183,81,220,45"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="245,94,398,120"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="263,45,300,81,297,85,259,48"/>
+<area shape="rect" id="Node000005" href="$datadirection_8h.html" title=" " alt="" coords="422,94,528,120"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="301,44,425,86,424,91,299,49"/>
 </map>

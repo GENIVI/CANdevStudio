@@ -1,4 +1,5 @@
 <map id="DragWidget" name="DragWidget">
-<area shape="rect" id="node1" title=" " alt="" coords="5,79,95,104"/>
-<area shape="rect" id="node2" title=" " alt="" coords="15,5,85,31"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,79,94,105"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="15,5,84,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="52,46,52,79,47,79,47,46"/>
 </map>

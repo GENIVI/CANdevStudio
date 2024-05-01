@@ -1,9 +1,15 @@
 <map id="CanRawSenderModel" name="CanRawSenderModel">
-<area shape="rect" id="node1" title="The class provides node graphical representation of CanRawSender." alt="" coords="102,257,249,283"/>
-<area shape="rect" id="node2" href="$class_component_model.html" title=" " alt="" coords="61,168,289,208"/>
-<area shape="rect" id="node3" href="$struct_component_model_interface.html" title=" " alt="" coords="5,80,180,105"/>
-<area shape="rect" id="node4" title=" " alt="" coords="6,5,179,31"/>
-<area shape="rect" id="node5" href="$class_can_raw_sender.html" title=" " alt="" coords="205,80,317,105"/>
-<area shape="rect" id="node6" title=" " alt="" coords="215,5,285,31"/>
-<area shape="rect" id="node7" href="$struct_component_interface.html" title="Interface to be implemented by every component." alt="" coords="310,5,449,31"/>
+<area shape="rect" id="Node000001" title="The class provides node graphical representation of CanRawSender." alt="" coords="102,259,248,285"/>
+<area shape="rect" id="Node000002" href="$class_component_model.html" title=" " alt="" coords="61,169,288,210"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="177,225,177,259,172,259,172,225"/>
+<area shape="rect" id="Node000003" href="$struct_component_model_interface.html" title=" " alt="" coords="5,80,179,106"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="114,116,159,167,155,170,110,119"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="6,5,178,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="95,46,95,80,89,80,89,46"/>
+<area shape="rect" id="Node000005" href="$class_can_raw_sender.html" title=" " alt="" coords="203,80,314,106"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="240,119,194,170,190,167,236,116"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="213,5,283,31"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="255,46,260,80,254,81,249,47"/>
+<area shape="rect" id="Node000007" href="$struct_component_interface.html" title="Interface to be implemented by every component." alt="" coords="307,5,445,31"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="345,42,279,82,277,78,342,37"/>
 </map>

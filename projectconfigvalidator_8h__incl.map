@@ -1,6 +1,9 @@
 <map id="src/gui/projectconfig/projectconfigvalidator.h" name="src/gui/projectconfig/projectconfigvalidator.h">
-<area shape="rect" id="node1" title=" " alt="" coords="106,5,265,45"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,93,93,119"/>
-<area shape="rect" id="node3" title=" " alt="" coords="118,93,253,119"/>
-<area shape="rect" id="node4" title=" " alt="" coords="277,93,345,119"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="105,5,262,46"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,94,93,120"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="151,49,84,88,82,83,149,44"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="117,94,250,120"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="186,46,186,78,181,78,181,46"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="274,94,341,120"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="216,44,277,83,274,88,213,49"/>
 </map>

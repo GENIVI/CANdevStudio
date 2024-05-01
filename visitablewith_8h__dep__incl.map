@@ -1,8 +1,14 @@
 <map id="src/common/visitablewith.h" name="src/common/visitablewith.h">
-<area shape="rect" id="node1" title=" " alt="" coords="83,5,263,31"/>
-<area shape="rect" id="node2" href="$modelvisitor_8h.html" title=" " alt="" coords="83,152,262,177"/>
-<area shape="rect" id="node6" href="$visitor_8h.html" title=" " alt="" coords="156,79,299,104"/>
-<area shape="rect" id="node3" href="$mainwindow_8cpp.html" title=" " alt="" coords="5,233,167,258"/>
-<area shape="rect" id="node4" href="$projectconfig__p_8h.html" title=" " alt="" coords="191,225,330,265"/>
-<area shape="rect" id="node5" href="$projectconfig_8cpp.html" title=" " alt="" coords="191,313,330,353"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="83,5,262,31"/>
+<area shape="rect" id="Node000002" href="$modelvisitor_8h.html" title=" " alt="" coords="84,153,261,178"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="160,46,147,80,146,99,150,119,166,151,162,153,145,120,141,100,142,78,155,44"/>
+<area shape="rect" id="Node000006" href="$visitor_8h.html" title=" " alt="" coords="156,79,298,105"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="192,41,220,77,215,80,188,45"/>
+<area shape="rect" id="Node000003" href="$mainwindow_8cpp.html" title=" " alt="" coords="5,234,166,260"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="150,191,101,235,97,231,146,187"/>
+<area shape="rect" id="Node000004" href="$projectconfig__p_8h.html" title=" " alt="" coords="190,226,328,267"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="198,187,239,224,236,228,195,191"/>
+<area shape="rect" id="Node000005" href="$projectconfig_8cpp.html" title=" " alt="" coords="190,315,328,356"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="262,283,262,315,256,315,256,283"/>
+<area shape="poly" id="edge6_Node000006_Node000002" title=" " alt="" coords="211,118,184,154,179,151,207,115"/>
 </map>

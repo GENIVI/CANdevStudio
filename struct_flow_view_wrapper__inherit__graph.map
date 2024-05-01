@@ -1,4 +1,5 @@
 <map id="FlowViewWrapper" name="FlowViewWrapper">
-<area shape="rect" id="node1" title=" " alt="" coords="11,79,137,104"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,5,143,31"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="10,79,137,105"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,142,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="76,46,76,79,71,79,71,46"/>
 </map>

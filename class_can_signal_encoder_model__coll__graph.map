@@ -1,9 +1,15 @@
 <map id="CanSignalEncoderModel" name="CanSignalEncoderModel">
-<area shape="rect" id="node1" title=" " alt="" coords="98,257,261,283"/>
-<area shape="rect" id="node2" href="$class_component_model.html" title=" " alt="" coords="65,168,293,208"/>
-<area shape="rect" id="node3" href="$struct_component_model_interface.html" title=" " alt="" coords="5,80,180,105"/>
-<area shape="rect" id="node4" title=" " alt="" coords="6,5,179,31"/>
-<area shape="rect" id="node5" href="$class_can_signal_encoder.html" title=" " alt="" coords="205,80,333,105"/>
-<area shape="rect" id="node6" title=" " alt="" coords="219,5,289,31"/>
-<area shape="rect" id="node7" href="$struct_component_interface.html" title="Interface to be implemented by every component." alt="" coords="314,5,453,31"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="98,259,260,285"/>
+<area shape="rect" id="Node000002" href="$class_component_model.html" title=" " alt="" coords="65,169,292,210"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="181,225,181,259,176,259,176,225"/>
+<area shape="rect" id="Node000003" href="$struct_component_model_interface.html" title=" " alt="" coords="5,80,179,106"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="115,115,162,167,159,170,111,119"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="6,5,178,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="95,46,95,80,89,80,89,46"/>
+<area shape="rect" id="Node000005" href="$class_can_signal_encoder.html" title=" " alt="" coords="203,80,330,106"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="247,119,199,170,195,167,243,115"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="217,5,287,31"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="260,46,267,80,262,81,255,47"/>
+<area shape="rect" id="Node000007" href="$struct_component_interface.html" title="Interface to be implemented by every component." alt="" coords="311,5,449,31"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="350,42,287,82,284,78,347,37"/>
 </map>

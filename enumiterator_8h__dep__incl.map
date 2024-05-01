@@ -1,11 +1,19 @@
 <map id="src/common/enumiterator.h" name="src/common/enumiterator.h">
-<area shape="rect" id="node1" title=" " alt="" coords="355,5,535,31"/>
-<area shape="rect" id="node2" href="$common__test_8cpp.html" title=" " alt="" coords="248,79,429,119"/>
-<area shape="rect" id="node3" href="$newlinemanager_8h.html" title=" " alt="" coords="453,79,653,119"/>
-<area shape="rect" id="node4" href="$canrawsender__p_8h.html" title=" " alt="" coords="117,167,317,207"/>
-<area shape="rect" id="node7" href="$newlinemanager_8cpp.html" title=" " alt="" coords="341,167,541,207"/>
-<area shape="rect" id="node8" href="$canrawsender__test_8cpp.html" title=" " alt="" coords="565,167,765,207"/>
-<area shape="rect" id="node9" href="$newlinemanager__test_8cpp.html" title=" " alt="" coords="790,167,997,207"/>
-<area shape="rect" id="node5" href="$canrawsender_8cpp.html" title=" " alt="" coords="5,255,205,295"/>
-<area shape="rect" id="node6" href="$canrawsender__p_8cpp.html" title=" " alt="" coords="229,255,429,295"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="357,5,536,31"/>
+<area shape="rect" id="Node000002" href="$common__test_8cpp.html" title=" " alt="" coords="250,79,430,120"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="420,42,368,81,364,76,417,38"/>
+<area shape="rect" id="Node000003" href="$newlinemanager_8h.html" title=" " alt="" coords="453,79,653,120"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="476,38,528,76,525,81,473,42"/>
+<area shape="rect" id="Node000004" href="$canrawsender__p_8h.html" title=" " alt="" coords="117,168,317,208"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="462,127,294,170,293,165,461,122"/>
+<area shape="rect" id="Node000007" href="$newlinemanager_8cpp.html" title=" " alt="" coords="341,168,541,208"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="517,131,468,169,465,165,514,127"/>
+<area shape="rect" id="Node000008" href="$canrawsender__test_8cpp.html" title=" " alt="" coords="565,168,765,208"/>
+<area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="592,127,641,165,638,169,589,131"/>
+<area shape="rect" id="Node000009" href="$newlinemanager__test_8cpp.html" title=" " alt="" coords="789,168,994,208"/>
+<area shape="poly" id="edge8_Node000003_Node000009" title=" " alt="" coords="646,121,815,165,814,170,644,127"/>
+<area shape="rect" id="Node000005" href="$canrawsender_8cpp.html" title=" " alt="" coords="5,256,205,297"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="181,220,132,258,129,254,178,216"/>
+<area shape="rect" id="Node000006" href="$canrawsender__p_8cpp.html" title=" " alt="" coords="229,256,429,297"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="256,216,305,254,302,258,253,220"/>
 </map>

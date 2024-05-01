@@ -1,6 +1,9 @@
 <map id="CanRawPlayerModel" name="CanRawPlayerModel">
-<area shape="rect" id="node1" title=" " alt="" coords="45,240,188,265"/>
-<area shape="rect" id="node2" href="$class_component_model.html" title=" " alt="" coords="5,152,228,192"/>
-<area shape="rect" id="node3" href="$struct_component_model_interface.html" title=" " alt="" coords="29,79,204,104"/>
-<area shape="rect" id="node4" title=" " alt="" coords="30,5,203,31"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="46,241,187,267"/>
+<area shape="rect" id="Node000002" href="$class_component_model.html" title=" " alt="" coords="5,153,228,193"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="119,209,119,241,114,241,114,209"/>
+<area shape="rect" id="Node000003" href="$struct_component_model_interface.html" title=" " alt="" coords="30,79,203,105"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="119,120,119,152,114,152,114,120"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="30,5,203,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="119,46,119,79,114,79,114,46"/>
 </map>

@@ -1,8 +1,13 @@
 <map id="src/common/pluginloader.h" name="src/common/pluginloader.h">
-<area shape="rect" id="node1" title=" " alt="" coords="81,5,258,31"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,79,176,104"/>
-<area shape="rect" id="node3" href="$plugin__type_8h.html" title=" " alt="" coords="201,79,298,104"/>
-<area shape="rect" id="node4" title=" " alt="" coords="117,152,179,177"/>
-<area shape="rect" id="node5" title=" " alt="" coords="204,152,295,177"/>
-<area shape="rect" id="node6" href="$typestring_8hh.html" title=" " alt="" coords="319,152,414,177"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="81,5,257,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,175,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="157,34,116,70,113,66,154,30"/>
+<area shape="rect" id="Node000003" href="$plugin__type_8h.html" title=" " alt="" coords="199,79,296,105"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="184,30,225,66,221,70,180,34"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="117,153,178,178"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="232,107,178,145,175,141,229,103"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="202,153,293,178"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="250,105,250,137,245,137,245,105"/>
+<area shape="rect" id="Node000006" href="$typestring_8hh.html" title=" " alt="" coords="316,153,411,178"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="268,103,332,142,330,147,266,107"/>
 </map>

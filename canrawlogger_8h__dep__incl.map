@@ -1,11 +1,21 @@
 <map id="src/components/canrawlogger/canrawlogger.h" name="src/components/canrawlogger/canrawlogger.h">
-<area shape="rect" id="node1" title=" " alt="" coords="292,5,488,45"/>
-<area shape="rect" id="node2" href="$canrawlogger_8cpp.html" title=" " alt="" coords="5,189,201,229"/>
-<area shape="rect" id="node3" href="$canrawlogger__p_8h.html" title=" " alt="" coords="183,93,379,133"/>
-<area shape="rect" id="node5" href="$canrawloggermodel_8h.html" title=" " alt="" coords="403,93,599,133"/>
-<area shape="rect" id="node9" href="$canrawlogger__test_8cpp.html" title=" " alt="" coords="623,93,819,133"/>
-<area shape="rect" id="node4" href="$canrawlogger__p_8cpp.html" title=" " alt="" coords="225,189,421,229"/>
-<area shape="rect" id="node6" href="$canrawloggermodel_8cpp.html" title=" " alt="" coords="429,284,625,324"/>
-<area shape="rect" id="node7" href="$canrawloggerplugin_8h.html" title=" " alt="" coords="497,189,693,229"/>
-<area shape="rect" id="node8" href="$canrawloggermodel__test_8cpp.html" title=" " alt="" coords="717,181,913,236"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="292,5,487,46"/>
+<area shape="rect" id="Node000002" href="$canrawlogger_8cpp.html" title=" " alt="" coords="5,190,201,231"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="278,47,223,66,173,96,151,118,134,143,112,191,107,189,129,140,147,114,169,92,221,62,276,42"/>
+<area shape="rect" id="Node000003" href="$canrawlogger__p_8h.html" title=" " alt="" coords="183,94,378,135"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="354,58,307,96,303,91,351,54"/>
+<area shape="rect" id="Node000005" href="$canrawloggermodel_8h.html" title=" " alt="" coords="403,94,598,135"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="428,54,477,91,474,96,425,58"/>
+<area shape="rect" id="Node000009" href="$canrawlogger__test_8cpp.html" title=" " alt="" coords="623,94,818,135"/>
+<area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="480,48,646,91,645,96,479,53"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="231,145,141,192,139,187,228,140"/>
+<area shape="rect" id="Node000004" href="$canrawlogger__p_8cpp.html" title=" " alt="" coords="225,190,421,231"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="298,148,317,189,312,191,293,150"/>
+<area shape="rect" id="Node000006" href="$canrawloggermodel_8cpp.html" title=" " alt="" coords="427,286,622,327"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="491,150,482,193,482,215,486,238,496,263,511,285,506,288,492,265,480,239,477,216,477,192,485,149"/>
+<area shape="rect" id="Node000007" href="$canrawloggerplugin_8h.html" title=" " alt="" coords="495,190,690,231"/>
+<area shape="poly" id="edge7_Node000005_Node000007" title=" " alt="" coords="532,144,575,188,571,192,528,148"/>
+<area shape="rect" id="Node000008" href="$canrawloggermodel__test_8cpp.html" title=" " alt="" coords="715,183,910,238"/>
+<area shape="poly" id="edge9_Node000005_Node000008" title=" " alt="" coords="581,137,723,180,721,185,579,142"/>
+<area shape="poly" id="edge8_Node000007_Node000006" title=" " alt="" coords="572,245,541,288,536,284,567,242"/>
 </map>

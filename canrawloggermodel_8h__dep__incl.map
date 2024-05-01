@@ -1,6 +1,10 @@
 <map id="src/components/canrawlogger/canrawloggermodel.h" name="src/components/canrawlogger/canrawloggermodel.h">
-<area shape="rect" id="node1" title=" " alt="" coords="73,5,269,45"/>
-<area shape="rect" id="node2" href="$canrawloggermodel_8cpp.html" title=" " alt="" coords="5,196,201,236"/>
-<area shape="rect" id="node3" href="$canrawloggerplugin_8h.html" title=" " alt="" coords="73,101,269,141"/>
-<area shape="rect" id="node4" href="$canrawloggermodel__test_8cpp.html" title=" " alt="" coords="293,93,489,148"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="73,5,269,46"/>
+<area shape="rect" id="Node000002" href="$canrawloggermodel_8cpp.html" title=" " alt="" coords="5,198,201,238"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="105,56,82,73,64,95,58,121,63,148,75,174,89,196,85,199,70,176,58,150,52,121,59,93,78,69,102,52"/>
+<area shape="rect" id="Node000003" href="$canrawloggerplugin_8h.html" title=" " alt="" coords="73,102,269,142"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="174,62,174,101,168,101,168,62"/>
+<area shape="rect" id="Node000004" href="$canrawloggermodel__test_8cpp.html" title=" " alt="" coords="293,94,489,150"/>
+<area shape="poly" id="edge4_Node000001_Node000004" title=" " alt="" coords="232,50,328,91,326,96,230,55"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="150,156,119,199,115,196,146,153"/>
 </map>

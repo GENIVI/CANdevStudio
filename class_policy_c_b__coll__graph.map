@@ -1,4 +1,5 @@
 <map id="PolicyCB" name="PolicyCB">
-<area shape="rect" id="node1" title=" " alt="" coords="15,79,90,104"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,5,100,31"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="15,79,90,105"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,100,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="55,46,55,79,50,79,50,46"/>
 </map>

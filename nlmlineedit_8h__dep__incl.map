@@ -1,11 +1,20 @@
 <map id="src/components/canrawsender/gui/nlmlineedit.h" name="src/components/canrawsender/gui/nlmlineedit.h">
-<area shape="rect" id="node1" title=" " alt="" coords="229,5,429,45"/>
-<area shape="rect" id="node2" href="$nlmfactory_8h.html" title=" " alt="" coords="229,93,429,133"/>
-<area shape="rect" id="node3" href="$canrawsender__p_8h.html" title=" " alt="" coords="117,269,317,309"/>
-<area shape="rect" id="node6" href="$newlinemanager_8h.html" title=" " alt="" coords="341,181,541,221"/>
-<area shape="rect" id="node4" href="$canrawsender_8cpp.html" title=" " alt="" coords="5,357,205,397"/>
-<area shape="rect" id="node5" href="$canrawsender__p_8cpp.html" title=" " alt="" coords="229,357,429,397"/>
-<area shape="rect" id="node7" href="$newlinemanager_8cpp.html" title=" " alt="" coords="341,269,541,309"/>
-<area shape="rect" id="node8" href="$canrawsender__test_8cpp.html" title=" " alt="" coords="565,269,765,309"/>
-<area shape="rect" id="node9" href="$newlinemanager__test_8cpp.html" title=" " alt="" coords="790,269,997,309"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="229,5,429,46"/>
+<area shape="rect" id="Node000002" href="$nlmfactory_8h.html" title=" " alt="" coords="229,94,429,135"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="332,62,332,94,326,94,326,62"/>
+<area shape="rect" id="Node000003" href="$canrawsender__p_8h.html" title=" " alt="" coords="117,271,317,312"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="311,149,232,272,227,269,306,146"/>
+<area shape="rect" id="Node000006" href="$newlinemanager_8h.html" title=" " alt="" coords="341,183,541,223"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="368,142,417,180,414,184,365,146"/>
+<area shape="rect" id="Node000004" href="$canrawsender_8cpp.html" title=" " alt="" coords="5,360,205,401"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="181,324,132,362,129,357,178,319"/>
+<area shape="rect" id="Node000005" href="$canrawsender__p_8cpp.html" title=" " alt="" coords="229,360,429,401"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="256,319,305,357,302,362,253,324"/>
+<area shape="poly" id="edge6_Node000006_Node000003" title=" " alt="" coords="377,232,269,273,267,268,375,227"/>
+<area shape="rect" id="Node000007" href="$newlinemanager_8cpp.html" title=" " alt="" coords="341,271,541,312"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="444,239,444,271,438,271,438,239"/>
+<area shape="rect" id="Node000008" href="$canrawsender__test_8cpp.html" title=" " alt="" coords="565,271,765,312"/>
+<area shape="poly" id="edge8_Node000006_Node000008" title=" " alt="" coords="507,227,615,268,613,273,505,232"/>
+<area shape="rect" id="Node000009" href="$newlinemanager__test_8cpp.html" title=" " alt="" coords="789,271,994,312"/>
+<area shape="poly" id="edge9_Node000006_Node000009" title=" " alt="" coords="557,224,789,268,788,273,556,229"/>
 </map>

@@ -1,8 +1,13 @@
 <map id="src/components/canrawfilter/gui/canrawfilterguiint.h" name="src/components/canrawfilter/gui/canrawfilterguiint.h">
-<area shape="rect" id="node1" title=" " alt="" coords="213,5,399,45"/>
-<area shape="rect" id="node2" href="$canrawfilterguiimpl_8h.html" title=" " alt="" coords="109,93,295,133"/>
-<area shape="rect" id="node6" href="$canrawfilter__test_8cpp.html" title=" " alt="" coords="319,93,504,133"/>
-<area shape="rect" id="node3" href="$canrawfilter__p_8h.html" title=" " alt="" coords="109,181,295,221"/>
-<area shape="rect" id="node4" href="$canrawfilter_8cpp.html" title=" " alt="" coords="5,269,191,309"/>
-<area shape="rect" id="node5" href="$canrawfilter__p_8cpp.html" title=" " alt="" coords="215,269,400,309"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="213,5,398,46"/>
+<area shape="rect" id="Node000002" href="$canrawfilterguiimpl_8h.html" title=" " alt="" coords="109,94,294,135"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="272,58,227,96,223,92,269,54"/>
+<area shape="rect" id="Node000006" href="$canrawfilter__test_8cpp.html" title=" " alt="" coords="317,94,502,135"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="342,54,388,92,384,96,339,58"/>
+<area shape="rect" id="Node000003" href="$canrawfilter__p_8h.html" title=" " alt="" coords="109,183,294,223"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="204,150,204,182,199,182,199,150"/>
+<area shape="rect" id="Node000004" href="$canrawfilter_8cpp.html" title=" " alt="" coords="5,271,190,312"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="168,235,123,273,119,269,165,231"/>
+<area shape="rect" id="Node000005" href="$canrawfilter__p_8cpp.html" title=" " alt="" coords="213,271,398,312"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="238,231,284,269,280,273,235,235"/>
 </map>

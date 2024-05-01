@@ -1,9 +1,15 @@
 <map id="CanSignalSenderModel" name="CanSignalSenderModel">
-<area shape="rect" id="node1" title=" " alt="" coords="99,257,257,283"/>
-<area shape="rect" id="node2" href="$class_component_model.html" title=" " alt="" coords="70,168,286,208"/>
-<area shape="rect" id="node3" href="$struct_component_model_interface.html" title=" " alt="" coords="5,80,180,105"/>
-<area shape="rect" id="node4" title=" " alt="" coords="6,5,179,31"/>
-<area shape="rect" id="node5" href="$class_can_signal_sender.html" title=" " alt="" coords="205,80,327,105"/>
-<area shape="rect" id="node6" title=" " alt="" coords="217,5,288,31"/>
-<area shape="rect" id="node7" href="$struct_component_interface.html" title="Interface to be implemented by every component." alt="" coords="313,5,451,31"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="99,259,256,285"/>
+<area shape="rect" id="Node000002" href="$class_component_model.html" title=" " alt="" coords="70,169,285,210"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="180,225,180,259,175,259,175,225"/>
+<area shape="rect" id="Node000003" href="$struct_component_model_interface.html" title=" " alt="" coords="5,80,179,106"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="115,116,161,167,158,170,111,119"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="6,5,178,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="95,46,95,80,89,80,89,46"/>
+<area shape="rect" id="Node000005" href="$class_can_signal_sender.html" title=" " alt="" coords="203,80,325,106"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="245,119,197,170,194,167,241,115"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="216,5,285,31"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="258,46,264,80,259,81,253,47"/>
+<area shape="rect" id="Node000007" href="$struct_component_interface.html" title="Interface to be implemented by every component." alt="" coords="310,5,448,31"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="349,42,284,82,282,78,346,37"/>
 </map>

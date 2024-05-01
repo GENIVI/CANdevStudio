@@ -1,5 +1,7 @@
 <map id="CanRawFilter" name="CanRawFilter">
-<area shape="rect" id="node1" title=" " alt="" coords="55,79,155,104"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,5,76,31"/>
-<area shape="rect" id="node3" href="$struct_component_interface.html" title="Interface to be implemented by every component." alt="" coords="101,5,239,31"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="54,79,154,105"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,75,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="63,40,95,77,91,80,59,44"/>
+<area shape="rect" id="Node000003" href="$struct_component_interface.html" title="Interface to be implemented by every component." alt="" coords="99,5,237,31"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="149,44,117,80,113,77,145,40"/>
 </map>

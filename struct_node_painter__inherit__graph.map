@@ -1,6 +1,9 @@
 <map id="NodePainter" name="NodePainter">
-<area shape="rect" id="node1" title=" " alt="" coords="76,79,171,104"/>
-<area shape="rect" id="node3" href="$struct_can_db_painter.html" title=" " alt="" coords="5,152,108,177"/>
-<area shape="rect" id="node4" href="$struct_can_load_painter.html" title=" " alt="" coords="133,152,247,177"/>
-<area shape="rect" id="node2" title=" " alt="" coords="22,5,225,31"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="75,79,168,105"/>
+<area shape="rect" id="Node000003" href="$struct_can_db_painter.html" title=" " alt="" coords="5,153,107,178"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="102,118,69,154,65,150,98,114"/>
+<area shape="rect" id="Node000004" href="$struct_can_load_painter.html" title=" " alt="" coords="131,153,245,178"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="145,114,179,150,175,154,141,118"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="20,5,223,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="124,46,124,79,119,79,119,46"/>
 </map>

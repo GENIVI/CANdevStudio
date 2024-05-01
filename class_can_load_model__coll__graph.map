@@ -1,9 +1,15 @@
 <map id="CanLoadModel" name="CanLoadModel">
-<area shape="rect" id="node1" title=" " alt="" coords="111,257,221,283"/>
-<area shape="rect" id="node2" href="$class_component_model.html" title=" " alt="" coords="71,168,261,208"/>
-<area shape="rect" id="node3" href="$struct_component_model_interface.html" title=" " alt="" coords="5,80,180,105"/>
-<area shape="rect" id="node4" title=" " alt="" coords="6,5,179,31"/>
-<area shape="rect" id="node5" href="$class_can_load.html" title=" " alt="" coords="205,80,279,105"/>
-<area shape="rect" id="node6" title=" " alt="" coords="205,5,276,31"/>
-<area shape="rect" id="node7" href="$struct_component_interface.html" title="Interface to be implemented by every component." alt="" coords="301,5,439,31"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="111,259,220,285"/>
+<area shape="rect" id="Node000002" href="$class_component_model.html" title=" " alt="" coords="71,169,260,210"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="168,225,168,259,163,259,163,225"/>
+<area shape="rect" id="Node000003" href="$struct_component_model_interface.html" title=" " alt="" coords="5,80,179,106"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="113,116,152,167,148,170,108,120"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="6,5,178,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="95,46,95,80,89,80,89,46"/>
+<area shape="rect" id="Node000005" href="$class_can_load.html" title=" " alt="" coords="203,80,277,106"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="223,120,183,170,179,167,219,116"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="204,5,273,31"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="242,46,242,80,237,80,236,46"/>
+<area shape="rect" id="Node000007" href="$struct_component_interface.html" title="Interface to be implemented by every component." alt="" coords="298,5,436,31"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="334,41,262,82,260,78,331,37"/>
 </map>

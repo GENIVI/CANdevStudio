@@ -1,5 +1,7 @@
 <map id="src/components/cansignaldata/cansignaldata_p.h" name="src/components/cansignaldata/cansignaldata_p.h">
-<area shape="rect" id="node1" title=" " alt="" coords="116,5,315,45"/>
-<area shape="rect" id="node2" href="$cansignaldata_8cpp.html" title=" " alt="" coords="5,93,204,133"/>
-<area shape="rect" id="node3" href="$cansignaldata__p_8cpp.html" title=" " alt="" coords="228,93,427,133"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="116,5,314,46"/>
+<area shape="rect" id="Node000002" href="$cansignaldata_8cpp.html" title=" " alt="" coords="5,94,204,135"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="180,58,131,96,128,91,177,54"/>
+<area shape="rect" id="Node000003" href="$cansignaldata__p_8cpp.html" title=" " alt="" coords="228,94,426,135"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="254,53,303,91,300,96,251,58"/>
 </map>

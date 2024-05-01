@@ -1,5 +1,7 @@
 <map id="src/common/guiinterface/lineeditinterface.h" name="src/common/guiinterface/lineeditinterface.h">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,171,45"/>
-<area shape="rect" id="node2" title=" " alt="" coords="7,93,73,119"/>
-<area shape="rect" id="node3" title=" " alt="" coords="98,93,177,119"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,170,46"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="7,94,72,120"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="78,48,57,82,52,79,73,45"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="97,94,174,120"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="102,45,123,79,118,82,97,48"/>
 </map>

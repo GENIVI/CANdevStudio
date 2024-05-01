@@ -1,5 +1,7 @@
 <map id="src/components/cansignalviewer/gui/cansignalviewerguiint.h" name="src/components/cansignalviewer/gui/cansignalviewerguiint.h">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,217,45"/>
-<area shape="rect" id="node2" title=" " alt="" coords="51,93,89,119"/>
-<area shape="rect" id="node3" title=" " alt="" coords="113,93,192,119"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,217,46"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="52,94,90,120"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="103,48,86,81,82,79,99,45"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="114,94,191,120"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="124,45,141,79,137,81,119,48"/>
 </map>

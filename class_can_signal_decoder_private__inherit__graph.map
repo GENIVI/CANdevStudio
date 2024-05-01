@@ -1,4 +1,5 @@
 <map id="CanSignalDecoderPrivate" name="CanSignalDecoderPrivate">
-<area shape="rect" id="node1" title=" " alt="" coords="5,79,176,104"/>
-<area shape="rect" id="node2" title=" " alt="" coords="55,5,126,31"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,79,175,105"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="55,5,125,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="93,46,93,79,87,79,87,46"/>
 </map>

@@ -1,6 +1,9 @@
 <map id="CanDevicePrivate" name="CanDevicePrivate">
-<area shape="rect" id="node1" title=" " alt="" coords="139,93,265,119"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,5,76,31"/>
-<area shape="rect" id="node3" href="$struct_context.html" title=" " alt="" coords="101,5,303,31"/>
-<area shape="rect" id="node4" href="$struct_can_device_interface.html" title=" " alt="" coords="327,5,463,31"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="137,94,263,120"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,75,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="77,36,179,91,176,96,75,41"/>
+<area shape="rect" id="Node000003" href="$struct_context.html" title=" " alt="" coords="99,5,301,31"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="203,47,203,94,197,94,197,47"/>
+<area shape="rect" id="Node000004" href="$struct_can_device_interface.html" title=" " alt="" coords="324,5,460,31"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="352,40,228,96,226,91,350,35"/>
 </map>

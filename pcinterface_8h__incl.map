@@ -1,5 +1,7 @@
 <map id="src/gui/projectconfig/pcinterface.h" name="src/gui/projectconfig/pcinterface.h">
-<area shape="rect" id="node1" title=" " alt="" coords="25,5,163,45"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,93,84,119"/>
-<area shape="rect" id="node3" title=" " alt="" coords="108,93,179,119"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="23,5,161,46"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,94,83,120"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="82,48,61,82,57,79,78,45"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="107,94,176,120"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="106,45,128,79,123,82,102,48"/>
 </map>

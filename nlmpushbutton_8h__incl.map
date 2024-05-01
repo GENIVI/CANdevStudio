@@ -1,7 +1,11 @@
 <map id="src/components/canrawsender/gui/nlmpushbutton.h" name="src/components/canrawsender/gui/nlmpushbutton.h">
-<area shape="rect" id="node1" title=" " alt="" coords="46,5,246,45"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,93,105,119"/>
-<area shape="rect" id="node3" href="$pushbuttoninterface_8h.html" title=" " alt="" coords="129,93,347,119"/>
-<area shape="rect" id="node4" title=" " alt="" coords="155,167,222,192"/>
-<area shape="rect" id="node5" title=" " alt="" coords="247,167,325,192"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="46,5,245,46"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,94,105,120"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="125,48,82,86,79,82,122,44"/>
+<area shape="rect" id="Node000003" href="$pushbuttoninterface_8h.html" title=" " alt="" coords="128,94,345,120"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="170,44,213,82,209,86,166,48"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="156,168,221,193"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="231,121,207,156,203,153,226,118"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="246,168,323,193"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="246,118,270,153,265,156,242,121"/>
 </map>

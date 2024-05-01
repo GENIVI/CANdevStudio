@@ -1,5 +1,7 @@
 <map id="src/components/canrawfilter/canrawfilter_p.h" name="src/components/canrawfilter/canrawfilter_p.h">
-<area shape="rect" id="node1" title=" " alt="" coords="109,5,295,45"/>
-<area shape="rect" id="node2" href="$canrawfilter_8cpp.html" title=" " alt="" coords="5,93,191,133"/>
-<area shape="rect" id="node3" href="$canrawfilter__p_8cpp.html" title=" " alt="" coords="215,93,400,133"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="109,5,294,46"/>
+<area shape="rect" id="Node000002" href="$canrawfilter_8cpp.html" title=" " alt="" coords="5,94,190,135"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="168,58,123,96,119,92,165,54"/>
+<area shape="rect" id="Node000003" href="$canrawfilter__p_8cpp.html" title=" " alt="" coords="213,94,398,135"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="238,54,284,92,280,96,235,58"/>
 </map>

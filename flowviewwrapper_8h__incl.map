@@ -1,5 +1,7 @@
 <map id="src/gui/projectconfig/flowviewwrapper.h" name="src/gui/projectconfig/flowviewwrapper.h">
-<area shape="rect" id="node1" title=" " alt="" coords="73,5,211,45"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,93,132,119"/>
-<area shape="rect" id="node3" title=" " alt="" coords="156,93,275,119"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="71,5,209,46"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,94,131,120"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="124,48,91,84,87,80,120,45"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="155,94,272,120"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="160,45,194,81,190,84,156,48"/>
 </map>

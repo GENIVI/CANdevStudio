@@ -1,6 +1,9 @@
 <map id="CanRawSenderModel" name="CanRawSenderModel">
-<area shape="rect" id="node1" title="The class provides node graphical representation of CanRawSender." alt="" coords="46,240,193,265"/>
-<area shape="rect" id="node2" href="$class_component_model.html" title=" " alt="" coords="5,152,233,192"/>
-<area shape="rect" id="node3" href="$struct_component_model_interface.html" title=" " alt="" coords="32,79,207,104"/>
-<area shape="rect" id="node4" title=" " alt="" coords="33,5,206,31"/>
+<area shape="rect" id="Node000001" title="The class provides node graphical representation of CanRawSender." alt="" coords="46,241,192,267"/>
+<area shape="rect" id="Node000002" href="$class_component_model.html" title=" " alt="" coords="5,153,233,193"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="122,209,122,241,116,241,116,209"/>
+<area shape="rect" id="Node000003" href="$struct_component_model_interface.html" title=" " alt="" coords="32,79,206,105"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="122,120,122,152,116,152,116,120"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="33,5,205,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="122,46,122,79,116,79,116,46"/>
 </map>

@@ -1,5 +1,7 @@
 <map id="ComponentModel&lt; C, Derived &gt;" name="ComponentModel&lt; C, Derived &gt;">
-<area shape="rect" id="node1" title=" " alt="" coords="19,152,166,192"/>
-<area shape="rect" id="node2" href="$struct_component_model_interface.html" title=" " alt="" coords="5,79,180,104"/>
-<area shape="rect" id="node3" title=" " alt="" coords="6,5,179,31"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="19,153,165,193"/>
+<area shape="rect" id="Node000002" href="$struct_component_model_interface.html" title=" " alt="" coords="5,79,179,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="95,120,95,152,89,152,89,120"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="6,5,178,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="95,46,95,79,89,79,89,46"/>
 </map>

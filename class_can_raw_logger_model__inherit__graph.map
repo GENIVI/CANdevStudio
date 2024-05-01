@@ -1,6 +1,9 @@
 <map id="CanRawLoggerModel" name="CanRawLoggerModel">
-<area shape="rect" id="node1" title=" " alt="" coords="45,240,192,265"/>
-<area shape="rect" id="node2" href="$class_component_model.html" title=" " alt="" coords="5,152,232,192"/>
-<area shape="rect" id="node3" href="$struct_component_model_interface.html" title=" " alt="" coords="31,79,206,104"/>
-<area shape="rect" id="node4" title=" " alt="" coords="32,5,205,31"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="46,241,191,267"/>
+<area shape="rect" id="Node000002" href="$class_component_model.html" title=" " alt="" coords="5,153,232,193"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="121,209,121,241,116,241,116,209"/>
+<area shape="rect" id="Node000003" href="$struct_component_model_interface.html" title=" " alt="" coords="32,79,205,105"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="121,120,121,152,116,152,116,120"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="32,5,205,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="121,46,121,79,116,79,116,46"/>
 </map>

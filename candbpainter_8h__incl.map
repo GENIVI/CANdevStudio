@@ -1,10 +1,17 @@
 <map id="src/common/candbpainter.h" name="src/common/candbpainter.h">
-<area shape="rect" id="node1" title=" " alt="" coords="327,5,509,31"/>
-<area shape="rect" id="node2" href="$nodepainter_8h.html" title=" " alt="" coords="306,79,405,104"/>
-<area shape="rect" id="node8" title=" " alt="" coords="429,79,535,104"/>
-<area shape="rect" id="node3" title=" " alt="" coords="5,152,79,177"/>
-<area shape="rect" id="node4" title=" " alt="" coords="103,152,285,177"/>
-<area shape="rect" id="node5" title=" " alt="" coords="309,152,401,177"/>
-<area shape="rect" id="node6" title=" " alt="" coords="426,152,581,177"/>
-<area shape="rect" id="node7" title=" " alt="" coords="605,152,789,177"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="324,5,506,31"/>
+<area shape="rect" id="Node000002" href="$nodepainter_8h.html" title=" " alt="" coords="303,79,401,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="406,33,375,69,371,65,402,29"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="426,79,532,105"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="427,29,460,66,456,69,423,33"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,153,78,178"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="303,107,93,155,92,149,302,102"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="102,153,283,178"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="326,108,234,148,232,144,324,103"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="307,153,398,178"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="355,105,355,137,350,137,350,105"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="422,153,576,178"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="378,103,461,143,459,148,376,108"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="599,153,783,178"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="402,101,619,146,618,152,401,106"/>
 </map>

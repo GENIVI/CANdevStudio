@@ -1,5 +1,7 @@
 <map id="src/components/canrawview/gui/crvgui.h" name="src/components/canrawview/gui/crvgui.h">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,193,45"/>
-<area shape="rect" id="node2" href="$canrawview__p_8h.html" title=" " alt="" coords="5,93,193,133"/>
-<area shape="rect" id="node3" href="$canrawview_8cpp.html" title=" " alt="" coords="5,181,193,221"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,193,46"/>
+<area shape="rect" id="Node000002" href="$canrawview__p_8h.html" title=" " alt="" coords="5,94,193,135"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="102,62,102,94,96,94,96,62"/>
+<area shape="rect" id="Node000003" href="$canrawview_8cpp.html" title=" " alt="" coords="5,183,193,223"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="102,150,102,182,96,182,96,150"/>
 </map>

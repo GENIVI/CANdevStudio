@@ -1,7 +1,11 @@
 <map id="src/components/canrawsender/gui/nlmlineedit.h" name="src/components/canrawsender/gui/nlmlineedit.h">
-<area shape="rect" id="node1" title=" " alt="" coords="25,5,225,45"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,93,84,119"/>
-<area shape="rect" id="node3" href="$lineeditinterface_8h.html" title=" " alt="" coords="109,93,303,119"/>
-<area shape="rect" id="node4" title=" " alt="" coords="123,167,190,192"/>
-<area shape="rect" id="node5" title=" " alt="" coords="215,167,293,192"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="25,5,224,46"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,94,84,120"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="107,48,69,85,66,81,103,45"/>
+<area shape="rect" id="Node000003" href="$lineeditinterface_8h.html" title=" " alt="" coords="108,94,301,120"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="146,45,183,81,180,85,142,48"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="124,168,189,193"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="199,121,175,156,171,153,194,118"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="214,168,291,193"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="215,118,238,153,234,156,210,121"/>
 </map>

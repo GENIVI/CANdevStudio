@@ -1,11 +1,21 @@
 <map id="src/components/cansignalsender/cansignalsender.h" name="src/components/cansignalsender/cansignalsender.h">
-<area shape="rect" id="node1" title=" " alt="" coords="337,5,551,45"/>
-<area shape="rect" id="node2" href="$cansignalsender_8cpp.html" title=" " alt="" coords="5,189,219,229"/>
-<area shape="rect" id="node3" href="$cansignalsender__p_8h.html" title=" " alt="" coords="219,93,432,133"/>
-<area shape="rect" id="node5" href="$cansignalsendermodel_8h.html" title=" " alt="" coords="456,93,669,133"/>
-<area shape="rect" id="node9" href="$cansignalsender__test_8cpp.html" title=" " alt="" coords="693,93,907,133"/>
-<area shape="rect" id="node4" href="$cansignalsender__p_8cpp.html" title=" " alt="" coords="243,189,456,229"/>
-<area shape="rect" id="node6" href="$cansignalsendermodel_8cpp.html" title=" " alt="" coords="459,284,672,324"/>
-<area shape="rect" id="node7" href="$cansignalsenderplugin_8h.html" title=" " alt="" coords="531,189,744,229"/>
-<area shape="rect" id="node8" href="$cansignalsendermodel__test_8cpp.html" title=" " alt="" coords="768,181,981,236"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="312,5,524,46"/>
+<area shape="rect" id="Node000002" href="$cansignalsender_8cpp.html" title=" " alt="" coords="5,190,218,231"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="298,46,238,65,210,79,184,96,162,118,144,143,121,191,116,189,139,140,158,114,181,92,207,74,236,60,297,41"/>
+<area shape="rect" id="Node000003" href="$cansignalsender__p_8h.html" title=" " alt="" coords="195,94,407,135"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="381,57,329,96,326,91,378,53"/>
+<area shape="rect" id="Node000005" href="$cansignalsendermodel_8h.html" title=" " alt="" coords="431,94,643,135"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="459,53,512,91,508,96,456,57"/>
+<area shape="rect" id="Node000009" href="$cansignalsender__test_8cpp.html" title=" " alt="" coords="667,94,879,135"/>
+<area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="514,48,693,91,692,96,513,53"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="249,144,152,192,150,187,246,140"/>
+<area shape="rect" id="Node000004" href="$cansignalsender__p_8cpp.html" title=" " alt="" coords="241,190,454,231"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="320,147,340,189,335,191,315,150"/>
+<area shape="rect" id="Node000006" href="$cansignalsendermodel_8cpp.html" title=" " alt="" coords="457,286,670,327"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="526,150,516,193,515,215,519,238,531,263,547,284,543,288,527,266,514,239,510,216,511,192,520,149"/>
+<area shape="rect" id="Node000007" href="$cansignalsenderplugin_8h.html" title=" " alt="" coords="529,190,742,231"/>
+<area shape="poly" id="edge7_Node000005_Node000007" title=" " alt="" coords="570,144,617,188,613,192,567,147"/>
+<area shape="rect" id="Node000008" href="$cansignalsendermodel__test_8cpp.html" title=" " alt="" coords="765,183,978,238"/>
+<area shape="poly" id="edge9_Node000005_Node000008" title=" " alt="" coords="622,137,775,180,774,185,621,142"/>
+<area shape="poly" id="edge8_Node000007_Node000006" title=" " alt="" coords="614,245,581,288,576,284,609,241"/>
 </map>

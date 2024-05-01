@@ -1,4 +1,5 @@
 <map id="CanRawData" name="CanRawData">
-<area shape="rect" id="node1" title="The class describing data model used as output for CanDevice node." alt="" coords="25,79,124,104"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,5,144,31"/>
+<area shape="rect" id="Node000001" title="The class describing data model used as output for CanDevice node." alt="" coords="25,79,123,105"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,143,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="77,46,77,79,71,79,71,46"/>
 </map>

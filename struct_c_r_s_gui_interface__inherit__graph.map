@@ -1,4 +1,5 @@
 <map id="CRSGuiInterface" name="CRSGuiInterface">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,125,31"/>
-<area shape="rect" id="node2" href="$struct_c_r_s_gui.html" title=" " alt="" coords="31,79,100,104"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,125,31"/>
+<area shape="rect" id="Node000002" href="$struct_c_r_s_gui.html" title=" " alt="" coords="31,79,99,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="68,46,68,79,62,79,62,46"/>
 </map>

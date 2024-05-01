@@ -1,8 +1,13 @@
 <map id="src/components/cansignaldata/gui/cansignaldataguiint.h" name="src/components/cansignaldata/gui/cansignaldataguiint.h">
-<area shape="rect" id="node1" title=" " alt="" coords="227,5,425,45"/>
-<area shape="rect" id="node2" href="$cansignaldataguiimpl_8h.html" title=" " alt="" coords="116,93,315,133"/>
-<area shape="rect" id="node6" href="$cansignaldata__test_8cpp.html" title=" " alt="" coords="339,93,537,133"/>
-<area shape="rect" id="node3" href="$cansignaldata__p_8h.html" title=" " alt="" coords="116,181,315,221"/>
-<area shape="rect" id="node4" href="$cansignaldata_8cpp.html" title=" " alt="" coords="5,269,204,309"/>
-<area shape="rect" id="node5" href="$cansignaldata__p_8cpp.html" title=" " alt="" coords="228,269,427,309"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="227,5,425,46"/>
+<area shape="rect" id="Node000002" href="$cansignaldataguiimpl_8h.html" title=" " alt="" coords="116,94,314,135"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="291,58,242,96,239,91,287,54"/>
+<area shape="rect" id="Node000006" href="$cansignaldata__test_8cpp.html" title=" " alt="" coords="339,94,537,135"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="365,53,414,91,411,96,361,58"/>
+<area shape="rect" id="Node000003" href="$cansignaldata__p_8h.html" title=" " alt="" coords="116,183,314,223"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="218,150,218,182,213,182,213,150"/>
+<area shape="rect" id="Node000004" href="$cansignaldata_8cpp.html" title=" " alt="" coords="5,271,204,312"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="180,235,131,273,128,269,177,231"/>
+<area shape="rect" id="Node000005" href="$cansignaldata__p_8cpp.html" title=" " alt="" coords="228,271,426,312"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="254,231,303,269,300,273,251,235"/>
 </map>

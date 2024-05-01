@@ -1,52 +1,125 @@
 <map id="src/common/componentinterface.h" name="src/common/componentinterface.h">
-<area shape="rect" id="node1" title=" " alt="" coords="2371,5,2594,31"/>
-<area shape="rect" id="node2" href="$candbhandler_8h.html" title=" " alt="" coords="495,86,680,111"/>
-<area shape="rect" id="node12" href="$candbpainter_8cpp.html" title=" " alt="" coords="818,86,1014,111"/>
-<area shape="rect" id="node13" href="$confighelpers_8h.html" title=" " alt="" coords="2258,86,2442,111"/>
-<area shape="rect" id="node24" href="$candevice_8h.html" title=" " alt="" coords="3316,79,3494,119"/>
-<area shape="rect" id="node29" href="$canload_8h.html" title=" " alt="" coords="4036,79,4200,119"/>
-<area shape="rect" id="node33" href="$canrawfilter_8h.html" title=" " alt="" coords="4731,79,4916,119"/>
-<area shape="rect" id="node37" href="$canrawlogger_8h.html" title=" " alt="" coords="5227,79,5423,119"/>
-<area shape="rect" id="node40" href="$canrawplayer_8h.html" title=" " alt="" coords="1592,79,1786,119"/>
-<area shape="rect" id="node41" href="$canrawsender_8h.html" title=" " alt="" coords="1817,79,2017,119"/>
-<area shape="rect" id="node42" href="$canrawview_8h.html" title=" " alt="" coords="2044,79,2232,119"/>
-<area shape="rect" id="node43" href="$cansignaldata_8h.html" title=" " alt="" coords="2479,79,2678,119"/>
-<area shape="rect" id="node44" href="$cansignaldecoder_8h.html" title=" " alt="" coords="1334,79,1554,119"/>
-<area shape="rect" id="node45" href="$cansignalencoder_8h.html" title=" " alt="" coords="1090,79,1310,119"/>
-<area shape="rect" id="node46" href="$cansignalsender_8h.html" title=" " alt="" coords="702,174,916,214"/>
-<area shape="rect" id="node47" href="$cansignalviewer_8h.html" title=" " alt="" coords="2708,79,2920,119"/>
-<area shape="rect" id="node48" href="$qmlexecutor_8h.html" title=" " alt="" coords="2948,79,3137,119"/>
-<area shape="rect" id="node49" href="$pcimpl_8h.html" title=" " alt="" coords="5572,79,5710,119"/>
-<area shape="rect" id="node50" href="$projectconfig__p_8h.html" title=" " alt="" coords="5773,174,5912,214"/>
-<area shape="rect" id="node3" href="$candbhandler_8cpp.html" title=" " alt="" coords="274,181,472,207"/>
-<area shape="rect" id="node4" href="$common__test_8cpp.html" title=" " alt="" coords="497,174,678,214"/>
-<area shape="rect" id="node5" href="$cansignaldecoder__p_8h.html" title=" " alt="" coords="1184,174,1404,214"/>
-<area shape="rect" id="node7" href="$cansignalencoder__p_8h.html" title=" " alt="" coords="940,174,1160,214"/>
-<area shape="rect" id="node9" href="$cansignalsender__p_8h.html" title=" " alt="" coords="297,269,510,309"/>
-<area shape="rect" id="node11" href="$cansignalsenderguiimpl_8h.html" title=" " alt="" coords="36,174,249,214"/>
-<area shape="rect" id="node6" href="$cansignaldecoder_8cpp.html" title=" " alt="" coords="1332,269,1552,309"/>
-<area shape="rect" id="node8" href="$cansignalencoder_8cpp.html" title=" " alt="" coords="1014,269,1234,309"/>
-<area shape="rect" id="node10" href="$cansignalsender_8cpp.html" title=" " alt="" coords="702,357,916,397"/>
-<area shape="rect" id="node14" href="$candevice_8cpp.html" title=" " alt="" coords="3088,269,3266,309"/>
-<area shape="rect" id="node15" href="$canload_8cpp.html" title=" " alt="" coords="3916,269,4080,309"/>
-<area shape="rect" id="node16" href="$canrawfilter_8cpp.html" title=" " alt="" coords="4600,269,4786,309"/>
-<area shape="rect" id="node17" href="$canrawlogger_8cpp.html" title=" " alt="" coords="5196,269,5392,309"/>
-<area shape="rect" id="node18" href="$canrawplayer_8cpp.html" title=" " alt="" coords="1480,174,1674,214"/>
-<area shape="rect" id="node19" href="$canrawsender_8cpp.html" title=" " alt="" coords="1698,174,1898,214"/>
-<area shape="rect" id="node20" href="$canrawview_8cpp.html" title=" " alt="" coords="1923,174,2111,214"/>
-<area shape="rect" id="node21" href="$cansignaldata_8cpp.html" title=" " alt="" coords="2491,174,2690,214"/>
-<area shape="rect" id="node22" href="$cansignalviewer_8cpp.html" title=" " alt="" coords="2714,174,2926,214"/>
-<area shape="rect" id="node23" href="$qmlexecutor_8cpp.html" title=" " alt="" coords="2950,174,3140,214"/>
-<area shape="rect" id="node25" href="$candevice__p_8h.html" title=" " alt="" coords="3214,174,3393,214"/>
-<area shape="rect" id="node26" href="$candevicemodel_8h.html" title=" " alt="" coords="3417,174,3596,214"/>
-<area shape="rect" id="node27" href="$candevice__test_8cpp.html" title=" " alt="" coords="3620,174,3798,214"/>
-<area shape="rect" id="node28" href="$projectconfig__test__noqrc_8cpp.html" title=" " alt="" coords="3822,167,3961,221"/>
-<area shape="rect" id="node30" href="$canload__p_8h.html" title=" " alt="" coords="4036,174,4200,214"/>
-<area shape="rect" id="node31" href="$canloadmodel_8h.html" title=" " alt="" coords="4224,174,4388,214"/>
-<area shape="rect" id="node32" href="$canload__test_8cpp.html" title=" " alt="" coords="4412,174,4576,214"/>
-<area shape="rect" id="node34" href="$canrawfilter__p_8h.html" title=" " alt="" coords="4600,174,4786,214"/>
-<area shape="rect" id="node35" href="$canrawfiltermodel_8h.html" title=" " alt="" coords="4862,174,5047,214"/>
-<area shape="rect" id="node36" href="$canrawfilter__test_8cpp.html" title=" " alt="" coords="5071,174,5256,214"/>
-<area shape="rect" id="node38" href="$canrawlogger__p_8h.html" title=" " alt="" coords="5552,174,5748,214"/>
-<area shape="rect" id="node39" href="$canrawloggermodel_8h.html" title=" " alt="" coords="5332,174,5528,214"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="2362,5,2584,31"/>
+<area shape="rect" id="Node000002" href="$candbhandler_8h.html" title=" " alt="" coords="493,87,677,112"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="2347,24,1686,42,1248,59,802,82,678,92,677,86,802,76,1247,53,1686,36,2347,19"/>
+<area shape="rect" id="Node000015" href="$candbpainter_8cpp.html" title=" " alt="" coords="814,87,1009,112"/>
+<area shape="poly" id="edge12_Node000001_Node000015" title=" " alt="" coords="2347,22,2103,25,1775,34,1404,52,1214,65,1028,82,977,88,977,83,1027,76,1213,60,1403,46,1775,28,2103,20,2347,17"/>
+<area shape="rect" id="Node000016" href="$confighelpers_8h.html" title=" " alt="" coords="2249,87,2433,112"/>
+<area shape="poly" id="edge13_Node000001_Node000016" title=" " alt="" coords="2441,42,2363,88,2360,84,2438,37"/>
+<area shape="rect" id="Node000027" href="$candevice_8h.html" title=" " alt="" coords="3303,79,3480,120"/>
+<area shape="poly" id="edge27_Node000001_Node000027" title=" " alt="" coords="2599,28,3303,88,3302,93,2599,33"/>
+<area shape="rect" id="Node000036" href="$canload_8h.html" title=" " alt="" coords="4019,79,4183,120"/>
+<area shape="poly" id="edge34_Node000001_Node000036" title=" " alt="" coords="2600,23,4019,91,4019,97,2599,28"/>
+<area shape="rect" id="Node000044" href="$canrawfilter_8h.html" title=" " alt="" coords="4711,79,4896,120"/>
+<area shape="poly" id="edge40_Node000001_Node000044" title=" " alt="" coords="2599,21,4711,92,4711,98,2599,26"/>
+<area shape="rect" id="Node000052" href="$canrawlogger_8h.html" title=" " alt="" coords="5203,79,5399,120"/>
+<area shape="poly" id="edge46_Node000001_Node000052" title=" " alt="" coords="2599,19,3557,38,4225,55,4908,76,5203,90,5203,95,4908,82,4225,60,3557,43,2599,24"/>
+<area shape="rect" id="Node000060" href="$canrawplayer_8h.html" title=" " alt="" coords="1584,79,1778,120"/>
+<area shape="poly" id="edge51_Node000001_Node000060" title=" " alt="" coords="2347,30,2093,51,1797,82,1779,84,1778,79,1797,76,2093,45,2347,25"/>
+<area shape="rect" id="Node000068" href="$canrawsender_8h.html" title=" " alt="" coords="1809,79,2009,120"/>
+<area shape="poly" id="edge53_Node000001_Node000068" title=" " alt="" coords="2361,36,2025,82,2009,84,2008,79,2025,76,2360,31"/>
+<area shape="rect" id="Node000078" href="$canrawview_8h.html" title=" " alt="" coords="2037,79,2224,120"/>
+<area shape="poly" id="edge55_Node000001_Node000078" title=" " alt="" coords="2406,38,2216,81,2215,76,2405,32"/>
+<area shape="rect" id="Node000084" href="$cansignaldata_8h.html" title=" " alt="" coords="2468,79,2667,120"/>
+<area shape="poly" id="edge57_Node000001_Node000084" title=" " alt="" coords="2500,39,2546,77,2543,81,2497,43"/>
+<area shape="rect" id="Node000094" href="$cansignaldecoder_8h.html" title=" " alt="" coords="1327,79,1547,120"/>
+<area shape="poly" id="edge59_Node000001_Node000094" title=" " alt="" coords="2347,28,1997,47,1785,62,1572,82,1547,84,1547,79,1571,76,1784,57,1997,42,2347,22"/>
+<area shape="rect" id="Node000099" href="$cansignalencoder_8h.html" title=" " alt="" coords="1083,79,1303,120"/>
+<area shape="poly" id="edge62_Node000001_Node000099" title=" " alt="" coords="2347,24,1892,40,1605,57,1316,82,1304,83,1303,78,1315,76,1604,52,1891,35,2347,19"/>
+<area shape="rect" id="Node000104" href="$cansignalsender_8h.html" title=" " alt="" coords="699,175,911,216"/>
+<area shape="poly" id="edge64_Node000001_Node000104" title=" " alt="" coords="2347,23,2028,27,1633,37,1275,54,1147,67,1073,82,1057,90,1048,100,1038,111,1022,122,952,154,883,177,881,172,950,149,1020,117,1034,107,1044,96,1054,86,1071,76,1147,61,1275,49,1632,32,2028,22,2347,18"/>
+<area shape="rect" id="Node000110" href="$cansignalviewer_8h.html" title=" " alt="" coords="2698,79,2909,120"/>
+<area shape="poly" id="edge67_Node000001_Node000110" title=" " alt="" coords="2539,33,2722,76,2720,81,2538,38"/>
+<area shape="rect" id="Node000118" href="$qmlexecutor_8h.html" title=" " alt="" coords="2936,79,3124,120"/>
+<area shape="poly" id="edge69_Node000001_Node000118" title=" " alt="" coords="2588,31,2921,76,2936,79,2935,84,2921,82,2588,36"/>
+<area shape="rect" id="Node000126" href="$pcimpl_8h.html" title=" " alt="" coords="5547,79,5684,120"/>
+<area shape="poly" id="edge71_Node000001_Node000126" title=" " alt="" coords="2599,16,3058,16,3750,23,4570,41,4994,56,5410,76,5547,88,5546,93,5410,82,4994,61,4570,46,3750,28,3058,22,2599,21"/>
+<area shape="rect" id="Node000127" href="$projectconfig__p_8h.html" title=" " alt="" coords="5747,175,5884,216"/>
+<area shape="poly" id="edge73_Node000001_Node000127" title=" " alt="" coords="2599,17,3306,17,4310,23,4805,31,5233,41,5546,56,5645,66,5698,77,5732,96,5762,122,5805,173,5801,176,5759,126,5729,101,5696,81,5644,71,5546,62,5233,47,4805,36,4310,29,3306,22,2599,22"/>
+<area shape="rect" id="Node000003" href="$candbhandler_8cpp.html" title=" " alt="" coords="272,183,471,208"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="545,121,400,184,398,180,542,116"/>
+<area shape="rect" id="Node000004" href="$common__test_8cpp.html" title=" " alt="" coords="495,175,675,216"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="588,128,588,175,582,175,582,128"/>
+<area shape="rect" id="Node000005" href="$cansignaldecoder__p_8h.html" title=" " alt="" coords="1179,175,1399,216"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="693,107,912,130,1167,165,1204,172,1203,177,1166,170,911,135,692,113"/>
+<area shape="rect" id="Node000008" href="$cansignalencoder__p_8h.html" title=" " alt="" coords="935,175,1155,216"/>
+<area shape="poly" id="edge6_Node000002_Node000008" title=" " alt="" coords="664,113,924,165,957,172,956,177,923,170,663,118"/>
+<area shape="rect" id="Node000011" href="$cansignalsender__p_8h.html" title=" " alt="" coords="296,271,508,312"/>
+<area shape="poly" id="edge8_Node000002_Node000011" title=" " alt="" coords="478,109,346,117,204,130,86,148,46,158,25,170,14,185,9,199,9,212,14,223,39,243,78,258,128,270,183,278,296,286,295,291,183,283,127,275,76,263,36,247,10,226,4,213,4,199,9,183,22,166,44,153,85,143,203,125,345,112,477,103"/>
+<area shape="rect" id="Node000014" href="$cansignalsenderguiimpl_8h.html" title=" " alt="" coords="36,175,248,216"/>
+<area shape="poly" id="edge10_Node000002_Node000014" title=" " alt="" coords="511,118,262,170,230,177,229,172,260,165,510,113"/>
+<area shape="rect" id="Node000006" href="$cansignaldecoder_8cpp.html" title=" " alt="" coords="1326,271,1545,312"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="1334,222,1406,269,1403,273,1331,227"/>
+<area shape="rect" id="Node000009" href="$cansignalencoder_8cpp.html" title=" " alt="" coords="1009,271,1228,312"/>
+<area shape="poly" id="edge7_Node000008_Node000009" title=" " alt="" coords="1071,226,1105,269,1101,273,1067,230"/>
+<area shape="rect" id="Node000012" href="$cansignalsender_8cpp.html" title=" " alt="" coords="699,360,911,401"/>
+<area shape="poly" id="edge9_Node000011_Node000012" title=" " alt="" coords="510,313,714,357,713,362,509,318"/>
+<area shape="poly" id="edge11_Node000014_Node000011" title=" " alt="" coords="212,219,349,268,347,273,210,224"/>
+<area shape="poly" id="edge22_Node000016_Node000006" title=" " alt="" coords="2304,122,2224,170,2206,185,2194,200,2180,214,2159,226,2109,242,2042,255,1877,274,1700,285,1546,291,1546,286,1700,280,1877,269,2041,250,2108,237,2157,221,2177,209,2190,196,2202,182,2221,166,2302,117"/>
+<area shape="poly" id="edge23_Node000016_Node000009" title=" " alt="" coords="2271,119,2214,140,2160,170,2147,184,2140,198,2131,213,2115,226,2061,240,1969,250,1718,263,1314,274,1228,282,1228,276,1314,269,1718,258,1968,245,2060,234,2113,221,2127,209,2135,196,2142,181,2157,166,2212,135,2269,114"/>
+<area shape="poly" id="edge24_Node000016_Node000012" title=" " alt="" coords="2325,127,2277,178,2245,204,2210,226,2160,245,2100,263,1950,294,1773,320,1582,340,1203,366,912,379,912,373,1203,361,1581,334,1773,314,1949,289,2098,258,2159,240,2208,221,2242,200,2274,174,2321,123"/>
+<area shape="rect" id="Node000017" href="$candevice_8cpp.html" title=" " alt="" coords="3076,271,3254,312"/>
+<area shape="poly" id="edge14_Node000016_Node000017" title=" " alt="" coords="2329,127,2320,150,2314,176,2315,200,2326,222,2339,231,2363,239,2434,254,2530,265,2641,274,2879,284,3076,287,3076,293,2878,289,2641,279,2529,270,2433,259,2361,244,2337,235,2322,225,2310,202,2309,175,2315,148,2324,125"/>
+<area shape="rect" id="Node000018" href="$canload_8cpp.html" title=" " alt="" coords="3901,271,4064,312"/>
+<area shape="poly" id="edge15_Node000016_Node000018" title=" " alt="" coords="2342,127,2349,177,2359,201,2376,221,2436,230,2580,240,3027,259,3900,286,3900,291,3027,264,2580,245,2435,235,2373,226,2355,204,2344,178,2337,128"/>
+<area shape="rect" id="Node000019" href="$canrawfilter_8cpp.html" title=" " alt="" coords="4582,271,4766,312"/>
+<area shape="poly" id="edge16_Node000016_Node000019" title=" " alt="" coords="2357,125,2391,181,2410,206,2426,221,2456,228,2515,235,2704,246,3246,260,4076,269,4582,285,4581,290,4076,274,3246,265,2704,252,2515,241,2455,234,2424,226,2406,210,2387,184,2352,127"/>
+<area shape="rect" id="Node000020" href="$canrawlogger_8cpp.html" title=" " alt="" coords="5173,271,5368,312"/>
+<area shape="poly" id="edge17_Node000016_Node000020" title=" " alt="" coords="2371,120,2424,166,2437,183,2446,197,2454,210,2470,221,2513,230,2596,239,2861,251,3217,259,3619,264,4778,269,5172,283,5172,289,4778,274,3619,269,3217,265,2860,256,2596,244,2512,236,2468,226,2451,214,2441,200,2433,185,2420,170,2367,124"/>
+<area shape="rect" id="Node000021" href="$canrawplayer_8cpp.html" title=" " alt="" coords="1473,175,1667,216"/>
+<area shape="poly" id="edge18_Node000016_Node000021" title=" " alt="" coords="2265,118,2236,122,2080,138,1957,144,1835,151,1680,170,1645,177,1644,172,1679,165,1835,145,1957,138,2079,133,2235,117,2264,113"/>
+<area shape="rect" id="Node000022" href="$canrawsender_8cpp.html" title=" " alt="" coords="1692,175,1891,216"/>
+<area shape="poly" id="edge19_Node000016_Node000022" title=" " alt="" coords="2262,118,2236,122,2070,145,1904,170,1871,177,1870,172,1903,165,2069,140,2235,117,2261,113"/>
+<area shape="rect" id="Node000023" href="$canrawview_8cpp.html" title=" " alt="" coords="1915,175,2103,216"/>
+<area shape="poly" id="edge20_Node000016_Node000023" title=" " alt="" coords="2284,119,2079,177,2078,172,2283,114"/>
+<area shape="rect" id="Node000024" href="$cansignaldata_8cpp.html" title=" " alt="" coords="2480,175,2679,216"/>
+<area shape="poly" id="edge21_Node000016_Node000024" title=" " alt="" coords="2387,116,2530,172,2528,177,2385,121"/>
+<area shape="rect" id="Node000025" href="$cansignalviewer_8cpp.html" title=" " alt="" coords="2703,175,2915,216"/>
+<area shape="poly" id="edge25_Node000016_Node000025" title=" " alt="" coords="2423,113,2691,165,2723,172,2722,177,2690,170,2422,118"/>
+<area shape="rect" id="Node000026" href="$qmlexecutor_8cpp.html" title=" " alt="" coords="2939,175,3127,216"/>
+<area shape="poly" id="edge26_Node000016_Node000026" title=" " alt="" coords="2426,113,2457,117,2589,131,2692,138,2795,146,2927,165,2960,172,2959,177,2926,170,2795,151,2692,143,2589,136,2457,122,2426,118"/>
+<area shape="poly" id="edge28_Node000027_Node000017" title=" " alt="" coords="3289,116,3236,136,3213,151,3192,169,3178,193,3169,220,3166,271,3161,271,3164,220,3173,191,3188,166,3209,147,3234,131,3287,111"/>
+<area shape="rect" id="Node000028" href="$candevice__p_8h.html" title=" " alt="" coords="3203,175,3380,216"/>
+<area shape="poly" id="edge29_Node000027_Node000028" title=" " alt="" coords="3362,132,3314,177,3310,173,3358,128"/>
+<area shape="rect" id="Node000029" href="$candevicemodel_8h.html" title=" " alt="" coords="3404,175,3582,216"/>
+<area shape="poly" id="edge31_Node000027_Node000029" title=" " alt="" coords="3425,128,3474,173,3470,177,3422,132"/>
+<area shape="rect" id="Node000034" href="$candevice__test_8cpp.html" title=" " alt="" coords="3606,175,3783,216"/>
+<area shape="poly" id="edge32_Node000027_Node000034" title=" " alt="" coords="3470,122,3632,172,3630,177,3469,127"/>
+<area shape="rect" id="Node000035" href="$projectconfig__test__noqrc_8cpp.html" title=" " alt="" coords="3807,168,3944,223"/>
+<area shape="poly" id="edge33_Node000027_Node000035" title=" " alt="" coords="3496,111,3639,133,3795,165,3807,168,3806,173,3794,170,3638,138,3495,116"/>
+<area shape="poly" id="edge30_Node000028_Node000017" title=" " alt="" coords="3255,227,3193,273,3190,269,3252,223"/>
+<area shape="poly" id="edge35_Node000036_Node000018" title=" " alt="" coords="4050,130,4028,148,4010,169,3997,195,3990,222,3985,271,3979,271,3985,221,3992,193,4005,166,4024,144,4047,126"/>
+<area shape="rect" id="Node000037" href="$canload__p_8h.html" title=" " alt="" coords="4019,175,4183,216"/>
+<area shape="poly" id="edge36_Node000036_Node000037" title=" " alt="" coords="4104,135,4104,175,4098,175,4098,135"/>
+<area shape="rect" id="Node000039" href="$canloadmodel_8h.html" title=" " alt="" coords="4207,175,4371,216"/>
+<area shape="poly" id="edge38_Node000036_Node000039" title=" " alt="" coords="4155,125,4251,172,4248,177,4153,129"/>
+<area shape="rect" id="Node000043" href="$canload__test_8cpp.html" title=" " alt="" coords="4395,175,4559,216"/>
+<area shape="poly" id="edge39_Node000036_Node000043" title=" " alt="" coords="4199,120,4383,165,4409,172,4408,177,4382,170,4197,125"/>
+<area shape="poly" id="edge37_Node000037_Node000018" title=" " alt="" coords="4066,228,4008,273,4005,269,4063,223"/>
+<area shape="poly" id="edge41_Node000044_Node000019" title=" " alt="" coords="4806,136,4800,180,4792,203,4780,225,4753,253,4722,273,4719,269,4750,249,4776,222,4787,201,4794,179,4801,135"/>
+<area shape="rect" id="Node000045" href="$canrawfilter__p_8h.html" title=" " alt="" coords="4582,175,4766,216"/>
+<area shape="poly" id="edge42_Node000044_Node000045" title=" " alt="" coords="4766,131,4703,177,4699,173,4763,127"/>
+<area shape="rect" id="Node000047" href="$canrawfiltermodel_8h.html" title=" " alt="" coords="4841,175,5025,216"/>
+<area shape="poly" id="edge44_Node000044_Node000047" title=" " alt="" coords="4844,127,4908,173,4905,177,4841,131"/>
+<area shape="rect" id="Node000051" href="$canrawfilter__test_8cpp.html" title=" " alt="" coords="5049,175,5233,216"/>
+<area shape="poly" id="edge45_Node000044_Node000051" title=" " alt="" coords="4890,122,5071,172,5070,177,4888,127"/>
+<area shape="poly" id="edge43_Node000045_Node000019" title=" " alt="" coords="4677,231,4677,271,4672,271,4672,231"/>
+<area shape="poly" id="edge47_Node000052_Node000020" title=" " alt="" coords="5298,136,5276,272,5271,271,5293,135"/>
+<area shape="rect" id="Node000053" href="$canrawlogger__p_8h.html" title=" " alt="" coords="5527,175,5723,216"/>
+<area shape="poly" id="edge48_Node000052_Node000053" title=" " alt="" coords="5384,122,5558,172,5556,177,5383,127"/>
+<area shape="rect" id="Node000055" href="$canrawloggermodel_8h.html" title=" " alt="" coords="5307,175,5503,216"/>
+<area shape="poly" id="edge50_Node000052_Node000055" title=" " alt="" coords="5335,128,5385,173,5382,177,5332,132"/>
+<area shape="poly" id="edge49_Node000053_Node000020" title=" " alt="" coords="5537,223,5345,273,5344,268,5535,218"/>
+<area shape="poly" id="edge52_Node000060_Node000021" title=" " alt="" coords="1648,132,1595,177,1591,173,1645,128"/>
+<area shape="poly" id="edge54_Node000068_Node000022" title=" " alt="" coords="1875,131,1818,177,1814,173,1871,127"/>
+<area shape="poly" id="edge56_Node000078_Node000023" title=" " alt="" coords="2095,131,2036,177,2032,173,2092,127"/>
+<area shape="poly" id="edge58_Node000084_Node000024" title=" " alt="" coords="2575,135,2580,174,2574,175,2569,135"/>
+<area shape="poly" id="edge61_Node000094_Node000005" title=" " alt="" coords="1395,130,1321,177,1319,172,1392,126"/>
+<area shape="poly" id="edge60_Node000094_Node000006" title=" " alt="" coords="1439,135,1438,271,1433,271,1434,135"/>
+<area shape="poly" id="edge63_Node000099_Node000008" title=" " alt="" coords="1151,130,1077,177,1075,172,1148,126"/>
+<area shape="poly" id="edge66_Node000104_Node000011" title=" " alt="" coords="706,222,488,273,486,268,705,217"/>
+<area shape="poly" id="edge65_Node000104_Node000012" title=" " alt="" coords="808,232,808,360,802,360,802,232"/>
+<area shape="poly" id="edge68_Node000110_Node000025" title=" " alt="" coords="2808,135,2811,175,2805,175,2803,135"/>
+<area shape="poly" id="edge70_Node000118_Node000026" title=" " alt="" coords="3034,135,3035,175,3030,175,3029,135"/>
+<area shape="poly" id="edge72_Node000126_Node000127" title=" " alt="" coords="5672,124,5775,172,5773,177,5670,129"/>
 </map>

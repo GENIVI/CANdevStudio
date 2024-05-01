@@ -1,12 +1,23 @@
 <map id="src/components/candevice/candevice.h" name="src/components/candevice/candevice.h">
-<area shape="rect" id="node1" title=" " alt="" coords="297,5,476,45"/>
-<area shape="rect" id="node2" href="$candevice_8cpp.html" title=" " alt="" coords="5,203,184,243"/>
-<area shape="rect" id="node3" href="$candevice__p_8h.html" title=" " alt="" coords="95,101,273,141"/>
-<area shape="rect" id="node4" href="$candevicemodel_8h.html" title=" " alt="" coords="297,101,476,141"/>
-<area shape="rect" id="node9" href="$candevice__test_8cpp.html" title=" " alt="" coords="500,101,679,141"/>
-<area shape="rect" id="node10" href="$projectconfig__test__noqrc_8cpp.html" title=" " alt="" coords="703,93,841,148"/>
-<area shape="rect" id="node5" href="$candevicemodel_8cpp.html" title=" " alt="" coords="213,299,392,339"/>
-<area shape="rect" id="node6" href="$candeviceplugin_8h.html" title=" " alt="" coords="277,203,456,243"/>
-<area shape="rect" id="node7" href="$candevicemodel__test_8cpp.html" title=" " alt="" coords="481,203,687,243"/>
-<area shape="rect" id="node8" href="$projectconfig__test_8cpp.html" title=" " alt="" coords="712,196,851,251"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="296,5,473,46"/>
+<area shape="rect" id="Node000002" href="$candevice_8cpp.html" title=" " alt="" coords="5,205,183,246"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="281,39,221,48,162,60,114,76,96,85,84,96,73,121,72,150,78,179,87,204,82,205,73,181,67,151,67,120,80,92,93,81,111,71,161,55,220,42,280,34"/>
+<area shape="rect" id="Node000003" href="$candevice__p_8h.html" title=" " alt="" coords="95,102,272,142"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="330,55,227,103,224,99,327,51"/>
+<area shape="rect" id="Node000004" href="$candevicemodel_8h.html" title=" " alt="" coords="296,102,473,142"/>
+<area shape="poly" id="edge4_Node000001_Node000004" title=" " alt="" coords="387,62,387,101,382,101,382,62"/>
+<area shape="rect" id="Node000009" href="$candevice__test_8cpp.html" title=" " alt="" coords="497,102,675,142"/>
+<area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="442,51,545,99,543,103,440,55"/>
+<area shape="rect" id="Node000010" href="$projectconfig__test__noqrc_8cpp.html" title=" " alt="" coords="699,94,836,150"/>
+<area shape="poly" id="edge11_Node000001_Node000010" title=" " alt="" coords="490,45,688,91,699,95,697,100,687,97,488,50"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="158,156,113,207,109,203,154,152"/>
+<area shape="rect" id="Node000005" href="$candevicemodel_8cpp.html" title=" " alt="" coords="213,301,391,342"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="318,152,289,172,267,199,260,225,265,252,276,278,289,300,285,302,271,280,260,253,255,224,262,196,285,168,315,148"/>
+<area shape="rect" id="Node000006" href="$candeviceplugin_8h.html" title=" " alt="" coords="277,205,455,246"/>
+<area shape="poly" id="edge6_Node000004_Node000006" title=" " alt="" coords="381,158,372,205,367,204,376,157"/>
+<area shape="rect" id="Node000007" href="$candevicemodel__test_8cpp.html" title=" " alt="" coords="479,205,685,246"/>
+<area shape="poly" id="edge8_Node000004_Node000007" title=" " alt="" coords="437,147,545,202,543,207,435,152"/>
+<area shape="rect" id="Node000008" href="$projectconfig__test_8cpp.html" title=" " alt="" coords="709,198,847,253"/>
+<area shape="poly" id="edge9_Node000004_Node000008" title=" " alt="" coords="473,144,485,147,592,170,697,195,710,199,708,204,696,200,590,175,484,152,471,149"/>
+<area shape="poly" id="edge7_Node000006_Node000005" title=" " alt="" coords="346,260,317,302,313,299,342,257"/>
 </map>

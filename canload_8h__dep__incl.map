@@ -1,11 +1,21 @@
 <map id="src/components/canload/canload.h" name="src/components/canload/canload.h">
-<area shape="rect" id="node1" title=" " alt="" coords="252,5,416,45"/>
-<area shape="rect" id="node2" href="$canload_8cpp.html" title=" " alt="" coords="5,181,169,221"/>
-<area shape="rect" id="node3" href="$canload__p_8h.html" title=" " alt="" coords="159,93,323,133"/>
-<area shape="rect" id="node5" href="$canloadmodel_8h.html" title=" " alt="" coords="347,93,511,133"/>
-<area shape="rect" id="node9" href="$canload__test_8cpp.html" title=" " alt="" coords="535,93,699,133"/>
-<area shape="rect" id="node4" href="$canload__p_8cpp.html" title=" " alt="" coords="193,181,357,221"/>
-<area shape="rect" id="node6" href="$canloadmodel_8cpp.html" title=" " alt="" coords="373,269,537,309"/>
-<area shape="rect" id="node7" href="$canloadplugin_8h.html" title=" " alt="" coords="433,181,597,221"/>
-<area shape="rect" id="node8" href="$canloadmodel__test_8cpp.html" title=" " alt="" coords="622,181,814,221"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="252,5,415,46"/>
+<area shape="rect" id="Node000002" href="$canload_8cpp.html" title=" " alt="" coords="5,183,169,223"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="238,50,191,69,149,96,130,116,115,139,96,183,91,181,110,137,126,113,145,92,189,64,236,45"/>
+<area shape="rect" id="Node000003" href="$canload__p_8h.html" title=" " alt="" coords="159,94,322,135"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="303,59,263,96,260,92,300,55"/>
+<area shape="rect" id="Node000005" href="$canloadmodel_8h.html" title=" " alt="" coords="347,94,510,135"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="368,55,409,92,405,96,365,59"/>
+<area shape="rect" id="Node000009" href="$canload__test_8cpp.html" title=" " alt="" coords="535,94,698,135"/>
+<area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="413,48,553,91,551,96,412,54"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="194,145,123,185,120,180,191,140"/>
+<area shape="rect" id="Node000004" href="$canload__p_8cpp.html" title=" " alt="" coords="193,183,357,223"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="256,148,270,181,265,183,251,150"/>
+<area shape="rect" id="Node000006" href="$canloadmodel_8cpp.html" title=" " alt="" coords="371,271,534,312"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="423,150,419,186,422,223,430,247,442,269,437,272,425,250,416,224,413,186,417,150"/>
+<area shape="rect" id="Node000007" href="$canloadplugin_8h.html" title=" " alt="" coords="431,183,594,223"/>
+<area shape="poly" id="edge7_Node000005_Node000007" title=" " alt="" coords="460,144,495,180,491,184,456,148"/>
+<area shape="rect" id="Node000008" href="$canloadmodel__test_8cpp.html" title=" " alt="" coords="618,183,809,223"/>
+<area shape="poly" id="edge9_Node000005_Node000008" title=" " alt="" coords="509,137,650,180,648,185,507,142"/>
+<area shape="poly" id="edge8_Node000007_Node000006" title=" " alt="" coords="492,238,468,272,464,269,488,235"/>
 </map>

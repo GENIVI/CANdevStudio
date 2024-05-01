@@ -1,9 +1,15 @@
 <map id="src/components/canrawsender/gui/crsguiinterface.h" name="src/components/canrawsender/gui/crsguiinterface.h">
-<area shape="rect" id="node1" title=" " alt="" coords="341,5,541,45"/>
-<area shape="rect" id="node2" href="$crsgui_8h.html" title=" " alt="" coords="117,93,317,133"/>
-<area shape="rect" id="node6" href="$canrawsender__test_8cpp.html" title=" " alt="" coords="341,93,541,133"/>
-<area shape="rect" id="node7" href="$newlinemanager__test_8cpp.html" title=" " alt="" coords="566,93,773,133"/>
-<area shape="rect" id="node3" href="$canrawsender__p_8h.html" title=" " alt="" coords="117,181,317,221"/>
-<area shape="rect" id="node4" href="$canrawsender_8cpp.html" title=" " alt="" coords="5,269,205,309"/>
-<area shape="rect" id="node5" href="$canrawsender__p_8cpp.html" title=" " alt="" coords="229,269,429,309"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="341,5,541,46"/>
+<area shape="rect" id="Node000002" href="$crsgui_8h.html" title=" " alt="" coords="117,94,317,135"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="377,54,269,96,267,91,375,49"/>
+<area shape="rect" id="Node000006" href="$canrawsender__test_8cpp.html" title=" " alt="" coords="341,94,541,135"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="444,62,444,94,438,94,438,62"/>
+<area shape="rect" id="Node000007" href="$newlinemanager__test_8cpp.html" title=" " alt="" coords="565,94,770,135"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="507,49,617,91,615,96,505,54"/>
+<area shape="rect" id="Node000003" href="$canrawsender__p_8h.html" title=" " alt="" coords="117,183,317,223"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="220,150,220,182,214,182,214,150"/>
+<area shape="rect" id="Node000004" href="$canrawsender_8cpp.html" title=" " alt="" coords="5,271,205,312"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="181,235,132,273,129,269,178,231"/>
+<area shape="rect" id="Node000005" href="$canrawsender__p_8cpp.html" title=" " alt="" coords="229,271,429,312"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="256,231,305,269,302,273,253,235"/>
 </map>
