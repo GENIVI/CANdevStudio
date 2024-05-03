@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.0.0)
 
 project(CANdevStudio CXX)
 
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++") 
 set(VERSION_MAJOR 1)
 set(VERSION_MINOR 2)
 set(VERSION_PATCH 2)
