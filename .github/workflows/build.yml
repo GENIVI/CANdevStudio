@@ -1,4 +1,4 @@
-name: CANdevStudio
+cannelloni -I vcan0 -R 192.168.0.3 -r 12000name: CANdevStudio
 
 on: [push, pull_request]
 
