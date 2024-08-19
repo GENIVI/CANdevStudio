@@ -1,6 +1,6 @@
 name: CANdevStudio
-
-on: [push, pull_request]
+ijun111:master
+on:https://github.com/commaai/opendbc.git
 
 env:
   MAIN_BRANCH: 'refs/heads/master'
