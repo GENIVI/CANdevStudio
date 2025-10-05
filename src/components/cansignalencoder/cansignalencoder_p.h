@@ -21,6 +21,8 @@ public:
     void setSettings(const QJsonObject& json);
     void encodeSignal(const QString& name, const QVariant& val);
 
+    void initCacheAndTimers();
+
 private:
     void initProps();
     void signalToRaw(const uint32_t id, const CANsignal& sigDesc, const QVariant& sigVal, const uint32_t updateCycle);
@@ -33,7 +35,7 @@ public:
     std::vector<std::unique_ptr<QTimer>> _cycleTimers;
 
 public slots:
-    void initCacheAndTimers();
+
 
 private:
     CanSignalEncoder* q_ptr;

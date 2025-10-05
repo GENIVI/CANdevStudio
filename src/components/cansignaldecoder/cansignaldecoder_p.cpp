@@ -167,7 +167,7 @@ int64_t CanSignalDecoderPrivate::rawToSignal(
         //
         // Source: https://github.com/eerimoq/cantools/blob/master/cantools/database/can/signal.py
 
-        uint8_t bit = startBit;
+        uint16_t bit = startBit;
         for (uint8_t bitpos = 0; bitpos < sigSize; bitpos++) {
 
             if (data[bit / 8] & (1 << (bit % 8))) {

@@ -22,7 +22,15 @@ const std::array beTransTable = {
      39, 38, 37, 36, 35, 34, 33, 32,
      47, 46, 45, 44, 43, 42, 41, 40,
      55, 54, 53, 52, 51, 50, 49, 48,
-     63, 62, 61, 60, 59, 58, 57, 56
+     63, 62, 61, 60, 59, 58, 57, 56,
+     71, 70, 69, 68, 67, 66, 65, 64,
+     79, 78, 77, 76, 75, 74, 73, 72,
+     87, 86, 85, 84, 83, 82, 81, 80,
+     95, 94, 93, 92, 91, 90, 89, 88,
+     103,102,101,100, 99, 98, 97, 96,
+     111,110,109,108,107,106,105,104,
+    
+     
 };
 }
 // clang-format on
@@ -100,6 +108,7 @@ void CanSignalEncoderPrivate::encodeSignal(const QString& name, const QVariant& 
 
     for (auto& sig : msgDesc->second) {
         if (sig.signal_name == sigName.toStdString()) {
+            cds_info("sig.startBit = {}", sig.startBit);
             if (_rawCache[id].size() < (int)msgDesc->first.dlc) {
                 cds_info("Setting up new cache for {:03x} msg", id);
                 // Set cache for the first time
@@ -158,7 +167,7 @@ void CanSignalEncoderPrivate::signalToRaw(
         //
         // Source: https://github.com/eerimoq/cantools/blob/master/cantools/database/can/signal.py
 
-        uint8_t bitpos = 0;
+        uint16_t bitpos = 0;
         for (int i = sigDesc.signalSize - 1; i >= 0; --i) {
             // First beTransTable returns number of bytes used before startBit
             // Then we are adding length of the signal and getting 'offset' where the LSB is
