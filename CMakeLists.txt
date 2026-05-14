@@ -29,9 +29,9 @@ message(STATUS "CMAKE_INSTALL_LIBDIR: '${CMAKE_INSTALL_LIBDIR}'")
 
 if(UNIX)
     if(STANDALONE)
-        set(INSTALL_DEST_LIB CANdevStudio)
-        set(INSTALL_DEST_BIN CANdevStudio)
-        set(INSTALL_DEST_PLUG CANdevStudio/canbus)
+        set(INSTALL_DEST_LIB lib/CANdevStudio)
+        set(INSTALL_DEST_BIN lib/CANdevStudio)
+        set(INSTALL_DEST_PLUG lib/CANdevStudio/canbus)
     else()
         set(INSTALL_DEST_LIB ${CMAKE_INSTALL_LIBDIR}/CANdevStudio)
         set(INSTALL_DEST_BIN bin)
@@ -157,15 +157,9 @@ if(STANDALONE)
             libQt5QmlModels.so.${Qt5Core_VERSION}
             libQt5Quick.so.${Qt5Core_VERSION}
             libQt5QuickWidgets.so.${Qt5Core_VERSION}
-            libicudata.so.56
-            libicudata.so.56.1
-            libicui18n.so.56
-            libicui18n.so.56.1
-            libicuuc.so.56
-            libicuuc.so.56.1
         )
 
-        install(PROGRAMS files/CANdevStudio.sh DESTINATION ${INSTALL_DEST_BIN})
+        install(PROGRAMS files/CANdevStudio.sh DESTINATION bin RENAME CANdevStudio)
         install(PROGRAMS /usr/lib/x86_64-linux-gnu/libxcb-xinerama.so.0.0.0 DESTINATION ${INSTALL_DEST_BIN})
         install(PROGRAMS /usr/lib/x86_64-linux-gnu/libxcb-xinerama.so.0 DESTINATION ${INSTALL_DEST_BIN})
     else()
@@ -190,6 +184,15 @@ if(STANDALONE)
     foreach(SYS_LIB ${SYS_LIBS})
         set(SYS_LIBS_ABS ${SYS_LIBS_ABS} ${QtPath}/${SYS_LIB})
     endforeach()
+
+    file(GLOB ICU_LIBS
+        "${QtPath}/libicudata.so*"
+        "${QtPath}/libicui18n.so*"
+        "${QtPath}/libicuuc.so*"
+    )
+    if(ICU_LIBS)
+        set(SYS_LIBS_ABS ${SYS_LIBS_ABS} ${ICU_LIBS})
+    endif()
 
     install(PROGRAMS ${SYS_LIBS_ABS}
         DESTINATION ${INSTALL_DEST_LIB}
